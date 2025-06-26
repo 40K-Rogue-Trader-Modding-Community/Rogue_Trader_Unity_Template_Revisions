@@ -971,6 +971,68 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$b5dfda76-7fae-493c-b666-7fb3e2db0940",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Анхайд церемонемейстера если его спрятали после романса кибеллы",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$1cde53e9-14c0-421c-a9a9-7db7b428cbf1",
+              "Not": false,
+              "m_Etude": "!bp_5e0550ba229b4a1db324ce1826e56fa1",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$d8733cef-c7e7-4dcb-b508-2b5eeb9b84d2",
+              "Not": false,
+              "m_QuestObjective": "!bp_83a8b7952c6a442dbbed176f6998daa3",
+              "State": "Started"
+            },
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$27e1894e-dd97-4653-83da-7e576d93cae0",
+              "Not": false,
+              "m_QuestObjective": "!bp_58768a1814054523b34a8f611847c92a",
+              "State": "Completed"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$9eea532cacfe4fc7b26649bddd4fc870",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$366e1311dbd34b2ea8e071cf4e4523c9",
+                "Spawner": {
+                  "EntityNameInEditor": "ClemenceReplacement",
+                  "_entity_id": "5065d6ea-61f0-45e4-9d13-f72655695550",
+                  "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
+                }
+              },
+              "Unhide": true,
+              "Fade": false
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",

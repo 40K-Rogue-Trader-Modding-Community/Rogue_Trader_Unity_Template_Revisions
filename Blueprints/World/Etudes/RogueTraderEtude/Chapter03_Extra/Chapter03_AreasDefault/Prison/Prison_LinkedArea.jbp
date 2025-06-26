@@ -476,13 +476,70 @@
               "m_Flag": "!bp_d168e6b741ef4ae9b6286c81d0e464c2"
             },
             {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$33e59aa724ed461985066e3780901de1",
-              "m_Cutscene": "!bp_538e6ec87ffe473f9003977e8bc56b82",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3bc222c3a64c468b9bf183722936bbba",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$34e18044-b65e-4364-92d3-b392937a8f6c",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_dfbdaca7436747febd8cc046e494eda3",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$b085b674-5a1e-4132-bdcc-e49ab945438a",
+                    "m_Cutscene": "!bp_538e6ec87ffe473f9003977e8bc56b82",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "0e571e9f07a314048afedff605fa53ce, LockFlag",
+                    "name": "$LockFlag$938fbae2-62bd-4bbd-b6d0-98703425eb66",
+                    "m_Flag": "!bp_e0abcef18441432ead5fd9f44144082b"
+                  },
+                  {
+                    "$type": "da1815e1ca093d14190aa9351c0c0f66, SwitchDoor",
+                    "name": "$SwitchDoor$317f60807f8a461d81d11d203ed371cd",
+                    "Door": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$ad61fda4124f4b17a136eacc08e9abfe",
+                      "MapObject": {
+                        "EntityNameInEditor": "PrisonLiftUp",
+                        "_entity_id": "110558b4-4bf0-4a42-ae1d-12190c93e4b0",
+                        "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                      }
+                    },
+                    "UnlockIfLocked": false,
+                    "CloseIfAlreadyOpen": false,
+                    "OpenIfAlreadyClosed": false
+                  },
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$fe4a1faa-03c2-4f91-9ba0-f058ea42c908",
+                    "m_Cutscene": "!bp_db9e4c0530de498683e0134cbaee61dd",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
               }
             }
           ]

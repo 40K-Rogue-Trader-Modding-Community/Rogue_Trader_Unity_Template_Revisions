@@ -48,13 +48,98 @@
               }
             },
             {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$3d3bdd8462cb46b390cb28eac609bb29",
-              "m_Cutscene": "!bp_ff3c0e6fbd7940b9b61e7a02098eae87",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$889e9f81bfd44337aefc5525906432ed",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$53998f134a8b470490f1c836fd8ec213",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_dfbdaca7436747febd8cc046e494eda3",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$fef82871-9149-490d-a20a-0e7296ddfe1c",
+                    "m_Cutscene": "!bp_ff3c0e6fbd7940b9b61e7a02098eae87",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$0e788e41-c727-452a-9223-118ef911fb73",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$1e5a13db-5062-42f2-8276-e65fd4a739fe",
+                          "Not": false,
+                          "m_Etude": "!bp_f419d0d081114c6689a4a79abcacccbe",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                          "name": "$HideUnit$c98fedf8-1c0f-4226-b8fb-d3b1ed9e3b61",
+                          "Target": {
+                            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                            "name": "$UnitFromSpawner$8a3c0796-0fb6-4e72-9f5c-3dfc791e8100",
+                            "Spawner": {
+                              "EntityNameInEditor": "DLC2_SolomornePet",
+                              "_entity_id": "63d6ea6f-65af-4c98-821f-7902500009ec",
+                              "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                            }
+                          },
+                          "Unhide": false,
+                          "Fade": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                    "name": "$UnlockFlag$821a532e-ab2d-43fc-a275-5d1eef35dc7b",
+                    "m_flag": "!bp_e0abcef18441432ead5fd9f44144082b",
+                    "flagValue": 0
+                  },
+                  {
+                    "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+                    "name": "$TeleportParty$5410de44-96d6-4902-b1d6-bbe89d710fc7",
+                    "m_exitPositon": "!bp_fc7fc5d031b84e08bcc7599e63e2c862",
+                    "AutoSaveMode": "None",
+                    "ForcePauseAfterTeleport": false,
+                    "AfterTeleport": {
+                      "Actions": []
+                    }
+                  }
+                ]
               }
             }
           ]
