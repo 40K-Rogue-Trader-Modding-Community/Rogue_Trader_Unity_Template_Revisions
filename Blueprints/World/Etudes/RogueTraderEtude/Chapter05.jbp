@@ -1058,6 +1058,70 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$b328a57f-0e2d-4eb7-ac05-de5553386e3a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "DLC2 - отмена квестов",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$66495116-7067-432b-bb43-328c49598801",
+              "Not": false,
+              "m_Etude": "!bp_0620af31d1b84acdb92a529964e8cd30",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c59c5251-a70e-4bca-867a-fe519f88dc62",
+              "Comment": "Расследование 3",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$2c9a9fb3-2480-49e3-84fe-414db25a9a96",
+                    "Not": false,
+                    "m_Quest": "!bp_12d8d5aecb9f4bd8a53a40df108c17ba",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                    "name": "$SetObjectiveStatus$4ec73d20-f6ad-4143-89fd-398f8c7da10a",
+                    "Status": "Fail",
+                    "m_Objective": "!bp_ae2567d2daef4d20a9de697304d52aee",
+                    "StartObjectiveIfNone": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",

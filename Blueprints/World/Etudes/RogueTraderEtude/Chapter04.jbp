@@ -497,82 +497,6 @@
             },
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$ff5876e8-c624-4ee3-b343-d27fb216fc3a",
-              "Comment": "Fail Seneschal_Q2_BloodAffairs_quest",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
-                    "name": "$QuestStatus$f7f0090a-eff1-4503-a6a1-3f12c9efae80",
-                    "Not": false,
-                    "m_Quest": "!bp_b8d5549b7e734d5c9b25da4e9d782f0f",
-                    "State": "Started"
-                  },
-                  {
-                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
-                    "name": "$QuestStatus$1101cdb4-38fb-428a-9e9a-40753a112e98",
-                    "Not": true,
-                    "m_Quest": "!bp_b8d5549b7e734d5c9b25da4e9d782f0f",
-                    "State": "Completed"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
-                    "name": "$SetObjectiveStatus$969fd868-5be0-4007-bb25-3e7e77e26d3c",
-                    "Status": "Fail",
-                    "m_Objective": "!bp_0c0c0c67d7424af9a339019c1f58724b",
-                    "StartObjectiveIfNone": true
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$006fc4eb-7c57-4b20-8b40-1e18f74c2eff",
-              "Comment": "Fail Psyker_Q2_TheDoor_quest",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
-                    "name": "$QuestStatus$3b0eb8ad-2966-45e5-8413-23f7d341969e",
-                    "Not": true,
-                    "m_Quest": "!bp_c7bfa67bacc345cca53cd1c6b7d37e4f",
-                    "State": "Completed"
-                  },
-                  {
-                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
-                    "name": "$QuestStatus$9024b8fc-97fb-4949-add2-948a7d24262e",
-                    "Not": false,
-                    "m_Quest": "!bp_c7bfa67bacc345cca53cd1c6b7d37e4f",
-                    "State": "Started"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
-                    "name": "$SetObjectiveStatus$a13cd749-f6f3-45d1-a708-3e5e678a409d",
-                    "Status": "Fail",
-                    "m_Objective": "!bp_6b391c754cce4e84a67e660e0d697958",
-                    "StartObjectiveIfNone": true
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$41b7d7ed10d74131b03d2a535121e342",
               "Comment": "Killing Blow errand",
               "ConditionsChecker": {
@@ -755,6 +679,121 @@
               "name": "$RemoveAreaFromSave$2c8daccd-6f92-48ba-8c62-50167090445a",
               "m_Area": "!bp_a205c2b285744f819733426738657cfc",
               "SpecificMechanic": null
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$1c472fa8-5682-4620-b7a2-f28c87e35d3f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "DLC2",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$972c4e23412e45229b394dce5f9a8cf8",
+              "Not": false,
+              "m_Etude": "!bp_0620af31d1b84acdb92a529964e8cd30",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$b463b211-3936-4462-84ab-fa2d35b67a29",
+              "Comment": "Если брали Соломона в Коммору",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$af6de8f1-2fc5-4a27-b3c8-e67c4fd486be",
+                    "Not": false,
+                    "m_Etude": "!bp_e3ca34e0d3ba44878f5c80b3c50a45b0",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": true
+                  },
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$38d4e09750154b518ca49fee697a1b93",
+                    "Not": false,
+                    "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": true,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$ae2d976f-d24e-4362-bf6a-9e5beaaacd2d",
+                    "Etude": "!bp_ceccc8dbffb5417993766848ecbc37f6",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$cf506d77-eecc-4447-b6cb-061605478858",
+              "Comment": "Если не брали Соломона в Коммору",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b02fbf62-654c-45b2-9f0a-b33cd911e5fe",
+                    "Not": false,
+                    "m_Etude": "!bp_cbb260b57ee9486caa85aecf2d923b72",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                    "name": "$CompleteEtude$d9f295749ce54da0a1e1bcd7dfb08a8e",
+                    "Etude": "!bp_cbb260b57ee9486caa85aecf2d923b72",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }

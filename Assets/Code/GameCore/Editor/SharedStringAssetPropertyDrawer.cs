@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.Localization;
 using Kingmaker.Editor.Utility;
 using Kingmaker.Localization.Shared;
 using UnityEditor;
@@ -35,7 +36,11 @@ namespace Kingmaker.Editor
                 r.width -= 48;
                 if (GUI.Button(new Rect(r.xMax, r.y, 48, r.height), "new", EditorStyles.miniButton))
                 {
-                    ShowCreator(property, fieldInfo.GetAttribute<StringCreateWindowAttribute>());
+                    ShowCreator(property, fieldInfo.GetAttribute<StringCreateWindowAttribute>(), shared =>
+                    {
+                        property.objectReferenceValue = shared;
+                        m_SerializedObject.ApplyModifiedProperties();
+                    });
                 }
             }
 
@@ -91,8 +96,21 @@ namespace Kingmaker.Editor
             return CreateShared(path);
         }
 
-        public static void ShowCreator(SerializedProperty property, StringCreateWindowAttribute attr)
+        public static void ShowCreator(SerializedProperty property, StringCreateWindowAttribute attr, Action<SharedStringAsset> onCreated = null)
         {
+            const string ldAndNdPath = "Assets/Mechanics/Blueprints/World\\";
+
+            string path = GetPathPrefix(property);
+            if (!path.StartsWith(ldAndNdPath) || attr is {Type: StringCreateWindowAttribute.StringType.ByProperty})
+            {
+                // Create shared string by the same path as the object itself silently, with no creator window
+                path = GetDefaultPath(property);
+                var shared = CreateShared(path);
+                MakeShared(property, shared);
+                onCreated?.Invoke(shared);
+                return;
+            }
+
             AssetCreatorBase creator;
             if (attr == null)
             {
@@ -110,7 +128,7 @@ namespace Kingmaker.Editor
                     StringCreateWindowAttribute.StringType.LocationName => ScriptableObject.CreateInstance<LocationNameStringCreator>(),
                     StringCreateWindowAttribute.StringType.Name => ScriptableObject.CreateInstance<NameStringCreator>(),
                     StringCreateWindowAttribute.StringType.Other => ScriptableObject.CreateInstance<OtherStringCreator>(),
-                    StringCreateWindowAttribute.StringType.UIText => (AssetCreatorBase)ScriptableObject.CreateInstance<UITextStringCreator>(),
+                    StringCreateWindowAttribute.StringType.UIText => ScriptableObject.CreateInstance<UITextStringCreator>(),
                     StringCreateWindowAttribute.StringType.MapMarker => ScriptableObject.CreateInstance<MarkerStringCreator>(),
                     _ => ScriptableObject.CreateInstance<SharedStringCreator>(),
                 };
@@ -126,19 +144,25 @@ namespace Kingmaker.Editor
             NewAssetWindow.SetCreationCallback(
                 asset =>
                 {
-                    var fieldInfo = FieldFromProperty.GetFieldInfo(property);
-                    if (fieldInfo.FieldType == typeof(SharedStringAsset))
-                    {
-                        FieldFromProperty.SetFieldValue(property, asset);
-                    }
-                    else if (fieldInfo.FieldType == typeof(LocalizedString))
-                    {
-                        if (FieldFromProperty.GetFieldValue(property) is LocalizedString localizedString)
-                        {
-                            localizedString.Shared = asset as SharedStringAsset;
-                        }
-                    }
+                    MakeShared(property, asset);
+                    onCreated?.Invoke(asset as SharedStringAsset);
                 });
+        }
+
+        private static void MakeShared(SerializedProperty property, object asset)
+        {
+            var fieldInfo = FieldFromProperty.GetFieldInfo(property);
+            if (fieldInfo.FieldType == typeof(SharedStringAsset))
+            {
+                FieldFromProperty.SetFieldValue(property, asset);
+            }
+            else if (fieldInfo.FieldType == typeof(LocalizedString))
+            {
+                if (FieldFromProperty.GetFieldValue(property) is LocalizedString localizedString)
+                {
+                    localizedString.MakeNewShared(property, asset as SharedStringAsset);
+                }
+            }
         }
 
         public static SharedStringAsset CreateShared(SerializedProperty property)

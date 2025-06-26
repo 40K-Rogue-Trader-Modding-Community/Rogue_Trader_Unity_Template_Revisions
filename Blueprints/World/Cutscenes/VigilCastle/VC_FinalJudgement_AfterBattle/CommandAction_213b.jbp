@@ -1,0 +1,80 @@
+{
+  "AssetId": "213be809498f4193a8f13965586383da",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6f635d1a34664c6e8a6438d2e81037d4",
+          "Comment": "Щит не пробит -  меняем щит-кавер на анимационный",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$2f449cb439214a1ba836a5821f8c9630",
+                "Not": false,
+                "m_Etude": "!bp_bbfba5bbd4a74acba10f893af63d9443",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": []
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$636c8419-f041-471b-a021-f851c9a2247b",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$5835fa22-5a07-4b99-a868-3b6935a4a6b6",
+                  "MapObject": {
+                    "EntityNameInEditor": "ShieldToShoot",
+                    "_entity_id": "4cff91b7-c897-4e87-9457-4ef96a8e143e",
+                    "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$40375494-970c-4f4c-b54c-6ab695f4e14f",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$d00f685a-31e8-4f32-9156-5ce87ef732af",
+                  "MapObject": {
+                    "EntityNameInEditor": "vigil_castle_indoor_shield_03",
+                    "_entity_id": "13f930b3-0238-407c-b957-c24b2e26b0bc",
+                    "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

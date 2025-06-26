@@ -1,26 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements.Custom.Array
 {
 	public class ArrayElementMenu
 	{
-		public ArrayElementMenu(SerializedProperty array, Action onUpdate)
+		public ArrayElementMenu(OwlcatArrayProperty array, Action onUpdate)
 		{
-			m_Array = new RobustSerializedProperty(array);
+			m_OwlcatArray = array;
+			m_Array = new RobustSerializedProperty(array.Property);
 			m_OnUpdate = onUpdate;
 			m_Menu = CreateMenu();
 		}
+
+		public VisualElement ParentElement { get; set; }
 
 		Action m_OnUpdate;
 
 		ArrayElementComponent m_Context;
 
+		OwlcatArrayProperty m_OwlcatArray;
+
 		RobustSerializedProperty m_Array;
+
+		IEnumerable<Type> m_ValidTypes;
 
 		GenericMenu m_Menu;
 
@@ -42,9 +51,13 @@ namespace Kingmaker.Editor.UIElements.Custom.Array
 			{
 				menu.AddItem(new GUIContent("Remove"), false, () => RemoveElement(m_Context.ArrayElementIndex));
 				menu.AddItem(new GUIContent("Add before"), false, () =>
-				{ PrototypedObjectEditorUtility.AddArrayElement(m_Array, m_Context.ArrayElementIndex); PostSelect(); });
+				{
+					m_OwlcatArray.AddElementAtIndex(ParentElement, m_Context.ArrayElementIndex);
+				});
 				menu.AddItem(new GUIContent("Add after"), false, () =>
-				{ PrototypedObjectEditorUtility.AddArrayElement(m_Array, m_Context.ArrayElementIndex + 1); PostSelect(); });
+				{
+					m_OwlcatArray.AddElementAtIndex(ParentElement, m_Context.ArrayElementIndex + 1);
+				});
 			}
 
 			if (m_Array.Property.propertyType == SerializedPropertyType.Generic)

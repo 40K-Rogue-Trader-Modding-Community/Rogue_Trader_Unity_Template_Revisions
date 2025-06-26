@@ -1,0 +1,81 @@
+{
+  "AssetId": "f83ade4ee76c462eb857046d75f96d2b",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$0a69c093f55c5385acb8663d95cff35d",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "FW_Lizzy",
+              "_entity_id": "37ec76f7-aec0-43d6-8dfa-34d5d8495503",
+              "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$9c1c2f3c-fe84-4a49-8d29-9b8da636b7eb",
+                "Comment": "Смена портрета лиззи",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$deedc60a-1e74-4a9d-b9f4-7ed8e1c78cc6",
+                      "Not": false,
+                      "m_Etude": "!bp_99d781850c314c968bbc66367c9b0959",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "bfefd4b0c2e912a4a8d9e0bcde22a95c, SetPortrait",
+                      "name": "$SetPortrait$0f32a279-8be3-4e94-88b7-2966f7594bcf",
+                      "Unit": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$7681546f-9776-46e5-9513-1d9a340f18be",
+                        "Spawner": {
+                          "EntityNameInEditor": "FW_Lizzy",
+                          "_entity_id": "37ec76f7-aec0-43d6-8dfa-34d5d8495503",
+                          "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                        }
+                      },
+                      "m_Portrait": "!bp_789d2b79edd445fc9e5a1b82b0d6e052"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "AssetId": "260350dfe6fa4fb584ecb99c085466e4",
+  "Data": {
+    "$type": "6c250ac246c7485c93e5db9b58f244dc, BlueprintAbilityAdditionalEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "ElenaMironova",
+    "Comment": "",
+    "OnHitActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$a974c39ed0ba4611aff9fefe384a9312",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "9718865f16054c38aa50cc4ef1a74388, ContextConditionHasWeaponOfClassification",
+                "name": "$ContextConditionHasWeaponOfClassification$80fbbf50b266409baf66d8ca838cf4d1",
+                "Not": false,
+                "Classification": "Shield",
+                "OnlyPrimaryHand": false,
+                "CheckOnCaster": true
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "48bc013150074ae8b49ce84959124bd3, WarhammerContextActionPerformAttack",
+                "name": "$WarhammerContextActionPerformAttack$cbcdae8e-63fb-4df1-95f8-1cce77a17a37",
+                "UseCurrentWeapon": true,
+                "OnlyMeleeWeapon": false,
+                "PerformActionsOnDamagePortion": false,
+                "PerformActionsOnHit": true,
+                "PerformActionsOnKill": false,
+                "PercentOfMaxDamageNeededForActions": 0,
+                "ActionsOnDamagePortion": {
+                  "Actions": []
+                },
+                "ActionsOnKill": {
+                  "Actions": []
+                },
+                "ActionsOnHit": {
+                  "Actions": [
+                    {
+                      "$type": "5e2f2046f3bd6984c8833bf019c8e8ad, ContextActionSavingThrow",
+                      "name": "$ContextActionSavingThrow$d083c7f3-b002-463a-bc49-152426df9694",
+                      "Type": "Fortitude",
+                      "FromBuff": false,
+                      "m_ConditionalDCIncrease": [],
+                      "HasCustomDC": true,
+                      "CustomDC": {
+                        "ValueType": "Simple",
+                        "Value": 20,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "Actions": {
+                        "Actions": [
+                          {
+                            "$type": "d61949c589ee885458c9439b2aa202b6, ContextActionConditionalSaved",
+                            "name": "$ContextActionConditionalSaved$f6685213-2a96-4228-a683-e5f0b480bab2",
+                            "Succeed": {
+                              "Actions": []
+                            },
+                            "Failed": {
+                              "Actions": [
+                                {
+                                  "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                                  "name": "$ContextActionApplyBuff$43fbf5b3-0df1-45d5-a016-ca0f2ca37789",
+                                  "m_Buff": "!bp_f1c0c6bee3c54cc694c1d1746eafcb15",
+                                  "BuffEndCondition": "TurnEndOrCombatEnd",
+                                  "Permanent": false,
+                                  "DurationValue": {
+                                    "BonusValue": {
+                                      "ValueType": "Simple",
+                                      "Value": 0,
+                                      "ValueRank": "Default",
+                                      "ValueShared": "Damage",
+                                      "Property": "None",
+                                      "m_CustomProperty": null,
+                                      "PropertyName": "Value1"
+                                    },
+                                    "RoundsValue": {
+                                      "ValueType": "Simple",
+                                      "Value": 1,
+                                      "ValueRank": "Default",
+                                      "ValueShared": "Damage",
+                                      "Property": "None",
+                                      "m_CustomProperty": null,
+                                      "PropertyName": "Value1"
+                                    }
+                                  },
+                                  "ToCaster": false,
+                                  "AsChild": false,
+                                  "SameDuration": false,
+                                  "Ranks": {
+                                    "ValueType": "Simple",
+                                    "Value": 1,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  },
+                                  "ActionsOnApply": {
+                                    "Actions": []
+                                  },
+                                  "ActionsOnImmune": {
+                                    "Actions": []
+                                  },
+                                  "AddFactSource": false
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "PerformWeaponSpecificOnHitActions": false,
+                "UseSpecificWeaponClassification": true,
+                "Classification": "Shield",
+                "m_SpecificAttack": "!bp_1c5f4edca9f64fe0911bc946e0b4ea4a"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

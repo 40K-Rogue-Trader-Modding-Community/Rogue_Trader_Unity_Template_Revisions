@@ -39,17 +39,57 @@
           "Actions": {
             "Actions": [
               {
-                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
-                "name": "$StartCombat$57aa83d292cb4bb3b24d15f015b52371",
-                "Unit1": {
-                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
-                  "name": "$PlayerCharacter$9692ea9afb4c4c8b9374f215f63982ef"
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$78d23eef-fc8c-4664-958f-5ba69efc02d4",
+                "Comment": "Старт комбата",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "e7954d43ad5cff74d8fe2efd30388d73, CheckConditionsHolder",
+                      "name": "$CheckConditionsHolder$14cb27da-209e-4a55-a664-be178061f25d",
+                      "Not": false,
+                      "ConditionsHolder": "!bp_7bd3c41a3eda459fac9a12225558495f",
+                      "Parameters": {
+                        "Parameters": []
+                      }
+                    }
+                  ]
                 },
-                "Unit2": {
-                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
-                  "name": "$SummonPoolUnit$776ce6021b0b4305901af995f4531dc6"
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                      "name": "$StartCombat$203a954d-0c1c-4b1d-a83f-0dde7100e33e",
+                      "Unit1": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$c9118b7b-265b-4192-8d9d-da08b25662d0"
+                      },
+                      "Unit2": {
+                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                        "name": "$SummonPoolUnit$a2c356ee-4790-4eb2-90d9-0303047802b1"
+                      },
+                      "AmbushPlayer": false
+                    }
+                  ]
                 },
-                "AmbushPlayer": true
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                      "name": "$StartCombat$cf1e41e2-bdb2-4180-91fc-1339afc1df06",
+                      "Unit1": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$a817b102-bea5-43da-8769-e82a1cf00e75"
+                      },
+                      "Unit2": {
+                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                        "name": "$SummonPoolUnit$70afc4a1-c0a2-4421-aede-18991816d5d6"
+                      },
+                      "AmbushPlayer": true
+                    }
+                  ]
+                }
               },
               {
                 "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",

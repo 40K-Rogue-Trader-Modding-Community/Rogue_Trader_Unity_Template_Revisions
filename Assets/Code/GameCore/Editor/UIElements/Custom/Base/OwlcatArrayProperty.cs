@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints.Base;
+using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.Elements;
 using Kingmaker.Editor.UIElements.Custom.Array;
 using Kingmaker.Editor.UIElements.Custom.Elements;
+using Kingmaker.Editor.Utility;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements.Custom.Base
@@ -40,10 +43,12 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			if (!prop.isArray)
 				throw new Exception("Not valid property type for ArrayElement");
 
-			m_Menu = new ArrayElementMenu(prop, RebuildContent);
+			m_Menu = new ArrayElementMenu(this, RebuildContent);
 			m_Title = string.IsNullOrEmpty(title) ? Property.displayName : title;
 			TitleLabel.text = $"{m_Title} (size: {Property.arraySize})";
-						
+
+			ControlsContainer.Add(CreateArrayControls());
+
 			ArrayHeaderContainer = new VisualElement { name = "header" };
             ArrayHeaderContainer.AddToClassList("owlcat-property-header");
             ArrayHeaderContainer.style.display = DisplayStyle.None;
@@ -120,6 +125,50 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			//ContentContainer.Bind(Property.serializedObject);
 		}
 
+		private VisualElement CreateArrayControls()
+		{
+			var menu = new GenericMenu();
+
+			bool canResize = PrototypedObjectEditorUtility.CanResizeArrayProperty(Property);
+
+			var copy = new GUIContent("Copy");
+			var paste = new GUIContent("Paste");
+			var clear = new GUIContent("Clear");
+
+			var type = SerializableTypesCollection.GetType(Property) ?? FieldFromProperty.GetActualValueType(Property);
+			if (type != null)
+			{
+				menu.AddItem(copy, false, () =>
+					CopyPasteController.CopyProperty(Property, null));
+
+				menu.AddItem(paste, false, () =>
+				{
+					CopyPasteController.Paste(type, Property);
+					RebuildContent();
+				});
+			}
+			else
+			{
+				menu.AddDisabledItem(copy);
+				menu.AddDisabledItem(paste);
+			}
+
+			menu.AddSeparator("");
+
+			menu.AddItem(clear, false, () =>
+			{
+				Property.ClearArray();
+				Property.serializedObject.ApplyModifiedProperties();
+				Property.serializedObject.Update();
+				RebuildContent();
+			});
+
+			var controls = new VisualElement {style = {flexDirection = FlexDirection.Row}};
+			var menuBtn = UIElementsResources.CreateSetupButton(() => { menu.ShowAsContext(); });
+			controls.Add(menuBtn);
+			return controls;
+		}
+
 		private void SetupButtons()
         {
 			var addBtn = new Button { text = "Add Element" };
@@ -131,43 +180,47 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
             addBtn.style.marginLeft = 0;
             addBtn.clicked += () =>
             {
-                if (m_ValidTypes == null)
-                {
-                    PrototypedObjectEditorUtility.AddArrayElement(Property, Property.arraySize);
-                    ElementAdded?.Invoke();
-                    RebuildContent();
-                }
-                else
-                {
-	                if (m_ValidTypes.Count() == 1)
-	                {
-		                OnTypeSelected(m_ValidTypes.First());
-		                return;
-	                }
-
-	                TypePicker.ShowPickerWindow(
-                        addBtn,
-                        "Add Element",
-                        () => m_ValidTypes,
-                        selectedType => { OnTypeSelected(selectedType); }
-                    );
-                }
-
+				AddElementAtIndex(addBtn, Property.arraySize);
             };
 
             ArrayButtonsContainer.Add(addBtn);
 		}
 
-		private void OnTypeSelected(Type selectedType)
+		public void AddElementAtIndex(VisualElement source, int atIndex)
+		{
+			if (m_ValidTypes == null)
+			{
+				PrototypedObjectEditorUtility.AddArrayElement(Property, atIndex);
+				ElementAdded?.Invoke();
+				RebuildContent();
+			}
+			else
+			{
+				if (m_ValidTypes.Count() == 1)
+				{
+					OnTypeSelected(m_ValidTypes.First(), atIndex);
+					return;
+				}
+
+				TypePicker.ShowPickerWindow(
+					source,
+					"Add Element",
+					() => m_ValidTypes,
+					selectedType => { OnTypeSelected(selectedType, atIndex); }
+				);
+			}
+		}
+
+		private void OnTypeSelected(Type selectedType, int atIndex)
 		{
 			//means its just regular scriptable
 			if (Property.serializedObject.targetObject is not ScriptableWrapperBase)
 			{
-				PrototypedObjectEditorUtility.AddArrayElement(Property, Property.arraySize, selectedType);
+				PrototypedObjectEditorUtility.AddArrayElement(Property, atIndex, selectedType);
 			}
 			else
 			{
-				TypeUtility.AddElementFromMenu(Property, selectedType);
+				TypeUtility.AddElementFromMenu(Property, selectedType, atIndex);
 			}
 	                        
 			ElementAdded?.Invoke();

@@ -1,0 +1,60 @@
+{
+  "AssetId": "30d271ef3c684425ab212a5d9622c5ac",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "VladimirZuev",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+          "name": "$SummonPoolUnits$8ec53c38-87b2-4fb1-9f70-53b15a1d7cfb",
+          "m_SummonPool": "!bp_409a6f93e91d45709f1548760ae976ee",
+          "Conditions": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "8e743a8a4a9844f6922dc6c0da8a9bd3, IsSquadLeader",
+                "name": "$IsSquadLeader$7b25796004c649cc95b8aa049b2af394",
+                "Not": false,
+                "Unit": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$c8292c1c8e9e43228e6511413b7d160b"
+                }
+              }
+            ]
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                "name": "$AttachBuff$bc3e22cc-0def-4617-bd69-a7d4e9ac1a18",
+                "m_Buff": "!bp_28b578dbf5784242afcb859d5f6593d0",
+                "Target": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$9b931ad2-12ab-4d1d-a2f2-d3abfc6f28cd"
+                },
+                "Duration": null,
+                "UseEndCondition": false,
+                "EndCondition": "RemainAfterCombat",
+                "AddFactSource": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

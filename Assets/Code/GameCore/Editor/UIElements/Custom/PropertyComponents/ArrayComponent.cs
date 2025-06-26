@@ -28,6 +28,7 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 
 		protected override void OnAttached()
 		{
+			m_Menu.ParentElement = Property;
 			Property.style.backgroundColor = UIElementsResources.GetZebra(ArrayElementIndex);
 			Property.UpdateTitle();
 			
@@ -44,15 +45,10 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			var root = new VisualElement() { style = { flexDirection = FlexDirection.Row } };
 			var moveUp = new OwlcatSmallButton(() => menu.MoveUp(ArrayElementIndex)) { text = "↑" };
 			var moveDown = new OwlcatSmallButton(() => menu.MoveDown(ArrayElementIndex)) { text = "↓" };
+			var menuBtn = UIElementsResources.CreateSetupButton(() => m_Menu.ShowMenu(this));
 			var remove = new OwlcatSmallButton(() => menu.RemoveElement(ArrayElementIndex)) { text = "X" };
 			remove.AddToClassList("red-button");
 			
-			var menuBtn = new OwlcatSmallButton(() => m_Menu.ShowMenu(this));
-			// {text = string.Empty, style = {alignSelf = Align.FlexStart}};
-			var img = new Image { image = UIElementsResources.SettingsIcon, scaleMode = ScaleMode.ScaleToFit };
-			menuBtn.style.backgroundColor = System.Drawing.Color.LightGray.ToUnityColor();
-			menuBtn.Add(img);
-
 			root.Add(moveUp);
 			root.Add(moveDown);
 			root.Add(menuBtn);

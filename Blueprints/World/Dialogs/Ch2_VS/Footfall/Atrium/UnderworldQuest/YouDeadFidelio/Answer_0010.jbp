@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "EugeneIvanov",
+    "Author": "AlexeyPolezhaev",
     "Comment": "переход в (невыгодный для нас) бой",
     "ParentAsset": "3d79da9b598b434aa17862330c67afbc",
     "SoulMarkRequirement": {
@@ -21,7 +21,10 @@
         "Shared": null
       }
     },
-    "m_EditorComment": null,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
     "Text": {
       "m_Key": "ae384dfe-f406-4ac2-8606-18f7808977a1",
       "m_OwnerString": "c892b2c44b4b4351b2083dfc3b3928ea",
@@ -63,6 +66,37 @@
     "AddToHistory": true,
     "OnSelect": {
       "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$87cc2294632f4e6aa98f652c3d73bf59",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$7502a36e8adb43abb3478f0b03fdc373",
+                "Not": false,
+                "m_QuestObjective": "!bp_6510941e85a246168dd311c9dd0f931d",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$1a233668-4024-4f6d-b186-ca6f51f95a16",
+                "Status": "Fail",
+                "m_Objective": "!bp_6510941e85a246168dd311c9dd0f931d",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
         {
           "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
           "name": "$StartEtude$c5cf1399-8e1c-411b-8688-9f37f5f32d01",

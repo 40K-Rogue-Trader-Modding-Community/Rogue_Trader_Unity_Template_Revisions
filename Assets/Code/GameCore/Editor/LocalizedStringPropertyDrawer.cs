@@ -9,6 +9,7 @@ using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;
 using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.UnityExtensions;
+using Owlcat.Runtime.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -55,14 +56,13 @@ namespace Kingmaker.Editor
 
 			// voice over
 			Rect pos = position;
+			pos.xMin += EditorGUI.indentLevel * 15f;
 			pos.yMin += pos.height;
 			pos.height = EditorGUIUtility.singleLineHeight;
-
-			pos.yMin += EditorGUIUtility.singleLineHeight;
-			pos.height = EditorGUIUtility.singleLineHeight;
-			pos.xMin += EditorGUI.indentLevel * 15f;
 			pos.width = 100;
 
+			// Remember start rect of buttons layout
+			var buttonsRect = pos;
 
 			var robustProp = new RobustSerializedProperty(property);
 			if (!localizedString.Check(property))
@@ -86,65 +86,6 @@ namespace Kingmaker.Editor
 
 				return;
 			}
-
-			{
-				string[] stringTraits = localizedString.GetStringTraits();
-				m_ShowStringTraits = EditorGUILayout.BeginFoldoutHeaderGroup(m_ShowStringTraits, "String traits");
-				if (m_ShowStringTraits)
-				{
-					EditorGUILayout.BeginHorizontal();
-					int rowLen = 0;
-					foreach (string trait in TraitUtility.StringTraits)
-					{
-						bool isSet = stringTraits.IndexOf(trait) >= 0;
-						bool newSet = GUILayout.Toggle(isSet, trait, GUI.skin.button);
-						if (newSet != isSet)
-							TraitsPartElement.ToggleTrait(localizedString, property, true, trait);
-						if (rowLen++ >= 2)
-						{
-							rowLen = 0;
-							EditorGUILayout.EndHorizontal();
-							EditorGUILayout.BeginHorizontal();
-						}
-
-					}
-
-					EditorGUILayout.EndHorizontal();
-				}
-
-				EditorGUILayout.EndFoldoutHeaderGroup();
-			}
-
-			{
-				var currentLocale = LocalizationManager.Instance.CurrentLocale;
-				string[] localeTraits = localizedString.GetLocaleTraits(currentLocale);
-				m_ShowLocaleTraits =
-					EditorGUILayout.BeginFoldoutHeaderGroup(m_ShowLocaleTraits, $"{currentLocale} traits");
-				if (m_ShowLocaleTraits)
-				{
-					EditorGUILayout.BeginHorizontal();
-					int rowLen = 0;
-					foreach (string trait in TraitUtility.Values.Concat(TraitUtility.LocaleTraits).Distinct())
-					{
-						bool isSet = localeTraits.IndexOf(trait) >= 0;
-						bool newSet = GUILayout.Toggle(isSet, trait, GUI.skin.button);
-						if (newSet != isSet)
-							TraitsPartElement.ToggleTrait(localizedString, property, false, trait);
-						if (rowLen++ >= 2)
-						{
-							rowLen = 0;
-							EditorGUILayout.EndHorizontal();
-							EditorGUILayout.BeginHorizontal();
-						}
-
-					}
-
-					EditorGUILayout.EndHorizontal();
-				}
-
-				EditorGUILayout.EndFoldoutHeaderGroup();
-			}
-
 
 			// shared strings
 			if (property.serializedObject.targetObject is SharedStringAsset)
@@ -170,18 +111,9 @@ namespace Kingmaker.Editor
 					pos.x += 100;
 					if (GUI.Button(pos, "Make Shared", EditorStyles.miniButtonLeft))
 					{
-						var shared = SharedStringAssetPropertyDrawer.CreateShared(robustProp);
-						localizedString.MakeNewShared(robustProp, shared);
+						SharedStringAssetPropertyDrawer.ShowCreator(property, fieldInfo.GetAttribute<StringCreateWindowAttribute>());
 					}
 					pos.x += 100;
-					if (GUI.Button(new Rect(pos.x, pos.y, 14, pos.height), "▾", EditorStyles.miniButtonRight))
-					{
-						var shared = SharedStringAssetPropertyDrawer.CreateSharedWithFolderDialog(robustProp, fieldInfo);
-						if (shared)
-							localizedString.MakeNewShared(robustProp, shared);
-					}
-
-					pos.x += 14;
 					if (GUI.Button(pos, "Delete String", EditorStyles.miniButton))
 					{
 						localizedString.ClearData();
@@ -214,6 +146,33 @@ namespace Kingmaker.Editor
 				{
 					EditorUtility.RevealInFinder(path);
 				}
+
+				// traits
+
+				// Shift down after buttons
+				var foldoutRect = buttonsRect;
+				foldoutRect.height = EditorGUIUtility.singleLineHeight;
+				foldoutRect.y += buttonsRect.height;
+
+				float stringTraitsHeight = DrawTraits(
+					TraitUtility.StringTraits,
+					localizedString.GetStringTraits(),
+					"String traits",
+					foldoutRect,
+					ref m_ShowStringTraits,
+					t => TraitsPartElement.ToggleTrait(localizedString, property, true, t));
+
+				// Shift next foldout down after traits drawn
+				foldoutRect.y += stringTraitsHeight;
+
+				var locale = LocalizationManager.Instance.CurrentLocale;
+				DrawTraits(
+					TraitUtility.Values.Concat(TraitUtility.LocaleTraits).Distinct().ToArray(),
+					localizedString.GetLocaleTraits(locale),
+					$"{locale} traits",
+					foldoutRect,
+					ref m_ShowLocaleTraits,
+					t => TraitsPartElement.ToggleTrait(localizedString, property, false, t));
 			}
 			catch (Exception e)
 			{
@@ -223,6 +182,59 @@ namespace Kingmaker.Editor
 			{
 				EditorGUI.indentLevel = oldIndent;
 			}
+		}
+
+		private static float DrawTraits(
+			string[] allTraits,
+			string[] activeTraits,
+			string foldoutLabel,
+			Rect foldoutRect,
+			ref bool isExpanded,
+			Action<string> toggleTrait)
+		{
+			const float traitWidth = 150;
+			const int traitRowCount = 3;
+
+			float overallHeight = foldoutRect.height;
+
+			isExpanded = EditorGUI.Foldout(foldoutRect, isExpanded, foldoutLabel,
+				toggleOnLabelClick:true, LocalizationEditorGUI.BoldFoldoutStyle);
+
+			if (isExpanded)
+			{
+				float traitHeight = EditorGUIUtility.singleLineHeight;
+
+				var traitsPos = foldoutRect;
+				traitsPos.y += foldoutRect.height;
+				traitsPos.width = traitWidth;
+
+				// Draw traits "matrix"
+				int index = -1;
+				foreach (string trait in allTraits)
+				{
+					index++;
+					int x = index % traitRowCount;
+					int y = index / traitRowCount;
+					var traitPos = traitsPos;
+					traitPos.x += x * traitsPos.width;
+					traitPos.y = traitsPos.y + traitHeight * y;
+
+					bool isSet = activeTraits.IndexOf(trait) >= 0;
+					bool newSet = GUI.Toggle(traitPos, isSet, trait, GUI.skin.button);
+					if (newSet != isSet)
+					{
+						toggleTrait(trait);
+					}
+				}
+
+				int rowsCount = allTraits.Length / traitRowCount + 1;
+				overallHeight += rowsCount * traitHeight;
+			}
+
+			// Shift layout by the size of all GUI stuff
+			GUILayout.Box("", GUIStyle.none, GUILayout.Width(traitWidth), GUILayout.Height(overallHeight));
+
+			return overallHeight;
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

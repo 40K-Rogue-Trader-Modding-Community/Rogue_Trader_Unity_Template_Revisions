@@ -109,6 +109,10 @@ namespace Kingmaker.Editor.Cutscenes
 									status += " has unit controlled by other cutscene";
 									break;
 							}
+						} else if (cutscenePlayer.IsFrozen)
+						{
+							status = "Frozen (anchor units are sleeping)";
+							color = "yellow";
 						} else if (!cutscenePlayer.FailedCommands.Empty() || cutsceneLogHasErrors)
 						{
 							status = "Playing with errors";

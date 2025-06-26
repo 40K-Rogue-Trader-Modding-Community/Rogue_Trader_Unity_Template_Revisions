@@ -1,0 +1,374 @@
+{
+  "AssetId": "69c924230c2b437d87db259816f7fad9",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": 0,
+    "Comment": "",
+    "ParentAsset": "674c619cedd64b9c8a92887650d8c644",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "fa18527498fe904468f6cdfab280433f",
+        "stringkey": "a760261b-6adf-46a0-87ba-5b204e00276d"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_8fcdb970ffa2423793090ef80e4e17ac",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": []
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$5a8b9e5a-90fe-4c8d-835a-3c1a9ed666ec",
+          "Comment": "Казним зилота, астропат уходит",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4ebc0850-f9b1-47a1-8827-c096f88a1d40",
+                "Not": false,
+                "m_Etude": "!bp_6f1c7925cab14324bbc9440ca4ab4d64",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$3bc18ccf-8c8e-444a-b3c5-ae41ab0c7450",
+                "m_Cutscene": "!bp_796e3537469142a5a7d99ce074e575a3",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "MercyUnit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$27848f79-2615-4c1d-9934-7cf219960da7",
+                        "Spawner": {
+                          "EntityNameInEditor": "VC_T1_AstropathWitness_Exe",
+                          "_entity_id": "e66b8a95-fb7c-4e46-842b-f27d8b80cc7f",
+                          "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                        }
+                      }
+                    },
+                    {
+                      "Name": "ExeUnit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$be207c5b-6bdb-445e-a2aa-d9e7be70dd51",
+                        "Spawner": {
+                          "EntityNameInEditor": "VC_T1_ZealotWitness_Exe",
+                          "_entity_id": "85b5c825-6d2d-4361-a75b-2935c738e789",
+                          "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                        }
+                      }
+                    },
+                    {
+                      "Name": "MercyPoint",
+                      "Type": "Position",
+                      "Evaluator": {
+                        "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                        "name": "$LocatorPosition$2c5ade4e-78af-41db-8996-2f4a648f8539",
+                        "Locator": {
+                          "EntityNameInEditor": "LeftExit_Execution",
+                          "_entity_id": "ca0273df-5d34-44b4-af7c-8d95781ab627",
+                          "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                        },
+                        "Offset": {
+                          "x": 0.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b0685fce-33f9-461d-96a5-d17074b45cf6",
+          "Comment": "Казним астропата, зилот уходит",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$e1b84094-b62a-4e78-9471-d652d9d1cf25",
+                "Not": false,
+                "m_Etude": "!bp_6672bf96628e4bcab941566889c19c9d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$697d6401-08ac-4e3b-a11d-4228fc58145e",
+                "Comment": "Если хормастер - то его, иначе астропат",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                      "name": "$CueSeen$d59283b0-e1d3-4b9e-b69c-6149aadefbc0",
+                      "Not": false,
+                      "m_Cue": "!bp_674c619cedd64b9c8a92887650d8c644",
+                      "CurrentDialog": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                      "name": "$PlayCutscene$10d0d224-663d-4448-8b8d-91bf9afb01b0",
+                      "m_Cutscene": "!bp_796e3537469142a5a7d99ce074e575a3",
+                      "PutInQueue": false,
+                      "CheckExistence": true,
+                      "Parameters": {
+                        "Parameters": [
+                          {
+                            "Name": "ExeUnit",
+                            "Type": "Unit",
+                            "Evaluator": {
+                              "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                              "name": "$UnitFromSpawner$3a71e644-c064-4fbe-aa51-668eab422d7d",
+                              "Spawner": {
+                                "EntityNameInEditor": "VC_T1_ChoirMaster_Exe",
+                                "_entity_id": "b5f5d6a1-987f-4954-8461-62a7d66bd4bb",
+                                "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                      "name": "$PlayCutscene$c7d2ca5c-b2c6-47cc-993d-3b25bfa5a8b2",
+                      "m_Cutscene": "!bp_796e3537469142a5a7d99ce074e575a3",
+                      "PutInQueue": false,
+                      "CheckExistence": true,
+                      "Parameters": {
+                        "Parameters": [
+                          {
+                            "Name": "MercyUnit",
+                            "Type": "Unit",
+                            "Evaluator": {
+                              "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                              "name": "$UnitFromSpawner$689db0ee-02fa-42c9-a855-8abef5491ba3",
+                              "Spawner": {
+                                "EntityNameInEditor": "VC_T1_ZealotWitness_Exe",
+                                "_entity_id": "85b5c825-6d2d-4361-a75b-2935c738e789",
+                                "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                              }
+                            }
+                          },
+                          {
+                            "Name": "ExeUnit",
+                            "Type": "Unit",
+                            "Evaluator": {
+                              "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                              "name": "$UnitFromSpawner$da2b949a-b0b4-4d7c-b365-0d3b41b92f39",
+                              "Spawner": {
+                                "EntityNameInEditor": "VC_T1_AstropathWitness_Exe",
+                                "_entity_id": "e66b8a95-fb7c-4e46-842b-f27d8b80cc7f",
+                                "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                              }
+                            }
+                          },
+                          {
+                            "Name": "MercyPoint",
+                            "Type": "Position",
+                            "Evaluator": {
+                              "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                              "name": "$LocatorPosition$1a82b126-787e-4c98-a5ac-0df1cbfdb033",
+                              "Locator": {
+                                "EntityNameInEditor": "RightExit_Execution",
+                                "_entity_id": "6db2baac-9052-44be-be91-c5f436dfb445",
+                                "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                              },
+                              "Offset": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$8f19caf2-1259-4ad4-81f1-7b7a702aad20",
+          "Comment": "Казним обоих",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$a36c2a4e-f82b-4f63-b3f9-86fc521f7305",
+                "Not": false,
+                "m_Etude": "!bp_674c432a0ad24def9a74d829e2a02144",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$3d54c3d0-19b0-4069-9663-90853f4124b0",
+                "m_Cutscene": "!bp_03ed7da94b7a452a965f23b6b1a5aec9",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "ExeUnit01",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$546ae825-017b-4e2b-b23e-d0d5f874d095",
+                        "Spawner": {
+                          "EntityNameInEditor": "VC_T1_AstropathWitness_Exe",
+                          "_entity_id": "e66b8a95-fb7c-4e46-842b-f27d8b80cc7f",
+                          "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                        }
+                      }
+                    },
+                    {
+                      "Name": "ExeUnit02",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$97d871da-0e5e-4256-9b91-8bf5d0fe6388",
+                        "Spawner": {
+                          "EntityNameInEditor": "VC_T1_ZealotWitness_Exe",
+                          "_entity_id": "85b5c825-6d2d-4361-a75b-2935c738e789",
+                          "SceneAssetGuid": "2a17136e39a224644926622da22988ee"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_9857ef6f1a4e4e37973501aa25e5789d"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

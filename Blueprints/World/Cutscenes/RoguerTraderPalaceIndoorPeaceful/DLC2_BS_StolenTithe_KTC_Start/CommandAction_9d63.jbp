@@ -1,0 +1,169 @@
+{
+  "AssetId": "9d63b8365282457eb35f220e047e8e66",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+          "name": "$SpawnByUnitGroup$fd1997c5b4044849ab03f4840a3e041a",
+          "m_Group": {
+            "EntityNameInEditor": "DLC2_BS_StolenTithe_KTC",
+            "_entity_id": "3fcdf44c-7837-4153-bf46-0170a30f30c5",
+            "SceneAssetGuid": "1a679fddc23f4d346acb04e743ffd8f8"
+          },
+          "ActionsOnSpawn": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+          "name": "$TranslocateUnit$bc239d59a424425e9625696a9b57fa26",
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$13c197fdf67b4a47bd69e7b464902289"
+          },
+          "translocatePosition": {
+            "EntityNameInEditor": "Pos_RT_Thronne",
+            "_entity_id": "1fee4051-0250-49e3-96a4-35dc68220e24",
+            "SceneAssetGuid": "1a679fddc23f4d346acb04e743ffd8f8"
+          },
+          "translocatePositionEvaluator": null,
+          "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
+          "m_CopyRotation": true,
+          "translocateOrientationEvaluator": {
+            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+            "name": "$LocatorOrientation$39a2818b5264493e91184eb6ab87d302",
+            "LocatorEval": null,
+            "Locator": {
+              "EntityNameInEditor": "Pos_RT_Thronne",
+              "_entity_id": "1fee4051-0250-49e3-96a4-35dc68220e24",
+              "SceneAssetGuid": "1a679fddc23f4d346acb04e743ffd8f8"
+            }
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$9e7a1bee-6318-43fc-a307-ae7d4bd9ec96",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$e46341d5-e3b7-42aa-9bce-1edc1d194107",
+            "MapObject": {
+              "EntityNameInEditor": "lectern+stage_0",
+              "_entity_id": "f8351c01-5933-4389-8ff3-b5df65df4ee4",
+              "SceneAssetGuid": "dc42930f888fe0d47ab8b171c430489a"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$52148ea4-6367-419a-8e5b-ac6ed054ac46",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$21241faf-62e6-40fa-9421-9161a1893b52",
+                "Not": false,
+                "m_Etude": "!bp_5e0550ba229b4a1db324ce1826e56fa1",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$1fc124ac-51de-47ae-9744-c256b0d554e4",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$74a366da-736c-4077-9a7d-0033f49781ff",
+                  "Spawner": {
+                    "EntityNameInEditor": "ClemenceReplacement",
+                    "_entity_id": "5065d6ea-61f0-45e4-9d13-f72655695550",
+                    "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$920571a7-8023-4be6-b94f-2998755ef1cc",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$5d1afd50-d5e6-4843-9cd0-09a13f127f52",
+                  "Spawner": {
+                    "EntityNameInEditor": "Clemence",
+                    "_entity_id": "6354a002-da64-4889-b90f-5074b968583a",
+                    "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          }
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$eabfa6f0f673415e9581e1319229d0ed",
+          "m_Cutscene": "!bp_676e3a5b2bd74f0d9f43d0e224fd940d",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$40361ff4559c45afbf6099aaea288022",
+          "Target": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$16c91dd40eea4f74b98b7a0a99148bb1",
+            "m_Companion": "!bp_948abdeffc744794589d6b3f59a1cd0f",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": false,
+            "IncludeDead": false,
+            "Index": 0
+          },
+          "Unhide": false,
+          "Fade": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

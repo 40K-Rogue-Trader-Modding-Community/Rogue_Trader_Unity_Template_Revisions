@@ -1,0 +1,464 @@
+{
+  "AssetId": "52e4a4c62175465b98364f160784df0c",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$b4717bf5-7357-4d27-aae7-d109c634a70c",
+          "Status": "Complete",
+          "m_Objective": "!bp_57c001caf631453c9725a88c43630644",
+          "StartObjectiveIfNone": false
+        },
+        {
+          "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+          "name": "$UnitsFromSpawnersInUnitGroup$035a52c5-5b66-4a50-87ba-658a3bda0b83",
+          "m_Group": {
+            "EntityNameInEditor": "FinalCutscene",
+            "_entity_id": "05f46acf-a162-4ed8-8fea-0515ce54240c",
+            "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$6bf5be54-0ec4-46c7-89ec-958630d11c33",
+                "Target": {
+                  "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                  "name": "$UnitGroupUnit$c55f4009-bce5-4497-8130-3e5614a87f68"
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          }
+        },
+        {
+          "$type": "6981071bc74236f4293f1a19ed2ebb32, TranslocatePlayer",
+          "name": "$TranslocatePlayer$fe9d6543-de96-4007-a8ef-81b7752969fe",
+          "transolcatePosition": {
+            "EntityNameInEditor": "Player_Throne_Locator_Out",
+            "_entity_id": "f05def11-3823-4c4f-af9c-4cf711f1bec7",
+            "SceneAssetGuid": "Assets/Scenes/DLC2/VigilCastle/VigilCastle_FinalJudgement_Mechanics.unity"
+          },
+          "ByFormationAndWithPets": false
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$8bf99beb-c5fd-40d7-89c5-4b71ec1e7ca4",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$b82353e8-f938-43e2-8de4-5e504fae4886",
+            "MapObject": {
+              "EntityNameInEditor": "BlockThronePlace",
+              "_entity_id": "5d7fd8e3-a417-4f13-a507-b2fe2c2ddcd0",
+              "SceneAssetGuid": "9bca01725c2ca184a872aa5101d77db5"
+            }
+          },
+          "Unhide": true
+        },
+        {
+          "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+          "name": "$SummonPoolUnits$188b7eb3-2742-4df2-995a-bda703c7eab0",
+          "m_SummonPool": "!bp_dc0ec5b3ad3d488e9b7914c6f6bedbab",
+          "Conditions": {
+            "Operation": "And",
+            "Conditions": []
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$1f2ce72b-0d44-43be-b240-3676e51aeb52",
+                "Target": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$5e8197fd-2f45-47a6-9a32-98c151baaa5d"
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$57fbde73-a83d-4328-963d-4fff2f4b09be",
+          "Comment": "FullTithe",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$b9a0ff51-7a26-457c-951e-3517324e801a",
+                "Not": false,
+                "m_Etude": "!bp_9839f67595a14fa98d2b89a7677f52de",
+                "NotStarted": false,
+                "Started": true,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$2cda6154-51d5-47d2-b38d-a9e50bfe2a97",
+                "Etude": "!bp_4ddb3817e33b4630adf066c3bdc1d127",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "8efa69193b5243b388e9ee4f6e8cc41e, GainColonyResources",
+                "name": "$GainColonyResources$5ff89573-28a4-4b95-bd9f-68668f4fbeb0",
+                "Resources": [
+                  {
+                    "Resource": "!bp_3255d459d974470f8750a0d74dd6dfeb",
+                    "Count": 25
+                  },
+                  {
+                    "Resource": "!bp_f8e6d39f6e4045f78264c1481914edc5",
+                    "Count": 25
+                  },
+                  {
+                    "Resource": "!bp_38515cd3010244aa909141163d5ea75d",
+                    "Count": 25
+                  },
+                  {
+                    "Resource": "!bp_e798fea5c2f74d858e754186decdc064",
+                    "Count": 50
+                  },
+                  {
+                    "Resource": "!bp_b9ab9cd20baf49baa0cebd96df45a101",
+                    "Count": 35
+                  },
+                  {
+                    "Resource": "!bp_fc09fa46dd574dc7a15071a929f0f20c",
+                    "Count": 25
+                  },
+                  {
+                    "Resource": "!bp_a3f69542b6fe484bbff66daa63fabb8e",
+                    "Count": 25
+                  },
+                  {
+                    "Resource": "!bp_d7fa105388694988a728956edf177b58",
+                    "Count": 25
+                  }
+                ]
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$58027051-587e-4384-ab1d-1e93c437cd29",
+          "Comment": "HereticTithe",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$ea6c96a1-2035-4d97-9993-4e57c24e48f4",
+                "Not": false,
+                "m_Etude": "!bp_89f20169b0aa4e5f98b45b95359cf788",
+                "NotStarted": false,
+                "Started": true,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "8efa69193b5243b388e9ee4f6e8cc41e, GainColonyResources",
+                "name": "$GainColonyResources$f1a0474f-c178-4191-b9fc-7ab8642475c1",
+                "Resources": [
+                  {
+                    "Resource": "!bp_3255d459d974470f8750a0d74dd6dfeb",
+                    "Count": 5
+                  },
+                  {
+                    "Resource": "!bp_f8e6d39f6e4045f78264c1481914edc5",
+                    "Count": 5
+                  },
+                  {
+                    "Resource": "!bp_38515cd3010244aa909141163d5ea75d",
+                    "Count": 5
+                  },
+                  {
+                    "Resource": "!bp_e798fea5c2f74d858e754186decdc064",
+                    "Count": 10
+                  },
+                  {
+                    "Resource": "!bp_b9ab9cd20baf49baa0cebd96df45a101",
+                    "Count": 10
+                  },
+                  {
+                    "Resource": "!bp_fc09fa46dd574dc7a15071a929f0f20c",
+                    "Count": 5
+                  },
+                  {
+                    "Resource": "!bp_a3f69542b6fe484bbff66daa63fabb8e",
+                    "Count": 5
+                  },
+                  {
+                    "Resource": "!bp_d7fa105388694988a728956edf177b58",
+                    "Count": 5
+                  }
+                ]
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1fb15b379fd04bedb28292cd4e746159",
+          "Comment": "Арбитры на постах",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$c895716f7d384ee29b63a75db7ca0a42",
+                "Not": false,
+                "m_Etude": "!bp_54a07534472640759dc30457579c5745",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$74f8d691-10f0-4791-9649-268025c6c0ef",
+                "Not": false,
+                "m_Etude": "!bp_7812bf52fb314b28b4f6a4897368b66c",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$6faded5c-69d1-4366-bb6c-35aca12c936b",
+                "Not": false,
+                "m_Etude": "!bp_9bbf1a565d3b46ac87c38b60f1f0bd04",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$20804ca2c836449da1ed14f7c3c77070",
+                "m_Group": {
+                  "EntityNameInEditor": "AfterJudjement_ArbitesOnPosts",
+                  "_entity_id": "7c4449e1-41ca-4558-8312-1880eef98400",
+                  "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$114ab632-6b25-46f5-a441-69a4e19c2c0d",
+          "Comment": "Арбитры в парадном строю",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$758829df-99bd-468b-a7a9-56730be133c2",
+                "Not": false,
+                "m_Etude": "!bp_54a07534472640759dc30457579c5745",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$fd56f0b0-7596-4bfd-9c66-e70490d92ed8",
+                "Not": false,
+                "m_Etude": "!bp_7812bf52fb314b28b4f6a4897368b66c",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$b505d5d9e82742059afa7e4fd9810a00",
+                "Not": false,
+                "m_Etude": "!bp_9bbf1a565d3b46ac87c38b60f1f0bd04",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$fd50d27e-6ba5-4c2c-be11-e3103f1597d6",
+                "m_Group": {
+                  "EntityNameInEditor": "AfterJudjement_Parade",
+                  "_entity_id": "c761f9af-f442-4a01-b203-d23212579cc0",
+                  "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$4d6088d8c4444762af83aa26fcc27058",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$681d24cbeb4a4b189e7fa89aeba67e6e",
+                  "MapObject": {
+                    "EntityNameInEditor": "ParadeBlock",
+                    "_entity_id": "6cfa3355-19a7-472b-bc7c-a4a03e0c9a13",
+                    "SceneAssetGuid": "9bca01725c2ca184a872aa5101d77db5"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$bc7f6215888941a2ab806a0de488b202",
+          "Comment": "Арбитры в кучках шушукаются",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4f8827b5860b46c58d32709d2a813bc0",
+                "Not": false,
+                "m_Etude": "!bp_a464d39cbbb543deb2fc44aede708e01",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$57728d76-0231-4896-81f9-0d008417a12c",
+                "Not": false,
+                "m_Etude": "!bp_5a3a449becca4e18911e1144b28131b0",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$c0568549-9d78-4ec7-b777-122acd66f3ae",
+                "m_Group": {
+                  "EntityNameInEditor": "AfterJudjement_ArbitesBanned",
+                  "_entity_id": "ab4bc8a8-6638-4222-a4ae-562bbda73829",
+                  "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f65c5136-1cbe-4422-8505-7f2ad2b6dff8",
+          "Comment": "Энфорсеры в крыле арбитров (бывшем)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$e9c38772-63fc-426b-85e8-5082288088ee",
+                "Not": false,
+                "m_Etude": "!bp_5a3a449becca4e18911e1144b28131b0",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$19f665b1-77ea-4c66-92b5-3706a75d7e7b",
+                "m_Group": {
+                  "EntityNameInEditor": "AfterJudjement_Enforcers",
+                  "_entity_id": "3aa398a7-3289-472f-8c14-95ab90e67bf1",
+                  "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

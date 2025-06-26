@@ -4,7 +4,83 @@
     "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
     "PrototypeLink": "",
     "m_Overrides": [],
-    "Components": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$a266c1d1-4d17-403e-ad59-701e354f3fa1",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Старт ДЛЯ этюдов мостиа",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$37d3e3a5f335462d919b895b24c61c1b",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$09605d80acca4dc5b331f3a7bfc84841",
+                    "Not": false,
+                    "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "21eaf44b8e5b8004f8ec912dc94b92bf, AreaVisited",
+                    "name": "$AreaVisited$26170daae67e41f388ba949c946c327d",
+                    "Not": false,
+                    "m_Area": "!bp_f6c618cda63f4b3db5cbcfec5fad380e"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$8a702514bffb4962b76e8bc6636d1e65",
+                    "Etude": "!bp_8ccbf7a44f684f49a510ba395d339195",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fe3b6d4ccbab402bb6f325df58a02b48, EtudeBracketEnsureAudio",
+        "name": "$EtudeBracketEnsureAudio$5e8c77a2-ba59-442e-9d32-f08bcf4b1003",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Chunk": "DLC2"
+      }
+    ],
     "Author": "Unknown",
     "Comment": "",
     "m_Parent": "!bp_4f66e8b792ecfad46ae1d9ecfd7ecbc2",
@@ -21,7 +97,15 @@
     "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
-    "m_StartsWith": [],
+    "m_StartsWith": [
+      "!bp_419e4500b0bc43dea65786f78524b1c4",
+      "!bp_c49dac9f28fe48b2b1de53e124491d03",
+      "!bp_93bfb704524c4a5590d34535756db7a1",
+      "!bp_801952d0134346dcac610f961c8cd258",
+      "!bp_023b6b86999f4e539eee65aaaf62d893",
+      "!bp_cce2f6b0d6ec4abba04bfc32a8255e81",
+      "!bp_28c45d74db3b4a3face1b40dfa93a127"
+    ],
     "m_StartsOnComplete": [],
     "m_StartsParent": false,
     "m_CompletesParent": false,

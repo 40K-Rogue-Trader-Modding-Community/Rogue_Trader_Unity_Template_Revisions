@@ -1,0 +1,166 @@
+{
+  "AssetId": "6c34f411173c4458a8be8281ab087819",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "d7c3d80beb354d44ab46ace48fc5bf75, EtudeTriggerActionInWarpDelayed",
+        "name": "$EtudeTriggerActionInWarpDelayed$ba39ce9e-d7ab-4e9c-bf7c-f7d7a6ee1336",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "WarpTravelTriggerCount": 2,
+        "ActionList": {
+          "Actions": [
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$beb180b6045c4a988875f323e5aa7a5d",
+              "Etude": "!bp_6c34f411173c4458a8be8281ab087819",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            },
+            {
+              "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+              "name": "$StartDialog$2195e20fc7f8447ebe1f7356c4076fb5",
+              "DialogueOwner": null,
+              "m_Dialogue": "!bp_d7c4bc5c1d5942d19ae2ba1f57c5f591",
+              "DialogEvaluator": null,
+              "SpeakerName": {
+                "m_Key": "",
+                "m_OwnerString": "",
+                "m_OwnerPropertyPath": "",
+                "m_JsonPath": "",
+                "Shared": null
+              }
+            }
+          ]
+        },
+        "TriggerType": "OncePerTravel",
+        "TimeToStart": "AfterTravelStart",
+        "Priority": 30
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_93bfb704524c4a5590d34535756db7a1",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+          "name": "$CompanionInParty$fd54101a117e4a71acd390b215fda1b7",
+          "Not": false,
+          "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+          "MatchWhenActive": true,
+          "MatchWhenDetached": true,
+          "MatchWhenRemote": true,
+          "MatchWhenEx": false,
+          "IncludeDead": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$6866dc6a-2d0c-4bef-9c08-9ae400b32ec8",
+          "Not": true,
+          "m_Etude": "!bp_7c0a0d76d1c94c828b2f9202b12c6825",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": false,
+          "CompletionInProgress": false,
+          "Completed": true
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$f9dfd886a31f4e67b958b026cdcdd919",
+          "Not": false,
+          "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$4bf2a79c76604900bd7c0c3e41f0ad2f",
+          "Not": false,
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$8c6500dc43374d679cd061b6cf731141",
+                "Not": false,
+                "m_Etude": "!bp_8ccbf7a44f684f49a510ba395d339195",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$9ae5da5a1c274820b06421bd0dd990f2",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$eca010fc95864cfbae18c8c977520ae0",
+                      "Not": false,
+                      "m_Etude": "!bp_8ccbf7a44f684f49a510ba395d339195",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    },
+                    {
+                      "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                      "name": "$QuestStatus$371f614e488946208e469a0ea70b23d0",
+                      "Not": false,
+                      "m_Quest": "!bp_683b38b4f706464299cb67359e797a27",
+                      "State": "Completed"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "21eaf44b8e5b8004f8ec912dc94b92bf, AreaVisited",
+          "name": "$AreaVisited$43ec3bf3564c45eebba1a8e19a097f78",
+          "Not": true,
+          "m_Area": "!bp_26e12903e1914c5ba9f6de569447afc2"
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

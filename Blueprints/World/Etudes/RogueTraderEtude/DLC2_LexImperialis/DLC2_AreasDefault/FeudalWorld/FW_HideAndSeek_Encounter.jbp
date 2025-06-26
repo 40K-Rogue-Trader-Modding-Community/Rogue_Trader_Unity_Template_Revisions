@@ -1,0 +1,187 @@
+{
+  "AssetId": "0dfd7716550a4cd3850ac9dfd43e9264",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$a554c9b3-af1a-43f1-ae46-5c485ee5ab95",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Запуск бой с ласераксами",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$3b80e3e091ce59b3942010d58c86342e",
+              "m_Group": {
+                "EntityNameInEditor": "Laserax_Encounter",
+                "_entity_id": "a027fce1-011b-4665-b86a-b52ee33faeec",
+                "SceneAssetGuid": "fcdae296b8980c94baba40da6a93fe10"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                    "name": "$StartCombat$fc2345b9381a56d3915bb01cc4d30ff3",
+                    "Unit1": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$b63d612f3b0a5ef4911832c023ba3824"
+                    },
+                    "Unit2": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$e2310c51cd1255f29ac12d4b5fd58079"
+                    },
+                    "AmbushPlayer": true
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$53a6e393ec164486b215be24cbf6b0ac",
+              "m_Group": {
+                "EntityNameInEditor": "Peaceful_Lacerax_Group",
+                "_entity_id": "50179d77-cc54-4b88-89c7-6b0e6b9eeda6",
+                "SceneAssetGuid": "Assets/Scenes/DLC2/FeudalWorld/FeudalWorld_Early_State_Mechanics.unity"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$77401c36954b45958a0f7c29d506d305",
+                    "Target": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$8a67c49fe7bd4b958ce66485831f6f1c"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+              "name": "$HideEntity$a98f172fd89f57038b231bf527c36c1e",
+              "Target": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$6c545752750655ac85de08eacc182f9e",
+                "MapObject": {
+                  "EntityNameInEditor": "FW_SquareServing_Bark ",
+                  "_entity_id": "1965133d-a027-46d1-8e71-1e912f7708db",
+                  "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+              "name": "$HideEntity$7a9c58ed-bef0-4484-a9a9-d789c71832b8",
+              "Target": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$d402f4e1-2dd3-42bb-aaa6-c8a8cc37a3bb",
+                "MapObject": {
+                  "EntityNameInEditor": "FW_SquareFood_Bark ",
+                  "_entity_id": "27ad0d64-6321-4be6-a882-36e25bc6b3a0",
+                  "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "5ce1080e9c809614daae11db4baa37a4, SummonPoolTrigger",
+        "name": "$SummonPoolTrigger$5a67faff-8f3f-4ba8-a1b7-eeb3a98c4b04",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Считает кол-во ласераксов в саммон пуле",
+        "Count": 0,
+        "ChangeType": "Both",
+        "m_SummonPool": "!bp_898df131c0f547f4bb0de2064de69def",
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+              "name": "$IsInCombat$93a26ba4-8fc6-415a-b264-2ca6a3d79cd0",
+              "Not": false,
+              "Unit": null,
+              "Player": true
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$144717ffc966409cb31f8aefc4f9202d",
+              "m_Cutscene": "!bp_32c9ec0ce37b40d58bcd8633c28f1987",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+              "name": "$SetObjectiveStatus$d524fb7c5eab516b820f68fd4542010c",
+              "Status": "Complete",
+              "m_Objective": "!bp_f63b65a92f804ffcbc18f1de47870cfc",
+              "StartObjectiveIfNone": false
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$42e2a6c061144bb794d1bfa2d711561c",
+              "Etude": "!bp_0dfd7716550a4cd3850ac9dfd43e9264",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_6dbf7ff4197e49cbb5ad136beb44033a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

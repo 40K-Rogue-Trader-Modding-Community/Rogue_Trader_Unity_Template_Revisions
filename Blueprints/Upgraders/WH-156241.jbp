@@ -1,0 +1,73 @@
+{
+  "AssetId": "f83ae11950ec4848a0c60cc66e6b085c",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "YuriyElburih",
+    "Comment": "Отбирает когни-симулякрум у тех, кто его уже решил, но по той или иной причине не потерял.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+          "name": "$PartyUnits$2c960e552424537086fe992229d4b041",
+          "m_UnitsList": "Everyone",
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$a7407df1-4caa-424d-a9d7-d836f4d83dfb",
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                      "name": "$HasFact$70c27af7-3f0c-4e58-8724-22287b3826f6",
+                      "Not": false,
+                      "Unit": {
+                        "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                        "name": "$PartyUnit$19c88434-c24d-45a2-821b-eb8c4a78b118"
+                      },
+                      "m_Fact": "!bp_29fee5bdb6aa49e78eff4fd250c0a555"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "ad170ffaa2264cc9804e5005e7050adf, RemoveFact",
+                      "name": "$RemoveFact$67a46e95-ea00-4088-b28b-de6634808325",
+                      "m_Fact": "!bp_0e0b90e4819343358b6d884df098b614",
+                      "m_ExceptHasFact": null,
+                      "m_AdditionalExceptHasFacts": [],
+                      "m_ExcludeExCompanions": false,
+                      "m_TargetPartyUnit": null
+                    },
+                    {
+                      "$type": "a7d262780a094221a6a2b49dfb152c4a, RemoveOrReplaceItem",
+                      "name": "$RemoveOrReplaceItem$ab2665af-f518-442b-a8a6-a20ff4a51d8d",
+                      "m_RemoveItem": "!bp_7f65081576c749ada80ab498002b987b",
+                      "m_ReplaceItem": null
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

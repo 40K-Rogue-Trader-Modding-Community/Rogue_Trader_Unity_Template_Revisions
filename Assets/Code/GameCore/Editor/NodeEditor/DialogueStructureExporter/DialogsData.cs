@@ -126,6 +126,26 @@ namespace LocalizationTracker.Data.Shared
                         Children.AddRange(bpCueSequenceExit.Answers.Select(p => GetNicePath(p)));
                         Comment = bpCueSequenceExit.Comment;
                         break;
+                    
+                    case CheckNode checkNode:
+                        Kind = "check";
+                        var bpCheckNode = BlueprintEditorWrapper.Unwrap<BlueprintCheck>(checkNode.GetAsset());
+                        Id = GetNicePath(bpCheckNode);
+                        Type = bpCheckNode.Type.ToString();
+                        Children.Add(GetNicePath(bpCheckNode.Success));
+                        Children.Add(GetNicePath(bpCheckNode.Fail));
+                        Comment = bpCheckNode.Comment;
+                        break;
+                    
+                    case BookPageNode bookPageNode:
+                        Kind = "bookpage";
+                        var bpBookPageNode = BlueprintEditorWrapper
+                            .Unwrap<BlueprintBookPage>(bookPageNode.GetAsset());
+                        Id = GetNicePath(bpBookPageNode);
+                        Children.AddRange(bpBookPageNode.Answers.Select(p => GetNicePath(p)));
+                        Children.AddRange(bpBookPageNode.Cues.Select(p => GetNicePath(p)));
+                        Comment = bpBookPageNode.Comment;
+                        break;
                 }
             }
             
@@ -140,6 +160,16 @@ namespace LocalizationTracker.Data.Shared
             [System.Diagnostics.CodeAnalysis.NotNull]
             [JsonProperty("kind")]
             public string Kind;
+            
+            [System.Diagnostics.CodeAnalysis.NotNull]
+            [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+            [CanBeNull]
+            public string Type;
+            
+            [System.Diagnostics.CodeAnalysis.NotNull]
+            [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
+            [CanBeNull]
+            public string Source;
 
             [System.Diagnostics.CodeAnalysis.NotNull]
             [JsonProperty("parents")]

@@ -6,98 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "66be5599926e57d45a7a016495d269c4, WarhammerWeaponHitTriggerTarget",
-        "name": "$WarhammerWeaponHitTriggerTarget$4bae7107-2a50-404f-ba36-3ff065b9eaa8",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "ActionOnSelfHit": {
-          "Actions": [
-            {
-              "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
-              "name": "$WarhammerContextActionAddMomentum$8aa4efc2d95e566895d7ca86c147a6ac",
-              "Multiplier": 0,
-              "Value": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "ToPlayer": false,
-              "ToCaster": false,
-              "AdditionalCalculations": "None",
-              "Range": 0,
-              "AdditionalBonus": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              }
-            }
-          ]
-        },
-        "ActionOnSelfMiss": {
-          "Actions": [
-            {
-              "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
-              "name": "$WarhammerContextActionAddMomentum$8f84c586329957d4ad33bf4d91fe8781",
-              "Multiplier": 1,
-              "Value": {
-                "ValueType": "CasterNamedProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "ToPlayer": true,
-              "ToCaster": false,
-              "AdditionalCalculations": "None",
-              "Range": 0,
-              "AdditionalBonus": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              }
-            }
-          ]
-        },
-        "ActionsOnTargetHit": {
-          "Actions": []
-        },
-        "ActionsOnTargetMiss": {
-          "Actions": []
-        },
-        "OnlyCritical": false,
-        "OnlyFromSpotWeaknessSide": false,
-        "m_SpotWeaknessBuff": null,
-        "SpecificRangeType": false,
-        "WeaponRangeType": "Melee",
-        "OnlyFromContextCaster": false
-      },
-      {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
         "name": "$PropertyCalculatorComponent$d4d106e2-75a5-44c9-860f-fef55f714f48",
         "m_Flags": 0,
@@ -129,6 +37,75 @@
             }
           ]
         }
+      },
+      {
+        "$type": "c19cadfe75cd6fc44b3f50e7fa124a26, WarhammerAfterAttackRollTriggerTarget",
+        "name": "$WarhammerAfterAttackRollTriggerTarget$b84bcf07-cbb5-48d4-8070-b3c5a0a809a5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "RuleInitiator",
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "b5a7d9bbf95591b49b2985d414d2e360, IsAllyGetter",
+                "name": "$IsAllyGetter$5b023c7f690e4fc9989f2754ed75b54c",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "RuleTarget"
+              }
+            ]
+          }
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
+              "name": "$WarhammerContextActionAddMomentum$db9ca52e-e9f2-498b-b18e-985a15109378",
+              "Multiplier": 1,
+              "Value": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ToPlayer": true,
+              "ToCaster": false,
+              "AdditionalCalculations": "None",
+              "Range": 0,
+              "AdditionalBonus": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        },
+        "triggerAfterAttack": true,
+        "onlyMeleeAttack": false,
+        "ActionsOnTarget": false,
+        "OnlyHit": false
       }
     ],
     "Author": "LeonidTolochenko",

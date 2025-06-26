@@ -7,50 +7,6 @@
     "Components": [
       {
         "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
-        "name": "$EtudePlayTrigger$68922547-06f2-4443-9b1d-cba9edfecf46",
-        "m_Flags": "Disabled",
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Comment": "",
-        "m_Once": true,
-        "m_IgnoreAlreadyProcessedActivation": false,
-        "Conditions": {
-          "Operation": "And",
-          "Conditions": [
-            {
-              "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
-              "name": "$FlagInRange$51db4bf1f1374b6f9c23d00ed8ce4b3c",
-              "Not": false,
-              "m_Flag": "!bp_36b3d0da1c3749b78e1a1d823cb97459",
-              "MinValue": 1,
-              "MaxValue": 1
-            }
-          ]
-        },
-        "Actions": {
-          "Actions": [
-            {
-              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-              "name": "$HideMapObject$a8f4191103194cda8e72262a9d7a59d4",
-              "MapObject": {
-                "$type": "194956a0b3d319f4483778c51d2b3d10, StarSystemObjectOnScene",
-                "name": "$StarSystemObjectOnScene$172e8beac0c94a768db2811b4cdcd7f2",
-                "StarSystemObject": {
-                  "EntityNameInEditor": "BrokenStarshipLOOT",
-                  "_entity_id": "f17b39db-090d-4b6d-82cc-5a5c18c7c849",
-                  "SceneAssetGuid": "1f22691500c869649af271c5d9fe469d"
-                }
-              },
-              "Unhide": true
-            }
-          ]
-        }
-      },
-      {
-        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
         "name": "$EtudePlayTrigger$ccb587dd-b6ff-47c4-aa32-59182f833250",
         "m_Flags": 0,
         "PrototypeLink": {
@@ -112,6 +68,99 @@
                 "m_OwnerPropertyPath": "",
                 "m_JsonPath": "",
                 "Shared": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$8f141d7f-9653-4106-80dc-ab07b3c07613",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$85070875-a967-4bb2-9b13-5bc63dcc57d6",
+              "Not": false,
+              "m_Etude": "!bp_a732acf77d664d40a41640abb895455b",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$68aae4a1-4038-4de1-b0f6-bef1e143e0cb",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "12b774374ac6829459deaf2f61048967, ContextConditionRandomLessThen",
+                    "name": "$ContextConditionRandomLessThen$bba86212-3c77-4532-afc4-267effb7d91f",
+                    "Not": false,
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 50,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$2529fec8-2c27-4c6d-9c60-a878959655cc",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$e7c8e8f3-7528-4c08-8855-20eb9c1c53f4",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "c073df66-532d-4c36-8fbc-36834f47ca05",
+                        "SceneAssetGuid": "1f22691500c869649af271c5d9fe469d"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$50022081-53ca-4a2a-aaf9-563a56b494ac",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$b6dd020a-e5f2-43cf-aefb-689e965864c2",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "c073df66-532d-4c36-8fbc-36834f47ca05",
+                        "SceneAssetGuid": "1f22691500c869649af271c5d9fe469d"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
               }
             }
           ]

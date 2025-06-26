@@ -1,0 +1,143 @@
+{
+  "AssetId": "70dd1d57718d4f1e848e5790da9b6151",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$d3a0c505-dc2d-4729-b8ed-35e5b20e9dd3",
+          "Etude": "!bp_7e726c2ea34b4f5cb40f1d850987dd65",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$0527c93f-f71c-42c1-b532-b77f943b88f1",
+          "Etude": "!bp_e3ca34e0d3ba44878f5c80b3c50a45b0",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "b90eea06ce91f564e8793832eea02cef, Recruit",
+          "name": "$Recruit$f595ec8f-dfd0-4ed4-8b7d-c08fd0e775b4",
+          "Recruited": [
+            {
+              "m_CompanionBlueprint": "!bp_a699795d21f74159abb00f9a217fa97d",
+              "m_Portrait": null,
+              "NPCUnit": null,
+              "MustBeInParty": false
+            }
+          ],
+          "AddToParty": true,
+          "MatchPlayerXpExactly": false,
+          "OnRecruit": {
+            "Actions": []
+          },
+          "OnRecruitImmediate": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$217d041a247f43e981f0c4d542304b2e",
+                "Comment": "уже забрали вещи у гемункула - ничего, иначе прячем эквип бафом",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$6d8d3db9666749f49f30e7a36561589e",
+                      "Not": false,
+                      "m_Etude": "!bp_2c63b81943e045d69e4ebe1b14724c96",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": false,
+                      "CompletionInProgress": false,
+                      "Completed": true
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+                      "name": "$RemoveFact$facdcb1b201748c891bde42097c69a8a",
+                      "Unit": {
+                        "$type": "6c997aeb1537f2d44a5d7abd8ea1ef0a, RecruitedUnit",
+                        "name": "$RecruitedUnit$67c5b294-6af6-4bd6-9867-2120811b327c"
+                      },
+                      "m_Fact": "!bp_7a63680393464864b3beb53643ed7e23"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$61ed6514a50a405b87dcaf35b60f7aed",
+                "Target": {
+                  "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                  "name": "$PetByOwner$3e77be802de44f9f8648f0e7ffbd15c3",
+                  "OwnerEvaluator": {
+                    "$type": "6c997aeb1537f2d44a5d7abd8ea1ef0a, RecruitedUnit",
+                    "name": "$RecruitedUnit$a63cead9892e4e04bfd43cac0e019149"
+                  }
+                },
+                "Unhide": true,
+                "Fade": false
+              },
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$21d246a164aa4e808d2ff0808565993b",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$1089dd0d6bbf43f2a29412301d4114ea",
+                  "Spawner": {
+                    "EntityNameInEditor": "SolomornePet",
+                    "_entity_id": "d3d7a6d2-6460-422a-9cf3-a55d96fcac87",
+                    "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              },
+              {
+                "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                "name": "$AddItemsToCollection$e7c91035b1f147909163bbe23da20983",
+                "ItemsCollection": {
+                  "$type": "ac0b2a9e4daea5c42b85d77e48d5a304, UnitInventory",
+                  "name": "$UnitInventory$42fbacd4416544a68a5395b284d3ea29",
+                  "Unit": {
+                    "$type": "6c997aeb1537f2d44a5d7abd8ea1ef0a, RecruitedUnit",
+                    "name": "$RecruitedUnit$1e2106afe49346fb923cccd2bef2dea6"
+                  }
+                },
+                "UseBlueprintUnitLoot": false,
+                "Loot": [
+                  {
+                    "m_Item": "!bp_5393f6f94e4840e48dd4eec214e7c478",
+                    "Diversity": 0,
+                    "Count": 1,
+                    "m_ReputationPointsToUnlock": 0
+                  }
+                ],
+                "m_BlueprintLoot": null,
+                "Silent": true
+              }
+            ]
+          },
+          "DoNotOpenPartySelection": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

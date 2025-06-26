@@ -156,7 +156,9 @@ namespace Owlcat.Blueprints.Server
                 .RegistrationProcessCommand(CommandTypes.SearchResult, ProcessingSearchResult.Processing)
                 .RegistrationProcessCommand(CommandTypes.GetListOfDuplicates, ProcessingGetListOfDuplicates.Processing)
                 .RegistrationProcessCommand(CommandTypes.PauseIndexing, ProcessingPauseIndexing.Processing)
-                .RegistrationProcessCommand(CommandTypes.ResumeIndexing, ProcessingResumeIndexing.Processing);
+                .RegistrationProcessCommand(CommandTypes.ResumeIndexing, ProcessingResumeIndexing.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetReferencedBy, ProcessingGetReferencedBy.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetReferencesFrom, ProcessingGetReferencesFrom.Processing);
 
             using var cts = new CancellationTokenSource();
             // start named pipe

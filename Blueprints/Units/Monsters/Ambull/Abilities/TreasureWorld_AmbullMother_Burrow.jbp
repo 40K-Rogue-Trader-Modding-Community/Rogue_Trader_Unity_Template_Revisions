@@ -1,0 +1,281 @@
+{
+  "AssetId": "0c133569641d4e079d914963cebe015d",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$b526c832-5d55-4b25-9664-d5617912a149",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$bf5138c1-957c-42c1-99c5-c0704723aa03",
+              "m_Buff": "!bp_7f6f662438774b59a3dd52855d43f342",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": true,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            },
+            {
+              "$type": "285b50b52a5b4192aad65da172555c50, ContextActionRemoveBuffsFromGroup",
+              "name": "$ContextActionRemoveBuffsFromGroup$2df1e503b95c4768936a3d8129574156",
+              "m_Groups": [
+                "!bp_eeb45cc2397d4a8c902fbdd7e5be1d93"
+              ],
+              "RemoveBuffsNotInGroups": true,
+              "RemoveOneRandomBuff": false,
+              "ToCaster": true
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$13f4033e0a7d48f6b3fa23d9fee4bf86",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "4219677f5e7c45a7bf8c0f0103ef5a23, ContextConditionIsUnitHealthLessThan",
+                    "name": "$ContextConditionIsUnitHealthLessThan$54fa7babe4c64956a5af95b34c3e559d",
+                    "Not": false,
+                    "PercentValue": 34
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$4e428980993049909401af1222609d7a",
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$e1301c087c7547bb820a2114d9527d88"
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "AmbullPhase3",
+                      "_entity_id": "eba8bf38-2dee-401b-9e02-b75d0be77bf8",
+                      "SceneAssetGuid": "8598faba60bb88e4b943f3472cf68257"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": false,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": false,
+                    "translocateOrientationEvaluator": null,
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                    "name": "$CompleteEtude$7d192d50-7223-4dbb-b3e3-29ed6ab96b08",
+                    "Etude": null,
+                    "EtudeEvaluator": {
+                      "$type": "1273add9ac97d9b45a4744747bbc65cb, EtudeBlueprint",
+                      "name": "$EtudeBlueprint$ffeb538b-53c5-4add-82f9-40ec3c9ba1c6",
+                      "m_Value": "!bp_34305730603e4bda97ddba808b2de3ea"
+                    },
+                    "Evaluate": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$666c6c72-9167-4fbf-acd8-0e8746a62da9",
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$dea9e32c-4d2e-461c-b2f6-539e1a630e70"
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "AmbullPhase2",
+                      "_entity_id": "99c01b53-9ccd-4031-b86a-d9387ab8a5dc",
+                      "SceneAssetGuid": "8598faba60bb88e4b943f3472cf68257"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": false,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": false,
+                    "translocateOrientationEvaluator": null,
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                    "name": "$CompleteEtude$9fbbf35572145a3fa0fef9540525368c",
+                    "Etude": null,
+                    "EtudeEvaluator": {
+                      "$type": "1273add9ac97d9b45a4744747bbc65cb, EtudeBlueprint",
+                      "name": "$EtudeBlueprint$01208d7ff37e573cb5ba17338e02adac",
+                      "m_Value": "!bp_dcb93d79ad5b4538b9489fed06bd1c48"
+                    },
+                    "Evaluate": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "224c1eb24ed98e942ae15b9e10e62724, WarhammerEndTurn",
+        "name": "$WarhammerEndTurn$fe8f3355-f0a9-4808-9fb1-a45f816e0dbb",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "clearMPInsteadOfEndingTurn": false,
+        "Condition": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "m_BuffToCaster": null
+      },
+      {
+        "$type": "3244a7f6b105c654db650034076be4a5, AbilityCasterHasFacts",
+        "name": "$AbilityCasterHasFacts$ea8d1223-d600-4d42-852a-6abadf8cd8c6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Facts": [
+          "!bp_bbad6a120b354ac9bc94896b619dbee8"
+        ],
+        "NeedsAll": false
+      }
+    ],
+    "Author": "YuriyElburih",
+    "Comment": "Абилка амбулл-мамы. Закапывает, делает неуязвимой/нетаргетабл, спавнит детей",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "8c5b52580c9157a4a9c3817c5ba6c5e2",
+        "stringkey": "fc4f0496-c9e3-40d8-b1e0-afb0359cdf9c"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "9f7e9128cb012144d947e761dd6b2ab0",
+        "stringkey": "e4812187-be40-4c3c-b929-a4063e7a2781"
+      }
+    },
+    "m_Icon": {
+      "guid": "6c2579856a2f60c44a39ee6a3d161b9f",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "Type": "Spell",
+    "Range": "Personal",
+    "CustomRange": 0,
+    "MinRange": 0,
+    "ActionPointCost": 0,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 1,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 1,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": false,
+    "CanTargetFriends": false,
+    "CanTargetSelf": true,
+    "Hidden": false,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "None",
+    "EffectOnEnemy": "None",
+    "m_Parent": null,
+    "Animation": "Self",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": false,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillNotCauseAttack",
+    "CombatStateRestriction": "InCombatOnly",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "DisableLog": false,
+    "ResourceAssetIds": [],
+    "m_FXSettings": "!bp_17d59fe9a1444394bd87c8813d74b55e",
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

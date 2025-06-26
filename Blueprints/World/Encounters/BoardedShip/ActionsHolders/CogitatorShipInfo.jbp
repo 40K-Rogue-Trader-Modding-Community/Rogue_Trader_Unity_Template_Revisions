@@ -1,0 +1,145 @@
+{
+  "AssetId": "441a0e0dd05c4064b3f238296004a9ca",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Находим подсказку о секретной комнатке - снижаем чеки с импосиблов до харда.",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$91887c1cd94e4fa9beb814e9eca879fd",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$e6f482d7aa3e4a43b1fc57a0369a34fb",
+            "MapObject": {
+              "EntityNameInEditor": "ShipInfo",
+              "_entity_id": "ed24a29b-5076-442b-8740-91f4d5c23d5c",
+              "SceneAssetGuid": "Assets/Scenes/DLC2/BoardedShip/BoardedShip_Mechanics.unity"
+            }
+          },
+          "Unhide": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$e4459166091649f8aa6a3553bbc74e70",
+          "Comment": "Если комнатка найдена - ничего не делаем, иначе упрощаем ее нахождение",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f5533a5494b74f41847f97df5d776f04",
+                "Not": false,
+                "m_Etude": "!bp_99fd735853c048d8814a3ad28baae0ab",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": []
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$63d31017-b456-4074-84ca-1534a1d14c67",
+                "Comment": "Если были доп. обстрелы - меняем фейл-кнопку с импосибл на хард, иначе меняем рабочую кнопку с импосибл на нормал",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$8c3f42a5-b99d-4da7-9dec-c525a79db63e",
+                      "Not": false,
+                      "m_Etude": "!bp_bcce8b5ba090400db48d72cb12ac05c2",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                      "name": "$HideMapObject$357f652a-6dfc-4df3-89ba-23c733c02918",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$f3c4fb36-679b-4bca-aca6-0406adf8ed54",
+                        "MapObject": {
+                          "EntityNameInEditor": "SecretDoorControllerFail",
+                          "_entity_id": "52c2fce8-424f-4c41-953c-a3d430463690",
+                          "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                        }
+                      },
+                      "Unhide": true
+                    },
+                    {
+                      "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                      "name": "$HideMapObject$6e59f234-6b87-473d-ad05-2c0c948650c8",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$1b74f3f0-7ab4-44ed-a505-62983e9b2c81",
+                        "MapObject": {
+                          "EntityNameInEditor": "SecretDoorControllerImposibleFail",
+                          "_entity_id": "7074bb3d-1abc-42ad-af87-1d754914f9a8",
+                          "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                        }
+                      },
+                      "Unhide": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                      "name": "$HideMapObject$443fd21f-cc1b-4b02-9004-a50d903dd54c",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$911434e8-3e45-4fba-bfb4-cfa5d9266e4b",
+                        "MapObject": {
+                          "EntityNameInEditor": "SecretDoorController",
+                          "_entity_id": "d93d70db-7a3d-4fcf-bd9a-cce9ba02a7fd",
+                          "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                        }
+                      },
+                      "Unhide": true
+                    },
+                    {
+                      "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                      "name": "$HideMapObject$796f3b84-a892-4d2e-ad57-5a97692549ab",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$10c8219e-600d-4fe9-9dde-103ad189b38c",
+                        "MapObject": {
+                          "EntityNameInEditor": "SecretDoorControllerInposible",
+                          "_entity_id": "d24c1c7b-c9fc-48cb-a181-f2e86f52c67f",
+                          "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                        }
+                      },
+                      "Unhide": false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

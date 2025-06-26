@@ -19,7 +19,21 @@ namespace Kingmaker.Editor.ReferencesWindow
 {
     public partial class ReferencesWindow : EditorWindow
     {
-        private Object m_Target;
+	    private enum Mode
+	    {
+		    Slow = 0,
+		    Qgrep = 1,
+		    BlueprintsOnly = 2,
+	    }
+
+	    private readonly Tuple<Mode, string, GUIStyle>[] m_SearchButtons =
+	    {
+		    new (Mode.Slow, "Slow", EditorStyles.miniButtonLeft),
+		    new (Mode.Qgrep, "QGrep", EditorStyles.miniButtonMid),
+		    new (Mode.BlueprintsOnly, "BlueprintsOnly (fast)", EditorStyles.miniButtonRight),
+	    };
+
+	    private Object m_Target;
         private List<Object> m_References = new();
         private readonly List<(Object target, Object result)> m_MultiReferences = new();
         private Vector2 m_Scroll;
@@ -28,12 +42,13 @@ namespace Kingmaker.Editor.ReferencesWindow
         private bool m_FilterByFolder;
 		private bool m_FindInResults;
         private Type m_FilterType;
-        private string m_FilterFolder;
+        private string m_FilterFolder = string.Empty;
         private string m_TargetString;
         private Action<Object> m_SelectCallback;
-	    private bool m_QgrepMode = true;
 	    private bool m_IncludeSubDirs = false;
 	    private bool m_SeparateSearch = false;
+
+	    private Mode m_Mode = Mode.BlueprintsOnly;
 
 	    void OnEnable()
 	    {
@@ -74,11 +89,37 @@ namespace Kingmaker.Editor.ReferencesWindow
         {
 	        m_Target = asset;
 
-            string guid = asset is BlueprintEditorWrapper 
-	            ?  ((BlueprintEditorWrapper)m_Target).Blueprint.AssetGuid 
-	            : AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(asset));
+	        var bpw = m_Target as BlueprintEditorWrapper;
+            string guid = bpw == null
+	            ? AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(asset))
+	            : bpw.Blueprint.AssetGuid;
+
+            if (m_Mode == Mode.BlueprintsOnly)
+            {
+	            if (bpw == null)
+	            {
+		            EditorUtility.DisplayDialog("Warning",
+			            "Current asset is not a blueprint.\n" +
+			            "Please, switch to another search mode.", "Ok");
+		            return;
+	            }
+	            FindReferencesInBlueprints(guid);
+	            return;
+            }
 
             FindReferences(guid, asset.name);
+        }
+
+        private void FindReferencesInBlueprints(string guid)
+        {
+	        m_References.Clear();
+	        
+	        var result = BlueprintsDatabase.GetReferencedBy(guid);
+	        foreach (var i in result)
+	        {
+		        var blueprint = BlueprintsDatabase.LoadAtPath<SimpleBlueprint>(i.Path);
+		        m_References.Add(BlueprintEditorWrapper.Wrap(blueprint));
+	        }
         }
 
         private void FindReferences(string id, string assetname)
@@ -204,22 +245,27 @@ namespace Kingmaker.Editor.ReferencesWindow
             
 	        using (new EditorGUILayout.HorizontalScope())
 	        {
-		        bool sm = GUILayout.Toggle(m_QgrepMode == false, "Slow mode", EditorStyles.miniButtonLeft);
-		        bool qm = GUILayout.Toggle(m_QgrepMode == true, "QGrep mode", EditorStyles.miniButtonRight);
-
-		        if (sm != (!m_QgrepMode) || (qm != m_QgrepMode))
+		        foreach ((Mode mode, string label, GUIStyle style) in m_SearchButtons)
 		        {
-			        m_QgrepMode = !m_QgrepMode;
+			        bool oldValue = m_Mode == mode;
+			        bool value = GUILayout.Toggle(oldValue, label, style);
+			        if (value != oldValue)
+				        m_Mode = mode;
 		        }
 	        }
 
-	        if (m_QgrepMode)
+	        switch (m_Mode)
 	        {
-		        DrawGrepGUI();
-	        }
-	        else
-	        {
-		        DrawSlowModeGUI();
+		        case Mode.Slow:
+			        DrawSlowModeGUI();
+			        break;
+		        case Mode.Qgrep:
+			        DrawGrepGUI();
+			        break;
+		        case Mode.BlueprintsOnly:
+			        break;
+		        default:
+			        throw new ArgumentOutOfRangeException();
 	        }
 	        
 	        DisplayResults();
@@ -550,6 +596,10 @@ namespace Kingmaker.Editor.ReferencesWindow
 			// var showFound = EditorGUILayout.BeginFoldoutHeaderGroup()
 		}
 
+		private void DrawBlueprintsOnlyModeGUI()
+		{
+		}
+
 		private void DrawSlowModeGUI()
         {
 	        using (GuiScopes.FixedWidth(1, 1))
@@ -601,7 +651,7 @@ namespace Kingmaker.Editor.ReferencesWindow
 
         private void FindTarget()
         {
-	        if (m_QgrepMode)
+	        if (m_Mode == Mode.Qgrep)
 	        {
 		        FindReferencesQgrep();
 		        return;

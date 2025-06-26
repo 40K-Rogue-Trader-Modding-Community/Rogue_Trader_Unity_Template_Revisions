@@ -777,7 +777,7 @@
                 "Spawner": {
                   "EntityNameInEditor": "Steward_KibellahRomance",
                   "_entity_id": "16d8b6ef-fdac-4958-b9bf-3d64cb53222e",
-                  "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
+                  "SceneAssetGuid": "9d81276d0b19cc545b4949d18d837c91"
                 }
               },
               "Unhide": false,
@@ -830,7 +830,7 @@
                 {
                   "EntityNameInEditor": "ClemenceReplacement",
                   "_entity_id": "5065d6ea-61f0-45e4-9d13-f72655695550",
-                  "SceneAssetGuid": "Assets/Scenes/Chapter_2/RogueTraderPalacePeaceful/RoguerTraderPalaceIndoorPeaceful_IndoorNamedNPCsAndCompanions_Mechanics.unity"
+                  "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
                 }
               ],
               "ActionsOnSpawn": {
@@ -843,7 +843,7 @@
       {
         "$type": "b2970e0dadd194546bbf27a691e55d4c, DeactivateTrigger",
         "name": "$DeactivateTrigger$2a082a65-1e57-4f74-b687-b572df73922e",
-        "m_Flags": 0,
+        "m_Flags": "Disabled",
         "PrototypeLink": {
           "guid": "",
           "name": ""
@@ -917,9 +917,63 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$9ae8b91b-5735-4fb8-9d13-a6eca1598775",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Spawn Clemence replacement for DLC2",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$8629acb1-11b3-4211-aba9-641cbca8c923",
+              "Not": false,
+              "m_Etude": "!bp_5e0550ba229b4a1db324ce1826e56fa1",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$ffe0e646-6db4-4368-aabc-20effe0b1a64",
+              "Not": false,
+              "m_QuestObjective": "!bp_83a8b7952c6a442dbbed176f6998daa3",
+              "State": "Started"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$72fbbec2-910f-4826-b401-38c2233ae642",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "ClemenceReplacement",
+                  "_entity_id": "5065d6ea-61f0-45e4-9d13-f72655695550",
+                  "SceneAssetGuid": "cfbd51343665361439ceb5eec195ba52"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
-    "Author": "VyacheslavZolotovsky",
+    "Author": "AlexeyPolezhaev",
     "Comment": "Индор РТ пэлэса",
     "m_Parent": "!bp_bdb313468fdc46b58ee511cee8319631",
     "ActivationCondition": {

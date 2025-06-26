@@ -1,0 +1,185 @@
+{
+  "AssetId": "7458ff10988e43d6bbb1040417a46607",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$e95881cf-f557-4ecf-a72c-be0727362b89",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Запускаем катсцену с первым расследованием",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$2492581dd4b259ad9502993924a5b303",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "ShipCrew",
+                  "_entity_id": "7e23b853-9236-42a6-b6fb-4286f17bb834",
+                  "SceneAssetGuid": "08aff89b0c6d04f40803f395aa661390"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$02c91f829f4740eabb11a2786e809650",
+              "m_Cutscene": "!bp_d74944c5b7284c6e93d8e197e1c9770a",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": [
+                  {
+                    "Name": "Unit1",
+                    "Type": "Unit",
+                    "Evaluator": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$39ab9a31a1bd4290a6f6b53cf9023a92",
+                      "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": true,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    }
+                  },
+                  {
+                    "Name": "Unit3",
+                    "Type": "Unit",
+                    "Evaluator": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$d0c4de037c614cbcb7506585b566916f",
+                      "Spawner": {
+                        "EntityNameInEditor": "VoidMaster",
+                        "_entity_id": "50ff4dbb-006b-4795-ba63-f0e76542d3ae",
+                        "SceneAssetGuid": "7a723978f014d39478eef0dd4f23b912"
+                      }
+                    }
+                  },
+                  {
+                    "Name": "Unit4",
+                    "Type": "Unit",
+                    "Evaluator": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$807254d413ca439da5930925e79ee802",
+                      "Spawner": {
+                        "EntityNameInEditor": "ShipCrew",
+                        "_entity_id": "7e23b853-9236-42a6-b6fb-4286f17bb834",
+                        "SceneAssetGuid": "08aff89b0c6d04f40803f395aa661390"
+                      }
+                    }
+                  },
+                  {
+                    "Name": "Dialog",
+                    "Type": "Blueprint",
+                    "Evaluator": {
+                      "$type": "5c84f2b0c2d44251b320ae180dcaecd8, Dialog",
+                      "name": "$Dialog$f7e453f8282a476091bc23d47af3b6cc",
+                      "m_Value": "!bp_f58d760c17ce488ab29c652fff1098d9"
+                    }
+                  },
+                  {
+                    "Name": "Etude",
+                    "Type": "Blueprint",
+                    "Evaluator": {
+                      "$type": "1273add9ac97d9b45a4744747bbc65cb, EtudeBlueprint",
+                      "name": "$EtudeBlueprint$e1c952ec428d4c9c901760fcf26efe0a",
+                      "m_Value": "!bp_7458ff10988e43d6bbb1040417a46607"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$959fe6198e274915b519828c9424db80",
+              "m_Cutscene": "!bp_0190806bacf84353a2f06b192bc12f4a",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$67f75a1b-ebf6-44b3-b6dd-63320da81d20",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$dfa3d763-a954-4ff9-86ab-25768c721f38",
+              "Etude": "!bp_dc01668f8f5d48f0b09d71ab75e190ce",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "IgorDmitriev",
+    "Comment": "",
+    "m_Parent": "!bp_023b6b86999f4e539eee65aaaf62d893",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ee651e222f282454fbd2821c9ea18a72, AnotherEtudeOfGroupIsPlaying",
+          "name": "$AnotherEtudeOfGroupIsPlaying$ca8fe1af09c5459f9e6a5722c002c8df",
+          "Not": true,
+          "m_Group": "!bp_6bf491b89a8c475aa4e22dfa7d26a7d0"
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": "!bp_255859109cec4a042ade1613d80b25a4",
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [
+      "!bp_6bf491b89a8c475aa4e22dfa7d26a7d0",
+      "!bp_5617ead63885492880d246d0048a553c",
+      "!bp_04767dbce304406e963a4aa48b66c9ee",
+      "!bp_9818c1d6ada94e9b83425eef8d6c0a90"
+    ],
+    "Priority": 100
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

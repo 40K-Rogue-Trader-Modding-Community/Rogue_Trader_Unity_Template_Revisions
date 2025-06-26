@@ -1,0 +1,852 @@
+{
+  "AssetId": "38ed2124a0a14ab1b26c048b93d3a9d8",
+  "Data": {
+    "$type": "2e95eea1aa90d2b428dfe389189dc287, BlueprintScriptZone",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "IgorDmitriev",
+    "Comment": "RT cabine",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "Prefab": null,
+    "TriggerConditions": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "476772c7487f42bf8f9e0cd3edd9854c, CheckProperty",
+          "name": "$CheckProperty$376a964c-595f-40e8-86a2-a523e7de48f9",
+          "Not": true,
+          "Value": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "c40b4ede65fb4807af5f252e80a558cf, IsPetGetter",
+                "name": "$IsPetGetter$8329ffb0-13b4-488d-b581-a6820c503e95",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "CurrentEntity"
+              }
+            ]
+          },
+          "SetCaster": true,
+          "Caster": {
+            "$type": "7092730319129374aadf8b65ceb5c42d, ScriptZoneUnit",
+            "name": "$ScriptZoneUnit$13c2feaa-d542-4331-a862-02025de0a50a"
+          },
+          "m_SetTarget": "None",
+          "TargetEntityEvaluator": null,
+          "TargetPositionEvaluator": null
+        },
+        {
+          "$type": "476772c7487f42bf8f9e0cd3edd9854c, CheckProperty",
+          "name": "$CheckProperty$395dc8a8ca3d4a3d816e07d2dcdbcbf4",
+          "Not": false,
+          "Value": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "470ca8e024dd4c19a9f6d115fd554b04, CheckIsMainCharacterGetter",
+                "name": "$ChechIsRogueTraderGetter$471783834909433f910d6dacd4810f9b",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "CurrentEntity"
+              }
+            ]
+          },
+          "SetCaster": true,
+          "Caster": {
+            "$type": "7092730319129374aadf8b65ceb5c42d, ScriptZoneUnit",
+            "name": "$ScriptZoneUnit$e671c6638a3c4d7d8ca8312e8898f59c"
+          },
+          "m_SetTarget": "None",
+          "TargetEntityEvaluator": null,
+          "TargetPositionEvaluator": null
+        }
+      ]
+    },
+    "EnterActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b378e4aefc244836b6165acfecf4d192",
+          "Comment": "Для орла",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$71b72e7d9a9f4b59a3985f102371d26a",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$b6d2858643fb472c91a5ce026a1e60de"
+                },
+                "m_Fact": "!bp_8112234fb07a40db998b3621f3bb5c9f"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$66d07993fb3e4f8aac7b43dcc0342477",
+                "m_Cutscene": "!bp_a6abd19c99da41d483eefd8ba4238a83",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7c454230-0723-4d95-ba62-8aaf1042bdf7",
+          "Comment": "Для Мастифа",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$42ce8240-fadc-47d9-b4b4-b661c81f4b8d",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$2c923bc4-5a59-4b4b-bb4e-6c48a8161d21"
+                },
+                "m_Fact": "!bp_3f59ef1fcd024364b0e2bbdd3b29d4fe"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$82efc7a4-490a-47a1-ae92-d91348abb63b",
+                "m_Cutscene": "!bp_ce28382188af45988f5ca87032bdbc7f",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ff72d949-80bf-4491-85ef-667e8fdcf412",
+          "Comment": "Для Ворона",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$653d14bd-067c-4b4c-896e-f7a758570fbd",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$ab55127b-1d45-445a-be32-76cb81a23f20"
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$d499978d-8fd1-4500-b9d7-4e864b59b130",
+                "m_Cutscene": "!bp_3744e850385f4679a5cfc47bde64252c",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6c125c4e-d622-434d-bacb-8747ee126b28",
+          "Comment": "Для skullswarm",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$4c26406c-547e-4645-af6b-a077c474a44c",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$86fc9364-72b5-4601-af29-343b1a0eca9f"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$adb3b27d-f6df-47a5-8c29-9ee417789435",
+                "m_Cutscene": "!bp_0d74ce1ea42444d9882bed1ed1be043b",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$16ad0d54df6f44d2900dc8ef215ce396",
+          "Comment": "чек на предметы для скиллчеков.",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$fc32ad26-9a28-4b4b-a881-eeefd0055792",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$dc0940cc-8947-44bf-be3f-882ab39c7b79"
+                },
+                "m_Fact": "!bp_3f59ef1fcd024364b0e2bbdd3b29d4fe"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$bf86db1a-7e89-4381-a381-6adc7007193a",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$d0c0a457-d18a-4baa-8315-a3381bf34413"
+                },
+                "m_Fact": "!bp_8112234fb07a40db998b3621f3bb5c9f"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$d6d3d7fa-f56f-41f8-88be-74382218f132",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$e40574a7-2466-4c31-995c-403ae79ca7f3"
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$325af28f-9236-47f2-a450-ff7286b210e1",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$ac0a99d0-d599-4041-acb3-7b2ae12c511e"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$d29e5c48-2718-41a0-832d-dbcbe88a1eb9",
+                "Comment": "Проверяем что не было апргрейда до уровня 2",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$bc508064-f05c-41e5-b0f5-19d6c053a910",
+                      "Not": true,
+                      "m_Etude": "!bp_be21ce21dd574d8e955a3f4abd14c868",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": false,
+                      "CompletionInProgress": false,
+                      "Completed": true
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$ac25d85b-4087-4792-aae0-ea80d883439e",
+                      "Comment": "если апгрейда не было, то проверяем наличие предмета для апгрейда уровня 2. If True показываем скилл чек для апгрейда домика. ",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "4976252585b024c499c47cd56966ab2b, ItemsEnough",
+                            "name": "$ItemsEnough$cf22ca98-a910-4aa6-86cb-1edf24828aa6",
+                            "Not": false,
+                            "Money": false,
+                            "m_ItemToCheck": "!bp_ce180e640cdf40ac8cfba1895ac50c50",
+                            "Quantity": 1
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                            "name": "$HideMapObject$daa95853-7cb9-42ff-99e4-974ab814d14d",
+                            "MapObject": {
+                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                              "name": "$MapObjectFromScene$00f9d56b-d68f-4678-b947-2d6f67965181",
+                              "MapObject": {
+                                "EntityNameInEditor": "stage_2",
+                                "_entity_id": "5de3649a-1773-4fc6-a284-e8e5d82ed88b",
+                                "SceneAssetGuid": "0601b9fa6b637c04d9948425fe4b9640"
+                              }
+                            },
+                            "Unhide": true
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$a8cd2737-7ee0-47e3-b409-cb3c12b5f9f2",
+                      "Comment": "проверка что не было апгрейда до уровня 3",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                            "name": "$EtudeStatus$4f058ad0-0943-40c7-9436-42d64e133066",
+                            "Not": true,
+                            "m_Etude": "!bp_05997b91d61d4007bb2e7f202d0126f5",
+                            "NotStarted": false,
+                            "Started": false,
+                            "Playing": false,
+                            "CompletionInProgress": false,
+                            "Completed": true
+                          },
+                          {
+                            "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                            "name": "$EtudeStatus$bb0507689dbb50e9929d740b71a1c5b5",
+                            "Not": false,
+                            "m_Etude": "!bp_be21ce21dd574d8e955a3f4abd14c868",
+                            "NotStarted": false,
+                            "Started": false,
+                            "Playing": false,
+                            "CompletionInProgress": false,
+                            "Completed": true
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                            "name": "$Conditional$e2e64d16-d179-4cb6-9f70-3dcd182963d3",
+                            "Comment": "если апгрейда не было проверяем есть ли предмет для апгрейда.",
+                            "ConditionsChecker": {
+                              "Operation": "And",
+                              "Conditions": [
+                                {
+                                  "$type": "4976252585b024c499c47cd56966ab2b, ItemsEnough",
+                                  "name": "$ItemsEnough$d69395db-896a-48f3-9bcf-9ff473d3ad9d",
+                                  "Not": false,
+                                  "Money": false,
+                                  "m_ItemToCheck": "!bp_7317504044f14c0480c7557fa28b3a8b",
+                                  "Quantity": 1
+                                }
+                              ]
+                            },
+                            "IfTrue": {
+                              "Actions": [
+                                {
+                                  "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                  "name": "$HideMapObject$fb1e9aef-e604-4ca0-a80e-366a6921303c",
+                                  "MapObject": {
+                                    "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                    "name": "$MapObjectFromScene$6b7279d4-edec-44c5-8de5-ac99ded51b7c",
+                                    "MapObject": {
+                                      "EntityNameInEditor": "stage_3",
+                                      "_entity_id": "b98d882b-e3fd-4482-8474-677f12ce0bbf",
+                                      "SceneAssetGuid": "0601b9fa6b637c04d9948425fe4b9640"
+                                    }
+                                  },
+                                  "Unhide": true
+                                }
+                              ]
+                            },
+                            "IfFalse": {
+                              "Actions": []
+                            }
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": [
+                          {
+                            "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                            "name": "$Conditional$eb2dda17-94ed-4508-98af-de3e3e67a99f",
+                            "Comment": "проверка что не было апгрейда до уровня 4",
+                            "ConditionsChecker": {
+                              "Operation": "And",
+                              "Conditions": [
+                                {
+                                  "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                                  "name": "$EtudeStatus$30d87f02-9dc4-438b-aa60-097f2d969162",
+                                  "Not": false,
+                                  "m_Etude": "!bp_05997b91d61d4007bb2e7f202d0126f5",
+                                  "NotStarted": false,
+                                  "Started": false,
+                                  "Playing": false,
+                                  "CompletionInProgress": false,
+                                  "Completed": true
+                                },
+                                {
+                                  "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                                  "name": "$EtudeStatus$cdda66ae-3983-45d5-9a95-5901317b480a",
+                                  "Not": true,
+                                  "m_Etude": "!bp_6062f4ab69054f1a88ec4f88255bca00",
+                                  "NotStarted": false,
+                                  "Started": false,
+                                  "Playing": false,
+                                  "CompletionInProgress": false,
+                                  "Completed": true
+                                }
+                              ]
+                            },
+                            "IfTrue": {
+                              "Actions": [
+                                {
+                                  "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                                  "name": "$Conditional$06b67aa6-bc8a-4496-8918-85d6ef485987",
+                                  "Comment": "если апгрейда не было проверяем есть ли предмет для апгрейда.",
+                                  "ConditionsChecker": {
+                                    "Operation": "And",
+                                    "Conditions": [
+                                      {
+                                        "$type": "4976252585b024c499c47cd56966ab2b, ItemsEnough",
+                                        "name": "$ItemsEnough$2234a103-1210-496f-b23b-d96f983b6817",
+                                        "Not": false,
+                                        "Money": false,
+                                        "m_ItemToCheck": "!bp_b16a78e8595941ccb2de9aab8366c0d1",
+                                        "Quantity": 1
+                                      }
+                                    ]
+                                  },
+                                  "IfTrue": {
+                                    "Actions": [
+                                      {
+                                        "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                        "name": "$HideMapObject$13559c6c-94c2-47d5-ad10-ee1947b7d05e",
+                                        "MapObject": {
+                                          "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                          "name": "$MapObjectFromScene$969ca1ef-942b-40d2-ae28-aea3e31ea9ce",
+                                          "MapObject": {
+                                            "EntityNameInEditor": "stage_4",
+                                            "_entity_id": "f037e277-65e1-44ca-9b32-f58e5f458675",
+                                            "SceneAssetGuid": "0601b9fa6b637c04d9948425fe4b9640"
+                                          }
+                                        },
+                                        "Unhide": true
+                                      }
+                                    ]
+                                  },
+                                  "IfFalse": {
+                                    "Actions": []
+                                  }
+                                }
+                              ]
+                            },
+                            "IfFalse": {
+                              "Actions": []
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f87f2caa2f8f4f56be4a25dd92280a87",
+          "Comment": "Туториал про домики",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$9d1416b8-dcfb-4a18-a18c-eb4212422f34",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$9cf8e868-3bcb-48d0-9aa0-2b4f2106f13f"
+                },
+                "m_Fact": "!bp_8112234fb07a40db998b3621f3bb5c9f"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$a4d12399-dcba-44aa-a2e0-2d52c12069ec",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$1c493ac2-0f2e-4b07-a1c3-9dd85b4b1562"
+                },
+                "m_Fact": "!bp_3f59ef1fcd024364b0e2bbdd3b29d4fe"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$bc9a2030-94c4-43c2-936b-bf004e12ee75",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$7a72ca38-a863-45ad-b56a-07a2aa39b022"
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$3ea56e8c-f6cb-4802-945e-1c1a0f58866c",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$9ee58b42-d774-4729-b7ff-0683f6446a02"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "1c7b1754db3d4c908b1dbe779c4ed85c, ShowNewTutorial",
+                "name": "$ShowNewTutorial$542a37d811484885bd2019b8bb67a445",
+                "m_Tutorial": "!bp_c1a45cc405f24983aebf987ed19bfcb5",
+                "Evaluators": []
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$894eaab48a925552b9bee5585d4f21fc",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$6fdfc46f-4bd5-439a-af73-37d79cf91551",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$91db358d-570a-4f60-871a-600b228d2024"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$6048d797-24e5-4a13-9e7d-c7aeff05fb6d",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$b3292f0b-2fbe-4c07-96fa-0fe98b9e3ab2"
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$9b67a669-f5e9-4e83-92b9-04f0c9b031d3",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$07d182ed-28bc-4585-a758-551038cd0531"
+                },
+                "m_Fact": "!bp_3f59ef1fcd024364b0e2bbdd3b29d4fe"
+              },
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$f67eda06-aec0-456b-8bb1-800482cc02a7",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$fea6fa0e-04c6-4e90-ba3e-57ed46c9f890"
+                },
+                "m_Fact": "!bp_8112234fb07a40db998b3621f3bb5c9f"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$dd81e4ea58cf5c07b48c3a21b52d31cb",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$e009d6cd-17fd-419b-b71a-f4c0e6f47e60",
+                  "MapObject": {
+                    "EntityNameInEditor": "imperial_palace_candle_01 (67)_Group",
+                    "_entity_id": "c199c983-c534-4d34-874e-de384ebf79a7",
+                    "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "5afa2802918b3874bb6e0d611d6489cd, UpdateEtudes",
+                "name": "$UpdateEtudes$f2408948daa15d209cdec7d366f6d79e"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "ExitActions": {
+      "Actions": [
+        {
+          "$type": "0e571e9f07a314048afedff605fa53ce, LockFlag",
+          "name": "$LockFlag$2c5fce64f6ec461ba503aa3b7e0516ed",
+          "m_Flag": "!bp_0ca32d03a65942dfaa39126f940076bb"
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7c9c159f-f17c-4aad-aba9-6aa9d9e777df",
+          "Comment": "Для орла",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$48181c58-3b5e-4b91-9f78-f1c3007cc2b0",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$064eb08c-af9f-4885-964e-f1941f95b483"
+                },
+                "m_Fact": "!bp_8112234fb07a40db998b3621f3bb5c9f"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$2d90ead7822c4b7f98b740c52a1003f7",
+                "m_Cutscene": "!bp_0155c7acbbc944ccbf62e4b326dba4d0",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              },
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$fffd0349bd6d4f6ba323a83b2966cbc9",
+                "m_Cutscene": "!bp_a6abd19c99da41d483eefd8ba4238a83",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d232a00e-de2d-405e-8b77-3ecf5cb88cce",
+          "Comment": "Для Мастифа",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$fcdd6557-4b57-4d9c-b151-7863bb454b2a",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$e359556f-b03f-4912-9161-99604021fa49"
+                },
+                "m_Fact": "!bp_3f59ef1fcd024364b0e2bbdd3b29d4fe"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$9d827dcc-3258-4390-93d4-7f33fe50ade3",
+                "m_Cutscene": "!bp_ce28382188af45988f5ca87032bdbc7f",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              },
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$b6ae1239-0a86-4211-bd37-39485df8d76b",
+                "m_Cutscene": "!bp_9ebeb099c94b426c9fbbf27fb2d74832",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$9bd3ea92-8c3c-4a9c-8f38-3acb63dd85cb",
+          "Comment": "Для Ворона",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$78d95872-5b88-4946-8f75-6f39b3ab4dbf",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$0970744e-7cd9-4401-a41d-0f07622cb7a4"
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$f1f634e1-6594-41de-bf0c-caa7c6c3964c",
+                "m_Cutscene": "!bp_3744e850385f4679a5cfc47bde64252c",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              },
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$c78c9f7c-6ff0-45b2-bf08-9eb039f87f57",
+                "m_Cutscene": "!bp_e1a88f8ec3114c4ba4842c74eec5d98d",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f4dd949b-8fe8-43bb-a02c-0f41b4c96cce",
+          "Comment": "Для Сервочерепов",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$dc7d8b6a-d2b1-4751-8d18-b33fbcdc813f",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$4f347e13-890e-4ae7-86f0-e525e09a1edd"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$90998dba-00f0-4683-9eac-7d5a1182336f",
+                "m_Cutscene": "!bp_0d74ce1ea42444d9882bed1ed1be043b",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              },
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$2dedb221-d655-4c3c-93c7-10e7db07d4f6",
+                "m_Cutscene": "!bp_1ae25ebeefaf4eea8063f13a09544bb9",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

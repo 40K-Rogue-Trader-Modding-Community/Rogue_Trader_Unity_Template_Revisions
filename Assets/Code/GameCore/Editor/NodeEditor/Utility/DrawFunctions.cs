@@ -1,17 +1,16 @@
 ﻿using System;
 using Kingmaker.Editor.NodeEditor.Nodes;
 using Kingmaker.Editor.NodeEditor.Window;
+using Owlcat.Editor.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
+#nullable enable
+
 namespace Kingmaker.Editor.NodeEditor.Utility
 {
-	public class DrawFunctions
+	public static class DrawFunctions
 	{
-		private DrawFunctions()
-		{
-		}
-
 		public static void Connection(CanvasView view, EditorNode n1, EditorNode n2, Color color)
 		{
 			Connection(view, n1, n1.Size.y / 2, n2, n2.Size.y / 2, color);
@@ -40,6 +39,82 @@ namespace Kingmaker.Editor.NodeEditor.Utility
 
 			float width = 5 / view.Scale;
 			Handles.DrawBezier(sp1, sp2, tg1, tg2, color, null, width);
+		}
+
+		/// <summary>
+		/// An icon to draw inside node's DrawContent()
+		/// </summary>
+		public static void NodeIcon(Texture2D? icon, string tooltip, Action? action = null)
+		{
+			if (icon == null)
+			{
+				return;
+			}
+
+			using (GuiScopes.Horizontal())
+			{
+				EditorGUILayout.Space();
+				GUILayout.Box(new GUIContent("", tooltip), GUIStyle.none,
+					GUILayout.Width(icon.width), GUILayout.Height(icon.height));
+
+				var rect = GUILayoutUtility.GetLastRect();
+
+				GUI.DrawTexture(rect, icon);
+				EditorGUILayout.Space();
+			}
+		}
+
+		/// <summary>
+		/// A button with icon and pressed state to draw inside node's DrawContent()
+		/// </summary>
+		public static void IconButton(Texture2D? icon, string tooltip, Action action, ref bool isPressed)
+		{
+			if (icon == null)
+			{
+				return;
+			}
+
+			using (GuiScopes.Horizontal())
+			{
+				EditorGUILayout.Space();
+
+				GUILayout.Box(new GUIContent("", tooltip), GUIStyle.none,
+					GUILayout.Width(icon.width), GUILayout.Height(icon.height));
+
+				bool drawButton = Event.current.type != EventType.Layout && Event.current.type != EventType.Used;
+
+				if (drawButton)
+				{
+					var rect = GUILayoutUtility.GetLastRect();
+
+					if (rect.Contains(Event.current.mousePosition))
+					{
+						switch (Event.current.type)
+						{
+							case EventType.MouseDown when Event.current.button == 0:
+								isPressed = true;
+								Event.current.Use();
+								break;
+
+							case EventType.MouseUp when Event.current.button == 0 && isPressed:
+								isPressed = false;
+								action();
+								Event.current.Use();
+								break;
+						}
+					}
+					else
+					{
+						isPressed = false;
+					}
+
+					GUI.DrawTexture(rect, icon, ScaleMode.StretchToFill, true, 0.0f,
+						isPressed ? Color.gray : Color.white,
+						0.0f, 0.0f);
+				}
+
+				EditorGUILayout.Space();
+			}
 		}
 	}
 }

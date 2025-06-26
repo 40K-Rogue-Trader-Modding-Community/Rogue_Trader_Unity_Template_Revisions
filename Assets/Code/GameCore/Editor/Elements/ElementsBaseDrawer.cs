@@ -14,6 +14,7 @@ using Kingmaker.Utility.UnityExtensions;
 using Owlcat.Editor.Utility;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Code.GameCore.Editor.Elements.Debug;
 using Code.GameCore.ElementsSystem;
 using Kingmaker.Blueprints;
@@ -678,11 +679,12 @@ namespace Kingmaker.Editor.Elements
 			}
 		}
 	}
-	
+
 	internal static class SerializedPropertyHelper
 	{
-		public static bool IsArrayElement(this SerializedProperty property) 
-			=> property.propertyPath.Contains("Array");
+		private static readonly Regex m_ArrayElementRx = new(@".+\.Array\.data\[\d+\]$");
+		public static bool IsArrayElement(this SerializedProperty property)
+			=> m_ArrayElementRx.IsMatch(property.propertyPath);
 	}
 }
 #endif

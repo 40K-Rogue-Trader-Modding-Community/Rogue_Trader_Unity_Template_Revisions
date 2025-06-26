@@ -1,0 +1,222 @@
+{
+  "AssetId": "76233bea201d4464af3c9a9932d88c5b",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "b90eea06ce91f564e8793832eea02cef, Recruit",
+          "name": "$Recruit$ffb29e23-4d9f-40b5-88de-84534c1e4bb0",
+          "Recruited": [
+            {
+              "m_CompanionBlueprint": "!bp_17134d4540dd445c95b995a00fef52e3",
+              "m_Portrait": null,
+              "NPCUnit": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$24ba42b5ca0b59958462e216c7e784dc",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_Lizzy (1)",
+                  "_entity_id": "80838270-04df-454e-aef9-01844e828e7e",
+                  "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+                }
+              },
+              "MustBeInParty": true
+            }
+          ],
+          "AddToParty": true,
+          "MatchPlayerXpExactly": false,
+          "OnRecruit": {
+            "Actions": []
+          },
+          "OnRecruitImmediate": {
+            "Actions": []
+          },
+          "DoNotOpenPartySelection": true
+        },
+        {
+          "$type": "3d947958bd77d10469017478eb6120ed, PartyMembersDetach",
+          "name": "$PartyMembersDetach$fa80dbe2-3de9-44ae-a74c-9402ed29395f",
+          "m_DetachOnlyListed": false,
+          "m_DetachAllExcept": [
+            "!bp_17134d4540dd445c95b995a00fef52e3"
+          ],
+          "m_DetachAll": [],
+          "m_RestrictPartySize": false,
+          "m_PartySize": -1,
+          "UseRealParty": false,
+          "DoNotDetachPlayerCharacter": false,
+          "AfterDetach": {
+            "Actions": [
+              {
+                "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+                "name": "$PartyUnits$dc2c5f11-3720-4d0d-8945-053a539bb9c0",
+                "m_UnitsList": "ActiveUnits",
+                "Actions": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$4a674859-604e-4023-bb1d-aefc2d34c8b1",
+                      "Comment": "",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                            "name": "$UnitEqual$c84344ec-05bc-4287-8413-37406fdb9c56",
+                            "Not": true,
+                            "FirstUnit": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$d1663b2d-c6df-4189-9075-0bd9b61710d7"
+                            },
+                            "SecondUnit": {
+                              "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                              "name": "$CompanionInParty$7838075f-552f-458d-a915-0929ad999e04",
+                              "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+                              "IncludeActive": true,
+                              "IncludeDetached": true,
+                              "IncludeRemote": true,
+                              "IncludeExCompanions": false,
+                              "IncludeDead": false,
+                              "Index": 0
+                            }
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                            "name": "$HideUnit$93e4c739-c65c-4724-b953-0946f207bb12",
+                            "Target": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$999d6e99-3faa-4ad8-b958-e436c0e3e6c6"
+                            },
+                            "Unhide": true,
+                            "Fade": false
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "3e87f8eb96e94fb8ade22f6aa8b57ecf, ChangeMainCharacter",
+          "name": "$ChangeMainCharacter$a8da4273-f376-4cd5-a5b4-5bf4ca72fe38",
+          "Unit": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$31d8f76f-bbff-4bcf-8067-4b61d91f6649",
+            "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": false,
+            "IncludeDead": false,
+            "Index": 0
+          }
+        },
+        {
+          "$type": "f6b0e0b15d534b5fb20168697144055c, BlockServiceWindows",
+          "name": "$BlockServiceWindows$98c71eff-575b-4f64-96b0-2da7d4d66d54",
+          "Unblock": false
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$98e2e19a81415824ad9dcafc6062a426",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$5718d6b4a4b7550f904c445a05c0c6b8",
+            "Spawner": {
+              "EntityNameInEditor": "FW_Lizzy",
+              "_entity_id": "e0d12672-6a4a-4758-9465-6879932bdd9e",
+              "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+            }
+          },
+          "Unhide": false,
+          "Fade": false
+        },
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$8369221285565d7abef6c0e80bbf0759",
+          "Etude": "!bp_7fa40d88309d42e9a6b862abb3a3de95",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$5faec259-40dd-46ef-8d91-5c35b53cc8a7",
+          "m_Cutscene": "!bp_e59e171b3c564bc3a46ba53843dee03e",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": [
+              {
+                "Name": "Unit",
+                "Type": "Unit",
+                "Evaluator": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$250a9dee-5c67-4992-82cf-7edc6b8fd59e",
+                  "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": false,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+          "name": "$AttachBuff$459745dbea634efe9d2ae3ffbd0ff089",
+          "m_Buff": "!bp_314eb999c72340cfb42b719833abd54b",
+          "Target": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$f63c82c515aa4edf95a34f9612da7d8b",
+            "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+            "IncludeActive": true,
+            "IncludeDetached": false,
+            "IncludeRemote": false,
+            "IncludeExCompanions": false,
+            "IncludeDead": false,
+            "Index": 0
+          },
+          "Duration": null,
+          "UseEndCondition": false,
+          "EndCondition": "RemainAfterCombat",
+          "AddFactSource": false
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$87d6f3f277e55aa4935fb098f6ab462a",
+          "Etude": "!bp_e4e595697d74403c8fed7a5f4fef9bf2",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

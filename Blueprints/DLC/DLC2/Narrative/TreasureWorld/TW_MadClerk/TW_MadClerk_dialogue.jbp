@@ -1,0 +1,237 @@
+{
+  "AssetId": "45a35400b52c4e2f9d5a6d0e3073d5f3",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Спикер - TW_MadClerk_Name",
+    "FirstCue": {
+      "Cues": [
+        "!bp_35f7da0e850f4c73bd9321ff3b0ed12d",
+        "!bp_be1b522b45fc4ac4bdd365de07ee4d8b"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": []
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+          "name": "$ControllableActionSetActive$99adc9d98e8041e58d09dbb2f3a8e052",
+          "Active": false,
+          "IdOfObject": {
+            "EntityNameInEditor": "Ambull_ContainerBlocker",
+            "_entity_id": "21814109-632f-48c6-aa7e-1d159e9addd0",
+            "SceneAssetGuid": "532420a0482a1f7409b8dc7175a0bf09"
+          }
+        },
+        {
+          "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+          "name": "$ControllableActionSetActive$7fef60ab-b3d8-48ac-99dc-0cfd9226a446",
+          "Active": true,
+          "IdOfObject": {
+            "EntityNameInEditor": "Ambull_ContainerBlocker (1)",
+            "_entity_id": "f8f4ec6b-4a13-404e-b028-5ffb7401cc7d",
+            "SceneAssetGuid": "532420a0482a1f7409b8dc7175a0bf09"
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$bb01455e438650e1a54cf3290ae29de9",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$d3a8a50aa89e5625bbd60f098708af60",
+                "Not": true,
+                "m_Cue": "!bp_be1b522b45fc4ac4bdd365de07ee4d8b",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "da1815e1ca093d14190aa9351c0c0f66, SwitchDoor",
+                "name": "$SwitchDoor$add5dd2e-bdc2-48a9-9a42-14ba7c186217",
+                "Door": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$7c170199-5d73-4b20-a3fb-aa754ffbd356",
+                  "MapObject": {
+                    "EntityNameInEditor": "TW_AmbullEnter_GateEnter (1)",
+                    "_entity_id": "626f2e5a-e60d-49b9-a22a-4facba8b167b",
+                    "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                  }
+                },
+                "UnlockIfLocked": false,
+                "CloseIfAlreadyOpen": false,
+                "OpenIfAlreadyClosed": true
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$b5107e77-d6cb-4632-97fb-6e73a514cb70",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$c03293c6-3b48-4308-9609-1a6cc96f1fab",
+                  "MapObject": {
+                    "EntityNameInEditor": "MoveBlocker_FromAmbull_Container_Exit",
+                    "_entity_id": "f56c7ade-68dd-42ee-b8ff-e2799dc8f1a4",
+                    "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                  }
+                },
+                "Unhide": true
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$74c4b494-f2db-4fb1-98e9-c9052924c855",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$b84ba682-fea1-44f8-9a05-148ef97b4b77",
+                  "MapObject": {
+                    "EntityNameInEditor": "MoveBlocker_FromAmbull_Containe_Enter",
+                    "_entity_id": "39252c75-cd2e-4f6a-a4ba-9db59eb12a12",
+                    "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$8b7d973a-e52d-4796-bd49-66dd6094599b",
+                "m_Cutscene": "!bp_49515198ce06483387ac851f6f7f30a0",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1682cd67cf6d50deaca51f93c61334cd",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4fa96971e81953f0905a3285dc030194",
+                "Not": false,
+                "m_Etude": "!bp_2c96d9c9b2ed4d47b888d028d42d6ac4",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
+                "name": "$ShowBark$eb1b6b35-7af1-498d-918f-fc3124fb9fdc",
+                "WhatToBark": {
+                  "m_Key": "",
+                  "m_OwnerString": "",
+                  "m_OwnerPropertyPath": "",
+                  "m_JsonPath": "",
+                  "Shared": {
+                    "assetguid": "793d80f0391bdc841ad80a47c2d46daa",
+                    "stringkey": "6c1d26b7-6d7a-41f0-8770-27fb1ebff3d9"
+                  }
+                },
+                "WhatToBarkShared": null,
+                "BarkDurationByText": false,
+                "TargetUnit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$0f66a90b-1293-4026-a036-0dad844ed33f",
+                  "Spawner": {
+                    "EntityNameInEditor": "Spawner [TreasureWorld_VIP_MadClerk]",
+                    "_entity_id": "5a8e8c43-821d-4a24-bda5-ce87b20cdc7d",
+                    "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                  }
+                },
+                "TargetMapObject": null,
+                "OverrideBarkDuration": false,
+                "BarkDuration": 0.0
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
+                "name": "$ShowBark$b7261dbf-5ee4-41a5-9eca-5c277398ceaa",
+                "WhatToBark": {
+                  "m_Key": "",
+                  "m_OwnerString": "",
+                  "m_OwnerPropertyPath": "",
+                  "m_JsonPath": "",
+                  "Shared": {
+                    "assetguid": "98dfef52abf0d5641a90e1bb3732063e",
+                    "stringkey": "d852740b-ea47-486d-992d-665e6a3abd5e"
+                  }
+                },
+                "WhatToBarkShared": null,
+                "BarkDurationByText": false,
+                "TargetUnit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$0cfa2e28-619c-4cf6-8551-a388d689732c",
+                  "Spawner": {
+                    "EntityNameInEditor": "Spawner [TreasureWorld_VIP_MadClerk]",
+                    "_entity_id": "5a8e8c43-821d-4a24-bda5-ce87b20cdc7d",
+                    "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                  }
+                },
+                "TargetMapObject": null,
+                "OverrideBarkDuration": false,
+                "BarkDuration": 0.0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

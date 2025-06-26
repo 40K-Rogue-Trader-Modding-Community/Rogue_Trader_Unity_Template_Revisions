@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kingmaker.Blueprints;
+using Kingmaker.Controllers.Dialog;
 using Kingmaker.DialogSystem;
 using Kingmaker.DialogSystem.Blueprints;
 using Kingmaker.Editor.NodeEditor.Utility;
 using Kingmaker.Editor.NodeEditor.Window;
 using Kingmaker.ElementsSystem;
+using Kingmaker.ElementsSystem.Interfaces;
 using Kingmaker.Enums;
 using Kingmaker.Localization;
+using Kingmaker.Utility.DotNetExtensions;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
 using UnityEngine;
@@ -15,11 +18,14 @@ using UnityEngine.Profiling;
 
 namespace Kingmaker.Editor.NodeEditor.Nodes
 {
-	public class AnswerNode : EditorNode<BlueprintAnswer>
+	public class AnswerNode : EditorNode<BlueprintAnswer>, IForceableConditionNode
 	{
 		public AnswerNode(Graph graph, BlueprintAnswer asset) : base(graph, asset, new Vector2(200, 80))
 		{
 		}
+
+		private bool IsFinalAnswer
+			=> !Asset.NextCue.Cues.Any();
 
 		public override Color GetWindowColor()
 		{
@@ -37,6 +43,11 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 
 		protected override void DrawContent()
 		{
+			if (IsFinalAnswer)
+			{
+				DrawFunctions.NodeIcon(Icons.FinalNode, "This answer is final");
+			}
+
 			using (GuiScopes.UpdateObject(SerializedObject))
 			{
 				if (Asset.HasShowCheck)
@@ -104,13 +115,13 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 			if (!Asset.SoulMarkRequirement.Empty)
 				yield return $"{Asset.SoulMarkRequirement.Direction.ToString()} + {Asset.SoulMarkRequirement.Value}";
 #if UNITY_EDITOR && EDITOR_FIELDS
-			if (Application.isPlaying && Game.Instance.Player.Dialog.SelectedAnswers.Contains(Asset))
-				yield return "Selected";
-			if (Application.isPlaying && Game.Instance.Player.Dialog.AnswerChecks.ContainsKey(Asset))
-				yield return Game.Instance.Player.Dialog.AnswerChecks[Asset].ToString();
+            if (Application.isPlaying && Game.Instance.Player.Dialog.SelectedAnswersContains(Asset))
+                yield return "Selected";
+            if (Application.isPlaying && Game.Instance.Player.Dialog.AnswerChecksContains(Asset))
+                yield return Game.Instance.Player.Dialog.AnswerChecksGet(Asset).ToString();
 #endif
-		}
-		
+        }
+
         protected override IEnumerable<SimpleBlueprint> GetAllReferencedAssetsInternal()
         {
             return Asset.NextCue.Cues.Dereference();
@@ -122,5 +133,7 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 				return FindProperty("NextCue.Cues");
 			return null;
 		}
+
+		public BlueprintScriptableObject ForceableAsset => Asset;
 	}
 }

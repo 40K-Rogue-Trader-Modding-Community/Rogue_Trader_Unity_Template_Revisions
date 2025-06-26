@@ -529,6 +529,46 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
             return true;
         }
 
+        private static bool IsCaseTheOnlyDifference(string a, string b)
+        {
+            return string.Equals(a, b, StringComparison.CurrentCultureIgnoreCase) && a != b;
+        }
+
+        /// <returns>true if there were any errors</returns>
+        private bool RenameRespectingCase(
+            string oldPath,
+            string newPath,
+            RenameEndedArgs args,
+            Func<string, bool> exists,
+            Action<string, string> rename)
+        {
+            bool caseOnlyChange = IsCaseTheOnlyDifference(oldPath, newPath);
+            if (exists(newPath) && !caseOnlyChange)
+            {
+                return true;
+            }
+
+            if (caseOnlyChange)
+            {
+                string tempPath = newPath + "__temp__";
+                if (exists(tempPath))
+                {
+                    return true;
+                }
+                rename(oldPath, tempPath);
+                oldPath = tempPath;
+            }
+
+            rename(oldPath, newPath);
+
+            if (IsSelected(args.itemID))
+            {
+                m_SelectOnReloadId = args.itemID;
+                m_SelectOnReloadName = args.newName;
+            }
+            return false;
+        }
+
         protected override void RenameEnded(RenameEndedArgs args)
         {
             m_RenamingItem = null;
@@ -536,45 +576,31 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
             if (!args.acceptedRename)
                 return;
 
+            bool wasError;
             if (args.itemID >= 0)
             {
                 // rename blueprint
                 string oldPath = m_ItemList[args.itemID].FullPath;
                 string newPath = Path.Combine(Path.GetDirectoryName(oldPath), args.newName + ".jbp");
-                if (args.originalName == args.newName && File.Exists(newPath))
-                {
-                    args.acceptedRename = false;
-                    return;
-                }
-                // rename blueprint (this will trigger invalidates in BD)
-                File.Move(oldPath, newPath);
 
-                if (IsSelected(args.itemID))
-                {
-                    m_SelectOnReloadId = args.itemID;
-                    m_SelectOnReloadName = args.newName;
-                }
+                // rename blueprint (this will trigger invalidates in BD)
+                wasError = RenameRespectingCase(oldPath, newPath, args, File.Exists, File.Move);
             }
             else
             {
                 // rename folder
                 //Debug.Log($"Move folder from {args.originalName} to {args.newName}");
                 string newPath = Path.Combine(RootPath, args.newName);
-                if (args.originalName == args.newName && Directory.Exists(newPath))
-                {
-                    args.acceptedRename = false;
-                    return;
-                }
-                // rename folder (this will trigger invalidates in BD)
                 string oldPath = Path.Combine(RootPath, args.originalName);
-                Directory.Move(oldPath, newPath);
 
-                if (IsSelected(args.itemID))
-                {
-                    m_SelectOnReloadId = args.itemID;
-                    m_SelectOnReloadName = args.newName;
-                }
+                // rename folder (this will trigger invalidates in BD)
+                wasError = RenameRespectingCase(oldPath, newPath, args, Directory.Exists, Directory.Move);
             }
+            if (wasError)
+            {
+                return;
+            }
+
             // TODO: track blueprint renames for localization
             EditorApplication.delayCall += Reload;
         }

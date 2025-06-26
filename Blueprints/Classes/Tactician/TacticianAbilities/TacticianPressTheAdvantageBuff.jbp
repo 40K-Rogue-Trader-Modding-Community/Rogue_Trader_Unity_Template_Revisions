@@ -21,19 +21,130 @@
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "5acb988246cb416eaf70c152840975b3, DamageTypeGetter",
-                "name": "$DamageTypeGetter$b1e2cb421b2b4a2caeda24b57152b42f",
+                "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+                "name": "$PropertyCalculatorGetter$efae92b5-0f1b-4a1b-a7f4-ba29f79f4ffe",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
                   "m_StartLevel": 0,
                   "m_StepLevel": 0,
-                  "Negate": true,
+                  "Negate": false,
                   "Limit": "None",
                   "Min": 0,
                   "Max": 0
                 },
-                "DamageType": "Direct"
+                "Value": {
+                  "Operation": "Sum",
+                  "TargetType": "CurrentEntity",
+                  "FailSilentlyIfNoTarget": false,
+                  "Getters": [
+                    {
+                      "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                      "name": "$CheckAbilityGroupGetter$73f73180-6979-467e-87e6-bc12d76f73ed",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": false,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_Groups": [
+                        "!bp_0f1d6d5915cf4449885cc03625ecf71b",
+                        "!bp_1cf206b13141425491c379bc75ef0699"
+                      ]
+                    },
+                    {
+                      "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                      "name": "$CheckAbilityGroupGetter$aed2acf0-38e7-422a-9ebd-0188308b597d",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": true,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_Groups": [
+                        "!bp_2324e1b3a57c436d8b0bdd82d316eab2"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+                "name": "$PropertyCalculatorGetter$bd92382a-0437-4a64-8b23-b92437a826c7",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Value": {
+                  "Operation": "Sum",
+                  "TargetType": "CurrentEntity",
+                  "FailSilentlyIfNoTarget": false,
+                  "Getters": [
+                    {
+                      "$type": "3d3ea03bc11a4a68ba661ee1b53388a8, CheckAbilityIsWeaponAbilityGetter",
+                      "name": "$CheckAbilityIsWeaponAbilityGetter$b75ba7d6-ed12-4da0-828e-30f9a7c4f5b9",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": false,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "OnlyHasAttackDelivery": false
+                    },
+                    {
+                      "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                      "name": "$CheckAbilityGroupGetter$4d92a0b1-e652-461b-b8c9-aa2ce50b5f47",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": true,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_Groups": [
+                        "!bp_2324e1b3a57c436d8b0bdd82d316eab2"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+                "name": "$CheckAbilityBlueprintGetter$9693b55e-dfdd-4fe8-bdc0-d2b7c54bcbe6",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Abilities": [
+                  "!bp_e955823f54d24088ae1fdefe88d3684d"
+                ]
               }
             ]
           }
@@ -419,7 +530,8 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
-        "AutoCrit": false
+        "AutoCrit": false,
+        "NeverCrit": false
       },
       {
         "$type": "58a23a10c2aa4e158dc343b46d262ba1, WarhammerDodgeChanceModifierAttacker",
@@ -772,6 +884,7 @@
         }
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -822,8 +935,7 @@
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
     "m_AbilityGroups": [],
-    "m_Cyclical": false,
-    "Author": "AlexanderGusev"
+    "m_Cyclical": false
   },
   "Meta": {
     "ShadowDeleted": false

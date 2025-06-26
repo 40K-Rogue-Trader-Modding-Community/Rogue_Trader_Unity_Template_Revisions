@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "ArtemSchellenberg",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "m_EvaluationErrorHandlingPolicy": "Default",
     "Color": {
@@ -47,9 +47,11 @@
     "ForbidDialogs": false,
     "ForbidRandomIdles": true,
     "IsBackground": false,
+    "Freezeless": false,
     "Sleepless": false,
     "AllowCopies": false,
     "LockControl": true,
+    "ShowPets": true,
     "ShowOverlay": false,
     "AllowRoaming": false,
     "Anchors": [],
@@ -100,6 +102,43 @@
             }
           },
           "Unhide": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$63720bcf781852d5b9b24a526f2d2956",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$cfc58eb54f675af991b7c0869254ec61",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$bdeccb569a3f5685a4833274409734fe"
+                },
+                "m_Fact": "!bp_caf58f47004f4268a2eacc55e089f3e9"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$ee09e666912059a2a8cc4b6f0d68adf0",
+                "m_Cutscene": "!bp_c1e31449803f449780dc59786b11c284",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     },

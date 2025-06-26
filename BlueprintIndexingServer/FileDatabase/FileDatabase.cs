@@ -94,7 +94,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                             && entry.Id == data.UniqueId 
                             && entry.TypeId == data.TypeId
                             && entry.IsShadowDeleted == data.IsShadowDeleted
-                            && entry.DependsOnBlueprintsId.SetEquals(data.UsesBlueprints))
+                            && entry.ReferencedBlueprints.SetEquals(data.UsesBlueprints))
                         {
                             //                    entry.LastWriteTime = time; // file changed, but metadata is not - just update time
                             continue;
@@ -223,7 +223,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                                      && entry.Id == data.UniqueId 
                                      && entry.TypeId == data.TypeId
                                      && entry.IsShadowDeleted == data.IsShadowDeleted
-                                     && entry.DependsOnBlueprintsId.SetEquals(data.UsesBlueprints);
+                                     && entry.ReferencedBlueprints.SetEquals(data.UsesBlueprints);
 
                     if (!noChanges)
                     {
@@ -417,6 +417,22 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             lock (m_SyncObject)
             {
                 return m_Index.GetDuplicatedIds();
+            }
+        }
+
+        public IEnumerable<string> GetReferencedBy(string id)
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetReferencedBy(id);
+            }
+        }
+
+        public IEnumerable<string> GetReferencesFrom(string id)
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetReferencesFrom(id);
             }
         }
 

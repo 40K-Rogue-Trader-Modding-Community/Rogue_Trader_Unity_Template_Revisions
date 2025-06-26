@@ -1,0 +1,58 @@
+{
+  "AssetId": "bb063fb3fa874f98a2c052d959ef41eb",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если запущен ДЛЦ1 - сразу запустить этюд на космобой в 4 главе (проверка на 4 главу - в самом этюде). Этот этюд раньше запускался из корня ДЛЦ1-этюда с условием, теперь - без условия. Конверт для тех кто активировал ДЛЦ1 до фикса и был в момент активации не в 4 главе.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b8e9615db4bb4dd29675337753d26cf7",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$ff6ad329642a49828e6cf58460cbefd1",
+                "Not": false,
+                "m_Etude": "!bp_03ae275088364927923cf19ca3e27e8d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$b186a03039a24217bdc9aeaa32108286",
+                "Etude": "!bp_030163fc31f94436828b011df85a9ef3",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

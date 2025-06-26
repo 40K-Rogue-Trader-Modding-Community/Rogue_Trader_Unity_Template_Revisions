@@ -12,22 +12,19 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
         public Vector2 LeftEnterPoint;
         public Vector2 LinkedStartPoint;
         public Vector2 RightExitPoint;
-        public Dictionary<string, EtudeIdReferences> ChainStarts = new Dictionary<string,EtudeIdReferences>();
+        public Dictionary<string, EtudeIdReferences> ChainStarts = new();
         public bool NeedToPaint;
         public int Depth;
 
-        public Rect StartedReferencesLabelRect;
-        public List<Rect> StartedRects = new List<Rect>();
-        public Rect CompletedReferencesLabelRect;
-        public List<Rect> CompletedRects = new List<Rect>();
-        public Rect CheckedReferencesLabelRect;
-        public List<Rect> CheckedRects = new List<Rect>();
-        public Rect SynchronizedReferencesLabelRect;
-        public List<Rect> SynchronizedRects = new List<Rect>();
-        public Rect OtherReferencesLabelRect;
-        public List<Rect> OtherRects = new List<Rect>();
+        public readonly EtudeBackRefData StartData = new ();
+        public readonly EtudeBackRefData CompleteData = new ();
+        public readonly EtudeBackRefData CheckData = new ();
+        public readonly EtudeBackRefData CutsceneData = new ();
+        public readonly EtudeBackRefData UnstartData = new ();
+        public readonly EtudeBackRefData SceneData = new ();
+        public readonly EtudeBackRefData OtherData = new ();
+
         public Rect ConflictingGroupsLabelRect;
         public List<Rect> ConflictingGroupsRects = new List<Rect>();
-        
     }
 }

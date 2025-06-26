@@ -9,16 +9,16 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         public readonly string Path;
         public readonly string TypeId;
         public readonly bool IsShadowDeleted;
-        public readonly HashSet<string> DependsOnBlueprintsId;
+        public readonly HashSet<string> ReferencedBlueprints;
 
-        public IndexEntry(string id, string name, string typeId, string path, bool isShadowDeleted, HashSet<string> dependsOnBlueprintsId)
+        public IndexEntry(string id, string name, string typeId, string path, bool isShadowDeleted, HashSet<string> referencedBlueprints)
         {
             Id = id;
             Name = name;
             Path = path;
             TypeId = typeId;
             IsShadowDeleted = isShadowDeleted;
-            DependsOnBlueprintsId = dependsOnBlueprintsId;
+            ReferencedBlueprints = referencedBlueprints;
         }
     }
 }

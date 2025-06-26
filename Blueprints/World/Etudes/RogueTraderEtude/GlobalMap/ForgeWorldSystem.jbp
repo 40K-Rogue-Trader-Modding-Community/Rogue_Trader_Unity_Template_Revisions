@@ -32,14 +32,6 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
-              "name": "$StartEtude$bc33150c-bd63-463d-8363-f5edfe276407",
-              "Etude": "!bp_4534c1631ce446e0aae081b5f7e588ab",
-              "EtudeEvaluator": null,
-              "Evaluate": false,
-              "StartImmediately": false
-            },
-            {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$e6ab8935-ea17-4142-bdb1-c485d0d1ba91",
               "Comment": "InterrogatorHijack",
@@ -198,6 +190,99 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$68a0f8e6-9d0e-4e74-ab57-307dd7881f05",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$b0a8ecce-5598-4403-8ab9-8d6788d8bdea",
+              "Not": false,
+              "m_Etude": "!bp_a732acf77d664d40a41640abb895455b",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$01841c7d-4e31-4e6a-ac00-fb909a0ff688",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "12b774374ac6829459deaf2f61048967, ContextConditionRandomLessThen",
+                    "name": "$ContextConditionRandomLessThen$e86f1533-eb98-41fa-bc14-32e3c0d21183",
+                    "Not": false,
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 50,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$f22c97fb-b55b-411a-bd40-0c2e960424fa",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$f96dda6b-814e-4ec8-ad6e-36ec04cb4ac9",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "93821609-72c6-4a39-acf7-4bbef87e9820",
+                        "SceneAssetGuid": "88a1bef3290479640b0fb377110d40a7"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$c5c0a9ee-9772-4c1f-93d9-4c14883d0dd1",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$8a13f6bc-8c3b-4f98-abf2-282aa50350a2",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "93821609-72c6-4a39-acf7-4bbef87e9820",
+                        "SceneAssetGuid": "88a1bef3290479640b0fb377110d40a7"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",
@@ -213,7 +298,7 @@
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": "!bp_3869a056cf4244a1bedbcd116e797508",
-    "m_LinkedCampaigns": null,
+    "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
     "m_StartsWith": [],

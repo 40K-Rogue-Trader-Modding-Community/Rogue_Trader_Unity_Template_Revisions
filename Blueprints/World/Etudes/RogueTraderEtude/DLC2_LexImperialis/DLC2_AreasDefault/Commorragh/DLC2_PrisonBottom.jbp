@@ -1,0 +1,266 @@
+{
+  "AssetId": "3e48f2a569924de5bed3d10e50e9df38",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$b8c2fa6e-066a-4ca4-9a1e-88ff7024dc6f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Убить Соломона при следующем посещении карты",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$8a653a75-b07c-453d-af27-4495045daf52",
+              "Not": false,
+              "m_Etude": "!bp_a6d3f1b69ae64937ba9cd3e62d467605",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$07f6dd27-a6f2-4a7b-8c38-450cc3a8b316",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$cc857fa6-6b01-41e9-b212-ba07b299d57c",
+                "MapObject": {
+                  "EntityNameInEditor": "DLC2_DeadSolomorne",
+                  "_entity_id": "9d63a41c-b193-440c-a895-baebccacf493",
+                  "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+              "name": "$SwitchFaction$3b458434-d88b-4d96-a7f1-52e294984455",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$148efcf1-d085-4a95-a115-b5d0bb6d513c",
+                "Spawner": {
+                  "EntityNameInEditor": "Solomorne",
+                  "_entity_id": "23b76d95-7273-4e0e-86bc-38b964e28b41",
+                  "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                }
+              },
+              "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+              "IncludeGroup": false
+            },
+            {
+              "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+              "name": "$AddItemsToCollection$97ffbf11-20af-4188-a781-f274c5e98e5e",
+              "ItemsCollection": {
+                "$type": "ac0b2a9e4daea5c42b85d77e48d5a304, UnitInventory",
+                "name": "$UnitInventory$f0cf83ad-bc84-44dd-9690-4cef623ddd19",
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$0bfe0ae4-cb4a-4cd7-8c9c-e55043d8e77d",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solomorne",
+                    "_entity_id": "23b76d95-7273-4e0e-86bc-38b964e28b41",
+                    "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                  }
+                }
+              },
+              "UseBlueprintUnitLoot": false,
+              "Loot": [
+                {
+                  "m_Item": "!bp_a305366d5e9a49e0ac0edf9c9377594d",
+                  "Diversity": 0,
+                  "Count": 1,
+                  "m_ReputationPointsToUnlock": 0
+                },
+                {
+                  "m_Item": "!bp_5393f6f94e4840e48dd4eec214e7c478",
+                  "Diversity": 0,
+                  "Count": 1,
+                  "m_ReputationPointsToUnlock": 0
+                }
+              ],
+              "m_BlueprintLoot": null,
+              "Silent": false
+            },
+            {
+              "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+              "name": "$RemoveFact$05a7adcc-0f15-42fd-944f-90a151c73ac3",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$f39d8cbb-034b-4670-9684-360cb6120286",
+                "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": true,
+                "Index": 0
+              },
+              "m_Fact": "!bp_7a63680393464864b3beb53643ed7e23"
+            },
+            {
+              "$type": "abb0dcfdb51f3594ab0d2b1d28ecc782, Kill",
+              "name": "$Kill$9a514823-683e-4ed3-9d07-cd9e1a9ae2d8",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$a52b753d-42d7-4e5a-b0be-4c7cfef09ebe",
+                "Spawner": {
+                  "EntityNameInEditor": "Solomorne",
+                  "_entity_id": "23b76d95-7273-4e0e-86bc-38b964e28b41",
+                  "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                }
+              },
+              "Killer": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$c2fe959d-555f-4d69-b3f8-c5f574eabb1a",
+                "Spawner": {
+                  "EntityNameInEditor": "Solomorne",
+                  "_entity_id": "23b76d95-7273-4e0e-86bc-38b964e28b41",
+                  "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                }
+              },
+              "ImpulseMultiplier": 1,
+              "Dismember": "InPower",
+              "m_DismemberingAnimation": "LeftHand",
+              "DisableBattleLog": true,
+              "RemoveExp": true
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$a327d663-bfa9-4d16-8a56-9f80b0def42c",
+              "Etude": "!bp_a6d3f1b69ae64937ba9cd3e62d467605",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$14429ef1-bb02-4c1a-85bd-5db7a7d392e3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$a9d7c3ed-0da3-458a-bdd9-c65d647ae5af",
+              "Not": false,
+              "m_Etude": "!bp_7e726c2ea34b4f5cb40f1d850987dd65",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$ecf9b502-c778-4bb3-86f9-60fdd0b98eb6",
+              "Not": true,
+              "m_Etude": "!bp_f419d0d081114c6689a4a79abcacccbe",
+              "NotStarted": true,
+              "Started": false,
+              "Playing": false,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+              "name": "$SpawnByUnitGroup$66f727e0-3efa-40de-93fb-d3b26e8ce166",
+              "m_Group": {
+                "EntityNameInEditor": "SolomorneScene",
+                "_entity_id": "9e49ce6c-2794-4dc5-b5e1-eb5446f906a7",
+                "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+              },
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$20671aa2-5f21-45b4-84fe-832e90bd9307",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "Solomorne",
+                  "_entity_id": "23b76d95-7273-4e0e-86bc-38b964e28b41",
+                  "SceneAssetGuid": "a681b5764d836cd4dbffa296e123d8a7"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$1c053e1ddb5c45fa84622235a1cc93f0",
+                    "Target": {
+                      "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                      "name": "$PetByOwner$e5315305357d443dac13d011f05f4c76",
+                      "OwnerEvaluator": {
+                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                        "name": "$SpawnedUnit$6b4c8c0a85b04835938d69fb35da1bba"
+                      }
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_a303cf5a4f42492ca3290ce1c63bb6c5",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": "!bp_b5c24935fd4749b1b1e0dce26c2aa29c",
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

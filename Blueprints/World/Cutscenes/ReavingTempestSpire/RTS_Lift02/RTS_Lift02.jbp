@@ -65,9 +65,11 @@
     "ForbidDialogs": false,
     "ForbidRandomIdles": true,
     "IsBackground": false,
+    "Freezeless": false,
     "Sleepless": false,
     "AllowCopies": false,
     "LockControl": true,
+    "ShowPets": false,
     "ShowOverlay": false,
     "AllowRoaming": false,
     "Anchors": [],
@@ -79,7 +81,40 @@
       "Actions": []
     },
     "OnFinished": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+          "name": "$TeleportParty$0ba949b6-c78b-42a4-b032-71cfed2ae30c",
+          "m_exitPositon": "!bp_02513e3d43774c6c9c777160594a0b6d",
+          "AutoSaveMode": "None",
+          "ForcePauseAfterTeleport": false,
+          "AfterTeleport": {
+            "Actions": [
+              {
+                "$type": "da1815e1ca093d14190aa9351c0c0f66, SwitchDoor",
+                "name": "$SwitchDoor$c80e3a8e-d91a-41d3-a79f-82f16f26d692",
+                "Door": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$475d4932-af58-4443-bae4-45603dbf7b74",
+                  "MapObject": {
+                    "EntityNameInEditor": "Сommoragh_arena_elevator",
+                    "_entity_id": "8679cf29-c301-4c96-9798-ba7ed505889d",
+                    "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                  }
+                },
+                "UnlockIfLocked": false,
+                "CloseIfAlreadyOpen": true,
+                "OpenIfAlreadyClosed": true
+              },
+              {
+                "$type": "28f3698ba62041e09a5abcbe59a14725, MakeAutoSave",
+                "name": "$MakeAutoSave$47e32d0e-e25a-45f9-952e-005c17946193",
+                "SaveForImport": false
+              }
+            ]
+          }
+        }
+      ]
     }
   },
   "Meta": {

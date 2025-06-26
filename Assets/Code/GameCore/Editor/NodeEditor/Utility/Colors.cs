@@ -8,6 +8,7 @@ namespace Kingmaker.Editor.NodeEditor.Utility
 //		public static readonly Color CheckWindow = Color.green;
 //		public static readonly Color CueWindow = new Color(0.40f, 0.98f, 0.79f);
 		public static readonly Color CueWindow = Color.green;
+		public static readonly Color CueWindowFinal = Color.cyan;
 		public static readonly Color CheckWindow = rgb(255, 87, 34);
 		public static readonly Color AnswerWindow = Color.yellow;
 		public static readonly Color AnswerListWindow = rgb(200, 255, 0);

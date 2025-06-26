@@ -29,12 +29,17 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		public virtual bool CreatesBlueprints => true;
 
+		public virtual string DefaultName => string.Empty;
+
         public abstract object CreateAsset();
 
         public virtual bool CanCreateAssetsOfType(Type type)
 	    {
 	        return false;
 	    }
+
+        public virtual void Init() {}
+
         public virtual void PostProcess(object asset) { }
 		public virtual void OnGUI() { }
 

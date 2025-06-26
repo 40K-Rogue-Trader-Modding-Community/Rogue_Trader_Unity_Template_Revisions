@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "ArtemSchellenberg",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "EntryCondition": {
       "Operation": "And",
@@ -15,6 +15,61 @@
     "m_EvaluationErrorHandlingPolicy": "Default",
     "Action": {
       "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d6ce7f0eb6694bb0a02425d95367d520",
+          "Comment": "Если у Идиры есть ворон - прячем его",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$bb3561dce4394b6793fb0d78df3fe65f",
+                "Not": false,
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$7041e03ab7fb4defb5073a1029543b5f",
+                  "m_Companion": "!bp_948abdeffc744794589d6b3f59a1cd0f",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": false,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "m_Fact": "!bp_cd7617e9f2034aeaad3426a9a6b12a81"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$0be414d4882543b291d1d0c5d517c358",
+                "Target": {
+                  "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                  "name": "$PetByOwner$aed59e0bd79643f8a81e466c2f924f89",
+                  "OwnerEvaluator": {
+                    "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                    "name": "$CompanionInParty$8eae1ca532614e50a25abbd1da24b6b6",
+                    "m_Companion": "!bp_948abdeffc744794589d6b3f59a1cd0f",
+                    "IncludeActive": true,
+                    "IncludeDetached": false,
+                    "IncludeRemote": false,
+                    "IncludeExCompanions": false,
+                    "IncludeDead": false,
+                    "Index": 0
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
         {
           "$type": "abb0dcfdb51f3594ab0d2b1d28ecc782, Kill",
           "name": "$Kill$e62ce6f6a0b84a94a7d19ec31036cedf",
@@ -149,6 +204,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -158,7 +214,14 @@
                     "EntityNameInEditor": "Support_Loc",
                     "_entity_id": "3589d0d4-8067-401b-9504-1ad30eb3824e",
                     "SceneAssetGuid": "bd0cd0f94b68680459cf3636219554e8"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -239,6 +302,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -248,7 +312,14 @@
                     "EntityNameInEditor": "Support_Loc",
                     "_entity_id": "3589d0d4-8067-401b-9504-1ad30eb3824e",
                     "SceneAssetGuid": "bd0cd0f94b68680459cf3636219554e8"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]

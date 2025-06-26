@@ -99,6 +99,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -127,8 +128,92 @@
         "m_FilterFacts": [],
         "ContextPropertyName": "Value1",
         "PropertyToSave": "None"
+      },
+      {
+        "$type": "03db0cc2e8cca5f4ea4e29fd197ff65c, WarhammerDamageTriggerTarget",
+        "name": "$WarhammerDamageTriggerTarget$c4c48fd4-d197-4a62-958f-b44e7852e6ae",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "LE",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "9cb6f49c104fb044db79e499b6fcd002, HPGetter",
+                "name": "$HPGetter$5609a186-3eb2-48da-871b-242e55af9262",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "HPPercent": false,
+                "MaxHP": false,
+                "HealthType": "BaseHP"
+              },
+              {
+                "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                "name": "$ContextValueGetter$b8dd918d-c5ef-4ce9-a88f-97838abf026c",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Value": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              }
+            ]
+          }
+        },
+        "TriggersForDamageOverTime": false,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+              "name": "$ContextActionSpawnFx$dd3b18f3-a5fe-4312-9e33-15385c4851ec",
+              "PrefabLink": {
+                "AssetId": "64fb17ffa53cdb74280d017cae3caca9"
+              }
+            },
+            {
+              "$type": "e60b053256f5cf545b5075ee4c00f616, DestroyStarship",
+              "name": "$DestroyStarship$2bae6e32-1391-41bc-90f0-8cead3e80051",
+              "NoLog": false,
+              "NoExp": true
+            }
+          ]
+        },
+        "ActionsOnAttacker": {
+          "Actions": []
+        },
+        "ContextPropertyName": "Value1",
+        "PropertyToSave": "None"
       }
     ],
+    "Author": "EvgeniyIvanovGD",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -294,7 +379,6 @@
     "VisualsDone": false,
     "DifficultyType": "Swarm",
     "Subtype": "Default",
-    "Author": "EvgeniyIvanovGD",
     "m_SoundSettings": "!bp_01f5303dd1374fa4bf45b19d0c1424e1",
     "HullIntegrity": 4,
     "ArmourFore": 1,

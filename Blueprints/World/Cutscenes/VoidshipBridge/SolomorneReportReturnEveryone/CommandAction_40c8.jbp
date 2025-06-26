@@ -1,0 +1,182 @@
+{
+  "AssetId": "40c82fa0642a4accbfeec064ab0cfb07",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$0ddfdab5-d56c-4568-bc6f-023e4bbea796",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$5b50c9ce-f2ca-4154-8ada-d1663e264ced",
+            "Spawner": {
+              "EntityNameInEditor": "SolomorneDog_ReportScene",
+              "_entity_id": "f918b876-c646-4fd6-965f-d5d2c873cc3b",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$e06650e4-2134-4d23-aa68-3b8a9f1b3829",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$a222d94d-ade9-413f-aa63-2b9452598c2c",
+            "MapObject": {
+              "EntityNameInEditor": "Blood1",
+              "_entity_id": "22fd0e43-8d42-409d-af73-9ac8a515b471",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$a6df38f4-859e-4669-b0bd-507892078a10",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$f7fa37f2-370c-4fe9-9b6d-cc1eef13d017",
+            "MapObject": {
+              "EntityNameInEditor": "Blood2",
+              "_entity_id": "a8cd3182-5ced-44b0-ae61-7a48c0792380",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$8e7b61dcf90c4220bbf41c553c2b64c8",
+          "Comment": "Cleaner or not",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$dedb768c5349470687d46ed92a3aebe8",
+                "Not": false,
+                "m_Etude": "!bp_e56d730d9e0749aea33158365bba942d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$99e5388f26a044338eef9aadba688011",
+                "Etude": "!bp_a0c95925ab1c4040929816bd7d70c63f",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$f5c158e6-4eec-4f7b-a591-0b92c197fe8d",
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$4ea0331a-344a-4cd4-9d10-d4e47a2b24eb",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "SolomorneCleanerLoc",
+                  "_entity_id": "b4098166-47f7-46d1-9b02-10c71cb18d51",
+                  "SceneAssetGuid": "7a723978f014d39478eef0dd4f23b912"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": false,
+                "translocateOrientationEvaluator": null,
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$047d42a6-d722-47e1-b889-b18ef40c5731",
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$83bec28d-472d-453c-a2d7-69ac3bc195d6",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "SolomorneDefaultLoc",
+                  "_entity_id": "9daa30ff-3a91-4c4b-a070-81d81fcb1ec1",
+                  "SceneAssetGuid": "7a723978f014d39478eef0dd4f23b912"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": false,
+                "translocateOrientationEvaluator": null,
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$f30d235b79704d7daecdba23d5c4a585",
+          "Etude": "!bp_6e86b03491774da3bd78dc78b3ac8e64",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+          "name": "$TeleportParty$2a13db07-9774-429f-a9c8-2905221c9ea7",
+          "m_exitPositon": "!bp_8f6d119fcbec4768a503a6b355b4ab5a",
+          "AutoSaveMode": "None",
+          "ForcePauseAfterTeleport": false,
+          "AfterTeleport": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

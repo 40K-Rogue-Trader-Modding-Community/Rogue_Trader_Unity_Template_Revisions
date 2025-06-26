@@ -71,12 +71,11 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
             Regex re = new Regex(strRegex);
             m_Field.RegisterValueChangedCallback(e =>
             {
-                if (re.IsMatch(e.newValue) || string.IsNullOrEmpty(e.newValue))
+                if (string.IsNullOrEmpty(e.newValue) || re.IsMatch(e.newValue))
                 {
-                    expandBtn.style.display = e.newValue == "" ? DisplayStyle.None : DisplayStyle.Flex;
-                    newBtn.style.display = e.newValue != "" ? DisplayStyle.None : DisplayStyle.Flex;
+                    expandBtn.style.display = string.IsNullOrEmpty(e.newValue) ? DisplayStyle.None : DisplayStyle.Flex;
+                    newBtn.style.display = string.IsNullOrEmpty(e.newValue) ? DisplayStyle.Flex : DisplayStyle.None;
                     var newGuid = e.newValue;
-                    UnityEngine.Debug.Log(e.newValue);
                     m_GuidProp.Property.stringValue = newGuid;
                     m_GuidProp.Property.serializedObject.ApplyModifiedProperties();
                     OnValueChangedEvent.Invoke();
@@ -194,8 +193,12 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
             var creator = CreatorPicker.GetCreatorForType(m_Field.objectType);
             if (creator)
             {
+                creator.Init();
                 creator.SetRootObject(Property.serializedObject.targetObject);
-                NewAssetWindow.ShowWindow(creator, defaultCreatedName, created =>
+                string defaultName = string.IsNullOrEmpty(creator.DefaultName)
+                    ? defaultCreatedName
+                    : creator.DefaultName;
+                NewAssetWindow.ShowWindow(creator, defaultName, created =>
                 {
                     var guid = (created as BlueprintScriptableObject).AssetGuid;
                     m_Field.value = guid;
@@ -211,6 +214,7 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
                 BlueprintLinkDrawer.CreateAsset(m_Field.objectType, defaultCreationPath, defaultCreatedName);
             m_Field.value = created.AssetGuid;
             m_GuidProp.Property.stringValue = (created as SimpleBlueprint).AssetGuid;
+            created.Reset();
             Property.serializedObject.ApplyModifiedProperties();
         }
 

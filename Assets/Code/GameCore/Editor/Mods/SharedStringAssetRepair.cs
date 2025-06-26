@@ -90,9 +90,15 @@ namespace Code.GameCore.Editor.Mods
             Parallel.ForEach(files, 
                 file =>
                 {
-                    RepairConfig(file, oldMetaString, newMetaString);
+                    try
+                    {
+                        RepairConfig(file, oldMetaString, newMetaString);
+                    }
+                    catch(DirectoryNotFoundException e)
+                    {
+                        PFLog.Mods.Error($"Skipping {file} due to long file path");
+                    }
                 });
-
         }
 
         private static void RepairConfig(string filePath, string oldMeta, string newMeta)

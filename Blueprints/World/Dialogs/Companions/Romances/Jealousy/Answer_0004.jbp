@@ -126,15 +126,50 @@
           "Evaluate": false
         },
         {
-          "$type": "5afa2802918b3874bb6e0d611d6489cd, UpdateEtudes",
-          "name": "$UpdateEtudes$37570e00-c2f9-48de-a358-a78b2fd72cf9"
-        },
-        {
           "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
           "name": "$CompleteEtude$6f8313d8-278b-487c-ac42-900bded130b6",
           "Etude": "!bp_8e60d129e70e40fa9ea4f61c3caeb37a",
           "EtudeEvaluator": null,
           "Evaluate": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6cc88c60-97d8-463a-9adb-855451604e84",
+          "Comment": "если активен романс с Соломоном, то ломаем его (ситуация, если игрок проходит длц с позднего сейва и приходит на ревность без Соломона)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$b09ba628-57ee-4468-acdb-cab789a15ccf",
+                "Not": false,
+                "m_Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$56d6f3a8-4715-436e-93cf-67b09742a9b1",
+                "Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "5afa2802918b3874bb6e0d611d6489cd, UpdateEtudes",
+          "name": "$UpdateEtudes$37570e00-c2f9-48de-a358-a78b2fd72cf9"
         }
       ]
     },

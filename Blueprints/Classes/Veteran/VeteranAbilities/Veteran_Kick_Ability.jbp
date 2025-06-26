@@ -323,11 +323,13 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             },
             {
               "$type": "d5debd59683c7064fa9393bd52c9a624, ContextActionPush",
@@ -342,76 +344,8 @@
                 "PropertyName": "Value1"
               },
               "ProvokeAttackOfOpportunity": false,
-              "m_UseFactOwnerAsCaster": false
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$685adea313e157b29e3e4c0f6ea098a9",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$89edee93dbed55db983254b13ffc5ada",
-                    "Not": false,
-                    "m_Fact": "!bp_7e132b65948448b3893d8c3be9634c02"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$2ea0b009f9a85a02933c812226d826c3",
-                    "m_Buff": "!bp_4499132cd3e04452a943d7a651699639",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": true,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "ToCaster": false,
-                    "AsChild": true,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "ActionsOnApply": {
-                      "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
+              "m_UseFactOwnerAsCaster": false,
+              "m_PushBack": false
             }
           ]
         }
@@ -430,6 +364,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -485,11 +420,14 @@
               "Shared": null
             },
             "Description": {
-              "m_Key": "96c174d9-b555-4a86-8c4b-feb59416bae9",
-              "m_OwnerString": "22d6c1b32a6d47f4899a370e28cf16f9#$UIPropertiesComponent$1eac26f4-8b9f-4da8-a457-8cba6430e538",
-              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
-              "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Veteran\\VeteranAbilities\\Veteran_Kick_Ability_Properties.Array.data[0].Description.json",
-              "Shared": null
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "35efbfb20f3651e4583cca3714709b7a",
+                "stringkey": "96c174d9-b555-4a86-8c4b-feb59416bae9"
+              }
             },
             "m_DescriptionFact": "!bp_22d6c1b32a6d47f4899a370e28cf16f9",
             "m_LinkProperty": true,
@@ -498,8 +436,57 @@
             "m_LinkKey": "Damage"
           }
         ]
+      },
+      {
+        "$type": "e6da52cf4bc945a1b3276a25991d7a68, WarhammerAbilityAttackDelivery",
+        "name": "$WarhammerAbilityAttackDelivery$b072fbd2-ce78-4fd6-bf6d-8c4a7fec4aef",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "WeaponAttack": "Melee",
+        "Special": "None",
+        "m_IsProjectile": false,
+        "UseBestShootingPosition": false,
+        "ControlledScatter": false,
+        "m_PatternSpreadWithProjectile": false,
+        "AdditionalDamageInstancesCount": 0,
+        "m_PatternSettings": {
+          "Pattern": {
+            "m_Type": "Circle",
+            "m_Blueprint": null,
+            "m_Radius": 0,
+            "m_Angle": 0
+          },
+          "Targets": "Enemy",
+          "CastOnSameLevel": false,
+          "m_IgnoreLos": false,
+          "m_UseMeleeLos": false,
+          "m_IgnoreLevelDifference": false,
+          "m_Directional": false,
+          "CalculateAttackFromPatternCentre": false
+        },
+        "m_DisableWeaponAttackDamage": true,
+        "m_DisableDodgeForAlly": false,
+        "m_DisableOverpenetration": false,
+        "m_AutoHit": false,
+        "m_IsLosDefinedByPattern": false
+      },
+      {
+        "$type": "c12d0b47a00427c47be7af83bb98bf3c, WarhammerOverrideAbilityWeapon",
+        "name": "$WarhammerOverrideAbilityWeapon$6b74a4e8-24ba-4c08-b4ba-cd35749775a6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Weapon": "!bp_3d8d63921e314021a426f704676cfdc6"
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -538,9 +525,10 @@
     "CooldownRounds": 1,
     "CanTargetPoint": false,
     "CanTargetEnemies": true,
-    "CanTargetFriends": false,
+    "CanTargetFriends": true,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -556,6 +544,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -571,8 +561,7 @@
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "LeonidTolochenko"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

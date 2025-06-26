@@ -19,6 +19,11 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		protected const string NameToken = "{name}";
 		protected abstract string NameTokenNotEmpty { get; }
 
+		private const string AreaToken = "{Area}";
+
+		private string AreaTokenNotEmpty
+			=> "_" + AreaToken;
+
 		private const string UnityBlueprintsFolder = "Assets/Mechanics/";
 
 		protected abstract string DefaultFolder { get; }
@@ -36,12 +41,16 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		private bool m_IsFirstTime = true;
 
+		private static readonly Dictionary<string, string> Result = new();
 		private readonly Dictionary<string, string[]> m_Namings = new();
-		private readonly Dictionary<string, string> m_Result = new();
 		private readonly Dictionary<string, Type> m_Types = new();
+		private readonly List<string> m_TemplateTypeNames = new(8);
 
+		private static bool RememberChoices;
 		protected bool IsFolderOverridden;
 		private bool m_IsNameEmpty;
+
+		private delegate IEnumerable<string>? GetNamingsDelegate(string parentName);
 
 		public override string LocationTemplate // No more needed in new naming system
 			=> string.Empty;
@@ -60,16 +69,26 @@ namespace Kingmaker.Editor.Blueprints.Creation
 					m_Types.TryAdd(typeName, type);
 				}
 			}
+			m_TemplateTypeNames.Clear() ;
+			m_TemplateTypeNames.AddRange(NamingControlsOrder.instance.NamingTypeNames
+				.Where(typeName => m_Types.ContainsKey(typeName)));
 		}
 
-		private IEnumerable<string>? GetNamings(Type namingType)
+		private static IEnumerable<string>? GetNamings(Type namingType)
 		{
 			IEnumerable<string>? namings = null;
 			if (namingType == typeof(Location))
 			{
-				if (m_Result.TryGetValue(nameof(Chapter), out string chapter))
+				if (Result.TryGetValue(nameof(Chapter), out string chapter))
 				{
 					namings = LocationsByChapter.instance.GetLocationNames(chapter);
+				}
+			}
+			else if (namingType == typeof(Area))
+			{
+				if (Result.TryGetValue(nameof(Location), out string location))
+				{
+					namings = AreasByLocation.instance.GetAreaNames(location);
 				}
 			}
 			else
@@ -98,8 +117,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		private void GenerateControls()
 		{
-			string[] orderedTypeNames = NamingControlsOrder.instance.NamingTypeNames;
-			foreach (var typeName in orderedTypeNames)
+			foreach (string typeName in m_TemplateTypeNames)
 			{
 				if (!m_Namings.TryGetValue(typeName, out string[] namings) || namings == null)
 				{
@@ -111,12 +129,24 @@ namespace Kingmaker.Editor.Blueprints.Creation
 					() => namings,
 					pickedName =>
 					{
-						m_Result[typeName] = pickedName;
-						if (typeName == nameof(Chapter))
+						Result[typeName] = pickedName;
+						switch (typeName)
 						{
-							// Force user to re-pick location
-							m_Result.Remove(nameof(Location));
-							UpdateLocations(pickedName);
+							case nameof(Chapter):
+								// Force user to re-pick location
+								Result.Remove(nameof(Location));
+								UpdateLocations(pickedName);
+
+								// Force user to re-pick area
+								Result.Remove(nameof(Area));
+								UpdateAreas(pickedName);
+								break;
+
+							case nameof(Location):
+								// Force user to re-pick area
+								Result.Remove(nameof(Area));
+								UpdateAreas(pickedName);
+								break;
 						}
 					});
 			}
@@ -145,9 +175,12 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			{
 				m_TemplateMatches = m_Token.Matches(m_Template);
 			}
+			if (!RememberChoices)
+			{
+				Result.Clear();
+			}
 			CollectNamingTypesFromTemplate();
 			InitNamings();
-			m_Result.Clear();
 		}
 
 		private string TryGetCurrentActiveObjectFolder()
@@ -186,9 +219,14 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				m_IsFirstTime = false;
 			}
 
-			bool wasEmpty = m_IsNameEmpty;
 			m_IsNameEmpty = GUILayout.Toggle(
 				m_IsNameEmpty, "Do not use name", GUILayout.ExpandWidth(false));
+
+			if (!IsFolderOverridden)
+			{
+				RememberChoices = GUILayout.Toggle(
+					RememberChoices, "Remember choices", GUILayout.ExpandWidth(false));
+			}
 
 			bool wasOverriden = IsFolderOverridden;
 			IsFolderOverridden = GUILayout.Toggle(
@@ -216,10 +254,6 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			else
 			{
 				ReloadTemplate();
-			}
-
-			if (!IsFolderOverridden)
-			{
 				using (GuiScopes.Horizontal())
 				{
 					GenerateControls();
@@ -227,17 +261,27 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			}
 		}
 
-		private void UpdateLocations(string chapterName)
+		private void UpdateNamings<T>(string parentName, GetNamingsDelegate getNamings) where T : NamingBase
 		{
-			var namings = LocationsByChapter.instance.GetLocationNames(chapterName);
+			var namings = getNamings(parentName);
 			if (namings == null)
 			{
-				m_Namings.Remove(nameof(Location));
+				m_Namings.Remove(typeof(T).Name);
 			}
 			else
 			{
-				m_Namings[nameof(Location)] = namings.ToArray();
+				m_Namings[typeof(T).Name] = namings.ToArray();
 			}
+		}
+
+		private void UpdateLocations(string chapterName)
+		{
+			UpdateNamings<Location>(chapterName, LocationsByChapter.instance.GetLocationNames);
+		}
+
+		private void UpdateAreas(string locationName)
+		{
+			UpdateNamings<Area>(locationName, AreasByLocation.instance.GetAreaNames);
 		}
 
 		public override string ProcessTemplate(string? assetName = null)
@@ -263,12 +307,27 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				? templateResult.Replace(NameToken, "")
 				: templateResult.Replace(NameToken, NameTokenNotEmpty);
 
-			foreach (var (typeName, naming) in m_Result)
+			if (Result.TryGetValue(nameof(Location), out string locationName)
+			    && Result.TryGetValue(nameof(Area), out string areaName)
+			    && templateResult.Contains($"{{{nameof(Location)}}}{{{nameof(Area)}}}"))
 			{
-				if (typeName == nameof(Chapter))
+				// Avoid double root area name i.e. "FloodedWarrens_FloodedWarrens"
+				templateResult = templateResult.Replace(AreaToken, locationName == areaName ? "" : AreaTokenNotEmpty);
+			}
+
+			foreach ((string? typeName, string? naming) in Result)
+			{
+				switch (typeName)
 				{
-					UpdateLocations(naming);
+					case nameof(Chapter):
+						UpdateLocations(naming);
+						break;
+
+					case nameof(Location):
+						UpdateAreas(naming);
+						break;
 				}
+
 				var match = m_TemplateMatches.FindOrDefault(match => match.Groups[1].Value == typeName);
 				if (match != null)
 				{

@@ -1,0 +1,263 @@
+{
+  "AssetId": "b0b3bfd1d9d34ebe88dd461558862664",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AntonFadeev",
+    "Comment": "ТУТ ВЫДАЕМ ИТЕМА\nKinesiostaticShield_Item\r\nChapter4_Sentinel_Armour_Item\r",
+    "ParentAsset": "9dcd7d1c662d4448b92ab48795687c64",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "4cefaec6eb0c3fc43b1cebdd81999e16",
+        "stringkey": "07f1a471-d2a1-47fc-84a4-7f0a375b1827"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_d8247eb3b10c4061b39b14ee1f105772",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$02040534-e620-4c13-80ce-8dc9a3e82d9b",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$7c63cdf4-8fc5-42a7-a972-370a50fdc953",
+                "Not": false,
+                "m_Etude": "!bp_98a03f1ad5a04d3b94bf65edbbaab505",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$48e824e7-d449-4c82-a8b5-f12989c7433c",
+                "m_Cutscene": "!bp_c2741b82ca4f49cd8ead3f23c1b42bdd",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$b17045cf-3468-4581-bce0-e6545f5c2959",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalEnemy",
+                          "_entity_id": "b3c54b27-e6c6-4b8f-803b-8d17c9b91d2a",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f161a8e2-7f9c-43b5-910b-df998e8ed392",
+                "m_Cutscene": "!bp_c2741b82ca4f49cd8ead3f23c1b42bdd",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$a59dfae0-fb84-48c6-b70f-47be4463f77c",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalFriend",
+                          "_entity_id": "970438b6-d37a-4a32-a992-4f5dbdb3ec21",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$aab7a234-88fa-4a74-811b-896fcda851c8",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$2db580ae-13d7-41ca-b0dc-d7e7a5371c00",
+                "Not": false,
+                "m_Etude": "!bp_98a03f1ad5a04d3b94bf65edbbaab505",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f03e67dc-e525-436a-8e2c-3dc430d01674",
+                "m_Cutscene": "!bp_405945e440414df594a06d28731b91a8",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$813e2d6d-0a47-4608-94e2-1285ea6d9b6f",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalFriend",
+                          "_entity_id": "970438b6-d37a-4a32-a992-4f5dbdb3ec21",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "12f52f92a7d3efe47b69ba8b41d4e47d, Play2DSound",
+                "name": "$Play2DSound$529220c81aa742eaaa3f6fd84f62101d",
+                "SoundName": "NARR_VC_FinalJudgement_Execution_MarshalDeathGrunt_Play",
+                "SetSex": false,
+                "SetRace": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$3ed86703-ec0f-4c22-ae3b-f78f14e59539",
+                "m_Cutscene": "!bp_405945e440414df594a06d28731b91a8",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$d95562a0-5b9f-4932-ac92-ad385925623d",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalEnemy",
+                          "_entity_id": "b3c54b27-e6c6-4b8f-803b-8d17c9b91d2a",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "12f52f92a7d3efe47b69ba8b41d4e47d, Play2DSound",
+                "name": "$Play2DSound$307d5f25783a4f7b85137a6254a45fa6",
+                "SoundName": "NARR_VC_FinalJudgement_Execution_MarshalDeathGrunt_Play",
+                "SetSex": false,
+                "SetRace": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_2ba4dca0be764b67a1b02a4300f7f8ee"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

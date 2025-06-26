@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using Code.GameCore.Mics;
 using Kingmaker.AreaLogic.SceneControllables;
+using Kingmaker.Editor.UIElements;
 using Kingmaker.Editor.UIElements.Custom;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -41,20 +42,7 @@ public class ControllableReferenceProperty : OwlcatProperty
 		CheckMissingReference();
 		ContentContainer.RegisterCallback<MouseDownEvent>(e =>
 		{
-			if (m_SceneField.value != null)
-			{
-				e.StopPropagation();
-				var menu = new GenericMenu();
-				menu.AddItem(new GUIContent("Open Scene"), false, () => AssetDatabase.OpenAsset(m_SceneField.value));
-				menu.AddItem(new GUIContent("Open and Find"), false, () =>
-				{
-					AssetDatabase.OpenAsset(m_SceneField.value);
-					OnClickFind();
-				});
-				menu.AddItem(new GUIContent("Del"), false, OnClickDel);
-					
-				menu.ShowAsContext();
-			}
+			UIElementsUtility.HandleSceneContextMenu(e, m_SceneField.value, OnClickDel, OnClickFind);
 		});
 
 		AddComponent(new DragAndDropComponent(() => GetValidComponent() != null, ApplyDrop));

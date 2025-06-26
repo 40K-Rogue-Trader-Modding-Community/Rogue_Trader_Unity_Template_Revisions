@@ -40,6 +40,14 @@ namespace Kingmaker.Editor.Blueprints
 			var guidProp = new RobustSerializedProperty(property.FindPropertyRelative("guid"));
 			var g = guidProp.Property.stringValue;
             var bp = BlueprintsDatabase.LoadById<SimpleBlueprint>(g);
+            
+			//вывод в консоль имени кривого блупринта или поля
+            if (bp == null && g != null && g != "")
+            {
+	            Debug.LogError("bp:" + property.displayName + " id:"+g);
+            }
+			//
+			
             Rect[] chunkPositions = position.Row(new[] { 5f, 0.1f });
             
             using (ProfileScope.New("ShowObjectField"))

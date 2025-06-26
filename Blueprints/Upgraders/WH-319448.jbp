@@ -1,0 +1,62 @@
+{
+  "AssetId": "1860912f204a497581f3bc9bf44acc72",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если таймер события закомпличен, а квест не был выдан - значит было слом события (от РЕ), выдаю квест",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$909bd35537e24625aa48900e51288a9e",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$660a8116feda4d35956c5a0ec22a6feb",
+                "Not": false,
+                "m_Etude": "!bp_3f31178ff9d147c1b1b58b666e97a792",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": true
+              },
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$e69de21852f94cc08fba18833a71c6ce",
+                "Not": false,
+                "m_Quest": "!bp_1f149edf7b644538b7aa53b46f3d6469",
+                "State": "None"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$a3304d4cd2384362871c72bf3de83594",
+                "m_Objective": "!bp_46b9544d80024c329daf4cb84b3d6c5c"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

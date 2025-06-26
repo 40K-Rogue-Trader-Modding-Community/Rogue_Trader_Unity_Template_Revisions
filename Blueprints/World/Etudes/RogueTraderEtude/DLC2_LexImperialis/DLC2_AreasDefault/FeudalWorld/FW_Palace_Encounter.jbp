@@ -1,0 +1,448 @@
+{
+  "AssetId": "7da62b8b568640268db10c5bfb48d4c5",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$a554c9b3-af1a-43f1-ae46-5c485ee5ab95",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Запуск бой с мутантами",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$7fcca3ba-4379-46a5-8156-98fac54f28c6",
+              "m_Group": {
+                "EntityNameInEditor": "FirstVisit",
+                "_entity_id": "4cadd729-384d-4b2a-b256-200b3097d31d",
+                "SceneAssetGuid": "Assets/Scenes/DLC2/FeudalWorld/FeudalWorld_Palace_Mechanics.unity"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$b71fa828-4640-4323-b49a-5bb4f9f8426f",
+                    "Target": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$59919db4-486b-4983-997a-512b1796c21c"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+              "name": "$SpawnByUnitGroup$7e06979f-434a-4f20-bf69-4e8f7275a2ae",
+              "m_Group": {
+                "EntityNameInEditor": "Palace_Encounter",
+                "_entity_id": "4796aaaf-f59a-4884-bfba-c722fb614e23",
+                "SceneAssetGuid": "Assets/Scenes/DLC2/FeudalWorld/FeudalWorld_Palace_Mechanics.unity"
+              },
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$3b80e3e091ce59b3942010d58c86342e",
+              "m_Group": {
+                "EntityNameInEditor": "Palace_Encounter",
+                "_entity_id": "4796aaaf-f59a-4884-bfba-c722fb614e23",
+                "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                    "name": "$SwitchFaction$1831d6b2ae1b5f75b6481037235b86fc",
+                    "Target": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$a1c057e4f7965cb08ea3994d43e175f9"
+                    },
+                    "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+                    "IncludeGroup": true
+                  },
+                  {
+                    "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                    "name": "$StartCombat$fc2345b9381a56d3915bb01cc4d30ff3",
+                    "Unit1": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$b63d612f3b0a5ef4911832c023ba3824"
+                    },
+                    "Unit2": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$e2310c51cd1255f29ac12d4b5fd58079"
+                    },
+                    "AmbushPlayer": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+              "name": "$AttachBuff$737b857fb9f549c5958400657ef8cdbe",
+              "m_Buff": "!bp_281a1f606d92728409ee5cbf5599855d",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$ac46be1ee66a455891e4cb5d20997fe9",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_TrueGovernor",
+                  "_entity_id": "23746b26-c956-459e-a43e-5b3774a68a19",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "Duration": null,
+              "UseEndCondition": false,
+              "EndCondition": "RemainAfterCombat",
+              "AddFactSource": false
+            },
+            {
+              "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+              "name": "$SwitchFaction$1e4d11c2-09f2-4033-b1fc-49b3e3578e2e",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$20d2edeb5e145c9285805c012cde3d48",
+                "Spawner": {
+                  "EntityNameInEditor": "ChaosSpawnNoble_ Melee_Hard",
+                  "_entity_id": "88f65611-7ad1-48e0-a17c-965a19a4a59d",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+              "IncludeGroup": true
+            },
+            {
+              "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+              "name": "$StartCombat$45262305-b3d9-484d-ad51-a3af577f6dfd",
+              "Unit1": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$1b4b00f3-22a8-4608-8c04-7d17bfea44c0"
+              },
+              "Unit2": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$891a8b35825f52cb9917e0ce34711aa5",
+                "Spawner": {
+                  "EntityNameInEditor": "ChaosSpawnNoble_ Melee_Hard",
+                  "_entity_id": "88f65611-7ad1-48e0-a17c-965a19a4a59d",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "AmbushPlayer": false
+            },
+            {
+              "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+              "name": "$SwitchFaction$5b1a3689-20cc-47d2-b218-d9ac2e6a0157",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$0f4c5000-0c4b-4c3f-867b-de9cd292f492",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_KnightCaptain_ Melee_Hard",
+                  "_entity_id": "fafd8d79-59d6-4b53-a825-d82872709fe4",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+              "IncludeGroup": true
+            },
+            {
+              "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+              "name": "$StartCombat$48b9878a-ba3d-49e4-9926-d9fc4d959d14",
+              "Unit1": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$36f14ee7-de2e-4b0e-85d3-b83a0dd4c81d"
+              },
+              "Unit2": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$5c70b26f-a8f0-4034-b079-2f6a87eeef04",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_KnightCaptain_ Melee_Hard",
+                  "_entity_id": "fafd8d79-59d6-4b53-a825-d82872709fe4",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "AmbushPlayer": false
+            },
+            {
+              "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+              "name": "$SwitchFaction$f3be2997-0041-4487-b7a3-6c4fa1f0eb19",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$486520a83a854601b81c4dd9c5b6324b",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_Executioner_ Melee_Hard",
+                  "_entity_id": "2d4e4138-2e1e-41e5-acc7-62f56dfdab09",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+              "IncludeGroup": true
+            },
+            {
+              "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+              "name": "$StartCombat$eec69a27-ac96-4315-9a1e-ad1ff3384478",
+              "Unit1": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$ea9b22f5-96ac-4389-9843-5abd1420ba95"
+              },
+              "Unit2": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$adc4d476c3384c6685aea29a1f81e385",
+                "Spawner": {
+                  "EntityNameInEditor": "FW_Executioner_ Melee_Hard",
+                  "_entity_id": "2d4e4138-2e1e-41e5-acc7-62f56dfdab09",
+                  "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                }
+              },
+              "AmbushPlayer": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$055c138e6ffd45f5b3011c692014cd89",
+              "Comment": "Если DLC2_FW_StatueFuture_Buff заменяем на DLC2_FW_StatueFuture_Replace_Buff",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "0cbc5ea4bddfb1543be0d2e54a3eacd0, HasBuff",
+                    "name": "$HasBuff$2bf048bcb4ff4f27a10fc56e6f045c91",
+                    "Not": false,
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$4ce9ede9589c4bf6832f5d22afb423fa"
+                    },
+                    "m_Buff": "!bp_9d524e734d174e51866b4026393f6303"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$27f9bae0c7f949f3b5c49faa9c72e33b",
+                    "m_Buff": "!bp_7b867c51b635465cb1cefe70274c36af",
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$28d2ca0534714fdf9b69ad8d035a892f"
+                    },
+                    "Duration": null,
+                    "UseEndCondition": false,
+                    "EndCondition": "RemainAfterCombat",
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+                    "name": "$DetachBuff$d0679130010149b38400bb70a88c3473",
+                    "m_Buff": "!bp_9d524e734d174e51866b4026393f6303",
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$9a56e52da5374b2baf59caf0c356cdbe"
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$74433d70-b150-46ba-aea1-4d2075158b79",
+              "Comment": "Если DLC2_FW_StatuePresent_Buff заменяем на DLC2_FW_StatuePresent_Replace_Buff",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "0cbc5ea4bddfb1543be0d2e54a3eacd0, HasBuff",
+                    "name": "$HasBuff$e735505c-67ae-486d-b1ae-d19812864e25",
+                    "Not": false,
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$7d94739d-64bb-4fdd-aff8-b33385b3a247"
+                    },
+                    "m_Buff": "!bp_5013ce0db4bf47aba1d32308aaac0317"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$d8d84565-0214-4066-8b2d-daccd333146d",
+                    "m_Buff": "!bp_92c277b4b3444726b4dbe1100bb9a13c",
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$90c4d62f-85b3-48bf-bff7-a9773c7106ac"
+                    },
+                    "Duration": null,
+                    "UseEndCondition": false,
+                    "EndCondition": "RemainAfterCombat",
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+                    "name": "$DetachBuff$8a3d359d-0f12-498c-a996-494c36590757",
+                    "m_Buff": "!bp_5013ce0db4bf47aba1d32308aaac0317",
+                    "Target": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$40bb1ee8-dbe5-4b8e-97d7-eaa93a82b5bf"
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "5ce1080e9c809614daae11db4baa37a4, SummonPoolTrigger",
+        "name": "$SummonPoolTrigger$5a67faff-8f3f-4ba8-a1b7-eeb3a98c4b04",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Считает кол-во мутантов в саммон пуле",
+        "Count": 0,
+        "ChangeType": "Both",
+        "m_SummonPool": "!bp_d976083959dc4452b5eb6d172875edaa",
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+              "name": "$IsInCombat$00178dfe6f70427a8555d74b994452dc",
+              "Not": false,
+              "Unit": null,
+              "Player": true
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$15b7616dab3c42cbbd8acb44bfcbe39f",
+              "m_Cutscene": "!bp_361614d3c7d64341975290e9870d1c32",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+              "name": "$ControllableActionSetActive$d7348bb6d9264e15acd6c71bc012712d",
+              "Active": false,
+              "IdOfObject": {
+                "EntityNameInEditor": "Crowds_On_Passage",
+                "_entity_id": "addcf8d3-27b8-4344-bc63-7465add4d610",
+                "SceneAssetGuid": "f13234820548877499e7788609ba6e2a"
+              }
+            },
+            {
+              "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+              "name": "$DetachBuff$9dadf4561151404cac398c8c76e7a4ff",
+              "m_Buff": "!bp_9d524e734d174e51866b4026393f6303",
+              "Target": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$656d82e2df3348e09bbfa8c6293df21f"
+              }
+            },
+            {
+              "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+              "name": "$DetachBuff$b04160cc5f4042ebba51e58df03fbc04",
+              "m_Buff": "!bp_5013ce0db4bf47aba1d32308aaac0317",
+              "Target": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$8c2a1ef112114cb4a40874dd5e64adeb"
+              }
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$42e2a6c061144bb794d1bfa2d711561c",
+              "Etude": "!bp_7da62b8b568640268db10c5bfb48d4c5",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "904cdbeb5bf84eaf89247b99658a8b3b, RoundsTimerActions",
+        "name": "$RoundsTimerActions$34def51d-73c3-4fa0-88af-b08b70e1cf99",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_TickPolicy": "TurnBasedOnly",
+        "Delay": 0,
+        "Loop": 0,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "b96d07cc91ca426c9b48bfef6f965788, ContextActionChangeVeilValue",
+              "name": "$ContextActionChangeVeilValue$e12da39f4464479f98c5f109f221db61",
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 9,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "OverrideMinValue": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_6dbf7ff4197e49cbb5ad136beb44033a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

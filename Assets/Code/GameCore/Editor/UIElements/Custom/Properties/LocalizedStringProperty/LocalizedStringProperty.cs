@@ -175,6 +175,7 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
 					{
 						m_LocString.SetShared(Property, (SharedStringAsset)shared);
 						CheckSharedState();
+						m_SharedField.value = m_LocString.Shared;
 					}
 				);
 			};
@@ -205,8 +206,13 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
 			var makeShareBtn = new Button() { text = "Make Shared" };
 			makeShareBtn.clicked += () =>
 			{
-				SharedStringAssetPropertyDrawer.ShowCreator(prop, fieldInfo.GetAttribute<StringCreateWindowAttribute>());
-				CheckSharedState();
+				// Please contact chernyshev@owlcat.games if you want to change this behaviour
+				SharedStringAssetPropertyDrawer.ShowCreator(prop, fieldInfo.GetAttribute<StringCreateWindowAttribute>(),
+					_ =>
+					{
+						CheckSharedState();
+						m_SharedField.value = m_LocString.Shared;
+					});
 			};
 
 			var deleteBtn = new Button(() =>

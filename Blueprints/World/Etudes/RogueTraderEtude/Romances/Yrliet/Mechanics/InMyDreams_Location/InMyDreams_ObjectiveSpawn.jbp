@@ -682,26 +682,22 @@
                       }
                     ],
                     "ActionsOnSpawn": {
-                      "Actions": []
+                      "Actions": [
+                        {
+                          "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                          "name": "$AttachBuff$d008a665-cec4-4d0a-948c-33c43abdbd21",
+                          "m_Buff": "!bp_da71d37eb1be40f9902b7edc1eb67f00",
+                          "Target": {
+                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                            "name": "$SpawnedUnit$dd30a6059ef040ec841e919a62bb9d0d"
+                          },
+                          "Duration": null,
+                          "UseEndCondition": false,
+                          "EndCondition": "RemainAfterCombat",
+                          "AddFactSource": false
+                        }
+                      ]
                     }
-                  },
-                  {
-                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
-                    "name": "$AttachBuff$8af13f19-624c-412d-b4e7-d59e7167d3b1",
-                    "m_Buff": "!bp_da71d37eb1be40f9902b7edc1eb67f00",
-                    "Target": {
-                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-                      "name": "$UnitFromSpawner$65b72b23caf3440794cdbee3b98ae9b9",
-                      "Spawner": {
-                        "EntityNameInEditor": "Spawner [Pascal]",
-                        "_entity_id": "64aa012b-2649-4ec5-9c9c-907fdf504efc",
-                        "SceneAssetGuid": "0223fbf1483807a43b155d7c24b98482"
-                      }
-                    },
-                    "Duration": null,
-                    "UseEndCondition": false,
-                    "EndCondition": "RemainAfterCombat",
-                    "AddFactSource": false
                   },
                   {
                     "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
@@ -1682,71 +1678,9 @@
               }
             },
             {
-              "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
-              "name": "$DetachBuff$82c31d06-288e-4aaf-a2f0-5c02883537bd",
-              "m_Buff": "!bp_da71d37eb1be40f9902b7edc1eb67f00",
-              "Target": {
-                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
-                "name": "$PlayerCharacter$fe22d11e-5497-49ef-92a7-cced3689784f"
-              }
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$d289a467-0308-4055-a994-86abfb956885",
-              "Comment": "Прячем шкаф, если нет Кассии",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
-                    "name": "$CompanionInParty$31be90fe-05df-406f-bc8f-ede00fa9bd88",
-                    "Not": false,
-                    "m_companion": "!bp_df918c2d635446e8ba6cba0123d2cb6e",
-                    "MatchWhenActive": false,
-                    "MatchWhenDetached": false,
-                    "MatchWhenRemote": false,
-                    "MatchWhenEx": true,
-                    "IncludeDead": false
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-                    "name": "$HideMapObject$5e849167-98ce-4666-9250-0c5e188734f9",
-                    "MapObject": {
-                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-                      "name": "$MapObjectFromScene$280b9524-7734-47ae-943f-586cc56389d4",
-                      "MapObject": {
-                        "EntityNameInEditor": "CassiaR",
-                        "_entity_id": "057d62d9-1339-4df8-bfe0-991c032d2877",
-                        "SceneAssetGuid": "0223fbf1483807a43b155d7c24b98482"
-                      }
-                    },
-                    "Unhide": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            },
-            {
-              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
-              "name": "$IncrementFlagValue$49f1662d-2b4a-4a78-bc6e-78201ce22302",
-              "m_Flag": "!bp_b26d3289186b4e1ab83c976ce7e64fb3",
-              "Value": {
-                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
-                "name": "$IntConstant$cf69777d-a506-4e9e-a7c7-6b89d67cab9c",
-                "Value": 7
-              },
-              "UnlockIfNot": true
-            },
-            {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$decf5db548214e069a2f379c4e745ddb",
-              "Comment": "",
+              "Comment": "Кибелла",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
@@ -1836,13 +1770,108 @@
                     },
                     "Unhide": false,
                     "Fade": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$e3d3931f-3769-4fae-816d-97ac2e961ba9",
+              "Comment": "Соломон",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$916f98e6-9951-4d62-93f9-28f8d6f230a6",
+                    "Not": false,
+                    "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": true,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$dbf160f4-1df5-4cf3-998b-91a6943b5982",
+                    "Not": true,
+                    "m_Etude": "!bp_be666961d213479c84c70e7a892fe436",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                    "name": "$IncrementFlagValue$90a6812f-8a0f-4e55-be41-9dd10ca0dcc1",
+                    "m_Flag": "!bp_b26d3289186b4e1ab83c976ce7e64fb3",
+                    "Value": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$ce81c3ad-e486-4416-9ce3-9b8e40d974a4",
+                      "Value": 1
+                    },
+                    "UnlockIfNot": true
+                  },
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$58b5cc28-d596-4755-8b17-1e862a1899c7",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "Spawner [Solomorne]",
+                        "_entity_id": "8754e43d-84d5-4d84-b2ee-2f018001c000",
+                        "SceneAssetGuid": "0223fbf1483807a43b155d7c24b98482"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": [
+                        {
+                          "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                          "name": "$AttachBuff$d30d6f01-acb4-4a72-ac52-f9374303410d",
+                          "m_Buff": "!bp_da71d37eb1be40f9902b7edc1eb67f00",
+                          "Target": {
+                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                            "name": "$SpawnedUnit$1d522ceb975a48e38538c7ac97bc0d76"
+                          },
+                          "Duration": null,
+                          "UseEndCondition": false,
+                          "EndCondition": "RemainAfterCombat",
+                          "AddFactSource": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$90a29632-e6a7-47d7-a57f-310de2f3f7cf",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$c0fd74f5-09f5-441d-954d-ea191c37b050",
+                      "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": true,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": false,
+                    "Fade": false
                   },
                   {
                     "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
-                    "name": "$ScriptZoneActivate$3340d9372f924cd4af5a69f28ea6dc31",
+                    "name": "$ScriptZoneActivate$3999bb2c-f2b3-4ff2-81fd-e1122172948a",
                     "ScriptZone": {
-                      "EntityNameInEditor": "KibellahScripZone",
-                      "_entity_id": "89b2be9f-d279-4227-971b-c119580bba7f",
+                      "EntityNameInEditor": "SolomorneScriptZone",
+                      "_entity_id": "ee001422-e44d-49a8-baf6-e2fd67e18c56",
                       "SceneAssetGuid": "0223fbf1483807a43b155d7c24b98482"
                     }
                   }
@@ -1851,6 +1880,68 @@
               "IfFalse": {
                 "Actions": []
               }
+            },
+            {
+              "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+              "name": "$DetachBuff$82c31d06-288e-4aaf-a2f0-5c02883537bd",
+              "m_Buff": "!bp_da71d37eb1be40f9902b7edc1eb67f00",
+              "Target": {
+                "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                "name": "$PlayerCharacter$fe22d11e-5497-49ef-92a7-cced3689784f"
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$d289a467-0308-4055-a994-86abfb956885",
+              "Comment": "Прячем шкаф, если нет Кассии",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$31be90fe-05df-406f-bc8f-ede00fa9bd88",
+                    "Not": false,
+                    "m_companion": "!bp_df918c2d635446e8ba6cba0123d2cb6e",
+                    "MatchWhenActive": false,
+                    "MatchWhenDetached": false,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": true,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$5e849167-98ce-4666-9250-0c5e188734f9",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$280b9524-7734-47ae-943f-586cc56389d4",
+                      "MapObject": {
+                        "EntityNameInEditor": "CassiaR",
+                        "_entity_id": "057d62d9-1339-4df8-bfe0-991c032d2877",
+                        "SceneAssetGuid": "0223fbf1483807a43b155d7c24b98482"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$49f1662d-2b4a-4a78-bc6e-78201ce22302",
+              "m_Flag": "!bp_b26d3289186b4e1ab83c976ce7e64fb3",
+              "Value": {
+                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                "name": "$IntConstant$cf69777d-a506-4e9e-a7c7-6b89d67cab9c",
+                "Value": 7
+              },
+              "UnlockIfNot": true
             }
           ]
         }

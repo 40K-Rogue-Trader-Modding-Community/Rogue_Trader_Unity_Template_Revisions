@@ -65,7 +65,7 @@
           "name": ""
         },
         "m_Overrides": [],
-        "Comment": "Анлок каунтеров для романса",
+        "Comment": "Анлок каунтеров для романса.\nТеперь флаги могут анлокать до начала, поэтому чекаем анлоки и если нет - то анлочим",
         "m_Once": true,
         "m_IgnoreAlreadyProcessedActivation": false,
         "Conditions": {
@@ -75,16 +75,66 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
-              "name": "$UnlockFlag$964a87cf8b7649db80f20ed379819638",
-              "m_flag": "!bp_224c54e50e3b461aabc6ac4067caa90a",
-              "flagValue": 0
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$9803f3f32a1d521e8e8d5f6a9210044c",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$598df7542e1f5e78ac56f6c6c86b1378",
+                    "Not": true,
+                    "m_ConditionFlag": "!bp_224c54e50e3b461aabc6ac4067caa90a",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                    "name": "$UnlockFlag$6023b80f-485b-457a-933a-f7b3bb262d1e",
+                    "m_flag": "!bp_224c54e50e3b461aabc6ac4067caa90a",
+                    "flagValue": 0
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             },
             {
-              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
-              "name": "$UnlockFlag$5f9395b476ed40b9b24273792693f8ed",
-              "m_flag": "!bp_b5e1ce64fc3e46d7b5edb054f13a74e5",
-              "flagValue": 0
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$e61ad0c3-eabd-4a66-a665-5582e535acd0",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$bdaa256e-6a0e-4669-81ba-a537139531d8",
+                    "Not": true,
+                    "m_ConditionFlag": "!bp_b5e1ce64fc3e46d7b5edb054f13a74e5",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                    "name": "$UnlockFlag$464576cc-cfe4-48e5-9c9f-c93ed90e3490",
+                    "m_flag": "!bp_b5e1ce64fc3e46d7b5edb054f13a74e5",
+                    "flagValue": 0
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }

@@ -22,15 +22,18 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
         private bool m_IsShadowDeleted;
         private bool m_ContainsShadowDeletedBlueprints;
         private string m_DisplayName;
-
+        private bool m_IsBlueprint;
         private static Texture2D s_ErrorIcon;
         private static GUIStyle s_Style;
+
+        public bool IsBlueprint => m_IsBlueprint;
 
         public FileListItem(string fullPath, FileListView owner)
         {
             m_FullPath = fullPath.Replace("/", "\\"); // only \ works for BlueprintDatabase
             m_Owner = owner;
             m_Name = Path.GetFileNameWithoutExtension(fullPath);
+            m_IsBlueprint = fullPath.EndsWith(".jbp");
             var relativePath = BlueprintsDatabase.FullToRelativePath(fullPath);
             using (ProfileScope.New("PathToId"))
             {
@@ -64,8 +67,16 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
         {
             if(m_Content.text!="")
                 return;
-            
-            m_Type = string.IsNullOrEmpty(m_Id) ? null : BlueprintsDatabase.GetTypeById(m_Id);
+
+            try
+            {
+                // There is somehow a bunch of blueprints with non-existent type id
+                m_Type = string.IsNullOrEmpty(m_Id) ? null : BlueprintsDatabase.GetTypeById(m_Id);
+            }
+            catch (Exception e)
+            {
+                m_Type = null;
+            }
             m_Content.text = m_Name;
 
             string name = "BlueprintIcons/" + m_Type?.Name + ".png";

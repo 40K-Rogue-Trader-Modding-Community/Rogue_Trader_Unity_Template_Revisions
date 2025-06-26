@@ -194,7 +194,10 @@ namespace Kingmaker.Editor.NodeEditor.Window
 				{
 					Profiler.BeginSample("Connections");
 					if (Graph != null)
+					{
+						Graph.Nodes.ForEach(n => n.BeforeDrawConnections());
 						Graph.Nodes.ForEach(n => n.DrawConnections(View, n.Foldout));
+					}
 					Profiler.EndSample();
 				}
 
@@ -503,15 +506,20 @@ namespace Kingmaker.Editor.NodeEditor.Window
 					nodeParents[child].Add(parent);
 					
 					if (!nodeChildren.ContainsKey(parent))
-						nodeParents[parent] = new List<ScriptableObject>();
+						nodeChildren[parent] = new List<ScriptableObject>();
 					
-					nodeParents[parent].Add(child);
+					nodeChildren[parent].Add(child);
 				}
 			}
 
+			var source = string.Empty;
+			if (Graph.Nodes.Any(n => n is BookPageNode))
+				source = "bookevent";
+			
 			foreach (var node in Graph.Nodes)
 			{
 				var dialogNode = new DialogsData.Node(node);
+				dialogNode.Source = source;
 				
 				if (node.GetAsset() != RootAsset && 
 				    nodeParents.TryGetValue(node.GetAsset(), out var parents))
@@ -522,7 +530,7 @@ namespace Kingmaker.Editor.NodeEditor.Window
 							dialogNode.Parents.Add(path);
 					}
 				
-				if (nodeParents.TryGetValue(node.GetAsset(), out var children))
+				if (nodeChildren.TryGetValue(node.GetAsset(), out var children))
 					foreach (var child in children)
 					{
 						var path = DialogsData.GetNicePath(child);

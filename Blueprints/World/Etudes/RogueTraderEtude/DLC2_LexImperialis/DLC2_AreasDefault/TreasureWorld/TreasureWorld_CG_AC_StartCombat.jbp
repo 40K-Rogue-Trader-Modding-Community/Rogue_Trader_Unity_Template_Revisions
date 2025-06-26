@@ -1,0 +1,146 @@
+{
+  "AssetId": "c235626824fe4cfb933253376580fc62",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$9f148001-b575-40b2-9314-a729d6cd0aac",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+              "name": "$SummonPoolUnits$0bdac5eb652f4bd1989f35e868fec15a",
+              "m_SummonPool": "!bp_daf79b64f1ee411a80eb0c3558650a36",
+              "Conditions": {
+                "Operation": "And",
+                "Conditions": []
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+                    "name": "$PartyUnits$1956fff93f874c02ad15445d8602e414",
+                    "m_UnitsList": "ActiveUnits",
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                          "name": "$StartCombat$a9669b28-f084-4161-99e0-a75cf600714d",
+                          "Unit1": {
+                            "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                            "name": "$PartyUnit$3d83d4c6-1f13-4d3f-b104-7e3f32f16bfa"
+                          },
+                          "Unit2": {
+                            "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                            "name": "$SummonPoolUnit$25a1e020-72fa-4f9a-b491-a34e32a2b855"
+                          },
+                          "AmbushPlayer": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                    "name": "$SwitchFaction$d88f6fde-455a-4de4-8a0c-f06c212726eb",
+                    "Target": {
+                      "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                      "name": "$SummonPoolUnit$5e60b2c6-53f4-4872-9a28-872f021644a9"
+                    },
+                    "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+                    "IncludeGroup": true
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+              "name": "$SwitchFaction$54a1b67c-efd3-44f2-8f1e-c3765852638c",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$fade91f0-96dc-49dc-bc71-709890caf668",
+                "Spawner": {
+                  "EntityNameInEditor": "Spawner [TreasureWorld_FeralGuard_Ranged]",
+                  "_entity_id": "4f44984b-4f81-477d-923d-ab19f11ec4a6",
+                  "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                }
+              },
+              "m_Faction": "!bp_1f109c1b074445fd84c1f301c59ba3fe",
+              "IncludeGroup": true
+            },
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$a1e8f2805f0646b8b772136d779dd212",
+              "Etude": "!bp_4d1e4276cf414d00a224f75475c0a6be",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            },
+            {
+              "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+              "name": "$PartyUnits$ef18124f7b4c4a1cb44fd3a86d6b982f",
+              "m_UnitsList": "ActiveUnits",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$1e0b0df0-4f3e-434f-a5ce-0e0e3c3374c1",
+                    "m_Buff": "!bp_05d5bc8b6f234521af42bc5f1050ee70",
+                    "Target": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$cf08244acab14bfaa77082dd2b9d702b"
+                    },
+                    "Duration": null,
+                    "UseEndCondition": true,
+                    "EndCondition": "CombatEnd",
+                    "AddFactSource": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_6c386d2c0ebb4c87848d93982067b656",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "AssetId": "4a6934bc1f084e7c813e768c07ad3bf0",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если есть слух NeedBetterAugerArrays и уже сканировали планету улучшенными авгурами - закрыть слух.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d6208843da784f95bf861cff98ab9cbd",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$09bf8920a7684e12abea8cd8b87f82c2",
+                "Not": false,
+                "m_QuestObjective": "!bp_b301688bdf0a4f32b3698855ce4f1566",
+                "State": "Started"
+              },
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$b3768c9812274421a1aabfc52348d79d",
+                "Not": false,
+                "m_Cue": "!bp_6833de3c1e9c42218ba2ab3e2c3b5356",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$408e34c83da24e288dd3a89555c4c3cf",
+                "Status": "Complete",
+                "m_Objective": "!bp_b301688bdf0a4f32b3698855ce4f1566",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

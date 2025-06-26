@@ -18,5 +18,7 @@ public enum CommandTypes
     SearchByNameExact,
     PauseIndexing,
     ResumeIndexing,
-    GetListOfContainsRemoveBlueprints
+    GetListOfContainsRemoveBlueprints,
+    GetReferencedBy,
+    GetReferencesFrom,
 }

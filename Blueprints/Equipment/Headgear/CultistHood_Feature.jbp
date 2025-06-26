@@ -53,6 +53,22 @@
                 "m_Groups": [
                   "!bp_82838157150f4d86bab8507a78631819"
                 ]
+              },
+              {
+                "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                "name": "$HasFactGetter$e3e6d95f7c0042a9b74be7f1fbd45496",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_39caa5ad1d0c4940b3f445ee4097fc89",
+                "Target": "CurrentEntity"
               }
             ]
           }
@@ -186,13 +202,60 @@
                               "IsAoE": false,
                               "m_Weapon": null,
                               "WriteResultToSharedValue": false,
-                              "ResultSharedValue": "Damage"
+                              "ResultSharedValue": "Damage",
+                              "DoNotUseCrModifier": false
                             }
                           ]
                         },
                         "Weight": 1
                       }
                     ]
+                  },
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$f25a92cf-6f52-4867-930f-344a197c2f25",
+                    "m_Buff": "!bp_39caa5ad1d0c4940b3f445ee4097fc89",
+                    "BuffEndCondition": "TurnEndOrCombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
                   }
                 ]
               }
@@ -209,6 +272,7 @@
         "AssignOwnerAsTarget": false
       }
     ],
+    "Author": "VadimBgatzev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -250,8 +314,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "VadimBgatzev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

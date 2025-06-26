@@ -12,6 +12,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Kingmaker.Utility.UnityExtensions;
+using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using Color = System.Drawing.Color;
 
@@ -44,20 +45,7 @@ namespace Kingmaker.Editor.UIElements.Custom
 			
 			ContentContainer.RegisterCallback<MouseDownEvent>(e =>
 			{
-				if (m_SceneField.value != null)
-				{
-					e.StopPropagation();
-					var menu = new GenericMenu();
-					menu.AddItem(new GUIContent("Open Scene"), false, () => AssetDatabase.OpenAsset(m_SceneField.value));
-					menu.AddItem(new GUIContent("Open and Find"), false, () =>
-					{
-						AssetDatabase.OpenAsset(m_SceneField.value);
-						OnClickFind();
-					});
-					menu.AddItem(new GUIContent("Del"), false, OnClickDel);
-					
-					menu.ShowAsContext();
-				}
+				UIElementsUtility.HandleSceneContextMenu(e, m_SceneField.value, OnClickDel, OnClickFind);
 			});
 
 			AddComponent(new DragAndDropComponent(() => GetValidComponent() != null, ApplyDrop));

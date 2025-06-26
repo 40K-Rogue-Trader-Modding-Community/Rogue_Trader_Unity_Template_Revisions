@@ -19,6 +19,7 @@
         "Value": {
           "Operation": "Min",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -55,6 +56,7 @@
               "Value": {
                 "Operation": "Sum",
                 "TargetType": "ContextCaster",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -118,6 +120,7 @@
         "Value": {
           "Operation": "Min",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -159,6 +162,7 @@
               "Value": {
                 "Operation": "Sum",
                 "TargetType": "ContextCaster",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -222,41 +226,67 @@
         "Activated": {
           "Actions": [
             {
-              "$type": "32ab11539189db84aa3d249b00be4d32, ContextActionStartAdditionalTurn",
-              "name": "$ContextActionInterruptTurn$33852740cdfe4c21ba68d5974ee47b41",
-              "m_AllowOnCurrentTurnUnit": false,
-              "GrantedMP": {
-                "ValueType": "CasterNamedProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value2"
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$4677f29ec83e4f3d9a739dd4fc8a1d8b",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$5585d7a53686431f870f3133edb46983",
+                    "Not": true,
+                    "m_Fact": "!bp_87fc9b7904f6440ba14386ab1643a4f8"
+                  }
+                ]
               },
-              "GrantedAP": {
-                "ValueType": "CasterNamedProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "32ab11539189db84aa3d249b00be4d32, ContextActionStartAdditionalTurn",
+                    "name": "$ContextActionStartAdditionalTurn$eaebe232-da11-4862-9326-138b1a1c4277",
+                    "m_AllowOnCurrentTurnUnit": false,
+                    "GrantedMP": {
+                      "ValueType": "CasterNamedProperty",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value2"
+                    },
+                    "GrantedAP": {
+                      "ValueType": "CasterNamedProperty",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "AsInterruption": false,
+                    "AbilityRestrictionForInterrupt": {
+                      "Property": {
+                        "Operation": "Sum",
+                        "TargetType": "CurrentEntity",
+                        "TargetEvaluator": null,
+                        "FailSilentlyIfNoTarget": false,
+                        "Getters": []
+                      }
+                    },
+                    "InterruptionWithoutUIUpdates": false,
+                    "LetCurrentUnitFinishAction": false,
+                    "ForbidChainInterruption": false
+                  },
+                  {
+                    "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
+                    "name": "$ContextActionRemoveSelf$c35c546d-ca69-4259-a901-68ab0dee682a"
+                  }
+                ]
               },
-              "AsInterruption": false,
-              "AbilityRestrictionForInterrupt": {
-                "Property": {
-                  "Operation": "Sum",
-                  "TargetType": "CurrentEntity",
-                  "FailSilentlyIfNoTarget": false,
-                  "Getters": []
-                }
-              },
-              "LetCurrentUnitFinishAction": false
-            },
-            {
-              "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
-              "name": "$ContextActionRemoveSelf$642f9f4f93774ef185280ec5789aaf9a"
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         },
@@ -271,6 +301,7 @@
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -314,9 +345,9 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": null,
-    "m_Cyclical": false,
-    "Author": "LeonidTolochenko"
+    "m_Cyclical": false
   },
   "Meta": {
     "ShadowDeleted": false

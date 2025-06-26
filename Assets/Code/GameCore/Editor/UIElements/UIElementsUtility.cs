@@ -20,6 +20,9 @@ using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.UIElements;
 using Owlcat.Runtime.Core.Utility;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Kingmaker.Editor.UIElements
 {
@@ -280,6 +283,31 @@ namespace Kingmaker.Editor.UIElements
 		public static bool GetExpandedState(string path)
 		{
 			return m_ExpandedStateSet.Contains(path);
+		}
+
+		public static void HandleSceneContextMenu(MouseDownEvent e, Object sceneAsset, Action onClickDel, Action onSceneLoaded = null)
+		{
+			if (sceneAsset is not SceneAsset scene)
+			{
+				return;
+			}
+
+			e.StopPropagation();
+			var menu = new GenericMenu();
+			menu.AddItem(new GUIContent("Add Scene"), false, () =>
+			{
+				string path = AssetDatabase.GetAssetPath(scene);
+				EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+			});
+			menu.AddItem(new GUIContent("Open Scene"), false, () => AssetDatabase.OpenAsset(sceneAsset));
+			menu.AddItem(new GUIContent("Open and Find"), false, () =>
+			{
+				AssetDatabase.OpenAsset(sceneAsset);
+				onSceneLoaded?.Invoke();
+			});
+			menu.AddItem(new GUIContent("Del"), false, onClickDel.Invoke);
+
+			menu.ShowAsContext();
 		}
 	}
 

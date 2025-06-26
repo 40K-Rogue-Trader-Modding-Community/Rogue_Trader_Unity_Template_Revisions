@@ -1,0 +1,48 @@
+{
+  "AssetId": "062f2322785c47db8862335d0f01737b",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "Необходимо снять армор с танка, так как он таскается потом по всем зонам,\nибо компаньон, и генерит обстаклы",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "7d6c4f7ff596e5e4086531c0f96ac650, Unrecruit",
+          "name": "$Unrecruit$23780221b51b503daa7f91e3759b45f1",
+          "m_CompanionBlueprint": "!bp_cfd51b1f974a4ab78a0712b8f8294a90",
+          "OnUnrecruit": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+          "name": "$DestroyUnit$545e481a8c154cdab4a005b8fa0248fb",
+          "Target": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$23fc2ad9d1034526943d4b0731658612",
+            "m_Companion": "!bp_cfd51b1f974a4ab78a0712b8f8294a90",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": true,
+            "IncludeDead": true,
+            "Index": 0
+          },
+          "FadeOut": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

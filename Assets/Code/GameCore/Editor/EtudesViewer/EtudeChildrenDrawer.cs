@@ -1,11 +1,10 @@
-﻿
-
+﻿#if UNITY_EDITOR && EDITOR_FIELDS
+using JetBrains.Annotations;
 using Object = UnityEngine.Object;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.Blueprints.Creation;
 using Owlcat.Editor.Core.Utility;
-#if UNITY_EDITOR && EDITOR_FIELDS
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +20,8 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
 {
     public class EtudeChildrenDrawer
     {
-        private Dictionary<string, EtudeIdReferences> loadedEtudes = new Dictionary<string, EtudeIdReferences>();
-        private Dictionary<string, EtudeDrawerData> etudeDrawerData = new Dictionary<string, EtudeDrawerData>();
+        private Dictionary<string, EtudeIdReferences> loadedEtudes = new();
+        private Dictionary<string, EtudeDrawerData> etudeDrawerData = new();
         private string parentEtude;
         private float chainedShift = 40;
         private float linkedShift = 20;
@@ -33,29 +32,26 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
         private bool FirstLayoutProcess;
         public float DefaultExpandedNodeWidth = 600;
 
-        public ReferenceGraph ReferenceGraph;
-        private ReferenceGraph.Entry selectedEntry;
-        private List<ReferenceGraph.Ref> startReferences = new List<ReferenceGraph.Ref>();
-        private List<ReferenceGraph.Ref> completeReferences= new List<ReferenceGraph.Ref>();
-        private List<ReferenceGraph.Ref> checkReferences= new List<ReferenceGraph.Ref>();
-        private List<ReferenceGraph.Ref> synchronizedReferences= new List<ReferenceGraph.Ref>();
-        private List<ReferenceGraph.Ref> otherReferences= new List<ReferenceGraph.Ref>();
-        private List<string> conflictingGroupReferences= new List<string>();
-        private bool startFoldout = false;
-        private bool completeFoldout = false;
-        private bool checkFoldout = false;
-        private bool synchronizedFoldout = false;
-        private bool otherFoldout = false;
-        private bool conflictingGroupFoldout = false;
+        [CanBeNull]
+        private string selectedGuid;
+        private List<string> conflictingGroupReferences= new();
+        private bool startFoldout;
+        private bool completeFoldout;
+        private bool checkFoldout;
+        private bool cutsceneFoldout;
+        private bool unstartFoldout;
+        private bool sceneFoldout;
+        private bool otherFoldout;
+        private bool conflictingGroupFoldout;
 
         private string oldFind = "";
-        private Dictionary<string, EtudeIdReferences> foundedEtudes = new Dictionary<string, EtudeIdReferences>();
+        private Dictionary<string, EtudeIdReferences> foundedEtudes = new();
 
-        public static bool newParentFromContestComand = false;
+        public static bool newParentFromContestComand;
         public static string newParentID;
         
 
-        public BlockersInfo BlockersInfo { get; } = new BlockersInfo();
+        public BlockersInfo BlockersInfo { get; } = new();
         public static event Action<BlueprintScriptableObject, Rect> EtudeViewerWindowItemOnGUI;
 
         private string SelectedId = "";
@@ -528,7 +524,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
             {
                 var commentStyle = GUIStyle.none;
                 commentStyle.normal.textColor = Color.magenta;
-                commentStyle.fontSize = 8;
+                commentStyle.fontSize = 12;
                 commentStyle.wordWrap = true;
                 commentStyle.clipping = TextClipping.Clip;
                 Rect commentRect = new Rect(drawerData.EtudeRect.x + 5, drawerData.EtudeRect.y + 30,
@@ -583,46 +579,40 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                 }
             }
             
-            if (selectedEntry?.ObjectGuid == etudeID)
+            if (selectedGuid == etudeID)
             {
                 if (GUI.Button(new Rect(drawerData.EtudeRect.xMax - 5, drawerData.EtudeRect.yMin - 5, 40, 20), "><"))
                 {
-                    selectedEntry = null;
+                    selectedGuid = null;
                 }
             }
             else
             {
                 if (GUI.Button(new Rect(drawerData.EtudeRect.xMax - 5, drawerData.EtudeRect.yMin - 5, 40, 20), "<>"))
                 {
-                    selectedEntry = ReferenceGraph.Entries.Find(e => e.ObjectGuid == etudeID);
+                    selectedGuid = etudeID;
 
-                    if (selectedEntry != null)
+                    if (selectedGuid != null)
                     {
+                        var bpEtude = BlueprintsDatabase.LoadById<BlueprintEtude>(etudeID);
+                        var refs = EtudeBackReference.GetReferencedBy(bpEtude);
+
                         startFoldout = false;
-                        checkFoldout = false;
                         completeFoldout = false;
-                        synchronizedFoldout = false;
+                        checkFoldout = false;
+                        cutsceneFoldout = false;
+                        unstartFoldout = false;
+                        sceneFoldout = false;
+                        otherFoldout = false;
                         conflictingGroupFoldout = false;
-                        
-                        startReferences = 
-                            selectedEntry.References.Where(r
-                                => ((EtudeReferenceType)r.ReferenceTypeMask).HasFlag(EtudeReferenceType.Start)).ToList();
-                    
-                        completeReferences =
-                            selectedEntry.References.Where(r
-                                => ((EtudeReferenceType)r.ReferenceTypeMask).HasFlag(EtudeReferenceType.Complete)).ToList();
-                    
-                        checkReferences = 
-                            selectedEntry.References.Where(r
-                                => ((EtudeReferenceType)r.ReferenceTypeMask).HasFlag(EtudeReferenceType.Check)).ToList();
-                    
-                        synchronizedReferences = 
-                            selectedEntry.References.Where(r
-                                => ((EtudeReferenceType)r.ReferenceTypeMask).HasFlag(EtudeReferenceType.Synchronized)).ToList();
-                        
-                        otherReferences = 
-                            selectedEntry.References.Where(r
-                                => (EtudeReferenceType)r.ReferenceTypeMask == EtudeReferenceType.None).ToList();
+
+                        drawerData.StartData.InitReferences(refs, EtudeBackReference.Kind.Started);
+                        drawerData.CompleteData.InitReferences(refs, EtudeBackReference.Kind.Completed);
+                        drawerData.CheckData.InitReferences(refs, EtudeBackReference.Kind.StatusCheck);
+                        drawerData.CutsceneData.InitReferences(refs, EtudeBackReference.Kind.CutsceneParam);
+                        drawerData.UnstartData.InitReferences(refs, EtudeBackReference.Kind.UnStart);
+                        drawerData.SceneData.InitReferences(refs, EtudeBackReference.Kind.SceneObject);
+                        drawerData.OtherData.InitReferences(refs, EtudeBackReference.Kind.Other);
 
                         conflictingGroupReferences = GetConflictingEtudes(etudeID);
 
@@ -800,7 +790,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
             
             etudeDrawerData[etudeID].EtudeButtonRect = new Rect(x,y,etudeSizeX,etudeSizeY);
             
-            if (selectedEntry?.ObjectGuid == etudeID)
+            if (selectedGuid == etudeID)
             {
                 etudeSizeX = DefaultExpandedNodeWidth;
                 etudeSizeY += FindRectsForReferences(etudeDrawerData[etudeID], etudeSizeX, etudeSizeY);
@@ -818,93 +808,33 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
 
         private float FindRectsForReferences(EtudeDrawerData drawerData, float sizeX, float sizeY)
         {
-            float result = 0f;
-            
-            drawerData.StartedReferencesLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY, sizeX, 20);
-            result += 20f;
-            
-            drawerData.StartedRects = new List<Rect>();
+            float x = drawerData.EtudeRect.x;
+            float y = drawerData.EtudeRect.y + sizeY;
+            float offset = 0f;
 
-            if (startFoldout)
-            {
-                for (int i = 0; i < startReferences.Count; i++)
-                {
-                    drawerData.StartedRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,40));
-                    result += 40f;
-                }
-            }
+            drawerData.StartData.InitRects(x, y, sizeX, ref offset, startFoldout);
+            drawerData.CompleteData.InitRects(x, y, sizeX, ref offset, completeFoldout);
+            drawerData.CheckData.InitRects(x, y, sizeX, ref offset, checkFoldout);
+            drawerData.CutsceneData.InitRects(x, y, sizeX, ref offset, cutsceneFoldout);
+            drawerData.UnstartData.InitRects(x, y, sizeX, ref offset, unstartFoldout);
+            drawerData.SceneData.InitRects(x, y, sizeX, ref offset, sceneFoldout);
+            drawerData.OtherData.InitRects(x, y, sizeX, ref offset, otherFoldout);
 
-            drawerData.CheckedReferencesLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY + result, sizeX, 20);
-            result += 20f;
-            
-            drawerData.CheckedRects = new List<Rect>();
+            drawerData.ConflictingGroupsLabelRect = new Rect(x, drawerData.EtudeRect.y + sizeY + offset, sizeX, 20);
+            offset += 20f;
 
-            if (checkFoldout)
-            {
-                for (int i = 0; i < checkReferences.Count; i++)
-                {
-                    drawerData.CheckedRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,40));
-                    result += 40f;
-                }
-            }
-
-            drawerData.CompletedReferencesLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY + result, sizeX, 20);
-            result += 20f;
-            
-            drawerData.CompletedRects = new List<Rect>();
-
-            if (completeFoldout)
-            {
-                for (int i = 0; i < completeReferences.Count; i++)
-                {
-                    drawerData.CompletedRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,40));
-                    result += 40f;
-                }
-            }
-
-            drawerData.SynchronizedReferencesLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY + result, sizeX, 20);
-            result += 20f;
-            
-            drawerData.SynchronizedRects = new List<Rect>();
-
-            if (synchronizedFoldout)
-            {
-                for (int i = 0; i < synchronizedReferences.Count; i++)
-                {
-                    drawerData.SynchronizedRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,40));
-                    result +=40f;
-                }
-            }
-            
-            drawerData.OtherReferencesLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY + result, sizeX, 20);
-            result += 20f;
-            
-            drawerData.OtherRects = new List<Rect>();
-
-            if (otherFoldout)
-            {
-                for (int i = 0; i < otherReferences.Count; i++)
-                {
-                    drawerData.OtherRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,40));
-                    result +=40f;
-                }
-            }
-
-            drawerData.ConflictingGroupsLabelRect = new Rect(drawerData.EtudeRect.x, drawerData.EtudeRect.y + sizeY + result, sizeX, 20);
-            result += 20f;
-            
             drawerData.ConflictingGroupsRects = new List<Rect>();
 
             if (conflictingGroupFoldout)
             {
                 for (int i = 0; i < conflictingGroupReferences.Count; i++)
                 {
-                    drawerData.ConflictingGroupsRects.Add(new Rect(drawerData.EtudeRect.x,drawerData.EtudeRect.y + sizeY + result,sizeX,60));
-                    result +=60f;
+                    drawerData.ConflictingGroupsRects.Add(new Rect(x, y + offset,sizeX,60));
+                    offset +=60f;
                 }
             }
 
-            return result;
+            return offset;
         }
 
         void UpdateBlockersInfo(BlueprintEtude etude)
@@ -959,80 +889,18 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
 
         private void DrawReferences()
         {
-            if (selectedEntry == null || !etudeDrawerData.ContainsKey(selectedEntry.ObjectGuid))
+            if (selectedGuid == null || !etudeDrawerData.TryGetValue(selectedGuid, out var drawerData))
             {
                 return;
             }
 
-            EtudeDrawerData drawerData = etudeDrawerData[selectedEntry.ObjectGuid];
-
-            startFoldout = EditorGUI.Foldout(drawerData.StartedReferencesLabelRect, startFoldout, $"Стартует из:({startReferences.Count})",EditorStyles.foldout);
-
-            if (startFoldout && drawerData.StartedRects.Count == startReferences.Count)
-            {
-
-                for (int i = 0; i < startReferences.Count; i++)
-                {
-                    if (GUI.Button(drawerData.StartedRects[i],
-                        $"{startReferences[i].ReferencingObjectName} \nin {startReferences[i].AssetPath.Replace("Assets/Mechanics/Blueprints", "")}",
-                        EditorStyles.miniLabel))
-                    {
-                        Selection.activeObject = LoadReference(startReferences[i]);
-                    }
-                }
-            }
-
-            checkFoldout = EditorGUI.Foldout(drawerData.CheckedReferencesLabelRect,checkFoldout, $"Проверяется в:({checkReferences.Count})",EditorStyles.foldout);
-
-            if (checkFoldout && drawerData.CheckedRects.Count == checkReferences.Count)
-            {
-                for (int i = 0; i < checkReferences.Count; i++)
-                {
-                    if (GUI.Button(drawerData.CheckedRects[i], $"{checkReferences[i].ReferencingObjectName} \nin {checkReferences[i].AssetPath.Replace("Assets/Mechanics/Blueprints","")}", EditorStyles.miniLabel))
-                    {
-                        Selection.activeObject = LoadReference(checkReferences[i]);
-                    }
-                }
-            }
-
-            completeFoldout = EditorGUI.Foldout(drawerData.CompletedReferencesLabelRect, completeFoldout, $"Комплитится в:({completeReferences.Count})",EditorStyles.foldout);
-
-            if (completeFoldout && drawerData.CompletedRects.Count == completeReferences.Count)
-            {
-                for (int i = 0; i < completeReferences.Count; i++)
-                {
-                    if (GUI.Button(drawerData.CompletedRects[i], $"{completeReferences[i].ReferencingObjectName} \nin {completeReferences[i].AssetPath.Replace("Assets/Mechanics/Blueprints","")}", EditorStyles.miniLabel))
-                    {
-                        Selection.activeObject = LoadReference(completeReferences[i]);
-                    }
-                }
-            }
-
-            synchronizedFoldout = EditorGUI.Foldout(drawerData.SynchronizedReferencesLabelRect, synchronizedFoldout, $"Засинхронизированные этюды:({synchronizedReferences.Count})",EditorStyles.foldout);
-
-            if (synchronizedFoldout && drawerData.SynchronizedRects.Count == synchronizedReferences.Count)
-            {
-                for (int i = 0; i < synchronizedReferences.Count; i++)
-                {
-                    if (GUI.Button(drawerData.SynchronizedRects[i], $"{synchronizedReferences[i].ReferencingObjectName} \nin {synchronizedReferences[i].AssetPath.Replace("Assets/Mechanics/Blueprints","")}", EditorStyles.miniLabel))
-                    {
-                        Selection.activeObject = LoadReference(synchronizedReferences[i]);
-                    }
-                }
-            }
-            
-            otherFoldout = EditorGUI.Foldout(drawerData.OtherReferencesLabelRect, otherFoldout, $"Прочие ссылки:({otherReferences.Count})",EditorStyles.foldout);
-
-            if ( otherFoldout && drawerData.OtherRects.Count == otherReferences.Count)
-            {
-                for (int i = 0; i < otherReferences.Count; i++)
-                {
-                    if (GUI.Button(drawerData.OtherRects[i], $"{otherReferences[i].ReferencingObjectName} \nin {otherReferences[i].AssetPath.Replace("Assets/Mechanics/Blueprints","")}", EditorStyles.miniLabel))
-                    {
-                        Selection.activeObject = LoadReference(otherReferences[i]);
-                    }
-                }
-            }
+            drawerData.StartData.OnGui(ref startFoldout);
+            drawerData.CompleteData.OnGui(ref completeFoldout);
+            drawerData.CheckData.OnGui(ref checkFoldout);
+            drawerData.CutsceneData.OnGui(ref cutsceneFoldout);
+            drawerData.UnstartData.OnGui(ref unstartFoldout);
+            drawerData.SceneData.OnGui(ref sceneFoldout);
+            drawerData.OtherData.OnGui(ref otherFoldout);
 
             conflictingGroupFoldout = EditorGUI.Foldout(drawerData.ConflictingGroupsLabelRect, conflictingGroupFoldout, $"Конфликты:({conflictingGroupReferences.Count})",EditorStyles.foldout);
 
@@ -1042,7 +910,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                 {
                     DrawEtudeColor(loadedEtudes[conflictingGroupReferences[i]],drawerData.ConflictingGroupsRects[i]);
 
-                    string isThis = (selectedEntry.ObjectGuid == conflictingGroupReferences[i]) ? "(THIS)" : "";
+                    string isThis = (selectedGuid == conflictingGroupReferences[i]) ? "(THIS)" : "";
                 
                     if (GUI.Button(drawerData.ConflictingGroupsRects[i].ScaleSizeBy(new Vector2(1f,0.5f),drawerData.ConflictingGroupsRects[i].TopLeft()), $"({loadedEtudes[conflictingGroupReferences[i]].Priority}){isThis}  {loadedEtudes[conflictingGroupReferences[i]].Name} ", EditorStyles.miniLabel))
                     {
@@ -1189,5 +1057,4 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
         }
     }
 }
-
 #endif

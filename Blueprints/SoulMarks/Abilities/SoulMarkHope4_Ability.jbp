@@ -44,11 +44,14 @@
                 "Property": {
                   "Operation": "Sum",
                   "TargetType": "CurrentEntity",
+                  "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": []
                 }
               },
-              "LetCurrentUnitFinishAction": false
+              "InterruptionWithoutUIUpdates": false,
+              "LetCurrentUnitFinishAction": false,
+              "ForbidChainInterruption": false
             },
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
@@ -111,6 +114,7 @@
         "TargetCondition": {
           "Operation": "Sum",
           "TargetType": "CurrentTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": []
         }
@@ -146,13 +150,27 @@
           "name": ""
         },
         "m_Overrides": [],
+        "m_TypeOfFactChecking": "Or",
         "m_CheckedFacts": [
           "!bp_2e34e4175ac8433cb962c1f984cb27ab"
         ],
         "Inverted": true,
         "FromThisCaster": false
+      },
+      {
+        "$type": "58590ce4af844cbd84c06187c8cc0ead, AbilityCanTargetOnlyPetUnits",
+        "name": "$AbilityCanTargetOnlyPetUnits$e3736af5-4ed2-4a91-9c65-c25226251afc",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CanTargetOnlyOwnersPet": false,
+        "m_Inverted": true
       }
     ],
+    "Author": "VadimBgatzev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -194,6 +212,7 @@
     "CanTargetFriends": true,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -209,6 +228,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": false,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillCauseAttack",
@@ -222,8 +243,7 @@
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "VadimBgatzev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

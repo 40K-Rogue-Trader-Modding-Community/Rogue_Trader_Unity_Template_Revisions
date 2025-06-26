@@ -8,7 +8,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
 {
     class FileIndex
     {
-        public const int FormatVersion = 3;
+        public const int FormatVersion = 4;
         
         private readonly FileDatabase m_FileDatabase;
         private Dictionary<string, IndexEntry> m_IdToEntry = new();
@@ -180,7 +180,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         private void Add(IndexEntry entry)
         {
             {
-                if (entry.DependsOnBlueprintsId.Count > 0
+                if (entry.ReferencedBlueprints.Count > 0
                     && !m_DependsOn.ContainsKey(entry.Id))
                 {
                     m_DependsOn.Add(entry.Id, new HashSet<string>());
@@ -188,9 +188,9 @@ namespace Owlcat.Blueprints.Server.FileDatabase
 
                 var currentDepends = m_DependsOn.TryGetValue(entry.Id, out var value) ? value : null;
                 var addDepends = currentDepends != null
-                    ? entry.DependsOnBlueprintsId.Except(currentDepends).ToArray()
-                    : entry.DependsOnBlueprintsId.ToArray();
-                var removeDepends = currentDepends?.Except(entry.DependsOnBlueprintsId).ToArray();
+                    ? entry.ReferencedBlueprints.Except(currentDepends).ToArray()
+                    : entry.ReferencedBlueprints.ToArray();
+                var removeDepends = currentDepends?.Except(entry.ReferencedBlueprints).ToArray();
 
                 if (addDepends.Length > 0)
                 {
@@ -289,10 +289,21 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                     bw.Write(entry.TypeId);
                     bw.Write(entry.Path);
                     bw.Write(entry.IsShadowDeleted);
-                    bw.Write(entry.DependsOnBlueprintsId.Count);
-                    foreach (var blueprintId in entry.DependsOnBlueprintsId)
+                    bw.Write(entry.ReferencedBlueprints.Count);
+                    foreach (var blueprintId in entry.ReferencedBlueprints)
                     {
                         bw.Write(blueprintId);
+                    }
+                }
+
+                bw.Write(m_DependingOn.Count);
+                foreach (var i in m_DependingOn)
+                {
+                    bw.Write(i.Key);
+                    bw.Write(i.Value.Count);
+                    foreach (string guid in i.Value)
+                    {
+                        bw.Write(guid);
                     }
                 }
             }
@@ -335,6 +346,20 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                     else
                     {
                         Add(e);
+                    }
+                }
+
+                count = br.ReadInt32();
+                while (count-- > 0)
+                {
+                    string referencedGuid = br.ReadString();
+                    var referencesList = m_DependingOn[referencedGuid] = new HashSet<string>();
+                    
+                    int referencesCount = br.ReadInt32();
+                    while (referencesCount-- > 0)
+                    {
+                        string referenceFromGuid = br.ReadString();
+                        referencesList.Add(referenceFromGuid);
                     }
                 }
             }
@@ -407,6 +432,18 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         public IEnumerable<string> GetDuplicatedIds()
         {
             return m_IdToDuplicatePath.Keys;
+        }
+
+        public IEnumerable<string> GetReferencedBy(string id)
+        {
+            return m_DependingOn.GetValueOrDefault(id) ?? Enumerable.Empty<string>();
+        }
+
+        public IEnumerable<string> GetReferencesFrom(string id)
+        {
+            if (m_IdToEntry.TryGetValue(id, out var entry))
+                return entry.ReferencedBlueprints;
+            return Enumerable.Empty<string>();
         }
 
         public bool? ContainsShadowDeletedBlueprints(string id)

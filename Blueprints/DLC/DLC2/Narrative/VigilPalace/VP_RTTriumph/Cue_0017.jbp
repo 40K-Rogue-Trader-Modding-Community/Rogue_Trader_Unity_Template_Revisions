@@ -1,0 +1,292 @@
+{
+  "AssetId": "81792481e6474b49af0af45b9e7d0a79",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AntonFadeev",
+    "Comment": "ТУТ ВЫДАЕМ ИТЕМА\nKinesiostaticShield_Item\r\nChapter4_Sentinel_Armour_Item\r\n",
+    "ParentAsset": "b81d524fa2e34efdbddbfa9aa39540a6",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "4cefaec6eb0c3fc43b1cebdd81999e16",
+        "stringkey": "07f1a471-d2a1-47fc-84a4-7f0a375b1827"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_d8247eb3b10c4061b39b14ee1f105772",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$86ab3cccad784e5c98bfff96187041c2",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$b0a1844a-0660-42c6-ae3d-79a4964ca3f8",
+                "Not": false,
+                "m_Etude": "!bp_98a03f1ad5a04d3b94bf65edbbaab505",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$cd80afbc-0c33-48e8-8914-d665dd862fe6",
+                "m_Cutscene": "!bp_c2741b82ca4f49cd8ead3f23c1b42bdd",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$b2b596eec6d441d5a826d9f38dd3622e",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalEnemy",
+                          "_entity_id": "b3c54b27-e6c6-4b8f-803b-8d17c9b91d2a",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$51dd3ac3-ccad-41f7-98fc-a1682869c484",
+                "m_Cutscene": "!bp_c2741b82ca4f49cd8ead3f23c1b42bdd",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$81dadf64cd3b4558bb177dcc59eea8c0",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalFriend",
+                          "_entity_id": "970438b6-d37a-4a32-a992-4f5dbdb3ec21",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$2cf027d1-ec45-4deb-a76d-66065c1cb2cc",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$85af8de7-8fcf-4e83-946a-6b8086de90e0",
+                "Not": false,
+                "m_Etude": "!bp_98a03f1ad5a04d3b94bf65edbbaab505",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$8fcd263b-758a-4ca6-8033-9e36f6a62b81",
+                "m_Cutscene": "!bp_2f0da4fbb3474b54a2e6963c408f657b",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$8a942c5d-9ddb-44ce-b76a-14ca17c8a0cb",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalEnemy",
+                          "_entity_id": "b3c54b27-e6c6-4b8f-803b-8d17c9b91d2a",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f007920a-42a4-4da2-b26d-f171ee61900a",
+                "m_Cutscene": "!bp_2f0da4fbb3474b54a2e6963c408f657b",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$3e7959a5-bfa6-46f4-b5e1-f853f9ec7d7e",
+                        "Spawner": {
+                          "EntityNameInEditor": "FJ_MarshalFriend",
+                          "_entity_id": "970438b6-d37a-4a32-a992-4f5dbdb3ec21",
+                          "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "1f1c883ef085c5c4b877eeb4c5da318c, AddItemToPlayer",
+          "name": "$AddItemToPlayer$1d7a9918-d5e2-4c39-b545-380945339866",
+          "m_ItemToGive": "!bp_4f8b1e98e00145a684c64ede4a8c935c",
+          "Silent": false,
+          "Quantity": 1,
+          "Identify": true,
+          "Equip": false,
+          "EquipOn": null,
+          "PreferredWeaponSet": 0,
+          "m_Hand": "Any",
+          "ForceEquip": false,
+          "ErrorIfDidNotEquip": true
+        },
+        {
+          "$type": "1f1c883ef085c5c4b877eeb4c5da318c, AddItemToPlayer",
+          "name": "$AddItemToPlayer$d5a06746-d802-434e-839a-ff8310c630fd",
+          "m_ItemToGive": "!bp_7936346540a84327b661203fbf858482",
+          "Silent": false,
+          "Quantity": 1,
+          "Identify": true,
+          "Equip": false,
+          "EquipOn": null,
+          "PreferredWeaponSet": 0,
+          "m_Hand": "Any",
+          "ForceEquip": false,
+          "ErrorIfDidNotEquip": true
+        },
+        {
+          "$type": "1f1c883ef085c5c4b877eeb4c5da318c, AddItemToPlayer",
+          "name": "$AddItemToPlayer$4b8f5e43-ef4f-4721-a18f-b5a86c0be95e",
+          "m_ItemToGive": "!bp_50a2c2de8bae4745b4eac66b8aab9be8",
+          "Silent": false,
+          "Quantity": 1,
+          "Identify": true,
+          "Equip": false,
+          "EquipOn": null,
+          "PreferredWeaponSet": 0,
+          "m_Hand": "Any",
+          "ForceEquip": false,
+          "ErrorIfDidNotEquip": true
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_91651deb09e3440c8f328adad3dfd623",
+        "!bp_8bd184974d9545898acbbe64eb87bd50"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

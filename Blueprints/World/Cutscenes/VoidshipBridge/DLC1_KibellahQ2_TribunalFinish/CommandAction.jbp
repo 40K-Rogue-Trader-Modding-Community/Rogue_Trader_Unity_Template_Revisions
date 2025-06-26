@@ -5,11 +5,23 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "EugeneIvanov",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "EntryCondition": {
       "Operation": "And",
-      "Conditions": []
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$3657f96fdd6b477fa884197578d63faf",
+          "Not": false,
+          "m_Etude": "!bp_be666961d213479c84c70e7a892fe436",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
     },
     "OnFail": "RemoveTrack",
     "m_EvaluationErrorHandlingPolicy": "Default",
@@ -17,18 +29,44 @@
       "Actions": [
         {
           "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
-          "name": "$HideUnit$55888c43db33415694c46bf33a206bf7",
+          "name": "$HideUnit$c31d7ef0acbb4803b72530c25aa1ded5",
           "Target": {
-            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-            "name": "$UnitFromSpawner$9b61c105198749378df0d4a32c405d27",
-            "Spawner": {
-              "EntityNameInEditor": "DeathCultLeader",
-              "_entity_id": "d2ae4c68-3c2b-462c-8ccd-5f442cb7449f",
-              "SceneAssetGuid": "0d1af45e84a109f43b0cce7bc2021215"
-            }
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$4b6761112b3b4493b3dc13d24aaa84b9",
+            "m_Companion": "!bp_88d4190122cd4b6c9c91d7fef4066651",
+            "IncludeActive": false,
+            "IncludeDetached": false,
+            "IncludeRemote": false,
+            "IncludeExCompanions": true,
+            "IncludeDead": true,
+            "Index": 0
           },
           "Unhide": false,
           "Fade": false
+        },
+        {
+          "$type": "279d4ee480d04f2b99e22da75adf77d6, UnequipAllItems",
+          "name": "$UnequipAllItems$fbf76fc1901e4b8cb996e50b85291e8e",
+          "Target": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$ef4e5530cd4f4b2888fc3a7696afc42f",
+            "m_Companion": "!bp_88d4190122cd4b6c9c91d7fef4066651",
+            "IncludeActive": false,
+            "IncludeDetached": false,
+            "IncludeRemote": false,
+            "IncludeExCompanions": true,
+            "IncludeDead": true,
+            "Index": 0
+          },
+          "DestinationContainer": {
+            "$type": "ac0b2a9e4daea5c42b85d77e48d5a304, UnitInventory",
+            "name": "$UnitInventory$e33518e2c80b484d998c130fd0b01e94",
+            "Unit": {
+              "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+              "name": "$PlayerCharacter$e23f360d21504504a814989b08de5166"
+            }
+          },
+          "Silent": false
         }
       ]
     }

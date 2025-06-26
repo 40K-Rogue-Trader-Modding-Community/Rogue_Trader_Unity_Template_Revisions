@@ -759,9 +759,104 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$2dc740ae-8aef-4239-87f0-f2ec0fc500df",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "DLC2 - отмена квестов",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$a53d83e5-728c-4814-b0db-95da685b4766",
+              "Not": false,
+              "m_Etude": "!bp_0620af31d1b84acdb92a529964e8cd30",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$7c886a28-59d8-4499-8c8c-1c444602b584",
+              "Comment": "Расследование 1",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$35632921-92b6-4c66-942f-83c013061112",
+                    "Not": false,
+                    "m_Quest": "!bp_1fc3a5f62429494db242a1a9c544ed7f",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                    "name": "$SetObjectiveStatus$7dc639cb-0b6f-4669-a858-f7e4888f0224",
+                    "Status": "Fail",
+                    "m_Objective": "!bp_b506966a1cb746e6ad2b69b10ab2d122",
+                    "StartObjectiveIfNone": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$64cb30c1-c669-4248-bb65-4e96e1754602",
+              "Comment": "Расследование 1",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$47039a4d-0ebb-4ba1-a399-c7a5e0849398",
+                    "Not": false,
+                    "m_Quest": "!bp_e03ee4a67a704d89931baf8a5324ee50",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                    "name": "$SetObjectiveStatus$28c602c2-c258-4196-b5a9-4402999b2784",
+                    "Status": "Fail",
+                    "m_Objective": "!bp_a1194f4299164427b0bf96e60d350814",
+                    "StartObjectiveIfNone": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
-    "Author": "ArtemSchellenberg",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "m_Parent": "!bp_4f66e8b792ecfad46ae1d9ecfd7ecbc2",
     "ActivationCondition": {

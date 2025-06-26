@@ -229,6 +229,50 @@
               "EtudeEvaluator": null,
               "Evaluate": false,
               "StartImmediately": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$2b71f485443f43f99d4d369cddcc2426",
+              "Comment": "Спрятать пета если есть",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                    "name": "$UnitIsNull$bac26c04a9c04b75a2acb3a9748f64d3",
+                    "Not": true,
+                    "Target": {
+                      "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                      "name": "$PetByOwner$62ac98e8487547319bc5fc0b73ecea6d",
+                      "OwnerEvaluator": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$bc03964a6eef424aa2dbd87bb07f475e"
+                      }
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$d65dc561-28e9-422d-87ee-380b98caf0eb",
+                    "Target": {
+                      "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                      "name": "$PetByOwner$168b2e06-2ff0-4494-bea9-3abd9d9cf31f",
+                      "OwnerEvaluator": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$5802b372-2e5e-42d4-b955-02ee4cf60cd6"
+                      }
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }

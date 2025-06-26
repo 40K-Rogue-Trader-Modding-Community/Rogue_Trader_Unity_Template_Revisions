@@ -275,6 +275,99 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$6195b695-71e2-44de-9ca0-1e7526543cf9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$b6ef7079-d107-4788-bd8e-4ccd18d03f2a",
+              "Not": false,
+              "m_Etude": "!bp_a732acf77d664d40a41640abb895455b",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$7acf0c5f-27df-4c7e-88c0-8702901bc807",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "12b774374ac6829459deaf2f61048967, ContextConditionRandomLessThen",
+                    "name": "$ContextConditionRandomLessThen$5d9b1df9-36fa-4910-a30e-d5a813621635",
+                    "Not": false,
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 50,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$801ec519-43d6-4ef3-87d4-b4ca34d22f7c",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$5bd98c81-76fd-4115-b4c5-0da333b756c9",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
+                        "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$3aee4266-f680-4a0e-8e30-48466906f8f9",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$a6ba3663-5c25-4abc-a2b0-aa3f0941e6ce",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
+                        "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",
@@ -290,7 +383,7 @@
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": "!bp_a9ce2538ebf549739065f5a87648df47",
-    "m_LinkedCampaigns": null,
+    "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
     "m_StartsWith": [],

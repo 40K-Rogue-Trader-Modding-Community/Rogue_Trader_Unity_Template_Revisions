@@ -1,0 +1,99 @@
+{
+  "AssetId": "4972afe7a84444f29bc50c21934f945d",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$ed33db16c276469b87fddca2b02969bd",
+          "Comment": "",
+          "State": 0,
+          "IdOfObject": {
+            "EntityNameInEditor": "ExecutionLift",
+            "_entity_id": "79045178-0f43-4b9b-a312-9a99a45b6699",
+            "SceneAssetGuid": "9bca01725c2ca184a872aa5101d77db5"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$728ad243cc9f4169909349875f63b9b7",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$1ca18475e2de4f23b10ec58836c5eaab",
+            "MapObject": {
+              "EntityNameInEditor": "WallForExe",
+              "_entity_id": "e31e75c0-1e4c-40e5-963b-e18915a11e41",
+              "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$0f60a0b51c064b6b998fea66a1e2d45e",
+          "Comment": "Хайд расстрелянного юнита если это НЕ соломон",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                "name": "$UnitEqual$9914a0edbe224cb2a7671db2a48bb218",
+                "Not": false,
+                "FirstUnit": {
+                  "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
+                  "name": "$NamedParameterUnit$e76d4c03787c4eb2b5c8513aefaf9968",
+                  "Parameter": "Unit"
+                },
+                "SecondUnit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$f37ea88bf7974dd780d49e4ba6f4bd1d",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": true,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": true,
+                  "IncludeDead": false,
+                  "Index": 0
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": []
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$1361ac21-344c-4976-85c3-e9ddb8312ca2",
+                "Target": {
+                  "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
+                  "name": "$NamedParameterUnit$5b23ee21-4620-4d42-88f4-061337b135b3",
+                  "Parameter": "Unit"
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

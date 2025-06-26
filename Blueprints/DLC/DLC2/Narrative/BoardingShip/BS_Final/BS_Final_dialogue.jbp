@@ -1,0 +1,300 @@
+{
+  "AssetId": "76059f7bd08c4444b77e899c1aea8902",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Спикер - Краймлорд",
+    "FirstCue": {
+      "Cues": [
+        "!bp_c28dd45ec4454884a83f80164883b941"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": []
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$88f639a4-137d-4d68-b543-001e48e0ef9e",
+          "Comment": "Fear Swarm",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$82a252c9-1c2d-431a-ac79-cc7d09daddc2",
+                "Not": false,
+                "m_Etude": "!bp_5e977d0eaf114bd0a2fe848ada996f29",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+                "name": "$SummonPoolUnits$261588ec-f74d-4e74-8f74-f8a983ba6e4b",
+                "m_SummonPool": "!bp_8a67aa6cee814475a5092b10052e8967",
+                "Conditions": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                      "name": "$HasFact$2e99adcc-6884-44cd-9c5e-dbdde47ef214",
+                      "Not": false,
+                      "Unit": {
+                        "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                        "name": "$UnitGroupUnit$71346057b02e41be9a5f6785d9b813f3"
+                      },
+                      "m_Fact": "!bp_db65a6e6d4c74240a7f872bdce6a5fd8"
+                    }
+                  ]
+                },
+                "Actions": {
+                  "Actions": [
+                    {
+                      "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                      "name": "$ContextActionApplyBuff$54d34ff3-f28f-479e-be06-5b589e14e8d9",
+                      "m_Buff": "!bp_8f4a66a1c9674e2b9016f79cc73f58a6",
+                      "BuffEndCondition": "CombatEnd",
+                      "Permanent": false,
+                      "DurationValue": {
+                        "BonusValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "RoundsValue": {
+                          "ValueType": "Simple",
+                          "Value": 2,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        }
+                      },
+                      "ToCaster": false,
+                      "AsChild": false,
+                      "SameDuration": false,
+                      "Ranks": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "ActionsOnApply": {
+                        "Actions": []
+                      },
+                      "ActionsOnImmune": {
+                        "Actions": []
+                      },
+                      "AddFactSource": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$0cafa01f-f855-4451-aef8-6e5deb74642d",
+          "Comment": "Persuaded Swarm",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$163645d0d99947b0b1afe7d7a84b58aa",
+                "Not": false,
+                "m_Etude": "!bp_6536bf51799f4f92b9ca8a9e676dc3b7",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$fdf494e7-1897-49a6-86c9-586c9ea45125",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$76f80f16-cf95-4040-933a-bbe224815701",
+                  "Spawner": {
+                    "EntityNameInEditor": "Melee_G3_1",
+                    "_entity_id": "1e969e07-08ab-42f3-9da7-22a83b36e0f1",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$c58d2454-b0e5-415e-a045-70174e67a5b8",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$091c998c-3a72-448e-9f5b-bb8e678002ec",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G3_1",
+                    "_entity_id": "b73eef96-34af-435e-8a93-e372e1a96c42",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$583bae37-6cbe-48d7-8f7d-34258c6e470e",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$5c35b047-8201-4e65-8cb1-de229831699d",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G3_2",
+                    "_entity_id": "f5baa4f3-4bef-4235-8b9c-19078c517543",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$0a797e14-ddc1-4dd1-98ef-449126dd6452",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$c6e717b2-b493-4319-93c4-875e8bd961de",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G4_1",
+                    "_entity_id": "d2a7237a-e1ff-448d-9284-40662d567765",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$27c5a663-06ae-4059-8660-aa8daba68909",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$4b86caf4-635c-4f5d-986f-b12ed3386cc7",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G5_1",
+                    "_entity_id": "f78d7cb5-134c-4161-824b-aa5ed12c3f4e",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$57fb3c8e-52d7-4389-8dc9-8fd1072f9686",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$6829a556-ee8f-4e9d-951b-8d5a0b911404",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G6_1",
+                    "_entity_id": "25450f44-2d45-4b8b-bf67-e46780f195f7",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+                "name": "$DestroyUnit$874d0ef9-1894-4dd2-a1ff-e7b412a4e7d5",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$88a230b5-4514-4896-941a-20f2b1e727fc",
+                  "Spawner": {
+                    "EntityNameInEditor": "Solder_G6_2",
+                    "_entity_id": "56e2dbc6-e9db-4261-961b-def62e0e6488",
+                    "SceneAssetGuid": "1ab2bebaf59621f42b10eae5e4d5a6f5"
+                  }
+                },
+                "FadeOut": false
+              },
+              {
+                "$type": "5a0f8a1614a840f8b0629a71b6de51f7, SpawnBySummonPool",
+                "name": "$SpawnBySummonPool$378d1a79851c4afca6978c7c3a096994",
+                "m_Pool": "!bp_490253f87f9b4523b48b9dd401640dae",
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$e3aa7b88d8ae46aa9748cf444dc0fe4c",
+          "m_Cutscene": "!bp_39776d4419c64939aba477b9ef6c8830",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$dfcb49d6fcb8494faab88a2ec883fc2a",
+          "m_flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+          "flagValue": 4
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": []
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

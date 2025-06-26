@@ -1,0 +1,126 @@
+{
+  "AssetId": "7caf6296b667444aa16830ba11be18d7",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$df9b3913-1bc5-42a7-90aa-8ddd49a164b3",
+          "Not": false,
+          "m_Etude": "!bp_9cd74937dfff47e9b364159c577f5d42",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "4874411993c669b48b6ccb90d57a750b, LessThan",
+          "name": "$LessThan$aa0ecb7e-b9d2-4a58-b074-097152f316dd",
+          "Not": false,
+          "OrEqualTo": true,
+          "FloatValues": false,
+          "Value": {
+            "$type": "0a7ef55390dc10c428693321c0e1f6d7, SummonPoolUnitsCount",
+            "name": "$SummonPoolUnitsCount$4705bfe7-10f4-40f6-91e3-e49d76ba7378",
+            "m_SummonPool": "!bp_46f74800d5914c0eafe617b598cb28f4"
+          },
+          "MaxValue": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$f660e659-b146-4c11-a5a6-0b7b1acbf2c2",
+            "Value": 14
+          },
+          "FloatValue": null,
+          "FloatMaxValue": null
+        }
+      ]
+    },
+    "OnFail": "SkipCommand",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "ccb0fb0efcf797442840443865ee40bd, Summon",
+          "name": "$Summon$f9a3bd8134e047909c231acf92426bc9",
+          "m_Unit": "!bp_db4af318aa6a484bb0e0c69f5e051d40",
+          "m_SummonPool": "!bp_409a6f93e91d45709f1548760ae976ee",
+          "GroupBySummonPool": false,
+          "Transform": {
+            "$type": "df903088c314c0349ab3b5dda20abb9c, LocatorTransform",
+            "name": "$LocatorTransform$ad8e1894-563b-412e-83a0-46018ccbd3ff",
+            "Locator": {
+              "EntityNameInEditor": "TC_MobSummon_2 (0)",
+              "_entity_id": "25b578b0-371f-452e-ac25-d20480a195eb",
+              "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+            }
+          },
+          "Offset": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "OnSummmon": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$6d9a502a-ab96-4ca8-8123-59fb25c2a663",
+                "m_Cutscene": "!bp_683227f5802542c6b65176e5597a6358",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                        "name": "$SpawnedUnit$8c653e4b-6987-465e-8165-2a88d670d4a7"
+                      }
+                    },
+                    {
+                      "Name": "Pos",
+                      "Type": "Position",
+                      "Evaluator": {
+                        "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                        "name": "$LocatorPosition$5cfbbe58e34659cebbf5723b744be928",
+                        "Locator": {
+                          "EntityNameInEditor": "TC_MobExit_2 (0)",
+                          "_entity_id": "ace78c84-fa6e-46b0-9134-73093c75fa6e",
+                          "SceneAssetGuid": "284eef69a010d21479bbedaa8bddc85f"
+                        },
+                        "Offset": {
+                          "x": 0.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "8a4f41327b18c0f47b0a1d132429f14e, AddUnitToSummonPool",
+                "name": "$AddUnitToSummonPool$4a9ee2ea-26ca-4474-818b-d603f16cd1fb",
+                "m_SummonPool": "!bp_221058e5206e4be4b607010f6c04370f",
+                "Unit": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$3a207c19-e7d3-4a44-8fb2-30edf3f1a2ca"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

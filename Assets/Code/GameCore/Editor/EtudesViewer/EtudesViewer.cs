@@ -11,6 +11,7 @@ using Application = UnityEngine.Application;
 using System.Linq;
 using Kingmaker.Blueprints.Area;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using Kingmaker.Editor.EtudesViewer;
 using Kingmaker.Editor.Validation;
 
@@ -71,13 +72,23 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
             window.Show();
         }
 
+        [BlueprintContextMenu("Open in etude viewer", BlueprintType = typeof(BlueprintEtude))]
+        public static void OpenAssetInEtudeViewer(BlueprintEtude etude)
+        {
+            var window = GetWindow<EtudesViewer>();
+            window.parent = window.rootEtudeId;
+            window.Show();
+            window.SelectEtude(etude.AssetGuid);
+            window.etudeChildrenDrawer.SetParent(etude.AssetGuid, window.workspaceRect);
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
 
             loadedEtudes = EtudesTreeLoader.Instance.LoadedEtudes;
             etudeChildrenDrawer = new EtudeChildrenDrawer(loadedEtudes, this);
-            etudeChildrenDrawer.ReferenceGraph = ReferenceGraph.Reload();
+            ReferenceGraph.Reload();
             
             areaIcon = EditorGUIUtility.Load("BlueprintIcons/BlueprintArea.png") as Texture2D;
 
@@ -156,7 +167,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                             EtudesTreeLoader.Instance.ReloadBlueprintsTree();
                             loadedEtudes = EtudesTreeLoader.Instance.LoadedEtudes;
                             etudeChildrenDrawer = new EtudeChildrenDrawer(loadedEtudes, this);
-                            etudeChildrenDrawer.ReferenceGraph = ReferenceGraph.Reload();
+                            ReferenceGraph.Reload();
                             
                             ApplyFilter();
                         }
@@ -165,9 +176,9 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                     if (GUILayout.Button(EtudesViewerTexts.RefreshIndexDreamtool, GUILayout.MinWidth(300), GUILayout.MaxWidth(300)))
                     {
                         ReferenceGraph.CollectMenu();
-                        etudeChildrenDrawer.ReferenceGraph = ReferenceGraph.Reload();
-                        etudeChildrenDrawer.ReferenceGraph.AnalyzeReferencesInBlueprints();
-                        etudeChildrenDrawer.ReferenceGraph.Save();
+                        ReferenceGraph.Reload();
+                        ReferenceGraph.Graph.AnalyzeReferencesInBlueprints();
+                        ReferenceGraph.Graph.Save();
                     }
 
                     UseFilter = GUILayout.Toggle(UseFilter, EtudesViewerTexts.UseFilter);
@@ -214,7 +225,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                             EtudesTreeLoader.Instance.ReloadBlueprintsTree();
                             loadedEtudes = EtudesTreeLoader.Instance.LoadedEtudes;
                             etudeChildrenDrawer = new EtudeChildrenDrawer(loadedEtudes, this);
-                            etudeChildrenDrawer.ReferenceGraph = ReferenceGraph.Reload();
+                            ReferenceGraph.Reload();
                             ApplyFilter();
                         }
                     }
@@ -280,7 +291,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                             EtudesTreeLoader.Instance.ReloadBlueprintsTree();
                             loadedEtudes = EtudesTreeLoader.Instance.LoadedEtudes;
                             etudeChildrenDrawer = new EtudeChildrenDrawer(loadedEtudes, this);
-                            etudeChildrenDrawer.ReferenceGraph = ReferenceGraph.Reload();
+                            ReferenceGraph.Reload();
                         }
                         return;
                     }
@@ -317,26 +328,31 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
         private void OnSelectionChanged()
         {
             var bpw = Selection.activeObject as BlueprintEditorWrapper;
-            if (bpw == null)
+            if (bpw != null)
+            {
+                SelectEtude(bpw.Blueprint.AssetGuid);
+            }
+        }
+
+        private void SelectEtude(string etudeId)
+        {
+            if (!loadedEtudes.TryGetValue(etudeId, out var etude))
             {
                 return;
             }
 
-            if (loadedEtudes.TryGetValue(bpw.Blueprint.AssetGuid, out var etude))
+            selected = etude.Id;
+            string parentId = etude.ParentId;
+            while (!string.IsNullOrEmpty(parentId))
             {
-                selected = etude.Id;
-                string parentId = etude.ParentId;
-                while (!string.IsNullOrEmpty(parentId))
+                if (!loadedEtudes.TryGetValue(parentId, out var parentEtude))
                 {
-                    if (!loadedEtudes.TryGetValue(parentId, out var parentEtude))
-                    {
-                        break;
-                    }
-                    parentEtude.Foldout = true;
-                    parentId = parentEtude.ParentId;
+                    break;
                 }
-                Repaint();
+                parentEtude.Foldout = true;
+                parentId = parentEtude.ParentId;
             }
+            Repaint();
         }
 
         private void ApplyFilter()

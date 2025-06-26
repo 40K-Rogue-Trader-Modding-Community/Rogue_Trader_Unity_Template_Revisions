@@ -1,0 +1,111 @@
+{
+  "AssetId": "6c2d71108ea44ceb94821266fa49337d",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ae591f3f-3341-40ba-868a-174d09ecf34c",
+          "Comment": "Если 4 глава и не было апдейта",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$80077b55-379a-4f2e-9fe4-88c21f24f843",
+                "Not": false,
+                "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": true
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$00d262a7-72e1-4f13-bdb5-da92690a504b",
+                "Not": false,
+                "m_Etude": "!bp_c252e4ff3adf4f819af0093e9d17d920",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$20687bd5-176c-4bac-9ddb-ba190e815727",
+                "Etude": "!bp_c252e4ff3adf4f819af0093e9d17d920",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$be5cb19c-00b2-4ffb-b672-3a3d99b52ea9",
+                "Comment": "Если старт с 3-4 главы - замена",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$eabd07e0-4389-4137-9660-c70b2b194fb7",
+                      "Not": false,
+                      "m_Etude": "!bp_8ccbf7a44f684f49a510ba395d339195",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "21cf2aa69dbf443bbee1c7bd3e07508b, ClearVendorTable",
+                      "name": "$ClearVendorTable$ffdcd6fd-d10f-4f43-b53f-b066683d37ed",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402"
+                    },
+                    {
+                      "$type": "8abe2f7c2ba6427e838d50009aa57c09, AddLootToVendorTable",
+                      "name": "$AddLootToVendorTable$fab0d9ed-0cea-4708-85e6-9c6fc79eda96",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402",
+                      "m_Loot": "!bp_2b138331f2e84db7a69feadff8754c14"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "8abe2f7c2ba6427e838d50009aa57c09, AddLootToVendorTable",
+                      "name": "$AddLootToVendorTable$93746afc-0f2b-495e-a3e8-3b3658e506c7",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402",
+                      "m_Loot": "!bp_90d672a2ebd34a6f8a3d4ba86277ddb6"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

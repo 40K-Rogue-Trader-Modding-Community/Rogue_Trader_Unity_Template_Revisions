@@ -87,5 +87,19 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 
 			base.RemoveReferencedAsset(asset);
 		}
+
+		public override void DrawConnections(CanvasView view, bool foldout)
+		{
+			base.DrawConnections(view, foldout);
+
+			// Mark all referenced Cues as from sequence
+			foreach (var node in ReferencedNodes)
+			{
+				if (node is CueNode cueNode)
+				{
+					cueNode.IsFromSequence = true;
+				}
+			}
+		}
 	}
 }

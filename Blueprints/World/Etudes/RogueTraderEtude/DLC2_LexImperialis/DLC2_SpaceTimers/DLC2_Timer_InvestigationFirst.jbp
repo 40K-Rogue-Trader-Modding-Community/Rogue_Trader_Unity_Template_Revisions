@@ -1,0 +1,138 @@
+{
+  "AssetId": "c74438bfaab24c5591c3ff3b2163333f",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "d7c3d80beb354d44ab46ace48fc5bf75, EtudeTriggerActionInWarpDelayed",
+        "name": "$EtudeTriggerActionInWarpDelayed$ba39ce9e-d7ab-4e9c-bf7c-f7d7a6ee1336",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "WarpTravelTriggerCount": 2,
+        "ActionList": {
+          "Actions": [
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$beb180b6045c4a988875f323e5aa7a5d",
+              "Etude": "!bp_c74438bfaab24c5591c3ff3b2163333f",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            },
+            {
+              "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+              "name": "$StartDialog$2195e20fc7f8447ebe1f7356c4076fb5",
+              "DialogueOwner": null,
+              "m_Dialogue": "!bp_814afe604df44f2fbcd2f819593794b2",
+              "DialogEvaluator": null,
+              "SpeakerName": {
+                "m_Key": "",
+                "m_OwnerString": "",
+                "m_OwnerPropertyPath": "",
+                "m_JsonPath": "",
+                "Shared": null
+              }
+            }
+          ]
+        },
+        "TriggerType": "OncePerTravel",
+        "TimeToStart": "AfterTravelStart",
+        "Priority": 30
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_93bfb704524c4a5590d34535756db7a1",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+          "name": "$CompanionInParty$fd54101a117e4a71acd390b215fda1b7",
+          "Not": false,
+          "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+          "MatchWhenActive": true,
+          "MatchWhenDetached": true,
+          "MatchWhenRemote": true,
+          "MatchWhenEx": false,
+          "IncludeDead": false
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$a555a2b2dcc64fb4aafc1aa5a887e1b2",
+          "Not": false,
+          "Comment": "Вторая-третья глава ИЛИ 4ая ДО получения задания на Пенал",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4b0305214e6248db8294746d93792058",
+                "Not": false,
+                "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$bff3cdac897948dc94bd0b4fc7438235",
+                "Not": false,
+                "Comment": "4 глава и еще нет квеста на возврат Соломона на корабль с Пенала",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$10fc40652bc2423cacebd9a08aff9589",
+                      "Not": false,
+                      "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    },
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$2ea66152e48744d2a37ad7e1c2fa759c",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_9967e438caec41ee978a3350244db38a",
+                      "State": "None"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

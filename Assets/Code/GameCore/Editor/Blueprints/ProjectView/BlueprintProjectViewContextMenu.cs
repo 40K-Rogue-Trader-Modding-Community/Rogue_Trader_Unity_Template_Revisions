@@ -2,6 +2,8 @@ using System.IO;
 using System.Linq;
 using Assets.Editor;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Editor.Localization;
+using Kingmaker.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
 using Kingmaker.Utility.DotNetExtensions;
@@ -37,6 +39,11 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
 
             gm.AddSeparator("");
 
+#if UNITY_EDITOR && EDITOR_FIELDS
+            gm.AddItem(new GUIContent("Rename with strings"), false, () => RenameWithStrings.RenameFolder(rootPath));
+#endif
+            gm.AddSeparator("");
+
             gm.AddItem(new GUIContent("Refresh window"), false, () => BlueprintProjectView.ReloadAll());
 
             gm.ShowAsContext();
@@ -63,6 +70,11 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 AddItemShowInExplorerByRootPath(gm, fileView.RootPath);
             }
             
+            var selection = fileView.GetSelection().Select(fileView.GetItemBySelectionId).ToList();
+            if (selection.Count == 1 && selection[0] != null && selection[0].IsBlueprint)
+            {
+                BlueprintContextMenuHelper.HandleContextMenu(ref gm, fileView, selection[0]);
+            }
             gm.AddSeparator("");
 
             if (fileView.SearchPattern == "")
@@ -94,7 +106,6 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
 
             gm.AddSeparator("");
 
-            var selection = fileView.GetSelection().Select(fileView.GetItemBySelectionId).ToList();
             bool hasDirty = selection.Any(i => i!=null && BlueprintsDatabase.IsDirty(i.Id));
 
             if (hasDirty)
@@ -114,6 +125,12 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
             gm.AddSeparator("");
             BlueprintContextMenu.AddItemsToMenu(gm, selection, fileListItem);
 
+#if UNITY_EDITOR && EDITOR_FIELDS
+            gm.AddSeparator("");
+            gm.AddItem(new GUIContent("Rename with strings"), false,
+                () => RenameWithStrings.RenameBlueprints(selection
+                    .Select(i => BlueprintsDatabase.FullToRelativePath(i.FullPath))));
+#endif
             gm.AddSeparator("");
 
             gm.AddItem(new GUIContent("Save all"), false, () => BlueprintsDatabase.SaveAllDirty());

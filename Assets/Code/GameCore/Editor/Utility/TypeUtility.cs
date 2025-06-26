@@ -67,10 +67,10 @@ namespace Kingmaker.Editor.Elements
             return result.OrderBy(t => t.Name);
 		}
 
-		public static void AddElementFromMenu(RobustSerializedProperty property, Type type)
+		public static void AddElementFromMenu(RobustSerializedProperty property, Type type, int atIndex = -1)
 		{
             // hmm, why is this method in TypeUtility exactly?
-            var owner = BlueprintEditorWrapper.Unwrap<SimpleBlueprint>(property.serializedObject.targetObject) as SimpleBlueprint;
+            var owner = BlueprintEditorWrapper.Unwrap<SimpleBlueprint>(property.serializedObject.targetObject);
             if (owner == null)
             {
                 owner = (property.serializedObject.targetObject as BlueprintComponentEditorWrapper)?.Component
@@ -83,20 +83,24 @@ namespace Kingmaker.Editor.Elements
             }
             
             var element = (Element)Activator.CreateInstance(type);
-            owner.AddNewElement(element);
+            owner.AddNewElement(element, atIndex);
             ElementWorkspaceContextualPopulationController.PrefillWithTargets(element, element.Owner);
-            UpdateProperty(property, element);
+            UpdateProperty(property, element, atIndex);
         }
 
-        private static void UpdateProperty(RobustSerializedProperty property, Element element)
+        private static void UpdateProperty(RobustSerializedProperty property, Element element, int atIndex)
         {
             using (GuiScopes.UpdateObject(property.serializedObject))
             {
                 if (property.Property.isArray)
                 {
-                    property.Property.arraySize++;
+	                atIndex = atIndex < 0 || atIndex > property.Property.arraySize
+		                ? property.Property.arraySize
+		                : atIndex;
+
+                    property.Property.InsertArrayElementAtIndex(atIndex);
                     property.serializedObject.ApplyModifiedProperties();
-                    FieldFromProperty.SetFieldValue(property.Property.GetArrayElementAtIndex(property.Property.arraySize - 1), element);
+                    FieldFromProperty.SetFieldValue(property.Property.GetArrayElementAtIndex(atIndex), element);
                     property.serializedObject.Update();
                 }
                 else

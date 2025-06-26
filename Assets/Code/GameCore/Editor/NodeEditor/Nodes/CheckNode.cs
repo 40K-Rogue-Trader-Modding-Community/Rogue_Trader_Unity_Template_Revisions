@@ -8,6 +8,7 @@ using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.NodeEditor.Utility;
 using Kingmaker.Editor.NodeEditor.Window;
 using Kingmaker.ElementsSystem;
+using Kingmaker.View.MapObjects;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
 using UnityEngine;
@@ -36,15 +37,25 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 
 		protected override void DrawContent()
 		{
-			GUILayout.BeginHorizontal();
+			GUILayout.BeginVertical();
 			using (GuiScopes.UpdateObject(SerializedObject))
 			{
 				EditorGUIUtility.fieldWidth = 150;
-				EditorGUILayout.PropertyField(FindProperty("Type"), new GUIContent());
-				EditorGUIUtility.fieldWidth = 20;
-				EditorGUILayout.PropertyField(FindProperty("DC"), new GUIContent());
+				EditorGUILayout.PropertyField(FindProperty(nameof(BlueprintCheck.Type)), new GUIContent());
+				if (Asset.Difficulty == SkillCheckDifficulty.Custom)
+				{
+					GUILayout.BeginHorizontal();
+					EditorGUILayout.PropertyField(FindProperty(nameof(BlueprintCheck.Difficulty)), new GUIContent());
+					EditorGUIUtility.fieldWidth = 20;
+					EditorGUILayout.PropertyField(FindProperty("DC"), new GUIContent());
+					GUILayout.EndHorizontal();
+				}
+				else
+				{
+					EditorGUILayout.PropertyField(FindProperty(nameof(BlueprintCheck.Difficulty)), new GUIContent());
+				}
 			}
-			GUILayout.EndHorizontal();
+			GUILayout.EndVertical();
 
 			GUIStyle s = new GUIStyle(GUI.skin.label) {alignment = TextAnchor.MiddleRight};
 			GUILayout.Label("Success", s);

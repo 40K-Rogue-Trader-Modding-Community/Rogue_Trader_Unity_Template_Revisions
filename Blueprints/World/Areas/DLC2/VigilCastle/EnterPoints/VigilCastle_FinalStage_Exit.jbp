@@ -1,0 +1,108 @@
+{
+  "AssetId": "3126c80207d64435a8eb997c53d1622c",
+  "Data": {
+    "$type": "251b1bf89b36e384d8e452ce50ea1d8b, BlueprintAreaTransition",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Выход из виджила в финальном стейте",
+    "m_Actions": [
+      {
+        "Condition": {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$50175b3ab9c641428babe33725fb536b",
+          "Not": false,
+          "Comment": "При активном романсе если романс-эвента еще не было",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$6388f8c17c534248a5e9dd576feef78a",
+                "Not": false,
+                "m_Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$6b4fbd7c309f4043ba8a30a7fd8f18e6",
+                "Not": false,
+                "m_Etude": "!bp_f358b527e3dd4544a8c65f37e53a970b",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          }
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$0de9fc58-b005-4eed-b798-bbfb572ccdd6",
+              "Etude": "!bp_f358b527e3dd4544a8c65f37e53a970b",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            }
+          ]
+        }
+      },
+      {
+        "Condition": {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$a87e2dbae410490e8233b5a0c087312d",
+          "Not": false,
+          "Comment": "если романс не активен или романс эвент уже кончился",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$9acfa4da7c7e4a0a822830173ab2022c",
+                "Not": true,
+                "m_Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$cc3747ed864a48479e3fc93bcd89d6c5",
+                "Not": false,
+                "m_Etude": "!bp_f358b527e3dd4544a8c65f37e53a970b",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": true
+              }
+            ]
+          }
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "862e6465fbfe41e4ad63ce755dbb2c1d, ReturnFromGroundOperation",
+              "name": "$ReturnFromGroundOperation$2f2b3137-3a70-4444-80f0-e4a695aae9a7",
+              "m_AreaEnterPoint": "!bp_a63a13327e7f4fd7818eaf980be39e3e",
+              "m_AutoSaveMode": "BeforeExit"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

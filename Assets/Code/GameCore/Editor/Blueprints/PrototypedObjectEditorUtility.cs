@@ -231,7 +231,8 @@ namespace Kingmaker.Editor.Blueprints
 			// todo: also detect blueprint references here??
 			bool container = 
 				p.type == "LocalizedString" ||
-				p.type.StartsWith("Ak") && p.type.EndsWith("Reference");
+				p.type.StartsWith("Ak") && p.type.EndsWith("Reference") ||
+				p.type == "PrerequisitesList"; // не стал подтягивать глобально ко всем ElementsList (ActionsList, ConditionsList), потому что затронет  очень много всего в игре и кажется не в том виде, в котором хочется. По хорошему, конечно, нужно общее изменение с конвертом. 
 			string controlId = p.serializedObject.targetObject.GetHashCode() + "_" + p.propertyPath;
 
 			using (new EditorGUILayout.HorizontalScope())

@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "ArtemSchellenberg",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "Actions": {
       "Actions": [
@@ -67,9 +67,40 @@
                 "StartObjectiveIfNone": false
               },
               {
-                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
-                "name": "$GiveObjective$70e69b08-0229-4114-a8b4-e53a8ed0a654",
-                "m_Objective": "!bp_172b71fd8cab44369f943bc59066ea80"
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$ad7540d800ac4857a82d767bcdbc551c",
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$6cb65e3faafc4cd79b6a468c86dc342f",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_bed0b16c938f48da87515874f6ad7f81",
+                      "State": "Completed"
+                    },
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$9fcc0513e6e14b85b807404495d8c319",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_434bc0c20aa64e079b88a7b3c4c667ff",
+                      "State": "Completed"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                      "name": "$GiveObjective$cd8e5139-a9b3-477d-be5e-9702a720fb4b",
+                      "m_Objective": "!bp_172b71fd8cab44369f943bc59066ea80"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
               }
             ]
           },

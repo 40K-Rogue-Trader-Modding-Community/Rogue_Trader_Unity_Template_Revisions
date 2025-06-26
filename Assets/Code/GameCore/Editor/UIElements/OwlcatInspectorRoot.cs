@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Kingmaker.Editor.UIElements.Custom.Base;
@@ -71,6 +72,24 @@ namespace Kingmaker.Editor.UIElements
             }
         }
 
+        /// <summary>
+        /// To be able to create inspector for a pre-constructed elements
+        /// </summary>
+        public OwlcatInspectorRoot(SerializedObject so, IEnumerable<OwlcatVisualElement> elements)
+        {
+	        SerializedObject = so;
+	        name = SerializedObject.targetObject.name;
+
+	        LoadStyles();
+
+	        foreach (var element in elements)
+	        {
+		        Add(element);
+	        }
+
+		    RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
+        }
+
         private void LoadStyles()
 		{
 			var styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(EditorGUIUtility.isProSkin ? ProPath : PersonalPath);
@@ -106,21 +125,27 @@ namespace Kingmaker.Editor.UIElements
                     continue;
                 }
 
-                try
-                {
-                    var propField = UIElementsUtility.CreatePropertyElement(rootProperty, false);
-                    if (propField != null)
-                    {
-                        root.Add(propField);
-                    }
-                }
-                catch (Exception e)
-                {
-                    root.Add(new ErrorElement($"{rootProperty.displayName}: {e.Message}",
-                        $"Mess: {e.Message}\nTrace: {e.StackTrace}"));
-                }
+                AddProperty(root, rootProperty);
+
             } while (rootProperty.NextVisible(false) && rootProperty.depth>=startDepth); // if we did not start at root, exit the loop when we get out of the property
         }
+
+		private static void AddProperty(OwlcatContentContainer root, SerializedProperty property)
+		{
+			try
+			{
+				var propField = UIElementsUtility.CreatePropertyElement(property, false);
+				if (propField != null)
+				{
+					root.Add(propField);
+				}
+			}
+			catch (Exception e)
+			{
+				root.Add(new ErrorElement($"{property.displayName}: {e.Message}",
+					$"Mess: {e.Message}\nTrace: {e.StackTrace}"));
+			}
+		}
 
 		private void OnKeyDown(KeyDownEvent evt)
 		{

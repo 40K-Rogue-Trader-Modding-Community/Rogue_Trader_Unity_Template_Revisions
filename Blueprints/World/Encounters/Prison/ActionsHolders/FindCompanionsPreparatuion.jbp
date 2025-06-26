@@ -56,6 +56,53 @@
         },
         {
           "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$2d48fbef-5fbb-4e04-8c1b-f74ab8a6861d",
+          "Comment": "Если соломон был с нами то счетчик пати +1, даем взять его",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$cead952d-0c1c-4b64-ab8a-a328818b8cac",
+                "Not": false,
+                "m_Etude": "!bp_e3ca34e0d3ba44878f5c80b3c50a45b0",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$1cbc42c1-6e32-43f9-b5c1-8bb50e5875c6",
+                "m_Flag": "!bp_ac06d4447b5f4b96827b19a55c0f203e",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$fcf22fa4-586d-4a4d-a411-4ce158a1d785",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$6f86414b-d7b7-45d5-ae94-62b3a08dac6c",
+                "Etude": "!bp_7e726c2ea34b4f5cb40f1d850987dd65",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
           "name": "$Conditional$49409815-3979-4330-a384-bf5a0ba7a53c",
           "Comment": "Если абеляр был с нами то счетчик пати +1",
           "ConditionsChecker": {
@@ -86,6 +133,14 @@
                   "Value": 1
                 },
                 "UnlockIfNot": true
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$6141a0fe-f309-4de7-ad13-f7a45ea845f4",
+                "Etude": "!bp_f441d7d77bca42949bc48efe5434424d",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
               }
             ]
           },

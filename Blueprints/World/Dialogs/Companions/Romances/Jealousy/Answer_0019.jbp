@@ -106,10 +106,6 @@
           "Evaluate": false
         },
         {
-          "$type": "5afa2802918b3874bb6e0d611d6489cd, UpdateEtudes",
-          "name": "$UpdateEtudes$169ceae9-3bc1-43ff-bab1-59e4659a0306"
-        },
-        {
           "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
           "name": "$Conditional$3865e9a8-4e72-49a0-8399-03f008963497",
           "Comment": "если активен романс с Кибеллой, то ломаем его (ситуация, если игрок проходит длц с позднего сейва и приходит на ревность без Кибеллы)",
@@ -143,6 +139,45 @@
           "IfFalse": {
             "Actions": []
           }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$bd5079bc-0fb2-43a3-a839-863768995d49",
+          "Comment": "если активен романс с Соломоном, то ломаем его (ситуация, если игрок проходит длц с позднего сейва и приходит на ревность без Соломона)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$cdd2b0e7-b9d6-403b-a37b-13879e4768e8",
+                "Not": false,
+                "m_Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$fc0e79dd-88b6-42cf-a6b1-bf60ac67be67",
+                "Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "5afa2802918b3874bb6e0d611d6489cd, UpdateEtudes",
+          "name": "$UpdateEtudes$169ceae9-3bc1-43ff-bab1-59e4659a0306"
         }
       ]
     },

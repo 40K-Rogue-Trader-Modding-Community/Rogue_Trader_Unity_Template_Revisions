@@ -151,11 +151,14 @@
                 "Property": {
                   "Operation": "Sum",
                   "TargetType": "CurrentEntity",
+                  "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": []
                 }
               },
-              "LetCurrentUnitFinishAction": false
+              "InterruptionWithoutUIUpdates": false,
+              "LetCurrentUnitFinishAction": false,
+              "ForbidChainInterruption": false
             }
           ]
         }
@@ -230,7 +233,9 @@
           "!bp_e2a4bc52a44047948405588f73e15a0c",
           "!bp_a54dbdcdf1224777903db988e084968f"
         ],
-        "m_UnlessFact": null
+        "m_CheckedFactsTarget": "Target",
+        "m_UnlessFact": null,
+        "m_UnlessFactTarget": "Caster"
       },
       {
         "$type": "61f3388875184a4cac4ac8164eea0557, AbilityTargetCanAct",
@@ -256,6 +261,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -290,6 +296,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -324,6 +331,7 @@
         "Value": {
           "Operation": "Div",
           "TargetType": "ContextMainTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -366,6 +374,18 @@
             }
           ]
         }
+      },
+      {
+        "$type": "58590ce4af844cbd84c06187c8cc0ead, AbilityCanTargetOnlyPetUnits",
+        "name": "$AbilityCanTargetOnlyPetUnits$bb8c83ac-a695-41df-86e7-f11d7e0e614d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CanTargetOnlyOwnersPet": false,
+        "m_Inverted": true
       }
     ],
     "Author": "LeonidTolochenko",
@@ -425,6 +445,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillCauseAttack",

@@ -1,0 +1,321 @@
+{
+  "AssetId": "aace56f975564709b8761a55f979b7ac",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "904cdbeb5bf84eaf89247b99658a8b3b, RoundsTimerActions",
+        "name": "$RoundsTimerActions$040fc19e-30eb-4237-af3a-8741d631cabe",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_TickPolicy": "TurnBasedOnly",
+        "Delay": 0,
+        "Loop": 1,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$4e7a5d328a1c4c4f98b7313164991433",
+              "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+              "Value": {
+                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                "name": "$IntConstant$3d0cb7ec95074db7a81491df1b689601",
+                "Value": -1
+              },
+              "UnlockIfNot": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$8b0c198f-5c5a-4df5-bfc5-3d0fee275284",
+              "Comment": "GameOver",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                    "name": "$FlagInRange$020db4b7-98b9-48c8-94d5-d7bf8d0116d9",
+                    "Not": false,
+                    "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+                    "MinValue": 0,
+                    "MaxValue": 0
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "c874c271d8d54eb692490a97e6f0a19d, GameOver",
+                    "name": "$GameOver$e49758d3856b439da7f5903c0e506b4a",
+                    "Reason": "PartyIsDefeated"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$ec868faf147c4ac4ab0ef114d119ab59",
+              "Comment": "Ligth_State_2",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                    "name": "$FlagInRange$e91ec982359a49249ec865f9599bb771",
+                    "Not": false,
+                    "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+                    "MinValue": 3,
+                    "MaxValue": 3
+                  },
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$a8ab674fbcb35e579747d4b1089a6aa9",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_04685b6d5578445aac76486f0ec622be",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                    "name": "$ControllableActionAnimatorSetState$950ed84189a142c18f7dbcda7b307a1f",
+                    "Comment": "",
+                    "State": 2,
+                    "IdOfObject": {
+                      "EntityNameInEditor": "TestLightForWarp",
+                      "_entity_id": "55337078-06cc-47cf-a1da-5b316644a331",
+                      "SceneAssetGuid": "e71fc66646744414ebf1814b79c27d42"
+                    }
+                  },
+                  {
+                    "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                    "name": "$IncrementFlagValue$f1c813ba7d1a4411b290328df9c38a17",
+                    "m_Flag": "!bp_04685b6d5578445aac76486f0ec622be",
+                    "Value": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$966307d500a049f0af6eb7ded368df30",
+                      "Value": 1
+                    },
+                    "UnlockIfNot": false
+                  },
+                  {
+                    "$type": "b96d07cc91ca426c9b48bfef6f965788, ContextActionChangeVeilValue",
+                    "name": "$ContextActionChangeVeilValue$f2a647aeb5484ac3bb2b5a1d2fa4d141",
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 10,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "OverrideMinValue": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$dd5517456c6c4a279f057f57d850a475",
+              "Comment": "Ligth_State_3",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                    "name": "$FlagInRange$32754fc140694d68bd1d48f23b468eb4",
+                    "Not": false,
+                    "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+                    "MinValue": 2,
+                    "MaxValue": 2
+                  },
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$cd2042f060075cd7ad95e0e8a6ccc32f",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_04685b6d5578445aac76486f0ec622be",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                    "name": "$ControllableActionAnimatorSetState$5657b44607be42c59b8bac80951d6306",
+                    "Comment": "",
+                    "State": 3,
+                    "IdOfObject": {
+                      "EntityNameInEditor": "TestLightForWarp",
+                      "_entity_id": "55337078-06cc-47cf-a1da-5b316644a331",
+                      "SceneAssetGuid": "e71fc66646744414ebf1814b79c27d42"
+                    }
+                  },
+                  {
+                    "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                    "name": "$IncrementFlagValue$e5d62d44dea2440a8e2c494ce38f5748",
+                    "m_Flag": "!bp_04685b6d5578445aac76486f0ec622be",
+                    "Value": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$9347f23aa49f471687dbfa2f4a6affc6",
+                      "Value": 1
+                    },
+                    "UnlockIfNot": false
+                  },
+                  {
+                    "$type": "b96d07cc91ca426c9b48bfef6f965788, ContextActionChangeVeilValue",
+                    "name": "$ContextActionChangeVeilValue$b6de6ba9fc354ab88b72064206b416b4",
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 15,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "OverrideMinValue": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15e731eb83be4db9a1840339fff7b8ea, EtudeBracketShowCounterUI",
+        "name": "$EtudeBracketShowCounterUI$9a1f568f-a07b-4ef4-a7d0-361e1e0c05d7",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Label": {
+          "m_Key": "",
+          "m_OwnerString": "",
+          "m_OwnerPropertyPath": "",
+          "m_JsonPath": "",
+          "Shared": {
+            "assetguid": "cd4b6b83e1943de448ecdea427c8760e",
+            "stringkey": "3ac14d17-8b81-4bbb-8f7f-6fa3115d6b39"
+          }
+        },
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "1373b0e272ac47d7b99dd6ee1030ab6e, UnlockableFlagValueGetter",
+              "name": "$UnlockableFlagValueGetter$be9ea6a2d5ae478f9964bd3229e466e1",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499"
+            }
+          ]
+        },
+        "TargetValue": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": []
+        },
+        "UICounterType": "Label"
+      },
+      {
+        "$type": "d1dfc17d49354a9b980afe5f01bac608, EtudeBracketUnlockableFlagTrigger",
+        "name": "$EtudeBracketUnlockableFlagTrigger$a949acbf-533b-4d70-b6a8-056b116a61ae",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Flag": "!bp_828cd49fedd1435eaee8511ec4c2a499",
+        "RunActionsOnEnter": false,
+        "OnUnlocked": {
+          "Actions": []
+        },
+        "OnLocked": {
+          "Actions": []
+        },
+        "OnChanged": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$f69ca95e5be540f69e93e60c666ae6b9",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": []
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_6746bf7808034f1a9cbc2f8771bb24d6",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

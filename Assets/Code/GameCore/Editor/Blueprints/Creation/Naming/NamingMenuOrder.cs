@@ -6,5 +6,6 @@
 		StringType,
 		Chapter,
 		Location,
+		Area,
 	}
 }

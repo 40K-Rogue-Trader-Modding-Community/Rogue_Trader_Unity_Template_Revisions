@@ -1,0 +1,386 @@
+{
+  "AssetId": "05447e7b74a34a06887c390019d83ddf",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "5ce1080e9c809614daae11db4baa37a4, SummonPoolTrigger",
+        "name": "$SummonPoolTrigger$741d2ec2-521f-44c5-9eb6-1850834fbb0d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "На окончании боя комплит этюда",
+        "Count": 0,
+        "ChangeType": "Descending",
+        "m_SummonPool": "!bp_8858be3d8cf246a090881bf30ac6e134",
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$2bbcea9b3df24ea68be56c79816f6cdc",
+              "Etude": "!bp_05447e7b74a34a06887c390019d83ddf",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$34a85f5160e14af8a551a85e3513e46f",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$6afcd1fa42ef4d70ae1815db68b70dc8",
+                "MapObject": {
+                  "EntityNameInEditor": "Encounter01Blocker",
+                  "_entity_id": "28e8a13a-e204-4537-bf3a-d071126cb871",
+                  "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$38c8b8d6-753c-4b2e-bbee-6695a5db817b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "На комплите этюда (там чек выхда из боя)",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$4fb0370e041146ccb556104a50787d55",
+              "m_Flag": "!bp_0e67c4be5683422ba2c4319cf433302e",
+              "Value": {
+                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                "name": "$IntConstant$6b52030a987e46f1b695c42b26641991",
+                "Value": 1
+              },
+              "UnlockIfNot": true
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$f4a134bd45564004b7df07cecd5781c3",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$58b7c92469644c668688d660f8cc79e3",
+                "MapObject": {
+                  "EntityNameInEditor": "BridgeToLiftController",
+                  "_entity_id": "4a9c07d9-57f8-472c-ae63-f1e26a63eb80",
+                  "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$b247d5d0-45c0-44dd-a288-f2617a4156cc",
+              "ScriptZone": {
+                "EntityNameInEditor": "BanterZoneAfterCombat1",
+                "_entity_id": "38a7518d-f9cd-4dda-8786-38922559f29a",
+                "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+              }
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$e5f17ff3-b6ee-4cab-9725-e5adb657bfc2",
+              "ScriptZone": {
+                "EntityNameInEditor": "BanterZoneAfterCombat2",
+                "_entity_id": "d40c24f4-d991-46ff-8553-709b07e0b92b",
+                "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+              }
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$d9426235-afbe-40af-a84e-803e3652bc3d",
+              "ScriptZone": {
+                "EntityNameInEditor": "BanterZoneAfterCombat3",
+                "_entity_id": "c941dcf1-914e-433a-8cad-1002f87f4e74",
+                "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+              }
+            },
+            {
+              "$type": "28f3698ba62041e09a5abcbe59a14725, MakeAutoSave",
+              "name": "$MakeAutoSave$c50186b7c2a24546a4ec438033fd9f11",
+              "SaveForImport": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$61c6f5e7-2943-41d6-973a-ea4f105beb30",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5a0f8a1614a840f8b0629a71b6de51f7, SpawnBySummonPool",
+              "name": "$SpawnBySummonPool$85a6aa10-8b93-4cc9-9787-96c6738ea549",
+              "m_Pool": "!bp_8858be3d8cf246a090881bf30ac6e134",
+              "ActionsOnSpawn": {
+                "Actions": [
+                  {
+                    "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                    "name": "$SwitchFaction$5bc4a627-5628-4845-a109-2b9032360629",
+                    "Target": {
+                      "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                      "name": "$SpawnedUnit$9d65f3bc-ba3e-4ff0-9eeb-834cb86f27b4"
+                    },
+                    "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
+                    "IncludeGroup": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "6944afb3caa12a445ba1b41c97d4eb1e, EvaluatedUnitTurnTrigger",
+        "name": "$EvaluatedUnitTurnTrigger$81881bc8-5fdd-4408-a807-69bda832567d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Unit": {
+          "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+          "name": "$UnitFromSpawner$8281ebbb-1576-401a-a3d0-8a0234533903",
+          "Spawner": {
+            "EntityNameInEditor": "G1_Sniper_Elite",
+            "_entity_id": "fd2519f2-718e-4600-837d-27e897656ae3",
+            "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+          }
+        },
+        "Round": 2,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Once": false,
+        "TriggerOnEndTurn": true,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$93edf5a9-20bb-426e-a15b-f0c7554beb8f",
+              "m_Cutscene": "!bp_6c05a5cdd71b4ac4a8aa1753bd426516",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$37745df9-081b-4231-8053-90893bd85ccb",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$bb10b8f6-ee1f-430e-ada0-c7097912c35f",
+                "MapObject": {
+                  "EntityNameInEditor": "Demolition_BlastDoor3",
+                  "_entity_id": "752c1426-a4c0-4d03-ba6e-6056c1eca760",
+                  "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f77f7470b5b4ccf489fa052f95c399a1, EvaluatedUnitCombatTrigger",
+        "name": "$EvaluatedUnitCombatTrigger$1cec7a30-485e-4acc-832e-bafc662b81a1",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Unit": {
+          "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+          "name": "$UnitFromSpawner$09d03667-f15e-43d2-b605-9a61028fde61",
+          "Spawner": {
+            "EntityNameInEditor": "G1_Sniper_Elite",
+            "_entity_id": "fd2519f2-718e-4600-837d-27e897656ae3",
+            "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+          }
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$4859bc29-e390-4299-82a3-2f05198f9177",
+              "Etude": "!bp_3480cfdf255a4b25a732ef324db6e270",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            },
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$3963c8af-9aca-49f1-befa-13a5830fd37a",
+              "m_Group": {
+                "EntityNameInEditor": "EnemyGroup01ForCutScenes",
+                "_entity_id": "e42ce017-301b-4778-b29d-522e1e47455a",
+                "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$ec54ac9b-a859-4ae9-9e6e-bdf2d4ea2f2a",
+                    "Target": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$6f4c7db6-c9ea-4657-a4c8-5e6f08fb2ae7"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "d6438d31eff349d4bf1ec872cfc0a001, UnitsFromSpawnersInUnitGroup",
+              "name": "$UnitsFromSpawnersInUnitGroup$830205f2-5136-4ac3-a550-350dd262000a",
+              "m_Group": {
+                "EntityNameInEditor": "EnemyGroup01B",
+                "_entity_id": "bb7aed7f-2ab0-4aef-9ddb-5dcd5f165e4a",
+                "SceneAssetGuid": "aebc99f3cac59704897ae492ed19ed98"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$f42b6b75-91eb-4535-800e-9f3197f9e9fc",
+                    "m_Cutscene": "!bp_963e9d19edfc4f7fa9d3e10083acfb2c",
+                    "WithUnit": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$d172b13f-7783-4cc8-a6f2-8ee49540ac0b"
+                    },
+                    "m_CheckType": "Params"
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$038798ac-784b-4dc6-abeb-28b39c74572e",
+                    "m_Cutscene": "!bp_b1d54c17946849b6b916c37f6c7f7cea",
+                    "WithUnit": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$46485908-44b5-454d-87e3-8b5851704bab"
+                    },
+                    "m_CheckType": "Params"
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$4d313088-1945-4102-93ab-b8ee50aba2e2",
+                    "m_Cutscene": "!bp_41c5470baf0f4135b3c72cb1642e61a7",
+                    "WithUnit": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$4f13905c-b3da-4bba-b141-466964af97f1"
+                    },
+                    "m_CheckType": "Params"
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$1421467f-f04c-4a85-8ef6-6732847cda2c",
+                    "m_Cutscene": "!bp_c725222632bf47e3b45ac30868e8760a",
+                    "WithUnit": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$a2415210-749d-491b-a07f-a0fdf1590c1b"
+                    },
+                    "m_CheckType": "Params"
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$0b49a822-4be6-4601-b8a9-d81e96934f7d",
+                    "m_Cutscene": "!bp_db72e4d2999b422e8152376af692e80f",
+                    "WithUnit": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$83020afe-bc00-4868-87be-92d484cdc7e7"
+                    },
+                    "m_CheckType": "Params"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "TriggerOnExit": false
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_08e08d9ac8b04563b05703596819829a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$e62324dc2faf4a1ba4311e07c5ea3c98",
+          "Not": false,
+          "m_Etude": "!bp_a65c960792b14e08b57d83982a6aafae",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+          "name": "$IsInCombat$fa3018580546451dacd7a3d228ca8756",
+          "Not": true,
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$8f005e87b9b847cf8de5491f2b586895"
+          },
+          "Player": true
+        }
+      ]
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": "!bp_839c55912b83428285a9bd3ff01f0991",
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

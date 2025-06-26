@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "ArtemSchellenberg",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "EntryCondition": {
       "Operation": "And",
@@ -25,36 +25,72 @@
     "Action": {
       "Actions": [
         {
-          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
-          "name": "$TranslocateUnit$c66c7cb9-bf60-4e65-9ea5-491b70d38cc2",
-          "Unit": {
-            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
-            "name": "$CompanionInParty$85fea3b4-31a0-4e05-ba34-a1a7129d8a7a",
-            "m_Companion": "!bp_768a816a8b734882af399f8258ffcada",
-            "IncludeActive": true,
-            "IncludeDetached": false,
-            "IncludeRemote": false,
-            "IncludeExCompanions": false,
-            "IncludeDead": false,
-            "Index": 0
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$4cf71563-a398-4b70-b6c0-451821cbb524",
+          "Comment": "Jae",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$31ed7c32-55f9-44d5-af4d-bcbaa96148a0",
+                "Not": false,
+                "m_companion": "!bp_768a816a8b734882af399f8258ffcada",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
           },
-          "translocatePosition": {
-            "EntityNameInEditor": "Jae",
-            "_entity_id": "10c4c3fc-1041-40e1-96e6-db0f7bc17d31",
-            "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$2390ef5f-e7db-4b31-ae41-e5f6af8d594a",
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$a30b57c9-54c5-480d-99af-259bd9292215",
+                  "m_Companion": "!bp_768a816a8b734882af399f8258ffcada",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": false,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "Jae",
+                  "_entity_id": "10c4c3fc-1041-40e1-96e6-db0f7bc17d31",
+                  "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$52847693-3be2-4c7d-a5a8-b50191712d17",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "Jae",
+                    "_entity_id": "10c4c3fc-1041-40e1-96e6-db0f7bc17d31",
+                    "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
           },
-          "translocatePositionEvaluator": null,
-          "m_PrecisePosition": true,
-          "m_CopyRotation": true,
-          "translocateOrientationEvaluator": {
-            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
-            "name": "$LocatorOrientation$3fe82871-71d8-4a0a-aeb1-4da99b9f82de",
-            "LocatorEval": null,
-            "Locator": {
-              "EntityNameInEditor": "Jae",
-              "_entity_id": "10c4c3fc-1041-40e1-96e6-db0f7bc17d31",
-              "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-            }
+          "IfFalse": {
+            "Actions": []
           }
         },
         {
@@ -100,6 +136,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -109,7 +146,14 @@
                     "EntityNameInEditor": "Yrliet",
                     "_entity_id": "e8e484b5-34f1-4584-829b-2b5db79b856e",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -161,6 +205,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -170,7 +215,14 @@
                     "EntityNameInEditor": "Abelard",
                     "_entity_id": "88102cec-df2c-44c6-ad91-3313a067def6",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -222,6 +274,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -231,7 +284,14 @@
                     "EntityNameInEditor": "Pascal",
                     "_entity_id": "cea96b4f-8b7b-4d6b-af47-b9c65d5f4d2c",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -283,6 +343,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -292,7 +353,14 @@
                     "EntityNameInEditor": "Heinrix",
                     "_entity_id": "ac1f735d-62a9-40d7-b9a7-1d8b033311fd",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -344,6 +412,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -353,7 +422,14 @@
                     "EntityNameInEditor": "Cassia",
                     "_entity_id": "6e9c6070-994e-44f9-89ac-2baa68ccc1dd",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -405,6 +481,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -414,7 +491,14 @@
                     "EntityNameInEditor": "Argenta",
                     "_entity_id": "f03d6c80-c3d2-46fa-a0e6-b86f05bd42b6",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -466,6 +550,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -475,7 +560,14 @@
                     "EntityNameInEditor": "Idira",
                     "_entity_id": "78aa077e-93d3-4b67-a9df-18f8f3c26f28",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-                  }
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -527,6 +619,7 @@
                 },
                 "translocatePositionEvaluator": null,
                 "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
                 "m_CopyRotation": true,
                 "translocateOrientationEvaluator": {
                   "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -536,7 +629,128 @@
                     "EntityNameInEditor": "Kibellah",
                     "_entity_id": "165fbbbf-343c-40fb-bd5b-a3b61e0219ba",
                     "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$626e0683-4c4c-4c9e-bdde-1b36fb7e8755",
+          "Comment": "Solomorne",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$4de12d6d-6b73-4302-a78c-3f28b209407a",
+                "Not": false,
+                "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$65a40e65-b841-492f-a0b4-38fe57c1e629",
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$ede4c669-0eaf-4896-b59f-5980f3343063",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": false,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "Solomorne",
+                  "_entity_id": "5eb88cd4-99a4-44f6-8557-a3cdd12b957d",
+                  "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$52874a4c-3b60-4144-bf95-befba3d54437",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "Solomorne",
+                    "_entity_id": "5eb88cd4-99a4-44f6-8557-a3cdd12b957d",
+                    "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$cd10cb45-24fb-42e2-a2fb-d75a2bb821e3",
+                "Unit": {
+                  "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                  "name": "$PetByOwner$8fd1bc44-1a2e-4c28-b565-7bc04cdf3721",
+                  "OwnerEvaluator": {
+                    "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                    "name": "$CompanionInParty$f21f848a-07e8-49cb-9e30-cee4e96441b0",
+                    "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                    "IncludeActive": true,
+                    "IncludeDetached": false,
+                    "IncludeRemote": false,
+                    "IncludeExCompanions": false,
+                    "IncludeDead": false,
+                    "Index": 0
                   }
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "Gleito",
+                  "_entity_id": "97ce6aea-e94c-4d38-b8ce-8b76653440c9",
+                  "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$784fad1a-237a-488f-905e-b7abd2f1067d",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "Gleito",
+                    "_entity_id": "97ce6aea-e94c-4d38-b8ce-8b76653440c9",
+                    "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
                 }
               }
             ]
@@ -559,6 +773,7 @@
           },
           "translocatePositionEvaluator": null,
           "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
           "m_CopyRotation": true,
           "translocateOrientationEvaluator": {
             "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -568,7 +783,14 @@
               "EntityNameInEditor": "RT",
               "_entity_id": "7bb35940-a301-4eb9-914d-dd77aed831af",
               "SceneAssetGuid": "f5c5330bdab74724cbef1e87d27c9a7f"
-            }
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
           }
         }
       ]

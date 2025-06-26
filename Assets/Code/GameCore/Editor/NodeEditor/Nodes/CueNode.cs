@@ -1,5 +1,4 @@
-﻿using Code.GameCore.Editor.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Kingmaker.Blueprints;
@@ -8,16 +7,23 @@ using Kingmaker.DialogSystem.Blueprints;
 using Kingmaker.Editor.NodeEditor.Utility;
 using Kingmaker.Editor.NodeEditor.Window;
 using Kingmaker.ElementsSystem;
+using Kingmaker.ElementsSystem.Interfaces;
 using Kingmaker.Localization;
+using Kingmaker.UI.Sound;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
+using Code.GameCore.Editor.Validation; // DO NOT REMOVE THIS, breaks ModTemplate
 
 namespace Kingmaker.Editor.NodeEditor.Nodes
 {
-	public class CueNode : EditorNode<BlueprintCue>
+	public class CueNode : EditorNode<BlueprintCue>, IForceableConditionNode
 	{
+		private bool m_IsFromSequence;
+		private bool m_IsVoiceOverButtonPressed;
+		private static GameObject m_DebugCuePlayer;
+
 		public CueNode(Graph graph, BlueprintCue asset) : base(graph, asset, new Vector2(200, 80))
 		{
 #if UNITY_EDITOR && EDITOR_FIELDS
@@ -36,9 +42,33 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 #endif
 		}
 
+		public bool IsFromSequence
+		{
+			get => m_IsFromSequence;
+
+			set
+			{
+				m_IsFromSequence = value;
+
+				// Mark all children as referenced from sequence as well
+				foreach (var node in ReferencedNodes)
+				{
+					if (node is CueNode cueNode)
+					{
+						cueNode.IsFromSequence = m_IsFromSequence;
+					}
+				}
+			}
+		}
+
+		private bool IsFinalCue
+			=> !IsFromSequence
+			   && !Asset.Answers.Any()
+			   && !Asset.Continue.Cues.Any();
+
 		public override Color GetWindowColor()
 		{
-			return Colors.CueWindow;
+			return IsFinalCue ? Colors.CueWindowFinal : Colors.CueWindow;
 		}
 
 		public override string GetText()
@@ -50,8 +80,36 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 #endif
 		}
 
+		public override void BeforeDrawConnections()
+		{
+			base.BeforeDrawConnections();
+			IsFromSequence = false;
+		}
+
 		protected override void DrawContent()
 		{
+			using (GuiScopes.Horizontal())
+			{
+				if (IsFinalCue)
+				{
+					DrawFunctions.NodeIcon(Icons.FinalNode, "This cue is final");
+				}
+
+				if (Application.isPlaying)
+				{
+					string voiceOver = Asset.Text.GetVoiceOverSound();
+					if (!string.IsNullOrEmpty(voiceOver))
+					{
+						DrawFunctions.IconButton(
+							Icons.Play,
+							"Play voice over",
+							() => PlayVoiceOver(voiceOver),
+							ref m_IsVoiceOverButtonPressed);
+					}
+				}
+
+			}
+
 			using (GuiScopes.UpdateObject(SerializedObject))
 			{
 				if (Asset.SoulMarkShift.Value != 0)
@@ -91,7 +149,17 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 			}
 		}
 
-        protected override IEnumerable<SimpleBlueprint> GetAllReferencedAssetsInternal()
+		private static void PlayVoiceOver(string voiceOver)
+		{
+			EditorApplication.ExecuteMenuItem("Window/General/Game");
+
+			AkSoundEngine.StopAll();
+
+			m_DebugCuePlayer ??= new GameObject("DebugCuePlayer");
+			VoiceOverPlayer.PlayVoiceOver(voiceOver, m_DebugCuePlayer);
+		}
+
+		protected override IEnumerable<SimpleBlueprint> GetAllReferencedAssetsInternal()
 		{
 			return Asset.Continue.Cues.Dereference()
                 .Cast<SimpleBlueprint>()
@@ -118,9 +186,11 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 			if (Asset.OnShow.HasActions || Asset.OnStop.HasActions)
 				yield return ElementsDescription.Actions(extended, Asset.OnShow, Asset.OnStop);
 #if UNITY_EDITOR && EDITOR_FIELDS
-			if (Application.isPlaying && Game.Instance.Player.Dialog.ShownCues.Contains(Asset))
-				yield return "Seen";
+            if (Application.isPlaying && Game.Instance.Player.Dialog.ShownCuesContains(Asset))
+                yield return "Seen";
 #endif
 		}
+
+		public BlueprintScriptableObject ForceableAsset => Asset;
 	}
 }

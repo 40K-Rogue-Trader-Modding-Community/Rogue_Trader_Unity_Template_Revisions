@@ -1,0 +1,63 @@
+{
+  "AssetId": "a89c0da0164a42cbbe7332e42f37358f",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "WH-346442 Ломается стейт храма, в нем пропадают НПС если провален квест \"Кровью флагмана стану я\"",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d7745015cfeb4730aae5f24632c4a428",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$6b948eb4-fe1d-4c4a-932a-4d59a52f5b84",
+                "Not": false,
+                "m_Quest": "!bp_27830c65a1714267aa7e10d984308d4d",
+                "State": "Failed"
+              },
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$cbbf426f-db25-465b-ad76-6abd9f9d6e61",
+                "Not": true,
+                "m_Quest": "!bp_7f1629917af34c29850a5660de6da36b",
+                "State": "Failed"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "9834963f1a257bc4e9134d8ed2ffe2c2, UnStartEtude",
+                "name": "$UnStartEtude$5dfaf51356704625b25909441c87e2bc",
+                "Etude": "!bp_f67f42be0bed4be0be8cb1bc7b32a1e8"
+              },
+              {
+                "$type": "546c217ec8c177f4cb25b4b4b6ca35e8, StartEtudeForced",
+                "name": "$StartEtudeForced$3669a9f6-4f77-4e16-bf84-90f2684996c1",
+                "Etude": "!bp_f67f42be0bed4be0be8cb1bc7b32a1e8"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

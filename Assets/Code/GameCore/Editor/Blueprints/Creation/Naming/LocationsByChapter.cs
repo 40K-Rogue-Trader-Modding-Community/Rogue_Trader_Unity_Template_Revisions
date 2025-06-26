@@ -12,20 +12,21 @@ namespace Kingmaker.Editor.Blueprints.Creation.Naming
 	public class LocationsByChapter : ScriptableSingleton<LocationsByChapter>
 	{
 		[Serializable]
-		public class ChapterAreas
+		public class ChapterLocations
 		{
 			public Chapter? Chapter;
 			public Location[]? Locations;
 		}
 
 		[SerializeField]
-		public ChapterAreas[]? Items;
+		public ChapterLocations[]? Items;
 
 		public IEnumerable<string>? GetLocationNames(string chapterName)
 		{
+
 			var locations = Items?
 				.FirstOrDefault(item => item.Chapter != null && item.Chapter.name == chapterName)?
-				.Locations;
+				.Locations?.Where(l => l != null);
 			return locations?.Select(location => location.name);
 		}
 	}

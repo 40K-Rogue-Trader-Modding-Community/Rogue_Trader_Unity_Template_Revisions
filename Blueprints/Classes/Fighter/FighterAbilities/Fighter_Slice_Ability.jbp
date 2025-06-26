@@ -42,7 +42,9 @@
         "m_CheckedFacts": [
           "!bp_661e6b46ef8b403c9a15c8fd4635898b"
         ],
-        "m_UnlessFact": null
+        "m_CheckedFactsTarget": "Target",
+        "m_UnlessFact": null,
+        "m_UnlessFactTarget": "Caster"
       },
       {
         "$type": "224c1eb24ed98e942ae15b9e10e62724, WarhammerEndTurn",
@@ -126,7 +128,7 @@
                 "Actions": [
                   {
                     "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
-                    "name": "$ContextActionAttackWithFirstWeaponAbility$53024cb0-fb5c-4bb9-8987-0e3b5f232e0f",
+                    "name": "$ContextActionAttackWithFirstWeaponAbility$11a0a318-0355-4aff-8cef-0bd54ede6d55",
                     "TargetIsPriorityTarget": false,
                     "m_PriorityTargetBuff": null,
                     "useSecondWeapon": true,
@@ -428,10 +430,82 @@
               "IfFalse": {
                 "Actions": []
               }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$bfc6f449-9116-4aeb-8e65-9ac2a425009f",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$53e06169-01ef-457c-9e63-52757129820d",
+                    "Not": false,
+                    "m_Fact": "!bp_d139e202d3994c3dbcc010b69705973f"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$08d1b8df-7150-452a-b6c3-cc53aa9b3582",
+                    "m_Buff": "!bp_76a4941a9faa44b8be2a270a45c7e115",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         },
-        "m_BuffOnMovement": "!bp_8b22aaa1a2fc451e8accd4352fb84e7e"
+        "m_BuffOnMovement": "!bp_8b22aaa1a2fc451e8accd4352fb84e7e",
+        "m_SkipSpeedOverride": false,
+        "m_MaxSpeedOverride": 10.0,
+        "m_DelayAfterMovement": 0.0
       },
       {
         "$type": "c53b6a74192ad9d43818c98797b7e0de, AbilityCasterHasNoFacts",
@@ -489,6 +563,7 @@
     "CanTargetFriends": false,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -504,6 +579,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",

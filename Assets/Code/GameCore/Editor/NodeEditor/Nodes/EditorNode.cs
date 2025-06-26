@@ -4,11 +4,13 @@ using System.Linq;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Blueprints.Root;
 using Kingmaker.Controllers.Dialog;
 using Kingmaker.DialogSystem.Interfaces;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.NodeEditor.Utility;
 using Kingmaker.Editor.NodeEditor.Window;
+using Kingmaker.ElementsSystem;
 using Kingmaker.ElementsSystem.Interfaces;
 using Kingmaker.Utility.DotNetExtensions;
 using Owlcat.Editor.Core.Utility;
@@ -33,6 +35,7 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
         public bool Foldout = false;
         
         const float FoldoutButtonSize = 40;
+        const float DebugMessageHeight = 16;
         private string FoldoutLabel => Foldout ? "Collapsed" : "Expanded";
 
         [CanBeNull]
@@ -46,6 +49,8 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
                     SetParentAsset(value.GetAsset());
             }
         }
+
+        public readonly List<EditorNode> ReferencedNodes = new List<EditorNode>(32);
 
         public IEnumerable<EditorNode> VirtualNodes
         {
@@ -134,6 +139,11 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
                     DrawCommentToFoldedNode(r);
                 }
 
+                if (this is IForceableConditionNode)
+                {
+                    DrawForcedConditionsButton(r);
+                }
+
                 if (GetBlueprint() is ILocalizedStringHolder blueprint && blueprint.LocalizedStringText.Shared)
                 {
                     DrawSharedStringMarker(r);
@@ -195,6 +205,36 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
             }
         }
         
+        private void DrawForcedConditionsButton(Rect r)
+        {
+            var buttonRect = new Rect(new Vector2(r.xMax - FoldoutButtonSize * 4, r.yMin - FoldoutButtonSize * 0.5f),
+                new Vector2(FoldoutButtonSize * 2, FoldoutButtonSize * 0.5f));
+            var boxStyle = new GUIStyle(EditorStyles.textArea) {stretchWidth = true};
+            GUI.Box(buttonRect, GUIContent.none, boxStyle);
+            
+            var buttonStyle = new GUIStyle(EditorStyles.textArea)
+                {wordWrap = true, fontSize = 10, stretchWidth = true};
+
+            var forceable = this as IForceableConditionNode;
+            var currentState = DialogDebugRoot.Instance.GetForcedCondition(forceable!.ForceableAsset);
+            GUI.color = currentState switch
+            {
+                ForcedConditionsState.NotForced => Colors.Expanded,
+                ForcedConditionsState.ForceTrue => Colors.Condition,
+                _ => Colors.ConditionNot
+            };
+            
+            if (GUI.Button(buttonRect, currentState.ToString(), buttonStyle))
+            {
+                // dropping focus from other windows
+                GUI.FocusControl("");
+                Graph.SelectedNode = this;
+                Graph.Repaint();
+                Event.current.Use();
+                DialogDebugRoot.Instance.SetForcedCondition(forceable!.ForceableAsset, (ForcedConditionsState)(((int)currentState + 1) % 3));
+            }
+        }
+        
         private void DrawCommentToFoldedNode(Rect r)
         {
             if (Foldout)
@@ -248,7 +288,9 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
                     continue;
 
                 Profiler.BeginSample("One Message");
-                Rect messageRect = new Rect(messagesStart + new Vector2(0f, 16 * index), new Vector2(280f, 16f));
+                Rect messageRect = new Rect(
+                    messagesStart + new Vector2(0f, DebugMessageHeight * index),
+                    new Vector2(Size.x, DebugMessageHeight));
                 messageRect = view.ToScreen(messageRect);
                 index++;
 
@@ -265,6 +307,10 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
             Profiler.EndSample();
         }
 
+        public virtual void BeforeDrawConnections()
+        {
+        }
+
         public virtual void DrawConnections(CanvasView view, bool foldout)
         {
             if (foldout)
@@ -276,7 +322,11 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 
             if (GetAsset() == null)
                 return;
-            foreach (EditorNode node in GetReferencedNodes())
+
+            ReferencedNodes.Clear();
+            ReferencedNodes.AddRange(GetReferencedNodes());
+
+            foreach (EditorNode node in ReferencedNodes)
                 DrawFunctions.Connection(view, this, node, Colors.Connection);
 
             if (Graph.ShowRelations)
@@ -374,6 +424,19 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
                 }
 
                 NodeEditorBase.CurrentNode = this;
+
+                if (DialogDebug.DebugMessages.Count > 0)
+                {
+                    Profiler.BeginSample("ReserveDebugRect()");
+                    foreach (var m in DialogDebug.DebugMessages)
+                    {
+                        if (m.Blueprint == BlueprintEditorWrapper.Unwrap<BlueprintScriptableObject>(GetAsset()))
+                        {
+                            EditorGUILayout.Space(DebugMessageHeight);
+                        }
+                    }
+                    Profiler.EndSample();
+                }
 
                 Profiler.BeginSample("DrawComment()");
                 var commentChanged = DrawComment();
@@ -496,6 +559,8 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
         {
             return Enumerable.Empty<string>();
         }
+
+        public virtual void ForceConditionsCheck(bool? forcedValue){}
 
         public IEnumerable<ScriptableObject> GetAllReferencedAssets()
         {

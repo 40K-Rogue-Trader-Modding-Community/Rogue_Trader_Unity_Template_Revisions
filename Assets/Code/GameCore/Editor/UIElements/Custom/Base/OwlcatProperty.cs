@@ -82,7 +82,7 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			IsExpanded = GetSavedExpandedState();
 		}
 
-		protected OwlcatProperty(SerializedProperty property, Layout layout) : this(property, layout, false, true)
+		public OwlcatProperty(SerializedProperty property, Layout layout) : this(property, layout, false, true)
 		{
 		}
 

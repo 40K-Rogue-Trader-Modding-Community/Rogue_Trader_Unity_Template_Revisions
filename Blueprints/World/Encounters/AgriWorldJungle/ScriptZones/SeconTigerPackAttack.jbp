@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "EugeneIvanov",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -33,13 +33,63 @@
     "EnterActions": {
       "Actions": [
         {
-          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-          "name": "$PlayCutscene$05b19e9c-89cf-4e03-aa50-05332bfff548",
-          "m_Cutscene": "!bp_20689d399ddf440a892c622ddbde5b6d",
-          "PutInQueue": false,
-          "CheckExistence": true,
-          "Parameters": {
-            "Parameters": []
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b110bec686384fd48c82cccc610a35d4",
+          "Comment": "Если играется длс2 и есть пет то бой стартует без амбуша",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f015372b752d4f249a20f113dc15a5a4",
+                "Not": false,
+                "m_Etude": "!bp_0620af31d1b84acdb92a529964e8cd30",
+                "NotStarted": false,
+                "Started": true,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$9fb67f757a834f088d93328b7bdfdf12",
+                "Not": false,
+                "m_companion": "!bp_fffed8b281aa45fc9926d62d7aaf94c9",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$3c057231d15d4605865a4e3cf9e32e2b",
+                "m_Cutscene": "!bp_4289070d95bd4405825e6f66ed4ee8c6",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$b79b870da20e42f387aa70fdeaad1e97",
+                "m_Cutscene": "!bp_20689d399ddf440a892c622ddbde5b6d",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
           }
         }
       ]

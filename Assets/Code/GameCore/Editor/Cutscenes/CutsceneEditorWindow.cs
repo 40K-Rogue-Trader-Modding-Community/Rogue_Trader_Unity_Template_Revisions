@@ -1201,9 +1201,14 @@ namespace Kingmaker.Editor.Cutscenes
                 using (GuiScopes.Color(gate.Color))
                 {
                     var content = new GUIContent(gate.Comment);
-                    var size = OwlcatEditorStyles.Instance.Comment.CalcSize(content);
-                    var r = new Rect(rect.xMax, rect.y, size.x, Layout.TrackHeight);
-                    GUI.Box(r, content, OwlcatEditorStyles.Instance.Comment);
+                    var style = new GUIStyle(OwlcatEditorStyles.Instance.Comment)
+                    {
+                        fixedHeight = 0,
+                        stretchHeight = true
+                    };
+                    var size = style.CalcSize(content);
+                    var r = new Rect(rect.xMax, rect.y, size.x, size.y);
+                    GUI.Box(r, content, style);
                     ObjectSelectionButton(gate, r, rect);
                 }
             }

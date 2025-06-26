@@ -1,0 +1,316 @@
+{
+  "AssetId": "fb10a23f3d994c428bc4a3062679a0d0",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$62e9edba-ad79-4062-9930-9ec5127dd3a8",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
+              "name": "$ContextActionOnAllUnitsInCombat$cf3d3b1ee3ab47949f46a48b3b316e27",
+              "OnlyEnemies": false,
+              "OnlyAllies": false,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$b6d9a467b35b4a15a1e0d9b0d9ca19c4",
+                    "Comment": "Цель пушки - префект",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                          "name": "$HasFact$4de4baa3492b46f88f8c1afe2eb7c8ef",
+                          "Not": false,
+                          "Unit": {
+                            "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                            "name": "$ContextTargetUnit$619d5540a76c43f8a044fbde69d79bac"
+                          },
+                          "m_Fact": "!bp_eeb7cb3e80534770bf6f127ba5dbdbef"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$48cccaf8ddb6426e8d9cbff0bdc9187c",
+                          "Comment": "У щита 2+ хита - обычный выстрел / иначе ластхит",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "6c00fcc900e9e82499d86ef9e35ea70d, ContextConditionBuffRank",
+                                "name": "$ContextConditionBuffRank$9a62a2fdbbda407c9a99de803d04e7cf",
+                                "Not": false,
+                                "Buff": "!bp_6db352d500b24fb89d47b1e86916fc9e",
+                                "RankValue": {
+                                  "ValueType": "Simple",
+                                  "Value": 2,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "BuffFromCaster": false
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                                "name": "$IncrementFlagValue$0f2bd13ef63d4af09d4ba9f8e527c032",
+                                "m_Flag": "!bp_218bac7bf22b430eba6b982dcc642097",
+                                "Value": {
+                                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                  "name": "$IntConstant$e6682190f14b464083b3e71787e23c9a",
+                                  "Value": 1
+                                },
+                                "UnlockIfNot": true
+                              },
+                              {
+                                "$type": "5242e40ba3d06fb469bcf2cc11ed020d, DealDamage",
+                                "name": "$DealDamage$225c2219-ba21-491c-b745-07688be61a7f",
+                                "NoSource": false,
+                                "Source": {
+                                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                                  "name": "$UnitFromSpawner$3700e425-3494-49dd-8ba5-70ebd1c8fd6d",
+                                  "Spawner": {
+                                    "EntityNameInEditor": "Canon",
+                                    "_entity_id": "fd28f1a5-311a-475f-94c7-28b419fd0f9a",
+                                    "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                                  }
+                                },
+                                "Target": {
+                                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                  "name": "$MapObjectFromScene$a2aafc43-d840-4bfc-80b7-58e2d6490391",
+                                  "MapObject": {
+                                    "EntityNameInEditor": "ShieldToShoot",
+                                    "_entity_id": "4cff91b7-c897-4e87-9457-4ef96a8e143e",
+                                    "SceneAssetGuid": "986e0a4ab5ec3cf4cbce260edef48cd7"
+                                  }
+                                },
+                                "Damage": {
+                                  "Dice": {
+                                    "m_Rolls": 0,
+                                    "m_Dice": "Zero"
+                                  },
+                                  "Bonus": 1,
+                                  "TypeDescription": {
+                                    "Type": "Surge"
+                                  },
+                                  "EvaluatedBonus": null,
+                                  "CausedByCheckFail": false
+                                },
+                                "DisableBattleLog": false,
+                                "DisableFxAndSound": false,
+                                "IgnorePeacefulZone": false
+                              },
+                              {
+                                "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                                "name": "$ContextActionRemoveBuff$e98ca3efde6e4fceb96aefa973404b39",
+                                "m_Buff": "!bp_6db352d500b24fb89d47b1e86916fc9e",
+                                "RemoveRank": true,
+                                "RemoveSeveralRanks": false,
+                                "RankNumber": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "m_CasterRanksRemovalPolicy": "Default",
+                                "ToCaster": false
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                                "name": "$UnlockFlag$7e027ddffc01431f9ab7beaa98baf975",
+                                "m_flag": "!bp_d7702ec6e3f8496b91ea4fb8373f92f7",
+                                "flagValue": 0
+                              },
+                              {
+                                "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                                "name": "$ContextActionRemoveBuff$9f017bc6-9a32-4a78-b1c1-3aa0960afe0e",
+                                "m_Buff": "!bp_6db352d500b24fb89d47b1e86916fc9e",
+                                "RemoveRank": true,
+                                "RemoveSeveralRanks": false,
+                                "RankNumber": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "m_CasterRanksRemovalPolicy": "Default",
+                                "ToCaster": false
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                          "name": "$ContextActionAttackWithFirstWeaponAbility$940a0e7b-7070-4816-836c-29c18f10fc55",
+                          "TargetIsPriorityTarget": false,
+                          "m_PriorityTargetBuff": null,
+                          "useSecondWeapon": false,
+                          "OwnerIsAttacker": false,
+                          "SaveMPAfterUsingWeaponAbility": false,
+                          "ContextCasterIsTarget": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "OnlyParty": false,
+              "WithoutPets": false,
+              "m_FilterNoFacts": [],
+              "m_FilterHaveAnyFact": [
+                "!bp_7989a189686b46eaa15d083baf2c7b8e"
+              ],
+              "ActionsOnRandomTarget": false,
+              "NotCaster": false,
+              "OnlyVisible": false,
+              "OnlyNotVisible": false,
+              "IncludeDead": false,
+              "IncludeUntargetable": true
+            },
+            {
+              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
+              "name": "$ContextActionOnAllUnitsInCombat$1c3de3b603d34423901dd3f1c2187e56",
+              "OnlyEnemies": false,
+              "OnlyAllies": false,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$f8929ae0766f4383a9544add47aae3a2",
+                    "m_Buff": "!bp_7989a189686b46eaa15d083baf2c7b8e",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              },
+              "OnlyParty": false,
+              "WithoutPets": false,
+              "m_FilterNoFacts": [],
+              "m_FilterHaveAnyFact": [],
+              "ActionsOnRandomTarget": false,
+              "NotCaster": false,
+              "OnlyVisible": false,
+              "OnlyNotVisible": false,
+              "IncludeDead": true,
+              "IncludeUntargetable": true
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": true,
+    "Type": "Spell",
+    "Range": "Custom",
+    "CustomRange": 50,
+    "MinRange": 0,
+    "ActionPointCost": 1,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 1,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 0,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": false,
+    "CanTargetFriends": false,
+    "CanTargetSelf": true,
+    "Hidden": true,
+    "HiddenInUI": false,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "None",
+    "EffectOnEnemy": "None",
+    "m_Parent": null,
+    "Animation": "None",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "WillCauseAOO",
+    "UsingInOverwatchArea": "WillCauseAttack",
+    "CombatStateRestriction": "InCombatOnly",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "DisableLog": false,
+    "ResourceAssetIds": [],
+    "m_FXSettings": null,
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

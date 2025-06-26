@@ -1,0 +1,196 @@
+{
+  "AssetId": "866fdc9aaaf044bba31b720e2bfa8fa5",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "Оба дворянина кланяются\n\nДворянчик 2",
+    "ParentAsset": "785472173ee64c5fb2b4cb946be8863b",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "29af34e0-5b95-475c-a023-1a1c05a0b9a2",
+      "m_OwnerString": "866fdc9aaaf044bba31b720e2bfa8fa5",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC2\\Narrative\\FeudalWorld\\FW_Cogitator\\Cue_0030_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_1c351398e24b4aebb2778ccdc39a4eed",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+          "name": "$PlayAnimationOneShot$2b7f9be4-9e81-4478-bab5-89909be5945f",
+          "m_ClipWrapper": null,
+          "m_ClipWrapperLink": {
+            "AssetId": "fb45aeb00220f9e4398d29730d0665a8"
+          },
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$6ef9ded7-ee4a-4dab-a32d-ca751c75545d",
+            "Spawner": {
+              "EntityNameInEditor": "FW_Noble_1",
+              "_entity_id": "28762e0b-24cd-48c8-a582-da17f9bb2a84",
+              "SceneAssetGuid": "fcdae296b8980c94baba40da6a93fe10"
+            }
+          },
+          "TransitionIn": 0.25,
+          "TransitionOut": 0.25
+        },
+        {
+          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+          "name": "$PlayAnimationOneShot$847ff94a-c74b-4ada-9d19-10c4074042f6",
+          "m_ClipWrapper": null,
+          "m_ClipWrapperLink": {
+            "AssetId": "2fb68c6efe2406e469be4be0d74b33e4"
+          },
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$9bb4baee-82f5-4b57-905d-0b25128748cc",
+            "Spawner": {
+              "EntityNameInEditor": "FW_Noble_2",
+              "_entity_id": "2bf1a845-e933-4c7b-ae07-928d5b4bc27a",
+              "SceneAssetGuid": "fcdae296b8980c94baba40da6a93fe10"
+            }
+          },
+          "TransitionIn": 0.25,
+          "TransitionOut": 0.25
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$31961458-3512-4cf3-9185-b26fbc19db04",
+          "Comment": "Если разбили ящик",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                "name": "$AnswerSelected$c84d33be-dd69-4a5e-b556-11c4453eb5c4",
+                "Not": false,
+                "m_Answer": "!bp_758ad77c72154a6db6deb0e47c6feee2",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$568bb019-0ead-4439-821a-6c9d789bfe79",
+                "m_Cutscene": "!bp_a30c2669b97946a6a9ba7b29bee0e870",
+                "WithUnit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$f08ee8ca-4bc7-4138-b57e-a0cf2ef1db77",
+                  "Spawner": {
+                    "EntityNameInEditor": "FW_Cogitator",
+                    "_entity_id": "a7b011da-4539-4504-b6f8-32ae6796fe7c",
+                    "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+                  }
+                },
+                "m_CheckType": "Params"
+              },
+              {
+                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                "name": "$PlayAnimationOneShot$11be0de7-ff95-442d-b5b5-eae11e2db769",
+                "m_ClipWrapper": null,
+                "m_ClipWrapperLink": {
+                  "AssetId": "fb45aeb00220f9e4398d29730d0665a8"
+                },
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$ec1fd728-59e8-46d7-9cd4-f46ef8948a7f",
+                  "Spawner": {
+                    "EntityNameInEditor": "FW_Cogitator",
+                    "_entity_id": "a7b011da-4539-4504-b6f8-32ae6796fe7c",
+                    "SceneAssetGuid": "2bad16fae8a1b784a982024dc56ef750"
+                  }
+                },
+                "TransitionIn": 0.25,
+                "TransitionOut": 0.25
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$199af640-0408-4c91-b86f-4b90be084f5e",
+          "m_Cutscene": "!bp_82e750c2273a4311b3d0cdb5723e8efb",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

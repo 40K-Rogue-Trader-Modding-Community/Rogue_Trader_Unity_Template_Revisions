@@ -1,0 +1,144 @@
+{
+  "AssetId": "28edc9bebca24345b5fa0038aef1cdf9",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "b90eea06ce91f564e8793832eea02cef, Recruit",
+          "name": "$Recruit$30bc9a62db6354d68ef10613371a9282",
+          "Recruited": [
+            {
+              "m_CompanionBlueprint": "!bp_17134d4540dd445c95b995a00fef52e3",
+              "m_Portrait": null,
+              "NPCUnit": null,
+              "MustBeInParty": true
+            },
+            {
+              "m_CompanionBlueprint": "!bp_17134d4540dd445c95b995a00fef52e3",
+              "m_Portrait": null,
+              "NPCUnit": null,
+              "MustBeInParty": true
+            }
+          ],
+          "AddToParty": true,
+          "MatchPlayerXpExactly": false,
+          "OnRecruit": {
+            "Actions": []
+          },
+          "OnRecruitImmediate": {
+            "Actions": []
+          },
+          "DoNotOpenPartySelection": true
+        },
+        {
+          "$type": "3d947958bd77d10469017478eb6120ed, PartyMembersDetach",
+          "name": "$PartyMembersDetach$8d9f1c03-2386-44fb-8c1c-e82f7f4b3aa2",
+          "m_DetachOnlyListed": false,
+          "m_DetachAllExcept": [
+            "!bp_17134d4540dd445c95b995a00fef52e3"
+          ],
+          "m_DetachAll": [],
+          "m_RestrictPartySize": false,
+          "m_PartySize": -1,
+          "UseRealParty": false,
+          "DoNotDetachPlayerCharacter": false,
+          "AfterDetach": {
+            "Actions": [
+              {
+                "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+                "name": "$PartyUnits$a56232b0-8975-4e0e-afdf-b46fd512f329",
+                "m_UnitsList": "Everyone",
+                "Actions": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$80b4d4a4-61da-4b1d-ad54-0a921959f43b",
+                      "Comment": "",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                            "name": "$UnitEqual$1e26bd75-dace-486f-bb84-29ca1bb57d46",
+                            "Not": true,
+                            "FirstUnit": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$e4c69ef5-4c19-422a-ae29-acf75074d1ab"
+                            },
+                            "SecondUnit": {
+                              "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                              "name": "$CompanionInParty$3cb5146b-9915-4338-80ba-f96988818643",
+                              "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+                              "IncludeActive": true,
+                              "IncludeDetached": true,
+                              "IncludeRemote": true,
+                              "IncludeExCompanions": false,
+                              "IncludeDead": false,
+                              "Index": 0
+                            }
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                            "name": "$HideUnit$73e837f3-7b53-4483-bb34-4d23dae69273",
+                            "Target": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$04637045-d275-431b-8fec-249600e9d664"
+                            },
+                            "Unhide": true,
+                            "Fade": false
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "3e87f8eb96e94fb8ade22f6aa8b57ecf, ChangeMainCharacter",
+          "name": "$ChangeMainCharacter$d8d12ae4-4bd9-4b10-9065-b4d1cc84a48b",
+          "Unit": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$d72b53f6-ac73-49fd-8aa4-5e285f99b7b4",
+            "m_Companion": "!bp_17134d4540dd445c95b995a00fef52e3",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": false,
+            "IncludeDead": false,
+            "Index": 0
+          }
+        },
+        {
+          "$type": "f6b0e0b15d534b5fb20168697144055c, BlockServiceWindows",
+          "name": "$BlockServiceWindows$2ae382fd-5af9-437c-8850-880512501754",
+          "Unblock": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -107,11 +107,13 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             }
           ]
         }
@@ -174,6 +176,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -192,6 +195,7 @@
               "Value": {
                 "Operation": "Mul",
                 "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -278,8 +282,205 @@
             "m_LinkKey": ""
           }
         ]
+      },
+      {
+        "$type": "4579faa6d7964ee9a26cbd576826cb0a, AbilityRedirect",
+        "name": "$AbilityRedirect$7f53db52-901a-4a0a-ab92-e66d78023145",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "RedirectTargetType": "Any",
+        "IncludeClickedTarget": false,
+        "CastOnSelfIfNoTargetsAvailable": false,
+        "CasterRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                "name": "$HasFactGetter$bc3df77e-0ece-4f9a-a8db-274afd9dc569",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_bcbb058d6ed54f3ea09febad4d1ca422",
+                "Target": "CurrentEntity"
+              }
+            ]
+          }
+        },
+        "ClickedTargetRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentTarget",
+            "TargetEvaluator": {
+              "$type": "3d78d8a020a847e09e915dcd20a8c82b, MyPet",
+              "name": "$MyPet$8ad567a9-b133-48f0-b08a-59b94569ccf3"
+            },
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                "name": "$HasFactGetter$30465c4e-1c6d-48da-988b-92fd9269611e",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_3159a138a7ee4cc48f4c88ebd3399d96",
+                "Target": "CurrentEntity"
+              },
+              {
+                "$type": "875f809ba794447a8040d573e71a72e9, IsPetOfCasterGetter",
+                "name": "$IsPetOfCasterGetter$468b829b82f84e3f817872f462f6f7e1",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "CurrentEntity"
+              }
+            ]
+          }
+        },
+        "RedirectTargetRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+                "name": "$PropertyCalculatorGetter$79a1c30d-e404-4144-bfd9-01f3d5d09477",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Value": {
+                  "Operation": "BoolAnd",
+                  "TargetType": "CurrentEntity",
+                  "TargetEvaluator": null,
+                  "FailSilentlyIfNoTarget": false,
+                  "Getters": [
+                    {
+                      "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+                      "name": "$PropertyCalculatorGetter$be268a06-3374-4117-9137-a151aee98b05",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": false,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "Value": {
+                        "Operation": "BoolOr",
+                        "TargetType": "CurrentEntity",
+                        "TargetEvaluator": null,
+                        "FailSilentlyIfNoTarget": false,
+                        "Getters": [
+                          {
+                            "$type": "e53aa7e81b714c5c9b883c8c3a03f1a4, HasBuffFromMyPetGetter",
+                            "name": "$HasBuffFromMyPetGetter$e6e7663c-5cef-466d-8235-87a1775076f8",
+                            "Settings": {
+                              "Progression": "AsIs",
+                              "m_CustomProgression": [],
+                              "m_StartLevel": 0,
+                              "m_StepLevel": 0,
+                              "Negate": false,
+                              "Limit": "None",
+                              "Min": 0,
+                              "Max": 0
+                            },
+                            "m_Fact": "!bp_a39e8cfbee9f4f569004b67b41dc2e6f",
+                            "Target": "CurrentEntity"
+                          },
+                          {
+                            "$type": "e53aa7e81b714c5c9b883c8c3a03f1a4, HasBuffFromMyPetGetter",
+                            "name": "$HasBuffFromMyPetGetter$c130dd6e-a240-45d5-81d1-114a301b3f2e",
+                            "Settings": {
+                              "Progression": "AsIs",
+                              "m_CustomProgression": [],
+                              "m_StartLevel": 0,
+                              "m_StepLevel": 0,
+                              "Negate": false,
+                              "Limit": "None",
+                              "Min": 0,
+                              "Max": 0
+                            },
+                            "m_Fact": "!bp_3250f514e16d463391c1425653383cbf",
+                            "Target": "CurrentEntity"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "$type": "e976e615d0274913a061b4841aa98d3e, HasBuffFromContextCasterGetter",
+                      "name": "$HasBuffFromContextCasterGetter$08ab381c-8fd7-4606-9b34-171a02d456e6",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": true,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_Fact": "!bp_8ade290de39b48e78306905c9f378f06",
+                      "Target": "CurrentEntity"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "m_Projectile": "!bp_3df1180e399640be8bbe996332f93d10",
+        "UseCustomPattern": true,
+        "m_CustomPattern": {
+          "m_Type": "Circle",
+          "m_Blueprint": null,
+          "m_Radius": 4,
+          "m_Angle": 0
+        },
+        "StatsToOverrideForCaster": [
+          "WarhammerWillpower"
+        ]
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "969859a0-6d6c-4fd1-b748-83d603016f6e",
@@ -315,6 +516,7 @@
     "CanTargetFriends": true,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -330,6 +532,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "WillCauseAOO",
     "UsingInOverwatchArea": "WillCauseAttack",
@@ -339,7 +543,8 @@
       "!bp_ebb0aef8634845069b938c90b9d114aa",
       "!bp_73f152d564dc482289fc8a753ab3d571",
       "!bp_a74be656d48d43679f32caecb50ad68e",
-      "!bp_f196f43bdcf94543ac46b9f0b24af578"
+      "!bp_f196f43bdcf94543ac46b9f0b24af578",
+      "!bp_02947c2921544c27a906e1c626b6d237"
     ],
     "MaterialComponent": {
       "m_Item": null,
@@ -349,8 +554,7 @@
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "AlexanderGusev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

@@ -25,18 +25,20 @@ namespace Kingmaker.Editor.Utility
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			if (EditorPreferences.Instance.BigCheckbox)
+			if (!EditorPreferences.Instance.BigCheckbox
+			    // Do not try to alter checkbox style for any of MonoBehaviour's enable property
+			    || (property.serializedObject.targetObject is MonoBehaviour && property.propertyPath == "m_Enabled"))
 			{
-				var b = EditorGUI.Toggle(position, label, property.boolValue, OwlcatEditorStyles.Instance.BigCheckbox);
+				EditorGUI.PropertyField(position, property, label);
+			}
+			else
+			{
+				bool b = EditorGUI.Toggle(position, label, property.boolValue, OwlcatEditorStyles.Instance.BigCheckbox);
 				// ReSharper disable once RedundantCheckBeforeAssignment
 				if (b != property.boolValue) // this is in case property has multiple values: we do not want to accidentally reset those
 				{
 					property.boolValue = b;
 				}
-			}
-			else
-			{
-				EditorGUI.PropertyField(position, property, label);
 			}
 		}
 	}

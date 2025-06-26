@@ -100,7 +100,10 @@ namespace Kingmaker.Editor.Blueprints
                 return;
             }
 
-            AddMultipleItemsToMenu(gm, selection.Select(i => i.Id).ToArray());
+            AddMultipleItemsToMenu(gm, selection
+                .Where(i => i != null)
+                .Select(i => i.Id)
+                .ToArray());
         }
 
         private static void AddMultipleItemsToMenu(GenericMenu gm, string[] bpGuids)

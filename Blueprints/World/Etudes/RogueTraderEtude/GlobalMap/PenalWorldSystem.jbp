@@ -168,6 +168,99 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$a70fc8e0-8697-4ead-a721-24d5f0dfa41c",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$c2cd844b-04d5-4250-87c0-d8bfd3981ac2",
+              "Not": false,
+              "m_Etude": "!bp_a732acf77d664d40a41640abb895455b",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$f937b556-4808-4ee2-898e-c1a21214a1d1",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "12b774374ac6829459deaf2f61048967, ContextConditionRandomLessThen",
+                    "name": "$ContextConditionRandomLessThen$d1a53059-fd04-49f8-8441-abe56045a62b",
+                    "Not": false,
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 50,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$265c0fba-9d3b-4615-b4c3-af6fd2c85fc7",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$b2094d52-1694-4a23-b8fc-e5aff3ad4de7",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "725a6d54-98f5-49a6-a4e1-fb007d5de0f4",
+                        "SceneAssetGuid": "66068c97f4decd342929ddbebd15408c"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$0e094e24-497f-4024-a2dd-e2caaf013f87",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$c54acfa7-f7d7-4796-bc4e-e413873b0204",
+                      "MapObject": {
+                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                        "_entity_id": "725a6d54-98f5-49a6-a4e1-fb007d5de0f4",
+                        "SceneAssetGuid": "66068c97f4decd342929ddbebd15408c"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",

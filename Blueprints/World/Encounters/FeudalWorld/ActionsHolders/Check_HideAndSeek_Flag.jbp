@@ -1,0 +1,199 @@
+{
+  "AssetId": "5a20c49464b7484d9424e74026048a1c",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$acae4531-5f86-48cf-bbac-0201fa86bf95",
+          "Comment": "Если флаг от 0 до 2 (включительно)",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                "name": "$FlagUnlocked$81448fbd-7b6e-422b-86f3-65aaa1c6af98",
+                "Not": true,
+                "m_ConditionFlag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "ExceptSpecifiedValues": false,
+                "SpecifiedValues": []
+              },
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$f6064f4f-409c-447d-9226-23cd277f7e79",
+                "Not": false,
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "MinValue": 0,
+                "MaxValue": 2
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$309c7bf5-5e63-4520-993c-0a7a12d22576",
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$17238afd-f780-40d5-9824-832d06d2e50c",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$068d7dd1-6f78-4f86-a759-ad6e45a38d6b",
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$6512ea98-1e95-4330-8502-dd1382155204",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              },
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$40333e8278715b819ddad127a6d344c2",
+                "m_Objective": "!bp_6f17098c67ff43608bb0d5faad8e8dd3"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$75f3036e38884b308634909e46b476b9",
+          "Comment": "Нашли первого",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$078127c1-f702-42a9-aa21-ce60b2573e58",
+                "Not": false,
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "MinValue": 1,
+                "MaxValue": 1
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$14334da6a44d45e3b9fcda130bdb0024",
+                "m_Objective": "!bp_3e26f9a8710d4188a2f452de83f8c88c"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$19d78851-771b-446c-900e-d65479d5f8d1",
+          "Comment": "Нашли второго",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$6aaf3f74-9a89-4bcd-9021-361d44414824",
+                "Not": false,
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "MinValue": 2,
+                "MaxValue": 2
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$cf09641e-9b24-4068-aae2-54361efa459c",
+                "m_Objective": "!bp_d7756e4b5623469dbf90d4704780d2ad"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$4a50a1c1-cb9d-47f1-8738-ffb30c8b26c2",
+          "Comment": "Нашли третьего",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$9880fccb-4c3d-41de-a779-6d5f8066a52b",
+                "Not": false,
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "MinValue": 3,
+                "MaxValue": 3
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$5f2abe09-f8a4-4590-b82c-c459ce1a5ae1",
+                "m_Objective": "!bp_1915fae27c464298b15ff1dc9bbeee33"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$70962388-7c30-4d37-8c41-7a89d43f5790",
+          "Comment": "Нашли четвёртого ",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$0b6fd18e-1ce9-4939-9bf3-8bc1b62b3644",
+                "Not": false,
+                "m_Flag": "!bp_d8bdb328ef7745a184f08a1fe98cea01",
+                "MinValue": 4,
+                "MaxValue": 4
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$91b654f6-db0d-4ac1-901e-1571cf1b8d50",
+                "m_Objective": "!bp_6f17098c67ff43608bb0d5faad8e8dd3"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

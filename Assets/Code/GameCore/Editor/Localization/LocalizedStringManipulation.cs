@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Kingmaker.Blueprints.Base;
+using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Localization.FixUp;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;
@@ -39,7 +40,14 @@ namespace Kingmaker.Editor.Localization
 
 			locStr.Shared = shared;
 			locStr.MarkDirty(property);
-			AssetDatabase.SaveAssetIfDirty(property.serializedObject.targetObject);
+			if (property.serializedObject.targetObject is BlueprintEditorWrapper bw)
+			{
+				BlueprintsDatabase.Save(bw.Blueprint.AssetGuid);
+			}
+			else
+			{
+				AssetDatabase.SaveAssetIfDirty(property.serializedObject.targetObject);
+			}
 		}
 
 		public static bool Check(this LocalizedString str, SerializedProperty prop)

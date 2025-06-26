@@ -7,10 +7,12 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Blueprints.Root;
 using Kingmaker.Controllers.Dialog;
 using Kingmaker.DialogSystem.Blueprints;
 using Kingmaker.Editor.NodeEditor.Nodes;
 using Kingmaker.Editor.Utility;
+using Kingmaker.ElementsSystem;
 using Kingmaker.GameModes;
 using Kingmaker.Utility.DotNetExtensions;
 using UnityEditor;
@@ -47,8 +49,16 @@ namespace Kingmaker.Editor.NodeEditor.Window
         [BlueprintContextMenu("Open in Dialog Editor", BlueprintType = typeof(BlueprintCheck))]
 		public static void OpenAssetInDialogEditor(SimpleBlueprint bp)
 		{
-			FocusAsset(null, BlueprintEditorWrapper.Wrap(bp));
 			ShowSharedStringMode = true;
+
+			if (bp is BlueprintDialog dialog)
+			{
+				var window = GetWindow<DialogEditor>("Dialog Editor", false);
+				window.OpenAsset(BlueprintEditorWrapper.Wrap(dialog), BlueprintEditorWrapper.Wrap(bp));
+				return;
+			}
+
+			FocusAsset(null, BlueprintEditorWrapper.Wrap(bp));
 		}
 
 		public void Update()
@@ -242,6 +252,11 @@ namespace Kingmaker.Editor.NodeEditor.Window
                 }
 
                 DrawSharedStringVisualizerButtons();
+                
+                if (GUILayout.Button("Clear Forced"))
+                {
+	                DialogDebugRoot.Instance.ClearForcedConditions();
+                }
                
 			}
 			base.ExtraHUDButtons();
