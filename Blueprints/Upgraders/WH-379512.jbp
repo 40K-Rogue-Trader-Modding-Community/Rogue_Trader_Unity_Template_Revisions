@@ -1,0 +1,72 @@
+{
+  "AssetId": "9b85aea41bfc44fd9ff9df37c8548917",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если мы на 3 арене застряли в бою - хайдим пач-монстра",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_a02d2ba0f0da4ffaa806008feaa7b922",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$8509fd79532a46f8a8ae2bd2206c06e9",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$723e39059a10464789645a1b13e355de",
+                "Not": false,
+                "m_QuestObjective": "!bp_2376c956515348dca95529b2eeb8495b",
+                "State": "Completed"
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$3d84d0299e29413cbc5a7540479a8fc3",
+                "Not": false,
+                "m_Etude": "!bp_ca084b6cdf2147e0838a692e82442bde",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$5d5aa56ef2214a4b9819664f2d01e60d",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$84b283cd15804cbebdb71fff7f279e75",
+                  "Spawner": {
+                    "EntityNameInEditor": "PatchMonster",
+                    "_entity_id": "e270da04-a537-437d-b45c-028e4cd8ea5a",
+                    "SceneAssetGuid": "8203b09560aa1c24d967e868131324da"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -28,7 +28,108 @@
           "Actions": []
         },
         "CombatEndActions": {
-          "Actions": []
+          "Actions": [
+            {
+              "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+              "name": "$RemoveFact$34417ddd-e8d9-4283-a637-538bdbe79345",
+              "Unit": {
+                "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                "name": "$FactOwner$56ef4ec2-653c-456f-ba9e-45ed9f3dfeca"
+              },
+              "m_Fact": "!bp_e88c9a27d8264ec5aff21131072deceb"
+            },
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$47a83dee-3af7-40b5-b557-229b695f60dd",
+              "Unit": {
+                "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                "name": "$FactOwner$54851743-c148-4292-ad09-8e2ba9cf80c9"
+              },
+              "m_Fact": "!bp_98362e16cc3a4e7f9ce63039186c2b23"
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$ad650658-ba64-41d0-924c-ac89148131c1",
+              "Comment": "Если есть Aerial Rush",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$b4ce4fa7-0c06-48a7-a216-480810939824",
+                    "Not": false,
+                    "m_Fact": "!bp_c367824c9c6e4f7188e35f6e2755bd78"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+                    "name": "$AddFact$b14dc3cb-5f68-4ea8-bb64-8ada1d149109",
+                    "Unit": {
+                      "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                      "name": "$FactOwner$e6ced787-2437-46aa-8236-3784414d3940"
+                    },
+                    "m_Fact": "!bp_4746ee87d7e1461ca9054aeb44795508"
+                  },
+                  {
+                    "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+                    "name": "$RemoveFact$efd353e8-776d-4595-93ea-5f2b511b0c31",
+                    "Unit": {
+                      "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                      "name": "$FactOwner$b09aee1b-efeb-4422-a2fb-f6e3bd0f138d"
+                    },
+                    "m_Fact": "!bp_c367824c9c6e4f7188e35f6e2755bd78"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$b1687bde-c2c8-4103-ae54-851e2fa09449",
+              "Comment": "Если есть Blinding Dive",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$20f0a912-b607-4568-88bb-eb692b811180",
+                    "Not": false,
+                    "m_Fact": "!bp_2abd1ef7c3bb4c77a2658637058fd294"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+                    "name": "$AddFact$6a5619ac-159e-4d93-801f-bd4334f6b6f0",
+                    "Unit": {
+                      "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                      "name": "$FactOwner$7f946eec-9fbc-4c69-8ecd-8a5e50237acb"
+                    },
+                    "m_Fact": "!bp_105fd4d638f24615a649fd0ab63ebc4b"
+                  },
+                  {
+                    "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+                    "name": "$RemoveFact$10be6028-619f-4f9c-96b7-7e009454f224",
+                    "Unit": {
+                      "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                      "name": "$FactOwner$6032f2fa-f6e0-4169-a1f0-c6c735360d8e"
+                    },
+                    "m_Fact": "!bp_2abd1ef7c3bb4c77a2658637058fd294"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
         },
         "RoundStartActions": {
           "Actions": []
@@ -110,12 +211,6 @@
                                       "name": "$ContextConditionHasFact$b80a1738-7649-496c-ac9f-2be4dac3f55b",
                                       "Not": false,
                                       "m_Fact": "!bp_1ce54cc931d842a0887afa4c72a11626"
-                                    },
-                                    {
-                                      "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
-                                      "name": "$ContextConditionHasFact$205a68f2-0aa2-49b5-9a4a-130bfad5d491",
-                                      "Not": false,
-                                      "m_Fact": "!bp_53135057d69647a7854e578c5ef40bba"
                                     }
                                   ]
                                 },
@@ -153,51 +248,74 @@
                                 "IfFalse": {
                                   "Actions": [
                                     {
-                                      "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                                      "name": "$ContextActionRemoveBuff$ac9665da-04b4-451d-86b0-fa45297f70b1",
-                                      "m_Buff": "!bp_53135057d69647a7854e578c5ef40bba",
-                                      "RemoveRank": false,
-                                      "RemoveSeveralRanks": false,
-                                      "RankNumber": {
-                                        "ValueType": "Simple",
-                                        "Value": 0,
-                                        "ValueRank": "Default",
-                                        "ValueShared": "Damage",
-                                        "Property": "None",
-                                        "m_CustomProperty": null,
-                                        "PropertyName": "Value1"
+                                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                                      "name": "$Conditional$c8b37f1b-4647-43d7-a7a8-a3bed388ac97",
+                                      "Comment": "Проверка на Ascended",
+                                      "ConditionsChecker": {
+                                        "Operation": "And",
+                                        "Conditions": [
+                                          {
+                                            "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                                            "name": "$ContextConditionHasBuff$d2154653-8c7d-4f0c-9387-8ab4b1b5f718",
+                                            "Not": true,
+                                            "m_Buff": "!bp_ec56854df2e84ef196a49079a43b5211"
+                                          }
+                                        ]
                                       },
-                                      "m_CasterRanksRemovalPolicy": "Default",
-                                      "ToCaster": false
-                                    },
-                                    {
-                                      "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
-                                      "name": "$CastSpell$48385f0f-f872-4080-82ef-a4559cb3e65f",
-                                      "Caster": {
-                                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
-                                        "name": "$PetByOwner$e2dc3055-7157-45e1-85ef-d34d75d752ce",
-                                        "OwnerEvaluator": {
-                                          "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
-                                          "name": "$FactOwner$414f2a14-0b83-41d5-8f2f-9546c0814afa"
-                                        }
+                                      "IfTrue": {
+                                        "Actions": [
+                                          {
+                                            "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                                            "name": "$ContextActionRemoveBuff$8c39ac2e-cd6a-4c2d-95fb-0882f8a97fe2",
+                                            "m_Buff": "!bp_53135057d69647a7854e578c5ef40bba",
+                                            "RemoveRank": false,
+                                            "RemoveSeveralRanks": false,
+                                            "RankNumber": {
+                                              "ValueType": "Simple",
+                                              "Value": 0,
+                                              "ValueRank": "Default",
+                                              "ValueShared": "Damage",
+                                              "Property": "None",
+                                              "m_CustomProperty": null,
+                                              "PropertyName": "Value1"
+                                            },
+                                            "m_CasterRanksRemovalPolicy": "Default",
+                                            "ToCaster": false
+                                          },
+                                          {
+                                            "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
+                                            "name": "$CastSpell$a395ed2f-cdcf-40ba-bbf1-9a8aa1556cba",
+                                            "Caster": {
+                                              "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                                              "name": "$PetByOwner$4ab2ef1e-ab33-45e0-abf1-b7b6bae79c67",
+                                              "OwnerEvaluator": {
+                                                "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                                                "name": "$FactOwner$7edfde96-f638-435c-a7e2-1409be1e2ecd"
+                                              }
+                                            },
+                                            "CasterPosition": null,
+                                            "TargetEntity": {
+                                              "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                                              "name": "$PetByOwner$18ab723d-86f0-4041-90f7-29dd08901502",
+                                              "OwnerEvaluator": {
+                                                "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                                                "name": "$FactOwner$74d7488b-fd62-444b-beb8-4040318afa69"
+                                              }
+                                            },
+                                            "TargetPoint": null,
+                                            "m_Ability": "!bp_92e3e63c740e4bcfac0f392246766acb",
+                                            "UseFullAbilityCastCycle": true,
+                                            "HitPolicy": "AutoHit",
+                                            "ActionToDoIfCastIsNotValid": {
+                                              "Actions": []
+                                            },
+                                            "DisableLog": false
+                                          }
+                                        ]
                                       },
-                                      "CasterPosition": null,
-                                      "TargetEntity": {
-                                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
-                                        "name": "$PetByOwner$94a30e59-c743-462d-afe0-66c3041d5a69",
-                                        "OwnerEvaluator": {
-                                          "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
-                                          "name": "$FactOwner$f5055f73-51b1-47a2-beff-a154a2937f24"
-                                        }
-                                      },
-                                      "TargetPoint": null,
-                                      "m_Ability": "!bp_92e3e63c740e4bcfac0f392246766acb",
-                                      "UseFullAbilityCastCycle": true,
-                                      "HitPolicy": "AutoHit",
-                                      "ActionToDoIfCastIsNotValid": {
+                                      "IfFalse": {
                                         "Actions": []
-                                      },
-                                      "DisableLog": false
+                                      }
                                     }
                                   ]
                                 }
@@ -235,10 +353,10 @@
                     "m_Buff": "!bp_a81fce36709f49f78675fdec233f6a13"
                   },
                   {
-                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
-                    "name": "$ContextConditionHasBuff$8b183d71-0b63-45e8-b605-12156531cfa6",
-                    "Not": true,
-                    "m_Buff": "!bp_43252a1a60f5428bbd32b3bf77f9d6fb"
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$3b5797b3-3e3f-4e4b-b292-5dedb17689a8",
+                    "Not": false,
+                    "m_Fact": "!bp_43252a1a60f5428bbd32b3bf77f9d6fb"
                   }
                 ]
               },
@@ -264,12 +382,6 @@
                                 "name": "$ContextConditionHasFact$e350376e-6e50-41d7-9e27-927c41396e78",
                                 "Not": false,
                                 "m_Fact": "!bp_1ce54cc931d842a0887afa4c72a11626"
-                              },
-                              {
-                                "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
-                                "name": "$ContextConditionHasFact$188120db-be04-442a-a368-0a7823ce114b",
-                                "Not": false,
-                                "m_Fact": "!bp_53135057d69647a7854e578c5ef40bba"
                               }
                             ]
                           },
@@ -307,51 +419,80 @@
                           "IfFalse": {
                             "Actions": [
                               {
-                                "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                                "name": "$ContextActionRemoveBuff$4acbd56c-ecca-4c2b-8fe7-79507b209a0d",
-                                "m_Buff": "!bp_53135057d69647a7854e578c5ef40bba",
-                                "RemoveRank": false,
-                                "RemoveSeveralRanks": false,
-                                "RankNumber": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
+                                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                                "name": "$Conditional$bac07853ed675eb1990759e8da0d62f3",
+                                "Comment": "Проверка на Ascended",
+                                "ConditionsChecker": {
+                                  "Operation": "And",
+                                  "Conditions": [
+                                    {
+                                      "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                                      "name": "$ContextConditionHasFact$86fd88dd-cf44-4e78-bd9e-0a426c05c016",
+                                      "Not": false,
+                                      "m_Fact": "!bp_53135057d69647a7854e578c5ef40bba"
+                                    },
+                                    {
+                                      "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                                      "name": "$ContextConditionHasBuff$ab7546ce8fa35d82b4bac7bb39caeee4",
+                                      "Not": true,
+                                      "m_Buff": "!bp_ec56854df2e84ef196a49079a43b5211"
+                                    }
+                                  ]
                                 },
-                                "m_CasterRanksRemovalPolicy": "Default",
-                                "ToCaster": false
-                              },
-                              {
-                                "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
-                                "name": "$CastSpell$ae01804c-747d-4c3c-8c7b-0228449af27f",
-                                "Caster": {
-                                  "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
-                                  "name": "$PetByOwner$315c86c1-1c70-477b-a5fc-3eb157bde175",
-                                  "OwnerEvaluator": {
-                                    "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
-                                    "name": "$FactOwner$70a7c12f-09f4-4917-8fda-0ac6afcd5efd"
-                                  }
+                                "IfTrue": {
+                                  "Actions": [
+                                    {
+                                      "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                                      "name": "$ContextActionRemoveBuff$40a12179-ff99-4744-a431-fcc53ae2e5ed",
+                                      "m_Buff": "!bp_53135057d69647a7854e578c5ef40bba",
+                                      "RemoveRank": false,
+                                      "RemoveSeveralRanks": false,
+                                      "RankNumber": {
+                                        "ValueType": "Simple",
+                                        "Value": 0,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      },
+                                      "m_CasterRanksRemovalPolicy": "Default",
+                                      "ToCaster": false
+                                    },
+                                    {
+                                      "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
+                                      "name": "$CastSpell$5f34b70f-0554-438e-9025-5af96697b394",
+                                      "Caster": {
+                                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                                        "name": "$PetByOwner$078a2cc3-3816-49f6-aa53-8ebd05e89f5a",
+                                        "OwnerEvaluator": {
+                                          "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                                          "name": "$FactOwner$b9879360-364d-40d5-889f-3fa4c92053a8"
+                                        }
+                                      },
+                                      "CasterPosition": null,
+                                      "TargetEntity": {
+                                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                                        "name": "$PetByOwner$9bedfca8-7fc3-492e-87a1-3e0ad6614f19",
+                                        "OwnerEvaluator": {
+                                          "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
+                                          "name": "$FactOwner$641cc772-cbf3-43aa-898a-6121e50c3359"
+                                        }
+                                      },
+                                      "TargetPoint": null,
+                                      "m_Ability": "!bp_92e3e63c740e4bcfac0f392246766acb",
+                                      "UseFullAbilityCastCycle": true,
+                                      "HitPolicy": "AutoHit",
+                                      "ActionToDoIfCastIsNotValid": {
+                                        "Actions": []
+                                      },
+                                      "DisableLog": false
+                                    }
+                                  ]
                                 },
-                                "CasterPosition": null,
-                                "TargetEntity": {
-                                  "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
-                                  "name": "$PetByOwner$315bd021-2d26-4424-b408-69b51efefa39",
-                                  "OwnerEvaluator": {
-                                    "$type": "5490dbe723156cb459fa639153196db0, FactOwner",
-                                    "name": "$FactOwner$49ee54f6-1384-4e3a-9532-41bb4f1c168c"
-                                  }
-                                },
-                                "TargetPoint": null,
-                                "m_Ability": "!bp_92e3e63c740e4bcfac0f392246766acb",
-                                "UseFullAbilityCastCycle": true,
-                                "HitPolicy": "AutoHit",
-                                "ActionToDoIfCastIsNotValid": {
+                                "IfFalse": {
                                   "Actions": []
-                                },
-                                "DisableLog": false
+                                }
                               }
                             ]
                           }
