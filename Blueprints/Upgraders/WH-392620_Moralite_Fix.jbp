@@ -1,0 +1,125 @@
+{
+  "AssetId": "e5eb6a5ba31c45d5843c577a8fb8e377",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_10f64bd5493846b8906c90fe483ee37a",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6d26146d419e5313bb28fce5a02bbcf1",
+          "Comment": "Если сломался диалог после моралите",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$13168e1e712d588f91c1505534b6793c",
+                "Not": false,
+                "m_Dialog": "!bp_5fb771708f3f4edeae3ea3adf7c15a19"
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$62ca9f9b626358f3aad76224978f647c",
+                "Not": true,
+                "m_Etude": "!bp_2e266d9dd56e4bfcbcbf2d70f1ab5fb2",
+                "NotStarted": false,
+                "Started": true,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$8a7fc15c-38b4-409e-a91b-275c613ac151",
+                "m_Objective": "!bp_f2c98950e500405994b5f364e9236f9a"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+                "name": "$TeleportParty$b1397155081d58dfba3ad8f069fdfd4f",
+                "m_exitPositon": "!bp_abdfccf98d2d4312aef03f44f375345d",
+                "AutoSaveMode": "None",
+                "ForcePauseAfterTeleport": false,
+                "AfterTeleport": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$7620b3ef-5c37-49fe-936c-1c580bc07f38",
+                "m_Cutscene": "!bp_5649aa3270cf49e1bde2f972df7c1334",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              },
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$a292c464-fab1-4458-936b-a0037230724d",
+                "m_Objective": "!bp_7e23d01c58df42138e2dda7d5091671d"
+              },
+              {
+                "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                "name": "$ControllableActionSetActive$54a81d63-40b8-46ff-8d72-15055b9fe11e",
+                "Active": true,
+                "IdOfObject": {
+                  "EntityNameInEditor": "LD_Cover_Dynamic",
+                  "_entity_id": "6ec872c4-6603-4cbc-b701-7ed9450a4004",
+                  "SceneAssetGuid": "Assets/Scenes/DLC2/FeudalWorld/FeudalWorld_Mechanics.unity"
+                }
+              },
+              {
+                "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                "name": "$ControllableActionSetActive$9389350f-2ada-4e08-b209-c021350a3922",
+                "Active": false,
+                "IdOfObject": {
+                  "EntityNameInEditor": "MoraliteCrowd",
+                  "_entity_id": "3c2c66be-a679-4407-8664-67be316c0e79",
+                  "SceneAssetGuid": "Assets/Scenes/DLC2/FeudalWorld/FeudalWorld_Audio.unity"
+                }
+              },
+              {
+                "$type": "b416216a964543c4e89e50cd51b22cf7, SetSoundState",
+                "name": "$SetSoundState$f29c2cd5-8bed-4657-bb36-86d6a1a30dad",
+                "m_State": {
+                  "Value": "None",
+                  "Group": "MUS_FeudalWorld_ServitorSharmanka_Mute"
+                }
+              },
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$5147d5c9cbf455d39450470c868fea53",
+                "m_Cutscene": "!bp_41b7101fa95f41048335d0c1122d9c24",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

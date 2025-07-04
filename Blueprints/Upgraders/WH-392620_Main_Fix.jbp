@@ -1,0 +1,109 @@
+{
+  "AssetId": "dbe07bed0b0a484cb2b3918948e97747",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6d26146d419e5313bb28fce5a02bbcf1",
+          "Comment": "Если сломался диалог после моралите",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$13168e1e712d588f91c1505534b6793c",
+                "Not": false,
+                "m_Dialog": "!bp_5fb771708f3f4edeae3ea3adf7c15a19"
+              },
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$a44d5f5af36a5b34a3819653154ab730",
+                "Not": true,
+                "m_Cue": "!bp_1f82c06a842a49d2a27419d57b3817f9",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$8a7fc15c-38b4-409e-a91b-275c613ac151",
+                "m_Objective": "!bp_f2c98950e500405994b5f364e9236f9a"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$01cd52eb3df85060845de797d1281bcc",
+          "Comment": "Если поговорил с губером и пошел искать лицемеров",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$04d13ca3a4bb5bb9a0ec59d802610cac",
+                "Not": false,
+                "m_Dialog": "!bp_bdae9066fc1e4a6b925237388a1a4b78"
+              },
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$811e858154ef51bd8f2e8824c2b11586",
+                "Not": true,
+                "m_Cue": "!bp_5bc3637549b844faa5300589eedd78be",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "9c73ac5115a249b3a5536205fd07c985, MarkDialogUnseen",
+                "name": "$MarkDialogUnseen$86881189-ca06-49a9-bf19-db72f337ca9d",
+                "Dialog": "!bp_bdae9066fc1e4a6b925237388a1a4b78"
+              },
+              {
+                "$type": "0231c8c2024742d6934ce8f5af4e6341, MarkCuesUnSeen",
+                "name": "$MarkCuesUnSeen$a193a42b-fc0e-443e-90b3-9501a1a4d322",
+                "m_Cues": [
+                  "!bp_6eafdb49c1944a1c8d16fbf2ccd88937"
+                ]
+              },
+              {
+                "$type": "5082ab8661a74b97891c7d0812fc0c4c, UnmarkAnswersSelected",
+                "name": "$UnmarkAnswersSelected$8e81bad2-4088-4a22-824c-7ab3118997c0",
+                "m_Answers": [
+                  "!bp_ad903221a0c2437c9a872827b42628c5",
+                  "!bp_ef53a2fdcb1e4db1a2d14e2d2afb4caa",
+                  "!bp_f7632499a6834389b2a92b2930a34c4e",
+                  "!bp_e6739f47cead4055a413711241bd81bf"
+                ]
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

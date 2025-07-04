@@ -1,0 +1,50 @@
+{
+  "AssetId": "76d4a17f714d45efaab7f7a83fc80ba4",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если Тассера пройдена - закрыть доступ к высадке.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$79b2458842704be395a3943ca85bab06",
+          "Comment": "Игрок видел финальный диалог Тассеры - закрыть точку высадки",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$3a63a8695ba74357bc29e609eb8187a2",
+                "Not": false,
+                "m_Dialog": "!bp_d711f6b1ff75464897e9131338bfdef0"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6e6e1011c5853b14f821d03cd8ee565d, ExplorePointOfInterest",
+                "name": "$ExplorePointOfInterest$49d90038fec94cafb5f496083a806f06",
+                "PointOfInterest": "!bp_f883008bb25c4c83b133989ad5be69d3"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

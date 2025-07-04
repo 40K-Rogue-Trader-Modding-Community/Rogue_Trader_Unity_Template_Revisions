@@ -1,0 +1,87 @@
+{
+  "AssetId": "f3abfb056cb0497cb9d7ce834adff00a",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Выкинуть с планеты не подходящего игрока",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_10f64bd5493846b8906c90fe483ee37a",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d0fbae956858400a809badac27e79745",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$8feb573c197241b0b322a30c4f0a35ad",
+                "Not": true,
+                "m_Quest": "!bp_ce6ef7dad31c45f28704f9112a0b1348",
+                "State": "Started"
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$f56e8e0b843d52f3a7c606fd8384f5a4",
+                "Not": false,
+                "Comment": "Если нет сола и стейт ДО мейв. ",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                      "name": "$CompanionInParty$823e73e63a285a90b6a44ea91f813183",
+                      "Not": true,
+                      "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                      "MatchWhenActive": true,
+                      "MatchWhenDetached": false,
+                      "MatchWhenRemote": false,
+                      "MatchWhenEx": false,
+                      "IncludeDead": false
+                    },
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$b8d2ccb1c4315d1383bd361312e20a92",
+                      "Not": true,
+                      "m_Etude": "!bp_e4e595697d74403c8fed7a5f4fef9bf2",
+                      "NotStarted": false,
+                      "Started": true,
+                      "Playing": false,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$7754d036d28e415e8a4fb7c54df0147c",
+                "Etude": "!bp_a1365a3165e24c478119958b68007191",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
