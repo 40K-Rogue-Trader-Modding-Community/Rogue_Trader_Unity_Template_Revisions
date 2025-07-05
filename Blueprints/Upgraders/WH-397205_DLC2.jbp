@@ -1,0 +1,154 @@
+{
+  "AssetId": "b55965a3b0e2425e88c65de8d3dd5358",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "1. Выдача Алаймента Соломону \n2. Выдача квеста, если игрок с бюрократом ",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$baff44e4e4c95aa3ad26726c936927a5",
+          "Comment": "1. Выдача Алаймента Соломону ",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$56b9f91d44c75bad90757b88361aa1be",
+                "Not": true,
+                "m_Etude": "!bp_ccf40221ffbd4501a31ba2ae24a2abeb",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$3ff45ebe-f23b-4682-bd0a-22918274100c",
+                "Not": true,
+                "m_Etude": "!bp_a18dab3be64b45c182209fa3e1d80738",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$3d05f598-8b94-441d-bee4-54b209103a80",
+                "Not": true,
+                "m_Etude": "!bp_1d0f2da308964074aaa0ee4fd1c2c3bd",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "2b18dfce84724c54903d3f6af08e4fac, IsDLCEnabled",
+                "name": "$IsDLCEnabled$7bd0a438e3f4591882e6473abb2433ca",
+                "Not": false,
+                "m_BlueprintDlcReward": "!bp_c8d8f708659d4aa9a2c87869337fc66e"
+              },
+              {
+                "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                "name": "$AnswerSelected$dbe90283-b449-4b00-9211-609e0abfaa45",
+                "Not": false,
+                "m_Answer": "!bp_0b7a96084f954aed82f447d1b3cb5abc",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$6326525c32e9585c936efb474d8011ca",
+                "Etude": "!bp_a18dab3be64b45c182209fa3e1d80738",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$16376041-3a67-4237-8d32-3b421c6425a0",
+          "Comment": "2. Выдача квеста, если игрок с бюрократом ",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$be0ef19cc0d45e0d915727049dc38117",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "Or",
+                  "Conditions": [
+                    {
+                      "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                      "name": "$CueSeen$b61b41b9-65eb-464d-9a45-0fa0b75aea1b",
+                      "Not": false,
+                      "m_Cue": "!bp_eb0b1715ec7343748b73d226823a4814",
+                      "CurrentDialog": false
+                    },
+                    {
+                      "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                      "name": "$CueSeen$d66dc877-c74f-4e19-ba9a-7d02871ebaec",
+                      "Not": false,
+                      "m_Cue": "!bp_e347698554774c2d871cc7d3d894d5f3",
+                      "CurrentDialog": false
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$5bc2dfcefbd95f2d92c0a685ce9988c4",
+                "Not": true,
+                "m_QuestObjective": "!bp_eb51ca4a14784e53a8144ac5da740611",
+                "State": "Completed"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$c43188ad-85de-47f6-9766-752d0c9b7b64",
+                "Status": "Complete",
+                "m_Objective": "!bp_eb51ca4a14784e53a8144ac5da740611",
+                "StartObjectiveIfNone": true
+              },
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$7a21f967-832c-4c7f-a4ff-8df924e4274b",
+                "m_Objective": "!bp_deafaeadeb48400e8ecd47ba725d93cc"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
