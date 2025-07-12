@@ -6,83 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "e6b1b9773bd54abdb01e0e1347e02e22, AbilityRedirectTrigger",
-        "name": "$AbilityRedirectTrigger$bb51f381-a1fd-4b4e-9a11-020e59970c98",
-        "m_Flags": "Disabled",
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "m_Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "TargetEvaluator": null,
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "Actions": {
-          "Actions": [
-            {
-              "$type": "9a9711e7bb7840f48ad264059580b262, ContextActionOnContextCasterPet",
-              "name": "$ContextActionOnContextCasterPet$6eb29117c7c24c4d95099b182c1c85fd",
-              "Actions": {
-                "Actions": [
-                  {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$9a22a142-900c-4441-b5d9-707f75100602",
-                    "m_Buff": "!bp_5443a6550d9a4377984028764db53903",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": false,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 1,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "ActionsOnApply": {
-                      "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      {
         "$type": "9a8a0eefc6594af8a645c2d7b226385f, AddFactsToMaster",
         "name": "$AddFactsToMaster$929c885e-eb4e-46d0-8b8d-aa868c7d6b67",
         "m_Flags": 0,
@@ -99,6 +22,90 @@
         "HasDifficultyRequirements": false,
         "InvertDifficultyRequirements": false,
         "MinDifficulty": "Story"
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$aa014c45-9264-475a-9aca-90ccbc719d7a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "9b5c238e69eda2a4d8bb4cc2100327a8",
+                "stringkey": "b1f3ddfb-0182-48df-96d8-8c8bd4ca4cf0"
+              }
+            },
+            "m_DescriptionFact": "!bp_34b85b2841514256aac25560b25da4cc",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_34b85b2841514256aac25560b25da4cc",
+            "m_LinkKey": "AGI"
+          }
+        ]
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$45af8f4f-10a2-40b2-9c68-1dea696c4fcb",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Mul",
+          "TargetType": "EvaluatedTarget",
+          "TargetEvaluator": {
+            "$type": "128b24c135cf4c5b97bbe868981c9c4c, MyOwner",
+            "name": "$MyOwner$63097f2f-6b76-432c-869c-795084160cc8"
+          },
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "fb77900c7ec1461dadb27600db6e67cb, FactListGetter",
+              "name": "$FactListGetter$a529c922-4942-489b-ac6b-d2a2e94a5d3d",
+              "Settings": {
+                "Progression": "MultiplyByModifier",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 2,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Facts": [
+                "!bp_1dbbd844e25b447e99f247c3a88aa5d4",
+                "!bp_98abe40f4ee642a28f2a3c31a7a9a588",
+                "!bp_9a84763298324cb1a7d276c4a5c05f56",
+                "!bp_a01a4fcd025748919454f4d94049d5ee",
+                "!bp_05f139cdaa0e42ec944d8b786282dc0e"
+              ],
+              "OnlyFromCaster": false,
+              "Caster": "CurrentEntity",
+              "MultiplyByRanks": false
+            }
+          ]
+        }
       }
     ],
     "Author": "YuriyElburih",

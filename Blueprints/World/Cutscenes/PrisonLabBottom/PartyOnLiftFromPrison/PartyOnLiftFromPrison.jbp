@@ -18,7 +18,6 @@
       {
         "m_EvaluationErrorHandlingPolicy": "Default",
         "m_Commands": [
-          "!bp_dec69eb058e343e780af5508a6163f57",
           "!bp_f7355ec747314082ae3678b6e6ae853f"
         ],
         "m_EndGate": "!bp_919d9ba6099b4412913eaa32a9424b1d",
@@ -29,6 +28,7 @@
       {
         "m_EvaluationErrorHandlingPolicy": "Default",
         "m_Commands": [
+          "!bp_cd11ac0402e147f594ebe0067c8e8c43",
           "!bp_758e2ebad7a44e649c6f65bf93f9b205",
           "!bp_d9b030711c244f9abbf99b9e448c3de5"
         ],
@@ -41,6 +41,7 @@
         "m_EvaluationErrorHandlingPolicy": "Default",
         "m_Commands": [
           "!bp_f26bcecde57446d6b241d074c75bc446",
+          "!bp_dec69eb058e343e780af5508a6163f57",
           "!bp_246a21f3f7934292bd66f30de5982e65"
         ],
         "m_EndGate": "!bp_6a8459c73b044040b6a7725f39222c7b",
@@ -64,7 +65,7 @@
     "WhenTrackIsSkipped": "DoNotSignalGate",
     "PauseForOneFrame": false,
     "Priority": "Patrol",
-    "NonSkippable": false,
+    "NonSkippable": true,
     "ForbidDialogs": false,
     "ForbidRandomIdles": true,
     "IsBackground": false,
@@ -72,6 +73,7 @@
     "Sleepless": false,
     "AllowCopies": false,
     "LockControl": true,
+    "ShowPets": false,
     "ShowOverlay": false,
     "AllowRoaming": false,
     "Anchors": [],
@@ -88,6 +90,51 @@
           "$type": "0e571e9f07a314048afedff605fa53ce, LockFlag",
           "name": "$LockFlag$a9d5c88995fc4f21b9ba30f70a02d5f9",
           "m_Flag": "!bp_28d1a2ebb8a24abeb166ffba67e46355"
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$dc1ec5ad7f045ea483ff2d3d9b5f9b34",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$1f1731a2-f869-4e59-a35e-3234e0e0aac7",
+                "Not": false,
+                "m_Etude": "!bp_f419d0d081114c6689a4a79abcacccbe",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$1005c459-19d7-4fad-87ff-5d5db2d13a8c",
+                "m_Cutscene": "!bp_9e644967a8ac423f9e0afc811fcb52f8",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              },
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$ab884bef-5550-4415-b8e4-5548cabeceee",
+                "Etude": "!bp_f419d0d081114c6689a4a79abcacccbe",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

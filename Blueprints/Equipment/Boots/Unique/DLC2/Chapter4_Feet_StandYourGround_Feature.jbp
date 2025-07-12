@@ -6,20 +6,19 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "d7bd163f6687c15448553fba4ad389ac, ActionsOnBuffApply",
-        "name": "$ActionsOnBuffApply$4fb205f7-2014-42a6-b3c1-afb57ec7bead",
+        "$type": "b69ed1bb15454c68886db5c9cee93703, BuffApplyTrigger",
+        "name": "$BuffApplyTrigger$c070b61c-8123-43f3-aabd-75f0a80b7513",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "m_GainedFact": "!bp_1c46a5c1e6fe41b08927440ca2a65bb4",
-        "Actions": {
+        "ActionForApply": {
           "Actions": [
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$58190e33248242e2b9591797cc2dcb05",
+              "name": "$ContextActionApplyBuff$daefaeac-6634-49a5-a8ce-d48bbd82b817",
               "m_Buff": "!bp_34178ccb992c471ba4ec36767c212668",
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
@@ -65,7 +64,45 @@
             }
           ]
         },
-        "UseFactContext": false
+        "ActionForRankAdd": {
+          "Actions": []
+        },
+        "ActionForRankReduce": {
+          "Actions": []
+        },
+        "ActionForBuffRemove": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$63d0855a156b4ffbba232d579e728f49",
+              "m_Buff": "!bp_34178ccb992c471ba4ec36767c212668",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            }
+          ]
+        },
+        "m_ApplyChildBuff": null,
+        "ForOneBuff": true,
+        "m_Buff": "!bp_1c46a5c1e6fe41b08927440ca2a65bb4",
+        "ForMultipleBuffs": false,
+        "m_Buffs": [],
+        "ForAbilityGroup": false,
+        "m_AbilityGroup": null,
+        "AnyTarget": false,
+        "OnlyIfOwnerIsCaster": false,
+        "OnlyPsychicPowerBuffs": false,
+        "OnlyIfBuffFromCaster": false
       }
     ],
     "Author": "ElenaMironova",

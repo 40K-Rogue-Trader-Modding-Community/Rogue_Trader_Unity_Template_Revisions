@@ -23,12 +23,12 @@
             "Getters": []
           }
         },
-        "m_overrideMode": "Zero",
+        "m_overrideMode": "CostBonus",
         "m_newCost": 0,
-        "m_costBonus": 0,
+        "m_costBonus": -1,
         "m_costMinimum": -1,
-        "m_Ability": "!bp_1c5f4edca9f64fe0911bc946e0b4ea4a",
-        "m_AffectedGroup": null,
+        "m_Ability": null,
+        "m_AffectedGroup": "!bp_7d4d4ffc64414e4bad4c7fded24c8ce9",
         "m_AbilityGroupList": [],
         "NotSelectedGroup": false,
         "AffectOnlyMelee": false,
@@ -36,6 +36,54 @@
         "AffectOnlyAoE": false,
         "AffectOnlyBurst": false,
         "AffectOnlyHeavy": false
+      },
+      {
+        "$type": "6ebdb034bf2f486b932f9342e175ec6d, AbilityLifecycleTriggerCaster",
+        "name": "$AbilityLifecycleTriggerCaster$f912d010-e3df-49cd-93b4-a859b093e5d1",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Condition": {
+          "Operation": "BoolAnd",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+              "name": "$CheckAbilityGroupGetter$b1793383-694c-4e50-ac11-519375dff48c",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Groups": [
+                "!bp_7d4d4ffc64414e4bad4c7fded24c8ce9"
+              ]
+            }
+          ]
+        },
+        "StartActions": {
+          "Actions": []
+        },
+        "EndActions": {
+          "Actions": [
+            {
+              "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
+              "name": "$ContextActionRemoveSelf$997be71653275fb1aa027ee9aa3329d5"
+            }
+          ]
+        },
+        "m_Facts": [],
+        "m_FactsToCheckOnOwner": []
       }
     ],
     "Author": "YuriyElburih",

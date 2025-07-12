@@ -45,50 +45,121 @@
         "ActionOnSelfMiss": {
           "Actions": [
             {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$55799216339244e6af842bc8d0e0df03",
-              "m_Buff": "!bp_ec03e901ae6b479fa17eac3196420d57",
-              "BuffEndCondition": "CombatEnd",
-              "Permanent": false,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$0f5c110e89dc442cb550f8fc908cdea0",
+              "Comment": "ShieldStraps",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$8669387a5f5e482f8549a020639fa9be",
+                    "Not": false,
+                    "m_Fact": "!bp_c9459bfe8ae749f7b5fe5dfb74538105"
+                  }
+                ]
               },
-              "ToCaster": false,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$6641cfd7d62e430ea25a7d09beabdb35",
+                    "m_Buff": "!bp_489a1901ddf1418f8e782f0a34228ada",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
               },
-              "ActionsOnApply": {
+              "IfFalse": {
                 "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$70216a3f-d6b2-476e-a206-d145fb3c4250",
+              "Comment": "ShieldTalent02",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                    "name": "$HasFact$c075731a-6d01-40f2-a9e2-2a533adf97b0",
+                    "Not": false,
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$335f42e0-d8c4-4082-bd84-03916b140591"
+                    },
+                    "m_Fact": "!bp_4e97d40d19c7429a969494242a617f26"
+                  }
+                ]
               },
-              "ActionsOnImmune": {
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
+                    "name": "$CastSpell$abd0af08-317e-4c68-bdd6-79d4814cdd82",
+                    "Caster": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$56344a74-e25b-4927-85da-1df463abc68e"
+                    },
+                    "CasterPosition": null,
+                    "TargetEntity": {
+                      "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                      "name": "$ContextTargetUnit$67c57595-2adc-4e59-b6d4-3126c7c1e40c"
+                    },
+                    "TargetPoint": null,
+                    "m_Ability": "!bp_1c5f4edca9f64fe0911bc946e0b4ea4a",
+                    "UseFullAbilityCastCycle": true,
+                    "HitPolicy": "Default",
+                    "ActionToDoIfCastIsNotValid": {
+                      "Actions": []
+                    },
+                    "DisableLog": false
+                  }
+                ]
+              },
+              "IfFalse": {
                 "Actions": []
-              },
-              "AddFactSource": false
+              }
             }
           ]
         },
@@ -239,7 +310,7 @@
         "Trigger": "AfterBlockAttack",
         "Restriction": {
           "Property": {
-            "Operation": "Sum",
+            "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
             "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,

@@ -14,11 +14,36 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "AutoHit"
+        "m_Feature": "AutoHit",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "3d3ea03bc11a4a68ba661ee1b53388a8, CheckAbilityIsWeaponAbilityGetter",
+                "name": "$CheckAbilityIsWeaponAbilityGetter$a2d6f517856c50ba843279cc63c92616",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "OnlyHasAttackDelivery": false
+              }
+            ]
+          }
+        }
       },
       {
-        "$type": "67bd9d5235e74484bb1d673b885ab430, WarhammerWeaponHitTriggerInitiator",
-        "name": "$WarhammerWeaponHitTriggerInitiator$69f97a1b-83ed-4e81-b10c-9ede9102feff",
+        "$type": "961a1f33fbdad5c4ca08247f49b98c47, WarhammerAfterAttackRollTrigger",
+        "name": "$WarhammerAfterAttackRollTrigger$a461a92c-1a7b-46be-91c7-2862dedb871e",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
@@ -34,108 +59,36 @@
             "Getters": []
           }
         },
-        "ActionOnSelfHit": {
+        "Actions": {
           "Actions": [
             {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$17b3c48b234f51ddbcf7fbf313b53b2c",
-              "m_Buff": "!bp_c6b3b02ee00141b688d9a0caad0bd5cc",
-              "BuffEndCondition": "TurnEndOrCombatEnd",
-              "Permanent": false,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
-              },
-              "ToCaster": true,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$046560fa122a50c2a60c8e85104c54a8",
+              "m_Buff": "!bp_9fa7997090c04025b7eb260281aa0d46",
+              "RemoveRank": true,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
                 "ValueType": "Simple",
-                "Value": 1,
+                "Value": 0,
                 "ValueRank": "Default",
                 "ValueShared": "Damage",
                 "Property": "None",
                 "m_CustomProperty": null,
                 "PropertyName": "Value1"
               },
-              "ActionsOnApply": {
-                "Actions": []
-              },
-              "ActionsOnImmune": {
-                "Actions": []
-              },
-              "AddFactSource": false
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$bf138f2a2a765ffdb7f8a37fa9b1f652",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "6c00fcc900e9e82499d86ef9e35ea70d, ContextConditionBuffRank",
-                    "name": "$ContextConditionBuffRank$c26fe41594e85315803dc5a8fdc76af6",
-                    "Not": false,
-                    "Buff": "!bp_c6b3b02ee00141b688d9a0caad0bd5cc",
-                    "RankValue": {
-                      "ValueType": "Simple",
-                      "Value": 2,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "BuffFromCaster": false
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
-                    "name": "$ContextActionRemoveSelf$8b0760526f255d34a3dc8822817b7285"
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
             }
           ]
         },
-        "ActionOnSelfMiss": {
-          "Actions": []
-        },
-        "ActionsOnTargetHit": {
-          "Actions": []
-        },
-        "ActionsOnTargetMiss": {
-          "Actions": []
-        },
-        "OnlyRighteousFury": false,
-        "OnlyMelee": false
+        "triggerAfterAttack": true,
+        "onlyMeleeAttack": false,
+        "ActionsOnTarget": false,
+        "OnlyHit": false
       }
     ],
     "Author": "ElenaMironova",
-    "Comment": "",
+    "Comment": "Ситуация с ранками вызвана тем, что афтераттакролл прокает даже на оригинальную атаку, которая убила. Поэтому приходится накладывать 2 стака и снимать по одному",
     "m_DisplayName": {
       "m_Key": "",
       "m_OwnerString": "",
@@ -170,11 +123,11 @@
       "Value": "",
       "Group": ""
     },
-    "Stacking": "Replace",
+    "Stacking": "Rank",
     "ProlongWhenRankAdded": false,
     "PriorityProperty": "Value1",
     "Initiative": "ByCaster",
-    "Ranks": 0,
+    "Ranks": 2,
     "FxOnStart": {
       "AssetId": ""
     },

@@ -17,6 +17,7 @@
         "Condition": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -44,30 +45,52 @@
         "EndActions": {
           "Actions": [
             {
-              "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
-              "name": "$WarhammerContextActionAddMomentum$89c2f590979c4b4e846fe631aca8f9e8",
-              "Multiplier": 1,
-              "Value": {
-                "ValueType": "CasterNamedProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "Resolve",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$a8a1f215e16758e0b248b3ef78067351",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "70a0a20368a64726a77d12fbc6abb1e1, ContextConditionIsMyPet",
+                    "name": "$ContextConditionIsMyPet$c98660aa623f52d49681bbee390faf7c",
+                    "Not": true
+                  }
+                ]
               },
-              "ToPlayer": false,
-              "ToCaster": false,
-              "AdditionalCalculations": "None",
-              "Range": 0,
-              "AdditionalBonus": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
+                    "name": "$WarhammerContextActionAddMomentum$1be9abc5-c29d-4b59-a171-b38117db895c",
+                    "Multiplier": 1,
+                    "Value": {
+                      "ValueType": "CasterNamedProperty",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "Resolve",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ToPlayer": false,
+                    "ToCaster": false,
+                    "AdditionalCalculations": "None",
+                    "Range": 0,
+                    "AdditionalBonus": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
               }
             }
           ]
@@ -89,6 +112,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextMainTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -110,6 +134,7 @@
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "191ff0e2-0fe0-41a7-817e-a14d875150b3",
@@ -159,8 +184,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "LeonidTolochenko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

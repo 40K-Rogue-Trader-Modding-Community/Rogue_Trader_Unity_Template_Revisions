@@ -131,16 +131,6 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$144717ffc966409cb31f8aefc4f9202d",
-              "m_Cutscene": "!bp_32c9ec0ce37b40d58bcd8633c28f1987",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
-              }
-            },
-            {
               "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
               "name": "$SetObjectiveStatus$d524fb7c5eab516b820f68fd4542010c",
               "Status": "Complete",
@@ -156,6 +146,31 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$3fd1776b-8820-41b1-a5be-760c5d0f0cbc",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$ffd5e405-bf4f-4067-9d86-884572a12768",
+              "m_Cutscene": "!bp_32c9ec0ce37b40d58bcd8633c28f1987",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "Unknown",
@@ -167,7 +182,18 @@
     },
     "CompletionCondition": {
       "Operation": "And",
-      "Conditions": []
+      "Conditions": [
+        {
+          "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+          "name": "$IsInCombat$0eb64169-1ba1-422d-9db6-768273f419a9",
+          "Not": true,
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$75d77b83-4ea6-4581-873e-53c060400629"
+          },
+          "Player": true
+        }
+      ]
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": null,

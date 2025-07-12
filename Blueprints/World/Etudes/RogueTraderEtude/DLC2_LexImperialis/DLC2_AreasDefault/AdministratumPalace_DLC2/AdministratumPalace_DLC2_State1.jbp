@@ -69,20 +69,90 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b2970e0dadd194546bbf27a691e55d4c, DeactivateTrigger",
+        "name": "$DeactivateTrigger$9f791af2-5e41-42ca-87fe-7129134c6b4a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$4bb5bbfd-a56a-4bca-9869-e68e0be71fe3",
+              "Not": false,
+              "m_QuestObjective": "!bp_8801fb66e4e34525811f2f7549bbb054",
+              "State": "Started"
+            },
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$e0797653-614f-4a44-92a5-802233996bc5",
+              "Not": false,
+              "m_QuestObjective": "!bp_8801fb66e4e34525811f2f7549bbb054",
+              "State": "Completed"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$dadba89f92514202ae7b78344cf234f5",
+              "Etude": "!bp_aecb8a1a5977470a87fa5db4537b88f4",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
       }
     ],
     "Author": "Unknown",
     "Comment": "Администратум (крыло с Арбитрами) по заданию в конце Тессеры",
     "m_Parent": "!bp_4c4744c2bccd43698d1f01de8bec7312",
     "ActivationCondition": {
-      "Operation": "Or",
+      "Operation": "And",
       "Conditions": [
         {
-          "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
-          "name": "$ObjectiveStatus$5cbb85b1-18cc-4ac6-90e6-f42a7a164b54",
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$1e282115263451ff8e4322371f10dae0",
           "Not": false,
-          "m_QuestObjective": "!bp_27e29cb7bc1546cf852c4d2fac90329d",
-          "State": "Started"
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$4be71048-28eb-4d3a-9413-fa6e1207ae88",
+                "Not": false,
+                "m_QuestObjective": "!bp_27e29cb7bc1546cf852c4d2fac90329d",
+                "State": "Started"
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$c5b4d642-b772-42a0-b305-c0489d25a3e1",
+                "Not": false,
+                "m_QuestObjective": "!bp_27e29cb7bc1546cf852c4d2fac90329d",
+                "State": "Completed"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$a4c229aa5473512f84b92dd596cadf4a",
+          "Not": true,
+          "m_Etude": "!bp_c25888b45e614d5f910f725fd6b95eba",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
         }
       ]
     },

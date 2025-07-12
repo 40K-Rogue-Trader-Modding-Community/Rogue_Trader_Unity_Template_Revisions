@@ -19,8 +19,7 @@
         "m_EvaluationErrorHandlingPolicy": "Default",
         "m_Commands": [
           "!bp_f2c010d5b5c44f319ca6ca330a3ce5ff",
-          "!bp_e496a179d93a4ac49c19eae295fb0ee4",
-          "!bp_78be351c048247e29a5476ae995a5bd2"
+          "!bp_e496a179d93a4ac49c19eae295fb0ee4"
         ],
         "m_EndGate": null,
         "m_Repeat": false,
@@ -37,9 +36,11 @@
     "ForbidDialogs": false,
     "ForbidRandomIdles": true,
     "IsBackground": false,
+    "Freezeless": false,
     "Sleepless": false,
     "AllowCopies": false,
-    "LockControl": true,
+    "LockControl": false,
+    "ShowPets": true,
     "ShowOverlay": false,
     "AllowRoaming": false,
     "Anchors": [],
@@ -51,7 +52,76 @@
       "Actions": []
     },
     "OnFinished": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$a3217a9a-9c7f-493d-9f72-b2e2b4d05fcf",
+          "Comment": "если взломали - скилчек с подсказкой, иначе барк",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$cd7622d0-2f91-4771-8176-9f0acff5a29e",
+                "Not": false,
+                "m_Etude": "!bp_699dbe8a14414f01aa59e56ffae27802",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$505b95ad2efc4e70b8811c7ea29adde3",
+                "Not": true,
+                "m_Etude": "!bp_952711f4b7364f7b88755c0fa7a121cc",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$b3bb902e-30dd-457e-9f19-38ddfe2fcf71",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$387e75e9-0635-4501-919d-a0c48b0da8c1",
+                  "MapObject": {
+                    "EntityNameInEditor": "DestroyedWithSecret",
+                    "_entity_id": "a0794f7a-0b09-48bb-98b5-63f337161aa6",
+                    "SceneAssetGuid": "f590d8deb342c1f4ebf74adb7157d348"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$7198d56f-49f6-400b-929c-58fd901a1ca3",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$15801725-72bf-424c-8e71-371a9c28ef70",
+                  "MapObject": {
+                    "EntityNameInEditor": "Destroyed",
+                    "_entity_id": "090ef324-913a-490e-9281-0eb92e8fa884",
+                    "SceneAssetGuid": "f590d8deb342c1f4ebf74adb7157d348"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          }
+        }
+      ]
     }
   },
   "Meta": {

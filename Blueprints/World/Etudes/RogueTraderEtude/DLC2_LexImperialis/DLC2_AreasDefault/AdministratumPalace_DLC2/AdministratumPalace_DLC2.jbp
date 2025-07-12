@@ -4,7 +4,512 @@
     "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
     "PrototypeLink": "",
     "m_Overrides": [],
-    "Components": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$cda002ed-effa-4023-8769-74bbf02766fc",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Положить правильные заметки Префекта на стол",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$1c34d35270b64a658d7552058d20415b",
+              "Comment": "Заметки о Райкаде - забрали или нет Соломона оттуда",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$c652920087ff44cfad455c79cb299d7d",
+                    "Not": false,
+                    "m_Etude": "!bp_669c6b020e704974a403167a23470d5a",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                    "name": "$AddItemsToCollection$aa3489c198dd44b4bbf54f3b2ce15985",
+                    "ItemsCollection": {
+                      "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                      "name": "$MapObjectLoot$513190063d3940a5933e97036130acd6",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$51d6c12a8fd843bfb7aa93d67d6e228d",
+                        "MapObject": {
+                          "EntityNameInEditor": "AP_PrefectNotes",
+                          "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                          "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                        }
+                      }
+                    },
+                    "UseBlueprintUnitLoot": false,
+                    "Loot": [
+                      {
+                        "m_Item": "!bp_7c1cd8f898b04361902b5b93dadcdccd",
+                        "Diversity": 0,
+                        "Count": 1,
+                        "m_ReputationPointsToUnlock": 0
+                      }
+                    ],
+                    "m_BlueprintLoot": null,
+                    "Silent": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                    "name": "$AddItemsToCollection$e5f738f7-9cfc-4786-b780-23cd860aacef",
+                    "ItemsCollection": {
+                      "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                      "name": "$MapObjectLoot$68b5e4d4-9cf2-4cf0-929a-b5ba06488dd5",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$82601e7c-d796-412c-8343-70ae49d8ba05",
+                        "MapObject": {
+                          "EntityNameInEditor": "AP_PrefectNotes",
+                          "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                          "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                        }
+                      }
+                    },
+                    "UseBlueprintUnitLoot": false,
+                    "Loot": [
+                      {
+                        "m_Item": "!bp_4bfd6f0e9fc8424d8b3244127d459d65",
+                        "Diversity": 0,
+                        "Count": 1,
+                        "m_ReputationPointsToUnlock": 0
+                      }
+                    ],
+                    "m_BlueprintLoot": null,
+                    "Silent": true
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$022b32f41d4b4abfb0f54a565e40bb27",
+              "Comment": "Бессердечный - эскорт",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$cca2ebc90686407c827aaa8a3f062ea1",
+                    "Not": false,
+                    "m_Etude": "!bp_2d388d723e8341c7a59bfb3e71016ca2",
+                    "NotStarted": false,
+                    "Started": true,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                    "name": "$AddItemsToCollection$d543a5dd-0b4d-4724-bfef-5cbee29976a3",
+                    "ItemsCollection": {
+                      "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                      "name": "$MapObjectLoot$6956f18f-b0fa-44a7-ae28-cbf39e968486",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$cf6d07ac-2d6e-4ec2-8d08-4cc95d118150",
+                        "MapObject": {
+                          "EntityNameInEditor": "AP_PrefectNotes",
+                          "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                          "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                        }
+                      }
+                    },
+                    "UseBlueprintUnitLoot": false,
+                    "Loot": [
+                      {
+                        "m_Item": "!bp_e5c62395281a4c36bc04ba7f1b23bcb5",
+                        "Diversity": 0,
+                        "Count": 1,
+                        "m_ReputationPointsToUnlock": 0
+                      }
+                    ],
+                    "m_BlueprintLoot": null,
+                    "Silent": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$23cb6b87-e61a-432e-a12c-88e74c2da631",
+                    "Comment": "Бессердечный - на торговые маршруты",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$d2f58faa-59a4-4dba-8ed3-b370b39ba81c",
+                          "Not": false,
+                          "m_Etude": "!bp_a732acf77d664d40a41640abb895455b",
+                          "NotStarted": false,
+                          "Started": true,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                          "name": "$AddItemsToCollection$59588b21-3419-4b3f-9051-a24a93b28f15",
+                          "ItemsCollection": {
+                            "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                            "name": "$MapObjectLoot$3a7c5fbd-83da-47a4-9357-97ac37382285",
+                            "MapObject": {
+                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                              "name": "$MapObjectFromScene$ad5db032-37ba-4560-90d8-8a1cba20b9e9",
+                              "MapObject": {
+                                "EntityNameInEditor": "AP_PrefectNotes",
+                                "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                              }
+                            }
+                          },
+                          "UseBlueprintUnitLoot": false,
+                          "Loot": [
+                            {
+                              "m_Item": "!bp_57f8a488dbb849f8b31158984bd56720",
+                              "Diversity": 0,
+                              "Count": 1,
+                              "m_ReputationPointsToUnlock": 0
+                            }
+                          ],
+                          "m_BlueprintLoot": null,
+                          "Silent": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$4e5f6399-8c67-4d1f-a80a-d84ae989b379",
+                          "Comment": "Бессердечный - продан",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                                "name": "$EtudeStatus$cbe34c24-80d9-4e5a-bca0-4a1e662cd739",
+                                "Not": false,
+                                "m_Etude": "!bp_4f277247ea4b4acab9cc683f05f0e367",
+                                "NotStarted": false,
+                                "Started": false,
+                                "Playing": true,
+                                "CompletionInProgress": false,
+                                "Completed": false
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                                "name": "$AddItemsToCollection$74440939-0c09-454f-8f82-35a6d7dc4c50",
+                                "ItemsCollection": {
+                                  "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                                  "name": "$MapObjectLoot$8a0c4190-82f5-41bb-b468-0748cdcd2c2e",
+                                  "MapObject": {
+                                    "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                    "name": "$MapObjectFromScene$4e36cc56-1541-422a-991c-8431c3ddae02",
+                                    "MapObject": {
+                                      "EntityNameInEditor": "AP_PrefectNotes",
+                                      "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                      "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                                    }
+                                  }
+                                },
+                                "UseBlueprintUnitLoot": false,
+                                "Loot": [
+                                  {
+                                    "m_Item": "!bp_0927a2d31a7a4f569a009b72dff534db",
+                                    "Diversity": 0,
+                                    "Count": 1,
+                                    "m_ReputationPointsToUnlock": 0
+                                  }
+                                ],
+                                "m_BlueprintLoot": null,
+                                "Silent": true
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                                "name": "$AddItemsToCollection$aca292be-73ff-42ef-9ebc-022f2fa12d07",
+                                "ItemsCollection": {
+                                  "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                                  "name": "$MapObjectLoot$eaa29577-c774-4061-815f-c7d1f2405502",
+                                  "MapObject": {
+                                    "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                    "name": "$MapObjectFromScene$b770a907-c3d9-459c-af7e-0853f26e98c8",
+                                    "MapObject": {
+                                      "EntityNameInEditor": "AP_PrefectNotes",
+                                      "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                      "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                                    }
+                                  }
+                                },
+                                "UseBlueprintUnitLoot": false,
+                                "Loot": [
+                                  {
+                                    "m_Item": "!bp_9415c34a5071499cbfdd1a55c0918c38",
+                                    "Diversity": 0,
+                                    "Count": 1,
+                                    "m_ReputationPointsToUnlock": 0
+                                  }
+                                ],
+                                "m_BlueprintLoot": null,
+                                "Silent": true
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$836581a963df49d1b8c4bc6780f9b222",
+              "Comment": "Тассера - уничтожена",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b63d8c7497e244468bdb02d006dac439",
+                    "Not": false,
+                    "m_Etude": "!bp_427bc97378034e5c84d2fec8696b20a2",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                    "name": "$AddItemsToCollection$ef8b979e-f789-4f06-a712-2381fb84844d",
+                    "ItemsCollection": {
+                      "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                      "name": "$MapObjectLoot$d03a5545-d33f-4bd2-baf6-7c82e5bd30c5",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$8a9d9aa7-e35b-4ea2-aa8a-b24bb309d5de",
+                        "MapObject": {
+                          "EntityNameInEditor": "AP_PrefectNotes",
+                          "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                          "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                        }
+                      }
+                    },
+                    "UseBlueprintUnitLoot": false,
+                    "Loot": [
+                      {
+                        "m_Item": "!bp_bb335a850533498589410b2b212c511d",
+                        "Diversity": 0,
+                        "Count": 1,
+                        "m_ReputationPointsToUnlock": 0
+                      }
+                    ],
+                    "m_BlueprintLoot": null,
+                    "Silent": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$179e18f7-44ef-4ec6-9005-c5cde9fb9cbf",
+                    "Comment": "Тассера - добавлен тессерций",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$3ab3e5f9-06a0-4cbb-901e-1244231cdb67",
+                          "Not": false,
+                          "m_Etude": "!bp_b4c3a811209c4af2bdedc553bd727698",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                          "name": "$AddItemsToCollection$6ea4a81c-6b4d-4753-b2b6-432bd9f3c0a2",
+                          "ItemsCollection": {
+                            "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                            "name": "$MapObjectLoot$4019e3b9-6e48-4d60-97c7-26638d8ad475",
+                            "MapObject": {
+                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                              "name": "$MapObjectFromScene$03bec3c4-24bb-40cd-98bf-a6e1145ce3cb",
+                              "MapObject": {
+                                "EntityNameInEditor": "AP_PrefectNotes",
+                                "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                              }
+                            }
+                          },
+                          "UseBlueprintUnitLoot": false,
+                          "Loot": [
+                            {
+                              "m_Item": "!bp_d42707e9a6b241dfbb2d58b67f5ca8e9",
+                              "Diversity": 0,
+                              "Count": 1,
+                              "m_ReputationPointsToUnlock": 0
+                            }
+                          ],
+                          "m_BlueprintLoot": null,
+                          "Silent": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$5092caf2-cb09-402f-98e3-ae4f7259195d",
+                          "Comment": "Тассера - изучать тассерций или уничтожить",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                                "name": "$EtudeStatus$562400ff-1fab-42dc-81bd-b6bbd7659ada",
+                                "Not": false,
+                                "m_Etude": "!bp_5ad4a0c024f34b29a8e3d0f86ba54b96",
+                                "NotStarted": false,
+                                "Started": false,
+                                "Playing": true,
+                                "CompletionInProgress": false,
+                                "Completed": false
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                                "name": "$AddItemsToCollection$d63a9f35-bc0f-4056-a1b5-db9e2226943d",
+                                "ItemsCollection": {
+                                  "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                                  "name": "$MapObjectLoot$70189e06-e276-44ec-a46d-28c46192269a",
+                                  "MapObject": {
+                                    "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                    "name": "$MapObjectFromScene$a6808f98-2cb0-41a4-80ca-ece38496c493",
+                                    "MapObject": {
+                                      "EntityNameInEditor": "AP_PrefectNotes",
+                                      "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                      "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                                    }
+                                  }
+                                },
+                                "UseBlueprintUnitLoot": false,
+                                "Loot": [
+                                  {
+                                    "m_Item": "!bp_5c300bca6a354b91aadfc98913b82866",
+                                    "Diversity": 0,
+                                    "Count": 1,
+                                    "m_ReputationPointsToUnlock": 0
+                                  }
+                                ],
+                                "m_BlueprintLoot": null,
+                                "Silent": true
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "6fa8c37d53264cfc9f73ce7f3004f492, AddItemsToCollection",
+                                "name": "$AddItemsToCollection$e42b223b-bcc3-48a2-a28e-400904360868",
+                                "ItemsCollection": {
+                                  "$type": "ea4a209594d39fb47af898892a127a0e, MapObjectLoot",
+                                  "name": "$MapObjectLoot$03a65faa-3272-4e5f-87c7-ad2a4d889145",
+                                  "MapObject": {
+                                    "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                    "name": "$MapObjectFromScene$8adde986-2624-4860-a5ed-4e44534f6a89",
+                                    "MapObject": {
+                                      "EntityNameInEditor": "AP_PrefectNotes",
+                                      "_entity_id": "49098d76-dfe5-4130-a433-e1a2adfdf495",
+                                      "SceneAssetGuid": "2e544190d3768264ca1b3c33292a77f3"
+                                    }
+                                  }
+                                },
+                                "UseBlueprintUnitLoot": false,
+                                "Loot": [
+                                  {
+                                    "m_Item": "!bp_4661a36b27e54e6b9d0d89dbbe1bb2e4",
+                                    "Diversity": 0,
+                                    "Count": 1,
+                                    "m_ReputationPointsToUnlock": 0
+                                  }
+                                ],
+                                "m_BlueprintLoot": null,
+                                "Silent": true
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
     "Author": "Unknown",
     "Comment": "",
     "m_Parent": "!bp_419e4500b0bc43dea65786f78524b1c4",

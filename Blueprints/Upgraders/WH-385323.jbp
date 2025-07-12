@@ -1,0 +1,96 @@
+{
+  "AssetId": "bed3fb39cefd4477ae90d15a536eb0e8",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Игрок мог получить адендум Add1a_TalkToSolomorne, хотя не должен был. Конверт - уберет или закроет адендум.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$33d42ff537714861a35fc59fcfb7ac26",
+          "Comment": "Отмена адендума - если он выдан когда не должен (без романса) - в этом случае нет эрранда про рапорт",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$01c83e0a14854e648f5b9e52b2d0e096",
+                "Not": false,
+                "m_QuestObjective": "!bp_922ac44e2abd4ffb84716c25a2340856",
+                "State": "Started"
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$f50f688c59c542b888094239f7826acc",
+                "Not": false,
+                "m_QuestObjective": "!bp_8dc646f9e0b8496ca18f6903d6393f71",
+                "State": "None"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f0af50224a8742b5ba869f84d7e3f8d5, ResetQuestObjective",
+                "name": "$ResetQuestObjective$b70d676460ed48a88e0bea47c4a92259",
+                "m_Objective": "!bp_922ac44e2abd4ffb84716c25a2340856"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$47b47e38-7706-445f-b96f-a89a4d2aa70f",
+          "Comment": "Комплит адендума - если эрранд закрыт",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$8d2551f0-c99f-4038-9f04-597cc3b53048",
+                "Not": false,
+                "m_QuestObjective": "!bp_922ac44e2abd4ffb84716c25a2340856",
+                "State": "Started"
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$7a6f179b-f2ab-4397-9de7-e6f3c2d2a870",
+                "Not": false,
+                "m_QuestObjective": "!bp_8dc646f9e0b8496ca18f6903d6393f71",
+                "State": "Completed"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$e3de3c9ce1264c8db8364ea5c46293ec",
+                "Status": "Complete",
+                "m_Objective": "!bp_922ac44e2abd4ffb84716c25a2340856",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

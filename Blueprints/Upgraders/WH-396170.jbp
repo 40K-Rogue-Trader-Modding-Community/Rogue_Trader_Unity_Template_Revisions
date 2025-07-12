@@ -1,0 +1,119 @@
+{
+  "AssetId": "3cca6f284d204cff80c2353463b96309",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Неактивный глейто - нужно перезапустить механику встречи если ее еще не было для игроков которые в момент патча в Прорве (остальных зацепит фикс)",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_5c8e034e526a4a21bd0a85b9c8a8b8bc",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$3bfd3ff42c314e0a9e5c786213fa8863",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$5c74d276-503f-4c23-a62e-324ec82a0f4b",
+                "Not": false,
+                "m_Etude": "!bp_7e726c2ea34b4f5cb40f1d850987dd65",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$7e33deff-57bc-4192-9495-1a8b47ed4afb",
+                "Not": true,
+                "m_Dialog": "!bp_bfdd51fa69b74c0a813bbb5de065fa79"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$1437af83-8f0d-4a56-b864-d70b0f9364b9",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$345690a4-bb3e-47e9-b835-5cac1b95b0c2",
+                  "MapObject": {
+                    "EntityNameInEditor": "DLC2_BodiesNearPet",
+                    "_entity_id": "7e7223d6-501e-4973-bcf9-bb537322811f",
+                    "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                  }
+                },
+                "Unhide": true
+              },
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$f7d05992-a809-41f7-9729-df859787b673",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "DLC2_SolomornePet",
+                    "_entity_id": "63d6ea6f-65af-4c98-821f-7902500009ec",
+                    "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+                "name": "$ScriptZoneActivate$dc008440-5dc2-4efd-ba5c-c354f8984390",
+                "ScriptZone": {
+                  "EntityNameInEditor": "DLC2_MeetSolomornePet",
+                  "_entity_id": "88c5d7c3-25b7-4385-a9e4-fc4c0aeb2d3f",
+                  "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                }
+              },
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$ed72d145-7335-4d9e-bd9a-6eca7719c776",
+                "m_Group": {
+                  "EntityNameInEditor": "BarkScene01",
+                  "_entity_id": "be368267-df8a-4fde-a031-70172f6a0968",
+                  "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$530f3415-e710-47d6-8ef7-48d437b366e9",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$77bfe070-a127-4d3c-ad30-2dfb434a777e",
+                  "MapObject": {
+                    "EntityNameInEditor": "DLC2_BloodLetter",
+                    "_entity_id": "ca0e6b46-1221-42b7-b912-d3264e8e0328",
+                    "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

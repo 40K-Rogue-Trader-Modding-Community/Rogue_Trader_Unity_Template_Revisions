@@ -243,14 +243,62 @@
               "IfTrue": {
                 "Actions": [
                   {
-                    "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
-                    "name": "$ContextActionAttackWithFirstWeaponAbility$93aaa22a-c863-417d-bd9d-9372e6988750",
-                    "TargetIsPriorityTarget": false,
-                    "m_PriorityTargetBuff": "!bp_53135057d69647a7854e578c5ef40bba",
-                    "useSecondWeapon": false,
-                    "OwnerIsAttacker": true,
-                    "SaveMPAfterUsingWeaponAbility": false,
-                    "ContextCasterIsTarget": true
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$a932afe627004ec39772a87f6c741b77",
+                    "Comment": "Если висит Stunned / Prone / Can't Attack",
+                    "ConditionsChecker": {
+                      "Operation": "Or",
+                      "Conditions": [
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$03745c44afb24b82ae24a9874a06507d",
+                          "Not": false,
+                          "m_Buff": "!bp_f1c0c6bee3c54cc694c1d1746eafcb15"
+                        },
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$1c100df6f6fd4c02aedaee6ccd5cad72",
+                          "Not": false,
+                          "m_Buff": "!bp_8de915da52f24d9bb925d13fb2c8cf98"
+                        },
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$46ec2cb8d38b4df597e7ce32286d405a",
+                          "Not": false,
+                          "m_Buff": "!bp_4755bff66f544cf7bd9f5be37dad08db"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "b8417df48902432b9b5a5b22e9f30a75, ProvokeAttackOfOpportunity",
+                          "name": "$ProvokeAttackOfOpportunity$ed208b40-5437-421d-ac5e-cb879caa929e",
+                          "m_Type": "TargetFromCaster",
+                          "ConditionsOnOpportunityAttacker": {
+                            "Operation": "And",
+                            "Conditions": []
+                          },
+                          "ActionsOnOpportunityAttacker": {
+                            "Actions": []
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                          "name": "$ContextActionAttackWithFirstWeaponAbility$688c220b-1c81-4872-901d-9e9a4f331f09",
+                          "TargetIsPriorityTarget": false,
+                          "m_PriorityTargetBuff": "!bp_53135057d69647a7854e578c5ef40bba",
+                          "useSecondWeapon": false,
+                          "OwnerIsAttacker": true,
+                          "SaveMPAfterUsingWeaponAbility": false,
+                          "ContextCasterIsTarget": true
+                        }
+                      ]
+                    }
                   }
                 ]
               },
@@ -258,7 +306,7 @@
                 "Actions": [
                   {
                     "$type": "b8417df48902432b9b5a5b22e9f30a75, ProvokeAttackOfOpportunity",
-                    "name": "$ProvokeAttackOfOpportunity$da1011922144406abadc3601b1944401",
+                    "name": "$ProvokeAttackOfOpportunity$b9cbc90b-e9da-4b90-8a51-937a51d44442",
                     "m_Type": "TargetFromCaster",
                     "ConditionsOnOpportunityAttacker": {
                       "Operation": "And",
@@ -1222,7 +1270,9 @@
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
-    "m_AbilityGroups": [],
+    "m_AbilityGroups": [
+      "!bp_5017b999b63c4377970377fc3066079d"
+    ],
     "m_Cyclical": false
   },
   "Meta": {

@@ -6,44 +6,73 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "961a1f33fbdad5c4ca08247f49b98c47, WarhammerAfterAttackRollTrigger",
-        "name": "$WarhammerAfterAttackRollTrigger$94996ddc-8736-49e7-a16c-ceb6f1dc9788",
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$30c42f97-cf9b-4b71-89b7-e6ca23080c77",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "TargetEvaluator": null,
-            "FailSilentlyIfNoTarget": false,
-            "Getters": [
-              {
-                "$type": "83a8a95dacc24c6f8bb7fdccf7ec43ea, CheckAbilityWeaponBlueprintGetter",
-                "name": "$CheckAbilityWeaponBlueprintGetter$fb4900a8fcd9488cbfe6c512ae300579",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "m_Weapon": "!bp_4a5f53359ab84866a3f722f8f820a8f9"
-              }
-            ]
-          }
+        "m_Feature": "CanShootInMelee"
+      },
+      {
+        "$type": "6ebdb034bf2f486b932f9342e175ec6d, AbilityLifecycleTriggerCaster",
+        "name": "$AbilityLifecycleTriggerCaster$0fca1748-7edb-4f66-ba27-ca7066406cfd",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
         },
-        "Actions": {
+        "m_Overrides": [],
+        "Condition": {
+          "Operation": "BoolAnd",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "83a8a95dacc24c6f8bb7fdccf7ec43ea, CheckAbilityWeaponBlueprintGetter",
+              "name": "$CheckAbilityWeaponBlueprintGetter$8b22a90a-7e61-4fbf-9684-a1035a7d3570",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Weapon": "!bp_4a5f53359ab84866a3f722f8f820a8f9"
+            },
+            {
+              "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+              "name": "$CheckAbilityBlueprintGetter$48bb0bf3-d748-49dd-966d-b87b89efd4a6",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Abilities": [
+                "!bp_1cdd00b349324e7f958a8cb1dfcde2fe"
+              ]
+            }
+          ]
+        },
+        "StartActions": {
+          "Actions": []
+        },
+        "EndActions": {
           "Actions": [
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$6650700baf854d8eb081e90068ad3051",
+              "name": "$ContextActionApplyBuff$101672e6-3728-4971-b643-9e3c236914f7",
               "m_Buff": "!bp_866cb491aeda45869e40a9165447a7cc",
               "BuffEndCondition": "TurnStartOrCombatEnd",
               "Permanent": false,
@@ -89,10 +118,8 @@
             }
           ]
         },
-        "triggerAfterAttack": true,
-        "onlyMeleeAttack": false,
-        "ActionsOnTarget": false,
-        "OnlyHit": false
+        "m_Facts": [],
+        "m_FactsToCheckOnOwner": []
       }
     ],
     "Author": "ElenaMironova",

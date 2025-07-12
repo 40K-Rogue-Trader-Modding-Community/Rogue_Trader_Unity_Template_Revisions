@@ -6,45 +6,100 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "961a1f33fbdad5c4ca08247f49b98c47, WarhammerAfterAttackRollTrigger",
-        "name": "$WarhammerAfterAttackRollTrigger$b0a5b7ad-3690-4fcb-934b-87ff15b24be1",
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$8cb56aac-e3d3-457a-a946-314ef9c851ec",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "TargetEvaluator": null,
-            "FailSilentlyIfNoTarget": false,
-            "Getters": [
-              {
-                "$type": "a88aca1f99c04b5abe76a4f8ff634e37, CheckAbilityIsAoEGetter",
-                "name": "$CheckAbilityIsAoEGetter$2b92ce23918745119b827343d73465d9",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "IncludeAreaEffects": false,
-                "DoNotIncludeScatter": true
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "6d42b814a33bd77449bb0435fe3fe04a",
+                "stringkey": "01fce217-1c4e-4762-8d64-da135db5d509"
               }
-            ]
+            },
+            "m_DescriptionFact": "!bp_f08a8a9e6e6142b7b839d5c1d8fda4db",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value2",
+            "m_PropertySource": "!bp_348bcc3a91e14473bab4bbcdb92782ce",
+            "m_LinkKey": "Crit Hit Chance"
           }
+        ]
+      },
+      {
+        "$type": "6ebdb034bf2f486b932f9342e175ec6d, AbilityLifecycleTriggerCaster",
+        "name": "$AbilityLifecycleTriggerCaster$5792b06c-0257-44b5-aec3-190fdeb55167",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
         },
-        "Actions": {
+        "m_Overrides": [],
+        "Condition": {
+          "Operation": "BoolAnd",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "a88aca1f99c04b5abe76a4f8ff634e37, CheckAbilityIsAoEGetter",
+              "name": "$CheckAbilityIsAoEGetter$6c7217ae-87d2-48e5-a91d-80ff704a7ca9",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "IncludeAreaEffects": false,
+              "DoNotIncludeScatter": true
+            },
+            {
+              "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+              "name": "$CheckAbilityGroupGetter$08f82211e21b42eb87702e9d662ea161",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Groups": [
+                "!bp_1cf206b13141425491c379bc75ef0699"
+              ]
+            }
+          ]
+        },
+        "StartActions": {
+          "Actions": []
+        },
+        "EndActions": {
           "Actions": [
             {
               "$type": "d1933e412cc64482ae7990aaacdf44a8, WarhammerContextActionRestoreActionPoints",
-              "name": "$WarhammerContextActionRestoreActionPoints$bcd34e6d83314fb2a03c09b5058ee9a7",
+              "name": "$WarhammerContextActionRestoreActionPoints$ffae9a46-148b-4c88-8b4c-83217324d7f6",
               "ActionPoints": {
                 "ValueType": "Simple",
                 "Value": 0,
@@ -70,7 +125,7 @@
             },
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$ea38110c21284199863aaeb184915096",
+              "name": "$ContextActionApplyBuff$df9489a3-95ae-4f17-97fa-986ae2e62585",
               "m_Buff": "!bp_348bcc3a91e14473bab4bbcdb92782ce",
               "BuffEndCondition": "TurnStartOrCombatEnd",
               "Permanent": false,
@@ -116,47 +171,8 @@
             }
           ]
         },
-        "triggerAfterAttack": true,
-        "onlyMeleeAttack": true,
-        "ActionsOnTarget": false,
-        "OnlyHit": false
-      },
-      {
-        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
-        "name": "$UIPropertiesComponent$8cb56aac-e3d3-457a-a946-314ef9c851ec",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Properties": [
-          {
-            "NameType": "Damage",
-            "m_Name": {
-              "m_Key": "",
-              "m_OwnerString": "",
-              "m_OwnerPropertyPath": "",
-              "m_JsonPath": "",
-              "Shared": null
-            },
-            "Description": {
-              "m_Key": "",
-              "m_OwnerString": "",
-              "m_OwnerPropertyPath": "",
-              "m_JsonPath": "",
-              "Shared": {
-                "assetguid": "6d42b814a33bd77449bb0435fe3fe04a",
-                "stringkey": "01fce217-1c4e-4762-8d64-da135db5d509"
-              }
-            },
-            "m_DescriptionFact": "!bp_f08a8a9e6e6142b7b839d5c1d8fda4db",
-            "m_LinkProperty": true,
-            "m_PropertyName": "Value2",
-            "m_PropertySource": "!bp_348bcc3a91e14473bab4bbcdb92782ce",
-            "m_LinkKey": "Crit Hit Chance"
-          }
-        ]
+        "m_Facts": [],
+        "m_FactsToCheckOnOwner": []
       }
     ],
     "Author": "ElenaMironova",
@@ -166,7 +182,10 @@
       "m_OwnerString": "",
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
-      "Shared": null
+      "Shared": {
+        "assetguid": "181d787f43c7de846a3ac8206e8701a3",
+        "stringkey": "5c6a32b3-ec1a-4e97-950a-8eca03e81398"
+      }
     },
     "m_Description": {
       "m_Key": "",

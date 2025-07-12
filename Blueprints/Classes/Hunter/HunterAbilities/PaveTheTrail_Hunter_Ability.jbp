@@ -169,6 +169,7 @@
                     "Property": {
                       "Operation": "L",
                       "TargetType": "ContextMainTarget",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -439,13 +440,15 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": true
             },
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
@@ -722,6 +725,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -755,6 +759,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -789,6 +794,7 @@
         "Value": {
           "Operation": "Div",
           "TargetType": "ContextMainTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -854,7 +860,9 @@
         },
         "m_Overrides": [],
         "m_CheckedFacts": [],
-        "m_UnlessFact": "!bp_f05d32b11739436893b49776bb36e112"
+        "m_CheckedFactsTarget": "Target",
+        "m_UnlessFact": "!bp_f05d32b11739436893b49776bb36e112",
+        "m_UnlessFactTarget": "Caster"
       },
       {
         "$type": "224c1eb24ed98e942ae15b9e10e62724, WarhammerEndTurn",
@@ -884,6 +892,7 @@
         "TargetCondition": {
           "Operation": "BoolAnd",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -908,6 +917,7 @@
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -949,6 +959,7 @@
     "CanTargetFriends": false,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -964,6 +975,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -979,8 +992,7 @@
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "LeonidTolochenko"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

@@ -61,13 +61,13 @@
         },
         "PenetrationMod": {
           "ValueType": "Simple",
-          "Value": 0,
+          "Value": 15,
           "ValueRank": "Default",
           "ValueShared": "Damage",
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1",
-          "Enabled": false
+          "Enabled": true
         },
         "PercentDamageModifier": {
           "ValueType": "Simple",
@@ -87,7 +87,7 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1",
-          "Enabled": true
+          "Enabled": false
         },
         "DeflectionPenetration": {
           "ValueType": "Simple",
@@ -119,7 +119,7 @@
           "PropertyName": "Value1",
           "Enabled": false
         },
-        "ModifierDescriptor": "UniqueItem",
+        "ModifierDescriptor": "None",
         "ModifyEvenDirectDamage": false,
         "ModifyEvenDamageOverTime": false
       },
@@ -144,88 +144,11 @@
         "m_Overrides": [],
         "Restrictions": {
           "Property": {
-            "Operation": "Sum",
+            "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
             "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
-            "Getters": [
-              {
-                "$type": "2b7102ebfff042409c7f1493b16125a9, ConditionalGetter",
-                "name": "$ConditionalGetter$120ec0312fb84816bf07c77ccf355959",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "Condition": {
-                  "Operation": "LE",
-                  "TargetType": "RuleTarget",
-                  "TargetEvaluator": null,
-                  "FailSilentlyIfNoTarget": false,
-                  "Getters": [
-                    {
-                      "$type": "be189bcf59b8561448110efad9cf9e3d, ArmorGetter",
-                      "name": "$ArmorGetter$c230703ccba24944bda809d6666f5be9",
-                      "Settings": {
-                        "Progression": "AsIs",
-                        "m_CustomProgression": [],
-                        "m_StartLevel": 0,
-                        "m_StepLevel": 0,
-                        "Negate": false,
-                        "Limit": "None",
-                        "Min": 0,
-                        "Max": 0
-                      },
-                      "Deflection": false,
-                      "AgainstTarget": false,
-                      "Attacker": "CurrentEntity",
-                      "Defender": "CurrentEntity",
-                      "OnlyBodyArmour": false,
-                      "OnlyNegativeModifiers": false,
-                      "ItemBonusOnly": false,
-                      "WithoutPenetration": true
-                    },
-                    {
-                      "$type": "c204f04abdb243cc881d158d91869f2a, PenetrationGetter",
-                      "name": "$PenetrationGetter$9337617869794913ac7ee8aba1d69773",
-                      "Settings": {
-                        "Progression": "AsIs",
-                        "m_CustomProgression": [],
-                        "m_StartLevel": 0,
-                        "m_StepLevel": 0,
-                        "Negate": false,
-                        "Limit": "None",
-                        "Min": 0,
-                        "Max": 0
-                      },
-                      "PenetrationParameterType": "ArmorPenetration",
-                      "AgainstTarget": true,
-                      "Attacker": "ContextCaster",
-                      "Defender": "RuleTarget"
-                    }
-                  ]
-                },
-                "True": {
-                  "Operation": "Sum",
-                  "TargetType": "CurrentEntity",
-                  "TargetEvaluator": null,
-                  "FailSilentlyIfNoTarget": false,
-                  "Getters": []
-                },
-                "False": {
-                  "Operation": "Sum",
-                  "TargetType": "CurrentEntity",
-                  "TargetEvaluator": null,
-                  "FailSilentlyIfNoTarget": false,
-                  "Getters": []
-                }
-              }
-            ]
+            "Getters": []
           }
         },
         "ActionOnSelfHit": {

@@ -285,7 +285,7 @@
           "name": ""
         },
         "m_Overrides": [],
-        "Comment": "",
+        "Comment": "DLC2 - если Бессердечный на маршрутах - с шансом спавнить его в системе",
         "m_Once": false,
         "m_IgnoreAlreadyProcessedActivation": false,
         "Conditions": {
@@ -307,64 +307,65 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$7acf0c5f-27df-4c7e-88c0-8702901bc807",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "12b774374ac6829459deaf2f61048967, ContextConditionRandomLessThen",
-                    "name": "$ContextConditionRandomLessThen$5d9b1df9-36fa-4910-a30e-d5a813621635",
-                    "Not": false,
-                    "Value": {
-                      "ValueType": "Simple",
-                      "Value": 50,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    }
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-                    "name": "$HideMapObject$801ec519-43d6-4ef3-87d4-b4ca34d22f7c",
-                    "MapObject": {
-                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-                      "name": "$MapObjectFromScene$5bd98c81-76fd-4115-b4c5-0da333b756c9",
-                      "MapObject": {
-                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
-                        "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
-                        "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+              "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+              "name": "$RandomAction$64ad0c07-caa7-4515-bc64-3a82d412b9c2",
+              "Actions": [
+                {
+                  "Weight": 2,
+                  "Conditions": {
+                    "Operation": "And",
+                    "Conditions": []
+                  },
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                        "name": "$HideMapObject$d65272e7-0c30-4f67-8550-e0e6e14a132f",
+                        "MapObject": {
+                          "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                          "name": "$MapObjectFromScene$00d9b375-30f9-4a62-b691-8a1e0b746786",
+                          "MapObject": {
+                            "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                            "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
+                            "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+                          }
+                        },
+                        "Unhide": true
+                      },
+                      {
+                        "$type": "0e571e9f07a314048afedff605fa53ce, LockFlag",
+                        "name": "$LockFlag$fca0326e-113c-4873-b94b-7298c79dd73e",
+                        "m_Flag": "!bp_9682d996b08d4fd98254fa5779fc8246"
                       }
-                    },
-                    "Unhide": true
+                    ]
                   }
-                ]
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
-                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-                    "name": "$HideMapObject$3aee4266-f680-4a0e-8e30-48466906f8f9",
-                    "MapObject": {
-                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-                      "name": "$MapObjectFromScene$a6ba3663-5c25-4abc-a2b0-aa3f0941e6ce",
-                      "MapObject": {
-                        "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
-                        "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
-                        "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+                },
+                {
+                  "Weight": 1,
+                  "Conditions": {
+                    "Operation": "And",
+                    "Conditions": []
+                  },
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                        "name": "$HideMapObject$6758dd94-5d22-4838-af0b-94d78324086b",
+                        "MapObject": {
+                          "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                          "name": "$MapObjectFromScene$920334bb-4bf1-4744-8f3c-0ec4e33bc210",
+                          "MapObject": {
+                            "EntityNameInEditor": "DLC2_HeartlessOnTradeRouts",
+                            "_entity_id": "672f55a0-b5f5-4aa2-95d6-a2a795c8335b",
+                            "SceneAssetGuid": "c4b1abcdbc2bcc54c9d42ad37646beee"
+                          }
+                        },
+                        "Unhide": false
                       }
-                    },
-                    "Unhide": false
+                    ]
                   }
-                ]
-              }
+                }
+              ]
             }
           ]
         }

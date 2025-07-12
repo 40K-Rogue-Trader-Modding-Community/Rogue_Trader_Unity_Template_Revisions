@@ -78,6 +78,162 @@
                   }
                 ]
               }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$73bd9786c4ac4151a271b41b2803b31e",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$b11f57cd1df645559941352722a9b99f",
+                    "Not": false,
+                    "m_Fact": "!bp_98abe40f4ee642a28f2a3c31a7a9a588"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "9a9711e7bb7840f48ad264059580b262, ContextActionOnContextCasterPet",
+                    "name": "$ContextActionOnContextCasterPet$e9951a66-42dc-4d6f-9b85-845b45739129",
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                          "name": "$ContextActionApplyBuff$da40fe93-b8ba-4083-a2f5-dcd31e29c7d7",
+                          "m_Buff": "!bp_81f1b1c7684a43258e4e16175d2c30f4",
+                          "BuffEndCondition": "CombatEnd",
+                          "Permanent": false,
+                          "DurationValue": {
+                            "BonusValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "RoundsValue": {
+                              "ValueType": "Simple",
+                              "Value": 2,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "ToCaster": false,
+                          "AsChild": false,
+                          "SameDuration": false,
+                          "Ranks": {
+                            "ValueType": "Simple",
+                            "Value": 1,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "ActionsOnApply": {
+                            "Actions": [
+                              {
+                                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                                "name": "$Conditional$eecc867444424f02b11ff92feb9b7468",
+                                "Comment": "",
+                                "ConditionsChecker": {
+                                  "Operation": "And",
+                                  "Conditions": [
+                                    {
+                                      "$type": "6c00fcc900e9e82499d86ef9e35ea70d, ContextConditionBuffRank",
+                                      "name": "$ContextConditionBuffRank$c96ae2ba01474f31b8e7b814e18e848a",
+                                      "Not": false,
+                                      "Buff": "!bp_81f1b1c7684a43258e4e16175d2c30f4",
+                                      "RankValue": {
+                                        "ValueType": "Simple",
+                                        "Value": 5,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      },
+                                      "BuffFromCaster": false
+                                    }
+                                  ]
+                                },
+                                "IfTrue": {
+                                  "Actions": [
+                                    {
+                                      "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                                      "name": "$ContextActionRemoveBuff$82d1979636544614b6cd4698e121b6a2",
+                                      "m_Buff": "!bp_81f1b1c7684a43258e4e16175d2c30f4",
+                                      "RemoveRank": false,
+                                      "RemoveSeveralRanks": false,
+                                      "RankNumber": {
+                                        "ValueType": "Simple",
+                                        "Value": 0,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      },
+                                      "m_CasterRanksRemovalPolicy": "Default",
+                                      "ToCaster": false
+                                    },
+                                    {
+                                      "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
+                                      "name": "$ContextActionCastSpell$038774c49174448c96e170e6509bb1a2",
+                                      "m_Spell": "!bp_8a67b620eefd4b159368600d3abd2a8c",
+                                      "OverrideDC": false,
+                                      "DC": {
+                                        "ValueType": "Simple",
+                                        "Value": 0,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      },
+                                      "OverrideSpellLevel": false,
+                                      "SpellLevel": {
+                                        "ValueType": "Simple",
+                                        "Value": 0,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      },
+                                      "CastByTarget": true,
+                                      "UseFullAbilityCastCycle": false
+                                    }
+                                  ]
+                                },
+                                "IfFalse": {
+                                  "Actions": []
+                                }
+                              }
+                            ]
+                          },
+                          "ActionsOnImmune": {
+                            "Actions": []
+                          },
+                          "AddFactSource": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }
@@ -129,6 +285,6 @@
     "m_Cyclical": false
   },
   "Meta": {
-    "ShadowDeleted": false
+    "ShadowDeleted": true
   }
 }
