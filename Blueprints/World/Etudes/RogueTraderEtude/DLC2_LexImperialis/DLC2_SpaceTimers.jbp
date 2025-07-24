@@ -61,6 +61,76 @@
             }
           ]
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$81edff03-a66d-4a91-bc4c-ebea715e4db7",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$0780efdb-82cf-40b0-a3ed-f1fd9235a6ea",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b5c6dbb6-c2ba-499f-804b-9e4674e6d14c",
+                    "Not": false,
+                    "m_Etude": "!bp_11a6f016f78031d4faa5de807e9e86ce",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$6290907292184c63afcd166cba366efb",
+                    "Not": false,
+                    "m_Quest": "!bp_f3f6d782123041da9841b9639679ec61",
+                    "State": "None"
+                  },
+                  {
+                    "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                    "name": "$DialogSeen$3b7a05420d7f41fe9334a2636ecbcd1e",
+                    "Not": false,
+                    "m_Dialog": "!bp_641f3ec44e2a4cc7825a5cc6e39f02ea"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$f95d02b2-3474-4048-aa9e-f568c81604b6",
+                    "Etude": "!bp_10c722914f36481cb8aeac01ceb718bf",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "Unknown",
