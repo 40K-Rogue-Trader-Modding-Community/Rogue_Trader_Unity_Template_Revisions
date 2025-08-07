@@ -137,6 +137,53 @@
               "IfFalse": {
                 "Actions": []
               }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$57c91c6c-28f7-4da7-b9a4-5e429f3041d4",
+              "Comment": "Если Оверсир Оперативник",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$0879ecd0-ba62-43aa-a4df-87cda8ff64af",
+                    "Not": false,
+                    "m_Fact": "!bp_6cfd9b9830ea403db07a816843a8e39a"
+                  },
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$d301f5a7-2ca6-45bc-93e0-e2cee75407d4",
+                    "Not": false,
+                    "m_Fact": "!bp_f2c3b7875dca41318782d7779480040a"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$2ddd8959-2f50-44f6-b0db-e06902fee831",
+                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+                    "RemoveRank": true,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }

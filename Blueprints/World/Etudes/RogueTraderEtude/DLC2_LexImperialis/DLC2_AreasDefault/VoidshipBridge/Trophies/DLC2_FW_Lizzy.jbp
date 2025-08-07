@@ -46,7 +46,45 @@
                 }
               ],
               "ActionsOnSpawn": {
-                "Actions": []
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$6c9d511fa87142ebb96c14ca28dbdb7a",
+                    "Comment": "Если забрали амулет - меняем портрет на версию без амулета",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$62445ca676194be6b6fa352ea5282ac2",
+                          "Not": false,
+                          "m_Etude": "!bp_99d781850c314c968bbc66367c9b0959",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "bfefd4b0c2e912a4a8d9e0bcde22a95c, SetPortrait",
+                          "name": "$SetPortrait$7cd51bb019004a6393a841f0453437ca",
+                          "Unit": {
+                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                            "name": "$SpawnedUnit$18614c4090a14a7f9d4aab969d7c4b48"
+                          },
+                          "m_Portrait": "!bp_06f05f1ecbd94cdcb2e74b1e81c34404"
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
               }
             }
           ]

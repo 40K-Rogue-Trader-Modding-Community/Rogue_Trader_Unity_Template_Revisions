@@ -35,6 +35,7 @@
         "Condition": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -127,6 +128,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "RuleTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -182,15 +184,98 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
         },
         "CombatStartActions": {
-          "Actions": []
+          "Actions": [
+            {
+              "$type": "9a9711e7bb7840f48ad264059580b262, ContextActionOnContextCasterPet",
+              "name": "$ContextActionOnContextCasterPet$185835b7dab04bd2a836aa1541406f7b",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$57768a73daf7484d8d344c70810e575f",
+                    "m_Buff": "!bp_f2c3b7875dca41318782d7779480040a",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              }
+            }
+          ]
         },
         "CombatEndActions": {
-          "Actions": []
+          "Actions": [
+            {
+              "$type": "9a9711e7bb7840f48ad264059580b262, ContextActionOnContextCasterPet",
+              "name": "$ContextActionOnContextCasterPet$30e3a1990b6745c89fe0bac16927b530",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$bb788db7d59647b89a7b7dbfa4c8829b",
+                    "m_Buff": "!bp_f2c3b7875dca41318782d7779480040a",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              }
+            }
+          ]
         },
         "RoundStartActions": {
           "Actions": []
@@ -224,6 +309,7 @@
                           "Property": {
                             "Operation": "BoolOr",
                             "TargetType": "CurrentEntity",
+                            "TargetEvaluator": null,
                             "FailSilentlyIfNoTarget": false,
                             "Getters": [
                               {
@@ -259,6 +345,7 @@
                                 "Value": {
                                   "Operation": "Sum",
                                   "TargetType": "ContextCaster",
+                                  "TargetEvaluator": null,
                                   "FailSilentlyIfNoTarget": false,
                                   "Getters": [
                                     {
@@ -345,13 +432,15 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             },
             {
               "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
@@ -409,6 +498,7 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [
                 "!bp_66e7b370e32b43118315ab0fd24a7f0d"
@@ -417,7 +507,8 @@
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             }
           ]
         },
@@ -482,6 +573,7 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [
                 "!bp_66e7b370e32b43118315ab0fd24a7f0d"
@@ -490,7 +582,8 @@
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             }
           ]
         },
@@ -513,6 +606,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "RuleTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -549,6 +643,7 @@
               "Value": {
                 "Operation": "Sum",
                 "TargetType": "RuleInitiator",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -585,6 +680,7 @@
               "Value": {
                 "Operation": "Mul",
                 "TargetType": "RuleTarget",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -621,6 +717,7 @@
                     "Value": {
                       "Operation": "Sum",
                       "TargetType": "RuleInitiator",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -681,6 +778,7 @@
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "RuleTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -800,23 +898,45 @@
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
-            "TargetType": "CurrentEntity",
+            "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "5acb988246cb416eaf70c152840975b3, DamageTypeGetter",
-                "name": "$DamageTypeGetter$5afcdef6e6a242f98585532c8497833f",
+                "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+                "name": "$FactRankGetter$81371d6e-d7df-41e3-a5d9-d87f852ac3d1",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
                   "m_StartLevel": 0,
                   "m_StepLevel": 0,
-                  "Negate": true,
+                  "Negate": false,
                   "Limit": "None",
                   "Min": 0,
                   "Max": 0
                 },
-                "DamageType": "Direct"
+                "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+                "Aggregation": "Max",
+                "BuffWithCasterFromTargetType": false,
+                "Target": "CurrentEntity"
+              },
+              {
+                "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                "name": "$CheckAbilityGroupGetter$fbe45143-054e-488f-b2ae-b7987a68ec56",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Groups": [
+                  "!bp_1cf206b13141425491c379bc75ef0699",
+                  "!bp_2324e1b3a57c436d8b0bdd82d316eab2"
+                ]
               }
             ]
           }
@@ -827,7 +947,7 @@
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$3e32a432-4e34-4242-877c-117aebec20dc",
-              "Comment": "",
+              "Comment": "Tide of Excellence",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
@@ -844,6 +964,7 @@
                     "Property": {
                       "Operation": "BoolAnd",
                       "TargetType": "RuleTarget",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -927,7 +1048,7 @@
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$1fafb807-b13e-4879-8016-c3fa4ef0ac8c",
-              "Comment": "",
+              "Comment": "Inflict Despair",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
@@ -1023,12 +1144,11 @@
               "IfTrue": {
                 "Actions": [
                   {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$97895f03-322d-4db3-a582-5e7a44a4889e",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
+                    "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
+                    "name": "$ContextActionCastSpell$9433d3a7313a4fc6bcf304599341e075",
+                    "m_Spell": "!bp_e46cbc0ae962416bb5e0d8685c0dbb2f",
+                    "OverrideDC": false,
+                    "DC": {
                       "ValueType": "Simple",
                       "Value": 0,
                       "ValueRank": "Default",
@@ -1037,8 +1157,18 @@
                       "m_CustomProperty": null,
                       "PropertyName": "Value1"
                     },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
+                    "OverrideSpellLevel": false,
+                    "SpellLevel": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "CastByTarget": true,
+                    "UseFullAbilityCastCycle": false
                   }
                 ]
               },
@@ -1132,12 +1262,11 @@
                     "ToCaster": true
                   },
                   {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$ea27deb5-6608-45c9-86fe-9a3535c963fb",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
+                    "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
+                    "name": "$ContextActionCastSpell$c2fac967-7359-48ea-adb8-82652b526019",
+                    "m_Spell": "!bp_e46cbc0ae962416bb5e0d8685c0dbb2f",
+                    "OverrideDC": false,
+                    "DC": {
                       "ValueType": "Simple",
                       "Value": 0,
                       "ValueRank": "Default",
@@ -1146,36 +1275,8 @@
                       "m_CustomProperty": null,
                       "PropertyName": "Value1"
                     },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
-              }
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$05182d51100f5a3ba33cd6f78e80b371",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$9a830a45f22e5e94a7865b5c6d261a0f",
-                    "Not": true,
-                    "m_Fact": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$665306c5-4a68-4db1-a574-e15ee39eba99",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
+                    "OverrideSpellLevel": false,
+                    "SpellLevel": {
                       "ValueType": "Simple",
                       "Value": 0,
                       "ValueRank": "Default",
@@ -1184,117 +1285,8 @@
                       "m_CustomProperty": null,
                       "PropertyName": "Value1"
                     },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$5b16a7facd28594a8ec53d396a1d4df2",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": [
-                        {
-                          "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                          "name": "$ContextConditionCasterHasFact$36c126efd94a5fbe80c276a4e3e3df1d",
-                          "Not": false,
-                          "m_Fact": "!bp_f8a2497eed104f889ac0d094d9b97162"
-                        }
-                      ]
-                    },
-                    "IfTrue": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$63e2b628e0a55ac98bb5856ae748f652",
-                          "m_Buff": "!bp_4e1df6066e584e339ac8497efdfd37e2",
-                          "BuffEndCondition": "CombatEnd",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": true,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "CasterNamedProperty",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "StatBonus1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "IfFalse": {
-                      "Actions": []
-                    }
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$a58853db02905c5b9e5d2baf9f87623b",
-                    "m_Buff": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": true
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$77c38c43-1752-4f70-96a0-57d46a105b31",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
+                    "CastByTarget": true,
+                    "UseFullAbilityCastCycle": false
                   }
                 ]
               }
@@ -1321,6 +1313,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "RuleTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -1343,400 +1336,10 @@
             }
           ]
         }
-      },
-      {
-        "$type": "67bd9d5235e74484bb1d673b885ab430, WarhammerWeaponHitTriggerInitiator",
-        "name": "$WarhammerWeaponHitTriggerInitiator$438e1a43-ff4d-4744-a197-6f4697fefbb4",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "ActionOnSelfHit": {
-          "Actions": []
-        },
-        "ActionOnSelfMiss": {
-          "Actions": []
-        },
-        "ActionsOnTargetHit": {
-          "Actions": [
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$23d1e510-1314-4c6f-a098-5d03333ce7ee",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
-                    "name": "$ContextConditionHasFact$000d1a0b-ca3f-492c-a8c3-303d315ecb01",
-                    "Not": false,
-                    "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d"
-                  },
-                  {
-                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
-                    "name": "$ContextConditionHasFact$ebdffc7a-8f0f-4ebe-874c-4691c8559ecf",
-                    "Not": false,
-                    "m_Fact": "!bp_a2c8d30542b84a84bcc6480cf374c516"
-                  },
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$ebb83d2c-f19b-46dd-9dd5-7380e7f31f80",
-                    "Not": false,
-                    "m_Fact": "!bp_c1b53a6c3da747a3b963c333cb9954c9"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$59bb18f5-5833-4b46-b5c8-563fdf7d8565",
-                    "m_Buff": "!bp_154cb705ce1d43c1934706b57fedfc0a",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": false,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "ActionsOnApply": {
-                      "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            },
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$39078bbf-393e-4760-9e87-2aa5346720ef",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$a6db23b7-49cf-4a8a-8bac-20ab000995de",
-                    "Not": true,
-                    "m_Fact": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$eda715eb-45c3-4f14-b3b9-af4b60d204d4",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$15e1905b-aed9-43e0-84ae-483779949227",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": [
-                        {
-                          "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                          "name": "$ContextConditionCasterHasFact$79ad54e7-4eda-4ecf-8f21-e5b2778b5db6",
-                          "Not": false,
-                          "m_Fact": "!bp_f8a2497eed104f889ac0d094d9b97162"
-                        }
-                      ]
-                    },
-                    "IfTrue": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$50e22fa8-da2b-44e4-923c-23263d3d793c",
-                          "m_Buff": "!bp_4e1df6066e584e339ac8497efdfd37e2",
-                          "BuffEndCondition": "CombatEnd",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": true,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "CasterNamedProperty",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "StatBonus1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "IfFalse": {
-                      "Actions": []
-                    }
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$484815ce-85d6-4e32-966d-abaadcd5a28c",
-                    "m_Buff": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": true
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$e95f7567-1cb0-4a7e-a26c-aaf1702c9c87",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "ActionsOnTargetMiss": {
-          "Actions": [
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$b111d1ff-7cb3-49d8-b0bc-e8c441a5273b",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$47696f2b-ea0e-414d-884f-3844a65abd0c",
-                    "Not": true,
-                    "m_Fact": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": []
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$0560e1b1-7176-4872-a882-a4a5990ba4f0",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": [
-                        {
-                          "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                          "name": "$ContextConditionCasterHasFact$2cbe2624-fb85-4121-a0c9-232a4500f272",
-                          "Not": false,
-                          "m_Fact": "!bp_f8a2497eed104f889ac0d094d9b97162"
-                        }
-                      ]
-                    },
-                    "IfTrue": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$73d09071-9fed-4052-a25c-99b0343cc5ae",
-                          "m_Buff": "!bp_4e1df6066e584e339ac8497efdfd37e2",
-                          "BuffEndCondition": "CombatEnd",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": true,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "CasterNamedProperty",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "StatBonus1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "IfFalse": {
-                      "Actions": []
-                    }
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$8a5d8f8f-2ace-42ba-bd1c-a77dfac49e6b",
-                    "m_Buff": "!bp_5f9c3a4d2f8e439883a1722c1d8b91b9",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": true
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$a95f8f94-3f76-4e6d-b310-889142ee3beb",
-                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "OnlyRighteousFury": false,
-        "OnlyMelee": false
       }
     ],
     "Author": "LeonidTolochenko",
-    "Comment": "",
+    "Comment": "Снятие стаков эксплойта пришлось пренести в ServoskullPet_Operative_Talent_01_Ability",
     "m_DisplayName": {
       "m_Key": "",
       "m_OwnerString": "",

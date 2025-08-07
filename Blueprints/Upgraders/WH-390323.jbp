@@ -1,0 +1,89 @@
+{
+  "AssetId": "b97872651dc54d6a84fdbec09855a69a",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Переместить Соломона к дыре в стене если стадия абордажа - с Соломоном и уже был взрвы (прогресс = 3). Конверт для лечения тех кто застрял с другой стороны огненной стены.",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_839c55912b83428285a9bd3ff01f0991",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1ebfe09228d643b185abc0c63154d71e",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$e3f9aa51d85b44a3931aaf06f0c0e6f6",
+                "Not": false,
+                "m_Etude": "!bp_e44418f6a69f4253b170b6f2d8e7a4c4",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$17d414c5be634ef685e842df7cec5426",
+                "Not": false,
+                "m_Flag": "!bp_0e67c4be5683422ba2c4319cf433302e",
+                "MinValue": 3,
+                "MaxValue": 3
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$0cd4e849fbba452dbc8d394bec2db0ea",
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$9671964d9b274a64becd262f99462e22",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": true,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "FinalCam_Loc",
+                  "_entity_id": "8bf86fd1-8b44-4bc3-9e4d-a1c554e26284",
+                  "SceneAssetGuid": "05aca055294fa7842a23ccdf109dd0bf"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": null,
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

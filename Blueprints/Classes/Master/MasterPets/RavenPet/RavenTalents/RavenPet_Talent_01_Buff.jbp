@@ -28,7 +28,7 @@
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$a6d58da80c02539eaed9985bd73aa4c7",
-              "Comment": "",
+              "Comment": "Если это враг",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
@@ -131,6 +131,53 @@
                     "WriteResultToSharedValue": false,
                     "ResultSharedValue": "Damage",
                     "DoNotUseCrModifier": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$68378db0c9044fd0905e08db43898c3b",
+              "Comment": "Если Оверсир Оперативник",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$3949b0cee6b34361b6d1bdb1aecebf47",
+                    "Not": false,
+                    "m_Fact": "!bp_6cfd9b9830ea403db07a816843a8e39a"
+                  },
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$c465bd31e34e4dd4b81590527feb051b",
+                    "Not": false,
+                    "m_Fact": "!bp_f2c3b7875dca41318782d7779480040a"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$9a8c0292-502b-4b72-9177-956ba2ed71a4",
+                    "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+                    "RemoveRank": true,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
                   }
                 ]
               },

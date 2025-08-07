@@ -1,0 +1,81 @@
+{
+  "AssetId": "49d24749661b4b30a7262129cf27a3a4",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Смена портрета мейв",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f9babf14-baa3-4b31-8c26-6151a20379f9",
+          "Comment": "Если взяли амулет",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$50f81fca-86ed-4e1c-88e4-9f4fe74b6e80",
+                "Not": false,
+                "m_Etude": "!bp_99d781850c314c968bbc66367c9b0959",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "bfefd4b0c2e912a4a8d9e0bcde22a95c, SetPortrait",
+                "name": "$SetPortrait$d58071f2-9938-4a31-9bfa-4fa619f322b7",
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$ce23bce7779054c88c97f9a5b7009ab5",
+                  "Spawner": {
+                    "EntityNameInEditor": "FW_Lizzy",
+                    "_entity_id": "37ec76f7-aec0-43d6-8dfa-34d5d8495503",
+                    "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                  }
+                },
+                "m_Portrait": "!bp_06f05f1ecbd94cdcb2e74b1e81c34404"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "bfefd4b0c2e912a4a8d9e0bcde22a95c, SetPortrait",
+                "name": "$SetPortrait$e6de08f1-9cf4-4e70-8249-40ccc073cabf",
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$a1a6019a1ee857d7b8a332414e085bc9",
+                  "Spawner": {
+                    "EntityNameInEditor": "FW_Lizzy",
+                    "_entity_id": "37ec76f7-aec0-43d6-8dfa-34d5d8495503",
+                    "SceneAssetGuid": "44dd7c02aa7e2464a959927da447635b"
+                  }
+                },
+                "m_Portrait": "!bp_e5743975d945471485f6e9f5166cb368"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

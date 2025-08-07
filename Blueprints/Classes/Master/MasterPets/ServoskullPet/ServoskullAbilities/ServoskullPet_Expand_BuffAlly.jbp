@@ -6,8 +6,8 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "6e5523c38f556614fb970220b86809a8, AddBuffActions",
-        "name": "$AddBuffActions$6cfe1326-17fc-470b-84ac-8dc0964481bf",
+        "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
+        "name": "$AddFactContextActions$91699414-4ed9-4819-b28b-853a422a812e",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
@@ -20,24 +20,24 @@
           "Actions": [
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$dc6315231d8e446cbf34f7fff856609c",
+              "name": "$Conditional$b656f69d-d233-4947-8036-54e480f31461",
               "Comment": "",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
                   {
                     "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
-                    "name": "$ContextConditionHasBuffFromCaster$82ee9f5691435cccab95d2ad4aa1df69",
+                    "name": "$ContextConditionHasBuffFromCaster$a7e2a2d8-b336-4f07-8043-110a823db814",
                     "Not": false,
                     "m_Buff": "!bp_2c773fd5c9794527bca66a3be12c95e9"
                   },
                   {
                     "$type": "0cbc5ea4bddfb1543be0d2e54a3eacd0, HasBuff",
-                    "name": "$HasBuff$f6c1a79d41e352ff904c614b1e38af03",
+                    "name": "$HasBuff$a0b68e1d-e812-4d84-a209-111540478ec8",
                     "Not": false,
                     "Target": {
                       "$type": "128b24c135cf4c5b97bbe868981c9c4c, MyOwner",
-                      "name": "$MyOwner$c5a645c1879a5224b6a7ac8c7cec9815"
+                      "name": "$MyOwner$51be4b47-b18f-49aa-bd9c-f75a47ba4b59"
                     },
                     "m_Buff": "!bp_051eaec0772a4956b72c6442861af81f"
                   }
@@ -47,8 +47,146 @@
                 "Actions": [
                   {
                     "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$a643e6f84d9f47f6af7d674618a660bb",
+                    "name": "$ContextActionApplyBuff$c9899eab-a98e-4fd0-81ce-9cb8cf892cb5",
                     "m_Buff": "!bp_79531bd8941d4a70b58d78a0b1d1c61d",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": true,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$54b62111-ae8e-4814-989c-8f73a7db2ec2",
+              "Comment": "Complementation",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$566b8124-8226-4807-9a3d-9b62228a9b7b",
+                    "Not": false,
+                    "m_Fact": "!bp_a0ecb48ce9fe4a64abdcdb1a6da272ff"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$ecc81b81-2e19-438f-b752-67822325b179",
+                    "m_Buff": "!bp_375be79e7bdd46a1b86e30af46130f20",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": true,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$367baf6f-ca99-4ab7-bd2f-a6ed966d74db",
+              "Comment": "Alpha Strike",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$d4975938-a102-44a0-8914-4c32d904fb69",
+                    "Not": false,
+                    "m_Fact": "!bp_2e9f1afeb42541b89727dc1d5e82bf8d"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$83645726-c2d4-4435-b51a-e72c36b48a19",
+                    "m_Buff": "!bp_c4c41393135a43d582d7e98eae0853dd",
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
@@ -103,7 +241,7 @@
           "Actions": [
             {
               "$type": "79321e7cc8830c2459f5aef8d5f0d530, ContextActionRemoveBuffSingleStack",
-              "name": "$ContextActionRemoveBuffSingleStack$9685efb367a05371b571db88da94b322",
+              "name": "$ContextActionRemoveBuffSingleStack$cdbcb5da-1d19-4acb-a91c-54ccbc29390d",
               "m_TargetBuff": "!bp_79531bd8941d4a70b58d78a0b1d1c61d",
               "m_RemoveStackOnlyFromCaster": true
             }
@@ -144,7 +282,7 @@
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
-    "m_Flags": "HiddenInUi",
+    "m_Flags": "NeedsNoVisual",
     "m_SoundTypeSwitch": {
       "Value": "",
       "Group": ""

@@ -1,0 +1,215 @@
+{
+  "AssetId": "e46cbc0ae962416bb5e0d8685c0dbb2f",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$ee398b38-e527-4e2f-bcb2-f4e00fb56f52",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "2dcc60a5b076f0047b982e9d4c04b226, ContextActionOnRandomTargetsAround",
+              "name": "$ContextActionOnRandomTargetsAround$30839b20a1d05c94864d8ad07a60f2a8",
+              "OnEnemies": false,
+              "OnlyAllies": false,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$2d20ab3b-c56c-418a-aa01-438f7e8cae26",
+                    "m_Buff": "!bp_e3da0042e9874fcf99a5cec848d093d9",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "CasterNamedProperty",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "NumberOfTargets": 6,
+              "TilesRadius": 4,
+              "LowestWounds": false,
+              "HighestWounds": false,
+              "AffectDead": false,
+              "m_FilterNoFact": null,
+              "m_FilterHasFact": "!bp_686537aaa3994f388d70595b2886492c"
+            },
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$f84119565f9a49a189e9d7eec9a70f1b",
+              "m_Buff": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": true
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$0d514f67-3149-447a-92e7-bbd791859642",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+              "name": "$FactRankGetter$0a441eaa2e4649aea508183819fc7d4b",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+              "Aggregation": "Max",
+              "BuffWithCasterFromTargetType": false,
+              "Target": "CurrentEntity"
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "YuriyElburih",
+    "Comment": "Абилка, раздающая стаки ServoskullPet_Operative_Talent_01_Buff всем сервочерепам вокруг\nСнятие клю пришлось пихать сюда, иначе они снимались до того как абилка отрабатывала и счётчик даал 0",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "dd20fcdaa4ca6aa49845348b7f85df38",
+        "stringkey": "70dd4292-5300-4cf5-8ae9-2263a6b69449"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "Type": "Spell",
+    "Range": "Personal",
+    "CustomRange": 0,
+    "MinRange": 0,
+    "ActionPointCost": 0,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 1,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 0,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": false,
+    "CanTargetFriends": false,
+    "CanTargetSelf": true,
+    "Hidden": true,
+    "HiddenInUI": true,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "None",
+    "EffectOnEnemy": "None",
+    "m_Parent": null,
+    "Animation": "None",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": false,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillCauseAttack",
+    "CombatStateRestriction": "InCombatOnly",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "DisableLog": true,
+    "ResourceAssetIds": [],
+    "m_FXSettings": null,
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
