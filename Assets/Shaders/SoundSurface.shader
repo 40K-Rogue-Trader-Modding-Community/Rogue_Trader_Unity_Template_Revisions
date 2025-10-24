@@ -89,7 +89,7 @@ Shader "Owlcat/Decals/SoundSurface"
             Name "SceneSelectionPass"
 
 			HLSLPROGRAM
-			#pragma only_renderers d3d11 vulkan ps4 metal
+			#pragma only_renderers d3d11 vulkan ps4 metal switch2
 			#pragma vertex SceneSelectionVertex
 			#pragma fragment SceneSelectionFragment
 
@@ -129,7 +129,7 @@ Shader "Owlcat/Decals/SoundSurface"
             HLSLPROGRAM
             // SHADER_PASS_ID: "Owlcat/Decals/ProjectorGUI" "DECAL GUI"
             #pragma target 5.0
-            #pragma only_renderers d3d11 ps4 xboxone vulkan metal
+            #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch2
             #pragma vertex DecalVertex
             #pragma fragment DecalFragment
 

@@ -8,6 +8,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         string TypeId { get; set; }
         string UniqueId { get; set; }
         bool IsShadowDeleted { get; }
-        HashSet<string> UsesBlueprints { get; set; }
+        HashSet<string> ReferencedBlueprints { get; set; }
+        HashSet<string> ReferencedEntities { get; set; }
     }
 }

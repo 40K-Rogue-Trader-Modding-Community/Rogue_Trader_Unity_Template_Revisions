@@ -14,7 +14,7 @@
 			ZClip Off
 
 			CGPROGRAM
-			#pragma only_renderers d3d11 vulkan ps4 metal
+			#pragma only_renderers d3d11 vulkan ps4 metal switch2
 			#pragma vertex Vert
             #pragma geometry Geom
 			#pragma fragment Frag
@@ -38,7 +38,7 @@
 			ZClip Off
 
 			CGPROGRAM
-			#pragma only_renderers d3d11 vulkan ps4 metal
+			#pragma only_renderers d3d11 vulkan ps4 metal switch2
 			#pragma vertex Vert
             #pragma geometry Geom
 			#pragma fragment Frag

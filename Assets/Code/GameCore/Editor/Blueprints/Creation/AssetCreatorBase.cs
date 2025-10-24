@@ -38,6 +38,11 @@ namespace Kingmaker.Editor.Blueprints.Creation
 	        return false;
 	    }
 
+        public virtual string CantCreateReason()
+        {
+	        return null;
+        }
+
         public virtual void Init() {}
 
         public virtual void PostProcess(object asset) { }

@@ -21,4 +21,8 @@ public enum CommandTypes
     GetListOfContainsRemoveBlueprints,
     GetReferencedBy,
     GetReferencesFrom,
+    GetBlueprintsWithReferencesToEntity,
+    GetEntitiesReferencedByBlueprint,
+    GetAllBlueprintsWithReferencesToEntity,
+    GetAllReferencedEntities,
 }

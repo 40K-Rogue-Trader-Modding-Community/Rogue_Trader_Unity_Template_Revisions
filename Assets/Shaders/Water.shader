@@ -479,7 +479,7 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma multi_compile_fwdbase_fullshadows
 			#pragma skip_variants VERTEXLIGHT_ON
 			#pragma multi_compile_fog
@@ -683,7 +683,7 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma multi_compile_fwdadd
 			#pragma multi_compile_fog
 			#pragma skip_variants DIRECTIONAL_COOKIE POINT_COOKIE

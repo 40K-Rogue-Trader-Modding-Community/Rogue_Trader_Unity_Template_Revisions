@@ -1,0 +1,67 @@
+{
+  "AssetId": "23cbf5b34bcb4139adf5f8dfda71b5c8",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "EvgeniyShanhiev",
+    "Comment": "После правок коммисара осталась фича Commissar_PutYourBackIntoIt_Feature. Ее надо удалять и заменять на другую. ",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$fdca997ed55d4ebb909845fc8ee2c0a4",
+          "Comment": "Снятие с Игрока",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$6455dd5c8a1d4991a47cbcdf776f4d39",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$b28dd35c7bf450db9ce838d7dd9dabda"
+                },
+                "m_Fact": "!bp_7ec70c39a3e14326a7799f80c95f9ec7"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+                "name": "$AddFact$fdd319c73cc648a2928f445afab97283",
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$2408c7035d0250bfb2058ed258ec7cb8"
+                },
+                "m_Fact": "!bp_ecd29d55bbde419fa7266bb176bf24dd"
+              },
+              {
+                "$type": "ad170ffaa2264cc9804e5005e7050adf, RemoveFact",
+                "name": "$RemoveFact$01b5c6bce4484aef926a71dcd7a89b16",
+                "m_Fact": "!bp_7ec70c39a3e14326a7799f80c95f9ec7",
+                "m_ExceptHasFact": null,
+                "m_AdditionalExceptHasFacts": [],
+                "m_ExcludeExCompanions": false,
+                "m_TargetPartyUnit": null
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

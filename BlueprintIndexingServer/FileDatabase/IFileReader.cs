@@ -15,7 +15,10 @@ namespace Owlcat.Blueprints.Server.FileDatabase
     partial class FileReader : IFileReader
     {
         [GeneratedRegex("!bp_[0-9a-z]{32}")]
-        private static partial Regex MyRegex();
+        private static partial Regex BlueprintReferenceRegex();
+        
+        [GeneratedRegex("\"_entity_id\": \"([^\"]+)\"")]
+        private static partial Regex EntityReferenceRegex();
         
         class TypeHolder
         {
@@ -46,7 +49,10 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             public Meta? Meta { get; set; }
 
             [JsonIgnore] 
-            public HashSet<string> UsesBlueprints { get; set; }
+            public HashSet<string> ReferencedBlueprints { get; set; }
+
+            [JsonIgnore]
+            public HashSet<string> ReferencedEntities { get; set; }
 
             [JsonIgnore]
             public string TypeId
@@ -73,17 +79,20 @@ namespace Owlcat.Blueprints.Server.FileDatabase
 
             readFile.Name = Path.GetFileName(path); // do NOT try to read it from json, make it match file name always
 
-            var matches = MyRegex().Matches(text);
-            readFile.UsesBlueprints = new HashSet<string>(matches.Count);
-            foreach (Match match in matches)
+            var blueprintReferenceMatches = BlueprintReferenceRegex().Matches(text);
+            readFile.ReferencedBlueprints = new HashSet<string>(blueprintReferenceMatches.Count);
+            foreach (Match bpRefMatch in blueprintReferenceMatches)
             {
-                var id = match.Value[4..];
-                if (readFile.UsesBlueprints.Contains(id))
-                {
-                    continue;
-                }
-                
-                readFile.UsesBlueprints.Add(id);
+                string id = bpRefMatch.Value[4..];
+                readFile.ReferencedBlueprints.Add(id);
+            }
+
+            var entityReferenceMatches = EntityReferenceRegex().Matches(text);
+            readFile.ReferencedEntities = new HashSet<string>(entityReferenceMatches.Count);
+            foreach (Match entityRefMatch in entityReferenceMatches)
+            {
+                string id = entityRefMatch.Groups[1].Value;
+                readFile.ReferencedEntities.Add(id);
             }
 
             return readFile;

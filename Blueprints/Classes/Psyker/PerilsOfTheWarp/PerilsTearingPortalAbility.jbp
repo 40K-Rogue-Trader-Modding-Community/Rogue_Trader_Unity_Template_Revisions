@@ -18,508 +18,483 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "930b32b3226bd714283798d0cc050b71, ContextActionKill",
-              "name": "$ContextActionKill$7993103195f055059c758b946e5d3fb5",
-              "Dismember": "None"
-            },
-            {
-              "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
-              "name": "$ContextActionDealDamage$b02daaaeda9247a49c87492a66d75eb0",
-              "DamageType": {
-                "Type": "Direct"
-              },
-              "UseDiceForDamage": false,
-              "ReadPreRolledFromSharedValue": false,
-              "PreRolledSharedValue": "Damage",
-              "Value": {
-                "DiceType": "Zero",
-                "DiceCountValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
-              },
-              "MinDamage": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "MaxDamage": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "BonusDamage": {
-                "ValueType": "CasterProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "Wounds",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "Penetration": {
-                "DiceType": "Zero",
-                "DiceCountValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
-              },
-              "Half": false,
-              "IsAoE": false,
-              "m_Weapon": null,
-              "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage",
-              "DoNotUseCrModifier": false
-            },
-            {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$6c72ab6e73d5445ea5604a2bb58cf098",
-              "Comment": "",
+              "name": "$Conditional$e3bee318bd414f95bc089bc14a5d8dec",
+              "Comment": "Проверка на кастера или босса (для Оверсира)",
               "ConditionsChecker": {
-                "Operation": "And",
+                "Operation": "Or",
                 "Conditions": [
                   {
-                    "$type": "99fff743eb734f59b275ee3142de9883, ContextConditionZoneCR",
-                    "name": "$ContextConditionZoneCR$9948edfeeed54d549045d76b537ede99",
+                    "$type": "7a10e867e7cb49e09b80e164d151f656, ContextConditionIsCaster",
+                    "name": "$ContextConditionIsCaster$3b9dfd1681cf4c5eb09422eea22b5ed5",
+                    "Not": false
+                  },
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$a311152f39324124b445ca7be5f77882",
                     "Not": false,
-                    "MinimalCR": 5
+                    "Property": {
+                      "Operation": "L",
+                      "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "20908d2906855504abc36ab381c7ea6f, CurrentEntityDifficultyTypeGetter",
+                          "name": "$CurrentEntityDifficultyTypeGetter$828e727793514c2f951f0b47af6d8a6a",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          }
+                        },
+                        {
+                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                          "name": "$ContextValueGetter$5a662ce53a5e4a8cb74398f3800b8ceb",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "Value": {
+                            "ValueType": "Simple",
+                            "Value": 5,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
                   }
                 ]
               },
               "IfTrue": {
                 "Actions": [
                   {
-                    "$type": "0cdc69d3ddfd42f28045114acc14e069, ContextActionRandomize",
-                    "name": "$ContextActionRandomize$82144b4a-68c4-4bbc-b5bc-0bf2a89a26b2",
-                    "m_Actions": [
-                      {
-                        "Action": {
-                          "Actions": [
-                            {
-                              "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
-                              "name": "$ContextActionSpawnMonster$22e4a7f9-3f8e-461f-b252-67e44758ee56",
-                              "m_Blueprint": "!bp_59dc38621801499a96b2d324b07f50b9",
-                              "AfterSpawn": {
-                                "Actions": [
-                                  {
-                                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                                    "name": "$ContextActionSpawnFx$62d7f61c-c42f-4f93-b6c0-b7b795791ec3",
-                                    "PrefabLink": {
-                                      "AssetId": "afa9c689c2e8497429932700eb04cfdd"
-                                    }
-                                  }
-                                ]
-                              },
-                              "m_SummonPool": null,
-                              "DurationValue": {
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "RoundsValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "CountValue": {
-                                "DiceType": "Zero",
-                                "DiceCountValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 1,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "LevelValue": {
-                                "ValueType": "Simple",
-                                "Value": 0,
-                                "ValueRank": "Default",
-                                "ValueShared": "Damage",
-                                "Property": "None",
-                                "m_CustomProperty": null,
-                                "PropertyName": "Value1"
-                              },
-                              "DoNotLinkToCaster": true,
-                              "IsDirectlyControllable": false,
-                              "OnlyOnReachableGround": true
-                            }
-                          ]
-                        },
-                        "Weight": 1
-                      },
-                      {
-                        "Action": {
-                          "Actions": [
-                            {
-                              "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
-                              "name": "$ContextActionSpawnMonster$712ef9f0-b121-40f4-a51c-98601274d426",
-                              "m_Blueprint": "!bp_0286efcc789042838222a3d1454e561c",
-                              "AfterSpawn": {
-                                "Actions": [
-                                  {
-                                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                                    "name": "$ContextActionSpawnFx$a207fc52-319b-41cf-a9be-2d84cc14f09d",
-                                    "PrefabLink": {
-                                      "AssetId": "69279cdca0bff3a49974981c3bd02df6"
-                                    }
-                                  }
-                                ]
-                              },
-                              "m_SummonPool": null,
-                              "DurationValue": {
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "RoundsValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "CountValue": {
-                                "DiceType": "Zero",
-                                "DiceCountValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 1,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "LevelValue": {
-                                "ValueType": "Simple",
-                                "Value": 0,
-                                "ValueRank": "Default",
-                                "ValueShared": "Damage",
-                                "Property": "None",
-                                "m_CustomProperty": null,
-                                "PropertyName": "Value1"
-                              },
-                              "DoNotLinkToCaster": true,
-                              "IsDirectlyControllable": false,
-                              "OnlyOnReachableGround": true
-                            }
-                          ]
-                        },
-                        "Weight": 1
-                      },
-                      {
-                        "Action": {
-                          "Actions": [
-                            {
-                              "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
-                              "name": "$ContextActionSpawnMonster$39317e42-2b7b-43f9-ac99-043a84de7ec4",
-                              "m_Blueprint": "!bp_2765bc58fbe448a4bbd08004c8c1eb1c",
-                              "AfterSpawn": {
-                                "Actions": [
-                                  {
-                                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                                    "name": "$ContextActionSpawnFx$206d78bf-efe7-4a2b-bf14-5874c2347753",
-                                    "PrefabLink": {
-                                      "AssetId": "68af74b45d0ab4c44a37cf254ad625d7"
-                                    }
-                                  }
-                                ]
-                              },
-                              "m_SummonPool": null,
-                              "DurationValue": {
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "RoundsValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "CountValue": {
-                                "DiceType": "Zero",
-                                "DiceCountValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 1,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "LevelValue": {
-                                "ValueType": "Simple",
-                                "Value": 0,
-                                "ValueRank": "Default",
-                                "ValueShared": "Damage",
-                                "Property": "None",
-                                "m_CustomProperty": null,
-                                "PropertyName": "Value1"
-                              },
-                              "DoNotLinkToCaster": true,
-                              "IsDirectlyControllable": false,
-                              "OnlyOnReachableGround": true
-                            }
-                          ]
-                        },
-                        "Weight": 1
-                      },
-                      {
-                        "Action": {
-                          "Actions": [
-                            {
-                              "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
-                              "name": "$ContextActionSpawnMonster$cf80bbc5-1b84-41e8-80dd-926b451be3dc",
-                              "m_Blueprint": "!bp_b2c3ef7e4c7d48628cefcb4555a214e9",
-                              "AfterSpawn": {
-                                "Actions": [
-                                  {
-                                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                                    "name": "$ContextActionSpawnFx$00c11d46-ad42-43d8-9268-dfc3f25b8ade",
-                                    "PrefabLink": {
-                                      "AssetId": "ea1e17191425bc7499f421c4347d1a10"
-                                    }
-                                  }
-                                ]
-                              },
-                              "m_SummonPool": null,
-                              "DurationValue": {
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "RoundsValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "CountValue": {
-                                "DiceType": "Zero",
-                                "DiceCountValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 1,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "LevelValue": {
-                                "ValueType": "Simple",
-                                "Value": 0,
-                                "ValueRank": "Default",
-                                "ValueShared": "Damage",
-                                "Property": "None",
-                                "m_CustomProperty": null,
-                                "PropertyName": "Value1"
-                              },
-                              "DoNotLinkToCaster": true,
-                              "IsDirectlyControllable": false,
-                              "OnlyOnReachableGround": true
-                            }
-                          ]
-                        },
-                        "Weight": 1
-                      },
-                      {
-                        "Action": {
-                          "Actions": [
-                            {
-                              "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
-                              "name": "$ContextActionSpawnMonster$4833a78e-9d91-4375-b7c8-fe3f471c7dc8",
-                              "m_Blueprint": "!bp_838974c07f204909bd32adcb38283a09",
-                              "AfterSpawn": {
-                                "Actions": [
-                                  {
-                                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                                    "name": "$ContextActionSpawnFx$6bc5b93d-6ecc-46d0-aade-743c31603707",
-                                    "PrefabLink": {
-                                      "AssetId": "68af74b45d0ab4c44a37cf254ad625d7"
-                                    }
-                                  }
-                                ]
-                              },
-                              "m_SummonPool": null,
-                              "DurationValue": {
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "RoundsValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 9,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "CountValue": {
-                                "DiceType": "Zero",
-                                "DiceCountValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 0,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                },
-                                "BonusValue": {
-                                  "ValueType": "Simple",
-                                  "Value": 1,
-                                  "ValueRank": "Default",
-                                  "ValueShared": "Damage",
-                                  "Property": "None",
-                                  "m_CustomProperty": null,
-                                  "PropertyName": "Value1"
-                                }
-                              },
-                              "LevelValue": {
-                                "ValueType": "Simple",
-                                "Value": 0,
-                                "ValueRank": "Default",
-                                "ValueShared": "Damage",
-                                "Property": "None",
-                                "m_CustomProperty": null,
-                                "PropertyName": "Value1"
-                              },
-                              "DoNotLinkToCaster": true,
-                              "IsDirectlyControllable": false,
-                              "OnlyOnReachableGround": true
-                            }
-                          ]
-                        },
-                        "Weight": 1
-                      }
-                    ]
+                    "$type": "930b32b3226bd714283798d0cc050b71, ContextActionKill",
+                    "name": "$ContextActionKill$a9d5b774-3d04-4612-99f9-88d9cc1ebba4",
+                    "Dismember": "None"
                   }
                 ]
               },
               "IfFalse": {
                 "Actions": []
               }
+            },
+            {
+              "$type": "0cdc69d3ddfd42f28045114acc14e069, ContextActionRandomize",
+              "name": "$ContextActionRandomize$b09871cb-6eb5-4efb-920d-dcc04d4543ef",
+              "m_Actions": [
+                {
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
+                        "name": "$ContextActionSpawnMonster$ff4e119e-dbad-4292-ae08-5175ae48c084",
+                        "m_Blueprint": "!bp_59dc38621801499a96b2d324b07f50b9",
+                        "AfterSpawn": {
+                          "Actions": [
+                            {
+                              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                              "name": "$ContextActionSpawnFx$6fe86c5c-9597-4e9d-9eda-044486ff18e2",
+                              "PrefabLink": {
+                                "AssetId": "afa9c689c2e8497429932700eb04cfdd"
+                              }
+                            }
+                          ]
+                        },
+                        "m_SummonPool": null,
+                        "DurationValue": {
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "RoundsValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "CountValue": {
+                          "DiceType": "Zero",
+                          "DiceCountValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 2,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "LevelValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "DoNotLinkToCaster": true,
+                        "IsDirectlyControllable": false,
+                        "OnlyOnReachableGround": true
+                      }
+                    ]
+                  },
+                  "Weight": 1,
+                  "UseContextValue": false,
+                  "ValueName": "Value1"
+                },
+                {
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
+                        "name": "$ContextActionSpawnMonster$52ffe701-5c26-4516-a150-a5a02d493324",
+                        "m_Blueprint": "!bp_0286efcc789042838222a3d1454e561c",
+                        "AfterSpawn": {
+                          "Actions": [
+                            {
+                              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                              "name": "$ContextActionSpawnFx$98cdb205-877a-45ff-8674-2ef2e2c881b5",
+                              "PrefabLink": {
+                                "AssetId": "69279cdca0bff3a49974981c3bd02df6"
+                              }
+                            }
+                          ]
+                        },
+                        "m_SummonPool": null,
+                        "DurationValue": {
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "RoundsValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "CountValue": {
+                          "DiceType": "Zero",
+                          "DiceCountValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 2,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "LevelValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "DoNotLinkToCaster": true,
+                        "IsDirectlyControllable": false,
+                        "OnlyOnReachableGround": true
+                      }
+                    ]
+                  },
+                  "Weight": 1,
+                  "UseContextValue": false,
+                  "ValueName": "Value1"
+                },
+                {
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
+                        "name": "$ContextActionSpawnMonster$e53c894c-3c03-49ef-a7e2-07c08dbf2df2",
+                        "m_Blueprint": "!bp_2765bc58fbe448a4bbd08004c8c1eb1c",
+                        "AfterSpawn": {
+                          "Actions": [
+                            {
+                              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                              "name": "$ContextActionSpawnFx$e02384c7-4ce0-4004-8842-9e729ca76b90",
+                              "PrefabLink": {
+                                "AssetId": "68af74b45d0ab4c44a37cf254ad625d7"
+                              }
+                            }
+                          ]
+                        },
+                        "m_SummonPool": null,
+                        "DurationValue": {
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "RoundsValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "CountValue": {
+                          "DiceType": "Zero",
+                          "DiceCountValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 3,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "LevelValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "DoNotLinkToCaster": true,
+                        "IsDirectlyControllable": false,
+                        "OnlyOnReachableGround": true
+                      }
+                    ]
+                  },
+                  "Weight": 1,
+                  "UseContextValue": false,
+                  "ValueName": "Value1"
+                },
+                {
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
+                        "name": "$ContextActionSpawnMonster$efb310ad-4715-443b-bf92-622c84c795fc",
+                        "m_Blueprint": "!bp_b2c3ef7e4c7d48628cefcb4555a214e9",
+                        "AfterSpawn": {
+                          "Actions": [
+                            {
+                              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                              "name": "$ContextActionSpawnFx$8a54ab4d-cacf-4883-8f89-64cb4ad48a8d",
+                              "PrefabLink": {
+                                "AssetId": "ea1e17191425bc7499f421c4347d1a10"
+                              }
+                            }
+                          ]
+                        },
+                        "m_SummonPool": null,
+                        "DurationValue": {
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "RoundsValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "CountValue": {
+                          "DiceType": "Zero",
+                          "DiceCountValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 1,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "LevelValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "DoNotLinkToCaster": true,
+                        "IsDirectlyControllable": false,
+                        "OnlyOnReachableGround": true
+                      }
+                    ]
+                  },
+                  "Weight": 1,
+                  "UseContextValue": false,
+                  "ValueName": "Value1"
+                },
+                {
+                  "Action": {
+                    "Actions": [
+                      {
+                        "$type": "c7a3b2de9c37f154797b063a5730e307, ContextActionSpawnMonster",
+                        "name": "$ContextActionSpawnMonster$0d71de35-9711-407a-a96b-feb40a574912",
+                        "m_Blueprint": "!bp_838974c07f204909bd32adcb38283a09",
+                        "AfterSpawn": {
+                          "Actions": [
+                            {
+                              "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                              "name": "$ContextActionSpawnFx$32ba0032-b419-49fd-a842-7e30c6ae937f",
+                              "PrefabLink": {
+                                "AssetId": "68af74b45d0ab4c44a37cf254ad625d7"
+                              }
+                            }
+                          ]
+                        },
+                        "m_SummonPool": null,
+                        "DurationValue": {
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "RoundsValue": {
+                            "ValueType": "Simple",
+                            "Value": 9,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "CountValue": {
+                          "DiceType": "Zero",
+                          "DiceCountValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusValue": {
+                            "ValueType": "Simple",
+                            "Value": 1,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        "LevelValue": {
+                          "ValueType": "Simple",
+                          "Value": 0,
+                          "ValueRank": "Default",
+                          "ValueShared": "Damage",
+                          "Property": "None",
+                          "m_CustomProperty": null,
+                          "PropertyName": "Value1"
+                        },
+                        "DoNotLinkToCaster": true,
+                        "IsDirectlyControllable": false,
+                        "OnlyOnReachableGround": true
+                      }
+                    ]
+                  },
+                  "Weight": 1,
+                  "UseContextValue": false,
+                  "ValueName": "Value1"
+                }
+              ]
             }
           ]
         }
@@ -553,17 +528,23 @@
       "m_OwnerString": "",
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
-      "Shared": null
+      "Shared": {
+        "assetguid": "4a0311165ec27c84f894604a60162ee1",
+        "stringkey": "817724e3-f10d-4487-a8ca-876b09390502"
+      }
     },
     "m_Description": {
       "m_Key": "",
       "m_OwnerString": "",
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
-      "Shared": null
+      "Shared": {
+        "assetguid": "d97fab016b8e3a54f80baefc79a2989a",
+        "stringkey": "d32cd913-28de-48b8-89a6-46a08c6dd886"
+      }
     },
     "m_Icon": {
-      "guid": "86e0aeadc52540f4ca6beeef83814138",
+      "guid": "5fb3ee34747f8b44faadd21b313b1e8f",
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
@@ -578,10 +559,12 @@
     "ParamsSkill": "SkillAthletics",
     "CooldownRounds": 0,
     "CanTargetPoint": false,
-    "CanTargetEnemies": true,
-    "CanTargetFriends": true,
+    "CanTargetEnemies": false,
+    "CanTargetFriends": false,
     "CanTargetSelf": true,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -597,8 +580,10 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
-    "UsingInThreateningArea": "WillCauseAOO",
+    "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
     "CombatStateRestriction": "InCombatOnly",
     "m_AbilityGroups": [
@@ -608,7 +593,6 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": "!bp_bb84b8efae3d4eb0a76c35a84e5e9cf2",
     "m_AbilityTag": "None",

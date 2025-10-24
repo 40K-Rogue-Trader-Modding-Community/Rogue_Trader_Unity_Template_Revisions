@@ -6,33 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "1cf6ddd24787436dba7a7e4832eb52ce, RewardItem",
-        "name": "$RewardItem$542652e8-aa2d-4533-b147-19025a4b147b",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "HideInUI": false,
-        "m_Item": "!bp_61e5945a44fb4d0a8dad059052ed024c",
-        "m_Count": 1
-      },
-      {
-        "$type": "34bf31b8b1354678ac0d3db2f79f2831, RewardChangeStatSecurity",
-        "name": "$RewardChangeStatSecurity$0e50b38d-ec58-4da0-83e5-25c9959a0df6",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "HideInUI": false,
-        "m_SecurityModifier": -3,
-        "m_ApplyToAllColonies": false,
-        "m_Colony": "!bp_47400e8140a3434882459f2c95b54b7f"
-      },
-      {
         "$type": "c8994546dfb24e6da61004bb7598afda, RewardSoulMark",
         "name": "$RewardSoulMark$72d78562-a7f0-4ba6-b83e-427437f353e9",
         "m_Flags": 0,
@@ -44,7 +17,7 @@
         "HideInUI": false,
         "SoulMarkShift": {
           "Direction": "Faith",
-          "Value": 40,
+          "Value": 20,
           "CheckByRank": false,
           "Rank": 0,
           "Description": {
@@ -55,6 +28,35 @@
             "Shared": null
           }
         }
+      },
+      {
+        "$type": "f1311382123a4b06a9954dae6bc822e3, RewardResourceProject",
+        "name": "$RewardResourceProject$68704204-2843-431f-977a-8a1d3efd5352",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "HideInUI": false,
+        "m_Resource": {
+          "Resource": "!bp_e798fea5c2f74d858e754186decdc064",
+          "Count": 6
+        }
+      },
+      {
+        "$type": "2aa503c54af44bd5b74037ea4f833dfb, RewardChangeStatEfficiency",
+        "name": "$RewardChangeStatEfficiency$bb73a616-2cfc-4b6f-9f0c-c391eb79bc4a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "HideInUI": false,
+        "m_EfficiencyModifier": 3,
+        "m_ApplyToAllColonies": false,
+        "m_Colony": "!bp_47400e8140a3434882459f2c95b54b7f"
       },
       {
         "$type": "c36dd42905d24eebb3332d890c9fdf0c, RequirementBuiltAtLeastOneOfProjects",
@@ -73,21 +75,6 @@
         ]
       },
       {
-        "$type": "f1311382123a4b06a9954dae6bc822e3, RewardResourceProject",
-        "name": "$RewardResourceProject$68704204-2843-431f-977a-8a1d3efd5352",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "HideInUI": false,
-        "m_Resource": {
-          "Resource": "!bp_e798fea5c2f74d858e754186decdc064",
-          "Count": 15
-        }
-      },
-      {
         "$type": "e358bb9eda304804bc36c2b8b0e704e5, RequirementResourceUseProject",
         "name": "$RequirementResourceUseProject$36ba15bf-fb36-42a5-b86d-1318e79ada6d",
         "m_Flags": 0,
@@ -99,31 +86,7 @@
         "HideInUI": false,
         "Resource": {
           "Resource": "!bp_7d5cb1d2264a40d8bff8350a8a09a464",
-          "Count": 6
-        }
-      },
-      {
-        "$type": "29147804bf4e4746bbab4eaf5c22d11e, RequirementSoulMarkRank",
-        "name": "$RequirementSoulMarkRank$9c2497da-5a8f-4e43-b50f-474a55c4843e",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "HideInUI": false,
-        "SoulMarkRequirement": {
-          "Direction": "Faith",
-          "Value": 0,
-          "CheckByRank": true,
-          "Rank": 4,
-          "Description": {
-            "m_Key": "",
-            "m_OwnerString": "",
-            "m_OwnerPropertyPath": "",
-            "m_JsonPath": "",
-            "Shared": null
-          }
+          "Count": 3
         }
       }
     ],
@@ -161,7 +124,7 @@
       "fileid": 21300000
     },
     "IsStartingProject": false,
-    "SegmentsToBuild": 100,
+    "SegmentsToBuild": 200,
     "ActionsOnStart": {
       "Actions": []
     },
@@ -171,16 +134,6 @@
     "AvailabilityConditions": {
       "Operation": "And",
       "Conditions": [
-        {
-          "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
-          "name": "$HasFact$3f91a8201c1e4a28bcbbe3b5a9f8852f",
-          "Not": false,
-          "Unit": {
-            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
-            "name": "$PlayerCharacter$5c16cfd647b44c5a9bdfd092de6989eb"
-          },
-          "m_Fact": "!bp_a01a4fcd025748919454f4d94049d5ee"
-        },
         {
           "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
           "name": "$EtudeStatus$c42c34cd-b41b-481c-83b6-62aeac12c462",

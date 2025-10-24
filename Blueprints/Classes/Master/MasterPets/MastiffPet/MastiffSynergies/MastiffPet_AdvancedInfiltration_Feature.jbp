@@ -38,7 +38,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_ce95a986c4044c0ca07fd0db9915388c",
-            "m_LinkKey": "Overseer PER Bonus"
+            "m_LinkKey": "Overseer PER Bonus",
+            "Main": false
           },
           {
             "NameType": "Damage",
@@ -63,7 +64,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value2",
             "m_PropertySource": "!bp_ce95a986c4044c0ca07fd0db9915388c",
-            "m_LinkKey": "Overseer INT Bonus"
+            "m_LinkKey": "Overseer INT Bonus",
+            "Main": false
           }
         ]
       },
@@ -184,21 +186,32 @@
                 "Operation": "And",
                 "Conditions": [
                   {
-                    "$type": "c260efd0e44d4869af22ab326a66f8ae, CheckPropertySimple",
-                    "name": "$CheckPropertySimple$cece5c83564345409d10e3b14b32695d",
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$4d94f7559f724510a9ef4af02f80b3d8",
                     "Not": false,
-                    "Value": {
-                      "Operation": "Sum",
-                      "TargetType": "EvaluatedTarget",
-                      "TargetEvaluator": {
-                        "$type": "3d78d8a020a847e09e915dcd20a8c82b, MyPet",
-                        "name": "$MyPet$bec4c2c37c8f4243b6ddc697b9d85f2a"
-                      },
+                    "Property": {
+                      "Operation": "Eq",
+                      "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
-                          "$type": "5122bc0b20863d749bd0fc23b8ac58d7, CoverGetter",
-                          "name": "$CoverGetter$0cc0113605174f3ca952cf4acaa9c83b",
+                          "$type": "b9dd49398cf14b469d7fc78f01eb5e85, CoverStatusGetter",
+                          "name": "$CoverStatusGetter$b8fdf4f0e3de44dabc239076aa7ec24d",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          }
+                        },
+                        {
+                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                          "name": "$ContextValueGetter$c7491467a21041e69637a6457d4db507",
                           "Settings": {
                             "Progression": "AsIs",
                             "m_CustomProgression": [],
@@ -209,12 +222,19 @@
                             "Min": 0,
                             "Max": 0
                           },
-                          "Target": "ContextCaster",
-                          "UseBestShootingPosition": false,
-                          "Covers": "Full"
+                          "Value": {
+                            "ValueType": "Simple",
+                            "Value": 2,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
                         }
                       ]
-                    }
+                    },
+                    "NegativeDoesNotCount": false
                   }
                 ]
               },
@@ -304,21 +324,32 @@
                       "Operation": "And",
                       "Conditions": [
                         {
-                          "$type": "c260efd0e44d4869af22ab326a66f8ae, CheckPropertySimple",
-                          "name": "$CheckPropertySimple$5c32a80d-47eb-4d7d-b9d7-de2de073fce5",
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$23fbcd23-ea24-4ea8-8710-9c4342da5e01",
                           "Not": false,
-                          "Value": {
-                            "Operation": "Sum",
-                            "TargetType": "EvaluatedTarget",
-                            "TargetEvaluator": {
-                              "$type": "3d78d8a020a847e09e915dcd20a8c82b, MyPet",
-                              "name": "$MyPet$54a0dbdd-eab4-4e1f-b74c-158608fa0358"
-                            },
+                          "Property": {
+                            "Operation": "Eq",
+                            "TargetType": "CurrentEntity",
+                            "TargetEvaluator": null,
                             "FailSilentlyIfNoTarget": false,
                             "Getters": [
                               {
-                                "$type": "5122bc0b20863d749bd0fc23b8ac58d7, CoverGetter",
-                                "name": "$CoverGetter$06caed89-f7d5-4a1c-a80a-c55abcc0e60e",
+                                "$type": "b9dd49398cf14b469d7fc78f01eb5e85, CoverStatusGetter",
+                                "name": "$CoverStatusGetter$05df9817-3938-4228-bc82-7ed1a74d1a8e",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                }
+                              },
+                              {
+                                "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                                "name": "$ContextValueGetter$c7481f9a-f727-4ea5-a372-5916b67361be",
                                 "Settings": {
                                   "Progression": "AsIs",
                                   "m_CustomProgression": [],
@@ -329,12 +360,19 @@
                                   "Min": 0,
                                   "Max": 0
                                 },
-                                "Target": "ContextCaster",
-                                "UseBestShootingPosition": false,
-                                "Covers": "Half"
+                                "Value": {
+                                  "ValueType": "Simple",
+                                  "Value": 1,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                }
                               }
                             ]
-                          }
+                          },
+                          "NegativeDoesNotCount": false
                         }
                       ]
                     },

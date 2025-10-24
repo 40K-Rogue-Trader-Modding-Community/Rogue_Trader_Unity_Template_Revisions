@@ -11,19 +11,8 @@ using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements
 {
-	public class OwlcatInspectorRoot : OwlcatContentContainer
+	public class OwlcatInspectorRoot : OwlcatInspectorStyle
 	{
-		//Paths may change in nearest future. This is left to make search easier
-		#if OWLCAT_MODS
-		public const string CommonPath = "Assets/Code/GameCore/Editor/UIElements/Styles/CommonStyle.uss";
-		public const string ProPath = "Assets/Code/GameCore/Editor/UIElements/Styles/ProStyle.uss";
-		public const string PersonalPath = "Assets/GameCore/Code/Editor/UIElements/Styles/PersonalStyle.uss";
-		#else
-		public const string CommonPath = "Assets/Code/GameCore/Editor/UIElements/Styles/CommonStyle.uss";
-		public const string ProPath = "Assets/Code/GameCore/Editor/UIElements/Styles/ProStyle.uss";
-		public const string PersonalPath = "Assets/GameCore/Code/Editor/UIElements/Styles/PersonalStyle.uss";
-		#endif
-
 		public readonly SerializedObject SerializedObject;
 
 		public OwlcatInspectorRoot(SerializedObject serializedObject, bool isHideScriptProp)
@@ -31,7 +20,6 @@ namespace Kingmaker.Editor.UIElements
 			SerializedObject = serializedObject;
 			name = serializedObject.targetObject.name;
 
-			LoadStyles();
             // just debug
    //         var it = serializedObject.GetIterator();
    //         it.NextVisible(true);
@@ -59,7 +47,6 @@ namespace Kingmaker.Editor.UIElements
 			SerializedObject = property.serializedObject;
             name = property.FindPropertyRelative("name")?.stringValue ?? property.serializedObject.targetObject.name;
 
-            LoadStyles();
             if (property.hasVisibleChildren)
             {
                 property = property.Copy(); // this is a root property, but for the SetupContent we need its first child
@@ -80,8 +67,6 @@ namespace Kingmaker.Editor.UIElements
 	        SerializedObject = so;
 	        name = SerializedObject.targetObject.name;
 
-	        LoadStyles();
-
 	        foreach (var element in elements)
 	        {
 		        Add(element);
@@ -89,15 +74,6 @@ namespace Kingmaker.Editor.UIElements
 
 		    RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
         }
-
-        private void LoadStyles()
-		{
-			var styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(EditorGUIUtility.isProSkin ? ProPath : PersonalPath);
-			styleSheets.Add(styles);
-
-			styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(CommonPath);
-			styleSheets.Add(styles);
-		}
 
 		public static void SetupContent(OwlcatContentContainer root, SerializedObject serializedObject, bool isHideScriptProp)
 		{

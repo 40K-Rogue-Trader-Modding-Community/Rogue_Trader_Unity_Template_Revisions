@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Kingmaker.Blueprints;
 using Owlcat.Runtime.Core.Utility;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.Blueprints
 {
@@ -13,6 +15,13 @@ namespace Kingmaker.Editor.Blueprints
         public virtual void OnEnable(BlueprintInspector ed) { }
         public virtual void OnHeader(SimpleBlueprint bp) { }
         public virtual void OnBeforeComponents(SimpleBlueprint bp) { }
+
+        [CanBeNull]
+        public virtual VisualElement OnBeforeComponentsElement(SimpleBlueprint bp)
+        {
+            return null;
+        }
+
         public virtual void OnFooter(SimpleBlueprint bp) { }
 
         // if true, nothing but header is called and the whole inspector is not rendered

@@ -1,18 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using Kingmaker.AreaLogic.Etudes;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Area;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Editor.AreaStatesWindow;
 using Kingmaker.Editor.Blueprints.Creation.Naming;
+using Kingmaker.Pathfinding;
 using Kingmaker.View;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using Kingmaker.Utility.DotNetExtensions;
-using Kingmaker.Utility.EditorPreferences;
+using UnityEngine;
+using Path = System.IO.Path;
 
 #nullable enable
 
@@ -20,39 +19,55 @@ namespace Kingmaker.Editor.Blueprints.Creation
 {
 	public class BlueprintAreaCreator : NamingCreatorBase
 	{
-		private const string MechanicsScenePostfix = "_Mechanics.unity";
-		private const string StaticScenePostfix = "_Static.unity";
-		private const string LightScenePostfix = "_Light.unity";
+		public static class SceneTemplates
+		{
+			public const string MechanicsPostfix = "_Mechanics.unity";
+			public const string AddedMechanicsPostfix = "_Mechanics_Add.unity";
+			public const string StaticPostfix = "_Static.unity";
+			public const string LightPostfix = "_Light.unity";
 
-		private const string ScenesRoot = "Assets/Scenes/";
-		private const string TemplateScenesPrefix = ScenesRoot + "!Templates/Template";
+			private const string Prefix = ScenesRoot + "!Templates/Template";
 
-		private const string DefaultMechanicsTemplateScenePath = TemplateScenesPrefix + MechanicsScenePostfix;
-		private const string DefaultStaticTemplateScenePath = TemplateScenesPrefix + StaticScenePostfix;
-		private const string DefaultLightTemplateScenePath = TemplateScenesPrefix + LightScenePostfix;
+			private const string DefaultMechanicsPath = Prefix + MechanicsPostfix;
+			private const string DefaultAddedMechanicsPath = Prefix + AddedMechanicsPostfix;
+			private const string DefaultStaticPath = Prefix + StaticPostfix;
+			private const string DefaultLightPath = Prefix + LightPostfix;
+
+			public static string MechanicsPath
+				=> Templates.instance == null
+					? DefaultMechanicsPath
+					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.MechanicsTemplateScene);
+
+			public static string AddedMechanicsPath
+				=> Templates.instance == null
+					? DefaultAddedMechanicsPath
+					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.AddedMechanicsTemplateScene);
+
+			public static string StaticPath
+				=> Templates.instance == null
+					? DefaultStaticPath
+					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.StaticTemplateScene);
+
+			public static string LightPath
+				=> Templates.instance == null
+					? DefaultLightPath
+					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.LightTemplateScene);
+		}
+
+		public const string ScenesRoot = "Assets/Scenes/";
+
+		public const string EntranceSuffix = "Enter";
 
 		protected override string NameTokenNotEmpty
 			=> "_" + NameToken;
 
 		protected virtual string MechanicsTemplateScenePath
-			=> Templates.instance == null
-				? DefaultMechanicsTemplateScenePath
-				: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.MechanicsTemplateScene);
-
-		private static string StaticTemplateScenePath
-			=> Templates.instance == null
-				? DefaultStaticTemplateScenePath
-				: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.StaticTemplateScene);
-
-		private static string LightTemplateScenePath
-			=> Templates.instance == null
-				? DefaultLightTemplateScenePath
-				: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.LightTemplateScene);
+			=> SceneTemplates.MechanicsPath;
 
 		private const string DefaultSceneTemplate = ScenesRoot + "{Chapter}/{Location}/{Location}{name}";
-		protected virtual string DefaultMechanicsSceneTemplate => DefaultSceneTemplate + MechanicsScenePostfix;
-		private const string DefaultStaticSceneTemplate = DefaultSceneTemplate + StaticScenePostfix;
-		private const string DefaultLightSceneTemplate = DefaultSceneTemplate + LightScenePostfix;
+		protected virtual string DefaultMechanicsSceneTemplate => DefaultSceneTemplate + SceneTemplates.MechanicsPostfix;
+		private const string DefaultStaticSceneTemplate = DefaultSceneTemplate + SceneTemplates.StaticPostfix;
+		private const string DefaultLightSceneTemplate = DefaultSceneTemplate + SceneTemplates.LightPostfix;
 
 		protected virtual string MechanicsSceneTemplate
 			=> Templates.instance == null
@@ -70,11 +85,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				: Templates.instance.BlueprintArea.LightSceneTemplate;
 
 		protected virtual string DefaultEntranceSuffix
-			=> "Enter";
-
-		private BlueprintEnterPointCreator? m_EnterPointCreator;
-		private BlueprintAreaPresetCreator? m_PresetCreator;
-		private AreaPartBoundsCreator? m_BoundsCreator;
+			=> EntranceSuffix;
 
 		protected override string DefaultFolder
 			=> "Blueprints/World/Areas/";
@@ -89,9 +100,25 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		public override string CreatorName => "Area";
 
+		private AreaPartCreatorEditor? m_AreaPartCreatorEditor;
+		private AreaPartCreatorEditor AreaPartCreatorEditor => m_AreaPartCreatorEditor ??= new AreaPartCreatorEditor();
+
+		[Tooltip("If set, standard, properly named etude structure will be created:\n" +
+		         "-->This etude as parent\n" +
+		         "---->Area root etude\n" +
+		         "------>\"Base\" area etude\n" +
+		         "------>Are outcomes etude")]
+		public BlueprintEtudeReference? AreaParentEtude;
+
         public override object CreateAsset()
         {
             return new BlueprintArea();
+        }
+
+        public override void OnGUI()
+        {
+	        AreaPartCreatorEditor.OnGui();
+	        base.OnGUI();
         }
 
         public override string ProcessTemplate(string? assetName = null)
@@ -100,7 +127,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 	        if (IsFolderOverridden)
 	        {
 		        string? path = Path.GetDirectoryName(result)?.Replace("\\", "/");
-		        string folderName = Path.GetFileName(path);
+		        string? folderName = Path.GetFileName(path);
 		        string filename = Path.GetFileName(result);
 		        result = $"{path}/{folderName}{filename}";
 	        }
@@ -125,146 +152,130 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
         public override void PostProcess(object asset)
         {
-            var area = (BlueprintArea)asset;
+	        var area = (BlueprintArea)asset;
 
-            string mechanicsPath = GetScenePathFromTemplate(
-	            area,MechanicsSceneTemplate, DefaultMechanicsSceneTemplate, MechanicsScenePostfix);
-			string staticPath = GetScenePathFromTemplate(
-				area, StaticSceneTemplate, DefaultStaticSceneTemplate, StaticScenePostfix);
-			string lightPath = GetScenePathFromTemplate(
-				area, LightSceneTemplate, DefaultLightSceneTemplate, LightScenePostfix);
+	        string mechanicsPath = GetScenePathFromTemplate(
+		        area,MechanicsSceneTemplate, DefaultMechanicsSceneTemplate, SceneTemplates.MechanicsPostfix);
+	        string staticPath = GetScenePathFromTemplate(
+		        area, StaticSceneTemplate, DefaultStaticSceneTemplate, SceneTemplates.StaticPostfix);
+	        string lightPath = GetScenePathFromTemplate(
+		        area, LightSceneTemplate, DefaultLightSceneTemplate, SceneTemplates.LightPostfix);
 
-			BlueprintAreaEnterPoint? enterPoint = null;
-			m_EnterPointCreator = m_EnterPointCreator ? m_EnterPointCreator : CreateInstance<BlueprintEnterPointCreator>();
-			if (m_EnterPointCreator != null)
-			{
-				m_EnterPointCreator.Area = area.ToReference<BlueprintAreaReference>();
-				enterPoint = NewAssetWindow.CreateWithCreator(
-					m_EnterPointCreator,
-					DefaultEntranceSuffix,
-					Folder) as BlueprintAreaEnterPoint;
-			}
+	        var enterPoint = AreaPartCreatorEditor.CreateEnterPoint(area, DefaultEntranceSuffix);
 
-			AreaPartBounds? bounds = null;
-			m_BoundsCreator = m_BoundsCreator ? m_BoundsCreator : CreateInstance<AreaPartBoundsCreator>();
-			if (m_BoundsCreator != null)
-			{
-				m_BoundsCreator.Area = area.ToReference<BlueprintAreaReference>();
-				bounds = NewAssetWindow.CreateWithCreator(
-					m_BoundsCreator,
-					area.name + "_Bounds",
-					Folder) as AreaPartBounds;
-				area.Bounds = bounds;
-			}
+	        AreaPartCreatorEditor.CreateAssets(area, enterPoint,
+		        mechanicsPath, staticPath, lightPath,
+		        MechanicsTemplateScenePath, SceneTemplates.StaticPath, SceneTemplates.LightPath);
 
-			Directory.CreateDirectory(Path.GetDirectoryName(mechanicsPath) ?? string.Empty);
-			Directory.CreateDirectory(Path.GetDirectoryName(staticPath) ?? string.Empty);
-			Directory.CreateDirectory(Path.GetDirectoryName(lightPath) ?? string.Empty);
+	        CreateEtudeStructure(area);
 
-			AssetDatabase.CopyAsset(MechanicsTemplateScenePath, mechanicsPath);
-			AssetDatabase.CopyAsset(StaticTemplateScenePath, staticPath);
-			AssetDatabase.CopyAsset(LightTemplateScenePath, lightPath);
+	        // Create default preset
+	        BlueprintAreaPreset? preset = null;
+	        var presetCreator = CreateInstance<BlueprintAreaPresetCreator>();
+	        if (presetCreator != null)
+	        {
+		        presetCreator.Area = area.ToReference<BlueprintAreaReference>();
+		        preset = NewAssetWindow.CreateWithCreator(
+			        presetCreator,
+			        "Default") as BlueprintAreaPreset;
+		        if (preset != null)
+		        {
+			        preset.Area = area;
+			        preset.EnterPoint = enterPoint;
+			        area.DefaultPreset = preset;
+		        }
+	        }
+	        preset?.SetDirty();
 
-			var mechanicsScene = EditorSceneManager.OpenScene(mechanicsPath, OpenSceneMode.Single);
-			EditorSceneManager.OpenScene(staticPath, OpenSceneMode.Additive);
-			EditorSceneManager.OpenScene(lightPath, OpenSceneMode.Additive);
+	        // Update build scenes list
+	        var scenes = new List<SceneReference> { area.DynamicScene, area.StaticScene };
+	        scenes.AddRange(area.LightScenes.Where(s => s.IsDefined));
+	        scenes = scenes.Distinct().ToList();
 
-			if (EditorPreferences.Instance.LdDesigner)
-			{
-				SceneManager.SetActiveScene(mechanicsScene);
-			}
+	        var buildScenes = scenes
+		        .Select(s => s.ScenePath)
+		        .Where(p => EditorBuildSettings.scenes.All(s => s.path != p))
+		        .Select(p => new EditorBuildSettingsScene(p, true))
+		        .ToArray();
 
-			foreach (var go in mechanicsScene.GetRootGameObjects())
-			{
-				// Fix copied unique ids
-				go.GetComponentsInChildren<EntityViewBase>()
-					.ForEach(e => e.UniqueId = Guid.NewGuid().ToString());
+	        EditorBuildSettings.scenes = EditorBuildSettings.scenes.Concat(buildScenes).ToArray();
 
-				go.GetComponentsInChildren<AreaEnterPoint>()
-					.ForEach(p => p.Blueprint = enterPoint);
-			}
-
-			area.DynamicScene = new SceneReference(AssetDatabase.LoadAssetAtPath<SceneAsset>(mechanicsPath));
-			area.StaticScene = new SceneReference(AssetDatabase.LoadAssetAtPath<SceneAsset>(staticPath));
-
-			BlueprintAreaPreset? preset = null;
-			m_PresetCreator = m_PresetCreator ? m_PresetCreator : CreateInstance<BlueprintAreaPresetCreator>();
-			if (m_PresetCreator != null)
-			{
-				m_PresetCreator.Area = area.ToReference<BlueprintAreaReference>();
-				preset = NewAssetWindow.CreateWithCreator(
-					m_PresetCreator,
-					"Default",
-					Folder) as BlueprintAreaPreset;
-				if (preset != null)
-				{
-					preset.Area = area;
-					preset.EnterPoint = enterPoint;
-					area.DefaultPreset = preset;
-				}
-			}
-
-			var pathfinder = AstarPath.active;
-			if (pathfinder != null)
-			{
-				pathfinder.data.file_cachedStartup = CreateEmptyNavmeshCacheFile();
-				EditorUtility.SetDirty(pathfinder);
-			}
-			EditorSceneManager.SaveScene(mechanicsScene);
-
-	        #if !OWLCAT_MODS
-			area.FixLightScenes();
-			#endif
-
-			var scenes = new List<SceneReference> { area.DynamicScene, area.StaticScene };
-			scenes.AddRange(area.LightScenes);
-			scenes = scenes.Distinct().ToList();
-
-			var buildScenes = scenes
-				.Select(s => s.ScenePath)
-				.Where(p => EditorBuildSettings.scenes.All(s => s.path != p))
-				.Select(p => new EditorBuildSettingsScene(p, true))
-				.ToArray();
-
-			EditorBuildSettings.scenes = EditorBuildSettings.scenes.Concat(buildScenes).ToArray();
-
-			enterPoint?.SetDirty();
-			EditorUtility.SetDirty(bounds);
-			preset?.SetDirty();
-			area.SetDirty();
-
-			AssetDatabase.SaveAssets();
-            BlueprintsDatabase.SaveAllDirty();
-			Selection.activeObject = BlueprintEditorWrapper.Wrap(area);
+			// Save all stuff
+	        AssetDatabase.SaveAssets();
+	        BlueprintsDatabase.SaveAllDirty();
+	        Selection.activeObject = BlueprintEditorWrapper.Wrap(area);
 		}
 
-		private static TextAsset? CreateEmptyNavmeshCacheFile()
-		{
-			string scenePath = SceneManager.GetActiveScene().path;
+        public override string CantCreateReason()
+        {
+	        if (!IsFolderOverridden && AreaParentEtude?.Get() == null)
+	        {
+		        // Any in-game area requires parent etude to be provided
+		        // Area is counted in-game if it is created with standard naming
+		        // convention - i.e. the folder is not overridden by any custom value
+		        return "Parent etude is not set!";
+	        }
+	        return base.CantCreateReason();
+        }
 
-			string sceneName = SceneManager.GetActiveScene().name;
-			int underTypeIndex = sceneName.LastIndexOf("_", StringComparison.Ordinal);
-			if (underTypeIndex > 0)
-				sceneName = sceneName[..underTypeIndex];
+        private void CreateEtudeStructure(BlueprintArea newlyCreatedArea)
+        {
+	        var parentEtude = AreaParentEtude?.Get();
+	        if (parentEtude == null)
+	        {
+		        return;
+	        }
 
-			int underscoreIndex = scenePath.LastIndexOf("/", StringComparison.Ordinal);
-			if (underscoreIndex > 0)
-				scenePath = scenePath[..underscoreIndex];
+	        string areaName = NewAssetWindow.AssetName;
+	        if (string.IsNullOrEmpty(areaName))
+	        {
+		        // Something wrong with area name
+		        return;
+	        }
 
-			scenePath += "/Navmesh/";
-			Directory.CreateDirectory(Path.GetDirectoryName(scenePath) ?? string.Empty);
+	        string? parentDir = Path.GetDirectoryName(BlueprintsDatabase.GetAssetPath(parentEtude));
+	        if (parentDir == null)
+	        {
+		        return;
+	        }
+	        parentDir = @$"{parentDir}\{parentEtude.name}";
 
-			scenePath += sceneName + ".bytes";
-			string path = AssetDatabase.GenerateUniqueAssetPath(scenePath);
+	        var rootAreaEtude = BlueprintsDatabase.CreateAsset<BlueprintEtude>(parentDir, areaName);
+	        parentEtude.AppendStartWith(rootAreaEtude);
+	        parentEtude.SetDirty();
 
-			var fileInfo = new FileInfo(path);
-			if (fileInfo.Exists && fileInfo.IsReadOnly)
-				fileInfo.IsReadOnly = false;
+	        string rootAreaDir = $@"{parentDir}\{areaName}";
+	        var baseAreaEtude = BlueprintsDatabase.CreateAsset<BlueprintEtude>(rootAreaDir, $"{areaName}_Base");
+	        baseAreaEtude.Parent = rootAreaEtude.ToReference<BlueprintEtudeReference>();
+	        baseAreaEtude.SetLinkedAreaPart(newlyCreatedArea);
+	        baseAreaEtude.SetDirty();
 
-			File.WriteAllBytes(path,Array.Empty<byte>());
+	        rootAreaEtude.Parent = parentEtude.ToReference<BlueprintEtudeReference>();
+	        rootAreaEtude.AppendStartWith(baseAreaEtude);
+	        rootAreaEtude.SetDirty();
 
-			AssetDatabase.Refresh();
-			return AssetDatabase.LoadAssetAtPath(path, typeof(TextAsset)) as TextAsset;
-		}
+	        // Remember area root etude for creating area state etudes later
+	        var areaRootEtudes = AreaRootEtudes.GetInstance();
+	        if (areaRootEtudes == null)
+	        {
+		        return;
+	        }
+	        var areaEtudes = areaRootEtudes.AreaEtudes.ToList();
+
+	        var areaEtude = areaEtudes.FindOrDefault(ae => ae.Area?.Get() == newlyCreatedArea);
+	        if (areaEtude == null)
+	        {
+		        areaEtude = new AreaRootEtudes.AreaEtude()
+		        {
+			        Area = newlyCreatedArea.ToReference<BlueprintAreaReference>(),
+		        };
+		        areaEtudes.Add(areaEtude);
+	        }
+	        areaEtude.Etude = baseAreaEtude.ToReference<BlueprintEtudeReference>();
+
+	        areaRootEtudes.AreaEtudes = areaEtudes.ToArray();
+	        areaRootEtudes.UpdateNames();
+	        EditorUtility.SetDirty(areaRootEtudes);
+        }
 	}
 }

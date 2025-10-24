@@ -94,7 +94,8 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                             && entry.Id == data.UniqueId 
                             && entry.TypeId == data.TypeId
                             && entry.IsShadowDeleted == data.IsShadowDeleted
-                            && entry.ReferencedBlueprints.SetEquals(data.UsesBlueprints))
+                            && entry.ReferencedBlueprints.SetEquals(data.ReferencedBlueprints)
+                            && entry.ReferencedEntities.SetEquals(data.ReferencedEntities))
                         {
                             //                    entry.LastWriteTime = time; // file changed, but metadata is not - just update time
                             continue;
@@ -223,7 +224,8 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                                      && entry.Id == data.UniqueId 
                                      && entry.TypeId == data.TypeId
                                      && entry.IsShadowDeleted == data.IsShadowDeleted
-                                     && entry.ReferencedBlueprints.SetEquals(data.UsesBlueprints);
+                                     && entry.ReferencedBlueprints.SetEquals(data.ReferencedBlueprints)
+                                     && entry.ReferencedEntities.SetEquals(data.ReferencedEntities);
 
                     if (!noChanges)
                     {
@@ -288,23 +290,23 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             }
         }
 
-        public List<string> GetAllRemoveBlueprints()
+        public IEnumerable<string> GetAllRemoveBlueprints()
         {
             lock (m_SyncObject)
             {
-                return m_Index.GetAllRemoveBlueprints();
+                return m_Index.GetAllRemovedBlueprints();
             }
         }
 
-        public List<string> GetAllDependingOn(string guid)
+        public IEnumerable<string> GetAllDependingOn(string guid)
         {
             lock (m_SyncObject)
             {
-                return m_Index.GetAllDependingOn(guid);
+                return m_Index.GetBlueprintsReferencedBy(guid);
             }
         }
 
-        public List<string> SearchAllUsingShadowDeletedBlueprints()
+        public IEnumerable<string> SearchAllUsingShadowDeletedBlueprints()
         {
             var res = new List<string>();
 
@@ -323,7 +325,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             return res;
         }
 
-        public List<string> SearchByName(List<string> nameList)
+        public IEnumerable<string> SearchByName(List<string> nameList)
         {
             var res = new List<string>();
             if (nameList.All(s => s.Length < 3))
@@ -372,7 +374,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             }
         }
         
-        public List<string> SearchByTypeList(List<string> types)
+        public IEnumerable<string> SearchByTypeList(List<string> types)
         {
             lock (m_SyncObject)
             {
@@ -416,23 +418,55 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         {
             lock (m_SyncObject)
             {
-                return m_Index.GetDuplicatedIds();
+                return m_Index.GetDuplicatedIds().ToArray();
             }
         }
 
-        public IEnumerable<string> GetReferencedBy(string id)
+        public IEnumerable<string> GetBlueprintsReferencedBy(string id)
         {
             lock (m_SyncObject)
             {
-                return m_Index.GetReferencedBy(id);
+                return m_Index.GetBlueprintsReferencedBy(id).ToArray();
             }
         }
 
-        public IEnumerable<string> GetReferencesFrom(string id)
+        public IEnumerable<string> GetBlueprintReferencesFrom(string id)
         {
             lock (m_SyncObject)
             {
-                return m_Index.GetReferencesFrom(id);
+                return m_Index.GetBlueprintReferencesFrom(id).ToArray();
+            }
+        }
+
+        public IEnumerable<string> GetBlueprintsWithReferencesToEntity(string id)
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetBlueprintsWithReferencesToEntity(id).ToArray();
+            }
+        }
+
+        public IEnumerable<string> GetEntitiesReferencedByBlueprint(string id)
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetEntitiesReferencedByBlueprint(id).ToArray();
+            }
+        }
+
+        public IEnumerable<string> GetAllReferencedEntities()
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetAllReferencedEntities().ToArray();
+            }
+        }
+
+        public IEnumerable<string> GetAllBlueprintsWithReferencesToEntity()
+        {
+            lock (m_SyncObject)
+            {
+                return m_Index.GetAllBlueprintsWithReferencesToEntity().ToArray();
             }
         }
 

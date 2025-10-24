@@ -86,7 +86,7 @@ Shader "PF/Particles"
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile_fog
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma multi_compile_fwdbase
 			#pragma skip_variants DIRECTIONAL_COOKIE POINT_COOKIE
 			#pragma skip_variants FOG_EXP FOG_EXP2

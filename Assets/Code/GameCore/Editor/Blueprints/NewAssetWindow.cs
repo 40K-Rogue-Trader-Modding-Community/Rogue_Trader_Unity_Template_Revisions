@@ -51,7 +51,6 @@ namespace Kingmaker.Editor.Blueprints
 		{
 			titleContent = new GUIContent("New Blueprint");
 			minSize = s_Size;
-			maxSize = s_Size;
 		}
 
 		public static string AssetName
@@ -394,12 +393,22 @@ namespace Kingmaker.Editor.Blueprints
 		{
 			string path = GetAssetPath();
 
+			string cantCreateReason;
 			if (path.Contains("{") || path.Contains("}"))
+			{
+				cantCreateReason = "not all data filled";
+			}
+			else
+			{
+				cantCreateReason = m_SelectedCreator?.CantCreateReason();
+			}
+
+			if (!string.IsNullOrEmpty(cantCreateReason))
 			{
 				GUILayout.Label(path, EditorStyles.wordWrappedLabel);
 				using (GuiScopes.Color(Color.red))
 				{
-					GUILayout.Label("not all data filled", EditorStyles.whiteLabel);
+					GUILayout.Label(cantCreateReason, EditorStyles.whiteLabel);
 				}
 				return;
 			}

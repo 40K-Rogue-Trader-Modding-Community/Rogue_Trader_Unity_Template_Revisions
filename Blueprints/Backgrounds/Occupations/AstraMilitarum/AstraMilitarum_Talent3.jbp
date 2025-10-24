@@ -6,81 +6,548 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "6ebdb034bf2f486b932f9342e175ec6d, AbilityLifecycleTriggerCaster",
-        "name": "$AbilityLifecycleTriggerCaster$79309add-b8a7-4a7b-b1cf-b8d8073fad89",
+        "$type": "c0692276882a413b95b13da9c5ffdf23, AddFactsToParty",
+        "name": "$AddFactsToParty$de728f04-e22e-44b6-84c8-f7b794fec6a7",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "Condition": {
-          "Operation": "Sum",
-          "TargetType": "CurrentEntity",
-          "FailSilentlyIfNoTarget": false,
-          "Getters": []
+        "Restriction": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
         },
-        "StartActions": {
+        "DoNotAddToSelf": false,
+        "AddIfOwnerNotInParty": false,
+        "AddToRemoteCompanions": true,
+        "m_Facts": [
+          "!bp_8aa56b15dd9649128400baf4d47290d3"
+        ]
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$d67e04f7-4351-4ae6-85f2-9f20e2d25cfe",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_51604d37ac0e499da70e2c4a4f086066",
+        "Actions": {
           "Actions": [
             {
-              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
-              "name": "$ContextActionOnAllUnitsInCombat$093e80432e9646c4bdbe1b06a5dbec83",
-              "OnlyEnemies": false,
-              "OnlyAllies": true,
-              "Actions": {
-                "Actions": [
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$464cc5ce706a4190b72e51a35e2aed8e",
-                    "m_Buff": "!bp_6ceb0b0bcc6c456f8ddc2a86524af61a",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  }
-                ]
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$93286857cb4753dca8c0ecfebbf999b7",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$99c8ab51d2205f4ba31f5b3de3d3c26f",
+                "m_Companion": "!bp_51604d37ac0e499da70e2c4a4f086066",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
               },
-              "OnlyParty": false,
-              "m_FilterNoFacts": [],
-              "m_FilterHaveAnyFact": [],
-              "ActionsOnRandomTarget": false,
-              "NotCaster": false,
-              "OnlyVisible": false,
-              "OnlyNotVisible": false,
-              "IncludeDead": false
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
             }
           ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$c8081175-dd9a-4256-bb6a-1d4835b98fe3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
         },
-        "EndActions": {
-          "Actions": []
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_ec7f34b2ef6d4624af3e5024f4fc8e6e",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$6ba96bb6-6f6a-4d9d-a30e-264cf93b41a1",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$dbef13208b1c44db91ba28ed848e7d65",
+                "m_Companion": "!bp_ec7f34b2ef6d4624af3e5024f4fc8e6e",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$8b5e10b9-92a9-4076-a409-20a7b6838460",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
         },
-        "m_Facts": [],
-        "m_FactsToCheckOnOwner": []
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_70e4973d9cef400da93e0b5672dcd014",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$21f3791f-c341-4d9b-8d12-ac6d6be3f97c",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$b9f1b0ed-43b0-4310-ba6e-96514682caa1",
+                "m_Companion": "!bp_70e4973d9cef400da93e0b5672dcd014",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$e579a1b2-726b-45b4-8bf5-aeee4f0ae53a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_df918c2d635446e8ba6cba0123d2cb6e",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$53b68e2d-e3f4-4a25-bf4e-e56c6736564a",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$7d3e573fa9da444d8f47338724652850",
+                "m_Companion": "!bp_df918c2d635446e8ba6cba0123d2cb6e",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$155ac960-159d-4fe5-9e47-1dd553818640",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_948abdeffc744794589d6b3f59a1cd0f",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$548d9b13-478b-4f78-981b-15c237ea3fac",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$f7ea2632-5dd7-4b5a-bc79-6a9251ec859c",
+                "m_Companion": "!bp_948abdeffc744794589d6b3f59a1cd0f",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$799a2f29-9dec-4077-86b2-26743a2e4391",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_768a816a8b734882af399f8258ffcada",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$fb18cb6c-b1b5-4f3e-8492-3eb4eb7e01c1",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$e07fae08-c509-4376-a1d1-72b0c5deaa00",
+                "m_Companion": "!bp_768a816a8b734882af399f8258ffcada",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$b98492db-6fd2-481b-8de6-6339d52af4e5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_88d4190122cd4b6c9c91d7fef4066651",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$ff6639fa-6879-4533-913d-5a735a610e4b",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$30d72aa9-6da4-46b2-bda6-5127a226fb3d",
+                "m_Companion": "!bp_88d4190122cd4b6c9c91d7fef4066651",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$a8099f8e-878c-49c2-8f3e-3516388164ed",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_d2b74abcac1d497992e4cacd2fae1467",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$015ba2f2-584e-433c-98ef-92d9a7e1ed46",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$adabdad0-c67b-4a3e-a4ab-cc1490577318",
+                "m_Companion": "!bp_d2b74abcac1d497992e4cacd2fae1467",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$9f394a6e-6990-45da-ba17-ddf4531b70b2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_e1cfcddc1dc447278762a0725753c394",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$83ca2494-a3f4-4edc-a2b9-5a9ddb73c9f8",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$6d88c6dd-40bc-4fb9-8c2c-364f8388d455",
+                "m_Companion": "!bp_e1cfcddc1dc447278762a0725753c394",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$3e881910-07a4-4c4a-8e03-1f3d0fe56e4f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_a699795d21f74159abb00f9a217fa97d",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$3ab9faf8-3cad-490e-b024-9c568e26a76d",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$d92b7326-8a19-4571-91ab-bc40e0762008",
+                "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$beac76cb-fa0e-427e-9193-1fc555c95687",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$9a2c8c92-2e19-4b73-82f7-e35c5ee9ff7e",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$52493a05-629c-4211-b46d-0b5c2a0eba2b",
+                "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$42130886-69d8-4609-aaa7-46fdd8c31dd2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_20c5ce9f1e2bcf9448a7a0fd0850f5d2",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$3371d8df-432f-477d-a001-78efb0675dc2",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$8109e027-2e56-473a-872f-007954ad2fc2",
+                "m_Companion": "!bp_20c5ce9f1e2bcf9448a7a0fd0850f5d2",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$f74c7f58-6e7d-4ae6-9d3a-c42ee2b4637d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_884b70bd817640dda143966166587b98",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$ec592eea-361c-453f-9666-cf11d1324337",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$f140d3d1-848c-4cf4-8aef-726db11ac30a",
+                "m_Companion": "!bp_884b70bd817640dda143966166587b98",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$59980d3a-eb5e-4ead-948a-808e4bf78dd4",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_73c59c9ec5bd4c929be80e15d7f88c73",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$c7c87b05-a248-4935-980f-ba467eb01364",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$aa346b64-9e0a-41a3-b7e9-a591846ec990",
+                "m_Companion": "!bp_73c59c9ec5bd4c929be80e15d7f88c73",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$1c143264-e6df-496c-8be3-3a8bfe0837f9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_c222cb0668ea49f4a9ac04de2a3e25ba",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$095c1ff5-6b3d-4271-b42f-b2bb826f1440",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$8e2f120c-4412-41b7-907f-6c3630f67e13",
+                "m_Companion": "!bp_c222cb0668ea49f4a9ac04de2a3e25ba",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15415d6ca28148d2a017989e562f7cbc, CompanionRecruitTrigger",
+        "name": "$CompanionRecruitTrigger$15871e63-6eb2-44f5-a6e6-4810e3952253",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_CompanionBlueprint": "!bp_ea3a40dbd7d14de7a50c4466195daeff",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$fd90123f-d9b5-4eb8-97f7-58b01bb49034",
+              "Unit": {
+                "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                "name": "$CompanionInParty$b8265325-db5c-4c71-b363-89c35424a028",
+                "m_Companion": "!bp_ea3a40dbd7d14de7a50c4466195daeff",
+                "IncludeActive": true,
+                "IncludeDetached": true,
+                "IncludeRemote": true,
+                "IncludeExCompanions": true,
+                "IncludeDead": false,
+                "Index": 0
+              },
+              "m_Fact": "!bp_8aa56b15dd9649128400baf4d47290d3"
+            }
+          ]
+        }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
-      "m_Key": "1bf2f81d-310c-497d-b266-975fba4cbb69",
-      "m_OwnerString": "5285cce7ae36415c8cd09211ad6869fa",
-      "m_OwnerPropertyPath": "m_DisplayName",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Backgrounds\\Occupations\\AstraMilitarum\\AstraMilitarum_Talent3_m_DisplayName.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "005865ed6357a6a4da245a55c131d303",
+        "stringkey": "1bf2f81d-310c-497d-b266-975fba4cbb69"
+      }
     },
     "m_Description": {
-      "m_Key": "2230c701-bc58-481e-9635-5130c9f61ba7",
-      "m_OwnerString": "5285cce7ae36415c8cd09211ad6869fa",
-      "m_OwnerPropertyPath": "m_Description",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Backgrounds\\Occupations\\AstraMilitarum\\AstraMilitarum_Talent3_m_Description.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "0adfcb7eb6954d64c825231a386fba74",
+        "stringkey": "2230c701-bc58-481e-9635-5130c9f61ba7"
+      }
     },
     "m_Icon": null,
     "m_AllowNonContextActions": false,
@@ -97,8 +564,8 @@
       "Origin"
     ],
     "TalentIconInfo": {
-      "AllGroups": "Momentum",
-      "MainGroup": "Momentum"
+      "AllGroups": "EquipmentUsage, Occupation",
+      "MainGroup": "Occupation"
     },
     "m_Acronym": {
       "m_Key": "",
@@ -108,8 +575,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "LeonidTolochenko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

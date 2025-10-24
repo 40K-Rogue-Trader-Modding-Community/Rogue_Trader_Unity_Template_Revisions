@@ -167,7 +167,8 @@ namespace Kingmaker.Editor
 			}
 
 			bool needsFixUp = !LocalizedStringManipulation.Check(localizedString, property);
-			if(needsFixUp)
+            bool lockEditOption = EditorPreferences.Instance.GdDesigner && LocalizationManager.Instance.CurrentLocale != Locale.dev;
+			if(needsFixUp || lockEditOption)
 				EditorGUI.BeginDisabledGroup(true);
 
 			var locale = LocalizationManager.Instance.CurrentLocale;
@@ -189,7 +190,7 @@ namespace Kingmaker.Editor
                 updatedText = EditorGUI.TextArea(textRect, oldText, TextAreaStyle);
             }
 
-            if (needsFixUp)
+            if (needsFixUp || lockEditOption)
 			{
 				EditorGUI.EndDisabledGroup();
 				return isExpanded;

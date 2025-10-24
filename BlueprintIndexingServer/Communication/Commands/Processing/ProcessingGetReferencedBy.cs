@@ -8,7 +8,7 @@ public static class ProcessingGetReferencedBy
     public static Command? Processing(Command command, FileDatabase.FileDatabase database)
     {
         var payloadData = PayloadIdData.FromJson(command.Payload);
-        var ids = payloadData?.Id != null ? database.GetReferencedBy(payloadData.Id) : new List<string>();
+        var ids = payloadData?.Id != null ? database.GetBlueprintsReferencedBy(payloadData.Id) : new List<string>();
         var result = PayloadEntryListData.CreateEmpty();
         foreach (var id in ids)
         {

@@ -18,6 +18,8 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
         },
@@ -73,7 +75,7 @@
         },
         "DeflectionPenetration": {
           "ValueType": "Simple",
-          "Value": -100,
+          "Value": 100,
           "ValueRank": "Default",
           "ValueShared": "Damage",
           "Property": "None",
@@ -102,7 +104,8 @@
           "Enabled": false
         },
         "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false
+        "ModifyEvenDirectDamage": false,
+        "ModifyEvenDamageOverTime": false
       },
       {
         "$type": "aac928a1f314a4144923e7e3850a24ba, WarhammerDamageModifierTarget",
@@ -117,6 +120,8 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
         },
@@ -172,7 +177,7 @@
         },
         "DeflectionPenetration": {
           "ValueType": "Simple",
-          "Value": -100,
+          "Value": 100,
           "ValueRank": "Default",
           "ValueShared": "Damage",
           "Property": "None",
@@ -201,7 +206,8 @@
           "Enabled": false
         },
         "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false
+        "ModifyEvenDirectDamage": false,
+        "ModifyEvenDamageOverTime": false
       },
       {
         "$type": "d7bd163f6687c15448553fba4ad389ac, ActionsOnBuffApply",
@@ -293,14 +299,17 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             }
           ]
-        }
+        },
+        "UseFactContext": false
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
@@ -316,6 +325,8 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
               "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
@@ -336,6 +347,7 @@
         }
       }
     ],
+    "Author": 0,
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -356,7 +368,6 @@
     },
     "m_Icon": null,
     "m_AllowNonContextActions": false,
-    "IsClassFeature": false,
     "m_Flags": "HiddenInUi, NeedsNoVisual",
     "m_SoundTypeSwitch": {
       "Value": "",
@@ -367,11 +378,10 @@
       "Group": ""
     },
     "Stacking": "Replace",
+    "ProlongWhenRankAdded": false,
     "PriorityProperty": "Value1",
     "Initiative": "ByCaster",
     "Ranks": 0,
-    "TickEachSecond": false,
-    "Frequency": "Rounds",
     "FxOnStart": {
       "AssetId": ""
     },
@@ -381,7 +391,9 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
-    "m_AbilityGroups": []
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
+    "m_Cyclical": false
   },
   "Meta": {
     "ShadowDeleted": true

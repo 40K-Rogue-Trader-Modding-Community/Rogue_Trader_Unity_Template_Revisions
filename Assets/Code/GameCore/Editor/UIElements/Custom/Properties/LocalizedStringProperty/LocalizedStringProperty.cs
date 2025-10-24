@@ -11,6 +11,7 @@ using Kingmaker.Editor.Utility;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Enums;
 using Kingmaker.Localization.Shared;
+using Kingmaker.Utility.EditorPreferences;
 using Owlcat.Runtime.Core.Utility;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -157,6 +158,19 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
 		private void UpdateLocText(Locale newLoc)
 		{
 			m_TextField.SetValueWithoutNotify(m_LocString.GetText(newLoc));
+            
+            if (EditorPreferences.Instance.GdDesigner && newLoc != Locale.dev)
+            {
+                m_TextField.isReadOnly = true;
+                m_TextField.textSelection.isSelectable = false;
+                TitleLabel.text = $"{Property.displayName} <color=red>Not editable for GD in {newLoc}</color>";
+            }
+            else
+            {
+                m_TextField.isReadOnly = false;
+                m_TextField.textSelection.isSelectable = true;
+                TitleLabel.text = $"{Property.displayName}";
+            }
 			UpdateCommentHeader(m_CommentFoldout.value);
 		}
 
@@ -196,6 +210,14 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
 			};
 			m_FixUpPart = fixButton;
 			root.Add(m_FixUpPart);
+            
+            var openFileButton = new Button {text = "Show File"};
+            string path = m_LocString.Shared?.String.JsonPath ?? m_LocString.JsonPath;
+            openFileButton.clicked += () =>
+            {
+                EditorUtility.RevealInFinder(path);
+            };
+            root.Add(openFileButton);
 
 			return root;
 		}

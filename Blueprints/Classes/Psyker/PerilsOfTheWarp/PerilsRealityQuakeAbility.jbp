@@ -95,11 +95,13 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             }
           ]
         }
@@ -117,7 +119,8 @@
         "SaveToContext": "No",
         "Value": {
           "Operation": "Sum",
-          "TargetType": "ContextCaster",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -166,7 +169,14 @@
         "m_IncludeNonUnitTargets": false,
         "m_Condition": {
           "Operation": "And",
-          "Conditions": []
+          "Conditions": [
+            {
+              "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+              "name": "$ContextConditionHasFact$39c7f2091113575a8f1e63332fe799f4",
+              "Not": true,
+              "m_Fact": "!bp_de9ae96560504c13af0825e60e397b2c"
+            }
+          ]
         }
       },
       {
@@ -191,6 +201,7 @@
         "JunctionType": "AfterSecondRoundBrackets"
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -232,6 +243,8 @@
     "CanTargetFriends": true,
     "CanTargetSelf": true,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -247,6 +260,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "WillCauseAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -258,12 +273,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": "!bp_039cbc03ca0249b193b9c19d61f018a6",
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "AlexanderGusev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

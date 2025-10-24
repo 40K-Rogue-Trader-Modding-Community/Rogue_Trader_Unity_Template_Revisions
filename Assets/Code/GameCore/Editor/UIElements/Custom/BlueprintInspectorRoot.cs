@@ -45,7 +45,8 @@ namespace Kingmaker.Editor.UIElements.Custom
             if (custom != null)
             {
                 var header = new IMGUIContainer(() => custom.OnHeader(Blueprint));
-                var mid = new IMGUIContainer(() => custom.OnBeforeComponents(Blueprint));
+                var mid = custom.OnBeforeComponentsElement(Blueprint)
+                          ?? new IMGUIContainer(() => custom.OnBeforeComponents(Blueprint));
                 Root.Add(header);
                 header.SendToBack();
                 Root.Add(mid);

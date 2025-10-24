@@ -23,7 +23,7 @@
               "DamageType": {
                 "Type": "Direct"
               },
-              "UseDiceForDamage": false,
+              "UseDiceForDamage": true,
               "ReadPreRolledFromSharedValue": false,
               "PreRolledSharedValue": "Damage",
               "Value": {
@@ -38,7 +38,7 @@
                   "PropertyName": "Value1"
                 },
                 "BonusValue": {
-                  "ValueType": "Simple",
+                  "ValueType": "CasterNamedProperty",
                   "Value": 0,
                   "ValueRank": "Default",
                   "ValueShared": "Damage",
@@ -95,11 +95,13 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             },
             {
               "$type": "5e2f2046f3bd6984c8833bf019c8e8ad, ContextActionSavingThrow",
@@ -195,7 +197,8 @@
         "SaveToContext": "No",
         "Value": {
           "Operation": "Sum",
-          "TargetType": "ContextCaster",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -244,7 +247,14 @@
         "m_IncludeNonUnitTargets": false,
         "m_Condition": {
           "Operation": "And",
-          "Conditions": []
+          "Conditions": [
+            {
+              "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+              "name": "$ContextConditionHasFact$b72e101927ee58419e7c7ae4502ce0d8",
+              "Not": true,
+              "m_Fact": "!bp_de9ae96560504c13af0825e60e397b2c"
+            }
+          ]
         }
       },
       {
@@ -269,6 +279,7 @@
         "JunctionType": "AfterSecondRoundBrackets"
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -310,6 +321,8 @@
     "CanTargetFriends": true,
     "CanTargetSelf": true,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -325,6 +338,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "WillCauseAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -336,12 +351,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": "!bp_0ba6b677529f41778772611d8442d44b",
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "AlexanderGusev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

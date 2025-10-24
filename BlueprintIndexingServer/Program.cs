@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.Extensions.Logging;
@@ -49,7 +50,7 @@ namespace Owlcat.Blueprints.Server
         public static ILoggerFactory LogFactory;
         static void Main(string[] args)
         {
-            if (args.Length != 2)
+            if (args.Length < 2)
             {
                 Console.WriteLine("Need args for database folder and index folder");
                 return;
@@ -78,8 +79,8 @@ namespace Owlcat.Blueprints.Server
             LogFactory = loggerFactory;
             var logger = loggerFactory.CreateLogger<Program>();
 
-            RelaunchLocalCopyIfNeeded(logger);
-
+            if (args.Length < 3 || !args.Contains("norelaunch"))
+                RelaunchLocalCopyIfNeeded(logger);
 
             var db = new FileDatabase.FileDatabase(databaseFolder.FullName, "*.jbp", new FileReader(), loggerFactory);
 
@@ -105,7 +106,7 @@ namespace Owlcat.Blueprints.Server
             // index not found or broken
             if (!hasIndex)
             {
-                logger.LogInformation("Creating new index. This will take a minute.");
+                logger.LogInformation("Creating new index. This will take 10-15 minutes approximately.");
                 db.CreateIndex();
                 logger.LogInformation("Index built, saving to {IndexPath}", indexPath);
                 db.SaveIndex(indexPath);
@@ -158,7 +159,11 @@ namespace Owlcat.Blueprints.Server
                 .RegistrationProcessCommand(CommandTypes.PauseIndexing, ProcessingPauseIndexing.Processing)
                 .RegistrationProcessCommand(CommandTypes.ResumeIndexing, ProcessingResumeIndexing.Processing)
                 .RegistrationProcessCommand(CommandTypes.GetReferencedBy, ProcessingGetReferencedBy.Processing)
-                .RegistrationProcessCommand(CommandTypes.GetReferencesFrom, ProcessingGetReferencesFrom.Processing);
+                .RegistrationProcessCommand(CommandTypes.GetReferencesFrom, ProcessingGetReferencesFrom.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetBlueprintsWithReferencesToEntity, ProcessingGetBlueprintsWithReferencesToEntity.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetEntitiesReferencedByBlueprint, ProcessingGetEntitiesReferencedByBlueprint.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetAllBlueprintsWithReferencesToEntity, ProcessingGetAllBlueprintsWithReferencesToEntity.Processing)
+                .RegistrationProcessCommand(CommandTypes.GetAllReferencedEntities, ProcessingGetAllReferencedEntities.Processing);
 
             using var cts = new CancellationTokenSource();
             // start named pipe

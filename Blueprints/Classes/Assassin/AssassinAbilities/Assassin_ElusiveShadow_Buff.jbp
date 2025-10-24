@@ -19,6 +19,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -53,6 +54,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -86,6 +88,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -111,7 +114,9 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1"
-        }
+        },
+        "AutoDodge": false,
+        "NeverDodge": false
       },
       {
         "$type": "58a23a10c2aa4e158dc343b46d262ba1, WarhammerDodgeChanceModifierAttacker",
@@ -126,6 +131,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -151,7 +157,9 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1"
-        }
+        },
+        "AutoDodge": false,
+        "NeverDodge": false
       },
       {
         "$type": "cf4a4d014c2610548a3f9213c3de882e, WarhammerDamageModifierInitiator",
@@ -166,8 +174,27 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
-            "Getters": []
+            "Getters": [
+              {
+                "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                "name": "$CheckAbilityGroupGetter$ca4b7dee-400b-4d1b-8a5b-beeff597d477",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Groups": [
+                  "!bp_1cf206b13141425491c379bc75ef0699"
+                ]
+              }
+            ]
           }
         },
         "MinimumDamage": {
@@ -251,7 +278,7 @@
           "Enabled": false
         },
         "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false,
+        "ModifyEvenDirectDamage": true,
         "ModifyEvenDamageOverTime": false
       },
       {
@@ -267,6 +294,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "RuleInitiator",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -291,6 +319,15 @@
         },
         "Properties": "CoverMagnitude",
         "HitChance": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "HitChanceBorder": {
           "ValueType": "Simple",
           "Value": 0,
           "ValueRank": "Default",
@@ -326,7 +363,19 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
-        "AutoCrit": false
+        "OverkillPercentMultiplier": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "AutoHit": false,
+        "AutoCrit": false,
+        "NeverCrit": false,
+        "CoverHitAutoResult": "None"
       },
       {
         "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
@@ -342,6 +391,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -454,7 +504,16 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "CanPassThroughUnits"
+        "m_Feature": "CanPassThroughUnits",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       },
       {
         "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
@@ -525,13 +584,15 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             },
             {
               "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
@@ -693,13 +754,15 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             }
           ]
         },
@@ -724,6 +787,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -756,6 +820,7 @@
         "Condition": {
           "Operation": "BoolOr",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -813,6 +878,7 @@
                     "Property": {
                       "Operation": "And",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -831,6 +897,7 @@
                           "Value": {
                             "Operation": "G",
                             "TargetType": "CurrentEntity",
+                            "TargetEvaluator": null,
                             "FailSilentlyIfNoTarget": false,
                             "Getters": [
                               {
@@ -965,8 +1032,8 @@
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
       "Shared": {
-        "assetguid": "8b498c1d45f5433489ba9318081b9a4b",
-        "stringkey": "cea9535b-5e06-409d-ac27-64c0fb8c7fbf"
+        "assetguid": "a83493af109aab446b7b2bb5bd2b3981",
+        "stringkey": "f667b39f-d122-4fd1-acbd-ae2ae8a51d25"
       }
     },
     "m_Description": {
@@ -975,12 +1042,12 @@
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
       "Shared": {
-        "assetguid": "26cbb12f8fba05d408885d0cb6a1df3d",
-        "stringkey": "422582b0-edae-4c0c-8d97-6a2a1c8bdffd"
+        "assetguid": "b5df317ef31c8d64092ffc6c49a61a77",
+        "stringkey": "aa356ece-b48e-49e2-8123-ddcd3164f858"
       }
     },
     "m_Icon": {
-      "guid": "43eb41859081ec843bf9a80037be290a",
+      "guid": "09bf0a3fe8b138642a0aee95c280da77",
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
@@ -1007,8 +1074,10 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true
   },
   "Meta": {
     "ShadowDeleted": false

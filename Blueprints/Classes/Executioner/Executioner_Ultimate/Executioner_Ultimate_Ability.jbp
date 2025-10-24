@@ -6,6 +6,16 @@
     "m_Overrides": [],
     "Components": [
       {
+        "$type": "a486c202a5e79a04f8c58e75382c2a46, AbilityDeliverAttackWithWeapon",
+        "name": "$AbilityDeliverAttackWithWeapon$35e28f1f-4f82-43bc-a179-4d1f6214d543",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": []
+      },
+      {
         "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
         "name": "$AbilityEffectRunAction$b290e24b-7537-45d5-9988-1cc48761fed4",
         "m_Flags": 0,
@@ -18,114 +28,554 @@
         "Actions": {
           "Actions": [
             {
+              "$type": "201fdfba40fb4b01878e7c56cf37d3cc, ContextActionDealDoTDamage",
+              "name": "$ContextActionDealDoTDamage$db08f77a29dc45b89570338e7f08a638",
+              "AllTypes": true,
+              "Type": "Bleeding"
+            },
+            {
+              "$type": "201fdfba40fb4b01878e7c56cf37d3cc, ContextActionDealDoTDamage",
+              "name": "$ContextActionDealDoTDamage$a993ce48-0d02-4a67-bcb6-58398e5eadf5",
+              "AllTypes": true,
+              "Type": "Bleeding"
+            },
+            {
+              "$type": "201fdfba40fb4b01878e7c56cf37d3cc, ContextActionDealDoTDamage",
+              "name": "$ContextActionDealDoTDamage$31342933-37c2-43fc-9b7d-fcbc8279fa65",
+              "AllTypes": true,
+              "Type": "Bleeding"
+            },
+            {
+              "$type": "201fdfba40fb4b01878e7c56cf37d3cc, ContextActionDealDoTDamage",
+              "name": "$ContextActionDealDoTDamage$a74c3aa1-60a0-49c3-a77d-29f7ed3a160b",
+              "AllTypes": true,
+              "Type": "Bleeding"
+            },
+            {
               "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
-              "name": "$ContextActionOnAllUnitsInCombat$b4bceef28f4348ff9e8fdaed3aeb1411",
-              "OnlyEnemies": true,
+              "name": "$ContextActionOnAllUnitsInCombat$1081fc63a3f3529588990445c8cff253",
+              "OnlyEnemies": false,
               "OnlyAllies": false,
               "Actions": {
                 "Actions": [
                   {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$b78dee8f-ed21-4b48-b8b8-be0463f644b7",
-                    "m_Buff": "!bp_baefd6d6afd24ffba6feb339b6197abd",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": true,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$7763334ceefc4e09b9218e152244a219",
+                    "Comment": "Bleed",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$8dc594fac77e4558ac18be2e99b01059",
+                          "Not": false,
+                          "m_Buff": "!bp_8efe147110a46d2488c30447e7545f13"
+                        }
+                      ]
                     },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 1,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$0688cce06f384798aedb6a19ba3a123c",
+                          "Type": "Bleeding",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
                     },
-                    "ActionsOnApply": {
+                    "IfFalse": {
                       "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$27395a6d-aed5-43cc-8dd0-bbb18a29fc02",
+                    "Comment": "Burning",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$4144dc6d-0574-4ed2-9773-2b10e0206414",
+                          "Not": false,
+                          "m_Buff": "!bp_8da2a947a1a8bc543b9e7a9cad054414"
+                        }
+                      ]
                     },
-                    "ActionsOnImmune": {
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$4888e137-8a98-4820-84a8-e21a05fd02e6",
+                          "Type": "Burning",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
                       "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$dd32271b-383d-4697-acb1-5b9a55271eb6",
+                    "Comment": "ViralToxin",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$2420b3f2-386e-4bd3-8090-6ea40f486417",
+                          "Not": false,
+                          "m_Buff": "!bp_79aa52bbdf534f6c9bc5da0b4e463b66"
+                        }
+                      ]
                     },
-                    "AddFactSource": false
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$3430bf20-7af7-45a8-b328-86f9eb202f31",
+                          "Type": "Toxic",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$74168805-5f06-40d3-8f3f-e3205ef3cd6b",
+                    "Comment": "SoulBurning",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$7f454416-732b-41a6-b299-03ce1202d8f0",
+                          "Not": false,
+                          "m_Buff": "!bp_26be6a9ad4c540a4921f25834a2f420f"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$fcdf996a-cfcf-46ec-ab5b-ebc0e4ff1e28",
+                          "Type": "NavigatorBurning",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$e16ce0c8-77ec-4049-9c33-fcf16afc8e71",
+                    "Comment": "PyroBurning",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$e720b740-75eb-448a-b3b1-96e9543fbb3d",
+                          "Not": false,
+                          "m_Buff": "!bp_3ddbf131cbd54087a665d4b2e026b0f2"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$1063b767-b139-42be-b69b-3376a6f69413",
+                          "Type": "PsykerBurning",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$2bb750bf-acdc-4bba-8a0d-478a7d1066c5",
+                    "Comment": "BiophysicalDistortion",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$b3e64d85-5df4-4115-8cdd-4a88a56e26c9",
+                          "Not": false,
+                          "m_Buff": "!bp_6e3b28d8a3f744e6aa53f7cd5cf431d5"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$0c7e56f2-ee40-45c3-b2bd-4e55d346799d",
+                          "Type": "PsykerToxin",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$13dda257-c512-4018-84f7-6121591d796f",
+                    "Comment": "Assassin_Haemorrhage",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+                          "name": "$ContextConditionHasBuffFromCaster$e793efd8-f673-45e8-80fb-ff1983fc129f",
+                          "Not": false,
+                          "m_Buff": "!bp_372208cc0f434c17abfb5140e8806ebc"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$56f4a290-4134-4ee6-bf7a-b5774c8a54f7",
+                          "Type": "AssassinHaemorrhage",
+                          "DamageValue": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
+                          },
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
                   }
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
-              "m_FilterHaveAnyFact": [],
+              "m_FilterHaveAnyFact": [
+                "!bp_8efe147110a46d2488c30447e7545f13",
+                "!bp_8da2a947a1a8bc543b9e7a9cad054414",
+                "!bp_79aa52bbdf534f6c9bc5da0b4e463b66",
+                "!bp_26be6a9ad4c540a4921f25834a2f420f",
+                "!bp_3ddbf131cbd54087a665d4b2e026b0f2",
+                "!bp_6e3b28d8a3f744e6aa53f7cd5cf431d5",
+                "!bp_372208cc0f434c17abfb5140e8806ebc"
+              ],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false
             },
             {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$0f4855af7cfa4f59947533c35befac78",
-              "m_Buff": "!bp_421f617c4a31415b9ba2e41ad9cf463d",
-              "BuffEndCondition": "CombatEnd",
-              "Permanent": true,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$4335263008944a829813ca471640f2f8",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                    "name": "$HasFact$9caf6f32882a4658af2f04c143d73fa4",
+                    "Not": false,
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$df1cb8cbbefd4ed6a126b1c6f3b1a6c8"
+                    },
+                    "m_Fact": "!bp_502b4d74106e4f0680b50efe9b7afc40"
+                  }
+                ]
               },
-              "ToCaster": false,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "2dcc60a5b076f0047b982e9d4c04b226, ContextActionOnRandomTargetsAround",
+                    "name": "$ContextActionOnRandomTargetsAround$be716cb6-f42b-45f2-827c-05adfa2d14b1",
+                    "OnEnemies": true,
+                    "OnlyAllies": false,
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "201fdfba40fb4b01878e7c56cf37d3cc, ContextActionDealDoTDamage",
+                          "name": "$ContextActionDealDoTDamage$07e0de90-b984-4626-b92c-998e6849e742",
+                          "AllTypes": true,
+                          "Type": "Bleeding"
+                        }
+                      ]
+                    },
+                    "NumberOfTargets": 50,
+                    "TilesRadius": 6,
+                    "LowestWounds": false,
+                    "HighestWounds": false,
+                    "AffectDead": false,
+                    "m_FilterNoFact": null,
+                    "m_FilterHasFact": null
+                  }
+                ]
               },
-              "ActionsOnApply": {
+              "IfFalse": {
                 "Actions": []
-              },
-              "ActionsOnImmune": {
-                "Actions": []
-              },
-              "AddFactSource": false
+              }
             }
           ]
         }
@@ -169,8 +619,31 @@
         "m_Overrides": [],
         "MomentumType": "HeroicAct",
         "m_IgnoreUltimateCooldownFacts": []
+      },
+      {
+        "$type": "256c41efd74f4792a30353c4cf1cc1b2, AbilityUseCurrentWeaponSetting",
+        "name": "$AbilityUseCurrentWeaponSetting$4a782e8d-af16-4f77-917d-abc7a629ec7d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "useSecondWeapon": false
+      },
+      {
+        "$type": "05f57cde631729b47a2599acad016423, AbilityCasterMainWeaponHasAmmo",
+        "name": "$AbilityCasterMainWeaponHasAmmo$359fefab-7cac-4c52-906a-0432b7d9ceb4",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SecondWeapon": false
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -197,36 +670,40 @@
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
-    "Type": "Spell",
-    "Range": "Personal",
+    "Type": "Weapon",
+    "Range": "Weapon",
     "CustomRange": 0,
     "MinRange": 0,
     "ActionPointCost": 0,
-    "AbilityParamsSource": "None",
+    "AbilityParamsSource": "Weapon",
     "PsychicPower": "Minor",
     "VeilThicknessPointsToAdd": 1,
     "ParamsSkill": "SkillAthletics",
     "CooldownRounds": 1,
     "CanTargetPoint": false,
-    "CanTargetEnemies": false,
+    "CanTargetEnemies": true,
     "CanTargetFriends": false,
-    "CanTargetSelf": true,
+    "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
-    "NeedEquipWeapons": false,
+    "NeedEquipWeapons": true,
     "NotOffensive": false,
     "ShowInDialogue": false,
     "IsStarshipAbility": false,
     "EffectOnAlly": "None",
-    "EffectOnEnemy": "None",
+    "EffectOnEnemy": "Harmful",
     "m_Parent": null,
-    "Animation": "BattleCry",
+    "Animation": "Directional",
     "CastInOffHand": false,
     "UseOnMechadendrite": false,
     "UsedMechadendrite": "Utility",
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -240,12 +717,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "LeonidTolochenko"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

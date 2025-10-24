@@ -19,111 +19,6 @@
         "Value": 25
       },
       {
-        "$type": "dbb7058d31be12446942310a6ab86b83, CombatStateTrigger",
-        "name": "$CombatStateTrigger$8ad0751c-91cd-4ba3-831a-f13755dd0169",
-        "m_Flags": "Disabled",
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "CombatStartActions": {
-          "Actions": [
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$1a2c86d6c696500c8014c4660c11f8c6",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$9df024c8d8cf5e94a0dd2a3f90704e7e",
-                    "Not": false,
-                    "m_Fact": "!bp_96296b43092249f4b65b6f60e33b9f39"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
-                    "name": "$ContextActionOnAllUnitsInCombat$3bc5e705-ce34-4b25-b68f-7c45f7761140",
-                    "OnlyEnemies": false,
-                    "OnlyAllies": true,
-                    "Actions": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$9682a413-9bff-49a2-82e0-a783849154a7",
-                          "m_Buff": "!bp_39ddde30efe74b5aa13c1718bcdfdf8c",
-                          "BuffEndCondition": "CombatEnd",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": false,
-                          "AsChild": true,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "Simple",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "OnlyParty": false,
-                    "m_FilterNoFacts": [],
-                    "m_FilterHaveAnyFact": [],
-                    "ActionsOnRandomTarget": false,
-                    "NotCaster": false,
-                    "OnlyVisible": false,
-                    "OnlyNotVisible": false,
-                    "IncludeDead": false
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            }
-          ]
-        },
-        "CombatEndActions": {
-          "Actions": []
-        },
-        "UnitMustBeConscious": false
-      },
-      {
         "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
         "name": "$TurnBasedModeEventsTrigger$3b7f3592-6959-4c98-8368-251474162a90",
         "m_Flags": 0,
@@ -137,6 +32,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -216,13 +112,15 @@
                       ]
                     },
                     "OnlyParty": false,
+                    "WithoutPets": false,
                     "m_FilterNoFacts": [],
                     "m_FilterHaveAnyFact": [],
                     "ActionsOnRandomTarget": false,
                     "NotCaster": false,
                     "OnlyVisible": false,
                     "OnlyNotVisible": false,
-                    "IncludeDead": false
+                    "IncludeDead": false,
+                    "IncludeUntargetable": false
                   }
                 ]
               },
@@ -259,6 +157,7 @@
         "DoNotApplyOnInterrupts": false
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "\"This item increases Lore (Warp) of the wielder by 25.\n\nIf the wielder has Conviction: Hereticus — Adherent, the wielder and all his allies gain +20 to Dodge and Armour.\nWielder and their allies have their Max Wounds decreased by 9%\"",
     "m_DisplayName": {
       "m_Key": "",
@@ -300,8 +199,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

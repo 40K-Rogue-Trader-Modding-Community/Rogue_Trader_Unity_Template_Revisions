@@ -140,12 +140,29 @@ namespace Kingmaker.Editor.UIElements.Custom.Properties
 			var btn = new Button
 			{
 				text = trait,
+				style =
+				{
+					backgroundColor = GetButtonBackgroundColor(isChecked)
+				}
 			};
-			if(isChecked)
+			if (isChecked)
+			{
 				btn.AddToClassList("button-checked");
-			btn.clicked += () => OnLocaleTraitClick(m_LocString, m_Property, btn, isString, trait);
+			}
+			btn.clicked += () =>
+			{
+				isChecked = !isChecked;
+				OnLocaleTraitClick(m_LocString, m_Property, btn, isString, trait); 
+				btn.style.backgroundColor = GetButtonBackgroundColor(isChecked);
+			};
 
 			return btn;
+			StyleColor GetButtonBackgroundColor(bool isSelected)
+			{
+				return isSelected
+					? new Color(0.3f, 0.3f, 0.5f)
+					: new StyleColor(StyleKeyword.Auto);
+			}
 		}
 
 		private static void OnLocaleTraitClick(LocalizedString locString, SerializedProperty prop, VisualElement btn, bool isStringTrait, string traitText)

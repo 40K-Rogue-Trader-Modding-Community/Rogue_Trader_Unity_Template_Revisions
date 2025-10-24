@@ -8,7 +8,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
 {
     class FileIndex
     {
-        public const int FormatVersion = 4;
+        public const int FormatVersion = 5;
         
         private readonly FileDatabase m_FileDatabase;
         private Dictionary<string, IndexEntry> m_IdToEntry = new();
@@ -17,10 +17,8 @@ namespace Owlcat.Blueprints.Server.FileDatabase
         private Dictionary<string, HashSet<string>> m_IdToDuplicatePath = new();
         private HashSet<string> m_PathsWithErrors = new();
 
-        private Dictionary<string, HashSet<string>> m_DependsOn = new();
-        private Dictionary<string, HashSet<string>> m_DependingOn = new();
-
         private readonly ILogger Logger;
+        private readonly References m_References = new();
 
         public FileIndex(FileDatabase fileDatabase, ILoggerFactory loggerFactory)
         {
@@ -40,7 +38,14 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             }
 
             // todo: check if nothing is actually changed?
-            var entry = new IndexEntry(data.UniqueId, data.Name, data.TypeId, path, data.IsShadowDeleted, data.UsesBlueprints);
+            var entry = new IndexEntry(
+                data.UniqueId,
+                data.Name,
+                data.TypeId,
+                path,
+                data.IsShadowDeleted,
+                data.ReferencedBlueprints,
+                data.ReferencedEntities);
             AddOrUpdate(entry);
         }
 
@@ -147,84 +152,9 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             Add(data);
         }
 
-        private void AddDepending(string id, string dependingId)
-        {
-            if (!m_DependingOn.ContainsKey(id))
-            {
-                m_DependingOn.Add(id, new HashSet<string>());
-            }
-
-            if (m_DependingOn[id].Contains(dependingId))
-            {
-                return;
-            }
-
-            m_DependingOn[id].Add(dependingId);
-        }
-
-        private void RemoveDepending(string id, string dependingId)
-        {
-            if (!m_DependingOn.ContainsKey(id))
-            {
-                return;
-            }
-
-            m_DependingOn[id].Remove(dependingId);
-
-            if (m_DependingOn[id].Count <= 0)
-            {
-                m_DependingOn.Remove(id);
-            }
-        }
-
         private void Add(IndexEntry entry)
         {
-            {
-                if (entry.ReferencedBlueprints.Count > 0
-                    && !m_DependsOn.ContainsKey(entry.Id))
-                {
-                    m_DependsOn.Add(entry.Id, new HashSet<string>());
-                }
-
-                var currentDepends = m_DependsOn.TryGetValue(entry.Id, out var value) ? value : null;
-                var addDepends = currentDepends != null
-                    ? entry.ReferencedBlueprints.Except(currentDepends).ToArray()
-                    : entry.ReferencedBlueprints.ToArray();
-                var removeDepends = currentDepends?.Except(entry.ReferencedBlueprints).ToArray();
-
-                if (addDepends.Length > 0)
-                {
-                    if (!m_DependsOn.ContainsKey(entry.Id))
-                    {
-                        m_DependsOn.Add(entry.Id, new HashSet<string>());
-                    }
-
-                    foreach (var addDepend in addDepends)
-                    {
-                        if (!m_DependsOn[entry.Id].Contains(addDepend))
-                        {
-                            m_DependsOn[entry.Id].Add(addDepend);
-                        }
-
-                        AddDepending(addDepend, entry.Id);
-                    }
-                }
-
-                if (removeDepends is { Length: > 0 })
-                {
-                    var depend = m_DependsOn.TryGetValue(entry.Id, out var dp) ? dp : null;
-                    foreach (var removeDepend in removeDepends)
-                    {
-                        depend?.Remove(removeDepend);
-                        RemoveDepending(removeDepend, entry.Id);
-                    }
-
-                    if (depend is { Count: <= 0 })
-                    {
-                        m_DependsOn.Remove(entry.Id);
-                    }
-                }
-            }
+            m_References.Update(entry);
             
             m_IdToEntry[entry.Id] = entry;
             m_PathToEntry[entry.Path] = entry;
@@ -251,21 +181,10 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                 }
             }
         }
-        
 
         private void Remove(IndexEntry entry)
         {
-            {
-                if (m_DependsOn.TryGetValue(entry.Id, out var depends))
-                {
-                    foreach (var depend in depends)
-                    {
-                        RemoveDepending(depend, entry.Id);
-                    }
-
-                    m_DependsOn.Remove(entry.Id);
-                }
-            }
+            m_References.Remove(entry);
             
             m_TypeToEntry.TryGetValue(entry.TypeId, out var list);
             list?.Remove(entry);
@@ -289,21 +208,17 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                     bw.Write(entry.TypeId);
                     bw.Write(entry.Path);
                     bw.Write(entry.IsShadowDeleted);
+                    
                     bw.Write(entry.ReferencedBlueprints.Count);
                     foreach (var blueprintId in entry.ReferencedBlueprints)
                     {
                         bw.Write(blueprintId);
                     }
-                }
-
-                bw.Write(m_DependingOn.Count);
-                foreach (var i in m_DependingOn)
-                {
-                    bw.Write(i.Key);
-                    bw.Write(i.Value.Count);
-                    foreach (string guid in i.Value)
+                    
+                    bw.Write(entry.ReferencedEntities.Count);
+                    foreach (var entityId in entry.ReferencedEntities)
                     {
-                        bw.Write(guid);
+                        bw.Write(entityId);
                     }
                 }
             }
@@ -317,7 +232,7 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                 var v = br.ReadInt32();
                 if (v != FormatVersion)
                 {
-                    throw new Exception("Wrong index file version: "+v);
+                    throw new Exception("Wrong index file version: " + v);
                 }
 
                 LastUpdateTime = DateTime.FromBinary(br.ReadInt64());
@@ -330,14 +245,22 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                     var typeId = br.ReadString();
                     var entryPath = br.ReadString();
                     var isShadowDeleted = br.ReadBoolean();
-                    var dpc = br.ReadInt32();
-                    var dp = new HashSet<string>();
-                    while (dpc-- > 0)
+                    
+                    var referencedBlueprintsCount = br.ReadInt32();
+                    var referencedBlueprints = new HashSet<string>();
+                    while (referencedBlueprintsCount-- > 0)
                     {
-                        dp.Add(br.ReadString());
+                        referencedBlueprints.Add(br.ReadString());
+                    }
+                    
+                    var referencedEntitiesCount = br.ReadInt32();
+                    var referencedEntities = new HashSet<string>();
+                    while (referencedEntitiesCount-- > 0)
+                    {
+                        referencedEntities.Add(br.ReadString());
                     }
 
-                    var e = new IndexEntry(id, name, typeId, entryPath, isShadowDeleted, dp);
+                    var e = new IndexEntry(id, name, typeId, entryPath, isShadowDeleted, referencedBlueprints, referencedEntities);
 
                     if (m_IdToEntry.TryGetValue(e.Id, out var dupe))
                     {
@@ -346,20 +269,6 @@ namespace Owlcat.Blueprints.Server.FileDatabase
                     else
                     {
                         Add(e);
-                    }
-                }
-
-                count = br.ReadInt32();
-                while (count-- > 0)
-                {
-                    string referencedGuid = br.ReadString();
-                    var referencesList = m_DependingOn[referencedGuid] = new HashSet<string>();
-                    
-                    int referencesCount = br.ReadInt32();
-                    while (referencesCount-- > 0)
-                    {
-                        string referenceFromGuid = br.ReadString();
-                        referencesList.Add(referenceFromGuid);
                     }
                 }
             }
@@ -434,25 +343,32 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             return m_IdToDuplicatePath.Keys;
         }
 
-        public IEnumerable<string> GetReferencedBy(string id)
-        {
-            return m_DependingOn.GetValueOrDefault(id) ?? Enumerable.Empty<string>();
-        }
+        public IEnumerable<string> GetBlueprintsReferencedBy(string id)
+            => m_References.GetBlueprintsReferencedBy(id);
 
-        public IEnumerable<string> GetReferencesFrom(string id)
-        {
-            if (m_IdToEntry.TryGetValue(id, out var entry))
-                return entry.ReferencedBlueprints;
-            return Enumerable.Empty<string>();
-        }
+        public IEnumerable<string> GetBlueprintReferencesFrom(string id)
+            => m_References.GetBlueprintReferencesFrom(id);
+        
+
+        public IEnumerable<string> GetBlueprintsWithReferencesToEntity(string id)
+            => m_References.GetBlueprintsWithReferencesToEntity(id);
+
+        public IEnumerable<string> GetEntitiesReferencedByBlueprint(string id)
+            => m_References.GetEntitiesReferencedByBlueprint(id);
+    
+        internal IEnumerable<string> GetAllReferencedEntities()
+            => m_References.GetAllReferencedEntities();
+    
+        internal IEnumerable<string> GetAllBlueprintsWithReferencesToEntity()
+            => m_References.GetAllBlueprintsWithReferencesToEntity();
 
         public bool? ContainsShadowDeletedBlueprints(string id)
         {
-            if (m_DependsOn.TryGetValue(id, out var depends))
+            if (m_IdToEntry.TryGetValue(id, out var entry))
             {
-                foreach (var depend in depends)
+                foreach (string guid in entry.ReferencedBlueprints)
                 {
-                    if (m_IdToEntry.TryGetValue(depend, out var entry) && entry.IsShadowDeleted)
+                    if (m_IdToEntry.TryGetValue(guid, out var referencedEntry) && referencedEntry.IsShadowDeleted)
                     {
                         return true;
                     }
@@ -462,10 +378,10 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             return false;
         }
         
-        public List<string> GetAllRemoveBlueprints()
+        public IEnumerable<string> GetAllRemovedBlueprints()
         {
             var result = new List<string>();
-            foreach (var guid in m_DependingOn.Keys)
+            foreach (string guid in m_References.GetAllReferencedBlueprints())
             {
                 if (!m_IdToEntry.ContainsKey(guid) && !result.Contains(guid))
                 {
@@ -474,11 +390,6 @@ namespace Owlcat.Blueprints.Server.FileDatabase
             }
 
             return result;
-        }
-
-        public List<string> GetAllDependingOn(string guid)
-        {
-            return m_DependingOn.TryGetValue(guid, out var res) ? new List<string>(res) : new List<string>();
         }
     }
 }

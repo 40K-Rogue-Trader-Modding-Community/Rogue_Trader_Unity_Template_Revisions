@@ -7,7 +7,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 {
     public class AreaPartBoundsCreator:AssetCreatorBase
     {
-        public BlueprintAreaReference Area;
+        public BlueprintAreaPartReference Area;
         public override string CreatorName => "Area Part Bounds";
         public override string LocationTemplate => GetNewPath();
 

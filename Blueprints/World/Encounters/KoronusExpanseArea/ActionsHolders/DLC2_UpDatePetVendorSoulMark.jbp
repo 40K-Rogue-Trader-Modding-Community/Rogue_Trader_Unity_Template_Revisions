@@ -1,0 +1,181 @@
+{
+  "AssetId": "3c374d64eb9546cb99c3cbf47028102d",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ae591f3f-3341-40ba-868a-174d09ecf34c",
+          "Comment": "Если 4 глава, не было апдейта и есть 3 соулмарка",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$80077b55-379a-4f2e-9fe4-88c21f24f843",
+                "Not": false,
+                "m_Etude": "!bp_f7fca0a0a7b148cba812e75363729685",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": true
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$00d262a7-72e1-4f13-bdb5-da92690a504b",
+                "Not": false,
+                "m_Etude": "!bp_ca0bb8bff5df4f799febeb78c17974ee",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$8245eb670ddd4ee38530ed9676ef42c2",
+                "Not": false,
+                "Comment": "Одна из 3х соулмарок достигла 3го ранга",
+                "ConditionsChecker": {
+                  "Operation": "Or",
+                  "Conditions": [
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$55c3e227-e34d-47c0-b198-9ee56bdb8f1c",
+                      "Not": false,
+                      "m_Fact": "!bp_9eeb3cc7064e407ba025c8adf2b4d5e9"
+                    },
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$6c7a368e-7dde-4297-ac66-71daea99c2cd",
+                      "Not": false,
+                      "m_Fact": "!bp_9a84763298324cb1a7d276c4a5c05f56"
+                    },
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$fdfd1644-8434-4f9a-bf6d-b51756fed082",
+                      "Not": false,
+                      "m_Fact": "!bp_952635f937a44c4f8f472cb9ab719d8c"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$20687bd5-176c-4bac-9ddb-ba190e815727",
+                "Etude": "!bp_ca0bb8bff5df4f799febeb78c17974ee",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$be5cb19c-00b2-4ffb-b672-3a3d99b52ea9",
+                "Comment": "Если марка хаоса",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$a0b8cc3c-88c4-4ed8-bb8a-7cbe26a07db2",
+                      "Not": false,
+                      "m_Fact": "!bp_9eeb3cc7064e407ba025c8adf2b4d5e9"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "8abe2f7c2ba6427e838d50009aa57c09, AddLootToVendorTable",
+                      "name": "$AddLootToVendorTable$8cd69cfd-700b-4abf-ab78-0e8c04566078",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402",
+                      "m_Loot": "!bp_69cdd797246847039a1a1bedc3876a47"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$d097e5ca-e743-4f89-bde3-ea5f0f307939",
+                "Comment": "Если марка догматика",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$9e89bc7c-d2ab-4c68-beda-263f72df7d17",
+                      "Not": false,
+                      "m_Fact": "!bp_9a84763298324cb1a7d276c4a5c05f56"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "8abe2f7c2ba6427e838d50009aa57c09, AddLootToVendorTable",
+                      "name": "$AddLootToVendorTable$d87782ba-3834-4518-87db-9b149449f0c6",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402",
+                      "m_Loot": "!bp_e195923fb3344ab79569e8348343584f"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$ffc28eb6-6fde-417c-9283-e19e293f5f0d",
+                "Comment": "Если марка схизматика",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "159b144595c041a688a14f73d2624250, ContextConditionPlayerHasFact",
+                      "name": "$ContextConditionPlayerHasFact$b76ca2a6-256a-40c6-ac96-50e351a165be",
+                      "Not": false,
+                      "m_Fact": "!bp_952635f937a44c4f8f472cb9ab719d8c"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "8abe2f7c2ba6427e838d50009aa57c09, AddLootToVendorTable",
+                      "name": "$AddLootToVendorTable$4bf0bfa8-0ef9-4293-b76e-e475cb288261",
+                      "m_Table": "!bp_14a8e7ed284a4f0aaf8f270cefeb4402",
+                      "m_Loot": "!bp_d64ea4f999d84da7903d147c54192e9b"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

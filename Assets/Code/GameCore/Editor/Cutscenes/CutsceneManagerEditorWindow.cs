@@ -29,12 +29,14 @@ namespace Kingmaker.Editor.Cutscenes
 		{
 			GetWindow<CutsceneManagerEditorWindow>();
 		}
-		
+
+		private void OnEnable()
+		{
+			titleContent = new GUIContent(DefaultTitle);
+		}
+
 		public void OnGUI()
 		{
-			if (titleContent.text != DefaultTitle)
-				titleContent = new GUIContent(DefaultTitle);
-
 			m_ShowControlLockOnly = GUILayout.Toggle(m_ShowControlLockOnly, "With lock control only");
 
 			var cutscenePlayerList = Application.isPlaying

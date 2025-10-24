@@ -6,16 +6,25 @@
     "m_Overrides": [],
     "Components": [],
     "Author": "AlekseyVorobiev",
-    "Comment": "",
+    "Comment": "После Q1, доступно до финального квеста или пока не задашь все возможные вопросы",
     "ParentAsset": "6e1a484aabf04d34a1dcaaa6e46c7ea1",
     "SoulMarkRequirement": {
       "Direction": "None",
       "Value": 0,
       "CheckByRank": false,
       "Rank": 0,
-      "Description": null
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
     },
-    "m_EditorComment": null,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
     "Text": {
       "m_Key": "ca095ae4-bc65-4d70-9378-6ec4fa01c477",
       "m_OwnerString": "7f7c6cf95a274731bc96e3abe741d402",
@@ -29,15 +38,19 @@
       ],
       "Strategy": "First"
     },
-    "ShowOnce": true,
+    "ShowOnce": false,
     "ShowOnceCurrentDialog": false,
     "ShowCheck": {
       "Type": "Unknown",
       "Difficulty": "Custom",
       "DC": 0
     },
-    "OnCheckSuccess": null,
-    "OnCheckFail": null,
+    "OnCheckSuccess": {
+      "Actions": []
+    },
+    "OnCheckFail": {
+      "Actions": []
+    },
     "DebugMode": false,
     "CharacterSelection": {
       "SelectionType": "Clear",
@@ -52,6 +65,70 @@
           "Not": false,
           "m_Quest": "!bp_72ff883651e54972bf4d61d199173e94",
           "State": "Completed"
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$d0119736a2434818a62edba3d0ebbac1",
+          "Not": false,
+          "Comment": "Не проговорены все опции или не стартовал Q2",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$362792e0-14c3-4018-b365-ebd616fcb142",
+                "Not": true,
+                "m_Quest": "!bp_d32b62ba1dc742d48820bac48e56bb41",
+                "State": "Started"
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$6ed6d246-5e44-457f-9a12-6b63c83275d4",
+                "Not": true,
+                "Comment": "выбрал все варианты вопросов в последующем хабе",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                      "name": "$AnswerSelected$27d912cd-a61a-497a-b4bf-de79cdd730b3",
+                      "Not": false,
+                      "m_Answer": "!bp_1749c522780a495f83d5b6443c03d611",
+                      "CurrentDialog": true
+                    },
+                    {
+                      "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                      "name": "$AnswerSelected$6304f02b-cae7-4b3e-94b1-3e1ee92c4fa0",
+                      "Not": false,
+                      "m_Answer": "!bp_328b67d2e4274c028b311c490be414d4",
+                      "CurrentDialog": true
+                    },
+                    {
+                      "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                      "name": "$AnswerSelected$ac79bacf-dca7-4b29-a1cf-491706a40e16",
+                      "Not": false,
+                      "m_Answer": "!bp_4fa7957b21aa4d4aae17a29f21bba0ad",
+                      "CurrentDialog": true
+                    },
+                    {
+                      "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                      "name": "$AnswerSelected$4afc595a-103d-4ebb-8696-d483b048f3d0",
+                      "Not": false,
+                      "m_Answer": "!bp_16be9bdaa9294635b8868174d7217175",
+                      "CurrentDialog": true
+                    },
+                    {
+                      "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                      "name": "$AnswerSelected$0192d1ea-2bde-4e98-81ee-e533408cc49a",
+                      "Not": false,
+                      "m_Answer": "!bp_39072a197a9544919f5288f3128c3a79",
+                      "CurrentDialog": true
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -64,14 +141,26 @@
     "OnSelect": {
       "Actions": []
     },
-    "Description": null,
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
     "FakeChecks": [],
     "SoulMarkShift": {
       "Direction": "None",
       "Value": 0,
       "CheckByRank": false,
       "Rank": 0,
-      "Description": null
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
     }
   },
   "Meta": {

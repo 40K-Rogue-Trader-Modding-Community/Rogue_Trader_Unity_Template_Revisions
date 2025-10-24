@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Kingmaker.Blueprints.Items.Armors;
+using Kingmaker.Code.Editor.Utility;
 using Kingmaker.EntitySystem.Properties;
 using Kingmaker.EntitySystem.Stats.Base;
 using Kingmaker.Enums;
@@ -30,6 +32,7 @@ namespace Kingmaker.Editor.Utility
 	[CustomPropertyDrawer(typeof(UnitCondition))]
 	[CustomPropertyDrawer(typeof(EntityProperty))]
 	[CustomPropertyDrawer(typeof(MechanicsFeatureType))]
+	[CustomPropertyDrawer(typeof(DG.Tweening.Ease))]
 	public class EnumPickerDrawer : PropertyDrawer
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -62,15 +65,13 @@ namespace Kingmaker.Editor.Utility
 				type = type.GetElementType();
 			}
 
-			IEnumerable<Enum> displayOrder;
-			if (type == typeof(StatType))
-			{
-				displayOrder = StatTypeHelper.DisplayOrder;
-			}
-			else
-			{
-				displayOrder = EnumUtils.GetValues(type);
-			}
+			var orderAttribute = property
+				.GetAttributes()
+				.FirstOrDefault(attr => attr.GetType().IsSubclassOf(typeof(EnumOrderAttribute))) as EnumOrderAttribute;
+
+			var displayOrder = orderAttribute?.Order ?? (type == typeof(StatType)
+				? StatTypeHelper.DisplayOrder
+				: EnumUtils.GetValues(type));
 
 			string currentName;
 		    if (property.hasMultipleDifferentValues)

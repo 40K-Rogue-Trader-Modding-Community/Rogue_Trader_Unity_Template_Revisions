@@ -12,6 +12,9 @@ using System.Linq;
 using Kingmaker.Blueprints.Area;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.AreaStatesWindow;
+using Kingmaker.Editor.Blueprints;
+using Kingmaker.Editor.Blueprints.Creation;
 using Kingmaker.Editor.EtudesViewer;
 using Kingmaker.Editor.Validation;
 
@@ -586,6 +589,10 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
 
                     var bp = BlueprintsDatabase.LoadById<BlueprintEtude>(etudeID);
                     Selection.activeObject = BlueprintEditorWrapper.Wrap(bp);
+                    if (Event.current.button == 1)
+                    {
+                        OnRightClick();
+                    }
                 }
 
                 if (etude.CompleteParent)
@@ -608,6 +615,40 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
                     DrawTintedIconWithTooltip(areaIcon, Color.white, $"Has area linked:\n{etude.LinkedAreaName}");
                 }
             }
+        }
+
+        private static void OnRightClick()
+        {
+            var menu = new GenericMenu();
+            AddNewAreaItem(menu);
+            menu.ShowAsContext();
+        }
+
+        public static void AddNewAreaItem(GenericMenu menu)
+        {
+            var currentEtude = BlueprintEditorWrapper.Unwrap<BlueprintEtude>(Selection.activeObject);
+
+            var areaRootEtudes = AreaRootEtudes.GetInstance();
+
+            var mainGameParent = currentEtude.Parent?.Get();
+            while (mainGameParent != null && mainGameParent.AssetGuid != areaRootEtudes?.AreaRootEtude?.Guid)
+            {
+                mainGameParent = mainGameParent.Parent?.Get();
+            }
+
+            if (mainGameParent != null)
+            {
+                // Create menu only for etudes below main game etude
+                menu.AddItem(new GUIContent("Создать новую зону здесь"), false, OnAddNewArea);
+            }
+        }
+
+        private static void OnAddNewArea()
+        {
+            var currentEtude = BlueprintEditorWrapper.Unwrap<BlueprintEtude>(Selection.activeObject);
+            var areaCreator = CreateInstance<BlueprintAreaCreator>();
+            areaCreator.AreaParentEtude = currentEtude.ToReference<BlueprintEtudeReference>();
+            NewAssetWindow.ShowWindow(areaCreator);
         }
 
         private (Color, string) GetEtudeStateColorAndTooltip(EtudeIdReferences etude)
@@ -669,18 +710,19 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
             return string.Empty;
         }
 
-        public void UpdateEtudeState(string etudeID, EtudeIdReferences etude)
+        public void UpdateEtudeState(string etudeID, EtudeIdReferences etudeIdRef)
         {
-            BlueprintEtude blueprintEtude = (BlueprintEtude)ResourcesLibrary.TryGetBlueprint(etudeID);
+            var blueprintEtude = (BlueprintEtude)ResourcesLibrary.TryGetBlueprint(etudeID);
 
-            var item = Game.Instance.Player.EtudesSystem.Etudes.Get(blueprintEtude);
-            if (item != null)
-                UpdateStateInRef(item, etude);
-
+            var etude = Game.Instance.Player.EtudesSystem.Etudes.Get(blueprintEtude);
+            if (etude != null)
+                UpdateStateInRef(etude, etudeIdRef);
+            else if (Game.Instance.Player.EtudesSystem.EtudeIsNotStarted(blueprintEtude))
+                etudeIdRef.State = EtudeIdReferences.EtudeState.NotStarted;
             else if (Game.Instance.Player.EtudesSystem.EtudeIsPreCompleted(blueprintEtude))
-                etude.State = EtudeIdReferences.EtudeState.CompleteBeforeActive;
+                etudeIdRef.State = EtudeIdReferences.EtudeState.CompleteBeforeActive;
             else if (Game.Instance.Player.EtudesSystem.EtudeIsCompleted(blueprintEtude))
-                etude.State = EtudeIdReferences.EtudeState.Completed;
+                etudeIdRef.State = EtudeIdReferences.EtudeState.Completed;
         }
 
         private void ShowParentTree(EtudeIdReferences etude)

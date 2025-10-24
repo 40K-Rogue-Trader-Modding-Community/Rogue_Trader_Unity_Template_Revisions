@@ -15,6 +15,7 @@ namespace Kingmaker.Editor.Blueprints.Creation.Naming
 			public string StaticSceneTemplate;
 			public string LightSceneTemplate;
 			public SceneAsset MechanicsTemplateScene;
+			public SceneAsset AddedMechanicsTemplateScene;
 			public SceneAsset StaticTemplateScene;
 			public SceneAsset LightTemplateScene;
 		}

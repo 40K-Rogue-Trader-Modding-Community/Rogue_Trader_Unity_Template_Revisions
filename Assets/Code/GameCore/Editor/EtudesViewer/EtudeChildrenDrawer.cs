@@ -684,6 +684,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
             
             GenericMenu menu = new GenericMenu();
             menu.AddItem(new GUIContent("Создать дочерний этюд"), false, OnAddEtudeClick);
+            EtudesViewer.AddNewAreaItem(menu);
             menu.AddItem(new GUIContent("Построить дерево"), false, OnSetRootClick);
             menu.AddItem(new GUIContent("На уровень выше"), false, OnSetParentAsRootClick);
             menu.ShowAsContext();

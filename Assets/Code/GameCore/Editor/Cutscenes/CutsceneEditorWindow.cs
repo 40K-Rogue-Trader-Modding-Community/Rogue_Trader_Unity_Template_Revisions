@@ -126,6 +126,7 @@ namespace Kingmaker.Editor.Cutscenes
             m_SelectedObject = BlueprintEditorWrapper.Unwrap<SimpleBlueprint>(Selection.activeObject);
             m_SelectedObjectRect = null;
             EventBus.Subscribe(this);
+            titleContent = new GUIContent(Cutscene == null ? DefaultTitle : Cutscene.name);
         }
 
         protected override void OnDisable()
@@ -223,7 +224,12 @@ namespace Kingmaker.Editor.Cutscenes
                 }
                 else
                 {
-                    window = CreateWindow<CutsceneEditorWindow>();
+                    window = Resources.FindObjectsOfTypeAll<CutsceneEditorWindow>()
+                        .FirstOrDefault(w => w.titleContent.text == cutscenePlayer.Cutscene.name);
+                    if (window == null)
+                    {
+                        window = CreateWindow<CutsceneEditorWindow>();
+                    }
                     window.SetDebuggedPlayer(cutscenePlayer);
 
                 }
@@ -266,13 +272,19 @@ namespace Kingmaker.Editor.Cutscenes
             if (!bp)
                 return;
 
+            var existingWidows = Resources.FindObjectsOfTypeAll<CutsceneEditorWindow>();
             string assetPath = BlueprintsDatabase.GetAssetPath(bp);
             string directory = Path.GetDirectoryName(assetPath);
             var ct = BlueprintsDatabase.LoadAllOfType<Cutscene>(directory);
             foreach (var cutscene in ct)
             {
-                var window = GetWindow<CutsceneEditorWindow>();
+                var window = existingWidows.FirstOrDefault(w => w.titleContent.text == cutscene.name);
+                if (window == null)
+                {
+                    window = GetWindow<CutsceneEditorWindow>();
+                }
                 window.Open(cutscene);
+                window.Focus();
                 return;
             }
         }
@@ -287,7 +299,6 @@ namespace Kingmaker.Editor.Cutscenes
                 
             }
             DoLayout();
-            titleContent = new GUIContent(cutscene.name);
             Show();
             Repaint();
         }

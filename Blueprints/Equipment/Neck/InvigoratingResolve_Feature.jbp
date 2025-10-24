@@ -6,19 +6,29 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "dbb7058d31be12446942310a6ab86b83, CombatStateTrigger",
-        "name": "$CombatStateTrigger$111aae7c-eec2-415e-a5bf-b0c5849e4542",
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$2776a36d-8012-4451-98d7-5af00b423707",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
         "CombatStartActions": {
           "Actions": [
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$97bb7ddd43b84c9a856e329ca80de7d8",
+              "name": "$ContextActionApplyBuff$f43cb13156544f99ba02427415f23f0a",
               "m_Buff": "!bp_39e265530cdb4f42b86c16985c196ba1",
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
@@ -42,7 +52,7 @@
                   "PropertyName": "Value1"
                 }
               },
-              "ToCaster": true,
+              "ToCaster": false,
               "AsChild": false,
               "SameDuration": false,
               "Ranks": {
@@ -65,30 +75,33 @@
           ]
         },
         "CombatEndActions": {
-          "Actions": [
-            {
-              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-              "name": "$ContextActionRemoveBuff$a1e9e30bb74f453eb9e375c8def92bad",
-              "m_Buff": "!bp_39e265530cdb4f42b86c16985c196ba1",
-              "RemoveRank": false,
-              "RemoveSeveralRanks": false,
-              "RankNumber": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "m_CasterRanksRemovalPolicy": "Default",
-              "ToCaster": true
-            }
-          ]
+          "Actions": []
         },
-        "UnitMustBeConscious": false
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
       }
     ],
+    "Author": "VadimBgatzev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -107,7 +120,7 @@
     "m_Icon": null,
     "m_AllowNonContextActions": false,
     "HideInUI": true,
-    "HideInCharacterSheetAndLevelUp": false,
+    "HideInCharacterSheetAndLevelUp": true,
     "HideNotAvailibleInUI": false,
     "Ranks": 1,
     "Prerequisites": {
@@ -127,8 +140,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "VadimBgatzev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

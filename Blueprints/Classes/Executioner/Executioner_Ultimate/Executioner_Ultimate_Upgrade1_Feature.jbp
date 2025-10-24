@@ -18,6 +18,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -25,68 +26,50 @@
         "Action": {
           "Actions": [
             {
-              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
-              "name": "$ContextActionOnAllUnitsInCombat$12bb3afe674954cebad14a5d6484e815",
-              "OnlyEnemies": true,
-              "OnlyAllies": false,
-              "Actions": {
-                "Actions": [
-                  {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$fd3d32f0b6ba55a3bfc0c9f13611c7e1",
-                    "m_Buff": "!bp_421476408a7e4b448132fb2e95b6e84f",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": true,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "ActionsOnApply": {
-                      "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
-                  }
-                ]
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$1d240fe2-80a5-4429-b4f0-643f39898a91",
+              "m_Buff": "!bp_421476408a7e4b448132fb2e95b6e84f",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
               },
-              "OnlyParty": false,
-              "m_FilterNoFacts": [],
-              "m_FilterHaveAnyFact": [],
-              "ActionsOnRandomTarget": false,
-              "NotCaster": false,
-              "OnlyVisible": false,
-              "OnlyNotVisible": false,
-              "IncludeDead": false
+              "ToCaster": true,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
             }
           ]
         },
@@ -95,29 +78,114 @@
         "ForMultipleAbilities": true,
         "Abilities": [
           "!bp_650c67473864408e95c835e25f640c8d",
-          "!bp_3bd371f9808649088757dbf8f0f1f577"
+          "!bp_3bd371f9808649088757dbf8f0f1f577",
+          "!bp_327ab46a0f6841098c8f6690d5454d12",
+          "!bp_3d7600aea6894748a241efc2c1021c56"
         ],
         "ForAbilityGroup": false,
         "m_AbilityGroup": null,
+        "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
-        "AssignOwnerAsTarget": false
+        "AssignOwnerAsTarget": false,
+        "AssignContextFromAbility": false
+      },
+      {
+        "$type": "a5cbfd1546727ec418590630a6ea2400, WarhammerDamageTriggerInitiator",
+        "name": "$WarhammerDamageTriggerInitiator$046f5fd7-11c6-45e8-bb1e-b8d449fc9ac5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "TriggersForDamageOverTime": false,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$0390b66d569e46dfb241e8a76462c97a",
+              "m_Buff": "!bp_27799dc818534df8954b64af23948790",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "ActionsOnAttacker": {
+          "Actions": []
+        },
+        "ContextPropertyName": "Value1",
+        "PropertyToSave": "None"
       }
     ],
     "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
-      "m_Key": "6dd92bc5-2b50-40a5-9b4a-842b1adfc8a1",
-      "m_OwnerString": "a965e279b9a44ee9aef10a406c10ad01",
-      "m_OwnerPropertyPath": "m_DisplayName",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Executioner\\Executioner_Ultimate\\Executioner_Ultimate_Upgrade1_Feature_m_DisplayName.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "b8e2be5e704f18e4c97b5eedebec1c4a",
+        "stringkey": "6dd92bc5-2b50-40a5-9b4a-842b1adfc8a1"
+      }
     },
     "m_Description": {
-      "m_Key": "e2481cea-4188-4004-b76a-3fa1592f0e61",
-      "m_OwnerString": "a965e279b9a44ee9aef10a406c10ad01",
-      "m_OwnerPropertyPath": "m_Description",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Executioner\\Executioner_Ultimate\\Executioner_Ultimate_Upgrade1_Feature_m_Description.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "8dcae64e66cb8834ab7f49ee39343cfb",
+        "stringkey": "e2481cea-4188-4004-b76a-3fa1592f0e61"
+      }
     },
     "m_Icon": {
       "guid": "74fdc27a7688b424d8175df8fb71ebd3",

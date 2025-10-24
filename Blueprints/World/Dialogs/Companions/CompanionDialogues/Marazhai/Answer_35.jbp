@@ -21,7 +21,10 @@
         "Shared": null
       }
     },
-    "m_EditorComment": null,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
     "Text": {
       "m_Key": "e681faef-7c1b-44db-a83a-c00989ffcf23",
       "m_OwnerString": "a9c7e03ccbab4f1da62a258b32c8d6bc",
@@ -68,7 +71,7 @@
           "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
           "name": "$OrAndLogic$c6bd96dea6294ad396b7905a2b1caf94",
           "Not": false,
-          "Comment": "",
+          "Comment": "Q1 выполнен, а Q2 не начат",
           "ConditionsChecker": {
             "Operation": "And",
             "Conditions": [
@@ -90,11 +93,29 @@
           }
         },
         {
-          "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
-          "name": "$QuestStatus$70bdb68b-42ab-4099-a737-1ed1e5aea574",
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$f0b1abe247474b358bebf432a755f0c5",
           "Not": false,
-          "m_Quest": "!bp_12c3057dd81a410ab358ac27d25501d3",
-          "State": "Started"
+          "Comment": "Q2 стартовал, но Назеркай еще жив",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$86619aff-b44e-43bd-a265-d7f9a307c31a",
+                "Not": true,
+                "m_QuestObjective": "!bp_6ecb76ee710549c2a6137681af6e968c",
+                "State": "Started"
+              },
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$1d132a5a-fba1-40a7-8550-3241490ae219",
+                "Not": false,
+                "m_Quest": "!bp_12c3057dd81a410ab358ac27d25501d3",
+                "State": "Started"
+              }
+            ]
+          }
         }
       ]
     },
@@ -107,7 +128,13 @@
     "OnSelect": {
       "Actions": []
     },
-    "Description": null,
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
     "FakeChecks": [],
     "SoulMarkShift": {
       "Direction": "None",

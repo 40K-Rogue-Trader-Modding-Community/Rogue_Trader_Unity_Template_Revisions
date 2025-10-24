@@ -1,0 +1,64 @@
+{
+  "AssetId": "b54d267c09c74c06967982b9a7fe748b",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если видели диалог на входе в Храм Смерти (глейто схайжен с багом) и есть ДЛЦ2 этюд корневой (те мог быть соломон в пати в этот момент) - выдаем конверт-этюд.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ca69718b292f4ce6a3180672246cbf30",
+          "Comment": "Видели диалог попадания в храм (те глейто уже мог пропасть из-за бага)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$017b05ac28db4589990da434f9251661",
+                "Not": false,
+                "m_Dialog": "!bp_392ec10a86c046dd95085cb2c07713d1"
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f41ee59b76754ffa882ff22302e5d7f3",
+                "Not": false,
+                "m_Etude": "!bp_0620af31d1b84acdb92a529964e8cd30",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$caacd29df38b4c75be573905c0a53f2e",
+                "Etude": "!bp_b18d7d68085047ce9f54c3fe856b45e7",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

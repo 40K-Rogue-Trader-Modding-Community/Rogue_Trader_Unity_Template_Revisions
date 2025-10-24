@@ -41,7 +41,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		private bool m_IsFirstTime = true;
 
-		private static readonly Dictionary<string, string> Result = new();
+		protected static readonly Dictionary<string, string> Result = new();
 		private readonly Dictionary<string, string[]> m_Namings = new();
 		private readonly Dictionary<string, Type> m_Types = new();
 		private readonly List<string> m_TemplateTypeNames = new(8);
@@ -189,7 +189,9 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			{
 				// We are creating blueprint and active object is blueprint also
 				string blueprintPath = BlueprintsDatabase.GetAssetPath(bw.Blueprint);
-				return Path.GetDirectoryName(blueprintPath)?.Replace("\\", "/") + "/";
+				return File.Exists(blueprintPath)
+					? Path.GetDirectoryName(blueprintPath)?.Replace("\\", "/") + "/"
+					: DefaultFolder;
 			}
 
 			string assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);

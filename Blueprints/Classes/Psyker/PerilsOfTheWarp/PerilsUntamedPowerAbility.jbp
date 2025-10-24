@@ -23,14 +23,14 @@
               "DamageType": {
                 "Type": "Shock"
               },
-              "UseDiceForDamage": false,
+              "UseDiceForDamage": true,
               "ReadPreRolledFromSharedValue": false,
               "PreRolledSharedValue": "Damage",
               "Value": {
                 "DiceType": "One",
                 "DiceCountValue": {
                   "ValueType": "Simple",
-                  "Value": 1,
+                  "Value": 0,
                   "ValueRank": "Default",
                   "ValueShared": "Damage",
                   "Property": "None",
@@ -44,7 +44,7 @@
                   "ValueShared": "Damage",
                   "Property": "None",
                   "m_CustomProperty": null,
-                  "PropertyName": "Value1"
+                  "PropertyName": "Value2"
                 }
               },
               "MinDamage": {
@@ -95,11 +95,13 @@
                   "PropertyName": "Value1"
                 }
               },
+              "HasRighteousFury": false,
               "Half": false,
               "IsAoE": false,
               "m_Weapon": null,
               "WriteResultToSharedValue": false,
-              "ResultSharedValue": "Damage"
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
             }
           ]
         }
@@ -129,7 +131,14 @@
         "m_TargetType": "Any",
         "m_Condition": {
           "Operation": "And",
-          "Conditions": []
+          "Conditions": [
+            {
+              "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+              "name": "$ContextConditionHasFact$447e3230c3855f2183d53dcd6b3aa904",
+              "Not": true,
+              "m_Fact": "!bp_de9ae96560504c13af0825e60e397b2c"
+            }
+          ]
         }
       },
       {
@@ -145,7 +154,8 @@
         "SaveToContext": "No",
         "Value": {
           "Operation": "Sum",
-          "TargetType": "ContextCaster",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -178,7 +188,8 @@
         "SaveToContext": "No",
         "Value": {
           "Operation": "Sum",
-          "TargetType": "ContextCaster",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -220,6 +231,7 @@
         "JunctionType": "AfterSecondRoundBrackets"
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -261,6 +273,8 @@
     "CanTargetFriends": true,
     "CanTargetSelf": true,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -276,6 +290,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -287,12 +303,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": "!bp_b59df551949b456aaa4a0e0293cb0a93",
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "AlexanderGusev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

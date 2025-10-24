@@ -379,6 +379,17 @@ namespace Kingmaker.Editor.Elements
 	        {
 		        title = $"OBSOLETE {title}";
 	        }
+            ////
+            var debugInfo = ElementsDebuggerDatabase.Get(element);
+            if (EditorPreferences.Instance.EnableContextDebugger &&
+                debugInfo != null && debugInfo.ContextDebugData != null &&
+                s_FoldoutFields.Contains(MakeFoldoutId(element)))
+            {
+                EditorGUILayout.BeginVertical();
+                EditorGUILayout.TextArea($"{debugInfo.ContextDebugData.StringData}", GUILayout.MinWidth(100), GUILayout.ExpandWidth(true));
+                EditorGUILayout.EndVertical();
+            }
+            ////
 
 	        using var s = new EditorGUILayout.HorizontalScope();
 	        Rect rect = s.rect;

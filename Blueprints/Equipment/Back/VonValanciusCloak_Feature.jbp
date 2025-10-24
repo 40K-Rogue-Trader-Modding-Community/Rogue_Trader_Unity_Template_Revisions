@@ -30,6 +30,7 @@
                     "Property": {
                       "Operation": "Sum",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -132,6 +133,7 @@
           "Property": {
             "Operation": "LE",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -220,6 +222,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -314,50 +317,77 @@
         "Activated": {
           "Actions": [
             {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$65331122-47ba-4ca0-8bf4-14ac6b6c87ed",
-              "m_Buff": "!bp_c6a93aa5f24b4f8f96e148ef703b8593",
-              "BuffEndCondition": "RemainAfterCombat",
-              "Permanent": true,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$76341b429f8b49138729f09d71179378",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9dc845daf78a4591a021c79e84825ed5, IsUnitHealthLessThan",
+                    "name": "$IsUnitHealthLessThan$540998d15fe343139f85c5895e25f280",
+                    "Not": true,
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$4fcfa8fedf0c5bd9b111148f147a4a28"
+                    },
+                    "PercentValue": 100
+                  }
+                ]
               },
-              "ToCaster": true,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
-                "ValueType": "Simple",
-                "Value": 1,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$ea3959dc-ca64-467a-8095-24c28b1f03e6",
+                    "m_Buff": "!bp_c6a93aa5f24b4f8f96e148ef703b8593",
+                    "BuffEndCondition": "RemainAfterCombat",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 1,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
               },
-              "ActionsOnApply": {
+              "IfFalse": {
                 "Actions": []
-              },
-              "ActionsOnImmune": {
-                "Actions": []
-              },
-              "AddFactSource": false
+              }
             }
           ]
         },
@@ -391,20 +421,27 @@
         }
       }
     ],
+    "Author": "EvgeniyShanhiev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
       "m_OwnerString": "",
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
-      "Shared": null
+      "Shared": {
+        "assetguid": "c512823f7b331f143b1329302d34c3e6",
+        "stringkey": "84f27bf9-9d7d-4554-ae0a-5e1b30ee445a"
+      }
     },
     "m_Description": {
       "m_Key": "",
       "m_OwnerString": "",
       "m_OwnerPropertyPath": "",
       "m_JsonPath": "",
-      "Shared": null
+      "Shared": {
+        "assetguid": "3a616d9428831264caecf754e7242032",
+        "stringkey": "360af247-2939-4b63-a7c8-0859dfa66984"
+      }
     },
     "m_Icon": null,
     "m_AllowNonContextActions": false,
@@ -429,8 +466,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "EvgeniyShanhiev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

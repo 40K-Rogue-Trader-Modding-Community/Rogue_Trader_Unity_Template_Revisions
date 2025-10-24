@@ -74,7 +74,7 @@
 			}
 
 			CGPROGRAM
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma multi_compile_fwdbase_fullshadows
 			#pragma skip_variants VERTEXLIGHT_ON
 			#pragma multi_compile_fog
@@ -111,7 +111,7 @@
 			ZTest LEqual
 
 			CGPROGRAM
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma skip_variants VERTEXLIGHT_ON
 			#pragma multi_compile_fwdadd_fullshadows
 			#pragma multi_compile_fog
@@ -143,7 +143,7 @@
 			//AlphaToMask [_AlphaToMask]
 			
 			CGPROGRAM
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma skip_variants VERTEXLIGHT_ON
 			#pragma multi_compile_shadowcaster
             #pragma multi_compile_instancing
@@ -167,7 +167,7 @@
 			Cull Off
 
 			CGPROGRAM
-			#pragma only_renderers d3d11 metal vulkan glcore ps4
+			#pragma only_renderers d3d11 metal vulkan glcore ps4 switch2
 			#pragma vertex vert_meta
 			#pragma fragment frag_meta
 			#pragma shader_feature __ EMISSION_ON

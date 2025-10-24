@@ -18,6 +18,7 @@
           "Property": {
             "Operation": "GE",
             "TargetType": "ContextCaster",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -78,8 +79,20 @@
         }
       },
       {
-        "$type": "cf4a4d014c2610548a3f9213c3de882e, WarhammerDamageModifierInitiator",
-        "name": "$WarhammerDamageModifierInitiator$57415cff-726b-4098-a4a2-7823ad5cb19e",
+        "$type": "018ffdf3c815bfa4189c0fc4cf1c9b19, RecalculateOnStatChange",
+        "name": "$RecalculateOnStatChange$400d2485-25e9-48e5-ba0b-13a3ff187c18",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Stat": "WarhammerPerception",
+        "CheckCaster": false
+      },
+      {
+        "$type": "b2e83cd85780453f854ebe9dac137c42, ArmorIgnoreOnTargetInitiator",
+        "name": "$ArmorIgnoreOnTargetInitiator$59f3c0a6-fe06-4c0d-b904-6bb2ecd1c692",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
@@ -90,11 +103,12 @@
           "Property": {
             "Operation": "GE",
             "TargetType": "ContextCaster",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
                 "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
-                "name": "$SimplePropertyGetter$1f44932f-d67a-49df-b380-8c3e62426005",
+                "name": "$SimplePropertyGetter$c2274133-48f8-453d-9ca1-5d5e43aec6c2",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -109,7 +123,7 @@
               },
               {
                 "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-                "name": "$ContextValueGetter$9b258ae0-1b5f-49a3-8ffe-3b77e006ba40",
+                "name": "$ContextValueGetter$12925099-980a-4588-8ccc-504df7223813",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -133,103 +147,11 @@
             ]
           }
         },
-        "MinimumDamage": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "MaximumDamage": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "PenetrationMod": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "PercentDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "AbsorptionPenetration": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": true
-        },
-        "DeflectionPenetration": {
-          "ValueType": "Simple",
-          "Value": -100,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": true
-        },
-        "UnmodifiableFlatDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "UnmodifiablePercentDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false,
-        "ModifyEvenDamageOverTime": false
-      },
-      {
-        "$type": "018ffdf3c815bfa4189c0fc4cf1c9b19, RecalculateOnStatChange",
-        "name": "$RecalculateOnStatChange$400d2485-25e9-48e5-ba0b-13a3ff187c18",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Stat": "WarhammerPerception",
-        "CheckCaster": false
+        "IgnoreDeflection": true,
+        "IgnoreArmourAbsorption": false
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -247,7 +169,7 @@
     },
     "m_Icon": null,
     "m_AllowNonContextActions": false,
-    "m_Flags": "HiddenInUi",
+    "m_Flags": "HiddenInUi, NeedsNoVisual",
     "m_SoundTypeSwitch": {
       "Value": "",
       "Group": ""
@@ -270,9 +192,9 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
-    "m_AbilityGroups": null,
-    "m_Cyclical": false,
-    "Author": "LeonidTolochenko"
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
+    "m_Cyclical": false
   },
   "Meta": {
     "ShadowDeleted": false

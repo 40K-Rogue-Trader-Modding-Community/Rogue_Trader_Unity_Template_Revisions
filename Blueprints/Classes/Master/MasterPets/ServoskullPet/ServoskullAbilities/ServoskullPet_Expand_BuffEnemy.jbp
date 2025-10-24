@@ -90,7 +90,7 @@
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
               "name": "$Conditional$1cd46f5098ea59dcae9f31d12ab2a66f",
-              "Comment": "",
+              "Comment": "Hard and Fast protocol",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
@@ -173,6 +173,75 @@
               "IfFalse": {
                 "Actions": []
               }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$83c722f7-1c4b-4dbf-9fa6-b2730047a91a",
+              "Comment": "Hereticus protocol",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$349e98a4-f99b-4b29-8fbb-d0fd94bd44f8",
+                    "Not": false,
+                    "m_Fact": "!bp_2d2b3638c3b040149b9ad441128ec722"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$29ac43a1-a6bd-415b-9983-6e7c965265a6",
+                    "m_Buff": "!bp_0a345074557843fb9151ae804a41a3dd",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         },
@@ -188,6 +257,24 @@
               "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
               "name": "$ContextActionRemoveBuff$4a7c300367085f1d866cb6054927e03e",
               "m_Buff": "!bp_692787ffb5b645c99a7da29112fa70d8",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            },
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$765ef9a9bd8944dfbbbbeaf65d2243a7",
+              "m_Buff": null,
               "RemoveRank": false,
               "RemoveSeveralRanks": false,
               "RankNumber": {
@@ -285,7 +372,7 @@
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
-    "m_Flags": 0,
+    "m_Flags": "NeedsNoVisual",
     "m_SoundTypeSwitch": {
       "Value": "",
       "Group": ""

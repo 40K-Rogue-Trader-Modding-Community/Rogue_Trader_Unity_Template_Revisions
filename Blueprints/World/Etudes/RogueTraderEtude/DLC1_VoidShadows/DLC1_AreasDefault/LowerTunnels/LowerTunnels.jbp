@@ -139,6 +139,59 @@
         "Actions": {
           "Actions": []
         }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$7a71ec21-9829-4d3d-bdc6-edc6a44290de",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Если игрок выполнил квест кибеллы",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+              "name": "$QuestStatus$1c0d43cb2b7a4f86ace8b648f62d257f",
+              "Not": false,
+              "m_Quest": "!bp_4054ea924639471abc20af6ec1938b13",
+              "State": "Completed"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+              "name": "$HideEntity$1d8ce32577a040aba60bc85434b34281",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$8c7d1109373d4a2481fba0d84765965e",
+                "Spawner": {
+                  "EntityNameInEditor": "LT_Sharper",
+                  "_entity_id": "09bedd95-5dd4-4fd9-966c-b307c15d274d",
+                  "SceneAssetGuid": "13833436c985faa4b8dbfcf1370ba391"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+              "name": "$ControllableActionSetActive$99006114eaed4774a111af88b27c8ce1",
+              "Active": false,
+              "IdOfObject": {
+                "EntityNameInEditor": "FluteEvent",
+                "_entity_id": "3b33cf16-0021-40fb-96ce-d1c7a239a682",
+                "SceneAssetGuid": "13833436c985faa4b8dbfcf1370ba391"
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AntonKharybin",
