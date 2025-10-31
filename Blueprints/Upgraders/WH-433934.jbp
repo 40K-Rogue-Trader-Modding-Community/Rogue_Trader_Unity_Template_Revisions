@@ -1,0 +1,75 @@
+{
+  "AssetId": "a38a016839884df5a922a00ccc615236",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Нужно рестартануть однократный этюд Hallucinations из-за преждевременного телепорта с зоны.\nПреждевременность определяется по тому, что Тервантьяс остался скрыт, так как открывающая его катсцена из этюда не отыгралась корректно.",
+    "m_Comment": "",
+    "m_SpecificArea": "!bp_b5c24935fd4749b1b1e0dce26c2aa29c",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$224c932bcb9a5a03a8c5c909d9fe9f7e",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f3e94df96a3153f4eb5a5c97dfa322e8, False",
+                "name": "$False$c379455b9deb58848d01fbfdd3075919",
+                "Not": true
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$85cbba40978a5fb4881c6c05c97a2264",
+                "Not": false,
+                "m_Etude": "!bp_0c4acde1ba5848a197c73a8ed9f74bc3",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "d47f198683f34b0f8e13012d2a635017, UnitIsHidden",
+                "name": "$UnitIsHidden$b1a7dc966d325571bf85c15c7d4a5545",
+                "Not": false,
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$07c6b16013125c879de24d95412908c9",
+                  "Spawner": {
+                    "EntityNameInEditor": "Haemonculus",
+                    "_entity_id": "e0754573-cad9-4491-b10b-fc5f0a059a78",
+                    "SceneAssetGuid": "f7c599d0f7fa2ad4894f255d45c5e96b"
+                  }
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "96d13650ba485a8429784fb9d95de890, RecheckEtude",
+                "name": "$RecheckEtude$5c9e1572-0700-4541-931a-45da1c7bd1b2",
+                "Etude": "!bp_0c4acde1ba5848a197c73a8ed9f74bc3",
+                "m_RedoOnceTriggers": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
