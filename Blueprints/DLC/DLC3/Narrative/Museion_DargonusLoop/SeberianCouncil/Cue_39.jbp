@@ -1,0 +1,177 @@
+{
+  "AssetId": "37e41f8dff284c689989ccda534ac59b",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "3be4f082fe2140879ce3483580474724, DialogueNodeTagConditionsChecker",
+        "name": "$DialogueNodeTagConditionsChecker$a894bd2b-3294-42b5-b5cd-6e0eb4656b15",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "_conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+              "name": "$CueSeen$f945c1ab34eb44eca94913aef459491b",
+              "Not": false,
+              "m_Cue": "!bp_c81f07efdb5a45fd951b9ad68f8d6ad8",
+              "CurrentDialog": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "Не играет DL_HQDestroyed\nНе играет DL_LariaOnJuvennaSide\nDL_LariaPlan_counter +1",
+    "ParentAsset": "e646fe7254264ce08517124c0afbee79",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$88db999c-a32c-41e2-a5be-3b7c703ff3bb",
+          "Not": true,
+          "m_Etude": "!bp_338d24deca6a4056b45ca44beb366bbd",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$ea0d1d14-2bf8-4655-9ab2-3271344ce757",
+          "Not": true,
+          "m_Etude": "!bp_64944bd0bfa94cf6b51edb8aa3176275",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "d558b335-9293-45e1-965e-7a7519341b23",
+      "m_OwnerString": "37e41f8dff284c689989ccda534ac59b",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\SeberianCouncil\\Cue_39_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_01580f3ff9a6497daa5040d8fe7a0020",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$c10b2689-c695-4afe-aca4-579a8b6cd90e",
+          "m_Flag": "!bp_b3312241e02a4e899f3cce0936d13c44",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$1ad771b8-67c1-45be-aa1a-04fe0ab1c58b",
+            "Value": 1
+          },
+          "UnlockIfNot": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$4d39980d-b2a5-42d1-974a-eabab5965170",
+          "Comment": "Комплит сейва штаба",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$3266bc88-5c40-4a38-8ba6-f09a112469c7",
+                "Not": false,
+                "m_QuestObjective": "!bp_61349b88c9de49c782fc15148a6f67ed",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$14fe8109-03da-4465-b2c9-4c223c18ccba",
+                "Status": "Complete",
+                "m_Objective": "!bp_61349b88c9de49c782fc15148a6f67ed",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

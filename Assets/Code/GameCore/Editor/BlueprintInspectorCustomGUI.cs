@@ -5,24 +5,23 @@ using Owlcat.Runtime.Core.Utility;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.Blueprints
 {
     public abstract class BlueprintInspectorCustomGUI
     {
-        public virtual void OnEnable(BlueprintInspector ed) { }
+        public virtual void OnEnable(BlueprintWrapperInspector ed) { }
         public virtual void OnHeader(SimpleBlueprint bp) { }
         public virtual void OnBeforeComponents(SimpleBlueprint bp) { }
+        public virtual void OnFooter(SimpleBlueprint bp) { }
+        public virtual void OnDisable() { }
 
         [CanBeNull]
         public virtual VisualElement OnBeforeComponentsElement(SimpleBlueprint bp)
         {
             return null;
         }
-
-        public virtual void OnFooter(SimpleBlueprint bp) { }
 
         // if true, nothing but header is called and the whole inspector is not rendered
         public virtual bool TotalOverride
@@ -55,6 +54,12 @@ namespace Kingmaker.Editor.Blueprints
             }
 
             return GetForType(t.BaseType);
+        }
+        
+        public static bool TryGetForType(Type t, out BlueprintInspectorCustomGUI inspector)
+        {
+            inspector = GetForType(t);
+            return inspector != null;
         }
     }
 }

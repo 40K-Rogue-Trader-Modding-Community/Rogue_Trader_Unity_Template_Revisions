@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_bf82c37259cf4552b37e8dc03c44552d"
         ],
@@ -32,6 +33,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -42,6 +44,7 @@
           }
         },
         "TriggersForDamageOverTime": true,
+        "TriggerBeforeDamageHappens": false,
         "Actions": {
           "Actions": [
             {
@@ -51,15 +54,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": false,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 1,
@@ -99,24 +93,60 @@
         "PropertyToSave": "None"
       },
       {
-        "$type": "9cb8cadd214341dbbc558d4097cdf57c, AbilityRuleTriggerInitiator",
-        "name": "$AbilityRuleTriggerInitiator$a333928a-0969-4eaa-b072-ab4eceb265de",
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$e71eda5e-6c60-402e-8e96-8821f6e82e53",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "dae1392d-cf06-4d13-a7dc-dedf6e10c0d4",
+              "m_OwnerString": "b826d0a5600e44f7b6272750584bfca0#$UIPropertiesComponent$e71eda5e-6c60-402e-8e96-8821f6e82e53",
+              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
+              "m_JsonPath": "Strings/Mechanics/Blueprints\\Backgrounds\\Occupations\\Nobility\\Nobility_InnateAbility_Feature_Properties.Array.data[0].Description.json",
+              "Shared": null
+            },
+            "m_DescriptionFact": "!bp_b826d0a5600e44f7b6272750584bfca0",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_1e1a37dd5a414cc5a22fdddca3d4fe79",
+            "m_LinkKey": "CriticalChance",
+            "Main": false
+          }
+        ]
+      },
+      {
+        "$type": "4eb2e1f092e743dd8bcad0cceeaa5ed8, AbilityApplyEffectTriggerInitiator",
+        "name": "$AbilityApplyEffectTriggerInitiator$95013b1d-0ec0-4c5f-8994-e5871075a60d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
-            "Operation": "Sum",
-            "TargetType": "RuleTarget",
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentTarget",
             "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
-                "name": "$FactRankGetter$dfd3fc5a51b34f4b9dad8c8135ff4263",
+                "$type": "e976e615d0274913a061b4841aa98d3e, HasBuffFromContextCasterGetter",
+                "name": "$HasBuffFromContextCasterGetter$ae4d4650-f8d3-4f1d-9e2c-5f89b9a927dc",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -128,9 +158,24 @@
                   "Max": 0
                 },
                 "m_Fact": "!bp_1e1a37dd5a414cc5a22fdddca3d4fe79",
-                "Aggregation": "Max",
-                "BuffWithCasterFromTargetType": false,
-                "Target": "CurrentEntity"
+                "Target": "CurrentTarget"
+              },
+              {
+                "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+                "name": "$CheckAbilityBlueprintGetter$fd937f7deafa5d1f855a3deef55b5a43",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Abilities": [
+                  "!bp_bf82c37259cf4552b37e8dc03c44552d"
+                ]
               }
             ]
           }
@@ -139,20 +184,11 @@
           "Actions": [
             {
               "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$51f0b6db44094bbf8ddd39a9865ad12f",
+              "name": "$ContextActionApplyBuff$fc23b267-c0fe-4cc8-b945-fd0abdea9e98",
               "m_Buff": "!bp_fb9531b4dfa54fe5863af90f885a6edc",
               "BuffEndCondition": "CombatEnd",
               "Permanent": false,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 1,
@@ -194,42 +230,7 @@
         "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
         "AssignOwnerAsTarget": false,
-        "AssignContextFromAbility": false
-      },
-      {
-        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
-        "name": "$UIPropertiesComponent$e71eda5e-6c60-402e-8e96-8821f6e82e53",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Properties": [
-          {
-            "NameType": "Damage",
-            "m_Name": {
-              "m_Key": "",
-              "m_OwnerString": "",
-              "m_OwnerPropertyPath": "",
-              "m_JsonPath": "",
-              "Shared": null
-            },
-            "Description": {
-              "m_Key": "dae1392d-cf06-4d13-a7dc-dedf6e10c0d4",
-              "m_OwnerString": "b826d0a5600e44f7b6272750584bfca0#$UIPropertiesComponent$e71eda5e-6c60-402e-8e96-8821f6e82e53",
-              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
-              "m_JsonPath": "Strings/Mechanics/Blueprints\\Backgrounds\\Occupations\\Nobility\\Nobility_InnateAbility_Feature_Properties.Array.data[0].Description.json",
-              "Shared": null
-            },
-            "m_DescriptionFact": "!bp_b826d0a5600e44f7b6272750584bfca0",
-            "m_LinkProperty": true,
-            "m_PropertyName": "Value1",
-            "m_PropertySource": "!bp_1e1a37dd5a414cc5a22fdddca3d4fe79",
-            "m_LinkKey": "CriticalChance",
-            "Main": false
-          }
-        ]
+        "m_AssignContextFromAbility": false
       }
     ],
     "Author": "AlexanderGusev",
@@ -267,7 +268,9 @@
       "Composition": "And",
       "List": []
     },
-    "FeatureTypes": [],
+    "FeatureTypes": [
+      "Origin"
+    ],
     "TalentIconInfo": {
       "AllGroups": "Buff",
       "MainGroup": "Buff"

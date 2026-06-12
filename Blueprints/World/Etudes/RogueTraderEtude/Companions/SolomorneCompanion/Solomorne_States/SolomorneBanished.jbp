@@ -4,7 +4,91 @@
     "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
     "PrototypeLink": "",
     "m_Overrides": [],
-    "Components": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$235753ad-b9b9-4d29-9db3-bdaee6a361ed",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Quests fail",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$79b04d3171385be7981c1f698a969109",
+              "Comment": "Фейл квеста \"Смерть и десятина\"",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$fa19ea115cf5556690e421ca181095e6",
+                    "Not": false,
+                    "m_Quest": "!bp_faea56e6e72d43ffb602290f265c52fe",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                    "name": "$SetObjectiveStatus$092bd3d415f55ff0aa2d479c24ea6087",
+                    "Status": "Fail",
+                    "m_Objective": "!bp_d93002ba04da4809a6a1c4927ecce615",
+                    "StartObjectiveIfNone": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$2805485a-bd46-47b4-9d55-17f9caaa633c",
+              "Comment": "Фейл квеста \"Раноценный обмен\"",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                    "name": "$QuestStatus$8479ba32-24d2-4a03-9e20-ff4277bd4010",
+                    "Not": false,
+                    "m_Quest": "!bp_ce6ef7dad31c45f28704f9112a0b1348",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                    "name": "$SetObjectiveStatus$c558a1c8-6931-4ad8-80d2-4139b913ce08",
+                    "Status": "Fail",
+                    "m_Objective": "!bp_bd11f9947edc461c83f026629c4d54b0",
+                    "StartObjectiveIfNone": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
     "Author": "Unknown",
     "Comment": "",
     "m_Parent": "!bp_d022f499359649dca0b1c1e8a03339f1",

@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+
 namespace Kingmaker.Blueprints.Encyclopedia.Blocks
 {
     [CustomEditor(typeof(BlueprintEncyclopediaBlock), true)]
@@ -7,7 +10,26 @@ namespace Kingmaker.Blueprints.Encyclopedia.Blocks
     {
         public virtual void OnEnable()
         {
-                      
+
+        }
+
+        public override VisualElement CreateInspectorGUI()
+        {
+            var root = new VisualElement();
+
+            // all visible properties via UI Toolkit (calls CreatePropertyGUI on drawers)
+            var it = serializedObject.GetIterator();
+            bool first = true;
+            while (it.NextVisible(first))
+            {
+                first = false;
+                if (it.name == "m_Script") 
+                    continue;
+                
+                root.Add(new PropertyField(it.Copy()));
+            }
+
+            return root;
         }
 
         public override void OnInspectorGUI()
@@ -36,6 +58,7 @@ namespace Kingmaker.Blueprints.Encyclopedia.Blocks
             }
             serializedObject.ApplyModifiedProperties();
         }
+        
         public virtual float GetHeight(params string[] ignoreList)
         {
             bool first = true;

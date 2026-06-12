@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Action": {
           "Actions": [
             {
@@ -40,15 +41,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -86,15 +78,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": false,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 1,
@@ -193,8 +176,82 @@
         "OnHealStatDamage": false,
         "OnHealEnergyDrain": false,
         "EvenOnZeroHeal": false
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$4e843316-7d67-472e-a7b4-5567b56f028c",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$cc6b812368405658ac61e68167991ad5",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "ToughnessBonus"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$e856a630-baa8-4950-8be2-d7faeef92ee6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "e55939788828e3d4f9ae22a45deeaa39",
+                "stringkey": "5a6bac9e-1f60-4116-b93b-f3462962126e"
+              }
+            },
+            "m_DescriptionFact": "!bp_a9c5a3fddff74273bbfcb9431260b95f",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_a9c5a3fddff74273bbfcb9431260b95f",
+            "m_LinkKey": "heal",
+            "Main": false
+          }
+        ]
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -227,7 +284,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Defense",
       "Archetype"
     ],
     "TalentIconInfo": {
@@ -242,8 +298,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

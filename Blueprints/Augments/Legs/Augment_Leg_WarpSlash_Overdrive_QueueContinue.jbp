@@ -1,0 +1,205 @@
+{
+  "AssetId": "512dc13cfbb844dd9f8e4773c34df17e",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "a2cb91a2b5d142648acab0e10a1bc6f1, CustomAbilityQueue",
+        "name": "$CustomAbilityQueue$a7b8c9d0-e1f2-3456-7890-abcdef123456",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "QueueStart": false,
+        "AbilityToCast": "!bp_99387c88bc0c431ab745b57989dd18d3",
+        "CastOnCasterInsteadOfInitialTarget": false,
+        "AbilityWaitConditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "QueConditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "ActionsOnQueueBreak": {
+          "Actions": [
+            {
+              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
+              "name": "$ContextActionOnAllUnitsInCombat$5d192051-6c34-4e76-a7af-f238d41b68b5",
+              "OnlyEnemies": true,
+              "OnlyAllies": false,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$5cf4610c-2437-4778-8dc0-97790634333e",
+                    "m_Buff": "!bp_a3b7d92e1f6c48a5b0e4f8d71c3a9e52",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  },
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$f86390c9-363d-4671-a518-fc6ba85344ae",
+                    "m_Buff": "!bp_b4c8e03f2a7d49b6c1f5d9e82d4b0a63",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              },
+              "OnlyParty": false,
+              "WithoutPets": false,
+              "m_FilterNoFacts": [],
+              "m_FilterHaveAnyFact": [],
+              "ActionsOnRandomTarget": false,
+              "NotCaster": false,
+              "OnlyVisible": false,
+              "OnlyNotVisible": false,
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
+            }
+          ]
+        },
+        "AbilityToQue": "!bp_512dc13cfbb844dd9f8e4773c34df17e",
+        "QueOnRandomTarget": true,
+        "Range": {
+          "ValueType": "Simple",
+          "Value": 100,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ConditionsOnTarget": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "b0c4370c781db0142b035f14ca13a6a5, ContextConditionIsEnemy",
+              "name": "$ContextConditionIsEnemy$b8c9d0e1-f2a3-4567-8901-bcdef1234567",
+              "Not": false
+            },
+            {
+              "$type": "2fc04e4a4ece686409d7b7857e09ed4c, ContextConditionHasBuffFromCaster",
+              "name": "$ContextConditionHasBuffFromCaster$f3a4b5c6-d7e8-9012-3456-789abcdef023",
+              "Not": false,
+              "m_Buff": "!bp_b4c8e03f2a7d49b6c1f5d9e82d4b0a63"
+            },
+            {
+              "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+              "name": "$ContextConditionHasBuff$79f9732a-f0cf-44c0-bab0-5a4721c0831d",
+              "Not": true,
+              "m_Buff": "!bp_a3b7d92e1f6c48a5b0e4f8d71c3a9e52"
+            },
+            {
+              "$type": "7dacedaab3f02864eabf1c08339daa1e, ContextConditionHasFittingNodeNearTarget",
+              "name": "$ContextConditionHasFittingNodeNearTarget$ecf92d9e-d0e8-4a9c-8323-3a253e971558",
+              "Not": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "EugeneIvanov",
+    "Comment": "Self-looping queue node. Picks next random enemy in range and continues the jump-attack chain.",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "2de4c5295a2213c4a90c0078e0890041",
+        "stringkey": "5f84d0bb-ed15-44e7-b015-a724683469e6"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": {
+      "guid": "d10cb5fd239968d41b47421f968cb242",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "Type": "Spell",
+    "Range": "Custom",
+    "CustomRange": 100,
+    "MinRange": 0,
+    "ActionPointCost": 0,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 0,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 0,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": true,
+    "CanTargetFriends": false,
+    "CanTargetSelf": false,
+    "Hidden": true,
+    "HiddenInUI": true,
+    "DisableLog": true,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "None",
+    "EffectOnEnemy": "Harmful",
+    "m_Parent": null,
+    "Animation": "None",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillNotCauseAttack",
+    "CombatStateRestriction": "InCombatOnly",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "ResourceAssetIds": [],
+    "m_FXSettings": null,
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

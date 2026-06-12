@@ -6,43 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
-        "name": "$UIPropertiesComponent$a5d286b1-e5c1-4460-b3d3-515238b096b4",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Properties": [
-          {
-            "NameType": "Damage",
-            "m_Name": {
-              "m_Key": "",
-              "m_OwnerString": "",
-              "m_OwnerPropertyPath": "",
-              "m_JsonPath": "",
-              "Shared": null
-            },
-            "Description": {
-              "m_Key": "",
-              "m_OwnerString": "",
-              "m_OwnerPropertyPath": "",
-              "m_JsonPath": "",
-              "Shared": {
-                "assetguid": "47ecc5b8fdccd754badbed40af5d201a",
-                "stringkey": "db9570e4-45bd-420e-a064-d99b76f90850"
-              }
-            },
-            "m_DescriptionFact": "!bp_c3cffc6b88cb47f3867b194fbcdb8b03",
-            "m_LinkProperty": true,
-            "m_PropertyName": "Value1",
-            "m_PropertySource": "!bp_f6178327f9ca47f78d16111e2f857728",
-            "m_LinkKey": "Damage"
-          }
-        ]
-      },
-      {
         "$type": "5930714e6c92d6a4c9e01295a4101d20, AddFactsToPet",
         "name": "$AddFactsToPet$8124de7a-2d84-4bc5-aa5d-2017aeb3872e",
         "m_Flags": 0,
@@ -51,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_c406fc4338014f25bf5cbc7234685e5e"
         ],
@@ -69,6 +33,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -133,7 +98,9 @@
                     "OnlyVisible": false,
                     "OnlyNotVisible": false,
                     "IncludeDead": false,
-                    "IncludeUntargetable": false
+                    "IncludeUntargetable": false,
+                    "StatFilter": "None",
+                    "Stat": "Unknown"
                   }
                 ]
               },
@@ -153,6 +120,127 @@
         "ForUltimateAbilities": false,
         "AssignOwnerAsTarget": false,
         "m_AssignContextFromAbility": false
+      },
+      {
+        "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
+        "name": "$AddFactContextActions$a51f4774-77bd-4583-b834-8876eaef3784",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "DisableForLevelUpPreviewUnit": false,
+        "DisableWhenReapplying": false,
+        "Activated": {
+          "Actions": []
+        },
+        "Deactivated": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$9832582e-9dfc-4a75-90e2-4c0e81a29f6d",
+              "m_Buff": "!bp_5b444920f5de41979eb8eb9b1a5b278e",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": true
+            }
+          ]
+        },
+        "NewRound": {
+          "Actions": []
+        },
+        "RoundEnd": {
+          "Actions": []
+        }
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$b799f487-6638-41dd-9535-77096613744a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "47ecc5b8fdccd754badbed40af5d201a",
+                "stringkey": "db9570e4-45bd-420e-a064-d99b76f90850"
+              }
+            },
+            "m_DescriptionFact": "!bp_c3cffc6b88cb47f3867b194fbcdb8b03",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_c3cffc6b88cb47f3867b194fbcdb8b03",
+            "m_LinkKey": "Damage",
+            "Main": false
+          }
+        ]
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$e3e5f02f-a5e0-4167-9bc2-e721726e31bf",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+              "name": "$FactRankGetter$b49eb1cff07c54f3add67625ae327c5d",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Fact": "!bp_5b444920f5de41979eb8eb9b1a5b278e",
+              "CheckTarget": "ContextCaster",
+              "Aggregation": "Max",
+              "BuffWithCasterFromTargetType": false,
+              "BuffCaster": "CurrentEntity"
+            }
+          ]
+        }
       }
     ],
     "Author": "IlyaPolitko",
@@ -203,8 +291,6 @@
       ]
     },
     "FeatureTypes": [
-      "Offense",
-      "Universal",
       "Archetype"
     ],
     "TalentIconInfo": {

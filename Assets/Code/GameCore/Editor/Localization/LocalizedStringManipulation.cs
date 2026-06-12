@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using Kingmaker.Blueprints.Base;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Localization.FixUp;
@@ -71,6 +71,9 @@ namespace Kingmaker.Editor.Localization
 	        if (!SharedIsEmpty.Check(str))
 		        return false;
 
+	        if (!MetadataFieldsPresent.Check(str))
+		        return false;
+
 	        if (!JsonFileExists.Check(str))
 		        return false;
 
@@ -103,6 +106,8 @@ namespace Kingmaker.Editor.Localization
             }
 
             SharedIsEmpty.Fix(str, prop);
+
+            MetadataFieldsPresent.Fix(str, prop);
 
             JsonFileExists.Fix(str, prop);
             

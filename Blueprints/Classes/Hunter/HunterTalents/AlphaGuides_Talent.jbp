@@ -14,10 +14,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -58,15 +60,6 @@
                           "BuffEndCondition": "CombatEnd",
                           "Permanent": true,
                           "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
                             "RoundsValue": {
                               "ValueType": "Simple",
                               "Value": 0,
@@ -100,13 +93,17 @@
                       ]
                     },
                     "OnlyParty": false,
+                    "WithoutPets": false,
                     "m_FilterNoFacts": [],
                     "m_FilterHaveAnyFact": [],
                     "ActionsOnRandomTarget": false,
                     "NotCaster": false,
                     "OnlyVisible": false,
                     "OnlyNotVisible": false,
-                    "IncludeDead": false
+                    "IncludeDead": false,
+                    "IncludeUntargetable": false,
+                    "StatFilter": "None",
+                    "Stat": "Unknown"
                   },
                   {
                     "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
@@ -115,15 +112,6 @@
                     "BuffEndCondition": "TurnEndOrCombatEnd",
                     "Permanent": false,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 1,
@@ -185,6 +173,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "RuleTarget",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -217,6 +206,7 @@
               "Value": {
                 "Operation": "Sum",
                 "TargetType": "RuleInitiator",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -241,6 +231,7 @@
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -273,8 +264,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
-      "Support",
       "Archetype"
     ],
     "TalentIconInfo": {
@@ -289,8 +278,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "LeonidTolochenko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

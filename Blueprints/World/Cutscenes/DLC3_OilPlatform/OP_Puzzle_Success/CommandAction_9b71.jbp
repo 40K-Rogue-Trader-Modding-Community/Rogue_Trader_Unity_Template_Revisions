@@ -1,0 +1,465 @@
+{
+  "AssetId": "9b7185bf64c6417086b9de82f3e15299",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "da1815e1ca093d14190aa9351c0c0f66, SwitchDoor",
+          "name": "$SwitchDoor$aa1a477d7b2e4ae78b3c88ba35c720a3",
+          "Door": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$44106dab85964ddfa640cadfbae355f3",
+            "MapObject": {
+              "EntityNameInEditor": "LatticeDoor",
+              "_entity_id": "19584117-afd1-4259-9c3a-677a50c3bd14",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            }
+          },
+          "UnlockIfLocked": true,
+          "CloseIfAlreadyOpen": false,
+          "OpenIfAlreadyClosed": true
+        },
+        {
+          "$type": "8a82e6db29f72c04fb28dc6112f7cef9, FadeOutFxAction",
+          "name": "$FadeOutFxAction$4d6b9a15-e195-47ee-ac09-c4f0b70214e7",
+          "Target": {
+            "$type": "5c44697f335b9a649b5169c6c9901d8d, MapObjectTransform",
+            "name": "$MapObjectTransform$518f3cb0-b8b9-467a-b4a7-c13e925ac752",
+            "MapObject": {
+              "EntityNameInEditor": "SteamConeTrap00",
+              "_entity_id": "d54d7721-1ba5-4828-bee8-3b440c2c6d37",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+            }
+          },
+          "DestroyFxObject": true,
+          "FadeIn": false
+        },
+        {
+          "$type": "8a82e6db29f72c04fb28dc6112f7cef9, FadeOutFxAction",
+          "name": "$FadeOutFxAction$04f07402-ea8d-4981-ba29-b2aeb2156787",
+          "Target": {
+            "$type": "5c44697f335b9a649b5169c6c9901d8d, MapObjectTransform",
+            "name": "$MapObjectTransform$a6f07d50-63b3-4549-a017-6ee19d83a287",
+            "MapObject": {
+              "EntityNameInEditor": "SteamConeTrap00 (1)",
+              "_entity_id": "66bc165d-1aca-4db5-b158-88466e84d60a",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+            }
+          },
+          "DestroyFxObject": true,
+          "FadeIn": false
+        },
+        {
+          "$type": "8a82e6db29f72c04fb28dc6112f7cef9, FadeOutFxAction",
+          "name": "$FadeOutFxAction$1f73183b-f64c-4dba-8594-ee4aeb663f0b",
+          "Target": {
+            "$type": "5c44697f335b9a649b5169c6c9901d8d, MapObjectTransform",
+            "name": "$MapObjectTransform$48ec5d110b3d4c69b613c96c3186a113",
+            "MapObject": {
+              "EntityNameInEditor": "SteamConeTrap00 (2)",
+              "_entity_id": "5039ee76-407e-4fe1-b82c-0effd06b7c38",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            }
+          },
+          "DestroyFxObject": true,
+          "FadeIn": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$449b9e8a9eba42039b1c93dbc33119fb",
+          "Comment": "RT with dogmatics",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$49f6723c8dc04875babb34961efc7a6b",
+                "Not": false,
+                "m_Etude": "!bp_9d303afba57d4b79a12849fe3fdb1c47",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$c40f8e9498664617a393b45a704b8589",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$3220e7c0871843f189f7594457a2b9fc",
+                  "Spawner": {
+                    "EntityNameInEditor": "DogmaticLeader",
+                    "_entity_id": "99ec6f3a-3ae4-4c2b-ad16-6eda5eacd4a7",
+                    "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$f91778b2fd6a4296a9c6f2e4c859f456",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$8a14835d84e14c54b889791cbc1f7fa9",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "Dogmatic_CombatServitor_3",
+                        "_entity_id": "ee7a3592-e59f-40f9-b4b4-ecf55506a0f8",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$264bb4a7-2cb9-450f-9aa7-95b51c5fc23f",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$69de252c38f84d6da0a7bf226933d1fc",
+                        "Spawner": {
+                          "EntityNameInEditor": "Dogmatic_CombatServitor_3",
+                          "_entity_id": "ee7a3592-e59f-40f9-b4b4-ecf55506a0f8",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$8419d22d-d680-4854-b0d0-4d2387c2837f",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$1807bb4c-bff7-4eab-bfa9-f51c2d8f2eb4",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "Dogmatic_Technomat_1",
+                        "_entity_id": "ea59e616-3322-4591-92ba-1a23818baed9",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$67184cdc-5a49-4e38-a2b2-c806569abf97",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$ada1ad3977084997ab548ab5b81eca58",
+                        "Spawner": {
+                          "EntityNameInEditor": "Dogmatic_Technomat_1",
+                          "_entity_id": "ea59e616-3322-4591-92ba-1a23818baed9",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$7a534029-be25-42c0-99ff-00ed427c26e0",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$8460cb23-b635-4446-9cce-aa4ab374dda4",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "HeadWorker",
+                        "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$4be61fe6-7aa2-4006-9957-ce2cac16fc7a",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$becbda99-dd74-4e32-be85-9155521e895e",
+                        "Spawner": {
+                          "EntityNameInEditor": "HeadWorker",
+                          "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$9658db20-9f12-401d-b456-6b026093e996",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$c0ccb846-91d0-4bda-84c9-0423b756293e",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "Xenarite_Worker_2",
+                        "_entity_id": "6813bb3f-9ad7-4b52-9013-f70edd924549",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$1e9ed4d1-4435-44cb-a5ca-01beee41fb45",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$5c919edf-064d-4379-86a0-c6ca143cba87",
+                        "Spawner": {
+                          "EntityNameInEditor": "Xenarite_Worker_2",
+                          "_entity_id": "6813bb3f-9ad7-4b52-9013-f70edd924549",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$63b7c739-866e-429b-ba77-86dd41dfaf07",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$f146bcc6-323e-47bf-950f-307a7450356d",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "Xenarite_Worker_3",
+                        "_entity_id": "f43edfac-fe0f-4071-b5c8-941f05f7f422",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$e6bc2b7b-b994-4d93-98e6-34c11f6ca9bb",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$e1f2de45a5a745098f6428dcc629f576",
+                        "Spawner": {
+                          "EntityNameInEditor": "Xenarite_Worker_3",
+                          "_entity_id": "f43edfac-fe0f-4071-b5c8-941f05f7f422",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6c7b7189-baff-462e-a05d-0fb943cc8060",
+          "Comment": "RT with xenarites",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$182a88e5-b719-4875-8b95-8daefc693f39",
+                "Not": false,
+                "m_Etude": "!bp_bb1380f6a2ad4340bb40ed006eee499f",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$0387939c-1265-4331-adbe-1d68ccb7b20a",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$5a77b7e5-4c0c-4726-bf8b-4568ee6ab78d",
+                  "Spawner": {
+                    "EntityNameInEditor": "Front_Xenarite_Leader",
+                    "_entity_id": "f1526f7f-0587-45f5-93f9-fca433b23483",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$90d4205b-7fe2-46f6-945c-6aae6fe5897c",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$cb4dc9f8-4b0a-451c-ad93-7e01c551383d",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "HeadWorker",
+                        "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$bcb7c640-b511-4ee1-aa89-49f307f8165a",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$7da5c76440c1476e89983e4751684648",
+                        "Spawner": {
+                          "EntityNameInEditor": "HeadWorker",
+                          "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$7cd9d2b9-7c31-47f4-a099-89e77bf9cc26",
+                "Comment": "Unit is alive",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                      "name": "$UnitFromSpawnerIsDead$11359776-2614-44f3-a486-326bc41ec666",
+                      "Not": true,
+                      "Target": {
+                        "EntityNameInEditor": "Xenarite_Worker_2",
+                        "_entity_id": "6813bb3f-9ad7-4b52-9013-f70edd924549",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$e66b4b37-1cad-4b7e-80d5-9de63554ca22",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$90e9c10dd6b8438ca76246d81fc66327",
+                        "Spawner": {
+                          "EntityNameInEditor": "Xenarite_Worker_2",
+                          "_entity_id": "6813bb3f-9ad7-4b52-9013-f70edd924549",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -6,78 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "961a1f33fbdad5c4ca08247f49b98c47, WarhammerAfterAttackRollTrigger",
-        "name": "$WarhammerAfterAttackRollTrigger$27e087da-7f16-4adf-a6b2-cd7066e8c8aa",
-        "m_Flags": "Disabled",
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "Actions": {
-          "Actions": [
-            {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$a1af7d298a3643f7b8d011023713b30c",
-              "m_Buff": "!bp_132bfd3b1e874cc7a5b7b0b96c670a49",
-              "BuffEndCondition": "CombatEnd",
-              "Permanent": true,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
-              },
-              "ToCaster": false,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
-                "ValueType": "Simple",
-                "Value": 1,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "ActionsOnApply": {
-                "Actions": []
-              },
-              "ActionsOnImmune": {
-                "Actions": []
-              },
-              "AddFactSource": false
-            }
-          ]
-        },
-        "triggerAfterAttack": true,
-        "onlyMeleeAttack": true,
-        "ActionsOnTarget": true,
-        "OnlyHit": false
-      },
-      {
         "$type": "67bd9d5235e74484bb1d673b885ab430, WarhammerWeaponHitTriggerInitiator",
         "name": "$WarhammerWeaponHitTriggerInitiator$7bf76ade-62bf-4a5b-9361-fd354a42e0e9",
         "m_Flags": 0,
@@ -88,13 +16,14 @@
         "m_Overrides": [],
         "Restrictions": {
           "Property": {
-            "Operation": "Sum",
+            "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$a2ff65c63ba55efabd2ad9869948b954",
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$c7a5465c0b63475c8b62eb52cc76ffbb",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -105,7 +34,7 @@
                   "Min": 0,
                   "Max": 0
                 },
-                "Type": "Melee"
+                "m_RangeType": "Melee"
               }
             ]
           }
@@ -220,6 +149,7 @@
         "OnlyMelee": false
       }
     ],
+    "Author": "Unknown",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -246,7 +176,7 @@
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
-    "m_Flags": "HiddenInUi",
+    "m_Flags": "HiddenInUi, NeedsNoVisual",
     "m_SoundTypeSwitch": {
       "Value": "",
       "Group": ""
@@ -269,9 +199,10 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
-    "m_AbilityGroups": null,
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
     "m_Cyclical": false,
-    "Author": "Unknown"
+    "NeedCollapseStack": true
   },
   "Meta": {
     "ShadowDeleted": false

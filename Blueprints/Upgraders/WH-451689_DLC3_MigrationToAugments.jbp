@@ -1,0 +1,112 @@
+{
+  "AssetId": "e105fbbe32564442b1ac2d020c7b71e5",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Мигрируем персонажей на систему агументов\n\nForgeWorld:\nЕсли у персонажа есть фича, но нет соответствующего аугмента, который даёт эту фичу - тогда выдадим этот аугмент\n- PlayerCharacter\n- Pascal\n\nОстальные:\nФича и аугмент изначально отсутствуют, поэтому выдаём персонажу аугмент. Если слот уже занят - аугмент тогда не наденется",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$2491e1c1b81c4d80a028fc95e2146427",
+          "Comment": "PlayerCharacter имеет бэк ForgeWorld",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$9e215e7f4c374c91990003c89a99c360",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$4a0c81c48bcd4fa6b5a4147879a9684e"
+                },
+                "m_Fact": "!bp_6ba65fc6da1e40cf929d922f5b021a52"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "bb865bfaa8723e84b94630feaa347406, EnsureHasForgeWorldAugment",
+                "name": "$EnsureHasForgeWorldAugment$b6ae336bf13d45fa9204f4a90028f57c",
+                "m_Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$b9ed1316c2c140f1a1ec62dab4cfbde9"
+                },
+                "m_Feature": "!bp_96fd88d5d1fe4ba1a35746cde88aaf3c",
+                "m_CorrespondingAugment": "!bp_06a6304a4bb64df39f03319ca284de40"
+              },
+              {
+                "$type": "bb865bfaa8723e84b94630feaa347406, EnsureHasForgeWorldAugment",
+                "name": "$EnsureHasForgeWorldAugment$3bcd2b0d-e627-4aab-b898-0a36e6102e05",
+                "m_Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$24a79421-08ba-4c8c-8a89-90f1a3c2ed99"
+                },
+                "m_Feature": "!bp_eda2be0dda7841ce9cce6186ef6e0ce1",
+                "m_CorrespondingAugment": "!bp_49572d6dd2064c718231d60b31abf3f4"
+              },
+              {
+                "$type": "bb865bfaa8723e84b94630feaa347406, EnsureHasForgeWorldAugment",
+                "name": "$EnsureHasForgeWorldAugment$0df556f4-4d1b-4d8c-858f-df481cbe73a9",
+                "m_Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$8fe8f0ad-8ed2-4ba6-855f-9e8e0ce192f0"
+                },
+                "m_Feature": "!bp_08d6f8a4ebe143fe995582bb5c02072b",
+                "m_CorrespondingAugment": "!bp_84c50690d9b84dadb77adba474a90ead"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "bb865bfaa8723e84b94630feaa347406, EnsureHasForgeWorldAugment",
+          "name": "$EnsureHasForgeWorldAugment$a03c0f72-1c63-4898-bbd6-fe4be6b9aa49",
+          "m_Unit": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$44722f1f-5cdd-4d36-8303-d4af0f372a8a",
+            "m_Companion": "!bp_e1cfcddc1dc447278762a0725753c394",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": true,
+            "IncludeDead": true,
+            "Index": 0
+          },
+          "m_Feature": "!bp_08d6f8a4ebe143fe995582bb5c02072b",
+          "m_CorrespondingAugment": "!bp_84c50690d9b84dadb77adba474a90ead"
+        },
+        {
+          "$type": "42eee5a99a6f6884cab4ba1006460027, EnsureHasAugment",
+          "name": "$EnsureHasAugment$3dd765a37bc743998d966cc30b5696c7",
+          "m_Unit": {
+            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+            "name": "$CompanionInParty$35ea679fc65249198affe399840b7bcb",
+            "m_Companion": "!bp_51604d37ac0e499da70e2c4a4f086066",
+            "IncludeActive": true,
+            "IncludeDetached": true,
+            "IncludeRemote": true,
+            "IncludeExCompanions": true,
+            "IncludeDead": true,
+            "Index": 0
+          },
+          "_augmentItem": "!bp_d298fed4a4664d238fbb28e385ff3100"
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

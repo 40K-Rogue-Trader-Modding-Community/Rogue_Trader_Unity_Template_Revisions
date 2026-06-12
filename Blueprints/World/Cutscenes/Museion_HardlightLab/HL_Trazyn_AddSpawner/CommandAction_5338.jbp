@@ -1,0 +1,155 @@
+{
+  "AssetId": "c02ab180aeb84454974680b03a47048a",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$0878c3db-e981-49b1-898a-6318af8d7bfb",
+          "Not": false,
+          "m_Etude": "!bp_8eb8d1bd91c3412bb7204239926386f8",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "4874411993c669b48b6ccb90d57a750b, LessThan",
+          "name": "$LessThan$9fc31724-60d8-489f-b05b-d649dc2bcb89",
+          "Not": false,
+          "OrEqualTo": false,
+          "FloatValues": false,
+          "Value": {
+            "$type": "0a7ef55390dc10c428693321c0e1f6d7, SummonPoolUnitsCount",
+            "name": "$SummonPoolUnitsCount$fe106ce6-9b82-4767-9ab3-7b7e697d05b8",
+            "m_SummonPool": "!bp_4b97e6d8325b42d894b741375ce3acc6"
+          },
+          "MaxValue": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$7cebdc92-cf43-4c02-85f7-bd3f805cbad9",
+            "Value": 1
+          },
+          "FloatValue": null,
+          "FloatMaxValue": null
+        }
+      ]
+    },
+    "OnFail": "SkipCommand",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "ccb0fb0efcf797442840443865ee40bd, Summon",
+          "name": "$Summon$6782182c-9e24-4601-852c-415095c1859b",
+          "m_Unit": "!bp_60e6ef21c5aa417fb145e5605314d6ae",
+          "m_SummonPool": "!bp_ff6e641e65294e029e591508803c4fe5",
+          "GroupBySummonPool": false,
+          "Transform": {
+            "$type": "df903088c314c0349ab3b5dda20abb9c, LocatorTransform",
+            "name": "$LocatorTransform$34975d25-b06a-43d9-8208-7fd709b942e0",
+            "Locator": {
+              "EntityNameInEditor": "Deathmark_Summon_03",
+              "_entity_id": "6f69bb5a-e210-49ad-aee8-bf8839fb1dd2",
+              "SceneAssetGuid": "d0e6397f0b2d6bc4d9a349b31b5db682"
+            }
+          },
+          "Offset": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "OnSummmon": {
+            "Actions": [
+              {
+                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                "name": "$StartCombat$f5a5251c-e413-4ea4-b0c9-2b22131eaa46",
+                "Unit1": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$e7fca114-ec73-478b-a84e-bf4a256c77b7"
+                },
+                "Unit2": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$38bc904d-cf7d-4530-b3da-7aeb0ce38e7f"
+                },
+                "AmbushPlayer": false
+              },
+              {
+                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                "name": "$StartCombat$52e0cee5-27ea-4151-9f67-2c3b9d475a9d",
+                "Unit1": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$ca21ea32-a103-46f7-af11-e426b779a8db",
+                  "Spawner": {
+                    "EntityNameInEditor": "Ancestor_Spawner",
+                    "_entity_id": "5e3f56a3-ed2a-4fde-9152-44733bb128b4",
+                    "SceneAssetGuid": "d0e6397f0b2d6bc4d9a349b31b5db682"
+                  }
+                },
+                "Unit2": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$2c2be123-1d5a-4d06-8687-3cec24e0e49b"
+                },
+                "AmbushPlayer": false
+              }
+            ]
+          }
+        },
+        {
+          "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+          "name": "$SummonPoolUnits$8755f9ef-20be-4534-bd92-9a2757a0fc0a",
+          "m_SummonPool": "!bp_ff6e641e65294e029e591508803c4fe5",
+          "Conditions": {
+            "Operation": "And",
+            "Conditions": []
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                "name": "$StartCombat$4a3d71af-a3d8-4542-99ae-cee80c5fef80",
+                "Unit1": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$670366cc-dcf0-424e-9785-d96f879c230f"
+                },
+                "Unit2": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$637aa56c-fa0c-4dbd-850b-8ea71a88d368"
+                },
+                "AmbushPlayer": false
+              },
+              {
+                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                "name": "$StartCombat$aad066a5-fd3b-4882-a38d-b506be2ecddf",
+                "Unit1": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$8e622d27-c085-4b28-a6f8-1f524346db3e",
+                  "Spawner": {
+                    "EntityNameInEditor": "Ancestor_Spawner",
+                    "_entity_id": "5e3f56a3-ed2a-4fde-9152-44733bb128b4",
+                    "SceneAssetGuid": "d0e6397f0b2d6bc4d9a349b31b5db682"
+                  }
+                },
+                "Unit2": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$7276ce5e-397d-462f-8a0b-0c6cb0643685"
+                },
+                "AmbushPlayer": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

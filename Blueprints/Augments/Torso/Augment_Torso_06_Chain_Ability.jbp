@@ -1,0 +1,348 @@
+{
+  "AssetId": "6d1d0520f60a428d8b00d69d719af9f6",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$2296d6fa-59ea-48b4-a901-20f02ebd6808",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+              "name": "$ContextActionDealDamage$7443034d-0341-4fae-994b-17706a1851f5",
+              "DamageType": {
+                "Type": "Shock"
+              },
+              "UseDiceForDamage": true,
+              "ReadPreRolledFromSharedValue": false,
+              "PreRolledSharedValue": "Damage",
+              "Value": {
+                "DiceType": "Zero",
+                "DiceCountValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "BonusValue": {
+                  "ValueType": "CasterNamedProperty",
+                  "Value": 15,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value2"
+                }
+              },
+              "MinDamage": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "MaxDamage": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "BonusDamage": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "Penetration": {
+                "DiceType": "Zero",
+                "DiceCountValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "BonusValue": {
+                  "ValueType": "CasterNamedProperty",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Dice1"
+                }
+              },
+              "HasRighteousFury": false,
+              "Half": false,
+              "IsAoE": false,
+              "m_Weapon": null,
+              "WriteResultToSharedValue": false,
+              "ResultSharedValue": "Damage",
+              "DoNotUseCrModifier": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "8779bb9fcaf367842a53834d9e956006, AbilityDeliverChain",
+        "name": "$AbilityDeliverChain$c0527d43-35bd-4f09-a4d0-3b9874f9c2e9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_ProjectileFirst": "!bp_3df1180e399640be8bbe996332f93d10",
+        "m_Projectile": "!bp_745536ff523a4455af7b3143c6d69266",
+        "TargetsCount": {
+          "ValueType": "CasterNamedProperty",
+          "Value": 4,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "Radius": 3,
+        "TargetDead": false,
+        "m_TargetType": "Any",
+        "m_Condition": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "7a10e867e7cb49e09b80e164d151f656, ContextConditionIsCaster",
+              "name": "$ContextConditionIsCaster$79ca88adbdf65f2cb21735f04e52723a",
+              "Not": true
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$727841c6-b5bf-405f-9f23-546fa1e2ef81",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "be189bcf59b8561448110efad9cf9e3d, ArmorGetter",
+              "name": "$ArmorGetter$f46940c0-6038-4571-ab91-b53edf00ca48",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Deflection": true,
+              "AgainstTarget": false,
+              "Attacker": "CurrentEntity",
+              "Defender": "CurrentEntity",
+              "OnlyBodyArmour": false,
+              "OnlyNegativeModifiers": false,
+              "ItemBonusOnly": false,
+              "WithoutPenetration": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$906fe808-26a2-434f-b1a7-8aae3d621256",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value2",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "be189bcf59b8561448110efad9cf9e3d, ArmorGetter",
+              "name": "$ArmorGetter$313299bc-9706-4f1f-a5e8-1a3d0d26a6ac",
+              "Settings": {
+                "Progression": "DivStep",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 3,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Deflection": false,
+              "AgainstTarget": false,
+              "Attacker": "CurrentEntity",
+              "Defender": "CurrentEntity",
+              "OnlyBodyArmour": false,
+              "OnlyNegativeModifiers": false,
+              "ItemBonusOnly": false,
+              "WithoutPenetration": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$397a3bfa-d422-4bbe-9d0b-0dd4480edf7f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Dice1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "be189bcf59b8561448110efad9cf9e3d, ArmorGetter",
+              "name": "$ArmorGetter$5f07cfb3-49ee-4859-acfd-08a58c857853",
+              "Settings": {
+                "Progression": "DivStep",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 2,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Deflection": false,
+              "AgainstTarget": false,
+              "Attacker": "CurrentEntity",
+              "Defender": "CurrentEntity",
+              "OnlyBodyArmour": false,
+              "OnlyNegativeModifiers": false,
+              "ItemBonusOnly": false,
+              "WithoutPenetration": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "2756618f9a9a6f04683df586e1edf015",
+        "stringkey": "8489390a-4fcd-47b8-be79-66ba433524e0"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "d64f894d9c89da04eadb7afac3e4ad38",
+        "stringkey": "eb897f1b-7aec-4b3c-96d2-3225f630bb2a"
+      }
+    },
+    "m_Icon": {
+      "guid": "110bb956e5783904ca6fe77deb076042",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "Type": "Spell",
+    "Range": "Custom",
+    "CustomRange": 3,
+    "MinRange": 0,
+    "ActionPointCost": 0,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Major",
+    "VeilThicknessPointsToAdd": 3,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 0,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": true,
+    "CanTargetFriends": true,
+    "CanTargetSelf": false,
+    "Hidden": true,
+    "HiddenInUI": true,
+    "DisableLog": true,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "Harmful",
+    "EffectOnEnemy": "Harmful",
+    "m_Parent": null,
+    "Animation": "None",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": false,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillCauseAttack",
+    "CombatStateRestriction": "NoRestriction",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "ResourceAssetIds": [],
+    "m_FXSettings": "!bp_9a14a57512004161a91ec337f252e03c",
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

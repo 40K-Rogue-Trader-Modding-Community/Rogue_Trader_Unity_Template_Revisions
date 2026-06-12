@@ -1,0 +1,139 @@
+{
+  "AssetId": "616a88c6b1ef41c3b422cf0f07bcf6f3",
+  "Data": {
+    "$type": "2e95eea1aa90d2b428dfe389189dc287, BlueprintScriptZone",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Включаем фонарик если игрок входит в храм (входит в сз FlashLight_On)",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "Prefab": null,
+    "TriggerConditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "EnterActions": {
+      "Actions": [
+        {
+          "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+          "name": "$AddFact$4c98749ab41147738955c3f1db2d7e35",
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$7c29923ad09f415780ab17dcf4069258"
+          },
+          "m_Fact": "!bp_51547a2c202d4882a768aa7baff2028d"
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$4a9d8c7f29d04dd4849c3904e587d470",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$2a81bafe3c2c458192e7c553909d53a0",
+            "MapObject": {
+              "EntityNameInEditor": "FlashLight_On",
+              "_entity_id": "030610c9-a7b6-4290-b773-eb76c13a6c16",
+              "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$f292e3e123b843dbafbb2ae1ec2b1c09",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$02b0e46ba51e4fd99be2535e5e1fb407",
+            "MapObject": {
+              "EntityNameInEditor": "FlashLight_Off",
+              "_entity_id": "4eb7c143-fb8d-4820-90c2-c9ca429a97c8",
+              "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+            }
+          },
+          "Unhide": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$75f6989ea4f7400a98638c2971c934e4",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                "name": "$FlagUnlocked$06f15fc20a504ae585b4d5cd55410235",
+                "Not": false,
+                "m_ConditionFlag": "!bp_f61693145cf74ae7b39781e3fa326a01",
+                "ExceptSpecifiedValues": false,
+                "SpecifiedValues": []
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": []
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
+                "name": "$ShowBark$0476ab8e-fb2c-4e6f-b9f5-42a8c2977e3e",
+                "WhatToBark": {
+                  "m_Key": "",
+                  "m_OwnerString": "",
+                  "m_OwnerPropertyPath": "",
+                  "m_JsonPath": "",
+                  "Shared": {
+                    "assetguid": "214763834a658a043a5ff9f631404a51",
+                    "stringkey": "f5555cc6-ec79-4c93-ba00-0c4a996afb48"
+                  }
+                },
+                "WhatToBarkShared": null,
+                "BarkDurationByText": false,
+                "TargetUnit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$f24bc88e-33cd-4a65-a324-f4bc5f36bfef",
+                  "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "TargetMapObject": null,
+                "OverrideBarkDuration": false,
+                "BarkDuration": 0.0
+              },
+              {
+                "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                "name": "$UnlockFlag$a91f00b5e6964bcc81c71f7af4b0b464",
+                "m_flag": "!bp_f61693145cf74ae7b39781e3fa326a01",
+                "flagValue": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "ExitActions": {
+      "Actions": []
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

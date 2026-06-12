@@ -42,8 +42,6 @@ namespace Code.GameCore.Editor
 			{
 				using (GuiScopes.LabelWidth(300))
 				{
-					Prefs.UseNewEditor =
-						EditorGUILayout.Toggle("Use new UIElements editor (Experimental)", Prefs.UseNewEditor);
 					Prefs.BigCheckbox = EditorGUILayout.Toggle("Show big checkbox", Prefs.BigCheckbox);
 					Prefs.ValidateTexts = EditorGUILayout.Toggle("Validate texts", Prefs.ValidateTexts);
 					Prefs.BlueprintIndexingServerProcessWindowStyle = (ProcessWindowStyle)EditorGUILayout.EnumPopup("Blueprint Indexing Server Window Style", Prefs.BlueprintIndexingServerProcessWindowStyle);
@@ -64,7 +62,6 @@ namespace Code.GameCore.Editor
 			private static void SetDefaults()
 			{
 				EditorPrefs.SetBool($"{Config.ProjectName}/Initialized", true);
-				Prefs.UseNewEditor = Config.UseNewEditorDefault;
 				Prefs.BigCheckbox = Config.BigCheckboxDefault;
 				Prefs.ValidateTexts = Config.ValidateTextsDefault;
 				Prefs.BlueprintIndexingServerProcessWindowStyle =

@@ -25,59 +25,78 @@
               "Actions": {
                 "Actions": [
                   {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$535197e73c3f42e193825deb1aded5ba",
-                    "m_Buff": "!bp_e7a522e0dc5c4846a89f4e45ade72e60",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": false,
-                    "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 2,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 2,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$58e401c636465e6183cbaf68b7ead2fe",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "494b2e62fc3ee4b40956216331fc6de6, IsPartyMember",
+                          "name": "$IsPartyMember$d84b53858b2057ccb8a2e02c69ef2bba",
+                          "Not": false,
+                          "Unit": {
+                            "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                            "name": "$ContextTargetUnit$8ba654bc89db52e3b4de9d652fafeaff"
+                          }
+                        }
+                      ]
                     },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                          "name": "$ContextActionApplyBuff$bc432fe0-a654-4c5e-8393-2aacb4421c10",
+                          "m_Buff": "!bp_e7a522e0dc5c4846a89f4e45ade72e60",
+                          "BuffEndCondition": "CombatEnd",
+                          "Permanent": false,
+                          "DurationValue": {
+                            "RoundsValue": {
+                              "ValueType": "Simple",
+                              "Value": 2,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "ToCaster": false,
+                          "AsChild": false,
+                          "SameDuration": false,
+                          "Ranks": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "ActionsOnApply": {
+                            "Actions": []
+                          },
+                          "ActionsOnImmune": {
+                            "Actions": []
+                          },
+                          "AddFactSource": false
+                        }
+                      ]
                     },
-                    "ActionsOnApply": {
+                    "IfFalse": {
                       "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
+                    }
                   }
                 ]
               },
-              "NumberOfTargets": 3,
+              "NumberOfTargets": 100,
               "TilesRadius": 4,
               "LowestWounds": false,
+              "HighestWounds": false,
               "AffectDead": false,
+              "AffectUnconscious": false,
               "m_FilterNoFact": null,
-              "m_FilterHasFact": "!bp_c236a00fe6b24caebf97a7e003d080fb"
+              "m_FilterHasFact": null
             }
           ]
         }
@@ -107,16 +126,14 @@
           "name": ""
         },
         "m_Overrides": [],
-        "DefaultAnimation": {
-          "guid": "619c3771ee11545488f3fa65708bb107",
-          "fileid": 11400000
-        },
         "DefaultAnimationLink": {
           "AssetId": "619c3771ee11545488f3fa65708bb107"
         },
+        "OverrideAnimationType": "Unused",
         "Variants": []
       }
     ],
+    "Author": "AlexeySilaev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -158,6 +175,8 @@
     "CanTargetFriends": true,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": true,
     "NeedEquipWeapons": false,
     "NotOffensive": true,
@@ -173,6 +192,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -182,12 +203,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "AlexeySilaev"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

@@ -20,7 +20,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				.Where(ep => ep != null)
 				.Select(ep => ep.Area)
 				.FirstOrDefault(a => a != null)
-				.ToReference<BlueprintAreaReference>();;
+				.ToReference<BlueprintAreaReference>();
 		}
 	}
 }

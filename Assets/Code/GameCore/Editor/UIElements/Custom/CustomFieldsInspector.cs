@@ -4,7 +4,6 @@ using System.Linq;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.Editor.UIElements.Custom.Elements;
-using Kingmaker.Utility.EditorPreferences;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -49,11 +48,6 @@ namespace Kingmaker.Editor.UIElements.Custom
 
 		public override VisualElement CreateInspectorGUI()
 		{
-			if (!EditorPreferences.Instance.UseNewEditor)
-			{
-				return new IMGUIContainer(OnInspectorGUI);
-			}
-
 			CreateLayout();
 
 			var inspectorRoot = new OwlcatInspectorRoot(serializedObject, m_PropertiesLayout);
@@ -143,12 +137,15 @@ namespace Kingmaker.Editor.UIElements.Custom
 			PrototypedObjectEditorUtility.DisplayProperties(serializedObject);
 		}
 
-		private OwlcatFoldout GenerateFoldout(PropertySection section)
+		private OwlcatInspectorFoldout GenerateFoldout(PropertySection section)
 		{
-			var foldout = new OwlcatFoldout(
-				section.Name,
-				$"{DataKeyRoot}.{section.Name}"); // To store global foldout state
+			var foldout = new OwlcatInspectorFoldout(
+				$"{DataKeyRoot}.{section.Name}" // To store global foldout state
 			// $"{serializedObject.targetObject.GetInstanceID()}.{section.Name}"); // To store per-object foldout state
+			)
+			{
+				TitleLabel = { text = section.Name }
+			};
 			AddPropertiesByPaths(section.PropertyPaths, e => foldout.Add(e));
 			return foldout;
 		}

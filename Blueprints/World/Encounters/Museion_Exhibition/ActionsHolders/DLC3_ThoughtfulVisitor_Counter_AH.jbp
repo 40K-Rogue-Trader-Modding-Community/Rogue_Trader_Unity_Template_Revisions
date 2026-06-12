@@ -1,0 +1,118 @@
+{
+  "AssetId": "6fd121de9b7a4e7cb95f5d8d8fd92ca2",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$d26359b3-e1ac-4905-aca2-ab7462e4925c",
+          "m_Flag": "!bp_cba57e51949d48598106b3be9aa2e14a",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$e843393d-2faf-4bc2-a9fa-4e104f76b29c",
+            "Value": 1
+          },
+          "UnlockIfNot": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d487c9181892416f8a0390a542f9012f",
+          "Comment": "if we fail puzzle",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$52e841745c344f5db149ae766934ffbb",
+                "Not": false,
+                "m_Flag": "!bp_cba57e51949d48598106b3be9aa2e14a",
+                "MinValue": 33,
+                "MaxValue": 33
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$dcb1bcdb50ea4d3d9190d321fab3bd48",
+                "Not": false,
+                "m_Etude": "!bp_b085792aa8a745e6bcf3995605c63024",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$6d353a705d584005b93cf5e636faab79",
+                "Etude": "!bp_3abfd01e125e48dfb373c814c8498277",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$541f9e9852b54ff7888b4c7270b1148a",
+                "Comment": "-1 if we solved puzzle",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                      "name": "$FlagInRange$a17b26c7-119e-4519-9bb6-292654d32400",
+                      "Not": false,
+                      "m_Flag": "!bp_cba57e51949d48598106b3be9aa2e14a",
+                      "MinValue": 32,
+                      "MaxValue": 32
+                    },
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$e02679ef-758b-4b9b-aa2b-1645d7258785",
+                      "Not": true,
+                      "m_Etude": "!bp_b085792aa8a745e6bcf3995605c63024",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                      "name": "$StartEtude$70360ebc-bf0b-406f-b841-0673578f4a3c",
+                      "Etude": "!bp_3abfd01e125e48dfb373c814c8498277",
+                      "EtudeEvaluator": null,
+                      "Evaluate": false,
+                      "StartImmediately": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

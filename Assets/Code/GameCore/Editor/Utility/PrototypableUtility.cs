@@ -60,7 +60,7 @@ namespace Editors
                         return;
                     }
 
-                    var asset = BlueprintsDatabase.LoadById<BlueprintScriptableObject>(pair.Item1);
+                    var asset = BlueprintsDatabase.LoadById<BlueprintScriptableObject>(pair.Guid);
 
                     while (asset && asset.PrototypeLink != null)
                     {
@@ -102,7 +102,7 @@ namespace Editors
                         return;
                     }
 
-                    var asset = BlueprintsDatabase.LoadById<BlueprintScriptableObject>(pair.Item1);
+                    var asset = BlueprintsDatabase.LoadById<BlueprintScriptableObject>(pair.Guid);
 
                     while (asset && asset.PrototypeLink != null)
                     {
@@ -148,7 +148,7 @@ namespace Editors
                         return;
                     }
 
-                    var asset = BlueprintsDatabase.LoadById<T>(pair.Item1);
+                    var asset = BlueprintsDatabase.LoadById<T>(pair.Guid);
 
                     if (updatedAssetGuids.Contains(asset.AssetGuid))
                     {

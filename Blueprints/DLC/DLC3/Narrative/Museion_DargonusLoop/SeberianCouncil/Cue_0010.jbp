@@ -1,0 +1,205 @@
+{
+  "AssetId": "05e7a4aa68eb4af28cfcdc32a7a626b0",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Спикер: Зарков\nНе играет DL_MerovianKilled или DL_TraitorZarkov",
+    "ParentAsset": "e646fe7254264ce08517124c0afbee79",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$4f19f25c2e1e4a05a97a6caf94927af4",
+          "Not": true,
+          "m_Etude": "!bp_1d51d5811c9745cc95d02a52e21a0877",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$3c42402d-9d16-427c-b1d2-635ab8f1573e",
+          "Not": true,
+          "m_Etude": "!bp_d05cc41308a94e02a2466517940bb026",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "5f2826f6-3465-4d16-9586-0a5bdce2a84a",
+      "m_OwnerString": "05e7a4aa68eb4af28cfcdc32a7a626b0",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\SeberianCouncil\\Cue_0010_Text_1.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_7c32fe6b9a6847c3b0326f167594dd44",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": false,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$8230d07f47154279934311ac1dfa2e80",
+          "Comment": "Фейл адендума про Меровцев (JuvenaConspiracy)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$b87d2ebf5e4b48d989ec21e5d0e9cd39",
+                "Not": false,
+                "m_QuestObjective": "!bp_06b72fa0843b43a89c2b212be1dc01a3",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$e470edaf-4688-47ff-ad04-3d7219a5ed69",
+                "Status": "Fail",
+                "m_Objective": "!bp_06b72fa0843b43a89c2b212be1dc01a3",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$8d8ed859-f0ed-4408-baa1-af0535067728",
+          "Comment": "Фейл адендума про Меровцев (JuvenaSide)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$d94c6beb-dd50-4845-998b-48d9ce94a66e",
+                "Not": false,
+                "m_QuestObjective": "!bp_b020f12307ff4838aee7e9b8f07a4cb9",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$c984f5d9-eb9b-4509-8fcb-61b3826451e4",
+                "Status": "Fail",
+                "m_Objective": "!bp_b020f12307ff4838aee7e9b8f07a4cb9",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$248c0a67-dbbd-4417-bfa5-34b80c757061",
+          "Comment": "Комплит адендума про Меровцев в ветке Ларии",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$4b0963d3-410d-42c6-b809-06f432a05639",
+                "Not": false,
+                "m_QuestObjective": "!bp_5d22bb8bb350415094cb560c29bf2b9b",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$5f662db4-9733-42ad-bb52-fc241b634885",
+                "Status": "Complete",
+                "m_Objective": "!bp_5d22bb8bb350415094cb560c29bf2b9b",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

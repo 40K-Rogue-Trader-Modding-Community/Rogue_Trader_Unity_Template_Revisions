@@ -39,6 +39,11 @@ namespace Kingmaker.Editor.Blueprints.Creation
             return type == typeof(BlueprintAreaPart);
         }
 
+        public override string? CantCreateReason()
+        {
+            return BlueprintAreaCreator.CantCreateReasonForAreaName(NewAssetWindow.AssetName);
+        }
+        
         public override void OnGUI()
         {
             AreaPartCreatorEditor.OnGui();
@@ -59,14 +64,16 @@ namespace Kingmaker.Editor.Blueprints.Creation
             string mechanicsPath = $"{basePath}{BlueprintAreaCreator.SceneTemplates.MechanicsPostfix}";
             string staticPath = $"{basePath}{BlueprintAreaCreator.SceneTemplates.StaticPostfix}";
             string lightPath = $"{basePath}{BlueprintAreaCreator.SceneTemplates.LightPostfix}";
+            string audioPath = $"{basePath}{BlueprintAreaCreator.SceneTemplates.AudioPostfix}";
 
             var enterPoint = AreaPartCreatorEditor.CreateEnterPoint(Area?.Get(), areaPart, BlueprintAreaCreator.EntranceSuffix);
 
             AreaPartCreatorEditor.CreateAssets(areaPart, enterPoint,
-                mechanicsPath, staticPath, lightPath,
+                mechanicsPath, staticPath, lightPath, audioPath,
                 BlueprintAreaCreator.SceneTemplates.MechanicsPath,
                 BlueprintAreaCreator.SceneTemplates.StaticPath,
-                BlueprintAreaCreator.SceneTemplates.LightPath);
+                BlueprintAreaCreator.SceneTemplates.LightPath,
+                BlueprintAreaCreator.SceneTemplates.AudioPath);
 
             var area = Area?.Get();
             if (area != null)

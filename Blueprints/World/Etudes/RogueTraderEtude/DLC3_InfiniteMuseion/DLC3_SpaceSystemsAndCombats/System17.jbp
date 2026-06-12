@@ -1,0 +1,172 @@
+{
+  "AssetId": "ce0fe2da18a242f38a92335a9609e34d",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$f96b0e67-4d3e-47b4-8ce5-c464a966ba3b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "смена стейта сурв кемпа",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$ddb6b8d546d24668b500ac67cb02bbc9",
+              "Not": false,
+              "m_Etude": "!bp_7b457f8dabef44978d966eab91e6057e",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": false,
+              "CompletionInProgress": false,
+              "Completed": true
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$da9d579259ac4bc587bfe14fc2bc9ef0",
+              "Etude": "!bp_08b941e25ea44bd0a01648729e16810e",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$d66d4470-4503-4357-ae87-eec7bc03bd48",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "создание колонии после присяги\n",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$95cdcd0c-b4d3-44c1-8c50-0dbbdae31113",
+              "Not": false,
+              "m_Etude": "!bp_a0bf52ab74144d179a04d2ff74fece22",
+              "NotStarted": false,
+              "Started": true,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "94692eddaeccedc4b8ad9b0bc6304303, CreateColony",
+              "name": "$CreateColony$cb29e04e-9224-4f91-855d-e9333e808ecc",
+              "Planet": "!bp_b6e6abca936f485fa6d91ea7eef56820",
+              "ApplyTraits": [],
+              "ChangeInitialContentment": false,
+              "InitialContentmentValue": 0,
+              "ChangeInitialSecurity": false,
+              "InitialSecurityValue": 0,
+              "ChangeInitialEfficiency": false,
+              "InitialEfficiencyValue": 0
+            },
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$75d3cf1ee71d475aa16ad9a041a336ce",
+              "Etude": "!bp_049a0b021bd14f8cbc116ff0059383cc",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$4ee73535-071a-48ab-b45e-7f2f0e5e1998",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "по таймеру включаем эльдаров на орбите заркова \nпосле присяги и колонии",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+              "name": "$ObjectiveStatus$75d6c21514d5464baad2f547f7f9767a",
+              "Not": false,
+              "m_QuestObjective": "!bp_554e450c03fa4487b9546318ad281a3b",
+              "State": "Started"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$a10cf178-1ad0-4df0-9c30-191aee8cadca",
+              "MapObject": {
+                "$type": "194956a0b3d319f4483778c51d2b3d10, StarSystemObjectOnScene",
+                "name": "$StarSystemObjectOnScene$7dfb018c-9584-4277-bb37-d0c2f3a684ce",
+                "StarSystemObject": {
+                  "EntityNameInEditor": "DW_AttackedBriefing",
+                  "_entity_id": "7b594f65-696e-43ae-aa9e-3de96b04a7e2",
+                  "SceneAssetGuid": "5d12bc5720c31424f9927f3bd5f30c3b"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "система заркова",
+    "m_Parent": "!bp_74d828b8be95456b839d368ecb5cc852",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": "!bp_dc410203c4ae438ca9a4f82266566dbb",
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

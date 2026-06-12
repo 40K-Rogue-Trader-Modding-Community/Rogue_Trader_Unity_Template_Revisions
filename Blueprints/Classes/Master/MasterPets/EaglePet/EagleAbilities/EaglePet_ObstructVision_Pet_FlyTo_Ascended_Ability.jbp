@@ -109,6 +109,119 @@
                     "WriteResultToSharedValue": false,
                     "ResultSharedValue": "Damage",
                     "DoNotUseCrModifier": false
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$fc05801d-d589-4f26-ae20-d6fed4431fc1",
+                    "Comment": "103 Valuable Player Achievement",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "c260efd0e44d4869af22ab326a66f8ae, CheckPropertySimple",
+                          "name": "$CheckPropertySimple$e038b008efee57c88ba0a7ab74146ed1",
+                          "Not": false,
+                          "Value": {
+                            "Operation": "LE",
+                            "TargetType": "CurrentTarget",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "9cb6f49c104fb044db79e499b6fcd002, HPGetter",
+                                "name": "$HPGetter$bf6e99b4328256eb9d8b7b5557c4243a",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "HPPercent": false,
+                                "MaxHP": false,
+                                "HealthType": "Sum"
+                              },
+                              {
+                                "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                                "name": "$ContextValueGetter$275c5102e11157f88356935cc2fb7f56",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "Value": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "$type": "480eb195fd644d43a25eac5d2d38fc6f, CheckGameDifficulty",
+                          "name": "$CheckGameDifficulty$2e9919ea-79ff-4fff-a3a4-64bc91fbcd81",
+                          "Not": false,
+                          "m_minDifficulty": "Core"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                          "name": "$ContextActionApplyBuff$1f01d4a2-e2d1-47a9-bb0b-4844531966c1",
+                          "m_Buff": "!bp_837bb004627441428e903d13ae914c9b",
+                          "BuffEndCondition": "CombatEnd",
+                          "Permanent": true,
+                          "DurationValue": {
+                            "RoundsValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "ToCaster": true,
+                          "AsChild": false,
+                          "SameDuration": false,
+                          "Ranks": {
+                            "ValueType": "Simple",
+                            "Value": 1,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "ActionsOnApply": {
+                            "Actions": []
+                          },
+                          "ActionsOnImmune": {
+                            "Actions": []
+                          },
+                          "AddFactSource": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
                   }
                 ]
               },
@@ -117,6 +230,7 @@
               "LowestWounds": false,
               "HighestWounds": false,
               "AffectDead": false,
+              "AffectUnconscious": false,
               "m_FilterNoFact": null,
               "m_FilterHasFact": null
             }
@@ -264,6 +378,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Weapon": "!bp_8c11c58efbe5493fb99eec9f590c8891"
       },
       {

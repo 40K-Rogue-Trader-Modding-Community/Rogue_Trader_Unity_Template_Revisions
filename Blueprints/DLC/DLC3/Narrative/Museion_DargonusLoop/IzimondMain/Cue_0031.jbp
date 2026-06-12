@@ -1,0 +1,176 @@
+{
+  "AssetId": "2cd6a1dde9da4b7f9391bf0830ab456d",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Пропадает с карты, стартует DL_IzimondArrestedOrDead\nКомплитим Obj2_Add_SpeakIzimond",
+    "ParentAsset": "a923d1f42ab84df99297cc1a50ae85a8",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "1db0ef84-7ece-4560-a727-2f63471f62ae",
+      "m_OwnerString": "2cd6a1dde9da4b7f9391bf0830ab456d",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\IzimondMain\\Cue_0031_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$da636f64-c1a3-40ed-939c-ab06e98eaed3",
+          "Status": "Complete",
+          "m_Objective": "!bp_09baf557e4f94a12b6a6d3c22864a246",
+          "StartObjectiveIfNone": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$377c45cb468e4eb79c9ccf9272fd146b",
+          "Comment": "Если не знаем причин и про Камиллу - комплитим не полностью квест",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4cd495648b9f436d88bf83707d946f49",
+                "Not": true,
+                "m_Etude": "!bp_13e8171461fb44a5903848a7dbe57e69",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$dbc3b099-eedc-416c-9cd6-f6696e8ad01d",
+                "Status": "Fail",
+                "m_Objective": "!bp_3b46eb1ffc1b4fc1a61f02568389d2d4",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$68289f7b-8371-40ea-94f6-be5374b889b0",
+                "m_Objective": "!bp_6342f0dbd98e46d69dcaad1936cca05a"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$acb65ca9a81346b39b76ff6a3d7a1409",
+          "Etude": "!bp_567c11df03b64eebbb46103a03d61ab8",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$21e2f301b93b42a28956c83dc9fa9fcf",
+          "m_flag": "!bp_ee3ed25ae8074c2d8c3c9c439b23c400",
+          "flagValue": 0
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$d49212b8feb64279912ebb12b8fb59d4",
+          "m_Cutscene": "!bp_27fbdd08e76944eab2d5f418ce334175",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": [
+              {
+                "Name": "Unit",
+                "Type": "Unit",
+                "Evaluator": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$9a2c4a8f944e45efb3775e119a88bdb6",
+                  "Spawner": {
+                    "EntityNameInEditor": "IzimondSauerback",
+                    "_entity_id": "2bae8ca8-17b2-4bda-a042-93f48889a04e",
+                    "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

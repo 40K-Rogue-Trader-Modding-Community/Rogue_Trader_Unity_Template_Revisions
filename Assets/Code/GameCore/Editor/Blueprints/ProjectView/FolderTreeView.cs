@@ -79,7 +79,9 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
             }
             else
             {
-                subDirs = dir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+                subDirs = dir.GetDirectories("*", SearchOption.TopDirectoryOnly)
+                    .OrderBy(di => di.Name)
+                    .ToArray();
             }
 
             for (int ii = 0; ii < subDirs.Length; ++ii)
@@ -89,7 +91,9 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 root.AddChild(item);
                 rows.Add(item);
 
-                var suSubDirs = subDir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+                var suSubDirs = subDir.GetDirectories("*", SearchOption.TopDirectoryOnly)
+                    .OrderBy(di => di.Name)
+                    .ToArray();
                 if (suSubDirs.Length > 0)
                 {
                     if (IsExpanded(item.id))

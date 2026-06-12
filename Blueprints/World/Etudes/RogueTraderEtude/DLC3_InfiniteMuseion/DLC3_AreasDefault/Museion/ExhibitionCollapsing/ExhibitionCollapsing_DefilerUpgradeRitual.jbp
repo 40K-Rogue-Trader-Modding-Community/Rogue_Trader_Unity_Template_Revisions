@@ -1,0 +1,235 @@
+{
+  "AssetId": "bb61a60e1dbf4cdfa37f2cfea5a71e32",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$f20e1f62-efaa-4f3b-b2d2-6b3419ca0c6d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+              "name": "$UnlockFlag$bf3577cc-d7c0-41b2-b21c-b17e30239aa9",
+              "m_flag": "!bp_5a2c301634eb4730b1290f0492659ab3",
+              "flagValue": 1
+            }
+          ]
+        }
+      },
+      {
+        "$type": "15e731eb83be4db9a1840339fff7b8ea, EtudeBracketShowCounterUI",
+        "name": "$EtudeBracketShowCounterUI$293f5bd5-324c-4b57-a831-57b3b3c27192",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Round counter before upgrade",
+        "Label": {
+          "m_Key": "",
+          "m_OwnerString": "",
+          "m_OwnerPropertyPath": "",
+          "m_JsonPath": "",
+          "Shared": {
+            "assetguid": "d117311580c94dc418a23de218a4375c",
+            "stringkey": "f9e7d9f8-39d5-4664-a398-4bbfa11d59fb"
+          }
+        },
+        "ShowSubLabel": false,
+        "SubLabel": {
+          "m_Key": "",
+          "m_OwnerString": "",
+          "m_OwnerPropertyPath": "",
+          "m_JsonPath": "",
+          "Shared": null
+        },
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "1373b0e272ac47d7b99dd6ee1030ab6e, UnlockableFlagValueGetter",
+              "name": "$UnlockableFlagValueGetter$e28935ea-1586-4d3d-8c32-05ac1d00f1a3",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Flag": "!bp_5a2c301634eb4730b1290f0492659ab3"
+            }
+          ]
+        },
+        "TargetValue": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": []
+        },
+        "UICounterType": "Label"
+      },
+      {
+        "$type": "904cdbeb5bf84eaf89247b99658a8b3b, RoundsTimerActions",
+        "name": "$RoundsTimerActions$541faf8b-f8a5-405c-bcd3-cec99a8a0935",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Complete etude after 1 round and play cutscene",
+        "m_TickPolicy": "TurnBasedOnly",
+        "Delay": 1,
+        "Loop": 0,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$2c1ce1db-2297-4559-9d10-2a8d37a88632",
+              "m_Flag": "!bp_5a2c301634eb4730b1290f0492659ab3",
+              "Value": {
+                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                "name": "$IntConstant$8f1542e4-f88a-4865-960b-4f00823a9861",
+                "Value": -1
+              },
+              "UnlockIfNot": false
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$9abe7579-645d-47cf-8205-77165a210fa9",
+              "Etude": "!bp_bb61a60e1dbf4cdfa37f2cfea5a71e32",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$446231c9972e4dc282406c022b109462",
+              "Comment": "At least 1 servant is alive",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                    "name": "$GreaterThan$9b52d9a675bc44c09294819276c68443",
+                    "Not": false,
+                    "OrEqualTo": false,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "0a7ef55390dc10c428693321c0e1f6d7, SummonPoolUnitsCount",
+                      "name": "$SummonPoolUnitsCount$df32207d504a4210b0f27ea2969cc887",
+                      "m_SummonPool": "!bp_ea0a7f0fa0754b0495447ef13d93b64f"
+                    },
+                    "MinValue": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$50ddf0e284cd489383f6c4b9f71ea968",
+                      "Value": 0
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+                    "name": "$SummonPoolUnits$1664b4ba6827499492e6e201e286684a",
+                    "m_SummonPool": "!bp_ea0a7f0fa0754b0495447ef13d93b64f",
+                    "Conditions": {
+                      "Operation": "And",
+                      "Conditions": []
+                    },
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+                          "name": "$DetachBuff$541d2e9db0854414a0c090df1a91b72d",
+                          "m_Buff": "!bp_33da63e2f42d4a309af023e5242c4ca2",
+                          "Target": {
+                            "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                            "name": "$SummonPoolUnit$f1fa7a6040c745deba4db8f357874c7e"
+                          }
+                        },
+                        {
+                          "$type": "eefa4c5532569b74d9ae18b954372790, DetachBuff",
+                          "name": "$DetachBuff$42fa8839-cf34-4424-9d3e-ab83019b3169",
+                          "m_Buff": "!bp_ba14fcbad1664bd78a14a27364676d1b",
+                          "Target": {
+                            "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                            "name": "$SummonPoolUnit$3ff19922-4251-40da-a6bc-de829be28955"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$84e90189-7c37-47c9-8150-51806f3dbd0c",
+                    "m_Cutscene": "!bp_f1f9d239574d4906baeae3d60376b597",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "VladislavSolyannikov",
+    "Comment": "Starts on combat beginning",
+    "m_Parent": "!bp_061d5566745c4a8f96224177f35ba576",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -2,15 +2,27 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Blueprints.Quests;
 using Kingmaker.DialogSystem.Blueprints;
 using Kingmaker.Editor.Utility;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Enums;
+using Kingmaker.Localization.Shared;
 using UnityEditor;
 
 public class LocalizationUtility : EditorWindow
 {
-    [MenuItem("Tools/Localization/Update localization comments")]
+	// Types whose BlueprintScriptableObject.Comment should be mirrored
+	// into LocaleData.TranslationComment of every LocalizedString field
+	// (so localization tooling can see the editor's design notes).
+	// Add new blueprint types here to extend coverage.
+	private static bool IsCommentPropagationSupported(SimpleBlueprint blueprint)
+		=> blueprint is BlueprintAnswer
+			or BlueprintCue
+			or BlueprintQuest
+			or BlueprintQuestObjective;
+
+	[MenuItem("Tools/Localization/Update localization comments")]
 	public static void AddCommentsToJsons()
 	{
 		if (Selection.objects == null || Selection.objects.Length == 0)
@@ -21,7 +33,7 @@ public class LocalizationUtility : EditorWindow
 			.Where(_ => _ != null).ToList();
 		foreach (BlueprintEditorWrapper selectedObj in new ProgressWrapper<BlueprintEditorWrapper>(selected, "Handling blueprints"))
 		{
-			if (!(selectedObj.Blueprint is BlueprintAnswer) && !(selectedObj.Blueprint is BlueprintCue))
+			if (!IsCommentPropagationSupported(selectedObj.Blueprint))
 				continue;
 			AddCommentsToJsons(selectedObj);
 		}
@@ -51,16 +63,12 @@ public class LocalizationUtility : EditorWindow
 				if (!ls.Shared && ls.JsonPath != "" && ls.GetData()?.Languages.Count > 0)
 				{
 					var data = ls.GetData();
-					var nativeLanguage = data?.GetOrCreateLocaleData(Locale.dev);
-					bool? modified = data?.UpdateTranslationComment(nativeLanguage, comment);
+					bool modified = WriteBlueprintComment(data, Locale.dev, comment);
 
 					if (LocalizationManager.Instance.CurrentLocale == Locale.ruRU)
-					{
-						var ruLang = data?.GetOrCreateLocaleData(Locale.ruRU);
-						data?.UpdateTranslationComment(ruLang, comment);
-					}
+						modified |= WriteBlueprintComment(data, Locale.ruRU, comment);
 
-					if (modified.HasValue && modified.Value)
+					if (modified)
 						ls.SaveJson(p);
 				}
 			}
@@ -71,4 +79,16 @@ public class LocalizationUtility : EditorWindow
 		so.ApplyModifiedPropertiesWithoutUndo();
 #endif
 	}
+
+#if UNITY_EDITOR && EDITOR_FIELDS
+	private static bool WriteBlueprintComment(LocalizedStringData data, Locale locale, string blueprintComment)
+	{
+		if (data == null)
+			return false;
+
+		var localeData = data.GetOrCreateLocaleData(locale);
+		var composed = LocalizedStringCommentSections.ReplaceBlueprintPart(localeData.TranslationComment, blueprintComment);
+		return data.UpdateTranslationComment(localeData, composed);
+	}
+#endif
 }

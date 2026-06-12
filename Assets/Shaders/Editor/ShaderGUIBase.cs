@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System;
 using System.Collections.Generic;
 using Kingmaker.Editor;
+using Kingmaker.Editor.UIElements.ValuePicker;
 
 public abstract class ShaderGUIBase : ShaderGUI
 {

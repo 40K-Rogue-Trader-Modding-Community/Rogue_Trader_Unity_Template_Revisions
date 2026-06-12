@@ -19,6 +19,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -71,10 +72,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "GE",
             "TargetType": "RuleInitiator",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -91,9 +94,10 @@
                   "Max": 0
                 },
                 "m_Fact": "!bp_d1e6403b174a4ff39503a865c2003d3a",
+                "CheckTarget": "CurrentEntity",
                 "Aggregation": "Max",
                 "BuffWithCasterFromTargetType": true,
-                "Target": "RuleTarget"
+                "BuffCaster": "CurrentEntity"
               },
               {
                 "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
@@ -110,7 +114,7 @@
                 },
                 "Value": {
                   "ValueType": "Simple",
-                  "Value": 1,
+                  "Value": 0,
                   "ValueRank": "Default",
                   "ValueShared": "Damage",
                   "Property": "None",
@@ -156,27 +160,14 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
-            "Operation": "And",
+            "Operation": "BoolAnd",
             "TargetType": "RuleTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": true,
             "Getters": [
-              {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$50f24ee53bc74509a84c1b14ec17e419",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "Type": "Melee"
-              },
               {
                 "$type": "2823df2bc8754a409cb9d0340ff6a379, IsBaseUnitEntityGetter",
                 "name": "$IsBaseUnitEntityGetter$758ac95c21ca4da8aa7fdd9277e47d3f",
@@ -206,6 +197,21 @@
                 },
                 "m_Fact": "!bp_d1e6403b174a4ff39503a865c2003d3a",
                 "Target": "RuleTarget"
+              },
+              {
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$9254f14ea8f74dc9befcea8bdb2332ce",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_RangeType": "Melee"
               }
             ]
           }
@@ -308,6 +314,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -352,6 +359,7 @@
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -401,9 +409,11 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
-    "m_AbilityGroups": null,
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
     "m_Cyclical": false,
-    "Author": "LeonidTolochenko"
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

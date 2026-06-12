@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Weapon": "!bp_b5a30cb556f9444a9c8f696860f25439"
       },
       {
@@ -40,15 +41,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -62,9 +54,21 @@
               "ToCaster": true,
               "AsChild": false,
               "SameDuration": false,
-              "Ranks": null,
-              "ActionsOnApply": null,
-              "ActionsOnImmune": null,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
               "AddFactSource": false
             }
           ]
@@ -89,10 +93,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -110,7 +116,17 @@
         "PercentDodgeModifier": false,
         "PercentMultiplierModifier": false,
         "SetMinimumDodgeChance": false,
-        "MinimumDodgeChance": null
+        "MinimumDodgeChance": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "AutoDodge": false,
+        "NeverDodge": false
       },
       {
         "$type": "4b271a6d810c85c46a2750d3a2b50de9, WarhammerParryChanceModifierAttacker",
@@ -121,10 +137,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -165,9 +183,12 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1"
-        }
+        },
+        "m_AlwaysParry": false,
+        "m_NeverParry": false
       }
     ],
+    "Author": "Unknown",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -206,6 +227,8 @@
     "CanTargetFriends": true,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -221,6 +244,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillCauseAttack",
@@ -230,12 +255,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "Unknown"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

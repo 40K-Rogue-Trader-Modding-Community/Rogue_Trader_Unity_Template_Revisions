@@ -1,4 +1,5 @@
 ﻿using Kingmaker.Editor.Blueprints.Creation.Naming;
+using UnityEditor;
 
 namespace Kingmaker.Editor.Blueprints.Creation
 {
@@ -13,6 +14,13 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			string template = base.TemplateOverride();
 			return template.Replace($"{{{nameof(StringType)}}}", StringTypeName);
 		}
+		
+		public override string GetNameFromProperty(SerializedProperty prop)
+		{
+			return base.GetNameFromProperty(prop)
+				.Replace(StringTypeName, string.Empty);
+		}
+
 	}
 	public class ActionStringCreator : TypedSharedStringCreator
 	{

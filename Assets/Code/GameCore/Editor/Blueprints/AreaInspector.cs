@@ -19,7 +19,8 @@ namespace Kingmaker.Editor.Blueprints
                 states.UpdateStates();
                 return states;
             }
-            return new AreaStatesElement(null);
+            
+            return new VisualElement();
         }
     }
 }

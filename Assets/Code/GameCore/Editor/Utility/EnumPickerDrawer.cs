@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Code.Editor.Utility;
+using Kingmaker.Editor.UIElements.Custom.Base;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.EntitySystem.Properties;
 using Kingmaker.EntitySystem.Stats.Base;
 using Kingmaker.Enums;
@@ -15,7 +18,9 @@ using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Visual.HitSystem;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.Utility
 {
@@ -35,6 +40,11 @@ namespace Kingmaker.Editor.Utility
 	[CustomPropertyDrawer(typeof(DG.Tweening.Ease))]
 	public class EnumPickerDrawer : PropertyDrawer
 	{
+		public override VisualElement CreatePropertyGUI(SerializedProperty property)
+			=> new EnumPickerProperty(property, fieldInfo);
+
+	#region IMGUI
+		
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			Rect fieldRect;
@@ -97,6 +107,72 @@ namespace Kingmaker.Editor.Utility
 				},
 				style: EditorStyles.popup
 			);
+		}
+		
+	#endregion
+		
+		private sealed class EnumPickerProperty : OwlcatProperty
+		{
+			private readonly Type _enumType;
+			private readonly EnumField _enumField;
+			private readonly Enum[] _displayOrder;
+			
+			public EnumPickerProperty(SerializedProperty property, FieldInfo fieldInfo) : base(property)
+			{
+				_enumField = new EnumField {style = {flexGrow = 1}};
+				ContentContainer.Add(_enumField);
+				_enumField.BindProperty(Property);
+				_enumField.RegisterCallback<PointerDownEvent>(e =>
+				{
+					e.StopPropagation();
+					ShowPickerMenu();
+				}, TrickleDown.TrickleDown);
+				_enumField.RegisterCallback<KeyDownEvent>(e =>
+				{
+					if (e.keyCode is KeyCode.Space or KeyCode.Return or KeyCode.KeypadEnter)
+					{
+						e.StopImmediatePropagation();
+						ShowPickerMenu();
+					}
+				}, TrickleDown.TrickleDown);
+				
+				_enumType = fieldInfo.FieldType.IsArray ? fieldInfo.FieldType.GetElementType() : fieldInfo.FieldType;
+				
+				var orderAttribute = fieldInfo.GetCustomAttributes<EnumOrderAttribute>().FirstOrDefault();
+				_displayOrder = orderAttribute?.Order ?? (_enumType == typeof(StatType) ? 
+					StatTypeHelper.DisplayOrder : EnumUtils.GetValues(_enumType)).ToArray();
+			}
+
+			private void ShowPickerMenu()
+			{
+				EnumPicker.ShowPickerMenu(
+					_enumField,
+					EditorWindow.GetWindow<EnumPicker>,
+					GetName(),
+					() => _displayOrder,
+					e =>
+					{
+						using var _ = GuiScopes.UpdateObject(Property.serializedObject);
+						Property.intValue = Convert.ToInt32(e);
+					});
+			}
+
+			private string GetName()
+			{
+				if (Property.hasMultipleDifferentValues)
+					return "[Multiple]";
+
+				string valueName = Enum.GetName(_enumType, Property.intValue);
+                string inspectorName = EnumPicker.GetInspectorName(_enumType, valueName);
+                
+                if (!string.IsNullOrEmpty(inspectorName))
+                    return inspectorName;
+                
+                if (!string.IsNullOrEmpty(valueName))
+                    return valueName;
+                
+                return $"<invalid> ({Property.intValue})";
+			}
 		}
 	}
 }

@@ -1,21 +1,22 @@
 ﻿using Kingmaker.Code.Editor.Utility;
-using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Editor.Elements;
 using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.Editor.UIElements.Custom.Elements;
 using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Mechanics.Actions;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using System.Reflection;
+using Code.Editor.Utility;
+using Code.Framework.Editor.Utility;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
-using Kingmaker.Editor.Blueprints;
+using Kingmaker.Editor.UIElements.Custom.Array;
+using Kingmaker.Editor.UIElements.Custom.PropertyComponents;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Kingmaker.ElementsSystem.Interfaces;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.UnityExtensions;
 
 namespace Kingmaker.Editor.UIElements.Custom
@@ -24,8 +25,7 @@ namespace Kingmaker.Editor.UIElements.Custom
     {
         #region Constructor
 
-        public ElementProperty(SerializedProperty property, FieldInfo fieldInfo)
-            : base(property, Layout.Vertical, true, false)
+        public ElementProperty(SerializedProperty property, FieldInfo fieldInfo) : base(property, Layout.Vertical)
         {
             AddCreateButton();
             if (property.HasManagedReference())
@@ -35,81 +35,82 @@ namespace Kingmaker.Editor.UIElements.Custom
             else
             {
                 ContentContainer.style.display = DisplayStyle.None;
+                HideArrow(true);
             }
 
-            AddComponent(new CaptionTitleProvider());
-            AddComponent(new OwlcatPropertyTooltip(GetTooltip));
-            AddComponent(new CopyHandlerComponent());
-            AddComponent(new PasteHandlerComponent(fieldInfo.FieldType, PastProcess));
+            AddComponent(new ElementTitleProvider());
         }
 
         protected override void OnAttachToPanelInternal(AttachToPanelEvent evt)
         {
             base.OnAttachToPanelInternal(evt);
-            if (!HasComponent<ArrayElementComponent>())
+            m_TooltipManipulator.ChangeGetter(GetTooltip);
+            
+            if (parent is not OwlcatListViewEntryWrapper)
             {
                 CreateRemoveBtn();
+                
                 //Requested by game designers. Array elements can not be replaced by drag and drop.
-                CreateDragAndDrop();
+                CreateFactoryComponent();
+                
+                HeaderContainer.AddManipulator(new ContextualMenuManipulator(e =>
+                {
+                    if (Property.HasManagedReference())
+                    {
+                        e.TryAddSeparator();
+                        e.menu.AppendAction($"Remove {GetElement().GetType().Name}", x => RemoveContent(true));
+                    }
+                }));
             }
-            HeaderContainer.AddManipulator(
-                new ContextualMenuManipulator(
-                    @event => 
-                        {
-                            if (Application.isPlaying)
-                            {
-                                var type = SerializableTypesCollection.GetType(Property)??FieldFromProperty.GetActualValueType(Property);
-                                if (type.IsSubclassOf(typeof(Condition)))
-                                {
-                                    @event.menu.AppendAction("Evaluate",
-                                        _ => { PrototypedObjectEditorUtility.DebugCondition(FieldFromProperty.GetFieldValue(Property) as Condition); });
-                                }
-                                if (type.GetInterfaces().FirstOrDefault(v => v.IsGenericType && v.GetGenericTypeDefinition() == typeof(IEvaluator<>)) is {} iFace)
-                                {
-                                    @event.menu.AppendAction("Evaluate",
-                                        _ => { PrototypedObjectEditorUtility.DebugEvaluator(iFace, FieldFromProperty.GetFieldValue(Property) as Element); });
-                                }
-                            }
-                        }));
-
+            else
+            {
+                RemoveComponent<FactoryDragAndDropComponent>();
+            }
+        }
+        
+        protected override void OnAfterAttachToPanelInternal()
+        {
+            base.OnAfterAttachToPanelInternal();
+            
+            if (DescriptionButton != null)
+                DescriptionButton.PastePostProcess = Recreate;
         }
 
-        void PastProcess()
+        public void Recreate()
         {
+            bool wasExpanded = IsExpanded;
+            
             if (m_ContentRoot != null)
-            {
-                RemoveContent();
-            }
+                RemoveContent(false);
 
             if (Property.HasManagedReference())
-            {
                 CreateFillPart();
-            }
+            
+            IsExpanded = wasExpanded;
         }
 
-        void CreateRemoveBtn()
+        private void CreateRemoveBtn()
         {
             m_RemoveBtn = new OwlcatSmallButton { text = "X" };
-            m_RemoveBtn.clicked += RemoveContent;
+            m_RemoveBtn.clicked += () => RemoveContent(true);
             m_RemoveBtn.AddToClassList("red-button");
-            //.style.backgroundColor = System.Drawing.Color.LightCoral.ToUnityColor();
-            //m_RemoveBtn.style.color = System.Drawing.Color.Black.ToUnityColor();
 
             ControlsContainer.Add(m_RemoveBtn);
-            m_RemoveBtn.style.display = !Property.hasChildren ? DisplayStyle.None : DisplayStyle.Flex;
+            m_RemoveBtn.style.display = !Property.HasManagedReference() ? DisplayStyle.None : DisplayStyle.Flex;
         }
 
-        void CreateDragAndDrop()
+        private void CreateFactoryComponent()
         {
+            if (parent is OwlcatListViewEntryWrapper)
+                return;
+            
             var type = FieldFromProperty.GetDeclaredType(Property);
-            m_Component = new FactoryDragAndDropComponent(type, CreateFillPart, RemoveContent);
-            AddComponent(m_Component);
+            AddComponent(new FactoryDragAndDropComponent(HeaderContainer, Property, 
+                type, CreateFillPart, () => RemoveContent(true)));
         }
 
         #endregion Constructor
         #region Fiedls
-
-        DragAndDropComponent m_Component = default;
 
         VisualElement m_ContentRoot;
 
@@ -124,12 +125,12 @@ namespace Kingmaker.Editor.UIElements.Custom
         #endregion Fields
         #region Methods
 
-        void AddCreateButton()
+        private void AddCreateButton()
         {
             var type = FieldFromProperty.GetDeclaredType(Property);
             m_CreateBtn = TypePicker.CreatePickerButton(
                 "Create",
-                () => TypeUtility.GetValidTypes(Property, type),
+                () => TypeUtility.CollectValuesWithFilter(Property, type),
                 sType =>
                 {
                     TypeUtility.AddElementFromMenu(Property, sType);
@@ -139,63 +140,47 @@ namespace Kingmaker.Editor.UIElements.Custom
             ControlsContainer.Add(m_CreateBtn);
         }
 
-        void RemoveContent()
+        private void RemoveContent(bool removeReference)
         {
-            var element = GetElement();
-            var serializedObject = Property.serializedObject;
-            if (element != null)
+            if (removeReference)
             {
-                element.Delete();
-                serializedObject.Update();
-            }
-
-            Property.managedReferenceValue = null;
-            serializedObject.ApplyModifiedProperties();
-
-            if (m_ContentRoot != null)
-            {
-                ContentContainer.Remove(m_ContentRoot);
-            }
-
-            if (m_ControlsBtn != null)
-            {
-                ControlsContainer.Remove(m_ControlsBtn);
+                var element = GetElement();
+                var serializedObject = Property.serializedObject;
+                
+                if (element != null)
+                {
+                    element.Delete();
+                    serializedObject.Update();
+                }
+                
+                Property.managedReferenceValue = null;
+                serializedObject.ApplyModifiedProperties();
             }
             
+            if (m_ContentRoot != null)
+                ContentContainer.RemoveIfContains(m_ContentRoot);
+
+            if (m_ControlsBtn != null)
+                ControlsContainer.RemoveIfContains(m_ControlsBtn);
+            
             if (m_Mark != null)
-            {
-                HeaderContainer.Remove(m_Mark);
-            }
+                HeaderContainer.RemoveIfContains(m_Mark);
 
             m_ControlsBtn = default;
             m_Mark = default;
             m_ContentRoot = default;
             m_CreateBtn.style.display = DisplayStyle.Flex;
-            m_RemoveBtn.style.display = DisplayStyle.None;
+            
+            if (m_RemoveBtn != null)
+                m_RemoveBtn.style.display = DisplayStyle.None;
+            
+            HideArrow(true);
 
-            TitleLabel.text = Property.displayName;
+            if (TitleLabel != null)
+                TitleLabel.text = Property.displayName;
 
-            if (m_Component != null)
-            {
-                m_Component.IsEnable = true;
-            }
-        }
-
-        private void RebuildParentArray()
-        {
-            void CheckThis(VisualElement e)
-            {
-                if(e is OwlcatArrayProperty a)
-                {
-                    a.RebuildContent();
-                }
-                else if(e.parent!=null)
-                {
-                    CheckThis(e.parent);
-                }
-            }
-
-            CheckThis(parent);
+            RemoveComponent<FactoryDragAndDropComponent>();
+            DescriptionButton?.UpdateView();
         }
         
         private Element GetElement()
@@ -203,7 +188,7 @@ namespace Kingmaker.Editor.UIElements.Custom
             return FieldFromProperty.GetFieldValue(Property) as Element;
         }
 
-        void CreateFillPart()
+        private void CreateFillPart()
         {
             m_CreateBtn.style.display = DisplayStyle.None;
             if (m_RemoveBtn != null)
@@ -211,47 +196,42 @@ namespace Kingmaker.Editor.UIElements.Custom
                 m_RemoveBtn.style.display = DisplayStyle.Flex;
             }
 
-            m_ContentRoot = new VisualElement() { name = "ElementContent" };
+            m_ContentRoot = new VisualElement { name = "ElementContent" };
 
-            var so = Property.serializedObject;
-
-            var title = Property.displayName;
+            string title = Property.displayName;
 
             var element = GetElement();
             if (element is IHaveCaption caption)
             {
                 try
                 {
-                    title = caption.Caption;
+                    title = element.GetCaptionSafe();
                 }
                 catch (System.Exception x)
                 {
                     PFLog.Default.Exception(x);
                     title = x.Message;
                 }
-                /*if (element is IHaveDescription description)
-     title = $"{title}: {description.Description}";*/
             }
 
             TitleLabel.text = title;
             m_ControlsBtn = new VisualElement() { style = { flexDirection = FlexDirection.Row } };
             CreateConditionalOperator(Property);
             CreateGuid(element);
-            CreateContextMark(element); 
-            CreateCodeButton(element);
+            CreateContextMark(element);
             CreateEditor();
+            CreateFactoryComponent();
 
             ContentContainer.Add(m_ContentRoot);
             ControlsContainer.Insert(0, m_ControlsBtn);
-            if (m_Component != null)
-            {
-                m_Component.IsEnable = false;
-            }
+            
+            GetComponent<NotNullComponent>()?.Update();
+            DescriptionButton?.UpdateView();
         }
 
-        void CreateGuid(Element element)
+        private void CreateGuid(Element element)
         {
-            var guid = element.AssetGuidShort;
+            string guid = element.AssetGuidShort;
             if (!guid.IsNullOrEmpty())
             {
                 var guidLabel = new Label(guid);
@@ -265,20 +245,36 @@ namespace Kingmaker.Editor.UIElements.Custom
             }
         }
 
-        void CreateConditionalOperator(SerializedProperty prop)
+        private void CreateConditionalOperator(SerializedProperty prop)
         {
             var propNot = prop.FindPropertyRelative("Not");
             if (propNot != null)
             {
-                var elementNot = new Toggle() { text = "Not", value = propNot.boolValue, style = { flexShrink = 1, flexGrow = 0 } };
+                var elementNot = new Toggle
+                { 
+                    text = "Not", 
+                    value = propNot.boolValue, 
+                    style = 
+                    { 
+                        flexShrink = 1, 
+                        flexGrow = 0, 
+                        marginRight = 3
+                    } 
+                };
+                
                 elementNot.BindProperty(propNot);
                 m_ControlsBtn.Add(elementNot);
+                elementNot.TrackPropertyValue(propNot, _ =>
+                {
+                    UpdateTitle();
+                    GetComponent<ElementTitleProvider>()?.SetResultAndColor();
+                });
             }
         }
 
-        void CreateContextMark(Element element)
+        private void CreateContextMark(Element element)
         {
-            var mark = element is ContextAction || element is ContextCondition || element is Conditional ? "[C]" : null;
+            string mark = element is ContextAction ? "[C]" : null;
             if (mark != null)
             {
                 m_Mark = new Label(mark);
@@ -286,12 +282,7 @@ namespace Kingmaker.Editor.UIElements.Custom
             }
         }
 
-        void CreateCodeButton(Element element)
-        {
-            // todo: [bp] open code button (is it even needed?)
-        }
-
-        void CreateEditor()
+        private void CreateEditor()
         {
             var editor = new OwlcatInspectorRoot(Property);
             
@@ -299,18 +290,27 @@ namespace Kingmaker.Editor.UIElements.Custom
             {
                 editor.contentContainer.style.display = DisplayStyle.None;
                 ContentContainer.style.display = DisplayStyle.None;
+                HideArrow(true);
             }
             else
             {
-                ContentContainer.style.display = DisplayStyle.Flex;
+                HideArrow(false);
+                UpdateExpandableVisibility();
             }
 
             m_ContentRoot.Add(editor);
         }
 
-        string GetTooltip() =>"";
-//            => Property.objectReferenceValue != null && Property.objectReferenceValue is IHaveDescription descriptionHolder ?
-//              descriptionHolder.Description : string.Empty;
+        private string GetTooltip()
+        {
+            var element = GetElement();
+            string result = string.Empty;
+            
+            if (element is IHaveDescription description)
+                result = element.GetDescriptionSafe();
+            
+            return result;
+        }
     }
 
     #endregion Methods

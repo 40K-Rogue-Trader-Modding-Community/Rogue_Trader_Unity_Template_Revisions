@@ -1,0 +1,285 @@
+{
+  "AssetId": "f131eb7eebbe4efeb9413cc3239ddfd8",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "03db0cc2e8cca5f4ea4e29fd197ff65c, WarhammerDamageTriggerTarget",
+        "name": "$WarhammerDamageTriggerTarget$00c20426-ff5d-41c0-a3f2-e62b7b4dba95",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "RuleInitiator",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$c0a897f3c0fe4e948e48b3b2ca4884aa",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_RangeType": "Melee"
+              }
+            ]
+          }
+        },
+        "TriggersForDamageOverTime": false,
+        "TriggerBeforeDamageHappens": false,
+        "Actions": {
+          "Actions": []
+        },
+        "ActionsOnAttacker": {
+          "Actions": [
+            {
+              "$type": "5e2f2046f3bd6984c8833bf019c8e8ad, ContextActionSavingThrow",
+              "name": "$ContextActionSavingThrow$49dadfeea62c4d8ebf90d6e7bdaa91f2",
+              "Type": "Reflex",
+              "FromBuff": false,
+              "m_ConditionalDCIncrease": [],
+              "HasCustomDC": false,
+              "CustomDC": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "d61949c589ee885458c9439b2aa202b6, ContextActionConditionalSaved",
+                    "name": "$ContextActionConditionalSaved$4c542049fc38480ca0be1c257f68b32c",
+                    "Succeed": {
+                      "Actions": []
+                    },
+                    "Failed": {
+                      "Actions": [
+                        {
+                          "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                          "name": "$ContextActionDealDamage$95c685a0-c166-4d4a-9a15-ca6b4a53e29b",
+                          "DamageType": {
+                            "Type": "Piercing"
+                          },
+                          "UseDiceForDamage": true,
+                          "ReadPreRolledFromSharedValue": false,
+                          "PreRolledSharedValue": "Damage",
+                          "Value": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "CasterNamedProperty",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "MinDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "MaxDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "Penetration": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "HasRighteousFury": false,
+                          "Half": false,
+                          "IsAoE": false,
+                          "m_Weapon": null,
+                          "WriteResultToSharedValue": false,
+                          "ResultSharedValue": "Damage",
+                          "DoNotUseCrModifier": false,
+                          "DoNotUseCasterModifiers": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ContextPropertyName": "Value1",
+        "PropertyToSave": "None"
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$816871a9-a02a-424f-8d5b-6fbb1a527a89",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Div",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "71215231c9644775bd7120d21371ff31, DealtDamageGetter",
+              "name": "$DealtDamageGetter$a2a31b5e744a40e882166eec5b3bf9b2",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              }
+            },
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$a35c61813cf94305acb4804e456713df",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 3,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "EvgeniyShanhiev",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "c2ccc973d5a0f6f4b83a75eef84bfdb7",
+        "stringkey": "64f7fe60-71e9-490f-801c-831a107b30c2"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "66c742bb9745f69448f95e79bf3e1542",
+        "stringkey": "fafe15ee-f5a0-43f0-b811-596682ff228b"
+      }
+    },
+    "m_Icon": {
+      "guid": "77c82acfadd13e843b96e2c1ce19dad8",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

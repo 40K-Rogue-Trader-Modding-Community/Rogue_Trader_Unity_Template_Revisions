@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Owlcat.Editor.Core.Utility;
 using Owlcat.Runtime.Core.Utility;

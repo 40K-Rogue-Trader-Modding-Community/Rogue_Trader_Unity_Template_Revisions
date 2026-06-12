@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Kingmaker.Blueprints.Attributes;
+using Kingmaker.Code.Editor.Utility;
 using Kingmaker.Editor.UIElements.Custom.Elements;
+using Kingmaker.Editor.UIElements.Custom.Properties;
 using Owlcat.Runtime.Core.Logging;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using Kingmaker.Utility.UnityExtensions;
+using Owlcat.Runtime.Core.Utility;
 
 namespace Kingmaker.Editor.UIElements.Custom.Base
 {
@@ -47,19 +50,15 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		}
 
 		[CanBeNull]
-		public static Focusable GetFirstFocusableTitle(this VisualElement ve)
+		public static OwlcatTitleLabel GetFirstFocusableTitle(this VisualElement ve)
 		{
 			if (ve.style.display == DisplayStyle.None)
-			{
 				return null;
-			}
 
 			foreach (var child in ve.hierarchy.Children())
 			{
-				if (child.focusable && child is OwlcatTitleLabel)
-				{
-					return child;
-				}
+				if (child.focusable && child is OwlcatTitleLabel titleLabel)
+					return titleLabel;
 
 				var hierarchy = child.hierarchy;
 				int num;
@@ -76,11 +75,9 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 				bool flag = num != 0;
 				if (!flag)
 				{
-					var firstFocusableChild = GetFirstFocusableTitle(child);
+					var firstFocusableChild = child.GetFirstFocusableTitle();
 					if (firstFocusableChild != null)
-					{
 						return firstFocusableChild;
-					}
 				}
 			}
 
@@ -90,25 +87,16 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		public static OwlcatProperty WrapToOwlcatProperty(this VisualElement element, SerializedProperty property)
 		{
 			if (element is OwlcatProperty result && result.PropertyPath == property.propertyPath)
-			{
 				return result;
-			}
 			
-			Logger.Warning("Wrapping element {0} created for property {1} with OwlcatProperty. Performance warning.", element, property);
+			if (element is PropertyField)
+				return new OwlcatPropertyField(property);
 
-			result = new OwlcatProperty(property);
-			if (element is PropertyField propertyField && !propertyField.label.IsNullOrEmpty())
-			{
-				result.TitleLabel.text = propertyField.label;
-				propertyField.label = string.Empty;
-			}
-
-			element.AddToClassList("owlcat-inner-field");
-			result.ContentContainer.Add(element);
-			
-			element.OwlcatBind(property.serializedObject);
-
-			return result;
+			var info = property.GetFieldInfo();
+			var layout = info != null && info.HasAttribute<VerticalLayoutAttribute>() ? 
+				OwlcatPropertyLayout.Layout.VerticalNotExpandable : OwlcatPropertyLayout.Layout.Horizontal;
+            
+			return new WrappedOwlcatProperty(property, element, layout);
 		}
 
 		public static bool IsImguiWrapper(this VisualElement element)
@@ -118,5 +106,8 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		{
 			return element.Children().Concat(element.Children().SelectMany(c => c.GetAllChildren()));
 		}
+
+		public static void SetVisible(this VisualElement visualElement, bool visible)
+			=> visualElement.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
 	}
 }

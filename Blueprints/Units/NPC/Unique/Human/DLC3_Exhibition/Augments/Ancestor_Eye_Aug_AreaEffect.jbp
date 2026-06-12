@@ -1,0 +1,194 @@
+{
+  "AssetId": "db3c043bddb449ac8e76e4e7033c930c",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "8305349f8f504e97a73e58e61a8ec214",
+    "m_Overrides": [
+      "m_DisplayName",
+      "m_Description",
+      "Author",
+      "$AbilityAreaEffectRunAction$e658c69d-6e4e-4701-adc5-8e6d83f987e9",
+      "$AbilityAreaEffectRunAction$02be30f6-214e-4009-8040-2c6561786944"
+    ],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$e658c69d-6e4e-4701-adc5-8e6d83f987e9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$171cac49-7c5e-48c5-897c-d2678ee1e83e",
+              "Comment": "Проверка на пета",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$21b57770502c488f9ff0344b2411167e",
+                    "Not": false,
+                    "m_Fact": "!bp_87fc9b7904f6440ba14386ab1643a4f8"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$32d9a6b5-1a0a-46ee-8052-adbcb7e7defd",
+                    "m_Buff": "!bp_2cd982df85c441cd973e8b13763cb1b7",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 1,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitExit": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3a2c685d-fe89-4840-bdf3-55f73fca9896",
+              "Comment": "Проверка на пета",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$bcf0322a-f44b-4af7-90f0-00efe87675b3",
+                    "Not": false,
+                    "m_Fact": "!bp_87fc9b7904f6440ba14386ab1643a4f8"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$d6a6faa0bba64b8faa6cd4c0f5063d5a",
+                    "m_Buff": "!bp_26352c6a84964a9d83c9b2535ef4ef7a",
+                    "RemoveRank": true,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitMove": {
+          "Actions": []
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "TargetType": "Ally",
+    "AffectEnemies": false,
+    "AggroEnemies": false,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": true,
+    "SavePersistentArea": false,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": "Rear",
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 3,
+      "m_Angle": 30
+    },
+    "IgnoreLosWhenSpread": false,
+    "IgnoreLevelDifferenceWhenSpread": false,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

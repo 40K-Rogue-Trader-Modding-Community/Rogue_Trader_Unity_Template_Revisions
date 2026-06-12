@@ -11,7 +11,8 @@ namespace Kingmaker.Blueprints.Encyclopedia
         protected SerializedProperty m_Pages;
         protected ReorderableList m_PageList;
         protected SerializedObject SerializedObject;
-        public override void OnEnable(BlueprintInspector ed)
+        
+        public override void OnEnable(BlueprintWrapperInspector ed)
         {
             if(ed==null)
                 return;

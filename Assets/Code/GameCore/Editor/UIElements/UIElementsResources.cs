@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
-using Code.GameCore.Mics;
-using Kingmaker.Editor.UIElements.Custom.Elements;
 using UnityEditor;
 using UnityEditor.Experimental;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements
 {
@@ -13,8 +10,8 @@ namespace Kingmaker.Editor.UIElements
 	{
 		static UIElementsResources()
 		{
-			FoldoutCollapsed = LoadIcon("IN foldout");
-			FoldoutExpanded = LoadIcon("IN foldout on");
+			FoldoutCollapsed = EditorGUIUtility.Load("FoldoutRight.png") as Texture2D;//LoadIcon("IN foldout");
+			FoldoutExpanded = EditorGUIUtility.Load("FoldoutDown.png") as Texture2D;//LoadIcon("IN foldout on");
 			Background = LoadIcon("IN BigTitle");
 			NewWindowIcon = LoadIcon("ScaleTool");
 			SettingsIcon = LoadIcon("SettingsIcon");
@@ -39,15 +36,6 @@ namespace Kingmaker.Editor.UIElements
 			=> index % 2 == 0 ?
 			(EditorGUIUtility.isProSkin ? m_ArrayZebraColorPro1 : m_ArrayZebraColor1) :
 			(EditorGUIUtility.isProSkin ? m_ArrayZebraColorPro2 : m_ArrayZebraColor2);
-
-		public static VisualElement CreateSetupButton(Action onClick)
-		{
-			var setupButton = new OwlcatSmallButton(onClick);
-			var img = new Image { image = SettingsIcon, scaleMode = ScaleMode.ScaleToFit };
-			setupButton.style.backgroundColor = System.Drawing.Color.LightGray.ToUnityColor();
-			setupButton.Add(img);
-			return setupButton;
-		}
 
 		public static Texture2D LoadIcon(string name)
 		{

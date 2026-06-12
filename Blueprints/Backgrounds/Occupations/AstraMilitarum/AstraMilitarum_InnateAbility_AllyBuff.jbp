@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
@@ -120,8 +121,8 @@
           "Enabled": true
         },
         "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false,
-        "ModifyEvenDamageOverTime": false
+        "ModifyEvenDirectDamage": true,
+        "ModifyEvenDamageOverTime": true
       },
       {
         "$type": "9cb8cadd214341dbbc558d4097cdf57c, AbilityRuleTriggerInitiator",
@@ -132,6 +133,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -155,15 +157,6 @@
                     "BuffEndCondition": "TurnStartOrCombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -219,6 +212,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -240,9 +234,10 @@
                   "Max": 0
                 },
                 "m_Fact": "!bp_94ea4f4278e147bebb0c964d75cc50ad",
+                "CheckTarget": "CurrentEntity",
                 "Aggregation": "Max",
                 "BuffWithCasterFromTargetType": false,
-                "Target": "CurrentEntity"
+                "BuffCaster": "CurrentEntity"
               }
             ]
           }
@@ -334,6 +329,17 @@
           "Enabled": false,
           "ModifierType": "ValAdd"
         },
+        "OptimalDistance": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1",
+          "Enabled": false,
+          "ModifierType": "ValAdd"
+        },
         "RateOfFire": {
           "ValueType": "CasterNamedProperty",
           "Value": 0,
@@ -388,9 +394,10 @@
                 "Max": 0
               },
               "m_Fact": "!bp_af138303f7274f83af78bcbf8125b255",
+              "CheckTarget": "CurrentEntity",
               "Aggregation": "Max",
               "BuffWithCasterFromTargetType": false,
-              "Target": "CurrentEntity"
+              "BuffCaster": "CurrentEntity"
             }
           ]
         }
@@ -445,7 +452,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_cd7617e9f2034aeaad3426a9a6b12a81",
           "!bp_90622e48744a474e91770f71359dae9b",
@@ -38,6 +39,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_3106da400eb342219dc73462fa1ce2cf",
           "!bp_36c3b6aec151475aa701bd920cbf227a",
@@ -60,6 +62,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "ActionOnChangeUnitLevel": {
           "Actions": [
             {
@@ -145,6 +148,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_9972ea52096f4d72ad9e88c5b2c3666c",
         "m_Feature": "!bp_6a40ad34e6fa4400a96b82ebd140fcaa",
         "Not": false
@@ -158,6 +162,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_8ead24fac71f41b9bfe291fb3235b913",
         "m_Feature": "!bp_e25bd5d01d9043288858d406fa136476",
         "Not": false
@@ -171,9 +176,91 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_c8edb25e44c34874a87215d94fe92d2c",
         "m_Feature": "!bp_1ff86f1bc340493d9ca708f838c7678c",
         "Not": false
+      },
+      {
+        "$type": "4154c6f5c7b64b23a2102278fc83645b, WarhammerAbilityRestriction",
+        "name": "$WarhammerAbilityRestriction$b4abd662-66eb-4665-8701-c05f80e8e70b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "b742461a99f449458cd0df048e50c1fe, ContextConditionGetter",
+                "name": "$ContextConditionGetter$91353bcd-8da3-4170-ac77-82f8efaf338e",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Conditions": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+                      "name": "$IsInCombat$65c9a2d3-01cf-43cc-b228-bf8d53d26eef",
+                      "Not": true,
+                      "Unit": {
+                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                        "name": "$PetByOwner$676a89a0-8830-4b74-a54e-9397e2be1286",
+                        "OwnerEvaluator": {
+                          "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                          "name": "$CasterUnit$01df84b2-2104-4042-b1e7-a3a33e7cf742"
+                        }
+                      },
+                      "Player": false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "m_AbilityRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                "name": "$CheckAbilityGroupGetter$a6ca3d29-f592-4959-b685-68f27c81a680",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Groups": [
+                  "!bp_ebd03dd1480a4abaa561ce4ed9ef9ba5"
+                ]
+              }
+            ]
+          }
+        }
       }
     ],
     "Author": "IlyaPolitko",

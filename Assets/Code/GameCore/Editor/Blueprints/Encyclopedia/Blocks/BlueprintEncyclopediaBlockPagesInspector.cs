@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+
 namespace Kingmaker.Blueprints.Encyclopedia.Blocks
 {
     [CustomEditor(typeof(BlueprintEncyclopediaBlockPages), true)]
@@ -9,8 +12,6 @@ namespace Kingmaker.Blueprints.Encyclopedia.Blocks
         protected SerializedProperty Pages;
         protected SerializedProperty Source;
         protected ReorderableList m_PagesList;
-
-        
 
         public override void OnEnable()
         {
@@ -25,6 +26,24 @@ namespace Kingmaker.Blueprints.Encyclopedia.Blocks
                 if (e != null) EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), e);
             };
             m_PagesList.drawHeaderCallback = (Rect rect) => { EditorGUI.LabelField(rect, Pages.displayName); };
+        }
+
+        public override VisualElement CreateInspectorGUI()
+        {
+            var root = new VisualElement();
+            var sourceField = new PropertyField(serializedObject.FindProperty("Source"));
+            root.Add(sourceField);
+
+            var pagesProp = serializedObject.FindProperty("Pages");
+            var pagesField = new PropertyField(pagesProp);
+            const int byList = (int) BlueprintEncyclopediaBlockPages.SourcePages.ByList;
+            pagesField.style.display = Source.intValue == byList ? DisplayStyle.Flex : DisplayStyle.None;
+            
+            root.TrackPropertyValue(serializedObject.FindProperty("Source"), prop =>
+                pagesField.style.display = prop.intValue == byList ? DisplayStyle.Flex : DisplayStyle.None);
+            root.Add(pagesField);
+            
+            return root;
         }
 
 

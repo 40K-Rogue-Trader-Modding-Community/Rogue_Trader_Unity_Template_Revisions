@@ -7,12 +7,13 @@ using System;
 using System.Linq;
 using Code.GameCore.Mics;
 using Kingmaker.Editor.UIElements.Custom.Elements;
+using Kingmaker.Editor.UIElements.Custom.PropertyComponents;
+using Kingmaker.Editor.Utility;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Kingmaker.Utility.UnityExtensions;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using Color = System.Drawing.Color;
 
@@ -22,18 +23,26 @@ namespace Kingmaker.Editor.UIElements.Custom
 	{
 		private VisualElement m_NotFoundLabel;
 		
-		public EntityReferenceProperty(SerializedProperty property) : base(property, Layout.Vertical)
+		public EntityReferenceProperty(SerializedProperty property) : base(property, Layout.VerticalNotExpandable)
 		{
 			HeaderContainer.style.display = DisplayStyle.None;
 			ControlsContainer.style.display = DisplayStyle.None;
-			m_UidProp = Property.FindPropertyRelative("UniqueId");
-			m_NameProp = property.FindPropertyRelative("EntityNameInEditor");
-			m_SceneProp = property.FindPropertyRelative("SceneAssetGuid");
+			m_UidPropRSP = new RobustSerializedProperty(property.FindPropertyRelative("UniqueId").Copy());
+			m_NamePropRSP = new RobustSerializedProperty(property.FindPropertyRelative("EntityNameInEditor").Copy());
+			m_ScenePropRSP = new RobustSerializedProperty(property.FindPropertyRelative("SceneAssetGuid").Copy());
+			
+			ValidateProps();
+			CreateContent();
+		}
+		
+		protected override void CreateContentInternal()
+		{
+			base.CreateContentInternal();
+            
 			m_NotFoundLabel = new Label("NOT FOUND");
 			m_NotFoundLabel.style.backgroundColor = Color.Brown.ToUnityColor();
-			ValidateProps();
-
-			var objItem = CreateNameField(property, m_NameProp);
+            
+			var objItem = CreateNameField(Property, m_NameProp);
 			var sceneItem = CreateSceneField(m_SceneProp);
 
 			ContentContainer.Add(m_NotFoundLabel);
@@ -45,13 +54,35 @@ namespace Kingmaker.Editor.UIElements.Custom
 			
 			ContentContainer.RegisterCallback<MouseDownEvent>(e =>
 			{
-				UIElementsUtility.HandleSceneContextMenu(e, m_SceneField.value, OnClickDel, OnClickFind);
+				if (m_SceneField.value != null)
+				{
+					e.StopPropagation();
+					var menu = new GenericMenu();
+					menu.AddItem(new GUIContent("Open Scene"), false, () => AssetDatabase.OpenAsset(m_SceneField.value));
+					menu.AddItem(new GUIContent("Open and Find"), false, () =>
+					{
+						AssetDatabase.OpenAsset(m_SceneField.value);
+						OnClickFind();
+					});
+					menu.AddItem(new GUIContent("Del"), false, OnClickDel);
+					
+					menu.ShowAsContext();
+				}
 			});
 
 			AddComponent(new DragAndDropComponent(() => GetValidComponent() != null, ApplyDrop));
+            
+			if (HasComponent<NotNullComponent>())
+			{
+				RemoveComponent<NotNullComponent>();
+				AddComponent(new NotNullComponent(m_ScenePropRSP.Property, m_ObjectHolder, m_ObjectName));
+				GetComponent<NotNullComponent>()?.MoveLabel(1);
+			}
 		}
 
 		TextField m_ObjectName;
+		
+		VisualElement m_ObjectHolder;
 
 		ObjectField m_SceneField;
 
@@ -59,11 +90,17 @@ namespace Kingmaker.Editor.UIElements.Custom
 
 		Type m_TypeRestriction;
 
-		SerializedProperty m_NameProp;
+		SerializedProperty m_NameProp => m_NamePropRSP.Property;
 
-		SerializedProperty m_SceneProp;
+		SerializedProperty m_SceneProp => m_ScenePropRSP.Property;
 
-		SerializedProperty m_UidProp;
+		SerializedProperty m_UidProp => m_UidPropRSP.Property;
+        
+		RobustSerializedProperty m_NamePropRSP;
+
+		RobustSerializedProperty m_ScenePropRSP;
+
+		RobustSerializedProperty m_UidPropRSP;
 
 		private void CheckMissingReference()
 		{
@@ -79,7 +116,7 @@ namespace Kingmaker.Editor.UIElements.Custom
 			}
 		}
 
-		void ValidateProps()
+		private void ValidateProps()
 		{
 			var fieldInfo = Property.GetFieldInfo();
 
@@ -108,19 +145,19 @@ namespace Kingmaker.Editor.UIElements.Custom
 			}
 		}
 
-		VisualElement CreateNameField(SerializedProperty property, SerializedProperty nameProp)
+		private VisualElement CreateNameField(SerializedProperty property, SerializedProperty nameProp)
 		{
-			var objItem = CreteNameTextField(property, nameProp);
+			m_ObjectHolder = CreteNameTextField(property, nameProp);
 			m_SceneControls = CreateNameControls();
 
 			var objRoot = new VisualElement() { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween } };
-			objRoot.Add(objItem);
+			objRoot.Add(m_ObjectHolder);
 			objRoot.Add(m_SceneControls);
 
 			return objRoot;
 		}
 
-		VisualElement CreteNameTextField(SerializedProperty property, SerializedProperty nameProp)
+		private VisualElement CreteNameTextField(SerializedProperty property, SerializedProperty nameProp)
 		{
 			var objItem = new VisualElement() { style = { flexDirection = FlexDirection.Row, flexGrow = 1 } };
 			var objLabel = new Label(property.displayName) { style = { unityTextAlign = TextAnchor.MiddleCenter } };
@@ -132,15 +169,13 @@ namespace Kingmaker.Editor.UIElements.Custom
 			return objItem;
 		}
 
-		VisualElement CreateSceneField(SerializedProperty sceneProp)
+		private VisualElement CreateSceneField(SerializedProperty sceneProp)
 		{
 			var sceneItem = new VisualElement() { style = { flexDirection = FlexDirection.Row, flexGrow = 1 } };
 			var sceneLabel = new Label("Scene") { style = { unityTextAlign = TextAnchor.MiddleCenter } };
 
 			var sceneAsset =
 				AssetDatabase.LoadAssetAtPath<SceneAsset>(sceneProp.stringValue);
-			if (sceneAsset == null)
-				sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(AssetDatabase.GUIDToAssetPath(sceneProp.stringValue));
 			
 			m_SceneField = new ObjectField()
 			{
@@ -155,7 +190,7 @@ namespace Kingmaker.Editor.UIElements.Custom
 			return sceneItem;
 		}
 
-		VisualElement CreateNameControls()
+		private VisualElement CreateNameControls()
 		{
 			var controls = new VisualElement() { style = { flexDirection = FlexDirection.Row } };
 			var btnFind = new Button(OnClickFind) { text = "Find" };
@@ -169,20 +204,20 @@ namespace Kingmaker.Editor.UIElements.Custom
 
 		private bool IsRelatedSceneLoaded()
 		{
-			var sceneName = m_SceneProp.stringValue;
+			string sceneName = m_SceneProp.stringValue;
 			var scene = SceneManager.GetSceneByPath(sceneName);
 			return scene.IsValid();
 		}
 
 		private bool TryFindGO(out GameObject result)
 		{
-			var uid = m_UidProp.stringValue;
+			string uid = m_UidProp.stringValue;
 			var view = EntityViewBaseCache.All.FirstOrDefault(v => v != null && v.UniqueViewId == uid);
 			result = view?.GO;
 			return result != null;
 		}
 
-		void OnClickFind()
+		private void OnClickFind()
 		{
 			if (!TryFindGO(out var go))
 				Debug.Log("No object with id " + m_UidProp.stringValue);
@@ -190,7 +225,7 @@ namespace Kingmaker.Editor.UIElements.Custom
 				EditorGUIUtility.PingObject(go);
 		}
 
-		void OnClickDel()
+		private void OnClickDel()
 		{
 			m_UidProp.stringValue = "";
 			m_NameProp.stringValue = "";
@@ -198,11 +233,11 @@ namespace Kingmaker.Editor.UIElements.Custom
 			m_SceneField.value = default;
 			m_ObjectName.value = string.Empty;
 
-			m_UidProp.serializedObject.ApplyModifiedProperties();
+			Property.serializedObject.ApplyModifiedProperties();
 			m_SceneControls.SetEnabled(false);
 		}
 
-		void ApplyDrop()
+		private void ApplyDrop()
 		{
 			var newObj = GetValidComponent();
 			if (newObj != null)
@@ -215,13 +250,14 @@ namespace Kingmaker.Editor.UIElements.Custom
 				m_SceneProp.stringValue = AssetDatabase.GetAssetPath(sceneAsset);
 				m_SceneField.value = sceneAsset;
 				m_SceneControls.SetEnabled(true);
-				m_UidProp.serializedObject.ApplyModifiedProperties();
+				Property.serializedObject.ApplyModifiedProperties();
 			}
 			
 			CheckMissingReference();
 		}
 
-		EntityViewBase GetValidComponent()
-			=> DragAndDrop.objectReferences.Length == 1 && DragAndDrop.objectReferences[0] is GameObject go ? go.GetComponent(m_TypeRestriction) as EntityViewBase : default;
+		private EntityViewBase GetValidComponent()
+			=> DragAndDrop.objectReferences.Length == 1 && DragAndDrop.objectReferences[0] is GameObject go ? 
+				go.GetComponent(m_TypeRestriction) as EntityViewBase : default;
 	}
 }

@@ -1,0 +1,106 @@
+{
+  "AssetId": "8b16bd2b09b24490b716ed0007cba655",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$c39229b674af5b66a19ee7402fd4dc70",
+          "Not": false,
+          "m_Etude": "!bp_043ab64255484090bba284ab4d01e0ff",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "OnFail": "FinishTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6132ab34-a9c5-4a2b-a584-480e4b200d6b",
+          "Comment": "Eogan",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$a808e3cd-4e29-42c5-9994-5f217e92a1ae",
+                "Not": false,
+                "m_companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": true,
+                "MatchWhenRemote": true,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$847e73e2-e835-42df-817d-e527fd1ad660",
+                "m_ForceBlockTargetPosition": false,
+                "Unit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$68f9919b-9d6f-487f-afa1-a0c1e72d53b2",
+                  "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                  "IncludeActive": true,
+                  "IncludeDetached": true,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "KTC_EoganManipulusLoc",
+                  "_entity_id": "62c46b21-7cf5-4144-875b-0a085d315a9e",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_Default_Mechanics.unity"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$c4f5d9e44b114440a5d14d53abfaf907",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "KTC_EoganManipulusLoc",
+                    "_entity_id": "62c46b21-7cf5-4144-875b-0a085d315a9e",
+                    "SceneAssetGuid": "7a723978f014d39478eef0dd4f23b912"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -17,6 +17,8 @@ using Kingmaker.Blueprints.Loot;
 using Kingmaker.Editor.Elements;
 using Kingmaker.Editor.NodeEditor.Window;
 using Kingmaker.Editor.UIElements;
+using Kingmaker.Editor.UIElements.Custom;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Owlcat.Runtime.Core.Utility;
 using Kingmaker.EntitySystem;
 using Kingmaker.Utility.Attributes;
@@ -32,12 +34,13 @@ using Owlcat.Runtime.Core.Utility.EditorAttributes;
 using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.EditorPreferences;
 using Kingmaker.Utility.UnityExtensions;
+using UnityEditor.Graphs;
 
 
 namespace Kingmaker.Editor.Blueprints
 {
     [CustomEditor(typeof(BlueprintEditorWrapper))]
-    public class BlueprintInspector : UnityEditor.Editor
+    public class BlueprintWrapperInspector : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
@@ -45,7 +48,7 @@ namespace Kingmaker.Editor.Blueprints
                 return null; // no elements if custom gui wants total control
 
             ((BlueprintEditorWrapper)target).SyncPropertiesWithProto();
-            var inspector = UIElementsUtility.CreateInspector(serializedObject);
+            var inspector = UIElementsUtility.CreateBlueprintInspector(Blueprint, this);
             m_Inspector = inspector;
             OnSetDirty();
             return inspector;
@@ -62,6 +65,10 @@ namespace Kingmaker.Editor.Blueprints
 
         private BlueprintScriptableObject BlueprintComplex
             => BlueprintEditorWrapper.Unwrap<BlueprintScriptableObject>(target);
+        
+        private BlueprintJsonWrapper JsonWrapper => BlueprintsDatabase.GetCachedWrapper(Blueprint.AssetGuid);
+        
+        public BlueprintInspectorCustomGUI Custom => m_Custom;
 
         private void OnEnable()
         {
@@ -85,6 +92,17 @@ namespace Kingmaker.Editor.Blueprints
         
         private void OnDisable()
         {
+            m_Custom?.OnDisable();
+            UnsubscribeFromEvents();
+            
+            if (EditorPreferences.Instance.Scriptwriter && Blueprint != null)
+            {
+                BlueprintsDatabase.Save(Blueprint.AssetGuid);
+            }
+        }
+
+        public void UnsubscribeFromEvents()
+        {
             BlueprintsDatabase.OnInvalidated -= UpdateComponentsWrappers;
             BlueprintsDatabase.OnInvalidated -= OnSetDirty;
             BlueprintsDatabase.OnSetDirty -= OnSetDirty;
@@ -93,16 +111,16 @@ namespace Kingmaker.Editor.Blueprints
 
         private void OnSetDirty()
         {
+            if (m_Inspector is BlueprintInspectorRoot root)
+                root.OnSetDirty();
+        }
+        
+        private void OnInvalidated()
+        {
             if (m_Inspector == null)
-                return;
-            
-            string id = ((BlueprintEditorWrapper)target).Blueprint?.AssetGuid;
-
-            if (id == null)
-                return;
-
-            m_Inspector.Q("SaveButton")?.SetEnabled(BlueprintsDatabase.IsDirty(id));
-            m_Inspector.Q("DiscardButton")?.SetEnabled(BlueprintsDatabase.IsDirty(id));
+                UpdateComponentsWrappers();
+            else if (m_Inspector is BlueprintInspectorRoot root)
+                root.OnInvalidated();
         }
 
         public void DrawPropertiesExcluding(params string[] props)
@@ -294,7 +312,7 @@ namespace Kingmaker.Editor.Blueprints
                             BlueprintsDatabase.Save(id);
                         }
 
-                        if (EditorPreferences.Instance.ProjectIsModTemplate)
+                        if (EditorPreferences.ProjectIsModTemplate)
                         {
                             if (GUILayout.Button("Save as Patch"))
                             {
@@ -310,7 +328,7 @@ namespace Kingmaker.Editor.Blueprints
                 }
                 else
                 {
-                    if (EditorPreferences.Instance.ProjectIsModTemplate)
+                    if (EditorPreferences.ProjectIsModTemplate)
                     {
                         using (new EditorGUILayout.HorizontalScope(GUI.skin.box))
                         {
@@ -432,7 +450,7 @@ namespace Kingmaker.Editor.Blueprints
                 {
                     var newProto = BlueprintEditorUtility.ObjectField(
                         "Prototype",
-                        BlueprintComplex.PrototypeLink as SimpleBlueprint,
+                        BlueprintComplex.PrototypeLink as BlueprintScriptableObject,
                         Blueprint.GetType(),
                         false);
                     if (newProto != BlueprintComplex.PrototypeLink)
@@ -858,53 +876,167 @@ namespace Kingmaker.Editor.Blueprints
 
         public static void DrawActionsForObject(object obj)
         {
-            var allMethods = obj.GetType()
-                .GetMethods(
+            var type = obj.GetType();
+            
+            List<Button> buttons;
+            {
+                buttons = new List<Button>();
+
+                var validation = new List<Button>();
+                var allMethodsInInstance = type.GetMethods(
                     BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.InvokeMethod |
                     BindingFlags.Static);
 
-            var buttons = new List<KeyValuePair<string, Action>>();
-            foreach (var method in allMethods)
-            {
-                var attribute =
-                    (BlueprintButtonAttribute)method.GetCustomAttributes(typeof(BlueprintButtonAttribute), true).FirstOrDefault();
-
-                if (method.GetGenericArguments().Length > 0)
+                foreach (var method in allMethodsInInstance)
                 {
-                    continue;
+                    var attribute = (BlueprintButtonAttribute) method
+                        .GetCustomAttributes(typeof(BlueprintButtonAttribute), true)
+                        .FirstOrDefault();
+
+                    if (method.GetGenericArguments().Length > 0)
+                        continue;
+                    
+                    if (attribute != null)
+                    {
+                        var m = method;
+                        string methodName = string.IsNullOrEmpty(attribute.Name) ? method.Name : attribute.Name;
+                        var button = new Button(methodName, attribute, () => m.Invoke(m.IsStatic ? null : obj, null));
+                        buttons.Add(button);
+                        if (attribute.ValidationMethod != null) 
+                            validation.Add(button);
+                    }
                 }
 
-                if (attribute != null)
+                foreach (var method in allMethodsInInstance)
                 {
-                    var m = method;
-                    var methodName = string.IsNullOrEmpty(attribute.Name) ? method.Name : attribute.Name;
-                    buttons.Add(new KeyValuePair<string, Action>(methodName, () => m.Invoke(m.IsStatic ? null : obj, null)));
+                    if (method.GetGenericArguments().Length > 0)
+                        continue;
+                    
+                    for (int i = 0; i < validation.Count; i++)
+                    {
+                        var button = validation[i];
+                        if (button.Attribute.ValidationMethod == method.Name)
+                        {
+                            var m = method;
+                            button.Enabled = () => (bool) m.Invoke(m.IsStatic ? null : obj, null);
+                        }
+                    }
                 }
+
+                Type editorType = null;
+                if (obj is BlueprintComponent && BlueprintComponentInspectorCustomGUI.TryGetForType(type, out var componentInspector))
+                    editorType = componentInspector.GetType();
+                
+                if (obj is SimpleBlueprint && BlueprintInspectorCustomGUI.TryGetForType(type, out var bpInspector))
+                    editorType = bpInspector.GetType();
+                
+                if (editorType != null)
+                {
+                    var allMethodsInEditor = editorType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Static);
+                    validation.Clear();
+                    
+                    foreach (var method in allMethodsInEditor)
+                    {
+                        var attribute = (BlueprintButtonAttribute)method.GetCustomAttributes(typeof(BlueprintButtonAttribute), true)
+                            .FirstOrDefault();
+
+                        if (method.GetGenericArguments().Length > 0)
+                        {
+                            continue;
+                        }
+
+                        if (attribute != null)
+                        {
+                            var m = method;
+                            string methodName = string.IsNullOrEmpty(attribute.Name) ? method.Name : attribute.Name;
+                            var button = new Button(methodName, attribute, () => m.Invoke(null, new [] {obj}));
+                            buttons.Add(button);
+                            if (attribute.ValidationMethod != null) 
+                                validation.Add(button);
+                        }
+                    }
+                
+                    foreach (var method in allMethodsInEditor)
+                    {
+                        if (method.GetGenericArguments().Length > 0)
+                        {
+                            continue;
+                        }
+                        for (int i = 0; i < validation.Count; i++)
+                        {
+                            var button = validation[i];
+                            if (button.Attribute.ValidationMethod == method.Name)
+                            {
+                                var m = method;
+                                button.Enabled = () =>
+                                {
+                                    return (bool)m.Invoke(null, new [] {obj});
+                                };
+                            }
+                        }
+                    }
+                }
+                
+                buttons = buttons.OrderBy(x => x.Attribute.Order).ToList();
             }
+            
             if (buttons.Count > 0)
             {
+                GUILayout.Space(10);
                 using (new GUILayout.VerticalScope())
                 {
                     const int buttonsPerLine = 3;
                     for (int i = 0; i < buttons.Count; ++i)
                     {
                         if (i % buttonsPerLine == 0)
-                        {
                             GUILayout.BeginHorizontal();
-                        }
 
-                        if (GUILayout.Button(buttons[i].Key))
-                        {
-                            buttons[i].Value.Invoke();
-                        }
+                        int rowIndex = i / 3;
+                        int columnIndex = i % 3;
+                        
+                        int rows = (buttons.Count + 3 - 1) / 3;
+                        bool isLastRow = rowIndex == rows - 1;
+                        int countInRow = isLastRow ? buttons.Count % 3 : 3;
+                        if (countInRow == 0) countInRow = 3;
 
+                        var style = countInRow == 1 ? EditorStyles.miniButton : 
+                                columnIndex == 0 ? EditorStyles.miniButtonLeft : 
+                                columnIndex == countInRow - 1 ? EditorStyles.miniButtonRight : 
+                                EditorStyles.miniButtonMid;
+                        
+                        var button = buttons[i];
+                        EditorGUI.BeginDisabledGroup(!button.Enabled?.Invoke() ?? false);
+                        
+                        if (GUILayout.Button(button.Text, style, GUILayout.Width(10f), GUILayout.ExpandWidth(true)))
+                            InvokeButtonAction(button);
+                        
+                        EditorGUI.EndDisabledGroup();
+                        
                         if (i % buttonsPerLine == 2 || i == buttons.Count - 1)
-                        {
                             GUILayout.EndHorizontal();
-                        }
                     }
                 }
             }
+        }
+        
+        private class Button
+        {
+            public string Text;
+            public BlueprintButtonAttribute Attribute;
+            public Action Action;
+            public Func<bool> Enabled;
+
+            public Button(string text, BlueprintButtonAttribute attribute, Action action)
+            {
+                Text = text;
+                Attribute = attribute;
+                Action = action;
+            }
+        }
+        
+        private static void InvokeButtonAction(Button button)
+        {
+            EditorApplication.delayCall += button.Action.Invoke;
         }
     }
 }

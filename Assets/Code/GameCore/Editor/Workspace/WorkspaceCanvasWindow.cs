@@ -14,6 +14,7 @@ using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.Cutscenes;
 using Kingmaker.Editor.DragDrop;
 using Kingmaker.Editor.NodeEditor.Window;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.View;
 using Owlcat.Editor.Core.Utility;
 using Owlcat.Editor.Utility;
@@ -284,7 +285,7 @@ namespace Kingmaker.Editor.Workspace
 				return;
 			}
 
-            SimpleBlueprint bp = BlueprintEditorWrapper.Unwrap<SimpleBlueprint>(obj);
+			var bp = BlueprintEditorWrapper.Unwrap<BlueprintScriptableObject>(obj);
 
 			var rect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight);
 			if (rect.Contains(Event.current.mousePosition))

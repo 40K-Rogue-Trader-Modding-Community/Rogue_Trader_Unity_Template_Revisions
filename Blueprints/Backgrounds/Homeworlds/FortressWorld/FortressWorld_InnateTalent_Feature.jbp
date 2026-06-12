@@ -19,6 +19,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -54,6 +55,7 @@
                     "Property": {
                       "Operation": "LE",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -93,9 +95,10 @@
                             "Max": 0
                           },
                           "m_Fact": "!bp_fb23170f8bdd4e54aa1fe1b481ceaab8",
+                          "CheckTarget": "CurrentEntity",
                           "Aggregation": "Max",
                           "BuffWithCasterFromTargetType": false,
-                          "Target": "CurrentEntity"
+                          "BuffCaster": "CurrentEntity"
                         }
                       ]
                     },
@@ -112,6 +115,7 @@
                     "m_Count": {
                       "Operation": "Sum",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -142,6 +146,7 @@
                     "m_CostBonus": {
                       "Operation": "Sum",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -336,233 +341,7 @@
           ]
         },
         "UnitInterruptTurnStartActions": {
-          "Actions": [
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$57d5910ee1704036aea0ca235d9a326a",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
-                    "name": "$ContextConditionProperty$6258aaf30b884fbc987f25c4f89d93b9",
-                    "Not": false,
-                    "Property": {
-                      "Operation": "LE",
-                      "TargetType": "CurrentEntity",
-                      "FailSilentlyIfNoTarget": false,
-                      "Getters": [
-                        {
-                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-                          "name": "$ContextValueGetter$74eada3d280c4199bc22a270b8edf9c1",
-                          "Settings": {
-                            "Progression": "RandomUpTo",
-                            "m_CustomProgression": [],
-                            "m_StartLevel": 0,
-                            "m_StepLevel": 0,
-                            "Negate": false,
-                            "Limit": "MinMax",
-                            "Min": 0,
-                            "Max": 100
-                          },
-                          "Value": {
-                            "ValueType": "Simple",
-                            "Value": 100,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          }
-                        },
-                        {
-                          "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
-                          "name": "$FactRankGetter$1fe44cc16b884387a8b78649d19472f9",
-                          "Settings": {
-                            "Progression": "AsIs",
-                            "m_CustomProgression": [],
-                            "m_StartLevel": 0,
-                            "m_StepLevel": 0,
-                            "Negate": false,
-                            "Limit": "None",
-                            "Min": 0,
-                            "Max": 0
-                          },
-                          "m_Fact": "!bp_fb23170f8bdd4e54aa1fe1b481ceaab8",
-                          "Aggregation": "Max",
-                          "BuffWithCasterFromTargetType": false,
-                          "Target": "CurrentEntity"
-                        }
-                      ]
-                    },
-                    "NegativeDoesNotCount": false
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "bfe787e51845449dbd98425f134a555b, ContextActionAddBonusAbilityUsage",
-                    "name": "$ContextActionAddBonusAbilityUsage$964b9414ac4c48f89bae7718d559360a",
-                    "m_Restriction": "!bp_fe32f7cd492d4e8a8691ae5d6e6f898c",
-                    "m_Count": {
-                      "Operation": "Sum",
-                      "TargetType": "CurrentEntity",
-                      "FailSilentlyIfNoTarget": false,
-                      "Getters": [
-                        {
-                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-                          "name": "$ContextValueGetter$3837164f0387406bb15fbef57f132028",
-                          "Settings": {
-                            "Progression": "AsIs",
-                            "m_CustomProgression": [],
-                            "m_StartLevel": 0,
-                            "m_StepLevel": 0,
-                            "Negate": false,
-                            "Limit": "None",
-                            "Min": 0,
-                            "Max": 0
-                          },
-                          "Value": {
-                            "ValueType": "Simple",
-                            "Value": 1,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          }
-                        }
-                      ]
-                    },
-                    "m_CostBonus": {
-                      "Operation": "Sum",
-                      "TargetType": "CurrentEntity",
-                      "FailSilentlyIfNoTarget": false,
-                      "Getters": [
-                        {
-                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-                          "name": "$ContextValueGetter$76ab25e28a8741578180ddaae7d73d98",
-                          "Settings": {
-                            "Progression": "AsIs",
-                            "m_CustomProgression": [],
-                            "m_StartLevel": 0,
-                            "m_StepLevel": 0,
-                            "Negate": false,
-                            "Limit": "None",
-                            "Min": 0,
-                            "Max": 0
-                          },
-                          "Value": {
-                            "ValueType": "Simple",
-                            "Value": -100,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          }
-                        }
-                      ]
-                    },
-                    "m_ToTarget": false,
-                    "m_IgnoreMinimalCost": true
-                  },
-                  {
-                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
-                    "name": "$ContextActionRemoveBuff$c84b11ac4e4942249bb383a96ce7e7b4",
-                    "m_Buff": "!bp_fb23170f8bdd4e54aa1fe1b481ceaab8",
-                    "RemoveRank": false,
-                    "RemoveSeveralRanks": false,
-                    "RankNumber": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "m_CasterRanksRemovalPolicy": "Default",
-                    "ToCaster": false
-                  },
-                  {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$5d1b68c06c5246f6a51437962c8098cf",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": [
-                        {
-                          "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                          "name": "$ContextConditionCasterHasFact$e3216603679b4b51ab520a6de5474939",
-                          "Not": false,
-                          "m_Fact": "!bp_40edd34c2d9d4b2482603083309a3ecf"
-                        }
-                      ]
-                    },
-                    "IfTrue": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$2b70f891a9964884aaf14d4662dcedbe",
-                          "m_Buff": "!bp_fb23170f8bdd4e54aa1fe1b481ceaab8",
-                          "BuffEndCondition": "CombatEnd",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": false,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "CasterNamedProperty",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Bonus2"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "IfFalse": {
-                      "Actions": []
-                    }
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            }
-          ]
+          "Actions": []
         },
         "UnitInterruptTurnEndActions": {
           "Actions": []
@@ -582,6 +361,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -648,6 +428,7 @@
         "RemoveOnSurvive": false,
         "OnlyEnemyKill": true,
         "m_AffectedGroup": null,
+        "m_OtherAffectedGroupList": [],
         "m_FilterFacts": [],
         "ContextPropertyName": "Value1",
         "PropertyToSave": "None"
@@ -665,6 +446,7 @@
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -696,9 +478,10 @@
                   "Max": 0
                 },
                 "m_Fact": "!bp_864d5b0a750e4ea3a1f5bcc8489bdacf",
+                "CheckTarget": "CurrentEntity",
                 "Aggregation": "Max",
                 "BuffWithCasterFromTargetType": false,
-                "Target": "CurrentEntity"
+                "BuffCaster": "CurrentEntity"
               }
             ]
           }
@@ -759,8 +542,10 @@
         "Abilities": [],
         "ForAbilityGroup": false,
         "m_AbilityGroup": null,
+        "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
-        "AssignOwnerAsTarget": true
+        "AssignOwnerAsTarget": true,
+        "AssignContextFromAbility": false
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
@@ -776,6 +561,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -792,9 +578,10 @@
                 "Max": 0
               },
               "m_Fact": "!bp_2dd7d17234024ed09433776ef90697fa",
+              "CheckTarget": "CurrentEntity",
               "Aggregation": "Max",
               "BuffWithCasterFromTargetType": false,
-              "Target": "CurrentEntity"
+              "BuffCaster": "CurrentEntity"
             }
           ]
         }
@@ -812,6 +599,7 @@
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -845,9 +633,10 @@
                   "Max": 0
                 },
                 "m_Fact": "!bp_d991437bdbde4d458cadf9d851d35a85",
+                "CheckTarget": "CurrentEntity",
                 "Aggregation": "Max",
                 "BuffWithCasterFromTargetType": false,
-                "Target": "CurrentEntity"
+                "BuffCaster": "CurrentEntity"
               }
             ]
           }
@@ -908,8 +697,10 @@
         "Abilities": [],
         "ForAbilityGroup": false,
         "m_AbilityGroup": null,
+        "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
-        "AssignOwnerAsTarget": true
+        "AssignOwnerAsTarget": true,
+        "AssignContextFromAbility": false
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
@@ -925,6 +716,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {

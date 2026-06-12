@@ -1,0 +1,137 @@
+{
+  "AssetId": "67a2bd99249145229d299c4f110c5798",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AntonFadeev",
+    "Comment": "гемункул\nконец диалога, манипулус и его запчасти исчезают с зоны, как и нунциус и запасные тела. Эоган стоит в Яме с компаньонским диалогом.",
+    "ParentAsset": "516427895e384ea3b285b4c07b93bfec",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "cf0e0810-8cc4-437d-9149-44080dde3a5e",
+      "m_OwnerString": "67a2bd99249145229d299c4f110c5798",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Commorragh\\PitManipulus\\Cue_0063_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_ff5b640a768e42c5b8ac4b62c63adaf0",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": []
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$dcbd66ab-662b-45b2-906d-92ed397ca4bc",
+          "m_Cutscene": "!bp_5b14fb70e9f3408fa7d6625fead1b96a",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        },
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$ed10d632f3db471ab44f737910c16160",
+          "Status": "Complete",
+          "m_Objective": "!bp_e320e65dbb1e486aac6b8a8d6f097b08",
+          "StartObjectiveIfNone": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6fa3e809-77c7-4b24-b64b-138218579ee7",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$ee7998fc-ebb1-4b60-9b5c-99375a2072e6",
+                "Not": true,
+                "m_QuestObjective": "!bp_45c72b32b6114b68b901edd52ee82c5c",
+                "State": "Completed"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$8188e829-2e6f-4b6c-beac-30327a52f60e",
+                "Status": "Fail",
+                "m_Objective": "!bp_45c72b32b6114b68b901edd52ee82c5c",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

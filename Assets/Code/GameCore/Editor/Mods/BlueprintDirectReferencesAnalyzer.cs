@@ -55,20 +55,20 @@ namespace Code.GameCore.Editor.Mods
 		{
 			DataList = new BlueprintUnityObjectReferenceInfoList();
 			SharedStringList = new BlueprintUnityObjectReferenceInfoList();
-			List<(string Guid, string Path, bool isShadowDeleted, bool ContainsShadowDeletedBlueprints)> ps;
+			List<BlueprintSearchResultItem> ps;
 			using (ProfileScope.New("search"))
 				ps = BlueprintsDatabase.SearchByType(typeof(SimpleBlueprint));
             
-			var pw = new ProgressWrapper<(string, string, bool, bool)>(ps, "Analyzing blueprint dependencies");
+			var pw = new ProgressWrapper<BlueprintSearchResultItem>(ps, "Analyzing blueprint dependencies");
 			foreach (var p in pw)
 			{
 				SimpleBlueprint bp;
 				using (ProfileScope.New("load"))
-					bp = BlueprintsDatabase.LoadById<SimpleBlueprint>(p.Item1);
+					bp = BlueprintsDatabase.LoadById<SimpleBlueprint>(p.Guid);
 
 				if (bp == null)
 				{
-					PFLog.Build.Error($"Failed to load blueprint with {p.Item1} for analysis. Possible duplicate IDs!");
+					PFLog.Build.Error($"Failed to load blueprint with {p.Guid} for analysis. Possible duplicate IDs!");
 					continue;
 				}
                 

@@ -1,0 +1,1313 @@
+{
+  "AssetId": "6593b19181994c0985c9217bade75f8a",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$7f5702e4-9a3f-49fb-a43e-a04d8c183da6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "реактивация скриптзон И некоторых интерактов",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$e3c808f18d8a48639a359f41fb346a1a",
+              "ScriptZone": {
+                "EntityNameInEditor": "VoxOnWall",
+                "_entity_id": "091c05cf-af1a-4053-bf7a-29f826c15cbb",
+                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+              }
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$5e6952e5-bc68-4386-b33a-edc20e3f2539",
+              "ScriptZone": {
+                "EntityNameInEditor": "NearGates",
+                "_entity_id": "8ad7cb6e-461a-460c-b191-747e43dfea90",
+                "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+              }
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$df03df44-d563-4bb7-a3ce-b49453804341",
+              "ScriptZone": {
+                "EntityNameInEditor": "EnterZone",
+                "_entity_id": "3e8456e5-8afa-4ad5-9972-bb1a65f8f411",
+                "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+              }
+            },
+            {
+              "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+              "name": "$ScriptZoneActivate$8cedd135-d61b-412d-b08a-3bc2842e07a2",
+              "ScriptZone": {
+                "EntityNameInEditor": "SoBVoxZone",
+                "_entity_id": "c09c82c3-3f58-4376-9bf9-04c04c9993a9",
+                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$7cff0471fe2b4b02ab0aba3e8e302ae7",
+              "Comment": "Анхайдим улики которые игроок уже обнаружил ранее",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$37f1bb0d4b7244e2b34cbf1187ac42dd",
+                    "Not": true,
+                    "m_Etude": "!bp_661b79b02d8f41be99d54d960c3dc1f9",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$1c1720a15aa149a3936145f8b5ac57be",
+                    "Comment": "Если не найден след плазмы - анхайдим его с аварнесом, иначе без + следы",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                          "name": "$FlagUnlocked$2c4864f460444538a9b4180106049b0b",
+                          "Not": false,
+                          "m_ConditionFlag": "!bp_349c6aad35aa4c959bfc51bf1b216e19",
+                          "ExceptSpecifiedValues": false,
+                          "SpecifiedValues": []
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$865733ec-4028-4d61-b24b-7cef8b918294",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$c3ce6c0d-4c2c-4ec5-aeea-a944e2bc7fed",
+                            "MapObject": {
+                              "EntityNameInEditor": "GaprakPlasmaFound",
+                              "_entity_id": "e91ffca1-e78a-49a9-80af-a49cc80e339b",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        },
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$dbcf415b-b729-4826-aaa7-42a6f8c1a31c",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$5ba2a655-5e22-48fb-8f6c-52445f8d506e",
+                            "MapObject": {
+                              "EntityNameInEditor": "GaprakTracks",
+                              "_entity_id": "d86e85c5-fed5-4f71-bbcc-5d7ff7fd4332",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$af0de114770149789da244cfc9447c74",
+                          "Comment": "Если щас 3+ луп - убираем аварнес с улики про плазму",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                                "name": "$GreaterThan$0658fbdbbb744e0a8063adfb66a6096a",
+                                "Not": false,
+                                "OrEqualTo": false,
+                                "FloatValues": false,
+                                "Value": {
+                                  "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                                  "name": "$FlagValue$774bb45a173e40bb8b211cdee2588651",
+                                  "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                                },
+                                "MinValue": {
+                                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                  "name": "$IntConstant$7d3c7871349b4abaad4e51cc7cc51021",
+                                  "Value": 2
+                                },
+                                "FloatValue": null,
+                                "FloatMinValue": null
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                "name": "$HideMapObject$25e03e25-562c-41bc-84e4-97e2fb0c174b",
+                                "MapObject": {
+                                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                  "name": "$MapObjectFromScene$e0186dcc-8134-460b-a9d8-745f19efc729",
+                                  "MapObject": {
+                                    "EntityNameInEditor": "GaprakPlasmaFound",
+                                    "_entity_id": "e91ffca1-e78a-49a9-80af-a49cc80e339b",
+                                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                  }
+                                },
+                                "Unhide": true
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                "name": "$HideMapObject$a05a819a-ca88-4582-8732-3b4b95a550a2",
+                                "MapObject": {
+                                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                  "name": "$MapObjectFromScene$9aeb0808-574c-4afb-8b7f-87d2d1b45106",
+                                  "MapObject": {
+                                    "EntityNameInEditor": "GaprakPlasma",
+                                    "_entity_id": "407b54ec-cb39-488f-aff3-69e79019eb18",
+                                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                  }
+                                },
+                                "Unhide": true
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$96be7a17-30c1-4a66-8f03-7e44c4ba4dd5",
+                    "Comment": "Если слеты найдены - анхайдим кольцо",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                          "name": "$FlagUnlocked$e13268c0-b9ee-41c9-81d9-df482da3c12b",
+                          "Not": false,
+                          "m_ConditionFlag": "!bp_c90d90141618405c8cbfdd26992d65f1",
+                          "ExceptSpecifiedValues": false,
+                          "SpecifiedValues": []
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$237a3ad2-bf03-4e43-b2a8-57514f5ffcb2",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$3262551b-cf1d-4e51-8545-230bbbe755f9",
+                            "MapObject": {
+                              "EntityNameInEditor": "GaprakRing",
+                              "_entity_id": "ae2ed46a-548c-4085-8d6d-5588acc0a345",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$0a55a98eb3e548ebab7b0d74422850a4",
+              "Comment": "Если был военный совет - открыть \"шоткаты\"",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                    "name": "$DialogSeen$ff7e0dfbc6ef4f14ba36396be979b69d",
+                    "Not": false,
+                    "m_Dialog": "!bp_0b75c257215e4c279ff6ec8eee04e158"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$fb67bfe9a4d54fa8a5744568775cb2e2",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$c7c36fb8f0e04a9f965850cc9f177fcb",
+                      "MapObject": {
+                        "EntityNameInEditor": "RestartTimeLoop",
+                        "_entity_id": "be563f84-cf74-40c2-b2dc-203941a2d0d6",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$f7725d71-951a-4831-9507-1b1c8c825446",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$d14e08dd-ddb8-477d-93c9-ec380aed9251",
+                      "MapObject": {
+                        "EntityNameInEditor": "RestartTimeLoop",
+                        "_entity_id": "1db5eb56-ccc3-40c7-8873-e8c9de92607c",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$bf8043fd-da52-476f-8232-4a220fe78caf",
+              "Etude": "!bp_bd3647152e8e4974afa88d5844891168",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            },
+            {
+              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+              "name": "$UnlockFlag$fb0f341d-ed0b-4be1-b135-267c1c4fbda9",
+              "m_flag": "!bp_f389e38b92f149c092d5b1c3f56b92ed",
+              "flagValue": 0
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$cfcc4f08-dcac-492c-bba0-245963b3d10b",
+              "Comment": "Если играет этюд - пробовали сломать ворота, вешать барку вместо скилчека",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$9bbe48f2253947e7b3948953f94211c9",
+                    "Not": false,
+                    "m_Etude": "!bp_906ff4eef75a48cd915507f21e83fea5",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$dcc03e11-b926-42c3-92fc-47f1adbe3f95",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$74bd67b8-bcb0-441b-93bd-5f20df189f6c",
+                      "MapObject": {
+                        "EntityNameInEditor": "DL_EntranceGate",
+                        "_entity_id": "317f7f97-287b-44ac-a60d-2f70c4f3cbfb",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$b2654d8b-0f85-4d9e-aeb3-019f19093ffd",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$124108dc-073f-40e9-b75d-b25d78cb5ad9",
+                      "MapObject": {
+                        "EntityNameInEditor": "DL_EntranceGate_bark",
+                        "_entity_id": "c6e24c87-056b-459b-a3e0-4b80d1e76af7",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$acf8e150-a567-496b-bbcd-5d32ea912b40",
+              "Comment": "Дать интерактить с пультом туррелей если знаем что они сломаны",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b59dac32-ff94-434a-bc96-2c73ba198aa1",
+                    "Not": false,
+                    "m_Etude": "!bp_18afbc3e25504b90a34f0697ed131d41",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$4fd9d87a-9195-40ae-b0b3-dc735f2282b3",
+                    "Not": true,
+                    "m_Etude": "!bp_e08364f2a4654a80b8d5f4ee8c3a5c89",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$50a230d1-c4b3-4d05-846a-8934cb834b8d",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$049a84d9-cff4-478d-af4e-0c8222be7624",
+                      "MapObject": {
+                        "EntityNameInEditor": "TurretsController",
+                        "_entity_id": "824d2014-20e2-42e3-9b3e-5ae38064ef56",
+                        "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$09e4afe7-f219-4400-8d5d-736d6145c53d",
+              "Comment": "Если знаем про необходимость открытия ворот и нет кодов доступа - даем когитатор",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$f1e45aef-51cc-4345-bbf3-2d98feb398f4",
+                    "Not": true,
+                    "m_Etude": "!bp_3ac5dd5728ca40e6b6d864c114440113",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                    "name": "$ObjectiveStatus$1f3876a3ad4e46a5b25009f8395709de",
+                    "Not": false,
+                    "m_QuestObjective": "!bp_aeac6981b7f941c79083fdfe888d6263",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$9636fea9-de6b-4974-a1ef-8c9b79560895",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$6a03e19b-fed8-4596-b105-777d79f03034",
+                      "MapObject": {
+                        "EntityNameInEditor": "SearchMasterCodeImposible",
+                        "_entity_id": "c64a5080-db38-4f19-afb2-7c37bb6bfb65",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$c446f054-b22e-4b79-a89e-2bd36afad724",
+                    "Comment": "Если уже ломали когитатор - сразу ставим интеракт без чека и аварнеса",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$df70eba1-e76f-4f87-a12f-d7706fa4955f",
+                          "Not": false,
+                          "m_Etude": "!bp_a4e7e93ee42241ea93bd4a097bd961f1",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": false,
+                          "CompletionInProgress": false,
+                          "Completed": true
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$11ea766c-7caf-4ae3-a57c-38afab018dce",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$e11ade46-2208-49b0-91b8-0f0e6f9d9eb1",
+                            "MapObject": {
+                              "EntityNameInEditor": "LockSystemCabelFoundAndChecked",
+                              "_entity_id": "eb3d5bfe-4e51-41ff-9e43-8f55bcc7b43c",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$f97af92f-4d97-4161-8e93-dcc7f9d52c49",
+                    "Comment": "Если уже находили коннектор - даем его без аварнеса",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$cb7d5518-caf5-4a7d-9f94-6a9f3d2c4fc6",
+                          "Not": false,
+                          "m_Etude": "!bp_a4e7e93ee42241ea93bd4a097bd961f1",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$48b097e9-6f4d-4d26-b25c-57a497a53fbc",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$507ebca3-0eb5-4b75-a8d9-3d5c6e2951c8",
+                            "MapObject": {
+                              "EntityNameInEditor": "LockSystemCabelFound",
+                              "_entity_id": "e1e14d09-d8c5-4247-ab41-dfc1f90cd08d",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$809bbddf-572e-447c-b96d-14ba58e92b2e",
+              "Comment": "После первого перезапуска - диалог в начале.",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+                    "name": "$EqualTo$dfe25322929340299a3b6e6a8dc06a52",
+                    "Not": false,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$fd8eaa534a42476ca1fbb54a8b89ed41",
+                      "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                    },
+                    "MinValue": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$085bd4fc7647496593e4554411f942f7",
+                      "Value": 1
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  },
+                  {
+                    "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+                    "name": "$EqualTo$c9981424-762a-4794-a3a6-e8f87f767814",
+                    "Not": false,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$70871f54-ab01-4e93-bb15-9699827fa33c",
+                      "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                    },
+                    "MinValue": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$dc8d61cb-42d4-4ec7-9ea7-fd9cfc93b6a4",
+                      "Value": 2
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+                    "name": "$StartDialog$c13bd719-db1d-42f4-b211-034e323b465f",
+                    "DialogueOwner": null,
+                    "m_Dialogue": "!bp_c42f04d1b34646918106f5210796d422",
+                    "DialogEvaluator": null,
+                    "SpeakerName": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "28f3698ba62041e09a5abcbe59a14725, MakeAutoSave",
+                    "name": "$MakeAutoSave$c50ae89bdd884bfeb7349f4e2307d472",
+                    "SaveForImport": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$cb5905f5-67fe-46e1-bf69-01e59c9aeca2",
+              "Comment": "Начиная с пятого лупа - визуальные гличи",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                    "name": "$GreaterThan$7d1bf912f5e14452a8ccacf59459d2b9",
+                    "Not": false,
+                    "OrEqualTo": true,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$9851037a0e6649069e7df3e0da29544d",
+                      "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                    },
+                    "MinValue": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$f9ac8afcc32e4bb8a758557850cdba58",
+                      "Value": 6
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                    "name": "$ControllableActionSetActive$55bd5e5f-e85d-4178-9c62-97ab5ef6847c",
+                    "Active": false,
+                    "IdOfObject": {
+                      "EntityNameInEditor": "Obj1DebrisBefore",
+                      "_entity_id": "9d643417-20d3-46d4-840b-c3e3f11825ba",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                    }
+                  },
+                  {
+                    "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                    "name": "$ControllableActionSetActive$1988c226-49ae-4b1b-ba85-57bbee7ae56d",
+                    "Active": true,
+                    "IdOfObject": {
+                      "EntityNameInEditor": "Obj1DebrisAfter",
+                      "_entity_id": "ba0025f1-8482-41c8-93fd-aca7edeb2533",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                    }
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$1c730500-e801-4d1b-9b77-c1eb88af1cbf",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$45c9ec5a-4fee-4b4b-87c8-93d22531455e",
+                      "MapObject": {
+                        "EntityNameInEditor": "DL_EnvironmentAnomalies_Debris",
+                        "_entity_id": "19ac03a7-c8da-41a3-90d7-ddbad293447d",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                    "name": "$RandomAction$4e6b80e366804d74923f60fa63746be7",
+                    "Actions": [
+                      {
+                        "Weight": 1,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$096afce0-cc98-4e69-acdc-f25874bf4205",
+                              "Active": false,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj1LampBefore",
+                                "_entity_id": "ccc6b85e-e1a2-415f-976d-0d08dcf8fbcc",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$bc6c6fe9-9685-49e5-9700-437965207ba7",
+                              "Active": true,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj1LampAfter",
+                                "_entity_id": "0ea88841-2c9f-471e-b2af-4ede384fd1cf",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                              "name": "$HideMapObject$7d486829a0584f5b9ca1d5327a39d89c",
+                              "MapObject": {
+                                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                "name": "$MapObjectFromScene$23982d0b1ea2477784ef999a7ddd901a",
+                                "MapObject": {
+                                  "EntityNameInEditor": "DL_EnvironmentAnomalies_Lamp01",
+                                  "_entity_id": "80717cc3-59d6-42ac-8c93-63c0260091f3",
+                                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                }
+                              },
+                              "Unhide": true
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Weight": 1,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$82eaeb21-45f1-4b65-9f95-a34ea5bd1112",
+                              "Active": false,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj2ShrineBefore",
+                                "_entity_id": "8f9e2438-bcfc-46e8-8838-2b8868ce28e6",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$099077aa-b290-4011-abbb-54d86cd58464",
+                              "Active": true,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj2ShrineAfter",
+                                "_entity_id": "e1eac576-86b0-46a6-8e01-5bbd8bf0c4ca",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                              "name": "$HideMapObject$ad24106d-7bf2-4cee-8679-8f7b8016cb19",
+                              "MapObject": {
+                                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                "name": "$MapObjectFromScene$c006c3c0-a384-44c2-bee9-4c8c3e19dfe2",
+                                "MapObject": {
+                                  "EntityNameInEditor": "DL_EnvironmentAnomalies_Shrine",
+                                  "_entity_id": "d9c2c1da-db35-46b0-921f-efbd791e49ac",
+                                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                }
+                              },
+                              "Unhide": true
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                    "name": "$RandomAction$4ff2d538-9c55-4ca7-a27b-32c847f1b00d",
+                    "Actions": [
+                      {
+                        "Weight": 1,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                              "name": "$HideMapObject$de407b5e-8929-44e3-8bbd-0ca969cf62af",
+                              "MapObject": {
+                                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                "name": "$MapObjectFromScene$f760c318-e08f-4541-a5de-b0f6240a6bce",
+                                "MapObject": {
+                                  "EntityNameInEditor": "DL_EnvironmentAnomalies_Flowerbed",
+                                  "_entity_id": "dc4fc770-383d-4e01-a3ae-6ca5fda90474",
+                                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                }
+                              },
+                              "Unhide": true
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$8b8882cd-1fed-4a5c-a005-225a84dec43c",
+                              "Active": false,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj1FlowerbedBefore",
+                                "_entity_id": "66ff21c1-046c-482a-abbc-3d56b688e072",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$a4f1fbbc-c5a9-48e9-ac1a-2394a0e3c2d0",
+                              "Active": true,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj1FlowerbedAfter",
+                                "_entity_id": "626683c4-1278-4595-81b0-7b4dfae2af16",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Weight": 1,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                              "name": "$HideMapObject$a43e801c-baf8-41e3-a04f-a6f67de0b0a6",
+                              "MapObject": {
+                                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                "name": "$MapObjectFromScene$ed017eaf-6845-4371-bedb-91d6e6122262",
+                                "MapObject": {
+                                  "EntityNameInEditor": "DL_EnvironmentAnomalies_Lamp02",
+                                  "_entity_id": "999a82f2-021b-40d4-b542-891963d31737",
+                                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                }
+                              },
+                              "Unhide": true
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$0f2b29fd-8432-4082-8a06-c98f64c33209",
+                              "Active": false,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj02LampBefore",
+                                "_entity_id": "31e1eb28-e3d6-45fe-8c3d-c7b22b3d8ab1",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            },
+                            {
+                              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                              "name": "$ControllableActionSetActive$e15fcb60-9201-473e-b3ee-f3ec55849a40",
+                              "Active": true,
+                              "IdOfObject": {
+                                "EntityNameInEditor": "Obj02LampAfter",
+                                "_entity_id": "a179ec7c-8bf6-49b2-946b-6db83b9f1558",
+                                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$b962b79d-843c-41ef-90c9-75aa6bbd4e05",
+              "Comment": "Начиная с 4го лупа \"копаем яму\". C 12 финал ямы.",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                    "name": "$GreaterThan$a7f006e4-5fe9-4fa6-ac67-cbdadf9e307e",
+                    "Not": false,
+                    "OrEqualTo": true,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$ad7ccd15-3715-4394-a99f-2b34e68355cd",
+                      "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                    },
+                    "MinValue": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$a7dcc6e9-ee06-4c53-8f4c-39a8a1f44a63",
+                      "Value": 9
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$f778010d702d4509828f71c62831d1ae",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$ef871287b35c4f688c44c2b929c2111a",
+                      "MapObject": {
+                        "EntityNameInEditor": "HoleStage3",
+                        "_entity_id": "6f22edf6-48f9-4f2f-8c4b-2cd7ce87d09a",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$933ed2de-d9da-449f-8111-58fc5362882b",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$e6c94ab4-e20b-4ce1-b0f9-ed8161a5d10d",
+                      "MapObject": {
+                        "EntityNameInEditor": "HoleStage0",
+                        "_entity_id": "e24f7c57-1d01-44a1-9ac6-721e48f5d329",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$9c29fa16-c82b-4a4b-979d-e75d3f75fa5e",
+                    "Comment": "с 8го предфинал ямы.",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                          "name": "$GreaterThan$2e312b35-4feb-426d-959f-586d77a5b48a",
+                          "Not": false,
+                          "OrEqualTo": true,
+                          "FloatValues": false,
+                          "Value": {
+                            "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                            "name": "$FlagValue$dad8cdcb-46a1-4347-9e7f-9469727687d6",
+                            "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                          },
+                          "MinValue": {
+                            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                            "name": "$IntConstant$e06746b2-f32a-4526-b16d-3df362040a96",
+                            "Value": 6
+                          },
+                          "FloatValue": null,
+                          "FloatMinValue": null
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$c458aa61-b147-4601-ba5d-89028635aa44",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$3c3d7197-d83a-4406-b6a5-d1d58d8e19a7",
+                            "MapObject": {
+                              "EntityNameInEditor": "HoleStage2",
+                              "_entity_id": "16456806-4dc7-41c8-b841-4ddc8e5af38b",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": true
+                        },
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$0fa0b5be-e975-4ef7-8e42-69f00956db56",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$aa834f7a-d175-4a7b-a9bc-3b2b9758826a",
+                            "MapObject": {
+                              "EntityNameInEditor": "HoleStage0",
+                              "_entity_id": "e24f7c57-1d01-44a1-9ac6-721e48f5d329",
+                              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                            }
+                          },
+                          "Unhide": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$40dbe532-1168-4de3-9965-a57dfe561509",
+                          "Comment": "с 4го начало ямы",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                                "name": "$GreaterThan$1449b6b4-b81a-4523-8b33-fd60698e369f",
+                                "Not": false,
+                                "OrEqualTo": true,
+                                "FloatValues": false,
+                                "Value": {
+                                  "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                                  "name": "$FlagValue$33bfb933-f944-4334-8414-122873afebc0",
+                                  "m_Flag": "!bp_fbc275939e7248229b94eb6c86d96cea"
+                                },
+                                "MinValue": {
+                                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                  "name": "$IntConstant$12263ee0-2e3d-46fd-b378-1843cf598bfc",
+                                  "Value": 3
+                                },
+                                "FloatValue": null,
+                                "FloatMinValue": null
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                "name": "$HideMapObject$50a82b38-310c-403d-ad1b-752e149ceb3c",
+                                "MapObject": {
+                                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                  "name": "$MapObjectFromScene$3d0cdc97-2286-4375-8725-6a39f911f75f",
+                                  "MapObject": {
+                                    "EntityNameInEditor": "HoleStage1",
+                                    "_entity_id": "17fb40d9-9cb0-44e0-a375-491575985f8b",
+                                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                  }
+                                },
+                                "Unhide": true
+                              },
+                              {
+                                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                                "name": "$HideMapObject$b61803a9-13bd-42ca-b638-5ec968f2fcbd",
+                                "MapObject": {
+                                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                                  "name": "$MapObjectFromScene$dce1f0a6-ee59-4ce2-989d-c2d4ef7fd409",
+                                  "MapObject": {
+                                    "EntityNameInEditor": "HoleStage0",
+                                    "_entity_id": "e24f7c57-1d01-44a1-9ac6-721e48f5d329",
+                                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                                  }
+                                },
+                                "Unhide": false
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": []
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+              "name": "$RunActionHolder$b0f0087565d94f57b04677ec18e3f284",
+              "Comment": "",
+              "Holder": "!bp_9da77d3a8c8945a3a53eb8f7b22f8899"
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$382eedee-f24c-431b-8580-dc07c06b1e92",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$ddf7a7e5-d75a-4ebc-8b0f-5f3d7f8d6436",
+                "MapObject": {
+                  "EntityNameInEditor": "VIPList",
+                  "_entity_id": "82e73544-32ea-4f0c-a4be-b8e4f02dfeae",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+              "name": "$RunActionHolder$1b53fbd3b02d4db08a3caf395d3ed99b",
+              "Comment": "Контроллер лута в лупе (чтобы нельзя было взять дважды)",
+              "Holder": "!bp_200ee2af70044f3ba1fc99498268fe89"
+            },
+            {
+              "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+              "name": "$RunActionHolder$ea0605bb-b0f3-4580-82fa-adabc3039535",
+              "Comment": "Контроллер зональных скилчеков в лупе (чтобы нельзя было дважды экспу получить)",
+              "Holder": "!bp_90e78706b15a44d7ad2f43c05dd616ce"
+            },
+            {
+              "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+              "name": "$PartyUnits$2ed63f6f-1d58-45b4-9b85-eff42427f018",
+              "m_UnitsList": "Everyone",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "d09a01fc2701473183eda655aace4e9f, ContextActionAdapter",
+                    "name": "$ContextActionAdapter$4aad704a-8b82-48dc-94ff-f9a49feb8970",
+                    "Caster": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$bed5b100-3082-4850-b537-ff8ee77f05f4"
+                    },
+                    "TargetEntity": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$67b228b2-9693-4446-91a1-24f2ff74a634"
+                    },
+                    "TargetPosition": null,
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "fc279f2920ce411bbc3ad0c56f2cdcbf, ContextActionHealTraumas",
+                          "name": "$ContextActionHealTraumas$3da8b1d2-27cd-4d7d-a687-4a1459ad4f71",
+                          "Stacks": 0
+                        },
+                        {
+                          "$type": "f715d518d45e412f9dbf074e4d78c97d, ContextActionHealWounds",
+                          "name": "$ContextActionHealWounds$91aa66bf-5a3c-4170-ac4e-02726993040c",
+                          "AllowOldWounds": true,
+                          "Stacks": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$b3060152-9f9b-4ad8-b81e-890a71151fa8",
+                          "m_Buff": "!bp_8f4a66a1c9674e2b9016f79cc73f58a6",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        },
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$5fb86a0b-75cc-4e96-8199-5ffeddd61c6a",
+                          "m_Buff": "!bp_b626505e8c944ca3ab68e4008fedce89",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        },
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$7f27655a-67d4-4655-96f5-a46222149aad",
+                          "m_Buff": "!bp_bd0b478bdb014d4c9d5b6af8ac877283",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        },
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$1dcad181-1184-419c-83e2-cf4125aa1c95",
+                          "m_Buff": "!bp_a35fc6d0861348b69a8d0f03c56678dc",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        },
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$0d08c8b9-ffcc-402e-9dd9-925a11ae1925",
+                          "m_Buff": "!bp_f1274a3f7e3d4c89ba319de86f2f3e99",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+                    "name": "$RemoveFact$aed492a1-ba1a-4797-ac01-92881f2b8a5b",
+                    "Unit": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$6262c51a-dd19-41ed-a8cc-61bd8914e2bf"
+                    },
+                    "m_Fact": "!bp_781913c543fe4a63ba54949f8c990ef5"
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$0af17862-645a-40ee-bf0e-02a3388e7a09",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$1ae51226-d88b-4812-9cf4-dc27af781847",
+                "MapObject": {
+                  "EntityNameInEditor": "TableHolo",
+                  "_entity_id": "0b4166b1-efcb-4748-bcb3-39f85e89a21b",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_e84c765e30f74fe7891bf49813be9922",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+          "name": "$FlagInRange$7132c066eb5c4844a1c450ee3fd7de24",
+          "Not": false,
+          "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+          "MinValue": 0,
+          "MaxValue": 4
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

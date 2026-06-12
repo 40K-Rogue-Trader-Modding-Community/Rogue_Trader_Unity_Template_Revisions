@@ -1,0 +1,273 @@
+{
+  "AssetId": "5f6a005576894288bbd068db9dcc7224",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "SergeyTimoshkin",
+    "Comment": "",
+    "FirstCue": {
+      "Cues": [
+        "!bp_ec9eca3392844b64b6ba1bef4c353484",
+        "!bp_5b3e358afb1a49aea3c202befca57f14"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": [
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$c56258f6cd7142a5a5d211a9c0e2fbd2",
+          "m_State": {
+            "Value": "Story",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$8d6e8c3cc0714f9d96802864a550258d",
+          "m_State": {
+            "Value": "ImperiumOfMen",
+            "Group": "MusicStoryType"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        }
+      ]
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$84bc4995-acd0-4d4f-8ab3-6cbeaf40e520",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$83027332-3e13-49fd-b234-5a7bc05844b6",
+            "MapObject": {
+              "EntityNameInEditor": "AreaExit",
+              "_entity_id": "0f51abdd-e8a5-4289-aa43-b718cf08aac2",
+              "SceneAssetGuid": "24febe2e16780a14e82c6f7cf43cb202"
+            }
+          },
+          "Unhide": true
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$60db8e7bb0e94b9f9d5464ec40c43e65",
+          "m_Cutscene": "!bp_707a4154fb244666b6e0f122f08f2a89",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$9a2bcfbe-6d16-4762-9b79-62c111c5e749",
+          "Etude": "!bp_a0bf52ab74144d179a04d2ff74fece22",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": true
+        },
+        {
+          "$type": "8efa69193b5243b388e9ee4f6e8cc41e, GainColonyResources",
+          "name": "$GainColonyResources$5647bed5-d9c5-44e2-a846-cee9b26c643f",
+          "Resources": [
+            {
+              "Resource": "!bp_7d5cb1d2264a40d8bff8350a8a09a464",
+              "Count": 1
+            }
+          ]
+        },
+        {
+          "$type": "94692eddaeccedc4b8ad9b0bc6304303, CreateColony",
+          "name": "$CreateColony$7fd952bd-35ce-4a44-8aaf-37e002114959",
+          "Planet": "!bp_b6e6abca936f485fa6d91ea7eef56820",
+          "ApplyTraits": [],
+          "ChangeInitialContentment": false,
+          "InitialContentmentValue": 0,
+          "ChangeInitialSecurity": false,
+          "InitialSecurityValue": 0,
+          "ChangeInitialEfficiency": false,
+          "InitialEfficiencyValue": 0
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$e382bef1e9bb48e99706a5bc05496d83",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$ea2a4092bc5c4d20bea2134bb42f1813",
+            "MapObject": {
+              "EntityNameInEditor": "Lian_Final",
+              "_entity_id": "518d1736-8888-4825-8c28-454b20ec1c1a",
+              "SceneAssetGuid": "24febe2e16780a14e82c6f7cf43cb202"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$c0f8d13a466e4aa99836e8afaf5ec799",
+          "Comment": "скрываем дунавски если архмилитант",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f7a277d2ec16465b942884720f3c45ac",
+                "Not": false,
+                "m_Etude": "!bp_867946d22e4a4627aa69f3c5fb8912bd",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$73c305b6ec79430fb35d00f3b3de8781",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$35df5139beed4c028536001e78431c19",
+                  "Spawner": {
+                    "EntityNameInEditor": "NPC_VIP_Dunavski (2)",
+                    "_entity_id": "80394ae6-dad3-4b66-a8fc-f80918b6335c",
+                    "SceneAssetGuid": "24febe2e16780a14e82c6f7cf43cb202"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$5c7dc069-0351-40a5-9559-03dacf08e7cf",
+          "Comment": "скрываем дунавски если архмилитант",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$a8a070da-6b9b-4105-8478-8e941d67dff4",
+                "Not": false,
+                "m_Etude": "!bp_a6c7d001822a423da335c7a1e7ae5bf9",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$deb2f796-e4ac-40d9-881c-cf912fada43f",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$39247021-ef32-4d62-95fc-9d6258845d58",
+                  "Spawner": {
+                    "EntityNameInEditor": "NPC_VIP_Batoshski (1)",
+                    "_entity_id": "88390edf-a7d4-44e3-8d64-40401af5b34f",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_Mechanics.unity"
+                  }
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$c6f292b2-2715-4571-bedb-01996d80e2a6",
+          "m_State": {
+            "Value": "Setting",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": false,
+          "m_IgnoreCombatExit": false
+        },
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$5a91c57795bb412e8ef4499ca376b69f",
+          "Etude": "!bp_bcd3981501c44315a8e3fb4c7bde109c",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$944785df-49ec-4878-836d-d5ff0bbf4d9f",
+          "Target": {
+            "$type": "69a4e9c15933491a9c28ef40e0800630, FamiliarEvaluator",
+            "name": "$FamiliarEvaluator$105e826f-37c1-4634-bf82-a27c33e90830",
+            "LeaderEvaluator": {
+              "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+              "name": "$CompanionInParty$7a687f92-f687-407e-a679-8f5ef27f1478",
+              "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+              "IncludeActive": true,
+              "IncludeDetached": false,
+              "IncludeRemote": false,
+              "IncludeExCompanions": false,
+              "IncludeDead": false,
+              "Index": 0
+            }
+          },
+          "Unhide": true,
+          "Fade": false
+        },
+        {
+          "$type": "986015feb8a90774aba3ad6838fadd4f, ActionAchievementIncrementCounter",
+          "name": "$ActionAchievementIncrementCounter$e76b3580-0b22-4d62-8c0c-948bc4870f19",
+          "m_Achievement": "!bp_a5f3045361454441b8f6a12f169bc768"
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": []
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "OverrideCRForSkillChecks": false,
+    "OverridenCR": 0,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

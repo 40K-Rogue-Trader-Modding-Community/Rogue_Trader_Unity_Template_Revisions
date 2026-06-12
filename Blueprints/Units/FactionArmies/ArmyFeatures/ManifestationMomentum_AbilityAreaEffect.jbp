@@ -18,30 +18,53 @@
         "UnitEnter": {
           "Actions": [
             {
-              "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
-              "name": "$WarhammerContextActionAddMomentum$1f39cd01-2715-4a54-8198-fb1a62670212",
-              "Multiplier": -1,
-              "Value": {
-                "ValueType": "ContextProperty",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3c2b937ac6915a068aa47dbeeaf5c27b",
+              "Comment": "has manifestation immunity?",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                    "name": "$ContextConditionHasBuff$ec4bb5e609d3546bac032095fcbcdc28",
+                    "Not": false,
+                    "m_Buff": "!bp_f5e96ec38a5d46da805aae4e2f6d185a"
+                  }
+                ]
               },
-              "ToPlayer": false,
-              "ToCaster": false,
-              "AdditionalCalculations": "None",
-              "Range": 0,
-              "AdditionalBonus": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "bd0e309dfe894411be45495422163e9c, WarhammerContextActionAddMomentum",
+                    "name": "$WarhammerContextActionAddMomentum$e4655bde-8ecc-4bcc-b4ed-2b5e70eb9614",
+                    "Multiplier": -1,
+                    "Value": {
+                      "ValueType": "ContextProperty",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ToPlayer": false,
+                    "ToCaster": false,
+                    "AdditionalCalculations": "None",
+                    "Range": 0,
+                    "AdditionalBonus": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
               }
             },
             {
@@ -51,15 +74,6 @@
               "BuffEndCondition": "TurnEndOrCombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -109,6 +123,7 @@
         }
       }
     ],
+    "Author": "ElenaMironova",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -138,9 +153,8 @@
     "PersistentAreaMaterialRemap": null,
     "IsStrategistAbility": false,
     "NeedsTooltip": false,
-    "Author": "ElenaMironova",
     "m_BlueprintBuffForTooltip": null,
-    "TacticsAreaEffectType": 0,
+    "TacticsAreaEffectType": "Rear",
     "m_Pattern": {
       "m_Type": "Circle",
       "m_Blueprint": null,
@@ -157,7 +171,7 @@
     },
     "ScrollCameraToAreaEffectWhenEnded": false,
     "m_FXSettings": null,
-    "m_AreaEffectGroups": null
+    "m_AreaEffectGroups": []
   },
   "Meta": {
     "ShadowDeleted": false

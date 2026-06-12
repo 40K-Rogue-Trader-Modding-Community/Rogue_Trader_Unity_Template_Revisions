@@ -16,19 +16,113 @@
     "Action": {
       "Actions": [
         {
-          "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
-          "name": "$SwitchFaction$8a037fc84b42565180e95c82b8b7253f",
-          "Target": {
-            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-            "name": "$UnitFromSpawner$8bc0bcdf106257aabdfcdff362d69e8d",
-            "Spawner": {
-              "EntityNameInEditor": "LD_Unit (1)",
-              "_entity_id": "e724bc4a-6efa-45c3-8744-261b61614872",
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$66faa45da3b040b598dd7be4b65d44ac",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "Pilot",
+              "_entity_id": "e1cc7026-3393-47ba-84be-606f455eb1a2",
               "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
             }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$10f99d22bde84ba9a10b68154553db10",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "RT_Guard_1",
+              "_entity_id": "4c28dd6e-fc5f-404e-a7f5-facd490bb2a4",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            },
+            {
+              "EntityNameInEditor": "RT_Guard_2",
+              "_entity_id": "5799c0a8-3c9c-4a57-b34d-cec85ae9d299",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": [
+              {
+                "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                "name": "$SwitchFaction$733432db097548fa877401ea9b98ef85",
+                "Target": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$9851908f1d4248e7b57a4173886e64b9"
+                },
+                "m_Faction": "!bp_419c5165bae99664b92252b7dcc0a2db",
+                "IncludeGroup": false
+              },
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$d0938250f9724105b1b89b328a708af3",
+                "m_Cutscene": "!bp_479a1699dd4b4c479618ca2dcb8ea545",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                        "name": "$SpawnedUnit$c79f6a7cd43844cd918a10df1bb8b7d3"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$1ab4df64-4c73-43d6-8fbf-9ede67cda871",
+          "Target": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$e24749fccd485df6a2c30b02ec4ae368"
           },
-          "m_Faction": "!bp_0f539babafb47fe4586b719d02aff7c4",
-          "IncludeGroup": true
+          "Unhide": true,
+          "Fade": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6042b5e93a994e89b3070cee7d8611ae",
+          "Comment": "Player has familiar",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$efe2f9740b494120b03da2dcd2c82f5b",
+                "Not": true,
+                "Target": {
+                  "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                  "name": "$PlayerFamiliarEvaluator$adda51835ca84472b414780f03bbe916"
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$6d9bcba9-9d33-4eb5-996f-80114fc5953f",
+                "Target": {
+                  "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                  "name": "$PlayerFamiliarEvaluator$cb5dc56f8e634556b429f2ad03329638"
+                },
+                "Unhide": false,
+                "Fade": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

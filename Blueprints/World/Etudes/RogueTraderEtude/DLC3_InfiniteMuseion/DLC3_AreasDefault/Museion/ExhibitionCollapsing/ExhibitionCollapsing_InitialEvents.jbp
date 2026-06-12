@@ -1,0 +1,545 @@
+{
+  "AssetId": "8a9fb9dbd4df40c2b693262e8ecfa208",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$4ad23173-9949-4ce7-8cc3-e02c1bd88a33",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Intro cutscene",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+              "name": "$DialogSeen$6dd8054bc19747b3a970a41fd95c8fb1",
+              "Not": true,
+              "m_Dialog": "!bp_6a3f2bcb64d34f41842b2b3678e32ca0"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$626ba8f1c0e64763ae112137e1e53cda",
+              "m_Cutscene": "!bp_ce2c2e03373b4587a07b68148ac31681",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+              "name": "$ControllableActionAnimatorSetState$8cd28e3b8f094888bf4e0533371f7c3b",
+              "Comment": "Elevator starts from lower position",
+              "State": 1,
+              "IdOfObject": {
+                "EntityNameInEditor": "NecronPlatformSeberianOnlyElevator (1)",
+                "_entity_id": "4b7d2105-bf1d-4694-bc9b-c6b41f828885",
+                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+              },
+              "TargetUnit": null
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$d184dc15-4319-496c-8d5f-e50c0d94fdd9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Survived NPCs spawn",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$dc7d1bf1c27343fb8202e5a2338f25ff",
+              "Comment": "Batoshski is archmilitant & survived",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$c8c027d765fe4a4f8e28d7cacfc4c875",
+                    "Not": false,
+                    "m_Etude": "!bp_a6c7d001822a423da335c7a1e7ae5bf9",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$aa95cc0e8c224753beb1c93d3b907732",
+                    "Not": true,
+                    "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$2bb93f4f-44d7-4784-aba1-a4c2ccf231e1",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "BatoshskiArchmilitant",
+                        "_entity_id": "f7af0b27-58f1-44b1-92b0-01ea8da04ffa",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$795f8c6d7c824b2699084d0e98717320",
+              "Comment": "Dunavski is archmilitant & survived",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$6f153b16-0eac-4e61-bc71-5549ed9031d3",
+                    "Not": false,
+                    "m_Etude": "!bp_867946d22e4a4627aa69f3c5fb8912bd",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$1fc1f457-941f-4f91-8243-f22943920d6c",
+                    "Not": true,
+                    "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$03edb1acd5714553a0172f63676f167d",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "DunavskiArchmilitant",
+                        "_entity_id": "a5848bf8-446e-4a8f-9088-9ccb07ec7fb8",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$4ae0de0e4b744ec893ef65d229563fe8",
+              "Comment": "More soldiers survived",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$9b735f8d9b5348ff83140b39d883e459",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_8fbc0c843ff44ee689e8dd1c8dcdcb00",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$07c512bc-602e-40c4-a5cb-504496e602ca",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "ZarkovSoldier (5)",
+                        "_entity_id": "00e481ab-dbb6-460d-a42b-9bfd5e1d0781",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      },
+                      {
+                        "EntityNameInEditor": "ZarkovSoldier (6)",
+                        "_entity_id": "7681576c-81ff-4ab8-bd94-34a8db6abbee",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      },
+                      {
+                        "EntityNameInEditor": "ZarkovSoldier (7)",
+                        "_entity_id": "2d8cf3c6-0398-4b01-b47a-f47c6d8489e5",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      },
+                      {
+                        "EntityNameInEditor": "ZarkovSoldier (8)",
+                        "_entity_id": "8b247894-6436-4f8e-a376-7df7f5b3c241",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$62a10d7a-3e52-48ac-9734-1049e5351ba6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Party sneaked in Museion",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+              "name": "$FlagInRange$7e0ce02cdee741708d50b0552adc4117",
+              "Not": false,
+              "m_Flag": "!bp_46afcc60f85e4c838e053fff40ec49b2",
+              "MinValue": 3,
+              "MaxValue": 10
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$0246d34a822d40c0ba457b1658f002cf",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$bb067320b64149048c112d57d647b594",
+                "MapObject": {
+                  "EntityNameInEditor": "TrapMechanics",
+                  "_entity_id": "2c6a97a4-11e7-4cc8-8b3d-df70cfa8bf60",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$367c7893-1daa-4f26-86da-705222c2bb51",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$4dcaddfab09b46349fc9ea350334b6f3",
+                "MapObject": {
+                  "EntityNameInEditor": "TrapMechanics",
+                  "_entity_id": "9c25bba2-9f5d-42d5-a5a9-f34fd39e8738",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$d350cf24-f727-4cc7-af1f-f7e0f31c8d2e",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$35fb31f8fe7e4ae79270cc752da4a21b",
+                "MapObject": {
+                  "EntityNameInEditor": "RemoteDeviceView",
+                  "_entity_id": "01f75574-89ed-4518-aa37-04952001cf31",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$7001268c-2b63-4c8b-a759-0228cd08eb99",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$7598935665ec48c696b61d78460fd8ef",
+                "MapObject": {
+                  "EntityNameInEditor": "TrapMechanics",
+                  "_entity_id": "61c3fe13-47d3-4ac3-b8cb-2a2a227cd45d",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$a22aa09e-46c9-4e4f-8c8c-185ccea3c0f7",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Other start actions",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+              "name": "$ControllableActionAnimatorSetState$a67a8883-cafe-41f4-85e2-6881151d9d36",
+              "Comment": "Elevator starts from lower position",
+              "State": 1,
+              "IdOfObject": {
+                "EntityNameInEditor": "NecronPlatformSeberianOnlyElevator (2)",
+                "_entity_id": "1e87ee57-1a73-4736-8d8c-b4b08b2ebdda",
+                "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+              },
+              "TargetUnit": null
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c77ec3e05d904c8aad361bc6b3a398a2",
+              "Comment": "Blood Angel was rescued",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$a522ffbe-168a-447d-9229-76b454651414",
+                    "Not": true,
+                    "m_Etude": "!bp_b085792aa8a745e6bcf3995605c63024",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$dd26e491d5fe4fd390a88fce4dbb3175",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$21ddab1e64ad45fdbef405edac307d2b",
+                      "MapObject": {
+                        "EntityNameInEditor": "HardlightedBloodAngel",
+                        "_entity_id": "1131c99e-67f0-4d52-98cd-01e81ffd1f71",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$cac826e7-51e3-4c56-a82e-e5ca857dc8e2",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$d266eecb6f9e4113a5c0dfa517f501a6",
+                      "MapObject": {
+                        "EntityNameInEditor": "HardlightedSpacemarineInfo",
+                        "_entity_id": "92958d22-aa1d-43b7-b5b7-99c3f93cfb2d",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "857993ffeba11124699997a531336700, RecruitInactive",
+              "name": "$RecruitInactive$399d25fc-81e8-42f3-a5ff-4a05fefaca9b",
+              "m_CompanionBlueprint": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+              "OnRecruit": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$45af62ff5ca642f2bb504644fd47cbdc",
+              "Comment": "Only on upper floor",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$814f3ebf4a904e9c8af222aa0afd1266",
+                    "Not": false,
+                    "m_Etude": "!bp_62c69b12f7ae4c0791ff4be080a153fd",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$f7c61150-9e60-4efa-805a-ea4e134016c2",
+                    "m_Cutscene": "!bp_ce29ad67a87e4f3aaa4c3123b09e5643",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$0f4b7e857ac7469eb4baa8440e63db93",
+              "m_Cutscene": "!bp_42439a11251d49f3b13c32bf16e1f485",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": [
+                  {
+                    "Name": "Unit",
+                    "Type": "Unit",
+                    "Evaluator": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$676368f7054146bfbe1b1af93bcfbd34",
+                      "Spawner": {
+                        "EntityNameInEditor": "Swarm_Cultist (1)",
+                        "_entity_id": "baecafb6-f8cf-4b6b-9011-f502e4d1352d",
+                        "SceneAssetGuid": "23da30a69bb074f48a5592c3a8a50e63"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$fb23217139934171bccf9ca121322099",
+              "m_Cutscene": "!bp_920385a700074ed1ab30a84b6d1da994",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$7c3564c4bfee4090aae42a66316e71ec",
+              "m_Cutscene": "!bp_495e122476b348519a08f068b6a67d04",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+              "name": "$RemoveFact$8f0b2873a49b46529ef2501d5748cc6a",
+              "Unit": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$621a64d3b37b444b96dfa2028bd57f9a",
+                "Spawner": {
+                  "EntityNameInEditor": "LariaVoigtvir",
+                  "_entity_id": "3e4ad6c9-53b6-4a19-8fe8-19a0947335b6",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "m_Fact": "!bp_d84150bfd0d64a7e855038b277757bd6"
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_eff66320e8094ff298f01a35f4835386",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

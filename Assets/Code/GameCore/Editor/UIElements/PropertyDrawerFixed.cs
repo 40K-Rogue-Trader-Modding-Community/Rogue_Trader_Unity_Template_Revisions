@@ -10,7 +10,7 @@ namespace Kingmaker.Editor.UIElements
     /// Using PropertyField from inside this drawer will not cause stack overflow, as
     /// opposed to normal PropertyDrawer.
     /// </summary>
-    public class PropertyDrawerFixed: GUIDrawer
+    public abstract class PropertyDrawerFixed: GUIDrawer
     {
         public FieldInfo Field { get; set; }
         public virtual VisualElement CreatePropertyGUI(SerializedProperty property)

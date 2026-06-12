@@ -10,17 +10,18 @@ namespace Kingmaker.Editor.AreaStatesWindow
 {
     public class SceneNameElement : VisualElement
     {
-        private const string Mechanics = "Mechanics";
-        private const string Static = "Static_ForArt";
+        public const string Mechanics = "Mechanics";
+        public const string Static = "Static";
         private const string Light = "Light";
+        private const string Audio = "Audio";
 
         private static readonly string[] SceneTraits =
         {
             "Timeline",
             Mechanics,
-            "Audio",
             Static,
             Light,
+            Audio,
         };
 
         private readonly string _areaName;
@@ -37,18 +38,23 @@ namespace Kingmaker.Editor.AreaStatesWindow
             get
             {
                 string sceneName = SceneName ?? throw new ArgumentNullException(nameof(SceneName));
+                sceneName = sceneName[..^".unity".Length];
                 string templatePath;
-                if (sceneName.Contains($"_{Mechanics}"))
+                if (sceneName.EndsWith($"_{Mechanics}"))
                 {
                     templatePath = BlueprintAreaCreator.SceneTemplates.AddedMechanicsPath;
                 }
-                else if (sceneName.Contains($"_{Static}"))
+                else if (sceneName.EndsWith($"_{Static}"))
                 {
                     templatePath = BlueprintAreaCreator.SceneTemplates.StaticPath;
                 }
-                else if (sceneName.Contains($"_{Light}"))
+                else if (sceneName.EndsWith($"_{Light}"))
                 {
                     templatePath = BlueprintAreaCreator.SceneTemplates.LightPath;
+                }
+                else if (sceneName.EndsWith($"_{Audio}"))
+                {
+                    templatePath = BlueprintAreaCreator.SceneTemplates.AudioPath;
                 }
                 else
                 {
@@ -69,6 +75,7 @@ namespace Kingmaker.Editor.AreaStatesWindow
                 {
                     flexDirection = FlexDirection.Column,
                     flexGrow = 0,
+                    minWidth = 512,
                 },
             };
 
@@ -130,6 +137,10 @@ namespace Kingmaker.Editor.AreaStatesWindow
             string fullName = string.Join("_", new[]{_areaName, sceneName, traits}
                 .Where(part => !string.IsNullOrEmpty(part)));
 
+            // No dots in scene name are allowed as unity strips anything
+            // right from the first dot when building bundles
+            fullName = fullName.Replace('.', '_');
+            
             _fullSceneName.SetValueWithoutNotify($"{fullName}.unity");
         }
 

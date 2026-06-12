@@ -71,6 +71,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -92,6 +93,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -105,6 +107,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -126,6 +129,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -139,6 +143,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -160,6 +165,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -173,6 +179,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -194,6 +201,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -207,6 +215,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -228,9 +237,105 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
+      },
+      {
+        "$type": "b69ed1bb15454c68886db5c9cee93703, BuffApplyTrigger",
+        "name": "$BuffApplyTrigger$95e8b3ef-7c9e-46bc-aee1-ceb6e8bc4020",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "ActionForApply": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$0a55e53a73f24dd4bf3833574f09ccc3",
+              "Comment": "Проверка на аугмент Идиры",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$fd86b455e7464b6eade336914b4cfae2",
+                    "Not": false,
+                    "m_Fact": "!bp_756503152b154609a675f2d786bcdea0"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$c18b877d053949fa966f0bb2f924b6d2",
+                    "m_Buff": "!bp_52dd645abf5b43f2a93a325f402fb183",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": false,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "ActionForRankAdd": {
+          "Actions": []
+        },
+        "ActionForRankReduce": {
+          "Actions": []
+        },
+        "ActionForBuffRemove": {
+          "Actions": []
+        },
+        "m_ApplyChildBuff": null,
+        "ForOneBuff": true,
+        "m_Buff": "!bp_423e91ce057d4e2489043ded7306f3e2",
+        "ForMultipleBuffs": false,
+        "m_Buffs": [],
+        "ForAbilityGroup": false,
+        "m_AbilityGroup": null,
+        "AnyTarget": false,
+        "OnlyIfOwnerIsCaster": false,
+        "OnlyPsychicPowerBuffs": false,
+        "OnlyIfBuffFromCaster": false
       }
     ],
     "Author": "GeorgiiDoronin",
@@ -285,7 +390,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

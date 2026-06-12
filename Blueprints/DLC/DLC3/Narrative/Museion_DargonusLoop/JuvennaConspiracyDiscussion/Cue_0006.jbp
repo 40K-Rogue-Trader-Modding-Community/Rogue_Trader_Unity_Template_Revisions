@@ -1,0 +1,162 @@
+{
+  "AssetId": "d97d59d5522e4aa987063e059dd10ac1",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Стартуем Obj3_ClosedGates",
+    "ParentAsset": "a8081da7af454ebe913c2f6203e54ece",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "b02e019d-0c00-4ff4-a2d1-95f54d10e857",
+      "m_OwnerString": "d97d59d5522e4aa987063e059dd10ac1",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\JuvennaConspiracyDiscussion\\Cue_0006_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$84285c7c-e9b4-48aa-9c9a-5b3fe13c0b14",
+          "Comment": "Если штаб не разрушен - даем возможность взломать когитатор",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$78711177-9ba9-41da-8e72-178b566dee3a",
+                "Not": true,
+                "m_Etude": "!bp_338d24deca6a4056b45ca44beb366bbd",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$e834edd1-d293-459d-b5d9-eb4e01088802",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$470150af-bfd7-46b6-a4e2-711d83f5f7df",
+                  "MapObject": {
+                    "EntityNameInEditor": "SearchMasterCodeImposible",
+                    "_entity_id": "c64a5080-db38-4f19-afb2-7c37bb6bfb65",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$a3d92b66-2e8c-4178-a94f-d37bc6276fb6",
+          "Comment": "Если нет квеста JuvenaSide - идем по JuvenaConspiracy",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$e2bc6e73-b721-43c3-bee7-56282b7e2f2b",
+                "Not": false,
+                "m_Quest": "!bp_415b18077e89479ba2fee70874c25d61",
+                "State": "None"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$bb1c2891-e7dd-4023-8b29-f57f60b03e78",
+                "m_Objective": "!bp_ae915ac4bdfd4f94867432d2ac47a278"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_e69dae9ce8fd49f9a01d71fd1cf3a239"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

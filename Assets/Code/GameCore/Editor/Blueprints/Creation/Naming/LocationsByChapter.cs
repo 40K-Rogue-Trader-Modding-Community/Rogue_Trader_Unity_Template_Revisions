@@ -27,7 +27,9 @@ namespace Kingmaker.Editor.Blueprints.Creation.Naming
 			var locations = Items?
 				.FirstOrDefault(item => item.Chapter != null && item.Chapter.name == chapterName)?
 				.Locations?.Where(l => l != null);
-			return locations?.Select(location => location.name);
+			return locations?
+				.Select(location => location.name)
+				.OrderBy(n => n);
 		}
 	}
 }

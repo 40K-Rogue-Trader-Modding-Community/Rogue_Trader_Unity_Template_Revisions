@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Kingmaker.Utility.DotNetExtensions;
 using Owlcat.Runtime.Core.Utility;
 using System.Reflection;
+using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
@@ -50,12 +51,14 @@ namespace Kingmaker.Editor.Utility
 
 		public static Type GetType(SerializedProperty property)
 		{
+            var type = FieldFromProperty.GetFieldInfo(property)?.FieldType;
+            if (type != null)
+                return type;
+            
 			string typeName = property.type;
 			var match = PPtrRegex.Match(typeName);
 			if (match.Success)
-			{
 				typeName = match.Groups[1].Value;
-			}
 
 			return GetType(typeName);
 		}

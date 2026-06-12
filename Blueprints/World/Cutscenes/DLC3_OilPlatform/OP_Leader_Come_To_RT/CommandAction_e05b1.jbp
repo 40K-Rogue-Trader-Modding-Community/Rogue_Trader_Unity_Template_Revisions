@@ -1,0 +1,152 @@
+{
+  "AssetId": "456223577e54433fbd520d64372b39aa",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$797ad3ced8084cccb879abb0c4520974",
+          "Comment": "RT on xenarites side",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$a9fa453d39ec4d64a0fb80b58e55d510",
+                "Not": false,
+                "m_Etude": "!bp_bb1380f6a2ad4340bb40ed006eee499f",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$8f45af9f-836f-41a6-9393-065e92d6ac92",
+                "m_Cutscene": "!bp_69775668c73c47b1b6942b8efdc5d862",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$419ffc1d8f394dc2a4b68d4dffdac727",
+                        "Spawner": {
+                          "EntityNameInEditor": "Front_Xenarite_Leader",
+                          "_entity_id": "f1526f7f-0587-45f5-93f9-fca433b23483",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$335f0828-f95b-400f-af4e-b7de7d3cdaa7",
+                "m_Cutscene": "!bp_69775668c73c47b1b6942b8efdc5d862",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$c041b3006db74518ab38106ab0b1b3c3",
+                        "Spawner": {
+                          "EntityNameInEditor": "DogmaticLeader",
+                          "_entity_id": "99ec6f3a-3ae4-4c2b-ad16-6eda5eacd4a7",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$97b08165f59d4f69b03935422f394535",
+          "Comment": "Head worker is alive",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "61d393ff6aff61647a785e561f98ffc5, UnitFromSpawnerIsDead",
+                "name": "$UnitFromSpawnerIsDead$ca8c74e1-5b4d-4217-9260-e5e696b364fe",
+                "Not": true,
+                "Target": {
+                  "EntityNameInEditor": "HeadWorker",
+                  "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$5d67b883-bfaa-439b-85bc-05dd31774cb8",
+                "m_Cutscene": "!bp_69775668c73c47b1b6942b8efdc5d862",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$676d2a89-992a-43ee-85e5-36045b35e901",
+                        "Spawner": {
+                          "EntityNameInEditor": "HeadWorker",
+                          "_entity_id": "eb042e4a-e3df-4e41-8d5b-71b9e895bc6d",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

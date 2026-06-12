@@ -14,13 +14,33 @@ namespace Kingmaker.Editor.Utility
 		public override VisualElement CreatePropertyGUI(SerializedProperty property)
 		{
 			var result = new Toggle();
+			if (EditorPreferences.Instance.BigCheckbox)
+				result.Q("unity-checkmark")?.AddToClassList("owlcat-toggle");
+            
 			result.BindProperty(property);
-			return result.WrapToOwlcatProperty(property);
+			var wrapped = result.WrapToOwlcatProperty(property);
+			wrapped.HeaderContainer.style.backgroundRepeat = new StyleBackgroundRepeat
+				(new BackgroundRepeat(Repeat.Repeat, Repeat.NoRepeat));
+
+			wrapped.HeaderContainer.style.backgroundSize = new StyleBackgroundSize(
+				new BackgroundSize(
+					new Length(24, LengthUnit.Pixel), 
+					new Length(24, LengthUnit.Pixel)));
+			
+			wrapped.HeaderContainer.AddToClassList("owlcat-background-dot");
+			
+			return wrapped;
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
-			return EditorPreferences.Instance.BigCheckbox ? OwlcatEditorStyles.Instance.BigCheckboxHeight : EditorGUIUtility.singleLineHeight;
+			return GetHeight();
+		}
+
+		public static float GetHeight()
+		{
+			return EditorPreferences.Instance.BigCheckbox ? 
+				OwlcatEditorStyles.Instance.BigCheckboxHeight : EditorGUIUtility.singleLineHeight;
 		}
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

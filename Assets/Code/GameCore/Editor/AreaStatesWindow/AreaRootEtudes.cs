@@ -125,7 +125,11 @@ namespace Kingmaker.Editor.AreaStatesWindow
                 newAreaEtudes.Add(areaEtude);
             }
 
-            AreaEtudes = newAreaEtudes.ToArray();
+            // Replace only areas that is present in new collection
+            AreaEtudes = AreaEtudes
+                .Where(ae => !newAreaEtudes.Any(nae => ae.Area?.Guid == nae.Area?.Guid))
+                .Concat(newAreaEtudes)
+                .ToArray();
 
             UpdateNames();
         }

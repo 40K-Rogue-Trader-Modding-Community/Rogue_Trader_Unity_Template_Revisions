@@ -6,7 +6,14 @@ using Kingmaker.Editor.UIElements.Custom.Prototypable;
 using Kingmaker.Editor.Utility;
 using System;
 using System.Collections.Generic;
+using Code.Editor.Utility;
+using Kingmaker.Blueprints.Base;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Editor.Blueprints.Elements;
+using Kingmaker.Editor.UIElements.Custom.Elements;
+using Kingmaker.Editor.UIElements.Custom.Properties;
+using Kingmaker.Editor.UIElements.Custom.PropertyComponents;
+using Kingmaker.Utility.Attributes;
 using Kingmaker.Utility.DotNetExtensions;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -18,16 +25,17 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 {
 	public class OwlcatProperty : OwlcatPropertyLayout
 	{
+		public static OwlcatProperty Focused;
+		
 		[CanBeNull]
 		public Attribute[] Attributes { get; set; }
 
-		// hack for highlighting of custom/IMGUI properties 
-		private bool m_FocusedDirectly;
-
 		private StyleColor m_PrevBackgroundColor;
 
-		private readonly OverridablePropertyControl m_OverridableControl;
+		public readonly OverridablePropertyControl OverridableControl;
 
+		public OwlcatDescriptionButton DescriptionButton { get; private set; }
+		
 		public RobustSerializedProperty RobustProperty { get; }
 
 		public SerializedProperty Property
@@ -39,8 +47,18 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		public override bool canGrabFocus
 			=> true;
 
-		public bool IsOverridden
-			=> m_OverridableControl?.IsOverridden ?? false;
+		public override bool IsExpanded
+		{
+			get => Property?.isExpanded ?? false;
+			set
+			{
+                if (Property != null)
+                {
+                    Property.isExpanded = value;
+                    OnIsExpandedChangedInternal();
+                }
+            }
+		}
 
 		[CanBeNull]
 		private IOwlcatPropertyTitleProvider m_TitleProvider;
@@ -50,8 +68,11 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 
 		private readonly Dictionary<Type, IOwlcatPropertyComponent> m_Components 
 			= new Dictionary<Type, IOwlcatPropertyComponent>();
+		
+		protected bool m_ContentCreated;
+		protected TooltipManipulator m_TooltipManipulator;
 
-		protected OwlcatProperty(SerializedProperty property, Layout layout, bool expandable, bool overridable) : base(layout, expandable)
+		public OwlcatProperty(SerializedProperty property, Layout layout = Layout.Horizontal) : base(layout)
 		{
 			name = property.propertyPath;
 			focusable = true;
@@ -60,66 +81,67 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 
 			AddToClassList("owlcat-property");
 
-			var info = property.GetFieldInfo();
-			var nonOverridableField = info?.HasAttribute<NonOverridableAttribute>() ?? false;
-			if (overridable && !nonOverridableField &&
-				(property.serializedObject.targetObject is PrototypeableObjectBase
-                 || property.serializedObject.targetObject is BlueprintEditorWrapper
-                 || property.serializedObject.targetObject is BlueprintComponentEditorWrapper))
-			{
-                //PFLog.Default.Log($"Control for {property.propertyPath}: overridable");
-				m_OverridableControl = new OverridablePropertyControl(this);
-				OverridableControlContainer.Add(m_OverridableControl);
-			}
+			OverridableControl = new OverridablePropertyControl(this);
+			OverridableControlContainer.Add(OverridableControl);
 
 			RegisterCallback<FocusEvent>(OnFocus);
-			RegisterCallback<BlurEvent>(OnBlur);
-			LoadSavedExpandedState();
-		}
-
-		protected virtual void LoadSavedExpandedState()
-		{
-			IsExpanded = GetSavedExpandedState();
-		}
-
-		public OwlcatProperty(SerializedProperty property, Layout layout) : this(property, layout, false, true)
-		{
-		}
-
-		public OwlcatProperty(SerializedProperty property) : this(property, Layout.Horizontal, false, true)
-		{
+			RegisterCallback<KeyDownEvent>(x => TryHandle(x));
+            
+			this.TrackPropertyValue(property, OnPropertyChanged);
+            
+			if (property.HasNotNullAttribute())
+				AddComponent(new NotNullComponent());
+			if (property.HasObsoleteAttribute(out string reason))
+				AddComponent(new ObsoleteComponent(reason));
+			if (property.HasReadOnlyAttribute())
+				AddComponent(new ReadOnlyComponent());
+            
+            var onValueChangedAttribute = property.GetFieldInfo()?.GetAttribute<OnValueChangedAttribute>();
+ 	        if (onValueChangedAttribute != null)
+ 	            AddComponent(new OnPropertyChangedComponent(this, onValueChangedAttribute));
+            
+            if (property.TryGetExpandAttribute(out var inspectorExpanded))
+            {
+                if (inspectorExpanded.WithChildren)
+                    property.ExpandCollapseAll(this, true);
+                else
+                    property.isExpanded = true;
+            }
+            
+			AddComponent(new CopyHandlerComponent());
+			AddComponent(new PasteHandlerComponent());
+			
+			if (Property.serializedObject.targetObject is ScriptableWrapperBase or MonoBehaviour)
+	        {
+		 		DescriptionButton = new OwlcatDescriptionButton(RobustProperty, OverridableControl, this);
+		 		ControlsContainer.Add(DescriptionButton);
+		    }
 		}
 
 		public static OwlcatProperty CreateDefault(SerializedProperty property)
 		{
-			var result = new OwlcatProperty(property);
-			// force empty label text to prevent creation of duplicate label
-			var innerField = new PropertyField(property, string.Empty) { name = property.propertyPath };
-			innerField.BindProperty(property);
-			innerField.AddToClassList("owlcat-inner-field");
-			result.ContentContainer.Add(innerField);
-			
-			return result;
+			return new OwlcatPropertyField(property);
 		}
 
 		public static OwlcatProperty CreateGeneric(SerializedProperty prop)
 		{
 			bool isExpandable = !prop.GetFieldInfo()?.HasAttribute<NonFoldoutAttribute>() ?? true;
-			var result = new OwlcatProperty(prop, Layout.Vertical, isExpandable, false);
-			result.TitleLabel.text = prop.displayName;
-			if (!isExpandable)
-			{
-				result.TitleLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
-			}
-			
-			foreach (var child in prop.GetChildren())
-			{
-				var field = UIElementsUtility.CreatePropertyElement(child, false);
-				result.ContentContainer.Add(field);
-			}
-
-			return result;
+			return new GenericTypeOwlcatProperty(prop, isExpandable ? Layout.Vertical : Layout.VerticalNotExpandable);
 		}
+		
+		protected void CreateContent()
+		{
+			if (!Expandable || IsExpanded)
+			{
+				if (m_ContentCreated)
+					return;
+            
+				m_ContentCreated = true;
+				CreateContentInternal();
+			}
+		}
+		
+		protected virtual void CreateContentInternal() { }
 
 		public void AddComponent([CanBeNull] IOwlcatPropertyComponent component)
 		{
@@ -142,6 +164,9 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 				m_InputHandlers.Add(handler);
 				m_InputHandlers.Sort(OwlcatPropertyInputHandlerSorter.Instance);
 			}
+            
+            if (m_Components.ContainsKey(component.GetType())) 
+                m_Components[component.GetType()].DetachFromProperty();
 
 			m_Components[component.GetType()] = component;
 			component.AttachToProperty(this);
@@ -152,49 +177,81 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			}
 		}
 
-		public bool HasComponent<T>() where T : OwlcatPropertyComponent
+		[CanBeNull]
+		public T GetComponent<T>() where T : OwlcatPropertyComponent
+			=> m_Components.GetValueOrDefault(typeof(T)) as T;
+
+		public bool HasComponent<T>() where T : IOwlcatPropertyComponent
 			=> m_Components.ContainsKey(typeof(T));
+		
+		public void RemoveComponent<T>() where T : IOwlcatPropertyComponent
+		{
+			if (!HasComponent<T>())
+				return;
+
+			var component = m_Components[typeof(T)];
+			m_Components.Remove(typeof(T));
+			component.DetachFromProperty();
+		}
 
 		public void UpdateTitle()
 		{
 			TitleLabel.text = m_TitleProvider?.GetTitle() ?? Property.displayName;
-			HeaderContainer.tooltip = Property.GetTooltip();
 		}
 
 		private void OnFocus(FocusEvent evt)
 		{
 			var focusDelegate = this.GetFirstFocusableTitle();
-			if (focusDelegate != null)
-			{
-				focusDelegate.Focus();
-			}
-			else if (!m_FocusedDirectly)
-			{
-				m_FocusedDirectly = true;
-				m_PrevBackgroundColor = style.backgroundColor;
-				style.backgroundColor = new StyleColor(new Color(0, 65, 255, 80));
-			}
-		}
-
-		private void OnBlur(BlurEvent evt)
-		{
-			if (m_FocusedDirectly)
-			{
-				m_FocusedDirectly = false;
-				style.backgroundColor = m_PrevBackgroundColor;
-			}
+			focusDelegate?.Focus();
 		}
 
 		protected override void OnAttachToPanelInternal(AttachToPanelEvent evt)
 		{
 			base.OnAttachToPanelInternal(evt);
-			this.OwlcatBind(Property.serializedObject);
+			
+			m_TooltipManipulator = new TooltipManipulator(Property.GetTooltip);
+			TitleLabel.AddManipulator(m_TooltipManipulator);
+			
 			if (ContentContainer.IsImguiWrapper())
-			{
 				HeaderContainer.style.display = DisplayStyle.None;
+		}
+
+		protected override void OnAfterAttachToPanelInternal()
+		{
+			base.OnAfterAttachToPanelInternal();
+            
+			CreateContent();
+
+			DescriptionButton?.BringToFront();
+			GetComponent<NotNullComponent>()?.Update();
+		}
+
+		protected virtual void OnPropertyChanged(SerializedProperty property)
+		{
+			UpdateTitle();
+			GetComponent<NotNullComponent>()?.Update();
+            
+			var currentParent = parent;
+			while (currentParent != null)
+			{
+				if (currentParent is OwlcatProperty propertyParent)
+					propertyParent.OnChildPropertyChanged(this, property);
+                
+				currentParent = currentParent.parent;
 			}
 		}
 
+		protected virtual void OnChildPropertyChanged(OwlcatProperty caller, SerializedProperty property)
+		{
+			UpdateTitle();
+		}
+
+		protected override void OnIsExpandedChanged()
+		{
+			base.OnIsExpandedChanged();
+			CreateContent();
+		}
+		
 		public bool TryHandle(KeyDownEvent evt)
 		{
 			foreach (var handler in m_InputHandlers)
@@ -207,22 +264,21 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			return false;
 		}
 
-		protected override void SwitchExpanded(MouseDownEvent evt)
+		public bool IsClosestParentOf(VisualElement element)
 		{
-			base.SwitchExpanded(evt);
-			UIElementsUtility.SetExpandedState(GetExpandedPath(), IsExpanded);
-		}
-
-		protected override string GetExpandedPath()
-		{
-			var result = PropertyPath;
-			if (Property.serializedObject.targetObject is BlueprintComponentEditorWrapper component)
+			var currentParent = element.parent;
+			while (currentParent != null)
 			{
-				var index = component.Component.OwnerBlueprint.ComponentsArray.FindIndex(x => x == component.Component);
-				result = component.name.Split("$")[1] + $"[{index}]" + "/" + result; //component
+				if (currentParent is OwlcatProperty owlcatParent && owlcatParent != this)
+					return false;
+                
+				if (currentParent == this)
+					return true;
+                
+				currentParent = currentParent.parent;
 			}
-
-			return result;
+            
+			return false;
 		}
 	}
 }

@@ -14,6 +14,8 @@ namespace Kingmaker.Editor.UIElements.Custom.Elements
         public HeaderElement(string headerText) : base(headerText)
 		{
 			style.marginTop = HeaderSpace;
+			style.marginRight = 0;
+			style.marginLeft = 0;
 			style.unityFontStyleAndWeight = FontStyle.Bold;
 			AddToClassList("unity-base-field");
 		}

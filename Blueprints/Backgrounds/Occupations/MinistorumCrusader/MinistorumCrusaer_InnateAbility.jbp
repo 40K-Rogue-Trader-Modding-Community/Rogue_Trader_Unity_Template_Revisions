@@ -14,7 +14,8 @@
           "name": ""
         },
         "m_Overrides": [],
-        "CooldownInRounds": 0,
+        "Comment": "",
+        "CooldownInRounds": 1,
         "UntilEndOfCombat": true
       },
       {
@@ -63,15 +64,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -117,7 +109,7 @@
         "Name": "Value1",
         "SaveToContext": "No",
         "Value": {
-          "Operation": "Mul",
+          "Operation": "Sum",
           "TargetType": "ContextCaster",
           "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
@@ -137,7 +129,7 @@
               },
               "Value": {
                 "ValueType": "Simple",
-                "Value": 2,
+                "Value": 10,
                 "ValueRank": "Default",
                 "ValueShared": "Damage",
                 "Property": "None",
@@ -159,9 +151,10 @@
                 "Max": 0
               },
               "m_Fact": "!bp_eeecc5cab7b846e8b1478ecfa15ce9bc",
+              "CheckTarget": "CurrentEntity",
               "Aggregation": "Max",
               "BuffWithCasterFromTargetType": false,
-              "Target": "CurrentEntity"
+              "BuffCaster": "CurrentEntity"
             }
           ]
         }
@@ -199,7 +192,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": null,
-            "m_LinkKey": "Momentum"
+            "m_LinkKey": "Momentum",
+            "Main": false
           },
           {
             "NameType": "Damage",
@@ -224,7 +218,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value2",
             "m_PropertySource": "!bp_c647c1c4a1a14c9cb31217ee439164ff",
-            "m_LinkKey": "Value_2"
+            "m_LinkKey": "Value_2",
+            "Main": false
           }
         ]
       },

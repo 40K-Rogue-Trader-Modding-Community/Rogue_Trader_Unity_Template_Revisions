@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints.Creation;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Utility.EditorPreferences;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
@@ -92,18 +93,7 @@ namespace Kingmaker.Editor.Blueprints
 
 		public static void ShowWindow(AssetCreatorBase creator)
 		{
-			s_CreateAnother = false;
-			s_Name = "";
-			
-			var window = GetWindow<NewAssetWindow>();
-
-			window.m_FirstFrame = !creator;
-			if (creator)
-			{
-				window.m_SelectedCreator = creator;
-			}
-			window.titleContent = new GUIContent(creator ? creator.CreatorName : "NICOLAY");
-			window.Show();
+			ShowWindow(creator, creator == null ? string.Empty : creator.DefaultName, null);
 		}
 
 		public static void ShowWindow(AssetCreatorBase creator, string defaultName, Action<object> onCreated)
@@ -116,10 +106,11 @@ namespace Kingmaker.Editor.Blueprints
 			if (creator)
 			{
 				window.m_SelectedCreator = creator;
+				window.titleContent = new GUIContent(creator.CreatorName);
 			}
+			
 			s_Name = defaultName;
 			s_CreationCallback = onCreated;
-			window.titleContent = new GUIContent(creator.CreatorName);
 			window.Show();
 		}
 
@@ -217,6 +208,12 @@ namespace Kingmaker.Editor.Blueprints
 					t =>
 					{
 						m_SelectedCreator = t;
+						m_SelectedCreator.Init();
+						
+						string defaultName = t == null ? string.Empty : t.DefaultName;
+						s_Name = defaultName;
+						titleContent = new GUIContent(defaultName);
+						
 						Repaint();
 					},
 					showPicker,
@@ -278,13 +275,13 @@ namespace Kingmaker.Editor.Blueprints
 			);
 		}
 
-		private void NameField()
+		private static void NameField()
 		{
 			GUI.SetNextControlName("NameField");
-			s_Name = EditorGUILayout.TextField("Name", s_Name);
+			s_Name = EditorGUILayout.TextField("Name", s_Name).Trim();
 		}
 
-		static string TemplateSubstitution(string template, AssetCreatorBase creator, string name, string folder)
+		private static string TemplateSubstitution(string template, AssetCreatorBase creator, string name, string folder)
 		{
 			if (!string.IsNullOrEmpty(name))
 			{
@@ -495,14 +492,7 @@ namespace Kingmaker.Editor.Blueprints
 			{
 				obj.name = s_Name;
 
-				if (m_SelectedCreator is SceneCreator sceneCreator)
-				{
-					Directory.Move( sceneCreator.DefaultPath, path);
-				}
-				else
-				{
-					Save(obj, path);
-				}
+				Save(obj, path);
 
 				m_SelectedCreator.PostProcess(obj);
 				Selection.activeObject = obj;
@@ -539,14 +529,7 @@ namespace Kingmaker.Editor.Blueprints
 			{
 				obj.name = s_Name;
 
-				if (creator is SceneCreator sceneCreator)
-				{
-					Directory.Move( sceneCreator.DefaultPath, path);
-				}
-				else
-				{
-					Save(obj, path);
-				}
+				Save(obj, path);
 
 				creator.PostProcess(obj);
 				Selection.activeObject = obj;

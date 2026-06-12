@@ -1,0 +1,303 @@
+{
+  "AssetId": "e41c50dde10848879c1f09f22b2e0e56",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$c2f5bd1d-30f8-4d2c-9ac9-69a349d8df74",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$8a1a7a61-6697-4c35-8f70-822934c4f7df",
+              "Comment": "Проверка на Паскаля",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$25d12848-b77c-4d5d-a90c-8914bab606be",
+                    "Not": false,
+                    "m_Fact": "!bp_777d9f9c570443b59120e78f2d9dd515"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$b407cb154f6f4d56a86b80d989208857",
+                    "m_Buff": "!bp_3741b6d3a3674c1b9b7348cffb489936",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$5100ed5b-bdec-40ef-8da6-5881c36b2b05",
+                    "Comment": "Проверка на союзника (овердрайв)",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                          "name": "$ContextConditionHasFact$bbb5edda-e0c7-4aab-acc3-befc2384dd63",
+                          "Not": false,
+                          "m_Fact": "!bp_4f70f2eb9442429e8cc65f6fc6f8f0a1"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                          "name": "$ContextActionApplyBuff$429b62d2-e7d8-497b-b9a8-6f093c02d306",
+                          "m_Buff": "!bp_3741b6d3a3674c1b9b7348cffb489936",
+                          "BuffEndCondition": "CombatEnd",
+                          "Permanent": true,
+                          "DurationValue": {
+                            "RoundsValue": {
+                              "ValueType": "Simple",
+                              "Value": 1,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "ToCaster": false,
+                          "AsChild": false,
+                          "SameDuration": false,
+                          "Ranks": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "ActionsOnApply": {
+                            "Actions": []
+                          },
+                          "ActionsOnImmune": {
+                            "Actions": []
+                          },
+                          "AddFactSource": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitExit": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$e89d2aa9-dcd0-4eb7-a278-43f53956a6d7",
+              "Comment": "Проверка на Паскаля",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$5a32a7d7-1c1f-48b8-a243-e5dc5fb05eb7",
+                    "Not": false,
+                    "m_Fact": "!bp_777d9f9c570443b59120e78f2d9dd515"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$c6cbe49526a2489c84e87019f34b293a",
+                    "m_Buff": "!bp_3741b6d3a3674c1b9b7348cffb489936",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$56b8969d-ed4a-44e1-8e91-1d04d1c51810",
+                    "Comment": "Проверка на союзника (овердрайв)",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                          "name": "$ContextConditionHasFact$4cf60752-78d6-47dd-b16b-58e72f1f7b44",
+                          "Not": false,
+                          "m_Fact": "!bp_4f70f2eb9442429e8cc65f6fc6f8f0a1"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                          "name": "$ContextActionRemoveBuff$eefed752-ffea-4e94-bf5d-c2de7d04c153",
+                          "m_Buff": "!bp_3741b6d3a3674c1b9b7348cffb489936",
+                          "RemoveRank": false,
+                          "RemoveSeveralRanks": false,
+                          "RankNumber": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_CasterRanksRemovalPolicy": "Default",
+                          "ToCaster": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitMove": {
+          "Actions": []
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      }
+    ],
+    "Author": "IlyaPolitko",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "7a5dd8a9adfca6d40a9b841e2fcbd370",
+        "stringkey": "3837881e-bc7c-4031-bb03-b46a6122c964"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "55a626ab126ad3d4e94cfffee0ac103f",
+        "stringkey": "aacf0824-5a5f-4644-8b2c-c36eedd592d0"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "TargetType": "Ally",
+    "AffectEnemies": false,
+    "AggroEnemies": false,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": true,
+    "SavePersistentArea": true,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": "Rear",
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 0,
+      "m_Angle": 30
+    },
+    "IgnoreLosWhenSpread": false,
+    "IgnoreLevelDifferenceWhenSpread": true,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

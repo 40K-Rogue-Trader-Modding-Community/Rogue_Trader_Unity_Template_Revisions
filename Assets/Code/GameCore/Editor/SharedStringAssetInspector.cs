@@ -16,9 +16,6 @@ namespace Kingmaker.Editor
 	{
 		public override VisualElement CreateInspectorGUI()
 		{
-			if (!EditorPreferences.Instance.UseNewEditor)
-				return base.CreateInspectorGUI();
-
 			var lp = serializedObject.FindProperty("String");
 
 			var owlcatInspectorRoot = UIElementsUtility.CreateInspector(serializedObject, isHideScriptField: true);

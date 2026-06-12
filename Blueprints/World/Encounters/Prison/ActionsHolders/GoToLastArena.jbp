@@ -863,6 +863,70 @@
           "IfFalse": {
             "Actions": []
           }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7e50a8ca-5157-4093-baf4-9677bb227a87",
+          "Comment": "Эоган",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$3fdb9393-da42-4504-aea8-a67fe77e56f6",
+                "Not": false,
+                "m_QuestObjective": "!bp_8fc051a7d70c44d486ab3422f1799ee6",
+                "State": "Started"
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$6243f801-4df5-453c-b6be-ee19d40dd0f9",
+                "Not": false,
+                "m_Etude": "!bp_92acff9e7c464543b85169f5a860b420",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$3031ac31-f271-409e-91c5-ef89bd3d4635",
+                "Status": "Fail",
+                "m_Objective": "!bp_8fc051a7d70c44d486ab3422f1799ee6",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$55ff8973-5cb6-4319-b3a4-e8f3b9b3a032",
+                "Etude": "!bp_9b3eaf685bec4295a700c28b1e7fa839",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$d0fe5761-22c3-47b3-93cb-b6e0a9506f97",
+                "Etude": "!bp_92acff9e7c464543b85169f5a860b420",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              },
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$9a7819d7-c8dd-4797-ab90-1d5dd509ac0f",
+                "Etude": "!bp_099c79d6f92942a890d2d7fe5ae1e811",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

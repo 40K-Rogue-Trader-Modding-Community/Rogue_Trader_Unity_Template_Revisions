@@ -1,0 +1,253 @@
+{
+  "AssetId": "10edb6d921f345009b0fc9fb75a54ffb",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$222a7d05-98ff-4568-aaad-29e34806e133",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$070175dfd5b547ed95ac8f39cf918c8d",
+              "m_Flag": "!bp_b95528913c1745b6ad22f49681c68516",
+              "Value": {
+                "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                "name": "$FlagValue$c2869eb0bc2b444d99f440bc80c7905c",
+                "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6"
+              },
+              "UnlockIfNot": true
+            },
+            {
+              "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+              "name": "$IncrementFlagValue$1b88c071-f011-4fbf-8f90-7f02864b4c1e",
+              "m_Flag": "!bp_b95528913c1745b6ad22f49681c68516",
+              "Value": {
+                "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                "name": "$IntConstant$96f37a49c33d4ce7b5b7ac8e63403770",
+                "Value": 2
+              },
+              "UnlockIfNot": true
+            }
+          ]
+        }
+      },
+      {
+        "$type": "d1dfc17d49354a9b980afe5f01bac608, EtudeBracketUnlockableFlagTrigger",
+        "name": "$EtudeBracketUnlockableFlagTrigger$9fdbbc29-5981-4d53-b8fb-cd7f4212c2e8",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+        "RunActionsOnEnter": false,
+        "OnUnlocked": {
+          "Actions": []
+        },
+        "OnLocked": {
+          "Actions": []
+        },
+        "OnChanged": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$5123f9f3610644c1afc6deec2b54ff21",
+              "Comment": "При сдвиге таймера чекаем, не пора ли воровать меч.",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                    "name": "$GreaterThan$d7e45ab611b64cecae0d582ae468d0f1",
+                    "Not": false,
+                    "OrEqualTo": true,
+                    "FloatValues": false,
+                    "Value": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$5bd44932fa014b35aeaa0e1d18a1f0c2",
+                      "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6"
+                    },
+                    "MinValue": {
+                      "$type": "d544653997f745c4ebead9b1719c7830, FlagValue",
+                      "name": "$FlagValue$776ec5229a254899818c46bc90e0cc6f",
+                      "m_Flag": "!bp_b95528913c1745b6ad22f49681c68516"
+                    },
+                    "FloatValue": null,
+                    "FloatMinValue": null
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$dac81ebc6b4a4c709325ceda973e20c9",
+                    "Not": true,
+                    "m_Etude": "!bp_92928c1f3c034c24be1e574b93f2e5a6",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$762e0d3b-0c1b-4e59-8d28-0d31dcb461da",
+                    "Etude": "!bp_92928c1f3c034c24be1e574b93f2e5a6",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  },
+                  {
+                    "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                    "name": "$UnlockFlag$eca874a8-4ba4-4648-81cc-2275a5f4e5a6",
+                    "m_flag": "!bp_1ee3ad37b34f44c2957064c1ba708f63",
+                    "flagValue": 0
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$b3140c025ce142d2b91d357a0bd3e71f",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$25f75cca47eb474190287b97fcc5ceba",
+                      "Spawner": {
+                        "EntityNameInEditor": "JarubVukchik",
+                        "_entity_id": "5d169ba4-1318-4590-ac85-873962fe3ee4",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "Jarub_StoleSword",
+                      "_entity_id": "53b807e9-ae41-48fa-bd93-efa5f93b497c",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$25bb35c11fa04d0194999be708ec2bd0",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "Jarub_StoleSword",
+                        "_entity_id": "53b807e9-ae41-48fa-bd93-efa5f93b497c",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$64f9543b0d6945ed9a6dbd0403b4951f",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$63f8d6c6c1aa41079e993c4e51e94779",
+                      "MapObject": {
+                        "EntityNameInEditor": "SwordBoxFull",
+                        "_entity_id": "e64069d0-7c65-449f-9b13-d005dd5f64ef",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$d583a06c-8c56-43eb-afd0-45b990f975c3",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$2c1c9d4f-4d44-4eb9-8224-da473bcbae59",
+                      "MapObject": {
+                        "EntityNameInEditor": "SwordBoxOpen",
+                        "_entity_id": "8c618b16-e826-4929-974f-d25f4c67bef4",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$188a287ca841491283921311dd13f701",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$98cbf12875d2498aadd53709dab08c10",
+                      "MapObject": {
+                        "EntityNameInEditor": "Sword",
+                        "_entity_id": "97ff1756-f4f0-4209-8493-4703ba5307c8",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "",
+    "m_Parent": "!bp_e84c765e30f74fe7891bf49813be9922",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+          "name": "$FlagUnlocked$ee8342ab-89ee-40ce-a126-a3e83406b6d5",
+          "Not": false,
+          "m_ConditionFlag": "!bp_1bd4ece9e4424ed181fe0da87da100df",
+          "ExceptSpecifiedValues": false,
+          "SpecifiedValues": []
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

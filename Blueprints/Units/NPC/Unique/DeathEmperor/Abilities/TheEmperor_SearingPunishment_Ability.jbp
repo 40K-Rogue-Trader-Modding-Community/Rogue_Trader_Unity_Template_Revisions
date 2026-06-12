@@ -20,7 +20,9 @@
         "Escape": false,
         "SearchFurthestEnemy": false,
         "TryJumpOverEnemy": false,
+        "MoveToSelectedTarget": false,
         "EnemyPriorityConditions": [],
+        "AreaEffectToStayAwayFrom": null,
         "PortalFromPrefab": null,
         "PortalToPrefab": null,
         "PortalBone": "",
@@ -36,14 +38,29 @@
         "ActionsOnCasterAfter": {
           "Actions": []
         },
-        "ActionsOnTargetAfter": {
+        "ActionsOnTeleportedEntityAfter": {
           "Actions": [
             {
-              "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
-              "name": "$ContextActionCastSpell$a9269445-eb51-451b-b285-e08463e21f56",
-              "m_Spell": "!bp_86c6ead7dc204151a2f92b7a6325ba65",
-              "OverrideDC": false,
-              "DC": {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$55e10930-486c-460b-ba06-1efff23cf135",
+              "m_Buff": "!bp_f01be5905bc24ae9a830cc2bc9f534d7",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": true,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
                 "ValueType": "Simple",
                 "Value": 0,
                 "ValueRank": "Default",
@@ -52,20 +69,18 @@
                 "m_CustomProperty": null,
                 "PropertyName": "Value1"
               },
-              "OverrideSpellLevel": false,
-              "SpellLevel": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
+              "ActionsOnApply": {
+                "Actions": []
               },
-              "CastByTarget": false,
-              "UseFullAbilityCastCycle": true
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
             }
           ]
+        },
+        "ActionsOnDestinationTargetAfter": {
+          "Actions": []
         }
       },
       {
@@ -87,15 +102,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -138,13 +144,14 @@
           "name": ""
         },
         "m_Overrides": [],
-        "DefaultAnimation": null,
         "DefaultAnimationLink": {
           "AssetId": "f7edd8135255ff048b5b7d59b25e6f37"
         },
+        "OverrideAnimationType": "Unused",
         "Variants": []
       }
     ],
+    "Author": "IlyaPolitko",
     "Comment": "DLC-1. Глава IV. Локация DeathCultTemple.\nЖелтая фаза (Огонь).\n\nТелепортирует цель к себе и наносит высокий Rending+Fire урон в небольшом AoE-паттерне перед собой, на 1 раунд накладывает статус Prone (AGI Save -40) и на 2 раунда накладывает средний Burning (TOU Save -40). При успешном спасброске наносит средний Rending+Fire урон. Снимает стаки Bloodsoaked. Неограниченная дистанция применения.\n\nОсобое свойство: Если у цели >90% ХП, дополнительно накладывает до конца боя 2 стака Fading и на 1 раунд Blinded.",
     "m_DisplayName": {
       "m_Key": "",
@@ -186,6 +193,9 @@
     "CanTargetFriends": false,
     "CanTargetSelf": false,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DefaultSlotIndex": -1,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -201,6 +211,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "WillCauseAOO",
     "UsingInOverwatchArea": "WillNotCauseAttack",
@@ -210,12 +222,10 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": "!bp_3e812b26d43943ec96553ffd879805da",
     "m_AbilityTag": "None",
-    "m_CombatHudCommandsOverride": null,
-    "Author": "IlyaPolitko"
+    "m_CombatHudCommandsOverride": null
   },
   "Meta": {
     "ShadowDeleted": false

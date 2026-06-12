@@ -299,7 +299,7 @@ namespace Kingmaker.Editor.NodeEditor.Window
 						continue;
 					}
 
-					if (blueprint is BlueprintAnswer answer && answer.Text.Shared)
+					if (blueprint is BlueprintAnswer answer && answer.LocalizedStringText.Shared)
 					{
 						continue;
 					}
@@ -333,7 +333,7 @@ namespace Kingmaker.Editor.NodeEditor.Window
 					continue;
 				}
 
-				if (blueprint is BlueprintAnswer answer && answer.Text.Shared)
+				if (blueprint is BlueprintAnswer answer && answer.LocalizedStringText.Shared)
 				{
 					continue;
 				}

@@ -13,6 +13,7 @@ namespace Kingmaker.Editor.Blueprints.Quests
 	[BlueprintCustomEditor(typeof(BlueprintQuestObjective), true)]
     public class BlueprintQuestObjectiveInspector : BlueprintInspectorCustomGUI
     {
+        public bool ShowClues = true;
         public bool ShowAddendums = true;
         public bool ShowNextObjectives = true;
 
@@ -41,6 +42,12 @@ namespace Kingmaker.Editor.Blueprints.Quests
 
                 //				var newValue = EditorGUILayout.Toggle("Is Starting Automatically", Blueprint.IsAutomaticallyStartingAddendum);
                 //				Blueprint.SetStartAddendumAutomatically(newValue);
+            }
+            else if (bp.IsClue)
+            {
+                GUI.enabled = false;
+                EditorGUILayout.Toggle("Is Clue", bp.IsClue);
+                GUI.enabled = true;
             }
             else
             {
@@ -105,6 +112,32 @@ namespace Kingmaker.Editor.Blueprints.Quests
                 object newAddendum = BlueprintEditorUtility.ObjectField(null, typeof(BlueprintQuestObjective), false);
                 if (newAddendum != null)
                     bp.AddAddendumFromMenu(newAddendum);
+            }
+            
+            ShowClues = EditorGUILayout.Foldout(ShowClues, "Clues");
+            if (ShowNextObjectives)
+            {
+                foreach (var clue in bp.Clues.ToList())
+                {
+                    if (clue == null)
+                        continue;
+                    using (new GUILayout.HorizontalScope())
+                    {
+                        GUI.enabled = false;
+                        BlueprintEditorUtility.ObjectField(clue, typeof(BlueprintQuestObjective), false);
+                        GUI.enabled = true;
+
+                        if (GUILayout.Button("Unlink", EditorStyles.miniButtonRight))
+                        {
+                            bp.RemoveClue(clue);
+                            clue.SetIsClue(false);
+                        }
+                    }
+                }
+                
+                object newClue = BlueprintEditorUtility.ObjectField(null, typeof(BlueprintQuestObjective), false);
+                if (newClue != null)
+                    bp.AddCluesFromMenu(newClue);
             }
         }
     }

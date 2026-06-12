@@ -1,0 +1,166 @@
+{
+  "AssetId": "4a0372545168472bb608b136e660882c",
+  "Data": {
+    "$type": "618a7e0d54149064ab3ffa5d9057362c, BlueprintBuff",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "a5cbfd1546727ec418590630a6ea2400, WarhammerDamageTriggerInitiator",
+        "name": "$WarhammerDamageTriggerInitiator$c90c6510-6468-48a3-9dc7-e2cda5970338",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "b5a7d9bbf95591b49b2985d414d2e360, IsAllyGetter",
+                "name": "$IsAllyGetter$3ea3d3ba93c04d88b90da736869e7da2",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "RuleTarget"
+              }
+            ]
+          }
+        },
+        "TriggersForDamageOverTime": false,
+        "TriggerBeforeDamageHappens": true,
+        "Actions": {
+          "Actions": []
+        },
+        "ActionsOnAttacker": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$905e47599e48570fbf0b39206a9fe0b4",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "8509fb4e9245fa04ea730c4b5c6ffa98, ContextConditionCasterBuffRank",
+                    "name": "$ContextConditionCasterBuffRank$d39bd3d440945cf8b1db82a186cde0e2",
+                    "Not": false,
+                    "Buff": "!bp_c282848c16e4462f87403bb0afd313c0",
+                    "RankValue": {
+                      "ValueType": "Simple",
+                      "Value": 1,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
+                    "name": "$ContextActionCastSpell$137fc934-90f9-4494-8080-cac3e9402b87",
+                    "m_Spell": "!bp_efd2918d18ae4d3a89560ee400f83465",
+                    "OverrideDC": false,
+                    "DC": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "OverrideSpellLevel": false,
+                    "SpellLevel": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "CastByTarget": false,
+                    "UseFullAbilityCastCycle": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "ContextPropertyName": "Value1",
+        "PropertyToSave": "None"
+      }
+    ],
+    "Author": "VladislavSolyannikov",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": {
+      "guid": "3385950a59d74884ba82b262a61baabe",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "m_Flags": "HiddenInUi, NeedsNoVisual",
+    "m_SoundTypeSwitch": {
+      "Value": "",
+      "Group": ""
+    },
+    "m_MuffledTypeSwitch": {
+      "Value": "",
+      "Group": ""
+    },
+    "Stacking": "Replace",
+    "ProlongWhenRankAdded": false,
+    "PriorityProperty": "Value1",
+    "Initiative": "ByCaster",
+    "Ranks": 0,
+    "FxOnStart": {
+      "AssetId": ""
+    },
+    "FxOnRemove": {
+      "AssetId": ""
+    },
+    "m_FXSettings": null,
+    "ResourceAssetIds": [],
+    "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
+    "m_Cyclical": false,
+    "NeedCollapseStack": true
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

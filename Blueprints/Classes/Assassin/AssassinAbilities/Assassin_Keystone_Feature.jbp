@@ -14,8 +14,9 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_FactBlueprint": "!bp_47bb28a0d8784cc5bd216e3b79418bad",
-        "IncludingInterrupts": false
+        "IncludingInterrupts": true
       },
       {
         "$type": "d79ad4ed064aa4f43ace0e9c238fb9b9, AddFacts",
@@ -26,6 +27,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_e2af8c0124f94ca5b9a8b3f91982908a"
         ],
@@ -44,11 +46,13 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "TriggerIfNotInCombat": false,
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -95,15 +99,6 @@
               "BuffEndCondition": "TurnEndOrCombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -140,7 +135,63 @@
           "Actions": []
         },
         "UnitInterruptTurnStartActions": {
-          "Actions": []
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$30a4e095-cadc-4209-8436-ad39cfa90904",
+              "m_Buff": "!bp_36df6bcd46a14f89b2f9ccd51489b803",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            },
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$974d0db2-2120-47f0-a3d8-e5bd6434d249",
+              "m_Buff": "!bp_36df6bcd46a14f89b2f9ccd51489b803",
+              "BuffEndCondition": "TurnEndOrCombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": true,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": "!bp_7c4aa6b9b053451d84a79f37faf7ba84",
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
         },
         "UnitInterruptTurnEndActions": {
           "Actions": []
@@ -161,6 +212,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -217,7 +269,9 @@
       "Composition": "And",
       "List": []
     },
-    "FeatureTypes": [],
+    "FeatureTypes": [
+      "Archetype"
+    ],
     "TalentIconInfo": {
       "AllGroups": "Damage",
       "MainGroup": "Damage"

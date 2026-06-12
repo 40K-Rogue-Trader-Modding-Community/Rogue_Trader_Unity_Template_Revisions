@@ -4,7 +4,96 @@
     "$type": "618a7e0d54149064ab3ffa5d9057362c, BlueprintBuff",
     "PrototypeLink": "",
     "m_Overrides": [],
-    "Components": [],
+    "Components": [
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$dd5754c2-ea53-40c2-a5d6-87dc44668258",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": true,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": true,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$eb459e20-9beb-44e6-842d-d695dd6a7890",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                    "name": "$UnitEqual$a9811c19-3f4f-4d93-a1b7-db37c7cfdb60",
+                    "Not": false,
+                    "FirstUnit": {
+                      "$type": "63f3fa5b72a34ef79f4222eac2ed976b, OwnerByPet",
+                      "name": "$OwnerByPet$f05d141f-c0f6-4cfc-8015-0bdd1636c129",
+                      "PetEvaluator": {
+                        "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                        "name": "$CasterUnit$1048c7a3-4cc3-4734-802f-1286815b7764"
+                      }
+                    },
+                    "SecondUnit": {
+                      "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                      "name": "$ContextTargetUnit$bff8d63a-3b75-42f9-9dd6-097dfcb4eae7"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
+                    "name": "$ContextActionRemoveSelf$a64251c3-c5f2-4efa-81f2-5fd248f17efe"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      }
+    ],
     "Author": "Unknown",
     "Comment": "",
     "m_DisplayName": {
@@ -48,7 +137,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

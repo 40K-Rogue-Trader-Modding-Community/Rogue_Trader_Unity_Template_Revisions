@@ -188,7 +188,9 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
             if (m_RootPath == null)
                 return rows; // just in case
 
-            string[] folders = Directory.GetDirectories(m_RootPath, "*", SearchOption.TopDirectoryOnly);
+            string[] folders = Directory.GetDirectories(m_RootPath, "*", SearchOption.TopDirectoryOnly)
+                .OrderBy(p => p)
+                .ToArray();
             for (int ii = 0; ii < folders.Length; ii++)
             {
                 string folder = Path.GetFileName(folders[ii]);
@@ -198,7 +200,9 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 m_FolderNames.Add(folder);
             }
 
-            string[] files = Directory.GetFiles(m_RootPath, "*.jbp", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(m_RootPath, "*.jbp", SearchOption.TopDirectoryOnly)
+                .OrderBy(p => p)
+                .ToArray();
             for (int ii = 0; ii < files.Length; ii++)
             {
                 string file = files[ii];
@@ -234,7 +238,7 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
         {
             using (ProfileScope.New("BuildRowsForSearch"))
             {
-                List<(string, string, bool, bool)> searchResult;
+                List<BlueprintSearchResultItem> searchResult;
                 if (m_SearchByType != null)
                 {
                     // search by type and filter the result here
@@ -249,7 +253,7 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                         {
                             splits += " " + split;
                         }
-                        List<(string, string, bool, bool)> searchSplits;
+                        List<BlueprintSearchResultItem> searchSplits;
                         using (ProfileScope.New("SearchByType"))
                         {
                             searchSplits = BlueprintsDatabase.SearchByName(splits);
@@ -261,12 +265,13 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 else if (m_SearchPattern.StartsWith("g:"))
                 {
                     string id = m_SearchPattern.Substring(2, 32);
-                    searchResult = new List<(string, string, bool, bool)> 
-                        {(
+                    searchResult = new List<BlueprintSearchResultItem> 
+                        {new (
                             id, 
                             BlueprintsDatabase.IdToPath(id), 
                             BlueprintsDatabase.GetMetaById(id).ShadowDeleted,
-                            BlueprintsDatabase.IdToContainsShadowDeletedBlueprints(id)
+                            BlueprintsDatabase.IdToContainsShadowDeletedBlueprints(id),
+                            BlueprintsDatabase.IdContainsObsoleteComponents(id)
                         )};
                 }
                 else

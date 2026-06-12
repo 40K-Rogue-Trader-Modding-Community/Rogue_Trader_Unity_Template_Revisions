@@ -1,5 +1,4 @@
 ﻿using Kingmaker.Editor.UIElements.Custom.Base;
-using UnityEngine.UIElements;
 
 #nullable enable
 
@@ -16,21 +15,20 @@ namespace Kingmaker.Editor.UIElements.Custom.Elements
         /// </summary>
         private string StateDataKey { get; }
 
-        public OwlcatInspectorFoldout(string? stateDataKey = null) : base(Layout.Vertical, true)
+        public override bool IsExpanded 
+        {
+            get => base.IsExpanded;
+            set
+            {
+                base.IsExpanded = value;
+                UIElementsUtility.SetExpandedState(StateDataKey, IsExpanded);
+            }
+        }
+
+        public OwlcatInspectorFoldout(string? stateDataKey = null) : base(Layout.Vertical,
+            UIElementsUtility.GetExpandedState(stateDataKey ?? nameof(OwlcatInspectorFoldout)))
         {
             StateDataKey = stateDataKey ?? nameof(OwlcatInspectorFoldout);
-            IsExpanded = GetSavedExpandedState();
-        }
-
-        protected override void SwitchExpanded(MouseDownEvent evt)
-        {
-            base.SwitchExpanded(evt);
-            UIElementsUtility.SetExpandedState(GetExpandedPath(), IsExpanded);
-        }
-
-        protected override string GetExpandedPath()
-        {
-            return StateDataKey; // To store global foldout state
         }
     }
 }

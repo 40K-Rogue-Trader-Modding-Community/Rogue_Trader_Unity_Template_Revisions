@@ -16,46 +16,11 @@
     "Action": {
       "Actions": [
         {
-          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
-          "name": "$HideEntity$0ddfdab5-d56c-4568-bc6f-023e4bbea796",
-          "Target": {
-            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-            "name": "$UnitFromSpawner$5b50c9ce-f2ca-4154-8ada-d1663e264ced",
-            "Spawner": {
-              "EntityNameInEditor": "SolomorneDog_ReportScene",
-              "_entity_id": "f918b876-c646-4fd6-965f-d5d2c873cc3b",
-              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
-            }
-          },
-          "Unhide": false
-        },
-        {
-          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
-          "name": "$HideEntity$e06650e4-2134-4d23-aa68-3b8a9f1b3829",
-          "Target": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$a222d94d-ade9-413f-aa63-2b9452598c2c",
-            "MapObject": {
-              "EntityNameInEditor": "Blood1",
-              "_entity_id": "22fd0e43-8d42-409d-af73-9ac8a515b471",
-              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
-            }
-          },
-          "Unhide": false
-        },
-        {
-          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
-          "name": "$HideEntity$a6df38f4-859e-4669-b0bd-507892078a10",
-          "Target": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$f7fa37f2-370c-4fe9-9b6d-cc1eef13d017",
-            "MapObject": {
-              "EntityNameInEditor": "Blood2",
-              "_entity_id": "a8cd3182-5ced-44b0-ae61-7a48c0792380",
-              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
-            }
-          },
-          "Unhide": false
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$f30d235b79704d7daecdba23d5c4a585",
+          "Etude": "!bp_6e86b03491774da3bd78dc78b3ac8e64",
+          "EtudeEvaluator": null,
+          "Evaluate": false
         },
         {
           "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
@@ -157,11 +122,100 @@
           }
         },
         {
-          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
-          "name": "$CompleteEtude$f30d235b79704d7daecdba23d5c4a585",
-          "Etude": "!bp_6e86b03491774da3bd78dc78b3ac8e64",
-          "EtudeEvaluator": null,
-          "Evaluate": false
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f4d0fd2be13d5128977e1f7c41a68a8b",
+          "Comment": "Solomon is banished",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$4772f135f1ba504ab1a07139dfdde572",
+                "Not": false,
+                "m_Etude": "!bp_9319e2f46a7f40fc8e58992663950800",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "279d4ee480d04f2b99e22da75adf77d6, UnequipAllItems",
+                "name": "$UnequipAllItems$f6b2e8fb-fcb7-4df9-9ae2-ff39ef4b4d41",
+                "Target": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$5876098d-bcc6-4caf-ac66-43906612397b",
+                  "m_Companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                },
+                "DestinationContainer": null,
+                "Silent": false
+              },
+              {
+                "$type": "7d6c4f7ff596e5e4086531c0f96ac650, Unrecruit",
+                "name": "$Unrecruit$a3e79bf7-bacf-4552-8ea5-8cbc3612d631",
+                "m_CompanionBlueprint": "!bp_a699795d21f74159abb00f9a217fa97d",
+                "OnUnrecruit": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$1a89c13f44e350dbbab43c98385a5c32",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$6e26653ff45f564a921a3ecb2318bf66",
+            "Spawner": {
+              "EntityNameInEditor": "SolomorneDog_ReportScene",
+              "_entity_id": "f918b876-c646-4fd6-965f-d5d2c873cc3b",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false,
+          "Fade": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$e06650e4-2134-4d23-aa68-3b8a9f1b3829",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$a222d94d-ade9-413f-aa63-2b9452598c2c",
+            "MapObject": {
+              "EntityNameInEditor": "Blood1",
+              "_entity_id": "22fd0e43-8d42-409d-af73-9ac8a515b471",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$a6df38f4-859e-4669-b0bd-507892078a10",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$f7fa37f2-370c-4fe9-9b6d-cc1eef13d017",
+            "MapObject": {
+              "EntityNameInEditor": "Blood2",
+              "_entity_id": "a8cd3182-5ced-44b0-ae61-7a48c0792380",
+              "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+            }
+          },
+          "Unhide": false
         },
         {
           "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",

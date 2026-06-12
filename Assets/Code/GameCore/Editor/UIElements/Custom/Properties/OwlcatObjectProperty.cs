@@ -1,55 +1,54 @@
-﻿using Kingmaker.Editor.UIElements.Custom.Base;
-using System.Reflection;
+﻿using System.Reflection;
 using JetBrains.Annotations;
-using Kingmaker.Editor.Blueprints;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements.Custom
 {
-	public class OwlcatObjectProperty : OwlcatProperty
+	public class OwlcatObjectProperty : OwlcatPropertyField
 	{
-		public OwlcatObjectProperty(SerializedProperty prop, [NotNull] FieldInfo info) : base(prop)
-		{
-			ObjectField = new OwlcatObjectField(prop.displayName, info);
-			ObjectField.style.flexGrow = 1;
-			ObjectField.style.flexShrink = 1;
-			ContentContainer.Add(ObjectField);
-			
-			ObjectField.BindProperty(prop); // should be OwlcatBind, but it does not work for object fields because magic
-		}
+		public OwlcatObjectProperty(SerializedProperty property) : base(property) { }
 
-		public OwlcatObjectField ObjectField { get; }
+		// It looks like we don't need custom picker for UnityEngine.Object types
+		// protected override void OnFieldChildrenCreated()
+		// {
+		//     base.OnFieldChildrenCreated();
+		//
+		//     var objectField = m_InnerField.Q<ObjectField>();
+		//     if (objectField != null)
+		//         SetCustomPicker(objectField, FieldFromProperty.GetFieldInfo(Property));
+		// }
+
+		public static void SetCustomPicker(ObjectField objectField, FieldInfo fieldInfo)
+		{
+			var info = typeof(ObjectField).GetProperty("visualInput", BindingFlags.NonPublic | BindingFlags.Instance);
+			var control = info.GetValue(objectField) as VisualElement;
+			var point = control.hierarchy[1];
+			point.RemoveFromHierarchy();
+			
+			var newPoint = new VisualElement();
+			foreach (var clss in point.GetClasses())
+				newPoint.AddToClassList(clss);
+			
+			objectField.style.flexGrow = 1;
+			objectField.style.flexShrink = 1;
+			newPoint.RegisterCallback<MouseDownEvent>(x => OpenPicker(objectField, fieldInfo));
+			control.Add(newPoint);
+		}
+		
+		public static void OpenPicker(ObjectField field, FieldInfo fieldInfo)
+		{
+			AssetPicker.ShowAssetPicker(field.objectType, fieldInfo, x => field.value = x, field.value);
+		}
 	}
 
 	public class OwlcatObjectField : ObjectField
 	{
 		public OwlcatObjectField(string label, [NotNull] FieldInfo fieldInfo) : base(label)
 		{
-			m_FieldINfo = fieldInfo;
-			this.objectType = fieldInfo?.GetElementType();
-			var info = typeof(OwlcatObjectField).GetMethod("get_visualInput", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetProperty);
-			var control = info.Invoke(this, null) as VisualElement;
-			var point = control.hierarchy[1];
-			control.Remove(point);
-
-			var newPoint = new VisualElement();
-			foreach (var clss in point.GetClasses())
-			{
-				newPoint.AddToClassList(clss);
-			}
-
-			style.flexGrow = 1;
-			newPoint.RegisterCallback<MouseDownEvent>(OpenPicker);
-			control.Add(newPoint);
+			OwlcatObjectProperty.SetCustomPicker(this, fieldInfo);
 		}
-
-		void OpenPicker(MouseDownEvent evt)
-		{
-			AssetPicker.ShowAssetPicker(this.objectType, m_FieldINfo, x => value = x, value);
-		}
-
-		FieldInfo m_FieldINfo;
 	}
 }

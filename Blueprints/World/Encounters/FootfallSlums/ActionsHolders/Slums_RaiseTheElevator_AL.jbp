@@ -1,0 +1,130 @@
+{
+  "AssetId": "280058d0237f49e4840cb9655770c09e",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "KseniyaUrchenko",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$98456a94-f49a-4809-a1f7-9b04cb697932",
+          "m_Cutscene": "!bp_ddf3a9f06935463387676c31ba7158e1",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": [
+              {
+                "Name": "Position1",
+                "Type": "Position",
+                "Evaluator": {
+                  "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                  "name": "$LocatorPosition$9b7a6a74-abdf-4c5c-bb0e-debb93cf2c4e",
+                  "Locator": {
+                    "EntityNameInEditor": "LowerElevator_cam",
+                    "_entity_id": "522c34cb-09ff-43d5-85d2-c98fc531fb85",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  },
+                  "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                }
+              },
+              {
+                "Name": "Orientation1",
+                "Type": "Float",
+                "Evaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$428eedca-8a3c-4757-acd5-263d3c48ff89",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "LowerElevator_cam",
+                    "_entity_id": "522c34cb-09ff-43d5-85d2-c98fc531fb85",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  },
+                  "Offset": 0.0
+                }
+              },
+              {
+                "Name": "Position2",
+                "Type": "Position",
+                "Evaluator": {
+                  "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                  "name": "$LocatorPosition$56aaf418-0944-4762-93ed-b9ac96901813",
+                  "Locator": {
+                    "EntityNameInEditor": "UpperElevator_cam",
+                    "_entity_id": "f3830984-31e1-423d-a2b4-24fa10dc606c",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  },
+                  "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                }
+              },
+              {
+                "Name": "Orientation2",
+                "Type": "Float",
+                "Evaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$3abb8c1e-0a35-4308-ac34-19bdc4ede69d",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "UpperElevator_cam",
+                    "_entity_id": "f3830984-31e1-423d-a2b4-24fa10dc606c",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  },
+                  "Offset": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$faf7d1ea-6c1b-42c4-a0a9-06206103b5e9",
+          "Comment": "Player has Servoskull pet",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$cb0cb310-947d-4e73-8263-0222fe981c83",
+                "Not": true,
+                "Target": {
+                  "$type": "fb04b5db8f2a4d399495aa6c2cbd6325, PartyPetByType",
+                  "name": "$PartyPetByType$f96a39b8-7ba3-4d5a-b95a-b4dbbd0b6e16",
+                  "m_PetType": "ServoskullSwarm",
+                  "m_PriorityConfig": "!bp_c33d7cb0dea246b5ab5ad13741b79a0e"
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$b9c632fd-1c10-4418-a671-023213edbb4a",
+                "m_Cutscene": "!bp_98122790d2154760bc5d4c9810db8806",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

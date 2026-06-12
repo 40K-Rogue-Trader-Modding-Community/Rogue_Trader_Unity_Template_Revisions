@@ -1,0 +1,164 @@
+{
+  "AssetId": "3e9b1ec434b44b3d8efd86e93ec8be9c",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Спикер: Изимонд\nНе играет DL_IzimondArrestedOrDead \nDL_LariaPlan_counter +1",
+    "ParentAsset": "cc104524f96143258406fe436288f7f5",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "16def3b3-e148-4d82-ba22-43fa823b550d",
+      "m_OwnerString": "3e9b1ec434b44b3d8efd86e93ec8be9c",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\SeberianCouncil\\Cue_0020_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_8815c75cf89949538ef5c976dc4d82f5",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": false,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$3da19177-3402-4427-82d5-ca09e75e437a",
+          "m_Flag": "!bp_b3312241e02a4e899f3cce0936d13c44",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$bd11d69c-6aad-4135-99e2-819260a13e71",
+            "Value": 1
+          },
+          "UnlockIfNot": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$19ef42d9-49dd-43b3-9a1a-dcaf7f04cd51",
+          "Comment": "Фейл адендума про Изимонда (JuvenaSide)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$5b981a0c-ef2c-4c20-b501-737999257cef",
+                "Not": false,
+                "m_QuestObjective": "!bp_fe882593c5c84767aa604c4ff66f74ad",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$acdc6466-6327-45b3-bcbb-6b140eac50f0",
+                "Status": "Fail",
+                "m_Objective": "!bp_fe882593c5c84767aa604c4ff66f74ad",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$a2b05dc1-6b56-4973-b3a0-a26896aa4ded",
+          "Comment": "Комплит адендума про Изимонда в ветке Ларии",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$8d9cf903-27ba-43bc-b7cb-161832838dae",
+                "Not": false,
+                "m_QuestObjective": "!bp_22f370bb0f1546cd8dd5d4aa7e9bfb13",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$51b58d81-97fe-401b-b0bd-0f26bac1b1ec",
+                "Status": "Complete",
+                "m_Objective": "!bp_22f370bb0f1546cd8dd5d4aa7e9bfb13",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [
+      "!bp_c6f85065394c41ddb19ef0a39965719d"
+    ],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "AssetId": "c4323ecb7463433b8f17e3ef68c91f29",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Тразин\n\nТРАЗИН ПОЯВЛЯЕТСЯ ТОЛЬКО ЕСЛИ МЫ ЗАКЛЮЧИЛИ С НИМ ДОГОВОР",
+    "ParentAsset": "768b3b34cefa43d8a8100a34e6b56d15",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "Or",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$e5db8587-f45f-4abd-95fd-e5dbcf3cb25e",
+          "Not": false,
+          "m_Etude": "!bp_729170c54ae943769d8053beefb87ceb",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$7bd65717-86ef-4b17-aff6-4ac5194fbd45",
+          "Not": false,
+          "m_Etude": "!bp_888baf5e80e54d919b5bc893702ccb8b",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "d7ef1984-0a2a-429c-9657-df2bd5c7fbb9",
+      "m_OwnerString": "c4323ecb7463433b8f17e3ef68c91f29",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\World\\Dialogs\\Ch5\\Epitaphia\\XavierFinal\\Cue_69_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": false,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": "!bp_d2dca05f9ae14d47a8c58de1cfceafce"
+    },
+    "TurnSpeaker": false,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6bcaf9a32f7a42a68a06b571ef26368e",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "235f6ba3591e41dcbc434b0c2ba4db2d, SummonPoolNonExistsOrEmpty",
+                "name": "$SummonPoolNonExistsOrEmpty$b5e77dee9cac4303934c3873302cd626",
+                "Not": false,
+                "m_SummonPool": "!bp_0c4d449a2f084d22a096e41fafa428d2"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$71827e33-313d-4521-836d-fa3d211a02ba",
+                "m_Cutscene": "!bp_b94665523a2c43759b0a2c6579269ffb",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Position",
+                      "Type": "Locator",
+                      "Evaluator": {
+                        "$type": "e2e5f250da682644dbc648ec03f805ac, LocatorReference",
+                        "name": "$LocatorReference$0aafe69c-e7b0-40de-9326-5f4f1c5a559d",
+                        "Locator": {
+                          "EntityNameInEditor": "TrazynProjection",
+                          "_entity_id": "71fe881e-65e9-48fa-9424-227246344fb0",
+                          "SceneAssetGuid": "64933c97ab42d944399f7bf35b10d1ee"
+                        }
+                      }
+                    },
+                    {
+                      "Name": "Camera",
+                      "Type": "Position",
+                      "Evaluator": {
+                        "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                        "name": "$LocatorPosition$1c165aa5-a69d-4ab8-9161-bdf3c2804b5b",
+                        "Locator": {
+                          "EntityNameInEditor": "TrazynProjectionCamera",
+                          "_entity_id": "b9b95173-3f78-4b07-9ce4-0f4dc7e07e5c",
+                          "SceneAssetGuid": "64933c97ab42d944399f7bf35b10d1ee"
+                        },
+                        "Offset": {
+                          "x": 0.0,
+                          "y": 0.0,
+                          "z": 0.0
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "1a0449d4049c34149a17869dd62dc64a, CameraToPosition",
+                "name": "$CameraToPosition$a096775e3cf142e9814c897fd1aebca2",
+                "Position": {
+                  "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                  "name": "$LocatorPosition$7c6ceeec120d463a89c0faf881d7b243",
+                  "Locator": {
+                    "EntityNameInEditor": "TrazynProjectionCamera",
+                    "_entity_id": "b9b95173-3f78-4b07-9ce4-0f4dc7e07e5c",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                  },
+                  "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                },
+                "Rotation": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$8385f12eff184ce4b7d1ee8abcee1de4",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "TrazynProjectionCamera",
+                    "_entity_id": "b9b95173-3f78-4b07-9ce4-0f4dc7e07e5c",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                  },
+                  "Offset": 0.0
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+          "name": "$RunActionHolder$60666d3d-13b7-4228-b3c7-6f9ace8c8697",
+          "Comment": "",
+          "Holder": "!bp_ae45f6a2fbb8490a932e9d4b275c55ea"
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

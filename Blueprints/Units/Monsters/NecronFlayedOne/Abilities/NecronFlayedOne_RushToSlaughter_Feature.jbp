@@ -1,0 +1,204 @@
+{
+  "AssetId": "570ee052138446978fa7d6a9d4dc66a9",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$3b95d875-92f2-481c-9008-7553029363e3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Feature": "CanPassThroughUnits",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
+      },
+      {
+        "$type": "78416892d808478298265d953095c2ae, StepOnUnitTrigger",
+        "name": "$StepOnUnitTrigger$278599d2-6c70-4013-8ab4-71f0368fc702",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "Eq",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "MoveThroughUnitActions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$d454e16b90fa47aa81a883f5ffc3d2b5",
+              "Comment": "Проверка на противника",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "c5b3b6002404ca249add2943e99f366a, ContextConditionIsAlly",
+                    "name": "$ContextConditionIsAlly$fbc86d5c0d5d42f0b17ea671d431ae4c",
+                    "Not": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                    "name": "$ContextActionDealDamage$4182f4821d03449e840656217ec03470",
+                    "DamageType": {
+                      "Type": "Rending"
+                    },
+                    "UseDiceForDamage": false,
+                    "ReadPreRolledFromSharedValue": false,
+                    "PreRolledSharedValue": "Damage",
+                    "Value": {
+                      "DiceType": "Zero",
+                      "DiceCountValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "MinDamage": {
+                      "ValueType": "Simple",
+                      "Value": 15,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "MaxDamage": {
+                      "ValueType": "Simple",
+                      "Value": 25,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "BonusDamage": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "Penetration": {
+                      "DiceType": "Zero",
+                      "DiceCountValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 30,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "HasRighteousFury": false,
+                    "Half": false,
+                    "IsAoE": false,
+                    "m_Weapon": null,
+                    "WriteResultToSharedValue": false,
+                    "ResultSharedValue": "Damage",
+                    "DoNotUseCrModifier": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "IlyaPolitko",
+    "Comment": "Rush to Slaughter. Пассивка. Древний свежеватель умеет ходить сквозь противников. При этом наносит 15-25 Rending урона.",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": true
+  }
+}

@@ -11,6 +11,7 @@ using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.UnityExtensions;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -24,7 +25,7 @@ namespace Kingmaker.Editor.AreaStatesWindow
     /// Expected to be used as a part of OwlcatInspectorRoot or in a separate
     /// window keeping the OwlcatInspectorRoot style
     /// </summary>
-    public class AreaStatesElement : OwlcatInspectorStyle
+    public class AreaStatesElement : OwlcatContentContainer
     {
         public const string BaseKey = nameof(AreaStatesElement) + ".States";
 
@@ -36,6 +37,8 @@ namespace Kingmaker.Editor.AreaStatesWindow
 
         public AreaStatesElement(BlueprintArea area)
         {
+            OwlcatInspectorStyle.LoadFor(this);
+
             _area = area;
             _root = new OwlcatInspectorFoldout(BaseKey)
             {
@@ -44,7 +47,19 @@ namespace Kingmaker.Editor.AreaStatesWindow
                     text = "Scene States"
                 },
             };
+            _root.ControlsContainer.Add(new OwlcatSmallButton(() =>
+            {
+                Application.OpenURL("https://confluence.owlcat.games/x/exQ0Cg");
+            })
+            {
+                text = "?"
+            });
             Add(_root);
+        }
+
+        public void Expand(bool isExpanded)
+        {
+            _root.IsExpanded = isExpanded;
         }
 
         public void UpdateStates()
@@ -88,9 +103,7 @@ namespace Kingmaker.Editor.AreaStatesWindow
         public void LoadBaseState()
         {
             if (_states.Count > 0)
-            {
-                LoadState(_states[0]);
-            }
+                LoadState(_states[0], false);
         }
 
         private void CreateNewState((string stateName, string sceneName, string sceneTemplatePath) _)
@@ -108,7 +121,6 @@ namespace Kingmaker.Editor.AreaStatesWindow
             var stateEtude = BlueprintsDatabase.CreateAsset<BlueprintEtude>(rootEtudeDir, _.stateName);
 
             stateEtude.Parent = BlueprintEtudeReference.CreateTyped<BlueprintEtudeReference>(rootAreaEtude);
-            rootAreaEtude.AppendStartWith(stateEtude);
             rootAreaEtude.SetDirty();
 
             // Create area mechanics
@@ -131,13 +143,16 @@ namespace Kingmaker.Editor.AreaStatesWindow
             }
         }
 
-        private void LoadState(AreaState state)
+        private void LoadState(AreaState state, bool unloadOtherStates = true)
         {
             MakeSureBaseStateIsLoaded();
 
-            _states
-                .Where(s => s.Etude != null && s.Etude.AssetGuid != state.Etude?.AssetGuid)
-                .ForEach(UnloadState);
+            if (unloadOtherStates)
+            {
+                _states
+                    .Where(s => s.Etude != null && s.Etude.AssetGuid != state.Etude?.AssetGuid)
+                    .ForEach(UnloadState);
+            }
 
             AppendState(state);
         }
@@ -221,15 +236,16 @@ namespace Kingmaker.Editor.AreaStatesWindow
 
         private static void UnloadState(AreaState state)
         {
-            foreach (var sceneAsset in state.SceneAssets)
-            {
-                string path = AssetDatabase.GetAssetPath(sceneAsset);
-                var scene = SceneManager.GetSceneByPath(path);
-                if (scene.isLoaded)
-                {
-                    EditorSceneManager.CloseScene(scene, false);
-                }
-            }
+            var scenesToUnload = new List<Scene>(state.SceneAssets.Count);
+            scenesToUnload.AddRange(state.SceneAssets
+                .Select(AssetDatabase.GetAssetPath)
+                .Select(SceneManager.GetSceneByPath)
+                .Where(scene => scene.isLoaded));
+
+            if (AreaStatesWindow.CheckScenesDirty(scenesToUnload))
+                return;
+
+            scenesToUnload.ForEach(scene => EditorSceneManager.CloseScene(scene, false));
         }
     }
 }

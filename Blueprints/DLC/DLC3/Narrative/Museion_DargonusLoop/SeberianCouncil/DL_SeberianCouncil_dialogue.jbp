@@ -1,0 +1,178 @@
+{
+  "AssetId": "0b75c257215e4c279ff6ec8eee04e158",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Мейнспикер Себериан",
+    "FirstCue": {
+      "Cues": [
+        "!bp_5e388fbeec8947b59072a49a5e39fe9c"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": [
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$26cfcfa877b25552b75899a166119f8d",
+          "m_State": {
+            "Value": "Story",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$55cb4daaa89e5af48dc37a6d6755a6a5",
+          "m_State": {
+            "Value": "HardChoice",
+            "Group": "MusicStoryType"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f7ee3d1dc5404895984eeebf2d4b9a41",
+          "Comment": "Фейл починки турелей если не сделано до совета",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$1f98ac2c8d9049a38032cde1869750e8",
+                "Not": false,
+                "m_QuestObjective": "!bp_928fa78e96b649a8baad707f2e832ee3",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$8e7e6cbb280f4ce08472584993656a8f",
+                "Status": "Fail",
+                "m_Objective": "!bp_928fa78e96b649a8baad707f2e832ee3",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$74062561-7fc9-4c8d-bf98-25f60dc4d4df",
+          "Comment": "Фейл открыть ворота если не сообщили коды Ювене (Side)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$af510cd0-1db1-4719-8125-1c43006f1323",
+                "Not": false,
+                "m_QuestObjective": "!bp_aeac6981b7f941c79083fdfe888d6263",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$336a8a1a-7b4b-4d0e-b4bd-69b155a4eee9",
+                "Status": "Fail",
+                "m_Objective": "!bp_aeac6981b7f941c79083fdfe888d6263",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$2324f76d-5b52-48da-a078-82d65bb90b6a",
+          "Comment": "Фейл открыть ворота если не сообщили коды Ювене (Conspiracy)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$b23d4fed-b9fa-4f72-998e-5a6ec1a4d6f8",
+                "Not": false,
+                "m_QuestObjective": "!bp_ae915ac4bdfd4f94867432d2ac47a278",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$45546e99-98e4-4d1d-806f-ed0dd4c5b026",
+                "Status": "Fail",
+                "m_Objective": "!bp_ae915ac4bdfd4f94867432d2ac47a278",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$8c3398f5-87e5-4fd6-92d7-2033fe88913d",
+          "m_State": {
+            "Value": "Setting",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": false,
+          "m_IgnoreCombatExit": false
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": []
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "OverrideCRForSkillChecks": false,
+    "OverridenCR": 0,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

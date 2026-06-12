@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Selector": "Max",
         "TargetProperty": {
           "Operation": "Sum",
@@ -35,9 +36,10 @@
                 "Max": 0
               },
               "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+              "CheckTarget": "CurrentEntity",
               "Aggregation": "Max",
               "BuffWithCasterFromTargetType": false,
-              "Target": "CurrentEntity"
+              "BuffCaster": "CurrentEntity"
             }
           ]
         },
@@ -59,15 +61,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -82,7 +75,7 @@
               "AsChild": false,
               "SameDuration": false,
               "Ranks": {
-                "ValueType": "Simple",
+                "ValueType": "CasterNamedProperty",
                 "Value": 1,
                 "ValueRank": "Default",
                 "ValueShared": "Damage",
@@ -101,6 +94,79 @@
           ]
         },
         "OnlyOwnerTurn": true
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$80a91874-663c-4bae-85f2-5e7358a4cb1d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$8584148c23485da6a26b6a50e300b939",
+              "Settings": {
+                "Progression": "Div2",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "IntelligenceBonus"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$350a565f-7af7-4ff7-a7c3-a216dba01f86",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "778e21c43d6766a4c9c8288b759823fa",
+                "stringkey": "054751d5-eed2-446f-85fe-f1cb5fc04f5a"
+              }
+            },
+            "m_DescriptionFact": "!bp_ec4f6ac63df24585843693f01dc69b1c",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_ec4f6ac63df24585843693f01dc69b1c",
+            "m_LinkKey": "INTB2",
+            "Main": false
+          }
+        ]
       }
     ],
     "Author": "LeonidTolochenko",
@@ -136,7 +202,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Universal",
       "Archetype"
     ],
     "TalentIconInfo": {

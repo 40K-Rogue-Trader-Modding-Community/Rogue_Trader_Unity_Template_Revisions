@@ -1,0 +1,75 @@
+{
+  "AssetId": "90e8805937fd41d1a6f24585e5988aa4",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "DLC3 - открыть на глобалкарте путь \"DLC3 - (Sys17) <--> Mortus Acies (PenalWorld)\" + саму систему",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "21478aefd0db492089f79ea2cf10f07b, UnhideStarSystem",
+          "name": "$UnhideStarSystem$7b47ec35270e4de68e319af97d3e19d7",
+          "m_SectorMapPoint": "!bp_eeacbf7c7163497f887da8f519b3cae4",
+          "m_ExploreSystem": true,
+          "m_ExploreSystemPassagesAsWell": false
+        },
+        {
+          "$type": "126c1804a65a4391bdd281d1eb7fd260, AddNavigatorResource",
+          "name": "$AddNavigatorResource$2e5d2d06-4bc9-44a3-9a12-aea3e5ac6be0",
+          "AddCount": 3
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1f29449524994f9b8317cc897397ecd3",
+          "Comment": "Если были в пеналворлде - ревильнуть путь до него",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "21eaf44b8e5b8004f8ec912dc94b92bf, AreaVisited",
+                "name": "$AreaVisited$b3b1093ea0eb4c5883a9681256f27eae",
+                "Not": false,
+                "m_Area": "!bp_c1ed5f6555b3426fa78382d39db22385"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f809d41697e94786a9733f2379d9fff2, RevealWarpRoute",
+                "name": "$RevealWarpRoute$f443bb04-ecaf-45b4-be2f-b00a72f3bfe9",
+                "m_System1": {
+                  "$type": "a4aa1729f3bc4ff8bfffb1cc9d02c662, MechanicEntityFromScene",
+                  "name": "$MechanicEntityFromScene$f3a0ed88-6066-409e-b747-a9dba1989dbc",
+                  "EntityRef": {
+                    "EntityNameInEditor": "DLC3 - (Sys17)",
+                    "_entity_id": "b2d5ca08-e776-4c44-89e1-1179266bf5d1",
+                    "SceneAssetGuid": "Assets/Scenes/GlobalMaps/KoronusExpanseGM/KoronusExpanseMap_Mechanics.unity"
+                  }
+                },
+                "m_System2": {
+                  "$type": "a4aa1729f3bc4ff8bfffb1cc9d02c662, MechanicEntityFromScene",
+                  "name": "$MechanicEntityFromScene$4a2b2b33-30c1-4d2f-b016-cedbe4788b1c",
+                  "EntityRef": {
+                    "EntityNameInEditor": "Mortus Acies (PenalWorld)",
+                    "_entity_id": "d7937d1d-a5f6-4310-a137-9fffdde9ffdc",
+                    "SceneAssetGuid": "Assets/Scenes/GlobalMaps/KoronusExpanseGM/KoronusExpanseMap_Mechanics.unity"
+                  }
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

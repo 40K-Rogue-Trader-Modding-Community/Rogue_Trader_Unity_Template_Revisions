@@ -51,8 +51,11 @@ namespace Code.GameCore.Editor.Blueprints.BlueprintUnitEditorChecker
 
 
 					BlueprintPicker.ShowObjectField(Unit,
+						null,
 						bp => { Unit = bp as BlueprintUnit; },
-						new GUIContent("Unit"), typeof(BlueprintUnit));
+						new GUIContent("Unit"), 
+						typeof(BlueprintUnit),
+						null);
 
 					CR = EditorGUILayout.IntField("Area Cr", CR);
 					Difficulty = (ActualGameDifficultyOption)EditorGUILayout.EnumPopup("Game Difficulty", Difficulty);

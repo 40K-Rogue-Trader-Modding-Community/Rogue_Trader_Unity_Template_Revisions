@@ -69,6 +69,55 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$d77163e0-1fed-4f59-bd1c-2aa721ec5aa3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$af21348431fa50a6bc8823c11904ec1e",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                    "name": "$CueSeen$3e13d3eb99fc5917ac3d0eda3703a935",
+                    "Not": false,
+                    "m_Cue": "!bp_fb6cbf7c192147549e3f1a032b740a8f",
+                    "CurrentDialog": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+                    "name": "$TeleportParty$2065e915-9df2-4eeb-9654-56f587494dee",
+                    "m_exitPositon": "!bp_c790d7d45c474c21aabc63dd1a09592f",
+                    "AutoSaveMode": "BeforeExit",
+                    "ForcePauseAfterTeleport": false,
+                    "AfterTeleport": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "KseniyaUrchenko",
@@ -76,14 +125,7 @@
     "m_Parent": "!bp_0542a3413b0b4c8eb5e985bf4ae79405",
     "ActivationCondition": {
       "Operation": "And",
-      "Conditions": [
-        {
-          "$type": "ee651e222f282454fbd2821c9ea18a72, AnotherEtudeOfGroupIsPlaying",
-          "name": "$AnotherEtudeOfGroupIsPlaying$e456bb60-dc87-49d7-8e00-2873ee3e8a90",
-          "Not": true,
-          "m_Group": "!bp_6bf491b89a8c475aa4e22dfa7d26a7d0"
-        }
-      ]
+      "Conditions": []
     },
     "CompletionCondition": {
       "Operation": "And",
@@ -98,11 +140,8 @@
     "m_StartsOnComplete": [],
     "m_StartsParent": false,
     "m_CompletesParent": false,
-    "m_ConflictingGroups": [
-      "!bp_6bf491b89a8c475aa4e22dfa7d26a7d0",
-      "!bp_d5cf803df1c344d8ba8a0ddc6cef9157"
-    ],
-    "Priority": 110
+    "m_ConflictingGroups": [],
+    "Priority": 0
   },
   "Meta": {
     "ShadowDeleted": false

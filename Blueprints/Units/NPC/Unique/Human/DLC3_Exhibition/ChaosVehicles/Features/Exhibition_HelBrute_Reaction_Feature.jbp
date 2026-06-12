@@ -1,0 +1,838 @@
+{
+  "AssetId": "21d70ee7796a484ca980f32dc7b10268",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "66be5599926e57d45a7a016495d269c4, WarhammerWeaponHitTriggerTarget",
+        "name": "$WarhammerWeaponHitTriggerTarget$7120de7d-9ff7-4d0d-ad2a-e872de1f0665",
+        "m_Flags": "Disabled",
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "ActionOnSelfHit": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c66ca1ff-5332-43bc-a256-b3180719894a",
+              "Comment": "Melee",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$2213f6cd-013b-4856-a6aa-fceba3de56c0",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "Eq",
+                      "TargetType": "ContextCaster",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                          "name": "$ContextValueGetter$f51763b2-e64c-4e87-9014-cf4949635d2b",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "Value": {
+                            "ValueType": "Simple",
+                            "Value": 1,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
+                        },
+                        {
+                          "$type": "8cc2fc2a697041af82344696abdf3c4d, DistanceGetter",
+                          "name": "$DistanceGetter$6f609a9e-bcbf-4df5-bf07-142a789ffa15",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "Target": "RuleInitiator"
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  },
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$52d90caf-9ac7-414e-9c0c-1dae233b14f7",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "BoolAnd",
+                      "TargetType": "ContextCaster",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "145fae42674897643a03d1d165941210, WeaponRangeTypeGetter",
+                          "name": "$WeaponRangeTypeGetter$6ea10821-df02-49e4-b2f8-130fbe143a01",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "SecondWeapon": false,
+                          "m_RangeType": "Melee"
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                    "name": "$ContextActionAttackWithFirstWeaponAbility$b24c7c27-b97f-4a3f-b26a-eebf5b4449c2",
+                    "TargetIsPriorityTarget": false,
+                    "m_PriorityTargetBuff": null,
+                    "useSecondWeapon": false,
+                    "OwnerIsAttacker": false,
+                    "SaveMPAfterUsingWeaponAbility": false,
+                    "ContextCasterIsTarget": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$c5c426bd-c2d3-471f-944d-0b79f90fd5ce",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$e8b13755-b88c-4770-abb2-8c74675f5453",
+                          "Not": false,
+                          "Property": {
+                            "Operation": "Eq",
+                            "TargetType": "ContextCaster",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                                "name": "$ContextValueGetter$d03f3363-b430-45d2-8be9-1ef37c52d489",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "Value": {
+                                  "ValueType": "Simple",
+                                  "Value": 1,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                }
+                              },
+                              {
+                                "$type": "8cc2fc2a697041af82344696abdf3c4d, DistanceGetter",
+                                "name": "$DistanceGetter$f381ca12-48cb-46e5-93f2-4ab596efb15c",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "Target": "RuleInitiator"
+                              }
+                            ]
+                          },
+                          "NegativeDoesNotCount": false
+                        },
+                        {
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$bfe9a314-8931-46e2-bd01-6df0d49fc35a",
+                          "Not": false,
+                          "Property": {
+                            "Operation": "BoolAnd",
+                            "TargetType": "ContextCaster",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "145fae42674897643a03d1d165941210, WeaponRangeTypeGetter",
+                                "name": "$WeaponRangeTypeGetter$c8fb8699-97c6-4f10-8581-36228c1eee3d",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "SecondWeapon": true,
+                                "m_RangeType": "Melee"
+                              }
+                            ]
+                          },
+                          "NegativeDoesNotCount": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                          "name": "$ContextActionAttackWithFirstWeaponAbility$4ecdeac8-0035-4516-8367-6421e8540609",
+                          "TargetIsPriorityTarget": false,
+                          "m_PriorityTargetBuff": null,
+                          "useSecondWeapon": true,
+                          "OwnerIsAttacker": false,
+                          "SaveMPAfterUsingWeaponAbility": false,
+                          "ContextCasterIsTarget": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$dd6eb9e5-c76f-4a26-b609-3675f5ec0384",
+              "Comment": "RangeWeapon",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$9e72d29d-bba7-427b-8c6c-f3a91d75f66b",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "BoolAnd",
+                      "TargetType": "ContextCaster",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "145fae42674897643a03d1d165941210, WeaponRangeTypeGetter",
+                          "name": "$WeaponRangeTypeGetter$c49c85ca-e298-4fe8-a0b2-847ef4a3ca01",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "SecondWeapon": false,
+                          "m_RangeType": "Ranged"
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  },
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$2e1ce44c-0148-43ef-afd9-0704b24e5a50",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "GE",
+                      "TargetType": "ContextCaster",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "709bbf9dd09c0fc44a3f8586c5728ba6, WeaponMaxDistanceGetter",
+                          "name": "$WeaponMaxDistanceGetter$09117c62-e743-46db-8ed6-e2d25db22156",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "SecondWeapon": false
+                        },
+                        {
+                          "$type": "8cc2fc2a697041af82344696abdf3c4d, DistanceGetter",
+                          "name": "$DistanceGetter$25ffc35c-e2af-4578-919d-371d1156c511",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "Target": "RuleInitiator"
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  },
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$24d366d7-ae31-4c18-b4cd-cf040bdfc5cd",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "BoolAnd",
+                      "TargetType": "ContextCaster",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "fa233c8140970be47945cefc36eb38ba, WeaponAmmoGetter",
+                          "name": "$WeaponAmmoGetter$5c258fcd-93cb-4c81-b6ed-c9f5b6ed26d4",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "SecondWeapon": false
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                    "name": "$ContextActionAttackWithFirstWeaponAbility$1404356a-07ab-4c44-833e-7a3d0ebf0b48",
+                    "TargetIsPriorityTarget": false,
+                    "m_PriorityTargetBuff": null,
+                    "useSecondWeapon": false,
+                    "OwnerIsAttacker": false,
+                    "SaveMPAfterUsingWeaponAbility": false,
+                    "ContextCasterIsTarget": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$711efad6-fe12-4b64-9e44-fcd252e8a70d",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$baaea507-4825-4930-9e61-e3cefb426fff",
+                          "Not": false,
+                          "Property": {
+                            "Operation": "BoolAnd",
+                            "TargetType": "ContextCaster",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "145fae42674897643a03d1d165941210, WeaponRangeTypeGetter",
+                                "name": "$WeaponRangeTypeGetter$c9dee8b8-c55c-4a02-ac71-c236d399e6b6",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "SecondWeapon": true,
+                                "m_RangeType": "Ranged"
+                              }
+                            ]
+                          },
+                          "NegativeDoesNotCount": false
+                        },
+                        {
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$2d46da0d-1c50-4f92-a713-884154d3a2de",
+                          "Not": false,
+                          "Property": {
+                            "Operation": "GE",
+                            "TargetType": "ContextCaster",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "709bbf9dd09c0fc44a3f8586c5728ba6, WeaponMaxDistanceGetter",
+                                "name": "$WeaponMaxDistanceGetter$4cb67ea5-2f0e-4f11-9012-0ca4b361fed6",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "SecondWeapon": true
+                              },
+                              {
+                                "$type": "8cc2fc2a697041af82344696abdf3c4d, DistanceGetter",
+                                "name": "$DistanceGetter$ee2ff38c-24df-48ae-8196-3962a9f1681d",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "Target": "RuleInitiator"
+                              }
+                            ]
+                          },
+                          "NegativeDoesNotCount": false
+                        },
+                        {
+                          "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                          "name": "$ContextConditionProperty$c7febab3-10cd-47a8-b08b-8a857023628d",
+                          "Not": false,
+                          "Property": {
+                            "Operation": "BoolAnd",
+                            "TargetType": "ContextCaster",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "fa233c8140970be47945cefc36eb38ba, WeaponAmmoGetter",
+                                "name": "$WeaponAmmoGetter$eac5ac02-3388-451e-a06a-20ae055f3f80",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "SecondWeapon": true
+                              }
+                            ]
+                          },
+                          "NegativeDoesNotCount": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "c635b9ab19e16be419c637e0474dc6a9, ContextActionAttackWithFirstWeaponAbility",
+                          "name": "$ContextActionAttackWithFirstWeaponAbility$8d08b73e-9f6b-4ae7-8b82-260037d5be2e",
+                          "TargetIsPriorityTarget": false,
+                          "m_PriorityTargetBuff": null,
+                          "useSecondWeapon": true,
+                          "OwnerIsAttacker": false,
+                          "SaveMPAfterUsingWeaponAbility": false,
+                          "ContextCasterIsTarget": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ActionOnSelfMiss": {
+          "Actions": []
+        },
+        "ActionsOnTargetHit": {
+          "Actions": []
+        },
+        "ActionsOnTargetMiss": {
+          "Actions": []
+        },
+        "OnlyCritical": true,
+        "OnlyFromSpotWeaknessSide": false,
+        "m_SpotWeaknessBuff": null,
+        "SpecificRangeType": false,
+        "WeaponRangeType": "Melee",
+        "OnlyFromContextCaster": false
+      },
+      {
+        "$type": "d7bd163f6687c15448553fba4ad389ac, ActionsOnBuffApply",
+        "name": "$ActionsOnBuffApply$16f144a4-3bc0-4f6d-9527-36c93bcd234d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_GainedFact": "!bp_8efe147110a46d2488c30447e7545f13",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5f950c181b3157a4486fcd36b702b702, ContextActionOnContextCaster",
+              "name": "$ContextActionOnContextCaster$f4dd9b4e31ea4cb493da2e55de527e5b",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                    "name": "$ContextActionApplyDOT$dbf40b64-5b2f-4c82-8512-4622f6fb0891",
+                    "Type": "Bleeding",
+                    "DamageValue": {
+                      "ValueType": "Simple",
+                      "Value": 30,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value2"
+                    },
+                    "EndCondition": "CombatEnd",
+                    "UseRoundsDuration": false,
+                    "RoundsDuration": {
+                      "m_Value": 0
+                    },
+                    "UseSavingThrowOverride": false,
+                    "SavingThrowOverride": "Unknown",
+                    "UseDifficultyOverride": false,
+                    "DifficultyOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "UsePenetrationOverride": false,
+                    "PenetrationOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UseFactContext": false
+      },
+      {
+        "$type": "d7bd163f6687c15448553fba4ad389ac, ActionsOnBuffApply",
+        "name": "$ActionsOnBuffApply$27f0a0ec-c202-4170-8c8a-d20bf1c5b2e3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_GainedFact": "!bp_8da2a947a1a8bc543b9e7a9cad054414",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5f950c181b3157a4486fcd36b702b702, ContextActionOnContextCaster",
+              "name": "$ContextActionOnContextCaster$4b786512-a8d4-4c57-9d24-b4440cdbf59c",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                    "name": "$ContextActionApplyDOT$b5f13fa7-8353-4ee1-96e0-3b739ea1841a",
+                    "Type": "Burning",
+                    "DamageValue": {
+                      "ValueType": "Simple",
+                      "Value": 30,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value2"
+                    },
+                    "EndCondition": "CombatEnd",
+                    "UseRoundsDuration": false,
+                    "RoundsDuration": {
+                      "m_Value": 0
+                    },
+                    "UseSavingThrowOverride": false,
+                    "SavingThrowOverride": "Unknown",
+                    "UseDifficultyOverride": false,
+                    "DifficultyOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "UsePenetrationOverride": false,
+                    "PenetrationOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UseFactContext": false
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$ed09edd3-453f-4590-94d0-93de9378b6b5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "ForCaster",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+              "name": "$FactRankGetter$9ed551c2b7af5528a2811dbf8a91f83b",
+              "Settings": {
+                "Progression": "Div2",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Fact": "!bp_8efe147110a46d2488c30447e7545f13",
+              "CheckTarget": "CurrentEntity",
+              "Aggregation": "Max",
+              "BuffWithCasterFromTargetType": false,
+              "BuffCaster": "CurrentEntity"
+            },
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$52c4568baea051179613e029d95abe8b",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 100,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "d7bd163f6687c15448553fba4ad389ac, ActionsOnBuffApply",
+        "name": "$ActionsOnBuffApply$93d5715c-0027-4dc0-b5ad-2859045cb990",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_GainedFact": "!bp_79aa52bbdf534f6c9bc5da0b4e463b66",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5f950c181b3157a4486fcd36b702b702, ContextActionOnContextCaster",
+              "name": "$ContextActionOnContextCaster$86d0af8a-c5ed-43a4-8da7-bb6ec602bdfc",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                    "name": "$ContextActionApplyDOT$8e93ef4e-fefe-48f3-a0b0-2cfc2df897ac",
+                    "Type": "Toxic",
+                    "DamageValue": {
+                      "ValueType": "Simple",
+                      "Value": 30,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value2"
+                    },
+                    "EndCondition": "CombatEnd",
+                    "UseRoundsDuration": false,
+                    "RoundsDuration": {
+                      "m_Value": 0
+                    },
+                    "UseSavingThrowOverride": false,
+                    "SavingThrowOverride": "Unknown",
+                    "UseDifficultyOverride": false,
+                    "DifficultyOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "UsePenetrationOverride": false,
+                    "PenetrationOverride": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UseFactContext": false
+      }
+    ],
+    "Author": "VladislavSolyannikov",
+    "Comment": "Не используется, но строчка названия используется в другом бп",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "6a900a7cea7218d4da06abdb28bb55cc",
+        "stringkey": "9f0dee9d-18d1-413e-b586-dd6b524a8ad8"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "059b4a2dbaf4e1f47a56e7333158a199",
+        "stringkey": "9d3e29f6-8a38-4732-9bd6-376fe902d516"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": true
+  }
+}

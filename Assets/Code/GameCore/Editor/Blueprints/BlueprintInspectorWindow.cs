@@ -1,10 +1,11 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 using System.Linq;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.UIElements;
 using Kingmaker.Utility.EditorPreferences;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -61,35 +62,38 @@ namespace Kingmaker.Editor.Blueprints
 
 		private void Init(SimpleBlueprint blueprint)
 		{
-			m_Editor = default;
 			rootVisualElement.Clear();
 
 			m_Blueprint = blueprint;
 			titleContent = new GUIContent(blueprint.name);
 
             var w = BlueprintEditorWrapper.Wrap(blueprint);
+            UnityEditor.Editor.CreateCachedEditor(w, null, ref m_Editor);
             
-			if (EditorPreferences.Instance.UseNewEditor)
-			{
-				var root = UIElementsUtility.CreateInspector(new SerializedObject(w));
-				root.style.paddingLeft = 15;
-				root.style.paddingRight = 6;
-				root.style.paddingBottom = 2;
-				root.style.paddingTop = 2;
-				
-                //rootVisualElement.Add(new IMGUIContainer(m_Editor.DrawHeader)); todo
-                
-				var scroll = new ScrollView(ScrollViewMode.Vertical);
-				scroll.contentContainer.Add(root);
-				rootVisualElement.Add(scroll);
-			}
-			else
-			{
-				UnityEditor.Editor.CreateCachedEditor(w, null, ref m_Editor);
-			}
+            VisualElement root;
+ 	        if (m_Editor is BlueprintWrapperInspector blueprintInspector)
+ 	        {
+ 	            root = blueprintInspector.CreateInspectorGUI();
+ 	            root.Bind(m_Editor.serializedObject);
+ 	        }
+            else
+            {
+                root = UIElementsUtility.CreateInspector(new SerializedObject(w));
+            }
+
+            root.style.paddingLeft = 15;
+            root.style.paddingRight = 6;
+            root.style.paddingBottom = 2;
+            root.style.paddingTop = 2;
+			
+            //rootVisualElement.Add(new IMGUIContainer(m_Editor.DrawHeader)); todo
+            
+            var scroll = new ScrollView(ScrollViewMode.Vertical);
+            scroll.contentContainer.Add(root);
+            rootVisualElement.Add(scroll);
 		}
 
-		private void OnGUI()
+		private void DrawInImguiContainer()
 		{
 			if (m_Editor)
 			{

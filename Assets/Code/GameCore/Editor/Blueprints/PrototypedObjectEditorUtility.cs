@@ -14,14 +14,17 @@ using Owlcat.Editor.Utility;
 using System.Collections.Generic;
 using Code.Editor.KnowledgeDatabase;
 using Code.Editor.KnowledgeDatabase.Inspector;
+using Code.Editor.Utility;
 using Kingmaker.Blueprints.Base;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.ElementsSystem.Interfaces;
 using Kingmaker.Utility.Attributes;
 using Owlcat.Runtime.Core.Utility;
 using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.UnityExtensions;
+using Owlcat.Plugins.DotNetExtensions;
 using Object = UnityEngine.Object;
 
 namespace Kingmaker.Editor.Blueprints
@@ -106,7 +109,7 @@ namespace Kingmaker.Editor.Blueprints
 
 		public static bool IncludeChildren { get; set; } = true;
 
-		public static BlueprintInspector RootInspector { get; set; }
+		public static BlueprintWrapperInspector RootInspector { get; set; }
 
 		public static void DisplayProperties(SerializedObject serializedObject)
 		{
@@ -161,7 +164,7 @@ namespace Kingmaker.Editor.Blueprints
 
 			//Profiler.BeginSample(p.propertyPath);
 
-			if (!isArrayElement && !ConditionalAttributeExtension.IsVisible(p))
+			if (!isArrayElement && !AttributeExtensions.IsVisible(p))
 			{
 				// do not draw this property
 			}
@@ -225,7 +228,6 @@ namespace Kingmaker.Editor.Blueprints
         private static bool ShowPropertySingleInternal(SerializedProperty p, Decorator decorator)
         {
 	        decorator ??= Decorator.Empty;
-	        bool isArray = p.isArray && p.hasVisibleChildren;
 	        bool drawChildren = false;
 
 			// todo: also detect blueprint references here??
@@ -237,12 +239,15 @@ namespace Kingmaker.Editor.Blueprints
 
 			using (new EditorGUILayout.HorizontalScope())
 			{
+				var isObsolete = IsObsolete(p, out _);
+				string displayName = isObsolete ? $"[OBSOLETE] {p.displayName}" : p.displayName;
+				
 				bool overridden = false;
 				bool hasOverrideOption = false;
 				
-				if (isArray || container || p.propertyType != SerializedPropertyType.Generic || !p.hasVisibleChildren)
+				if (IsOverrideDraw(p))
 				{
-					overridden = IsOverridden(p);
+					bool isArray = p.isArray && p.hasVisibleChildren;
 					hasOverrideOption = HasOverrideOption(p);
 					using (new EditorGUILayout.VerticalScope(GUILayout.ExpandWidth(true)))
 					{
@@ -254,7 +259,7 @@ namespace Kingmaker.Editor.Blueprints
 									if (isArray)
 									{
 										string title = string.Format("{0} (size: {1})",
-											p.displayName,
+											displayName,
 											p.hasMultipleDifferentValues ? "<multiple>" : p.arraySize.ToString());
 										GUI.SetNextControlName(controlId);
 										drawChildren = p.isExpanded = EditorGUILayout.Foldout(p.isExpanded,
@@ -262,8 +267,9 @@ namespace Kingmaker.Editor.Blueprints
 									}
 									else
 									{
+										var label = new GUIContent(displayName);
 										GUI.SetNextControlName(controlId);
-										drawChildren = EditorGUILayout.PropertyField(p, false);
+										drawChildren = EditorGUILayout.PropertyField(p, label, false);
 									}
 								}
 							});
@@ -276,8 +282,9 @@ namespace Kingmaker.Editor.Blueprints
 						decorator.DrawDecorated(
 							() =>
 							{
+								var label = new GUIContent(displayName);
 								GUI.SetNextControlName(controlId);
-								EditorGUILayout.PropertyField(p, false);
+								EditorGUILayout.PropertyField(p, label, false);
 								drawChildren = p.isExpanded;
 							});
 					}
@@ -302,6 +309,10 @@ namespace Kingmaker.Editor.Blueprints
 					CopyPasteController.Process(type, p);
 				}
 			}
+			
+			// InspectorDisable and InspectorReadOnly Drawers draws children by themselves
+			if (p.HasReadOnlyAttribute())
+				drawChildren = false;
 
 	        return drawChildren;
         }
@@ -329,13 +340,14 @@ namespace Kingmaker.Editor.Blueprints
 				if (GUI.depth <= 0)
 					return;
 				
-				s_TooltipStyle = new GUIStyle(GUI.skin.box)
+				s_TooltipStyle = new GUIStyle()
 				{
 					wordWrap = true,
-					normal = {background = Texture2D.whiteTexture}, 
+					normal = {background = Texture2D.whiteTexture, textColor = Color.black}, 
 					richText = true,
-					alignment = TextAnchor.UpperLeft,
+					alignment = TextAnchor.MiddleLeft,
 					clipping = TextClipping.Overflow,
+					border = new RectOffset(-5, 0, 0, 0)
 				};
 				s_TooltipStyle.normal.textColor = Color.black;
                 s_MissingInfoButton = new GUIStyle(GUI.skin.button) {normal = {textColor = Color.grey}};
@@ -351,9 +363,13 @@ namespace Kingmaker.Editor.Blueprints
            
 			if (description == null && codeDescription == null && !hasLink)
 				return;
+			
+			string tooltip = property.tooltip;
+			bool isObsolete = IsObsolete(property, out _);
+			
 			bool clicked;
 
-			var buttonStyle = GetButtonStyle(description, codeDescription, hasLink, out string buttonText);
+			var buttonStyle = GetButtonStyle(description, codeDescription, hasLink, isObsolete, out string buttonText);
 			float buttonWidth = 20f;
 			using (new EditorGUILayout.VerticalScope(GUILayout.Width(buttonWidth)))
 			{
@@ -361,18 +377,18 @@ namespace Kingmaker.Editor.Blueprints
 				clicked = GUILayout.Button(buttonText, buttonStyle, GUILayout.Width(buttonWidth));
 			}
 
-			if ((!description.IsNullOrEmpty() || !codeDescription.IsNullOrEmpty()) && Event.current.type == EventType.Repaint)
+			if ((!Utils.IsNullOrEmpty(description) || !Utils.IsNullOrEmpty(codeDescription)) && Event.current.type == EventType.Repaint)
 			{
 				var controlRect = GUILayoutUtility.GetLastRect(); //new Rect(property.rectValue);
 				bool isMouseOverProperty = controlRect.Contains(Event.current.mousePosition);
 				if (isMouseOverProperty)
 				{
 					var fullDescription = "";
-					if (!codeDescription.IsNullOrEmpty())
+					if (!Utils.IsNullOrEmpty(codeDescription))
 						fullDescription += "Programmer's description:\n\n" + codeDescription;
-					if (!codeDescription.IsNullOrEmpty() && !description.IsNullOrEmpty())
+					if (!Utils.IsNullOrEmpty(codeDescription) && !Utils.IsNullOrEmpty(description))
 						fullDescription += "\n\n";
-					if (!description.IsNullOrEmpty())
+					if (!Utils.IsNullOrEmpty(description))
                         fullDescription  += "Designer's description:\n\n" + description;
 
                     OvertipData = new (new RobustSerializedProperty(property), fullDescription, controlRect);
@@ -389,21 +405,78 @@ namespace Kingmaker.Editor.Blueprints
 				Event.current.Use();
 			}
 		}
+		
+		public static bool IsObsolete(SerializedProperty property, out string obsoleteMessage)
+		{
+			var attributes = property.GetAttributes();
+			if (attributes != null)
+			{
+				foreach (var attribute in attributes)
+				{
+					if (attribute is not ObsoleteAttribute obsoleteAttribute)
+						continue;
+					
+					obsoleteMessage = obsoleteAttribute.Message;
+					return true;
+				}
+			}
+			
+			obsoleteMessage = null;
+			return false;
+		}
+		
+		public static bool TryGetFullDescription(string codeDescription, string description, bool isObsolete,
+			string obsoleteText, out string fullDescription)
+		{
+			using var psb = PooledStringBuilderContextData.Request();
 
-		private static GUIStyle GetButtonStyle(string description, string codeDescription, bool hasLink, out string buttonText)
+			var stringBuilder = psb.Builder;
+			if (!Utils.IsNullOrEmpty(codeDescription))
+			{
+				stringBuilder.AppendLine("Programmer's description:");
+				stringBuilder.Append(codeDescription);
+			}
+
+			if (!Utils.IsNullOrEmpty(description))
+			{
+				if (stringBuilder.Length > 0)
+					stringBuilder.AppendLine();
+				stringBuilder.AppendLine("Designer's description:");
+				stringBuilder.Append(description);
+			}
+
+			if (isObsolete)
+			{
+				if (stringBuilder.Length > 0)
+					stringBuilder.AppendLine();
+				stringBuilder.Append("OBSOLETE");
+				if (!Utils.IsNullOrEmpty(obsoleteText))
+				{
+					stringBuilder.Append(":");
+					stringBuilder.AppendLine();
+					stringBuilder.Append(obsoleteText);
+				}
+			}
+
+			fullDescription = stringBuilder.ToString();
+			return !Utils.IsNullOrEmpty(fullDescription);
+		}
+
+		private static GUIStyle GetButtonStyle(string description, string codeDescription, bool hasLink, bool isObsolete, 
+			out string buttonText)
 		{
 			buttonText = "?";
-			if (description.IsNullOrEmpty() && codeDescription.IsNullOrEmpty() && !hasLink)
-			{
+			
+			if (isObsolete)
+				return s_HasAllInfoButton;
+			
+			if (Utils.IsNullOrEmpty(description) && Utils.IsNullOrEmpty(codeDescription) && !hasLink)
 				return s_MissingInfoButton;
-			}
 			
-			if ((!description.IsNullOrEmpty() || !codeDescription.IsNullOrEmpty()) && !hasLink)
-			{
+			if ((!Utils.IsNullOrEmpty(description) || !Utils.IsNullOrEmpty(codeDescription)) && !hasLink)
 				return s_HasDescriptionInfoButton;
-			}
 			
-			if (description.IsNullOrEmpty() && codeDescription.IsNullOrEmpty() && hasLink)
+			if (Utils.IsNullOrEmpty(description) && Utils.IsNullOrEmpty(codeDescription) && hasLink)
 			{
 				buttonText = "L";
 				return s_HasLinkButton;
@@ -414,16 +487,16 @@ namespace Kingmaker.Editor.Blueprints
 
 		private static void ShowDescriptionOvertip(SerializedProperty property, string description, Rect controlRect)
 		{
-			if (!description.IsNullOrEmpty() || !property.GetTooltip().IsNullOrEmpty())
+			if (!Utils.IsNullOrEmpty(description) || !Utils.IsNullOrEmpty(property.GetTooltip()))
 			{
                 string hardcodedTooltip = property.GetTooltip();
 
                 string fullDescription = "";
-				if (!description.IsNullOrEmpty())
+				if (!Utils.IsNullOrEmpty(description))
 					fullDescription = description;
-				if (!description.IsNullOrEmpty() && !hardcodedTooltip.IsNullOrEmpty())
+				if (!Utils.IsNullOrEmpty(description) && !Utils.IsNullOrEmpty(hardcodedTooltip))
 					fullDescription += "\n---\n";
-				if (!hardcodedTooltip.IsNullOrEmpty())
+				if (!Utils.IsNullOrEmpty(hardcodedTooltip))
 					fullDescription += hardcodedTooltip;
 
 				var tooltipContent = new GUIContent(fullDescription);
@@ -576,21 +649,14 @@ namespace Kingmaker.Editor.Blueprints
 
 			menu.AddSeparator(property.displayName);
 
-			if (hasOverrideOption && !SerializedPropertyHelper.IsArrayElement(property))
-			{
-				menu.AddSeparator("");
-
-				bool overridden = IsOverridden(property);
-				menu.AddItem(
-					new GUIContent(overridden ? "Revert" : "Override"),
-					false,
-					() => SetOverridden(!overridden, robustProperty.Property));
-			}
-
-			var type = SerializableTypesCollection.GetType(property) ?? FieldFromProperty.GetActualValueType(property);
+			bool isIgnoreSeparator = true;
+			var type = CopyPasteController.GetPasteableType(robustProperty);
 			if (type != null)
 			{
-				menu.AddSeparator("");
+				if (!isIgnoreSeparator)
+					menu.AddSeparator("");
+				else
+					isIgnoreSeparator = false;
 
 				menu.AddItem(new GUIContent("Copy"),
 					false,
@@ -619,7 +685,7 @@ namespace Kingmaker.Editor.Blueprints
 				{
 					if (type.IsSubclassOf(typeof(Condition)))
 					{
-						menu.AddItem(new GUIContent("Evaluate"),
+						menu.AddItem(new GUIContent("Evaluate as condition"),
 							false,
 							() =>
 							{
@@ -671,6 +737,7 @@ namespace Kingmaker.Editor.Blueprints
 				EditorUtility.DisplayDialog(c?.GetCaption(), "Error: " + x, "OK");
 			}
 		}
+        
 		public static void DebugEvaluator(Type iFace, Element e)
 		{
 			var method = MethodBase.GetCurrentMethod().DeclaringType?.GetMethod(nameof(DebugEvaluatorImpl), BindingFlags.NonPublic | BindingFlags.Static);
@@ -718,7 +785,7 @@ namespace Kingmaker.Editor.Blueprints
 			
 			array.serializedObject.Update();
 			array.Property.InsertArrayElementAtIndex(index);
-			PrepareAddedArrayElement(array.Property.GetArrayElementAtIndex(index), newElementType);
+			PrepareAddedArrayElement(array.Property.GetArrayElementAtIndex(index), index, newElementType);
 			array.serializedObject.ApplyModifiedProperties();
 		}
 
@@ -781,7 +848,7 @@ namespace Kingmaker.Editor.Blueprints
 			return ft;
 		}
 
-		private static void PrepareAddedArrayElement(SerializedProperty p, Type newElementType = null)
+		private static void PrepareAddedArrayElement(SerializedProperty p, int index, Type newElementType = null)
 		{
 			p = p.Copy();
 			// search for array initializer method in property's type and call it
@@ -794,17 +861,20 @@ namespace Kingmaker.Editor.Blueprints
 				{
 					initializer.Invoke(null, new object[] { p });
 				}
+				else if (type != null && p.boxedValue != null && index == 0)
+				{
+					p.boxedValue = Activator.CreateInstance(type);
+				}
 			}
 			else if (p.propertyType == SerializedPropertyType.ObjectReference)
 			{
 				var field = PropertyToFieldMatcher.GetMatcher(p.serializedObject.targetObject).GetMatchingField(p);
 				var type = GetElementType(field);
-				if (type != null && !type.IsSubclassOf(typeof(Element)) && !field.HasAttribute<NoAutoPickerAttribute>())
+				if (type != null && !type.IsSubclassOf(typeof(Element)) && 
+				    !field.HasAttribute<NoAutoPickerAttribute>() && type != typeof(UnityEngine.Object))
 				{
 					var p1 = new RobustSerializedProperty(p);
-                    AssetPicker.ShowAssetPicker(
-	                    
-					type,
+                    AssetPicker.ShowAssetPicker(type,
 					field,
 					o =>
 					{
@@ -927,7 +997,7 @@ namespace Kingmaker.Editor.Blueprints
 			}
 		}
 
-		private static bool IsOverridden(SerializedProperty p)
+		public static bool IsOverridden(SerializedProperty p)
 		{
             if(p.serializedObject.targetObject is ScriptableWrapperBase sb)
             {
@@ -946,7 +1016,7 @@ namespace Kingmaker.Editor.Blueprints
 			return true;
 		}
 
-		private static bool HasOverrideOption(SerializedProperty p)
+		public static bool HasOverrideOption(SerializedProperty p)
 		{
             if (p.serializedObject.targetObject is ScriptableWrapperBase sb)
             {
@@ -965,7 +1035,7 @@ namespace Kingmaker.Editor.Blueprints
 			return true;
 		}
 
-		private static void SetOverridden(bool overridden, SerializedProperty p)
+		public static void SetOverridden(bool overridden, SerializedProperty p)
 		{
 			if (p.serializedObject.targetObject is ScriptableWrapperBase sb)
             {
@@ -996,13 +1066,21 @@ namespace Kingmaker.Editor.Blueprints
 			EditorApplication.delayCall += () => p.serializedObject.Update();
 		}
 
-		
-		
+		public static bool IsOverrideDraw(SerializedProperty p)
+		{
+			bool isArray = p.isArray && p.hasVisibleChildren;
+            
+			// todo: also detect blueprint references here??
+			bool container = p.type == "LocalizedString" ||
+			                 p.type.StartsWith("Ak") && p.type.EndsWith("Reference");
+
+			return isArray || container || p.propertyType != SerializedPropertyType.Generic || !p.hasVisibleChildren;
+		}
 	}
 
 	internal static class SerializedPropertyHelper
 	{
 		public static bool IsArrayElement(this SerializedProperty property) 
-			=> property.propertyPath.Contains("Array");
+			=> property.GetParent()?.isArray ?? false;
 	}
 }

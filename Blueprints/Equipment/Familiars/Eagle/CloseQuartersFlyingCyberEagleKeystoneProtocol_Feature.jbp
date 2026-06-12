@@ -35,6 +35,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -158,21 +159,6 @@
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$de357f76c56e4dec99b53e41c0c2f81e",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "Type": "Melee"
-              },
-              {
                 "$type": "e976e615d0274913a061b4841aa98d3e, HasBuffFromContextCasterGetter",
                 "name": "$HasBuffFromContextCasterGetter$910ba05c8c2b56dfa7df563415381e8d",
                 "Settings": {
@@ -187,6 +173,21 @@
                 },
                 "m_Fact": "!bp_1e22c265a12744cc95a03d26b6c3cef9",
                 "Target": "CurrentEntity"
+              },
+              {
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$d27bb1d306a64d38b03e4f89be7e4b1d",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_RangeType": "Melee"
               }
             ]
           }
@@ -212,7 +213,9 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1"
-        }
+        },
+        "AutoDodge": false,
+        "NeverDodge": false
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
@@ -282,12 +285,13 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_cdd71475a76f46adb072f009748e5c1a",
-            "m_LinkKey": "Dodge"
+            "m_LinkKey": "Dodge",
+            "Main": false
           }
         ]
       }
     ],
-    "Author": "YuriyElburih",
+    "Author": "Loogris",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",

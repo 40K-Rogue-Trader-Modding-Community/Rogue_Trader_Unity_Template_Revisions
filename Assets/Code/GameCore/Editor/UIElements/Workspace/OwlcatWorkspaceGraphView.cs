@@ -7,9 +7,9 @@ namespace Kingmaker.Editor.UIElements.Workspace
 {
 	public class OwlcatWorkspaceGraphView : GraphView
 	{
-		private Dictionary<SimpleBlueprint, OwlcatWorkspaceGraphElement> m_OpenedElements = new();
+		private Dictionary<BlueprintScriptableObject, OwlcatWorkspaceGraphElement> m_OpenedElements = new();
 		
-		public void Open(SimpleBlueprint blueprint)
+		public void Open(BlueprintScriptableObject blueprint)
 		{
 			if (m_OpenedElements.ContainsKey(blueprint))
 				return;

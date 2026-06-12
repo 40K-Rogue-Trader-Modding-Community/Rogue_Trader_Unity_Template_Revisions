@@ -14,27 +14,14 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolOr",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
-              {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$bc65e57c9aee4afaa5d7fe0c5cb47b8b",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "Type": "Melee"
-              },
               {
                 "$type": "a4316c207b21c9b4fa4c5ec4c9300c9b, CheckBlueprintGetter",
                 "name": "$CheckBlueprintGetter$18d5266451f34c849720dab0c2a39f2b",
@@ -79,11 +66,27 @@
                   "Max": 0
                 },
                 "m_Blueprint": "!bp_8da2a947a1a8bc543b9e7a9cad054414"
+              },
+              {
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$37bee260a20a45c3be26d1d992ad4ce7",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_RangeType": "Melee"
               }
             ]
           }
         },
         "TriggersForDamageOverTime": true,
+        "TriggerBeforeDamageHappens": false,
         "Actions": {
           "Actions": [
             {
@@ -171,18 +174,22 @@
                         "PropertyName": "Value1"
                       }
                     },
+                    "HasRighteousFury": false,
                     "Half": false,
                     "IsAoE": false,
                     "m_Weapon": null,
                     "WriteResultToSharedValue": false,
-                    "ResultSharedValue": "Damage"
+                    "ResultSharedValue": "Damage",
+                    "DoNotUseCrModifier": false
                   }
                 ]
               },
               "NumberOfTargets": 8,
               "TilesRadius": 1,
               "LowestWounds": false,
+              "HighestWounds": false,
               "AffectDead": false,
+              "AffectUnconscious": false,
               "m_FilterNoFact": null,
               "m_FilterHasFact": null
             }
@@ -208,6 +215,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -236,10 +244,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -331,18 +341,22 @@
                         "PropertyName": "Value1"
                       }
                     },
+                    "HasRighteousFury": false,
                     "Half": false,
                     "IsAoE": false,
                     "m_Weapon": null,
                     "WriteResultToSharedValue": false,
-                    "ResultSharedValue": "Damage"
+                    "ResultSharedValue": "Damage",
+                    "DoNotUseCrModifier": false
                   }
                 ]
               },
               "NumberOfTargets": 8,
               "TilesRadius": 1,
               "LowestWounds": false,
+              "HighestWounds": false,
               "AffectDead": false,
+              "AffectUnconscious": false,
               "m_FilterNoFact": null,
               "m_FilterHasFact": null
             }
@@ -354,8 +368,10 @@
         "Abilities": [],
         "ForAbilityGroup": true,
         "m_AbilityGroup": "!bp_36fdf1bc96884a9e803dcbcc8e447785",
+        "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
-        "AssignOwnerAsTarget": true
+        "AssignOwnerAsTarget": true,
+        "AssignContextFromAbility": false
       },
       {
         "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
@@ -377,35 +393,46 @@
               "Shared": null
             },
             "Description": {
-              "m_Key": "c35f623e-21ea-45ae-919a-127a79db9423",
-              "m_OwnerString": "8e85511b779e41548d0b57635ecfd4db#$UIPropertiesComponent$6990b88c-c52e-4146-8a66-8b28983f986e",
-              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
-              "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Psyker\\Pyromancy\\Talents\\PyromancyBurningBloodTalentFeature_Properties.Array.data[0].Description.json",
-              "Shared": null
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "30342f0e7aa922048b991480a7ab5924",
+                "stringkey": "c35f623e-21ea-45ae-919a-127a79db9423"
+              }
             },
             "m_DescriptionFact": "!bp_8e85511b779e41548d0b57635ecfd4db",
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_8e85511b779e41548d0b57635ecfd4db",
-            "m_LinkKey": "Damage"
+            "m_LinkKey": "Damage",
+            "Main": false
           }
         ]
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
-      "m_Key": "3289c211-26b2-494e-b4d8-76d15c662e5d",
-      "m_OwnerString": "8e85511b779e41548d0b57635ecfd4db",
-      "m_OwnerPropertyPath": "m_DisplayName",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Psyker\\Pyromancy\\Talents\\PyromancyBurningBloodTalentFeature_m_DisplayName.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "b0302f3d048aa404ba9605a9b6c9dcc7",
+        "stringkey": "3289c211-26b2-494e-b4d8-76d15c662e5d"
+      }
     },
     "m_Description": {
-      "m_Key": "87f918a1-9492-4700-9670-c0494bd529a1",
-      "m_OwnerString": "8e85511b779e41548d0b57635ecfd4db",
-      "m_OwnerPropertyPath": "m_Description",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Psyker\\Pyromancy\\Talents\\PyromancyBurningBloodTalentFeature_m_Description.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "090b6f49c85a35341b0cf2c38f00bae1",
+        "stringkey": "87f918a1-9492-4700-9670-c0494bd529a1"
+      }
     },
     "m_Icon": null,
     "m_AllowNonContextActions": false,
@@ -418,7 +445,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
       "Warp"
     ],
     "TalentIconInfo": {
@@ -433,8 +459,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

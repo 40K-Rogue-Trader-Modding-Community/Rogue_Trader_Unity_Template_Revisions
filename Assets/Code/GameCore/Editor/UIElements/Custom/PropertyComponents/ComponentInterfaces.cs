@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using Kingmaker.Editor.UIElements.Custom.Base;
 using UnityEngine.UIElements;
 
-namespace Kingmaker.Editor.UIElements.Custom.Base
+namespace Kingmaker.Editor.UIElements.Custom.PropertyComponents
 {
 	public interface IOwlcatPropertyComponent
 	{
 		void AttachToProperty(OwlcatProperty property);
+		void DetachFromProperty();
 	}
 
 	public class OwlcatPropertyComponent : IOwlcatPropertyComponent
@@ -17,10 +19,15 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			Property = property;
 			OnAttached();
 		}
-
-		protected virtual void OnAttached()
+		
+		public void DetachFromProperty()
 		{
+			OnDetached();
 		}
+
+		protected virtual void OnAttached() { }
+		
+		protected virtual void OnDetached() { }
 	}
 	
 	public class OwlcatPropertyComponent<TProperty> : OwlcatPropertyComponent where TProperty : OwlcatProperty

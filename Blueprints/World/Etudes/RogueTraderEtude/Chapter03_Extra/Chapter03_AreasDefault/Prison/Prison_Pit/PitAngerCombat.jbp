@@ -98,16 +98,6 @@
               "Etude": "!bp_7c34330ba141478396cce0423c65494e",
               "EtudeEvaluator": null,
               "Evaluate": false
-            },
-            {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$f19dee9e-e02a-447f-8666-65e25a23e8aa",
-              "m_Cutscene": "!bp_2d2078b01e2843adaee73025529b54c6",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
-              }
             }
           ]
         }
@@ -276,6 +266,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_TickPolicy": "Default",
         "Delay": 1,
         "Loop": 0,
@@ -365,6 +356,59 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$c563f022-1a98-4cf7-bcdf-4b613c26a6c8",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$62c084a474b44385ae3c07c266c813fd",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$35e53da1dcf64e56899e78ca54414f7c",
+                    "Not": false,
+                    "m_Etude": "!bp_c3ba6fd2119e40cd8e161eb47d1b6a44",
+                    "NotStarted": true,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$c33f98c1-dbf8-4e45-99e6-61e2e365871c",
+                    "m_Cutscene": "!bp_2d2078b01e2843adaee73025529b54c6",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",
@@ -376,7 +420,18 @@
     },
     "CompletionCondition": {
       "Operation": "And",
-      "Conditions": []
+      "Conditions": [
+        {
+          "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+          "name": "$IsInCombat$dd154c2d8bcb4897896358b495250c42",
+          "Not": true,
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$86268ce5caae45e49ecf896eb7dee701"
+          },
+          "Player": true
+        }
+      ]
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": "!bp_827007d6406b4a2e9119e9f59526ced1",

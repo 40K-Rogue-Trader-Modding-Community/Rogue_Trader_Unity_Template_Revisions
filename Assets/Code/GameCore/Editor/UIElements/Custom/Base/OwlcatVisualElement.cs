@@ -17,5 +17,21 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 				return (OwlcatInspectorRoot)p;
 			}
 		}
+		
+		public OwlcatInspectorRoot GetUpperRoot()
+		{
+			var current = parent;
+			OwlcatInspectorRoot root = null;
+			
+			while (current != null)
+			{
+				if (current is OwlcatInspectorRoot owlcatInspectorRoot)
+					root = owlcatInspectorRoot;
+
+				current = current.parent;
+			}
+
+			return root;
+		}
 	}
 }

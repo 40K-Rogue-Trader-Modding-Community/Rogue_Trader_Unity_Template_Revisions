@@ -1,0 +1,203 @@
+{
+  "AssetId": "2f0acf3f12f945c28a4cfeb39030ef60",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$0adb0bf2-4ecc-4244-bfec-bd5dece98df9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": []
+        },
+        "UnitExit": {
+          "Actions": []
+        },
+        "UnitMove": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3cd7b63b-4fa0-4b3d-aa82-31706ccba60d",
+              "Comment": "Проверка на фир делается раз в ход",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$4748991d-11e6-4314-bbd4-a60d7bcbdad9",
+                    "Not": true,
+                    "m_Fact": "!bp_00f5c0a72792469d83280e3c285f8ab4"
+                  },
+                  {
+                    "$type": "c5b3b6002404ca249add2943e99f366a, ContextConditionIsAlly",
+                    "name": "$ContextConditionIsAlly$18aa3632-80ab-424e-bda0-f250c351aba2",
+                    "Not": true
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "de19bd4eb40decb419caec8194765ed0, ContextActionSkillCheck",
+                    "name": "$ContextActionSkillCheck$442aed24-a58d-4912-828b-cfacb2211e59",
+                    "Stat": "WarhammerWillpower",
+                    "m_ConditionalDCIncrease": [],
+                    "UseCustomDC": true,
+                    "CustomDC": {
+                      "ValueType": "Simple",
+                      "Value": -15,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "CalculateDCDifference": false,
+                    "Success": {
+                      "Actions": []
+                    },
+                    "Failure": {
+                      "Actions": [
+                        {
+                          "$type": "bedb007370b34bac85f110b30e5914d0, ContextActionMoveFromCasterByLine",
+                          "name": "$ContextActionMoveFromCasterByLine$10a102a5-2a22-411a-b801-c1ebbb5d6dd0",
+                          "m_Cells": {
+                            "ValueType": "Simple",
+                            "Value": 4,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "m_UseForceMove": false,
+                          "m_ProvokeAttackOfOpportunity": true,
+                          "m_IgnoreThreateningArea": false
+                        }
+                      ]
+                    },
+                    "FailureDiffMoreOrEqual5Less10": {
+                      "Actions": []
+                    },
+                    "FailureDiffMoreOrEqual10": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$f90a2c41-8afe-4090-8455-8f66fc0442af",
+                    "m_Buff": "!bp_00f5c0a72792469d83280e3c285f8ab4",
+                    "BuffEndCondition": "TurnStartOrCombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      }
+    ],
+    "Author": "VladislavSolyannikov",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "TargetType": "Enemy",
+    "AffectEnemies": false,
+    "AggroEnemies": true,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": false,
+    "SavePersistentArea": false,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": "Rear",
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 2,
+      "m_Angle": 0
+    },
+    "IgnoreLosWhenSpread": true,
+    "IgnoreLevelDifferenceWhenSpread": true,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

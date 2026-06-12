@@ -1,6 +1,7 @@
-﻿using UnityEngine.UIElements;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace Kingmaker.Assets.Editor.UIElements.Custom.Elements
+namespace Kingmaker.Editor.UIElements.Custom.Elements
 {
     public class HelpBox : Box
     {
@@ -21,7 +22,16 @@ namespace Kingmaker.Assets.Editor.UIElements.Custom.Elements
             style.paddingRight = padding;
             style.paddingLeft = padding;
             
-            Add(new Label(text) { style = {fontSize = new StyleLength(10), flexGrow = 1, whiteSpace = WhiteSpace.Normal } });
+            Add(new Label(text)
+            {
+                style =
+                {
+                    fontSize = new StyleLength(10), 
+                    flexGrow = 1,
+                    whiteSpace = WhiteSpace.Normal,
+                    color = Color.cyan
+                }
+            });
         }
     }
 }

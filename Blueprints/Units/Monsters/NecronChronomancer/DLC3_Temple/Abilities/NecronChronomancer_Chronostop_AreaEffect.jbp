@@ -1,0 +1,289 @@
+{
+  "AssetId": "535739e17bf94f6f9c133fafe42325c1",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$2a215734-ef47-4c96-ac70-abc0f95e1c76",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$ed2dda6131935642b68d0ba59b66c6c6",
+              "Comment": "Проверка на защиту от Chronostop",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                    "name": "$ContextConditionHasBuff$794ca6b2179b5e05aa68cfc251d2be63",
+                    "Not": false,
+                    "m_Buff": "!bp_12acfc39b6914a059e3eb2eb5a0c6ae8"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "92a69cf32a6d1f941accb821f4956cbb, RollBackToTurnStartAction",
+                    "name": "$RollBackToTurnStartAction$622a3d95e40150e58dbd2bb397cc382a",
+                    "Unit": {
+                      "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                      "name": "$ContextTargetUnit$15ef42c2edf04f73b3c371bc7aa27bea"
+                    },
+                    "RollBackPosition": true,
+                    "RollBackHp": true,
+                    "RollBackTemporaryHp": true,
+                    "RollBackAp": false,
+                    "RollBackMp": false,
+                    "RollBackCooldowns": false
+                  },
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$46d1b93166e8473ead94e655c4b36125",
+                    "m_Buff": "!bp_12acfc39b6914a059e3eb2eb5a0c6ae8",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": false,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$61cc0ea35f4f4a13a1f6262eacbaa9b6",
+                    "m_Buff": "!bp_c061d42784cf424ba566b2eb40a1ac9c",
+                    "RemoveRank": true,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": true
+                  },
+                  {
+                    "$type": "5f950c181b3157a4486fcd36b702b702, ContextActionOnContextCaster",
+                    "name": "$ContextActionOnContextCaster$28dc512bf9d54a42a0bc1176d7c0f521",
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                          "name": "$ContextActionSpawnFx$9bc25260802d49f5a0ff5019eb37ed75",
+                          "PrefabLink": {
+                            "AssetId": "6996ecb26ff624d4cb15fc9500d66355"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$795cf48b6ccd55ada939beb13b1469aa",
+                    "Comment": "Achievement:  121_Ever_Get_A_Feeling_Of_Deja_Vu?",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "746ea8847d59470babff7430826d8f74, IsAchievementUnlocked",
+                          "name": "$IsAchievementUnlocked$c14fbc2f9475525f8325a0368aa1e31b",
+                          "Not": true,
+                          "m_AchievementDataReference": "!bp_c8e649f8d57b432d830188b9d4286b36"
+                        },
+                        {
+                          "$type": "c260efd0e44d4869af22ab326a66f8ae, CheckPropertySimple",
+                          "name": "$CheckPropertySimple$97f0ec234be954b19051e615ba309eea",
+                          "Not": false,
+                          "Value": {
+                            "Operation": "Eq",
+                            "TargetType": "CurrentEntity",
+                            "TargetEvaluator": null,
+                            "FailSilentlyIfNoTarget": false,
+                            "Getters": [
+                              {
+                                "$type": "e10098e449dc0e3439e55de887154de2, UnitsWithFactGetter",
+                                "name": "$UnitsWithFactGetter$f0f2dd4a691b5385b507489507da0a63",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "m_Fact": "!bp_12acfc39b6914a059e3eb2eb5a0c6ae8",
+                                "InMaximumDistance": false,
+                                "MaximumDistance": 0
+                              },
+                              {
+                                "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                                "name": "$ContextValueGetter$68ff76889087563398d40caaae19d0a2",
+                                "Settings": {
+                                  "Progression": "AsIs",
+                                  "m_CustomProgression": [],
+                                  "m_StartLevel": 0,
+                                  "m_StepLevel": 0,
+                                  "Negate": false,
+                                  "Limit": "None",
+                                  "Min": 0,
+                                  "Max": 0
+                                },
+                                "Value": {
+                                  "ValueType": "Simple",
+                                  "Value": 3,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                          "name": "$StartEtude$a1fe66d3-0b3e-4a12-a156-99b30a96f06f",
+                          "Etude": "!bp_661f1c2528d543f38e6b4a45d41850e9",
+                          "EtudeEvaluator": null,
+                          "Evaluate": false,
+                          "StartImmediately": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitExit": {
+          "Actions": []
+        },
+        "UnitMove": {
+          "Actions": []
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      }
+    ],
+    "Author": "IlyaPolitko",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "b8583e9cbc7e3544d92aeaa4e642aa35",
+        "stringkey": "5983229b-6e7d-4651-b4fc-3b3016571855"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": {
+      "guid": "a458dd00fe23ebc498241d9fb15805b2",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "TargetType": "Enemy",
+    "AffectEnemies": true,
+    "AggroEnemies": false,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": true,
+    "SavePersistentArea": false,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": "Rear",
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 1,
+      "m_Angle": 30
+    },
+    "IgnoreLosWhenSpread": true,
+    "IgnoreLevelDifferenceWhenSpread": true,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

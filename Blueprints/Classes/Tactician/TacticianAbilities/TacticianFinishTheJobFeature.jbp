@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_5b8545bc7a90491d865410a585071efe"
         ],
@@ -32,10 +33,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -67,15 +70,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -157,10 +151,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolOr",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -255,13 +251,13 @@
           "Enabled": false
         },
         "UnmodifiablePercentDamageModifier": {
-          "ValueType": "Simple",
+          "ValueType": "CasterNamedProperty",
           "Value": 50,
           "ValueRank": "Default",
           "ValueShared": "Damage",
           "Property": "None",
           "m_CustomProperty": null,
-          "PropertyName": "Value1",
+          "PropertyName": "StatBonus1",
           "Enabled": true
         },
         "ModifierDescriptor": "None",
@@ -282,13 +278,14 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
               "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
               "name": "$SimplePropertyGetter$1dd1cea0665855418322480e6a319340",
               "Settings": {
-                "Progression": "MultiplyByModifier",
+                "Progression": "AsIs",
                 "m_CustomProgression": [],
                 "m_StartLevel": 0,
                 "m_StepLevel": 2,
@@ -301,8 +298,71 @@
             }
           ]
         }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$33ef8b54-cb8a-44bf-939f-d5538b8e469a",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "StatBonus1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$9681ff81106354a49259aebdbba0734c",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 50,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            },
+            {
+              "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+              "name": "$FactRankGetter$731e692ee749579e88c569252b51d21f",
+              "Settings": {
+                "Progression": "MultiplyByModifier",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 50,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Fact": "!bp_a405a57ffff34d2e92688e5d263fc159",
+              "CheckTarget": "CurrentEntity",
+              "Aggregation": "Max",
+              "BuffWithCasterFromTargetType": false,
+              "BuffCaster": "CurrentEntity"
+            }
+          ]
+        }
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -338,7 +398,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
       "Archetype"
     ],
     "TalentIconInfo": {
@@ -353,8 +412,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

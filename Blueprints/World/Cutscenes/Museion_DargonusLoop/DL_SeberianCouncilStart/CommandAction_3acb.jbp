@@ -1,0 +1,322 @@
+{
+  "AssetId": "3acb827e9be74faa952235bac96930cc",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$0822a070-8e46-419c-9c8c-9fadcb32889f",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "Seberian_Counsil",
+              "_entity_id": "7d58fe2a-3231-4116-a4b9-4850c416e525",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$f22410c1-f5d2-41e9-bb78-340bb13f8ed5",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "LariaVoigtvir_Counsil",
+              "_entity_id": "0126c101-fbad-4c24-8dba-b69543c4c690",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$e8ada8d12a834e1883a9ad0bd26e46c7",
+          "Comment": "Спавним групу меровцев если они живы",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$5bdf8b1211244259b2a3411f86a8023c",
+                "Not": true,
+                "m_Etude": "!bp_1d51d5811c9745cc95d02a52e21a0877",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$a81c3b256bde457a91caacac2981823c",
+                "m_Group": {
+                  "EntityNameInEditor": "WarCounsil_Mer",
+                  "_entity_id": "29f2aa80-d94a-4cbd-be2d-e42d326bb102",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6d392276-15af-4fa2-b465-afb61fd23c51",
+          "Comment": "Спавним Камиллу и группу гвардейцев, если она жива и не арестована",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$15202881-476c-4007-9469-23f3d01743e4",
+                "Not": true,
+                "m_Etude": "!bp_055102fa9fda41468c4ececba50569a3",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                "name": "$SpawnByUnitGroup$695ed88a-e852-4190-8061-4b7b575ad503",
+                "m_Group": {
+                  "EntityNameInEditor": "WarCounsil_Kamilla",
+                  "_entity_id": "e86bee8b-b717-448e-a479-d513c255d8e5",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                },
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1520cc29-55ac-4c0e-ae84-c9f030adfc86",
+          "Comment": "Изимод жив и не арестован - спавним его на совет",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f984a8cd-20ed-413b-a185-8a45cb7cedd0",
+                "Not": true,
+                "m_Etude": "!bp_567c11df03b64eebbb46103a03d61ab8",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$b073ca7b445347709094a11571069ff4",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "IzimondSauerback_Counsil",
+                    "_entity_id": "b98c9b4c-f5a5-48db-83d0-d0fbb6d01e54",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$73b2003f-5da4-4ff1-9a8b-3923a929a21d",
+          "Comment": "Экзальт жив и не арестован и не ранен - спавним его",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f9dc59e8-3a64-404e-b784-5ae139cc2f1b",
+                "Not": true,
+                "m_Etude": "!bp_c80a8ba401ec49edaac550c51a92fe11",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$fc5beab4c7db48be806a8823253c1278",
+                "Not": true,
+                "m_Etude": "!bp_7a36c86dc772478ba87edbf084dbdd9f",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$ccda1930-dedd-4a1c-adb7-97c71cdc65ed",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "Exalt117_Counsil",
+                    "_entity_id": "3b37a8dd-b95c-410a-97ee-37ec5a01de4f",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d6613a43-cd47-4b95-a2e8-ade6d4d1b54e",
+          "Comment": "Экзальт жив и не арестован, но ранен - спавним его",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$a420d983-e143-42aa-b7e1-6eec06650450",
+                "Not": true,
+                "m_Etude": "!bp_c80a8ba401ec49edaac550c51a92fe11",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$52edfc2b-4a52-4ce4-8cf8-be1c11c40ba3",
+                "Not": false,
+                "m_Etude": "!bp_7a36c86dc772478ba87edbf084dbdd9f",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$c206a9d2-ee3f-4e15-ab73-af4e387ab387",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "Exalt117Wounded_Counsil",
+                    "_entity_id": "3211ed90-ddc3-4a3d-933d-18d75807352c",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1140bbf6-163e-4399-bd6a-00b7e84606a6",
+          "Comment": "Ювена жива и не арестована - спавним ее",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$e1c81451-ff5d-4073-bfc9-f11e6bb9a36f",
+                "Not": true,
+                "m_Etude": "!bp_dde46990cc3f42e9b8e23d4494d6a3d1",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$67e309cf-56ff-49b5-83c2-c10c105f8ff7",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "JuvennaVonValancius_Counsil",
+                    "_entity_id": "ee5bd373-052b-473d-a7b7-69346a530604",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

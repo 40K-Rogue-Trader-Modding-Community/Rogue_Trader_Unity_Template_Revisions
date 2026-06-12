@@ -1,0 +1,291 @@
+{
+  "AssetId": "858001cc93974c8da24aaa0d02c453aa",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$f1973e32-9bfc-4ac1-b133-fe42c23e0184",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c3819bf5fa8c435d9c5ba2617bcc6236",
+              "Comment": "if didn't move last turn",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$24a3cbbed28b4a21a3258362c6f88ce5",
+                    "Not": false,
+                    "m_Fact": "!bp_e7e04cac84cf435fba6b7e8b17434489"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$9c3e6f415afc4e37b851abea386acea2",
+                    "m_Buff": "!bp_9bc9450686bd4d768a7829720232e4c3",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+                    "name": "$ContextActionRemoveBuff$3eea00ae60bd41d8a3225dd83e0618bd",
+                    "m_Buff": "!bp_9bc9450686bd4d768a7829720232e4c3",
+                    "RemoveRank": false,
+                    "RemoveSeveralRanks": false,
+                    "RankNumber": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "m_CasterRanksRemovalPolicy": "Default",
+                    "ToCaster": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$4eca631a-b8ce-4f1b-9598-285afeda01a9",
+              "m_Buff": "!bp_e7e04cac84cf435fba6b7e8b17434489",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$dc8f8d66-56cd-4d9f-9804-29fdad3ab158",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "8e489081-8bf8-40e4-a7b0-21f47aae3262",
+              "m_OwnerString": "858001cc93974c8da24aaa0d02c453aa",
+              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
+              "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\CommonFeatures\\AugmentFeatures\\AugmentTalent02_Feature_Properties.Array.data[0].Description_1.json",
+              "Shared": null
+            },
+            "m_DescriptionFact": "!bp_858001cc93974c8da24aaa0d02c453aa",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_9bc9450686bd4d768a7829720232e4c3",
+            "m_LinkKey": "WS&BSGranted",
+            "Main": false
+          }
+        ]
+      }
+    ],
+    "Author": "SemyonStenyugin",
+    "Comment": "До конца раунда. Если на прошлом раунде персонаж не двигался, в этом его WS и BS увеличены на 5 за каждый аугмент",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "252c7f7ece710534dba8fdedad9cebd1",
+        "stringkey": "2ffeb4bc-1ad9-433a-9343-9da56130df71"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "3fef9047e3a7c9346954d9952969777a",
+        "stringkey": "6f2da3e8-1d78-490a-aa95-6bea8f541717"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": [
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$dfb1b4a3-ea67-4ee4-992a-89974ffcec7a",
+          "Not": true,
+          "m_Fact": "!bp_950565a69d144391897cdc0024747755",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$d09d62e1-5ca2-4599-8424-6e35071f0146",
+          "Not": true,
+          "m_Fact": "!bp_590cb5c394ee4b5eb213121c96063dec",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$df81f431-dcb0-4552-9742-8c8d2ac34726",
+          "Not": true,
+          "m_Fact": "!bp_c7a53b43ac5f4f11a1aef612dd3f4f71",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$1bb34e36-ccf2-4856-9fb1-4b5a335f4458",
+          "Not": true,
+          "m_Fact": "!bp_8e0cfa654ec24dbbba9e80c27433cc8e",
+          "MinRank": 0
+        }
+      ]
+    },
+    "FeatureTypes": [
+      "Offense"
+    ],
+    "TalentIconInfo": {
+      "AllGroups": "CharacteristicBonus, Augmentation",
+      "MainGroup": "Augmentation"
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

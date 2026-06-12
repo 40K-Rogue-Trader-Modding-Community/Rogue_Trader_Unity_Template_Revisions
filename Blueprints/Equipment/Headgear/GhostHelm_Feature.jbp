@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "AgilityReplacementStat": "WarhammerWillpower"
       },
       {
@@ -25,12 +26,30 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
+            "Operation": "BoolAnd",
+            "TargetType": "RuleTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
-            "Getters": []
+            "Getters": [
+              {
+                "$type": "b5a7d9bbf95591b49b2985d414d2e360, IsAllyGetter",
+                "name": "$IsAllyGetter$1069ec69d04a4304a164165c0fddca2d",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "RuleInitiator"
+              }
+            ]
           }
         },
         "ActionOnSelfHit": {
@@ -45,15 +64,6 @@
               "BuffEndCondition": "TurnEndOrCombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -94,9 +104,11 @@
         },
         "TriggerOnDodge": true,
         "TriggerOnParry": false,
-        "TriggerOnCover": false
+        "TriggerOnCover": false,
+        "TriggerOnBlock": false
       }
     ],
+    "Author": "EvgeniyShanhiev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -138,8 +150,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "EvgeniyShanhiev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

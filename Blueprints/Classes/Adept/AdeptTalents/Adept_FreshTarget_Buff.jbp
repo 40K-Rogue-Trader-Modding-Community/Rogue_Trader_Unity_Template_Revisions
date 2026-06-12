@@ -14,10 +14,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "RuleInitiator",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -36,6 +38,7 @@
                 "Value": {
                   "Operation": "GE",
                   "TargetType": "RuleTarget",
+                  "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": [
                     {
@@ -180,23 +183,24 @@
           "Enabled": false
         },
         "ModifierDescriptor": "None",
-        "ModifyEvenDirectDamage": false,
+        "ModifyEvenDirectDamage": true,
         "ModifyEvenDamageOverTime": false
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
         "name": "$PropertyCalculatorComponent$c5d61a56-5364-4eac-b79c-35e8ec39688b",
-        "m_Flags": 0,
+        "m_Flags": "Disabled",
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "Name": "Value1",
+        "Name": "Value2",
         "SaveToContext": "No",
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -215,8 +219,43 @@
               "Property": "PerceptionBonus"
             },
             {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$f14b228054e159538ac05ac4ee1b2daf",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "PerceptionBonus"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$a247c854-77bd-4c9a-85ae-4fcd2ad548a1",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
               "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-              "name": "$ContextValueGetter$6474aa8e-1d5d-412e-a8cb-dcf48705447d",
+              "name": "$ContextValueGetter$dc225ff8f9d34eddb9ca72bafe905a40",
               "Settings": {
                 "Progression": "AsIs",
                 "m_CustomProgression": [],
@@ -236,11 +275,32 @@
                 "m_CustomProperty": null,
                 "PropertyName": "Value1"
               }
+            },
+            {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$e5797139a7f951d6a1d9d33a39b542f7",
+              "Settings": {
+                "Progression": "MultiplyByModifier",
+                "m_CustomProgression": [
+                  {
+                    "BaseValue": 0,
+                    "ProgressionValue": 0
+                  }
+                ],
+                "m_StartLevel": 0,
+                "m_StepLevel": 2,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "PerceptionBonus"
             }
           ]
         }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -281,9 +341,11 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": [],
     "m_Cyclical": false,
-    "Author": "LeonidTolochenko"
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

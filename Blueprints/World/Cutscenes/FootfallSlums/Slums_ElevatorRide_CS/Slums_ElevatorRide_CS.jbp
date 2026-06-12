@@ -1,0 +1,209 @@
+{
+  "AssetId": "ddf3a9f06935463387676c31ba7158e1",
+  "Data": {
+    "$type": "96610525fc0cf8c41bfef88a84117024, Cutscene",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "m_Tracks": [
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_454e759694a7428dab16303c2a5b1d6d"
+        ],
+        "m_EndGate": "!bp_0b38be3ac85c41e7b1b0bfa64ccdafa2",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_abde07941192465399e947ef4692b30f"
+        ],
+        "m_EndGate": "!bp_ea0fd9cf5ac6434f9e6141a40cbcf0eb",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_1ec79b7a9e2a41e6bd4c977cfa89d047"
+        ],
+        "m_EndGate": "!bp_ea0fd9cf5ac6434f9e6141a40cbcf0eb",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_0c7c83801d984681a5e3815e066c0a23"
+        ],
+        "m_EndGate": "!bp_ea0fd9cf5ac6434f9e6141a40cbcf0eb",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      }
+    ],
+    "m_Op": "And",
+    "m_ActivationMode": "AllTracks",
+    "WhenTrackIsSkipped": "DoNotSignalGate",
+    "PauseForOneFrame": false,
+    "Priority": "Patrol",
+    "NonSkippable": true,
+    "ForbidDialogs": false,
+    "ForbidRandomIdles": true,
+    "IsBackground": false,
+    "Freezeless": false,
+    "Sleepless": true,
+    "AllowCopies": false,
+    "LockControl": true,
+    "ShowPets": false,
+    "ShowOverlay": false,
+    "AllowRoaming": false,
+    "AllowLadderTraversal": false,
+    "Anchors": [],
+    "MarkedUnitHandling": "Pause",
+    "DefaultParameters": {
+      "Parameters": []
+    },
+    "OnStopped": {
+      "Actions": []
+    },
+    "OnFinished": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$3f3b534ee6635ddd9f25c3a05316dea4",
+          "Comment": "Player has herald",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                "name": "$HasFact$2bd37d5cbff9572a89f08f363ed78d54",
+                "Not": false,
+                "Unit": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$dde98eca72ff550e8b723e7acd8f3af8"
+                },
+                "m_Fact": "!bp_e17e63ad5a4a4e01b6677670dfb832a4"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$53702dca-e0c7-49fb-b4c0-8dd3901b6011",
+                "Comment": "Check the elevator state",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+                      "name": "$EqualTo$dc967abb-5a3e-4974-9c11-8a0f5e9e0001",
+                      "Not": false,
+                      "FloatValues": false,
+                      "Value": {
+                        "$type": "19adcd35ecaa43cdbc3b028092388994, ControllableState",
+                        "name": "$ControllableState$dde25c79-6b06-438b-b74d-ad3b82233527",
+                        "IdOfObject": {
+                          "EntityNameInEditor": "FootfallSlumsElevator",
+                          "_entity_id": "74d55767-19d8-4ebc-8fb8-6dc382ffdabe",
+                          "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                        }
+                      },
+                      "MinValue": {
+                        "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                        "name": "$IntConstant$6aaf4bdc-88f2-49b3-a038-8e33f2836a3b",
+                        "Value": 0
+                      },
+                      "FloatValue": null,
+                      "FloatMinValue": null
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                      "name": "$TranslocateUnit$5f798808ce9a594f9d820f5c246983ef",
+                      "m_ForceBlockTargetPosition": false,
+                      "Unit": {
+                        "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                        "name": "$PlayerFamiliarEvaluator$1252ae70feb0507cbd1ad88a2984be1c"
+                      },
+                      "translocatePosition": {
+                        "EntityNameInEditor": "UpperElevator_cam",
+                        "_entity_id": "f3830984-31e1-423d-a2b4-24fa10dc606c",
+                        "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                      },
+                      "translocatePositionEvaluator": null,
+                      "m_PrecisePosition": false,
+                      "m_RestrictByHeightDifference": false,
+                      "m_CopyRotation": false,
+                      "translocateOrientationEvaluator": null,
+                      "m_ActionsOnSuccess": {
+                        "Actions": []
+                      },
+                      "m_ActionsOnFail": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                      "name": "$TranslocateUnit$4bda9398-cf87-45c9-a891-eacd20f07550",
+                      "m_ForceBlockTargetPosition": false,
+                      "Unit": {
+                        "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                        "name": "$PlayerFamiliarEvaluator$a3ccea7b-eb7b-4de9-91f2-af748c16337b"
+                      },
+                      "translocatePosition": {
+                        "EntityNameInEditor": "GetAwayFromElevator_pos (2)",
+                        "_entity_id": "22ac5dbd-cb28-49f8-88e1-854cbbcb4d6d",
+                        "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                      },
+                      "translocatePositionEvaluator": null,
+                      "m_PrecisePosition": false,
+                      "m_RestrictByHeightDifference": false,
+                      "m_CopyRotation": false,
+                      "translocateOrientationEvaluator": null,
+                      "m_ActionsOnSuccess": {
+                        "Actions": []
+                      },
+                      "m_ActionsOnFail": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

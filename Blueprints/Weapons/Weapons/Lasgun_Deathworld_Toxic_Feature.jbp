@@ -1,0 +1,255 @@
+{
+  "AssetId": "c2ad068d58ad464b960b649d7236a7f1",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "a5cbfd1546727ec418590630a6ea2400, WarhammerDamageTriggerInitiator",
+        "name": "$WarhammerDamageTriggerInitiator$c1c63273-8359-4f59-9bd0-fb01ec30b9e0",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+                "name": "$CheckAbilityBlueprintGetter$2e7abf41c4aa41a2b5fddc85227a6440",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Abilities": [
+                  "!bp_7ae09bd99a7f4fa8842d64fb001af19b"
+                ]
+              },
+              {
+                "$type": "83a8a95dacc24c6f8bb7fdccf7ec43ea, CheckAbilityWeaponBlueprintGetter",
+                "name": "$CheckAbilityWeaponBlueprintGetter$2735986f0e2145f19dcf97e0c4a0d677",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Weapon": "!bp_106bf7bb1ee948bd88aad44e0002274e"
+              }
+            ]
+          }
+        },
+        "TriggersForDamageOverTime": false,
+        "TriggerBeforeDamageHappens": false,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+              "name": "$ContextActionApplyDOT$317a5d72-2c1c-442f-866c-1831e218b440",
+              "Type": "Toxic",
+              "DamageValue": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 4,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "EndCondition": "CombatEnd",
+              "UseRoundsDuration": false,
+              "RoundsDuration": {
+                "m_Value": 0
+              },
+              "UseSavingThrowOverride": false,
+              "SavingThrowOverride": "Unknown",
+              "UseDifficultyOverride": false,
+              "DifficultyOverride": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "UsePenetrationOverride": false,
+              "PenetrationOverride": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        },
+        "ActionsOnAttacker": {
+          "Actions": []
+        },
+        "ContextPropertyName": "Value1",
+        "PropertyToSave": "None"
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$18e405df-5ac1-4b98-994b-70d04ffdd0e3",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "07d839f88e7c4519b06213b456e0b567, StackingEquipmentPropertyGetter",
+              "name": "$StackingEquipmentPropertyGetter$76084e26-7e8c-4aea-9f34-45f31bb6c1f2",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Property": "!bp_bf8158a11ce4484f8f34c7c9e610a227",
+              "m_IsWeaponBased": false
+            },
+            {
+              "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+              "name": "$PropertyCalculatorGetter$c94e6837-1993-4224-ab5d-888b079bcbbb",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "Operation": "Sum",
+                "TargetType": "CurrentTarget",
+                "TargetEvaluator": null,
+                "FailSilentlyIfNoTarget": false,
+                "Getters": [
+                  {
+                    "$type": "07d839f88e7c4519b06213b456e0b567, StackingEquipmentPropertyGetter",
+                    "name": "$StackingEquipmentPropertyGetter$f2a79cab-b125-4818-8657-74963eec2ec6",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "m_Property": "!bp_9f01162817c149669d3dff52a9cd745a",
+                    "m_IsWeaponBased": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$9489747ba5ac41258c0c6d2c5ba1182e",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 18,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": true,
+    "HideInCharacterSheetAndLevelUp": true,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

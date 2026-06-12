@@ -1,45 +1,43 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
+using Kingmaker.Blueprints;
+using Kingmaker.Editor.UIElements.Custom;
 using Kingmaker.Editor.UIElements.Custom.Base;
-using Kingmaker.Editor.UIElements.Custom.Properties;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements
 {
-	public class OwlcatInspectorRoot : OwlcatInspectorStyle
+	public class OwlcatInspectorRoot : OwlcatContentContainer
 	{
+		//Paths may change in nearest future. This is left to make search easier
+#if OWLCAT_MODS
+		public const string CommonPath = "Assets/Code/GameCore/Editor/UIElements/Styles/CommonStyle.uss";
+		public const string ProPath = "Assets/Code/GameCore/Editor/UIElements/Styles/ProStyle.uss";
+		public const string PersonalPath = "Assets/Code/GameCore/Editor/UIElements/Styles/PersonalStyle.uss";
+#else
+		public const string CommonPath = "Assets/Code/GameCore/Editor/UIElements/Styles/CommonStyle.uss";
+		public const string ProPath = "Assets/Code/GameCore/Editor/UIElements/Styles/ProStyle.uss";
+		public const string PersonalPath = "Assets/Code/GameCore/Editor/UIElements/Styles/PersonalStyle.uss";
+#endif
+		
 		public readonly SerializedObject SerializedObject;
+		public HashSet<BlueprintScriptableObject> InlinedBlueprints = new();
 
 		public OwlcatInspectorRoot(SerializedObject serializedObject, bool isHideScriptProp)
 		{
 			SerializedObject = serializedObject;
+			if (serializedObject.targetObject == null)
+			{
+				DrawMissingScript();
+				return;
+			}
+			
 			name = serializedObject.targetObject.name;
 
-            // just debug
-   //         var it = serializedObject.GetIterator();
-   //         it.NextVisible(true);
-   //         do
-   //         {
-   //             try
-   //             {
-   //                 var f = it.GetFieldInfo();
-   //                 PFLog.Default.Log($"Prop: {it.propertyPath} is for field {f?.DeclaringType.Name}.{f?.Name}");
-   //             }
-   //             catch (Exception x)
-   //             {
-   //                 PFLog.Default.Log($"Prop: {it.propertyPath} throws");
-   //                 PFLog.Default.Exception(x);
-   //             }
-			//} while (it.Next(true));
-            
+			LoadStyles();
 			SetupContent(this, serializedObject, isHideScriptProp);
-
-			RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
 		}
 
         public OwlcatInspectorRoot(SerializedProperty property)
@@ -47,6 +45,7 @@ namespace Kingmaker.Editor.UIElements
 			SerializedObject = property.serializedObject;
             name = property.FindPropertyRelative("name")?.stringValue ?? property.serializedObject.targetObject.name;
 
+            LoadStyles();
             if (property.hasVisibleChildren)
             {
                 property = property.Copy(); // this is a root property, but for the SetupContent we need its first child
@@ -54,28 +53,32 @@ namespace Kingmaker.Editor.UIElements
                 {
                     SetupContent(this, property, true);
                 }
-
-                RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
             }
         }
-
+        
         /// <summary>
         /// To be able to create inspector for a pre-constructed elements
         /// </summary>
         public OwlcatInspectorRoot(SerializedObject so, IEnumerable<OwlcatVisualElement> elements)
         {
-	        SerializedObject = so;
-	        name = SerializedObject.targetObject.name;
+            SerializedObject = so;
+            name = SerializedObject.targetObject.name;
 
-	        foreach (var element in elements)
-	        {
-		        Add(element);
-	        }
-
-		    RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
+            LoadStyles();
+            foreach (var element in elements)
+                Add(element);
         }
 
-		public static void SetupContent(OwlcatContentContainer root, SerializedObject serializedObject, bool isHideScriptProp)
+        private void LoadStyles()
+        {
+	        var styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(EditorGUIUtility.isProSkin ? ProPath : PersonalPath);
+	        styleSheets.Add(styles);
+	        
+	        styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(CommonPath);
+	        styleSheets.Add(styles);
+        }
+
+        public static void SetupContent(OwlcatContentContainer root, SerializedObject serializedObject, bool isHideScriptProp)
 		{
 			var iterator = serializedObject.GetIterator();
 			if (iterator.NextVisible(true))
@@ -83,188 +86,49 @@ namespace Kingmaker.Editor.UIElements
 				SetupContent(root, iterator, isHideScriptProp);
 			}
 		}
-
-
+        
 		public static void SetupContent(OwlcatContentContainer root, SerializedProperty rootProperty, bool isHideScriptProp)
         {
-            var startDepth = rootProperty.depth; 
+            int startDepth = rootProperty.depth; 
             do
             {
                 if (rootProperty.propertyPath.Equals("m_Script"))
                 {
                     if (!isHideScriptProp)
                     {
-                        var field = new ScriptProperty(rootProperty);
+	                    var field = new OwlcatPropertyField(rootProperty);
+	                    field.ContentContainer.SetEnabled(false);
+	                    field.ControlsContainer.SetEnabled(false);
                         root.Add(field);
                     }
 
                     continue;
                 }
-
-                AddProperty(root, rootProperty);
-
+                
+                try
+                {
+	                var propField = UIElementsUtility.CreatePropertyElement(rootProperty, false);
+	                if (propField != null)
+		                root.Add(propField);
+                }
+                catch (Exception e)
+                {
+	                root.Add(new ErrorElement($"{rootProperty.displayName}: {e.Message}",
+		                $"Mess: {e.Message}\nTrace: {e.StackTrace}\nInner: {e.InnerException?.Message}"));
+                }
             } while (rootProperty.NextVisible(false) && rootProperty.depth>=startDepth); // if we did not start at root, exit the loop when we get out of the property
         }
 
-		private static void AddProperty(OwlcatContentContainer root, SerializedProperty property)
+		private void DrawMissingScript()
 		{
-			try
-			{
-				var propField = UIElementsUtility.CreatePropertyElement(property, false);
-				if (propField != null)
-				{
-					root.Add(propField);
-				}
-			}
-			catch (Exception e)
-			{
-				root.Add(new ErrorElement($"{property.displayName}: {e.Message}",
-					$"Mess: {e.Message}\nTrace: {e.StackTrace}"));
-			}
-		}
-
-		private void OnKeyDown(KeyDownEvent evt)
-		{
-			bool handled = false;
-			switch (evt.keyCode)
-			{
-				case KeyCode.UpArrow:
-					handled = FocusPrev();
-					break;
-				case KeyCode.DownArrow:
-					handled = FocusNext();
-					break;
-				case KeyCode.LeftArrow:
-					handled = SetExpanded(false);
-					break;
-				case KeyCode.RightArrow:
-					handled = SetExpanded(true);
-					break;
-				case KeyCode.Return:
-					handled = EnterElement();
-					break;
-				case KeyCode.Escape:
-					handled = ExitElement();
-					break;
-
-				default:
-					var current = focusController?.GetFocusedProperty();
-					current?.TryHandle(evt);
-					break;
-			}
-
-			if (handled)
-			{
-				evt.PreventDefault();
-				evt.StopImmediatePropagation();
-			}
-		}
-
-		private bool FocusPrev()
-		{
-			if (focusController?.focusedElement is TextField textField && textField.multiline)
-			{
-				return false;
-			}
-
-			GetPrevProperty()?.Focus();
-			return true;
-		}
-
-		private bool FocusNext()
-		{
-			if (focusController?.focusedElement is TextField textField && textField.multiline)
-			{
-				return false;
-			}
-
-			GetNextProperty()?.Focus();
-			return true;
-		}
-
-		private bool EnterElement()
-		{
-			if (focusController?.focusedElement is OwlcatVisualElement)
-			{
-				var current = focusController?.GetFocusedProperty();
-				current.GetAllChildren()
-					.FirstOrDefault(c
-						=> c.focusable && (c is PropertyField || c is IMGUIContainer ||
-										   c.GetType().Assembly.FullName.StartsWith("UnityEditor")))?
-					.Focus();
-				return true;
-			}
-
-			return false;
-		}
-
-		private bool ExitElement()
-		{
-			var current = focusController?.GetFocusedProperty();
-			current?.Focus();
-			return true;
-		}
-
-		[CanBeNull]
-		public OwlcatProperty GetPrevProperty()
-		{
-			var current = focusController?.GetFocusedProperty();
-			if (current == null)
-			{
-				return this.GetAllProperties()?.FirstOrDefault();
-			}
-
-			OwlcatProperty prev = null;
-			foreach (var e in this.GetAllProperties())
-			{
-				string prevPropertyPath = prev?.PropertyPath;
-				if (e.PropertyPath == current.PropertyPath &&
-					prevPropertyPath != current.PropertyPath)
-				{
-					return prev;
-				}
-
-				prev = e;
-			}
-
-			return null;
-		}
-
-		[CanBeNull]
-		public OwlcatProperty GetNextProperty()
-		{
-			var current = focusController?.GetFocusedProperty();
-			if (current == null)
-			{
-				return this.GetAllProperties()?.FirstOrDefault();
-			}
-
-			OwlcatProperty prev = null;
-			foreach (var e in this.GetAllProperties())
-			{
-				string prevPropertyPath = prev?.PropertyPath;
-				if (prevPropertyPath == current.PropertyPath &&
-					e.PropertyPath != current.PropertyPath)
-				{
-					return e;
-				}
-
-				prev = e;
-			}
-
-			return null;
-		}
-
-		private bool SetExpanded(bool expanded)
-		{
-			var current = focusController?.GetFocusedProperty();
-			if (current == null || !current.Expandable)
-			{
-				return false;
-			}
-
-			current.IsExpanded = expanded;
-			return true;
+			var objectField = new ObjectField("Script");
+			objectField.objectType = typeof(MonoScript);
+			objectField.SetEnabled(false);
+			
+			var infoBox = new HelpBox("Script is missing", HelpBoxMessageType.Error);
+			
+			Add(infoBox);
+			Add(objectField);
 		}
 	}
 }

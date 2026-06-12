@@ -1,0 +1,180 @@
+{
+  "AssetId": "72f7280ae43e467582ac5c2cc07cb183",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$b6bacb75-440f-4eb7-ae0e-057698062bb9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3a832172e6594362907f242a54445e96",
+              "Comment": "Нет травмы - накладывает баф на врагов",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "$ContextConditionCasterHasFact$96219a643ecc438ca4c8e2375c81fffd",
+                    "Not": true,
+                    "m_Fact": "!bp_e026d82067804bca899de79f0650c6b6"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$9eadd76f-68c7-4376-b7e0-2e2942075114",
+                    "m_Buff": "!bp_4a0372545168472bb608b136e660882c",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": true,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "UnitExit": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$49f106515738434e96226373ecca9f55",
+              "m_Buff": "!bp_4a0372545168472bb608b136e660882c",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            }
+          ]
+        },
+        "UnitMove": {
+          "Actions": []
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      }
+    ],
+    "Author": "VladislavSolyannikov",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "TargetType": "Enemy",
+    "AffectEnemies": false,
+    "AggroEnemies": true,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": false,
+    "SavePersistentArea": false,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": 0,
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 8,
+      "m_Angle": 0
+    },
+    "IgnoreLosWhenSpread": false,
+    "IgnoreLevelDifferenceWhenSpread": false,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

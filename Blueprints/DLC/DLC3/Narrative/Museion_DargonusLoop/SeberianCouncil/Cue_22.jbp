@@ -1,0 +1,186 @@
+{
+  "AssetId": "a984eff42e234888977e896bb8038fcd",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Играет DL_JuvennaArrestedOrDead\nЕсли играют DL_MerovianKilled или DL_Exalt117ArrestedOrDead, то DL_Treason_counter + 1 за каждого\nвыдаем Obj2_Cl_Conspiracy и Obj2_RenegadesVotes",
+    "ParentAsset": "9cbb66774efd4afd9e3400307aeb1dee",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$e28401a1-68f2-4389-8466-19e528b47eef",
+          "Not": false,
+          "m_Etude": "!bp_dde46990cc3f42e9b8e23d4494d6a3d1",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "a45bbf78-23f3-4a9a-b3fb-456160d99d97",
+      "m_OwnerString": "a984eff42e234888977e896bb8038fcd",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\SeberianCouncil\\Cue_22_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+          "name": "$GiveObjective$cab43c0b7c1146a593f67fb33f4d6e66",
+          "m_Objective": "!bp_948f84f9318c4b7abd9e29a439f5bf6c"
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1db8a66c-7ea0-4fad-a5de-f9a0d8d41b41",
+          "Comment": "Меровцы убиты",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$93e5e341-4bac-4686-8f93-233502499cfd",
+                "Not": false,
+                "m_Etude": "!bp_1d51d5811c9745cc95d02a52e21a0877",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$50d212f1-efb3-48b5-9a81-9ce953328f76",
+                "m_Flag": "!bp_7273af9b091e47b2a50c605173240e3b",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$d9ff1ca2-0a92-4ac3-930e-c7ed72c27cfa",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$fd5fed44-d5cd-4fa7-aa14-cdfff311f3ac",
+          "Comment": "Экзальт убит",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$9c9c8d57-52fc-4795-887f-03dca9a6aa99",
+                "Not": false,
+                "m_Etude": "!bp_c80a8ba401ec49edaac550c51a92fe11",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$51c64253-27cd-4ef0-9132-8235de9ff4e9",
+                "m_Flag": "!bp_7273af9b091e47b2a50c605173240e3b",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$7321df9a-5129-4422-a06a-0d2ae489cf9b",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_5271c243321244048f12275bc9eca09f"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

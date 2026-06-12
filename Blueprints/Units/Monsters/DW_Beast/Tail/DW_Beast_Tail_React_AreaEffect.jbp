@@ -1,0 +1,203 @@
+{
+  "AssetId": "d86cb4c652f34c8d8ac099800dc67ce3",
+  "Data": {
+    "$type": "4e19ee98b71c98b40ba235cfa715b760, BlueprintAbilityAreaEffect",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "24be9d7901731604fb3e9dcc6c21fbb6, AbilityAreaEffectRunAction",
+        "name": "$AbilityAreaEffectRunAction$1d8c0552-4597-42df-9c56-0720f3d3f5d5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Options": "None",
+        "UnitEnter": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$65fd9e3b1c754ce69dcc127fdae482aa",
+              "Comment": "Check BurningGroup",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "de3d2f721aba4974b2299ec267e724c1, ContextConditionHasBuffFromGroup",
+                    "name": "$ContextConditionHasBuffFromGroup$304a45f986dc44b387a4c196f5417d57",
+                    "Not": false,
+                    "m_Groups": [
+                      "!bp_d7e784e695524c6eb34de2b3aa0ef8eb"
+                    ],
+                    "OnlyFromCaster": false,
+                    "CheckOnCaster": true
+                  },
+                  {
+                    "$type": "0cbc5ea4bddfb1543be0d2e54a3eacd0, HasBuff",
+                    "name": "$HasBuff$bc8b94106fd74954a34e648e145bed20",
+                    "Not": false,
+                    "Target": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$a59421ea11934143885d6ec8ee1593ea"
+                    },
+                    "m_Buff": "!bp_95f8dd48f4d54476bafe155bba73c9f9"
+                  },
+                  {
+                    "$type": "0cbc5ea4bddfb1543be0d2e54a3eacd0, HasBuff",
+                    "name": "$HasBuff$9e2dceee-632e-4dcb-a29f-f2975f1d6137",
+                    "Not": false,
+                    "Target": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$ed2ab608-f085-40ad-b940-96aba445313d"
+                    },
+                    "m_Buff": "!bp_7bafba6231164e19bcff0e69e151ba2d"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "2208984b829b49fd878da37b3413ce46, CastSpell",
+                    "name": "$CastSpell$9e6560be-4522-41b1-ba02-0766203521d6",
+                    "Caster": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$d6f1f7da-cfff-4759-9e7a-a2f95887dc1c"
+                    },
+                    "CasterPosition": null,
+                    "TargetEntity": {
+                      "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                      "name": "$ContextTargetUnit$c7622da0-1a7f-4671-906f-4fbd0b783d95"
+                    },
+                    "TargetPoint": null,
+                    "m_Ability": "!bp_81a72485c85b44f2b0b950f14541dbb9",
+                    "UseFullAbilityCastCycle": true,
+                    "HitPolicy": "Default",
+                    "ActionToDoIfCastIsNotValid": {
+                      "Actions": []
+                    },
+                    "DisableLog": false
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "UnitExit": {
+          "Actions": []
+        },
+        "UnitMove": {
+          "Actions": []
+        },
+        "Round": {
+          "Actions": []
+        },
+        "EffectEnd": {
+          "Actions": []
+        },
+        "EffectEndForEachUnit": {
+          "Actions": []
+        }
+      },
+      {
+        "$type": "6fd810e1ab8b4953bba5e760e4e7087e, OverrideAreaNodesTraverseCost",
+        "name": "$OverrideAreaNodesTraverseCost$b7ff291c-2aa1-4bd2-ad44-074d909fc48b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_UnitRestriction": "!bp_0ae1d320399749dcbfd973373cf0b597",
+        "m_CostProc": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$dc92491482504db4a501a0b703f816e3",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 1000,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "EvgeniyShanhiev",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "TargetType": "Enemy",
+    "AffectEnemies": false,
+    "AggroEnemies": true,
+    "AffectDead": false,
+    "m_AreaEffectRestrictions": "None",
+    "IsAllArea": false,
+    "OnlyInCombat": false,
+    "SavePersistentArea": false,
+    "PersistentAreaTexture2D": null,
+    "PersistentAreaMaterialRemap": null,
+    "IsStrategistAbility": false,
+    "NeedsTooltip": false,
+    "m_BlueprintBuffForTooltip": null,
+    "TacticsAreaEffectType": "Rear",
+    "m_Pattern": {
+      "m_Type": "Circle",
+      "m_Blueprint": null,
+      "m_Radius": 1,
+      "m_Angle": 30
+    },
+    "IgnoreLosWhenSpread": false,
+    "IgnoreLevelDifferenceWhenSpread": false,
+    "Fx": {
+      "AssetId": ""
+    },
+    "FxOnEndAreaEffect": {
+      "AssetId": ""
+    },
+    "ScrollCameraToAreaEffectWhenEnded": false,
+    "m_FXSettings": null,
+    "m_AreaEffectGroups": []
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

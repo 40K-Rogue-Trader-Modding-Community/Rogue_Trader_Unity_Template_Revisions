@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints.Creation.Naming;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Utility.DotNetExtensions;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;
@@ -170,6 +171,8 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		private void InitFirstTime()
 		{
+			AssetDatabase.Refresh(); // To re-load naming ScriptableSingleton-s
+
 			ReloadTemplate();
 			if (m_Template != null)
 			{
@@ -210,7 +213,12 @@ namespace Kingmaker.Editor.Blueprints.Creation
 
 		private void SetTemplateToFolder(string folder)
 		{
-			m_Template = $"{folder}{{name}}.asset";
+			m_Template = GetTemplateForFolder(folder) ?? $"{folder}{{name}}.asset";
+		}
+
+		protected virtual string? GetTemplateForFolder(string folder)
+		{
+			return null;
 		}
 
 		public override void OnGUI()
@@ -237,14 +245,14 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			{
 				if (!wasOverriden)
 				{
-					SetTemplateToFolder(TryGetCurrentActiveObjectFolder());
+					SetTemplateToFolder(DefaultFolder);
 				}
 				if (GUILayout.Button("Set Custom Folder", GUILayout.ExpandWidth(true)))
 				{
 
 					string folder = EditorUtility.OpenFolderPanel(
 						"Shared String Folder",
-						TryGetCurrentActiveObjectFolder(),
+						DefaultFolder,
 						"");
 					if (!string.IsNullOrEmpty(folder))
 					{
@@ -305,9 +313,12 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		{
 			string templateResult = template ?? defaultTemplate;
 
-			templateResult = m_IsNameEmpty
-				? templateResult.Replace(NameToken, "")
-				: templateResult.Replace(NameToken, NameTokenNotEmpty);
+			if (!IsFolderOverridden)
+			{
+				templateResult = m_IsNameEmpty
+					? templateResult.Replace(NameToken, "")
+					: templateResult.Replace(NameToken, NameTokenNotEmpty);
+			}
 
 			if (Result.TryGetValue(nameof(Location), out string locationName)
 			    && Result.TryGetValue(nameof(Area), out string areaName)

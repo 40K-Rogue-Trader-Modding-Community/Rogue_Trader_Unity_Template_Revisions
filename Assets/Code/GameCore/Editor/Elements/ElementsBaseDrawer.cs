@@ -21,6 +21,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Base;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.EntitySystem.Properties;
 using Kingmaker.EntitySystem.Properties.BaseGetter;
 using Kingmaker.UnitLogic.Progression;

@@ -2,6 +2,7 @@
 using System;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Area;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Owlcat.Editor.Core.Utility;
 using UnityEditor;

@@ -18,6 +18,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -34,6 +35,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -51,6 +53,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -67,6 +70,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -84,6 +88,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -100,6 +105,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -117,6 +123,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -133,6 +140,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -146,22 +154,16 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "FreshInjuryImmunity"
-      },
-      {
-        "$type": "a672a3cd16b6adb46824a887253d88c5, SpecificBuffImmunity",
-        "name": "$SpecificBuffImmunity$5f99d44d-c088-44be-8ad9-efd4f2320eb6",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "m_Buff": "!bp_8c776f738cb2482ba003f93b3af9f506",
-        "m_ActionsOnImmunity": {
-          "Actions": []
-        },
-        "m_DisableGameLog": false
+        "m_Feature": "FreshInjuryImmunity",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       },
       {
         "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
@@ -177,6 +179,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -278,6 +281,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -311,6 +315,7 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -377,6 +382,7 @@
         "RemoveOnSurvive": false,
         "OnlyEnemyKill": false,
         "m_AffectedGroup": null,
+        "m_OtherAffectedGroupList": null,
         "m_FilterFacts": [],
         "ContextPropertyName": "Value2",
         "PropertyToSave": "None"
@@ -456,11 +462,28 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_e4bcfd3d13f04f8a90ba386210819c7d",
-            "m_LinkKey": "Regen"
+            "m_LinkKey": "Regen",
+            "Main": false
           }
         ]
+      },
+      {
+        "$type": "ca70547ab1274b6190a871edecd24624, BuffGroupImmunity",
+        "name": "$BuffGroupImmunity$010545e4-2631-4ec3-a2d3-435ae8c158d4",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Groups": [
+          "!bp_bacf7f6d99a04b5583d2d6767983475c"
+        ],
+        "m_DisableGameLog": false,
+        "m_InvertCondition": false
       }
     ],
+    "Author": "IlyaPolitko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -505,8 +528,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "IlyaPolitko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

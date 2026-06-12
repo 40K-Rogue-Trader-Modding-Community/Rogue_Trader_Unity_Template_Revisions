@@ -8,6 +8,8 @@ using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using Kingmaker.Code.Editor.Utility;
 using Kingmaker.Editor.Utility;
 using Kingmaker.ElementsSystem;
+using Kingmaker.EntitySystem.Properties;
+using Kingmaker.EntitySystem.Properties.BaseGetter;
 using Owlcat.Editor.Core.Utility;
 using Owlcat.Runtime.Core.Utility;
 using UnityEditor;
@@ -44,6 +46,12 @@ namespace Kingmaker.Editor.Elements
 		private static readonly string ClipboardBlueprintId = "-#@(blueprint-copy)@#-";
 		private static readonly string ClipboardComponentId = "-#@(component-copy)@#-";
 
+        private static readonly (Type, Type, string)[] ContainerTypes = {
+            (typeof(ActionList), typeof(GameAction), "Actions"),
+            (typeof(PropertyCalculator), typeof(PropertyGetter), "Getters"),
+            (typeof(ConditionsChecker), typeof(Condition), "Conditions")
+        };
+        
         private static RobustSerializedProperty s_CopiedProperty;
         public static bool IsThisCopied(SerializedProperty p)
         {
@@ -120,19 +128,13 @@ namespace Kingmaker.Editor.Elements
 		public static void CopyProperty(SerializedProperty property, object value)
 		{
 			var sourceType = SerializableTypesCollection.GetType(property);
-			if (sourceType == typeof(ActionList))
-			{
-				var list = property.FindPropertyRelative("Actions");
-				CopyProperty(list, null);
-				return;
-			}
-
-			if (sourceType == typeof(ConditionsChecker))
-			{
-				var list = property.FindPropertyRelative("Conditions");
-				CopyProperty(list, null);
-				return;
-			}
+            
+            if (TryFindContainerType(out var containerRecord, sourceType))
+            {
+                var list = property.FindPropertyRelative(containerRecord.Item3);
+                CopyProperty(list, null);
+                return;
+            }
 
 			ClipboardElements.Clear();
 			ClipboardElementsChangedEvent?.Invoke();
@@ -203,19 +205,26 @@ namespace Kingmaker.Editor.Elements
                 return p.objectReferenceValue;
             }
 
-            if (p.propertyType == SerializedPropertyType.ManagedReference)
+            if (p.propertyType is SerializedPropertyType.ManagedReference)
             {
                 return FieldFromProperty.GetFieldValue(p);
             }
 
             var type = SerializableTypesCollection.GetType(p);
+            
             if (type.IsSubclassOf(typeof(BlueprintReferenceBase)))
             {
                 return BlueprintReferenceBase.GetPropertyValue(p);
             }
+            
             if (type.IsSubclassOf(typeof(ElementsReferenceBase)))
             {
                 return ElementsReferenceBase.GetPropertyValue(p);
+            }
+            
+            if (p.propertyType is SerializedPropertyType.Generic)
+            {
+	            return FieldFromProperty.GetFieldValue(p);
             }
 
             return null;
@@ -242,6 +251,13 @@ namespace Kingmaker.Editor.Elements
 			}
 		}
 
+        private static bool TryFindContainerType(out (Type, Type, string) result, Type type1, Type type2 = null)
+        {
+            var resultArray = ContainerTypes.Where(t => t.Item1.IsAssignableFrom(type1));
+            result = resultArray.FirstOrDefault();          
+            return resultArray.Any() && (type2 == null || result.Item1.IsAssignableFrom(type2) || result.Item2.IsAssignableFrom(type2));
+        }
+        
 		private static void TryPasteBlueprint(Type type, SerializedProperty property, Action<Object> pasteCallback)
 		{
 			var e = Event.current;
@@ -320,46 +336,47 @@ namespace Kingmaker.Editor.Elements
 
 		public static bool IsSuitableForPaste(Type targetType, ClipboardElement e)
 		{
-			var obj = e.Object;
+			object obj = e.Object;
 			if (e.Type == targetType || e.Type.IsSubclassOf(targetType))
-			{
 				return true;
-			}
 
+            if (targetType.IsSubclassOf(typeof(BlueprintReferenceBase)))
+            {
+                var type = targetType.IsGenericType ? targetType : targetType.BaseType;
+                if (type?.IsGenericType ?? false)
+                {
+                    var typeArg = type.GetGenericArguments();
+                    if (typeArg.Length > 0 && typeArg[0].IsInstanceOfType(obj))
+                        return true;
+                }
+                else if (obj is BlueprintScriptableObject)
+                {
+                    return true;
+                }
+            }
+            
+            if (targetType.IsGenericType)
+            {
+                var param = targetType.GetGenericArguments();
+                if (param.Length == 1 && e.Type == param.First() || 
+                        e.Type.IsGenericType && e.Type.GetGenericTypeDefinition() == targetType.GetGenericTypeDefinition())
+                    return true;
+            }
+            
+            if (targetType.GetAllBaseTypes(false).FirstOrDefault()?.IsGenericType ?? false)
+            {
+                var parentType = targetType.GetAllBaseTypes(false).FirstOrDefault();
+                var param = parentType.GetGenericArguments();
+                if (param.Length == 1 && e.Type == param.First())
+                    return true;
+            }
+            
 			var elementType = targetType.GetElementType();
 			if (elementType != null && ( e.Type == elementType || e.Type.IsSubclassOf(elementType)))
-			{
 				return true;
-			}
 
-			if (targetType.IsSubclassOf(typeof(BlueprintReferenceBase)))
-			{
-				if (targetType.BaseType?.IsGenericType ?? false)
-				{
-					var typeArg = targetType.BaseType?.GenericTypeArguments.FirstItem();
-					if (typeArg != null)
-					{
-						if (typeArg.IsInstanceOfType(obj))
-						{
-							return true;
-						}
-					}
-				}
-				else if (obj is BlueprintScriptableObject)
-				{
-					return true;
-				}
-			}
-
-			if (targetType == typeof(ActionList) && obj is GameAction)
-			{
-				return true;
-			}
-
-			if (targetType == typeof(ConditionsChecker) && obj is Condition)
-			{
-				return true;
-			}
+            if (TryFindContainerType(out _, targetType, obj.GetType()))
+                return true;
 
 			return false;
 		}
@@ -378,25 +395,19 @@ namespace Kingmaker.Editor.Elements
 
 			if (property.GetIndexInParentArray() != -1)
 			{
-				//Пока не понятно, как вытащить из Property ссылку на массив
-				EditorUtility.DisplayDialog("Не доступно",
-					"Для вставки элемента массива поверх существующего элемента массива используйте меню в шестерёнке Copy/Paste",
-					"Хорошо");
-				return false;
+				PasteProperty(type, property, ClipboardElements[0]);
+				property.serializedObject.ApplyModifiedProperties();
+				property.serializedObject.Update();
+			
+				return true;
 			}
 
 			var targetType = SerializableTypesCollection.GetType(property);
-			if (targetType == typeof(ActionList))
-			{
-				var list = property.FindPropertyRelative("Actions");
-				return PasteProperty(type, list);
-			}
-
-			if (targetType == typeof(ConditionsChecker))
-			{
-				var list = property.FindPropertyRelative("Conditions");
-				return PasteProperty(type, list);
-			}
+            if (TryFindContainerType(out var containerRecord, targetType, ClipboardElements[0].Object.GetType()))
+            {
+                var list = property.FindPropertyRelative(containerRecord.Item3);
+                return PasteProperty(type, list);
+            }
 
 			if (property.isArray)
 			{
@@ -479,6 +490,16 @@ namespace Kingmaker.Editor.Elements
 			else if (e.Object is string str)
 			{
 				SerializedPropertySerializer.Deserialize(property, str);
+			}
+			else if (property.propertyType == SerializedPropertyType.Generic)
+			{
+				Type objectType = e.Type;
+				if (property.boxedValue.GetType().IsAssignableFrom(objectType))
+				{
+					property.boxedValue = e.Object;
+					property.serializedObject.ApplyModifiedProperties();
+					property.serializedObject.Update();
+				}
 			}
 		}
 
@@ -572,6 +593,24 @@ namespace Kingmaker.Editor.Elements
                 var childCopy = DeepCopy(targetAssetPath, child);
 				ReflectionUtils.SetFieldValueByPath(target, property.propertyPath, childCopy);
 			}
+		}
+		
+		public static Type GetPasteableType(RobustSerializedProperty property)
+		{
+			var type = SerializableTypesCollection.GetType(property) ??
+			           FieldFromProperty.GetActualValueType(property);
+            
+			if (typeof(Element).IsAssignableFrom(type))
+			{
+				var declaredType = FieldFromProperty.GetDeclaredType(property);
+				var types = TypeUtility.CollectValuesWithFilter(property, declaredType);
+				var list = types.FilterEnabled ? types.FilteredValues : types.RawValues;
+                
+				if (ClipboardElements.Count > 0 && list.Contains(ClipboardElements[0].Type))
+					return declaredType;
+			}
+            
+			return type;
 		}
 	}
 }

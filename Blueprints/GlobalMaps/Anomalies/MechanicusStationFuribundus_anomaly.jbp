@@ -6,25 +6,169 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "b243b88abf7c442981843c74cfbdbe21, AnomalyDialog",
-        "name": "$AnomalyDialog$52fb8ea0-df43-45f0-804f-706446629b2e",
+        "$type": "6503da1a2ac74a5d8d621fc570d22b4a, AnomalyActivation",
+        "name": "$AnomalyActivation$ab5ddcf1-5192-4f78-854d-2d23353bac63",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "m_Dialog": "!bp_3266835a8e6f47d6ac79fd2b7d57ffea"
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$af36e9493d0e484e871f4e5ad211858d",
+              "Comment": "Есть квест на апргейд - диалог про квест на Оил Платформ",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                    "name": "$ObjectiveStatus$46511ac9-4c8d-44d5-bcdc-23a16b270429",
+                    "Not": false,
+                    "m_QuestObjective": "!bp_3f2f1f2c7c9a435ea98b5cde1cc69239",
+                    "State": "Started"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+                    "name": "$StartDialog$7afab2bf26e34b669044c0804c8e6b1f",
+                    "DialogueOwner": null,
+                    "m_Dialogue": "!bp_8d250f06308c462a9191264e76b7a60d",
+                    "DialogEvaluator": null,
+                    "SpeakerName": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$ca20432b-2c2d-4416-9c19-380bc8831b7c",
+                    "Comment": "Оил платформ пройдена - промпт про апгрейд кресла",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                          "name": "$ObjectiveStatus$94afd999-0e42-47a1-be06-9cd68d0c8216",
+                          "Not": false,
+                          "m_QuestObjective": "!bp_603f1599829942e19a6b12b874e5c472",
+                          "State": "Started"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+                          "name": "$StartDialog$0a1f9d40-017a-4c16-805f-9c4f07b17e26",
+                          "DialogueOwner": null,
+                          "m_Dialogue": "!bp_0133fae4c5d5477da0d2bbc2d5c7a379",
+                          "DialogEvaluator": null,
+                          "SpeakerName": {
+                            "m_Key": "",
+                            "m_OwnerString": "",
+                            "m_OwnerPropertyPath": "",
+                            "m_JsonPath": "",
+                            "Shared": null
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$11d7d5c6-492c-4240-a077-e69dbe1d2436",
+                          "Comment": "Есть квест на фикс кресла - диалог про это, иначе дефолт промпт",
+                          "ConditionsChecker": {
+                            "Operation": "Or",
+                            "Conditions": [
+                              {
+                                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                                "name": "$ObjectiveStatus$59107dac-55c7-4022-a282-8e3ca74fecf2",
+                                "Not": false,
+                                "m_QuestObjective": "!bp_762fc32fc0dc4cd7a9113052a13276c0",
+                                "State": "Started"
+                              },
+                              {
+                                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                                "name": "$ObjectiveStatus$a99dce63-1d03-43ed-aa23-2d4656cbf938",
+                                "Not": false,
+                                "m_QuestObjective": "!bp_c1c7870da0e643909bd7db0c840dcab4",
+                                "State": "Started"
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+                                "name": "$StartDialog$9aa775b5-6907-4aea-8f35-c817105c552e",
+                                "DialogueOwner": null,
+                                "m_Dialogue": "!bp_7a17b7f1b8ae407d8393d708292b1923",
+                                "DialogEvaluator": null,
+                                "SpeakerName": {
+                                  "m_Key": "",
+                                  "m_OwnerString": "",
+                                  "m_OwnerPropertyPath": "",
+                                  "m_JsonPath": "",
+                                  "Shared": null
+                                }
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+                                "name": "$StartDialog$f5760e16-4d12-4b51-85eb-ce19d4734744",
+                                "DialogueOwner": null,
+                                "m_Dialogue": "!bp_3266835a8e6f47d6ac79fd2b7d57ffea",
+                                "DialogEvaluator": null,
+                                "SpeakerName": {
+                                  "m_Key": "",
+                                  "m_OwnerString": "",
+                                  "m_OwnerPropertyPath": "",
+                                  "m_JsonPath": "",
+                                  "Shared": null
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "VadimBgatzev",
     "Comment": "",
     "m_DisplayName": {
-      "m_Key": "a9a0552d-27a7-4d2a-8381-8f2a6b142514",
-      "m_OwnerString": "f1fd09cb901b4c5a8ef969c901dab36f",
-      "m_OwnerPropertyPath": "m_DisplayName",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\GlobalMaps\\Anomalies\\MechanicusStationFuribundus_anomaly_m_DisplayName.json",
-      "Shared": null
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "b2b547cee4aefb84ab38e60902a0ac51",
+        "stringkey": "a9a0552d-27a7-4d2a-8381-8f2a6b142514"
+      }
     },
     "m_Description": {
       "m_Key": "",
@@ -34,19 +178,19 @@
       "Shared": null
     },
     "m_Icon": null,
-    "IsQuestObject": false,
+    "IsQuestObject": true,
     "IsScannedOnStart": false,
     "Resources": [],
     "BarkBanterList": null,
     "m_ConnectedAreas": [],
-    "InteractTime": "OnDistance",
-    "InteractDistance": 10.0,
+    "InteractTime": "OnTouch",
+    "InteractDistance": 4.0,
     "RemoveAfterInteraction": false,
     "InfiniteInteraction": true,
     "AnomalyType": "Default",
     "HideInUI": false,
     "ScriptZoneShape": false,
-    "ShowOnGlobalMap": false
+    "ShowOnGlobalMap": true
   },
   "Meta": {
     "ShadowDeleted": false

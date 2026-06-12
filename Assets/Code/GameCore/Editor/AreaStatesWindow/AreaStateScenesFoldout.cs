@@ -113,7 +113,49 @@ namespace Kingmaker.Editor.AreaStatesWindow
                     });
                 }
 
+                sceneLayout.RegisterCallback<MouseDownEvent>(evt => ContextMenuCallback(evt, sceneAsset));
+
                 _foldout.ContentContainer.Add(sceneLayout);
+            }
+        }
+
+        private static void ContextMenuCallback(IMouseEvent evt, SceneAsset sceneAsset)
+        {
+            if (evt.button != 1)
+            {
+                return;
+            }
+
+            var mousePosition = evt.mousePosition;
+
+            if (sceneAsset.name.EndsWith($"_{SceneNameElement.Mechanics}"))
+            {
+                var menu = new GenericMenu();
+                menu.AddItem(new GUIContent("Create or resize NavMesh"), false, () =>
+                {
+                    CreateSizable(sceneAsset, mousePosition, NewEntityOfSizeForm.CreateNavMesh);
+                });
+                menu.ShowAsContext();
+                return;
+            }
+
+            if (sceneAsset.name.EndsWith($"_{SceneNameElement.Static}"))
+            {
+                var menu = new GenericMenu();
+                menu.AddItem(new GUIContent("Create or resize Ground"), false, () =>
+                {
+                    CreateSizable(sceneAsset, mousePosition, NewEntityOfSizeForm.CreateGround);
+                });
+                menu.ShowAsContext();
+            }
+        }
+
+        private static void CreateSizable(SceneAsset sceneAsset, Vector2 mousePosition, Action create)
+        {
+            if (MakeSceneActive(sceneAsset))
+            {
+                NewEntityOfSizeForm.LastMousePosition = mousePosition;
+                create();
             }
         }
 
@@ -145,16 +187,17 @@ namespace Kingmaker.Editor.AreaStatesWindow
             }
         }
 
-        private static void MakeSceneActive(SceneAsset sceneAsset)
+        private static bool MakeSceneActive(SceneAsset sceneAsset)
         {
             string path = AssetDatabase.GetAssetPath(sceneAsset);
             var scene = SceneManager.GetSceneByPath(path);
             if (scene.isLoaded)
             {
                 SceneManager.SetActiveScene(scene);
-                return;
+                return true;
             }
             EditorUtility.DisplayDialog("Error", "Scene is not loaded!", "Ok");
+            return false;
         }
 
         private void RemoveSceneAssetFromEtude(SceneAsset sceneAsset)

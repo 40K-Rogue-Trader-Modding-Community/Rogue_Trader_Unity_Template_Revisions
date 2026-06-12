@@ -14,10 +14,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolOr",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -120,15 +122,6 @@
                                 "BuffEndCondition": "CombatEnd",
                                 "Permanent": true,
                                 "DurationValue": {
-                                  "BonusValue": {
-                                    "ValueType": "Simple",
-                                    "Value": 1,
-                                    "ValueRank": "Default",
-                                    "ValueShared": "Damage",
-                                    "Property": "None",
-                                    "m_CustomProperty": null,
-                                    "PropertyName": "Value1"
-                                  },
                                   "RoundsValue": {
                                     "ValueType": "Simple",
                                     "Value": 1,
@@ -173,15 +166,6 @@
                           "BuffEndCondition": "CombatEnd",
                           "Permanent": false,
                           "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 1,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
                             "RoundsValue": {
                               "ValueType": "Simple",
                               "Value": 1,
@@ -293,15 +277,6 @@
                                 "BuffEndCondition": "CombatEnd",
                                 "Permanent": true,
                                 "DurationValue": {
-                                  "BonusValue": {
-                                    "ValueType": "Simple",
-                                    "Value": 1,
-                                    "ValueRank": "Default",
-                                    "ValueShared": "Damage",
-                                    "Property": "None",
-                                    "m_CustomProperty": null,
-                                    "PropertyName": "Value1"
-                                  },
                                   "RoundsValue": {
                                     "ValueType": "Simple",
                                     "Value": 1,
@@ -346,15 +321,6 @@
                           "BuffEndCondition": "CombatEnd",
                           "Permanent": false,
                           "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 1,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
                             "RoundsValue": {
                               "ValueType": "Simple",
                               "Value": 1,
@@ -411,10 +377,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -534,6 +502,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -563,10 +532,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -617,6 +588,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -646,9 +618,11 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Condition": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -686,15 +660,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -728,13 +693,17 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
             }
           ]
         },
@@ -768,13 +737,17 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
             }
           ]
         },
@@ -790,25 +763,74 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "AutoDodgeFriendlyFire"
+        "m_Feature": "AutoDodgeFriendlyFire",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       },
       {
         "$type": "0bd3b0417d194307b76dfa6a66522267, DodgeAlliesAutomatically",
         "name": "$DodgeAlliesAutomatically$1ecdc028-f082-48c5-9efa-85f0394927fc",
         "m_Flags": 0,
         "PrototypeLink": {
-          "guid": null,
-          "name": null
+          "guid": "",
+          "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
         }
+      },
+      {
+        "$type": "95e248f24866439681c312b1bff0693c, UIPropertiesComponent",
+        "name": "$UIPropertiesComponent$2ce2e523-f7e1-4dcf-aaad-93500e618ddb",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Properties": [
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "54b993ce4c2cf50429d41e3fb9b3e921",
+                "stringkey": "08494cb7-2741-4104-badc-73393e4ccd57"
+              }
+            },
+            "m_DescriptionFact": "!bp_0f16cb080bec4cdda2fdc7ec571c280a",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value2",
+            "m_PropertySource": "!bp_0f16cb080bec4cdda2fdc7ec571c280a",
+            "m_LinkKey": "agiB",
+            "Main": false
+          }
+        ]
       }
     ],
     "Author": "ElenaMironova",

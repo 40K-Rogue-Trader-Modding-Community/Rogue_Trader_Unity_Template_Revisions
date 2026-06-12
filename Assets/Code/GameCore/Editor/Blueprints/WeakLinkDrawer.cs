@@ -1,85 +1,70 @@
 ﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
+using Kingmaker.Code.Editor.Utility;
+using Kingmaker.Editor.UIElements.Custom.Properties;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Kingmaker.ResourceLinks;
 using Owlcat.Editor.Core.Utility;
+using Owlcat.QA.Validation;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
 using Object = UnityEngine.Object;
 
 namespace Kingmaker.Editor.Blueprints
 {
-	public class WeakLinkDrawer<TAsset> : PropertyDrawer 
-		where TAsset : Object
+	public class WeakLinkDrawer<TAsset> : PropertyDrawer where TAsset : Object
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
 			var idProperty = property.FindPropertyRelative(nameof(WeakResourceLink.AssetId));
+			bool notNull = property.GetAttributes()?.Any(x => x is NotNullAttribute or ValidateNotNullAttribute) ?? false;
 			var idPropertySafe = new RobustSerializedProperty(idProperty);
-			var currentValue = GetAsset(idProperty.hasMultipleDifferentValues?null:idProperty.stringValue);
-			Action<Object> pickCallback =
-				o =>
+			var currentValue = GenericWeakLinkDrawer.GetAsset(idProperty.hasMultipleDifferentValues ? 
+				null : idProperty.stringValue, typeof(TAsset));
+			
+			Action<Object> pickCallback = o =>
 				{
 					var p = idPropertySafe.Property;
 					using (GuiScopes.UpdateObject(p.serializedObject))
 					{
-						idPropertySafe.Property.stringValue = GetGuid(o);
+						idPropertySafe.Property.stringValue = GenericWeakLinkDrawer.GetGuid(o, typeof(TAsset));
 					}
 				};
 
+			var prevColor = GUI.color;
+			if (notNull && currentValue == null)
+				GUI.color = Color.red;
+			
 			AssetPicker.ShowPropertyField(
 				position, property, fieldInfo,
 				currentValue, pickCallback, 
-				label, typeof(TAsset)
+				label, typeof(TAsset), Filter
 			);
+			GUI.color = prevColor;
 		}
 
-		[CanBeNull]
-		private static Object GetAsset(string guid)
+		protected virtual bool Filter(AssetPicker.HierarchyEntry entry) => true; 
+		
+		public override VisualElement CreatePropertyGUI(SerializedProperty property)
 		{
-			if (string.IsNullOrEmpty(guid))
-				return null;
-
-			var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-			if (string.IsNullOrEmpty(assetPath))
-				return null;
-
-			return AssetDatabase.LoadAssetAtPath<TAsset>(assetPath);
-		}
-
-		private static string GetGuid(Object asset)
-		{
-			if (typeof(MonoBehaviour).IsAssignableFrom(typeof(TAsset)))
-			{
-                if (!(asset is TAsset))
-                {
-                    var go = asset as GameObject;
-                    if (go == null)
-                    {
-                        return "";
-                    }
-
-                    if (go.GetComponent<TAsset>() == null)
-                    {
-                        return "";
-                    }
-                }
-            }
-
-			var assetPath = AssetDatabase.GetAssetPath(asset);
-			return AssetDatabase.AssetPathToGUID(assetPath);
-		}
+			return new WeakLinkProperty(property, typeof(TAsset), fieldInfo, Filter);
+		}	
 	}
 
 	[CustomPropertyDrawer(typeof(Texture2DLink))]
 	public class Texture2DLinkDrawer : WeakLinkDrawer<Texture2D>
 	{
 	}
+	
 	[CustomPropertyDrawer(typeof(SpriteLink))]
 	public class SpriteLinkDrawer : WeakLinkDrawer<Sprite>
 	{
 	}
+	
 	[CustomPropertyDrawer(typeof(MaterialLink))]
 	public class MaterialLinkDrawer : WeakLinkDrawer<Material>
 	{
@@ -89,5 +74,4 @@ namespace Kingmaker.Editor.Blueprints
 	public class VideoLinkDrawer : WeakLinkDrawer<VideoClip>
 	{
 	}
-
 }

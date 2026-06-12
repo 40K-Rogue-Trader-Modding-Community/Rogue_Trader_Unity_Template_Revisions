@@ -43,7 +43,11 @@ namespace Code.GameCore.Editor.LocalizedStringSearchWindow
 					GUILayout.Label("Insert bp with SharedString in it and press Find", EditorStyles.centeredGreyMiniLabel);
 					
 					BlueprintPicker.ShowObjectField(m_Target,
-						bp => { m_Target = bp as BlueprintScriptableObject; }, new GUIContent("Blueprint"), typeof(BlueprintScriptableObject));
+						m_Target.AssetGuid,
+						bp => { m_Target = bp; }, 
+						new GUIContent("Blueprint"), 
+						typeof(BlueprintScriptableObject), 
+						null);
 					
 					if ( m_Target is not ILocalizedStringHolder)
 					{
@@ -99,12 +103,12 @@ namespace Code.GameCore.Editor.LocalizedStringSearchWindow
 
 				foreach (var blueprint in allAnswers.NotNull())
 				{
-					if (!blueprint.Text.Shared)
+					if (!blueprint.LocalizedStringText.Shared)
 					{
 						continue;
 					}
 
-					if (blueprint.Text.Shared.Equals((m_Target as ILocalizedStringHolder)?.LocalizedStringText.Shared))
+					if (blueprint.LocalizedStringText.Shared.Equals((m_Target as ILocalizedStringHolder)?.LocalizedStringText.Shared))
 					{
 						Results.Add(blueprint);
 					}

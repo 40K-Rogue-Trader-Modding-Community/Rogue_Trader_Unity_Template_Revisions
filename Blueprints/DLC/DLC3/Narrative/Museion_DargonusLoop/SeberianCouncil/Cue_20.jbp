@@ -1,0 +1,188 @@
+{
+  "AssetId": "52ec888758ec437ab73fb3d64c282f03",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Спикер: Камилла\nНЕ играют DL_KamilleOnLariaSide или DL_KamilleArrestedOrDead\nИ мы не шантажировали Камиллу",
+    "ParentAsset": "5271c243321244048f12275bc9eca09f",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$f89849a0-49d5-4a36-ab75-d0fca5a57dbe",
+          "Not": true,
+          "m_Etude": "!bp_055102fa9fda41468c4ececba50569a3",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$80037608-a2c1-4a8c-bb28-95bf407ae0fb",
+          "Not": true,
+          "m_Etude": "!bp_27af52554bdc4ea487e30a9876f1eb01",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$df7f66190c67411db90c548e67277a23",
+          "Not": true,
+          "m_Etude": "!bp_405d2918379b408f8631961c5be780fa",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        }
+      ]
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "456d3d1ee04dff74397b5aab98d8e4a3",
+        "stringkey": "f443f011-45af-492d-9c58-7997be9623d8"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": "!bp_ef5add406b8a4a88884690e900233495",
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": false,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$c3726e4c-6eb7-4e2c-bf8a-0bce481b0a4d",
+          "Comment": "Компилит адендума про Камиллу (JuvenaSide)",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$196c6f71-7865-4a1c-95cb-e6bf69aaf1ad",
+                "Not": false,
+                "m_QuestObjective": "!bp_bed5b6246d464127b736ff94d2aa1e03",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$e11e0eb6-81cc-4a76-8871-18b94ea2fc32",
+                "Status": "Complete",
+                "m_Objective": "!bp_bed5b6246d464127b736ff94d2aa1e03",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$179d50df-3ac2-4e46-9f93-b1fe01cec686",
+          "Comment": "Фейл адендума про Камиллу в ветке Ларии",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$b60a4c96-8aaa-46e9-8cd4-c5e3b1b24983",
+                "Not": false,
+                "m_QuestObjective": "!bp_08ac2f6ab103475ca27cbcab206346a8",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$11b0f324-26c8-4f33-9002-a820a7218408",
+                "Status": "Fail",
+                "m_Objective": "!bp_08ac2f6ab103475ca27cbcab206346a8",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

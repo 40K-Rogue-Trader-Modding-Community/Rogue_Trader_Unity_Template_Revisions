@@ -1,0 +1,102 @@
+{
+  "AssetId": "e9e9c24a37fc4011afc66e25a484c698",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$891d57ed4abd444ea38e73267da8c75d",
+          "Comment": "RT on dogmatics side",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$944747d9b3e5478ca6bb1644aec83740",
+                "Not": false,
+                "m_Etude": "!bp_9d303afba57d4b79a12849fe3fdb1c47",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "5a0f8a1614a840f8b0629a71b6de51f7, SpawnBySummonPool",
+                "name": "$SpawnBySummonPool$1c68bd19-2d41-45f1-a84a-45604ff6bb82",
+                "m_Pool": "!bp_adb1c8b4661d4bf699f3e25a5cee2ad8",
+                "ActionsOnSpawn": {
+                  "Actions": [
+                    {
+                      "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                      "name": "$PlayCutscene$5cf199ab-fb4c-4ffa-8e2e-ac73dd544eb7",
+                      "m_Cutscene": "!bp_72d84233cf1942af9674f390f4b658ee",
+                      "PutInQueue": false,
+                      "CheckExistence": true,
+                      "Parameters": {
+                        "Parameters": [
+                          {
+                            "Name": "Unit",
+                            "Type": "Unit",
+                            "Evaluator": {
+                              "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                              "name": "$SpawnedUnit$edef0220-540e-4a4d-9061-15cf19e64248"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                      "name": "$SpawnFx$e09be9b488c6494ba3ecdf2a9e615a1d",
+                      "Target": {
+                        "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                        "name": "$UnitTransform$ecdb055f599b405994a230273b73e5bc",
+                        "Unit": {
+                          "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                          "name": "$SpawnedUnit$2978993054b742f3a8330c3b5556797c"
+                        }
+                      },
+                      "FxPrefab": {
+                        "guid": "b335be8f94536914f83b62b2a915cc6d",
+                        "fileid": 1588132095308112
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$88d288be-f61e-4969-8ec3-14182f2da82e",
+          "m_flag": "!bp_d28870f81d5c4ec6a7770dca8f7d9863",
+          "flagValue": 0
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

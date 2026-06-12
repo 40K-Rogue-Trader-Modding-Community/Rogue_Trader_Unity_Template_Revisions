@@ -1,0 +1,218 @@
+{
+  "AssetId": "1696172570da41f98df954ad6abe1ff5",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "3c5267edd045432ab5bd6dbe606d4da3, AdditionalDescriptionComponent",
+        "name": "$AdditionalDescriptionComponent$a2e72cbf-d67d-4680-8d99-a46d506925e0",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "AdditionalDescription": {
+          "m_Key": "",
+          "m_OwnerString": "",
+          "m_OwnerPropertyPath": "",
+          "m_JsonPath": "",
+          "Shared": {
+            "assetguid": "239baeeaeb5ab7f42925fb811608c6e8",
+            "stringkey": "c58c5a6c-741a-4efa-82d4-fd56d9b5e7d8"
+          }
+        }
+      },
+      {
+        "$type": "e504ccf75a2139b45a2fb1d50d2dabf0, StarshipKillTrigger",
+        "name": "$StarshipKillTrigger$a8c2cc9c-b5a6-43d1-9b0a-8591ecae3598",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "IgnoreSoftUnits": true,
+        "EnemyOnly": true,
+        "ActionsOnSelf": {
+          "Actions": []
+        },
+        "ActionsOnTarget": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$38c4bc097309462d97815b7a24c0168a",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "f310985bf2724df4a97b165f74b806e8, HasFact",
+                    "name": "$HasFact$65cc658c38ca45adb3694b59dcd3b545",
+                    "Not": false,
+                    "Unit": {
+                      "$type": "822dcce931786aa4d80ba3b89862e9d6, PlayerStarship",
+                      "name": "$PlayerStarship$7b7a398f4f70408a85a36e77ee7274e7"
+                    },
+                    "m_Fact": "!bp_b7a0ce889c54413e95acebf28fa00d6b"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": []
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$05dda2b1-f17a-4711-ad31-f6bf42fc66b5",
+                    "m_Buff": "!bp_b7a0ce889c54413e95acebf28fa00d6b",
+                    "BuffEndCondition": "SpaceCombatExit",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 2,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$3056285b484944b0b8f600b88335e2b6",
+                    "m_Buff": "!bp_8dedb5b0a9414d03b227d6ddd6f1f806",
+                    "BuffEndCondition": "TurnEndOrCombatEnd",
+                    "Permanent": false,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": true,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "1441c1c4053751d4ab4d4fa0c107aaef, WarhammerContextActionManageVoidShields",
+                    "name": "$WarhammerContextActionManageVoidShields$98736cb5212842f5ab75d644b4ddbcf9",
+                    "actionType": "RestoreWeakest",
+                    "shieldsSector": "Fore",
+                    "IsUpgraded": false,
+                    "pctOfMaxStrength": 100
+                  },
+                  {
+                    "$type": "6e7c340ab284b5d4abb5b75a0a5da91a, RemoveFact",
+                    "name": "$RemoveFact$3ae8fb4fdf8c50f8908d676b2d2f0c7f",
+                    "Unit": {
+                      "$type": "822dcce931786aa4d80ba3b89862e9d6, PlayerStarship",
+                      "name": "$PlayerStarship$f643a1322aa35466a235d45b223b4d24"
+                    },
+                    "m_Fact": "!bp_1696172570da41f98df954ad6abe1ff5"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "SemyonStenyugin",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "963f7011c8c59f44298a78e68e2c2f46",
+        "stringkey": "ff20b477-7e3e-44f4-ae6a-1f48117ce401"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "d9fcdc5fbb9ac954aac6fd34ec73a8bf",
+        "stringkey": "cbe51b1a-d8da-49d3-8d04-fc2cde335bba"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": "Armour, MP, SpaceCombat",
+      "MainGroup": "SpaceCombat"
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": true
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

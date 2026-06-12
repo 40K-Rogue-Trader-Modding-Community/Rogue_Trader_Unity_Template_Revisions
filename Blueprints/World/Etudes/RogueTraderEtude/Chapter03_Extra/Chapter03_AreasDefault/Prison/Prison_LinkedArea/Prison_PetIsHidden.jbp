@@ -1,0 +1,185 @@
+{
+  "AssetId": "6887aaffdc254d699abbd709ba05b0f2",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$7c7a00f2-5893-4e8e-a57d-1a2628f098e2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Hide on start",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$0379a747-88f8-4cf3-8185-a2eaed0b7d66",
+              "Target": {
+                "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                "name": "$PetByOwner$cead1cd6-c2b7-4c8a-a201-b9ed52a0d672",
+                "OwnerEvaluator": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$7adc7bd8-8224-4801-bfd9-3c4ef7a731c7"
+                }
+              },
+              "Unhide": false,
+              "Fade": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "d3e4fc9142494f99a469c1dd43abe255, AreaDidLoadTrigger",
+        "name": "$AreaDidLoadTrigger$19c6a2a6-3551-4172-8cc6-b31789255cf5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Hide again on saveload",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$54a3980b-eeb1-4ed2-80b0-727a534a892b",
+              "Target": {
+                "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                "name": "$PetByOwner$0ad6bcfd-d023-45c3-902d-bc0ee2914dc0",
+                "OwnerEvaluator": {
+                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                  "name": "$PlayerCharacter$351b7b07-d978-49d1-a422-741f7712c283"
+                }
+              },
+              "Unhide": false,
+              "Fade": false
+            }
+          ]
+        },
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$045f10d3-ea13-4dd1-be7b-0cf6de406099",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$02da659f18f453589c674f79dbc31afc",
+              "Comment": "Current area is Pit",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$5e6d2fb4e981516899e89ccb4b4ff74e",
+                    "Not": false,
+                    "m_Etude": "!bp_ebb0f220339846d8a58b856a23c6cc5c",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$379b4b1f-e23f-417f-8c29-ee452c7ba47f",
+                    "Target": {
+                      "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                      "name": "$PetByOwner$74cf686a-5a35-4d68-9f23-5ef038cb4d05",
+                      "OwnerEvaluator": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$2f71442e-37f3-4001-9ae9-74a641b5045a"
+                      }
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "RT pet controller before meeting with Anger",
+    "m_Parent": "!bp_692407b38b224c518552f6d6aa4504a1",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+          "name": "$UnitIsNull$34cf3ba6cc7c5d9fa6f128f4b42eb59c",
+          "Not": true,
+          "Target": {
+            "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+            "name": "$PetByOwner$94290272325b542994929de7bd0bca12",
+            "OwnerEvaluator": {
+              "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+              "name": "$PlayerCharacter$16594010c3a4564faee5aa4b5d325318"
+            }
+          }
+        },
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$7e416a0b994f5abdbc6b218e955473aa",
+          "Not": true,
+          "m_Etude": "!bp_8052a2929208461d82c222705723e24e",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": false,
+          "CompletionInProgress": false,
+          "Completed": true
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

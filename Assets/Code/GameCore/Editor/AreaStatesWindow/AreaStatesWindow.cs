@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Editor;
 using Kingmaker.Blueprints.Area;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.UIElements;
+using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.View;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 #nullable enable
@@ -30,6 +33,27 @@ namespace Kingmaker.Editor.AreaStatesWindow
             window.minSize = new Vector2(480, 320);
         }
 
+        private void OnEnable()
+        {
+            if (!EditorApplication.isPlayingOrWillChangePlaymode)
+                SetCurrentArea();
+
+            EditorApplication.playModeStateChanged += PlayModeChanged;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= PlayModeChanged;
+        }
+
+        private void PlayModeChanged(PlayModeStateChange change)
+        {
+            if (change == PlayModeStateChange.EnteredEditMode)
+            {
+                SetCurrentArea();
+            }
+        }
+
         private void OnSelectionChange()
         {
             if (Selection.activeObject is not BlueprintEditorWrapper {Blueprint: BlueprintArea area})
@@ -38,6 +62,7 @@ namespace Kingmaker.Editor.AreaStatesWindow
             }
             _currentArea = area;
             UpdateStates();
+            _states?.Expand(true);
         }
 
         private void UpdateStates()
@@ -170,25 +195,69 @@ namespace Kingmaker.Editor.AreaStatesWindow
             {
                 _currentArea = currentArea;
                 UpdateStates();
+                _states?.Expand(true);
             }
         }
 
         /// <summary>
         /// Select area blueprint and load it's base state
         /// </summary>
-        private void LoadArea()
+        public void LoadArea()
         {
+            var currentScenes = new List<Scene>(SceneManager.sceneCount);
+            for (int sceneIdx = 0; sceneIdx < SceneManager.sceneCount; sceneIdx++)
+                currentScenes.Add(SceneManager.GetSceneAt(sceneIdx));
+
+            if (CheckScenesDirty(currentScenes))
+                return;
+            
             BlueprintPicker.ShowAreaPicker((bp, _) =>
             {
-                _currentArea = bp as BlueprintArea;
-                if (_currentArea == null)
-                {
-                    return;
-                }
-
-                UpdateStates();
-                _states?.LoadBaseState();
+                SetCurrentArea(bp as BlueprintArea);
             });
+        }
+        
+        public static bool CheckScenesDirty(IEnumerable<Scene> scenes)
+        {
+            var dirtyScenePaths = new HashSet<string>();
+            dirtyScenePaths.AddRange(scenes
+                .Where(s => s is {isLoaded: true, isDirty: true})
+                .Select(s => s.path));
+
+            if (dirtyScenePaths.Any())
+            {
+                string changedPathsText = string.Join("\n", dirtyScenePaths.OrderBy(p => p));
+                bool cancel = EditorUtility.DisplayDialog(
+                    title:"Warning!",
+                    message:"Some state scenes have changes:\n" + changedPathsText,
+                    ok:"Cancel",
+                    cancel:"Drop Changes");
+                
+                if (cancel)
+                    return true;
+            }
+            
+            return false;
+        }
+        
+        public void SetCurrentArea()
+        {
+            var currentArea = GetCurrentArea();
+            if (currentArea != null)
+                SetCurrentArea(currentArea);
+        }
+
+        public void SetCurrentArea(BlueprintArea? area)
+        {
+            if (area == null)
+                return;
+
+            bool areaWasChanged = area.AssetGuid != _currentArea?.AssetGuid;
+            _currentArea = area;
+            UpdateStates();
+            if (areaWasChanged)
+                _states?.LoadBaseState();
+            _states?.Expand(true);
         }
 
         [MenuItem("Design/Select Current Area %&r", false, 10010)]

@@ -1,5 +1,7 @@
 using System;
+using Code.Framework.Editor.Utility;
 using Kingmaker.Editor.UIElements.Custom.Elements;
+using Kingmaker.Utility.EditorPreferences;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,22 +13,31 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		{
 			Horizontal = 0,
 			Vertical = 1,
+			VerticalNotExpandable = 2
 		}
 
-		public readonly bool Expandable;
-
 		public readonly VisualElement HeaderContainer;
+		public readonly VisualElement HeaderContentContainer;  // To be able to use header space in vertical layout
 		public readonly OwlcatContentContainer ContentContainer;
 		public readonly VisualElement ControlsContainer;
 
 		public readonly OwlcatTitleLabel TitleLabel;
 		
-		private readonly Image m_Collapsed;
-		private readonly Image m_Expanded;
+		public bool Expandable { get; private set; }
+        
+		private readonly Layout m_Layout;
+		
+		private Image m_Collapsed;
+		private Image m_Expanded;
 		
 		private bool m_IsExpanded;
-
-		public bool IsExpanded
+		private bool m_ArrowHidden;
+		
+		private VisualElement m_HeaderAndControls;
+		
+		public VisualElement ContextMenuHeader => m_HeaderAndControls ?? HeaderContainer;
+		
+		public virtual bool IsExpanded
 		{
 			get => m_IsExpanded;
 			set
@@ -41,51 +52,63 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		public override bool canGrabFocus
 			=> true;
 
-		public OwlcatPropertyLayout(Layout layout, bool expandable)
+		/// <summary>
+		/// Enable HeaderContent as label and HeaderContentContainer as content,
+		/// matching property layout of label:40% and content:60%
+		/// Common use is to make foldout header act as a property to save space
+		/// </summary>
+		public bool HeaderAsPropertyLayout
 		{
-			Expandable = expandable;
+			set
+			{
+				if (value)
+				{
+					HeaderContainer.AddToClassList("owlcat-title-label");
+					HeaderContentContainer.style.display = DisplayStyle.Flex;
+				}
+				else
+				{
+					HeaderContainer.RemoveFromClassList("owlcat-title-label");
+					HeaderContentContainer.style.display = DisplayStyle.None;
+				}
+			}
+		}
+		
+		public OwlcatPropertyLayout(Layout layout, bool isExpanded = false)
+		{
+			m_Layout = layout;
+			m_IsExpanded = isExpanded;
 			focusable = true;
 			
 			AddToClassList("owlcat-property");
 
-			HeaderContainer = new VisualElement {name = "header"};
-			ContentContainer = new OwlcatContentContainer {name = "content"};
-			ControlsContainer = new VisualElement {name = "controls"};
+			HeaderContainer = new VisualElement { name = "header" };
+			HeaderContentContainer = new VisualElement
+			{
+				name = "header_content",
+				style =
+				{
+					flexDirection = FlexDirection.Row,
+					alignItems = Align.Center,
+					width = Length.Percent(60),
+				}
+			};
+			ContentContainer = new OwlcatContentContainer { name = "content" };
+			ControlsContainer = new VisualElement { name = "controls" };
 			
 			HeaderContainer.AddToClassList("owlcat-property-header");
+			HeaderContentContainer.AddToClassList("owlcat-property-content");
+			HeaderAsPropertyLayout = false;
 			ContentContainer.AddToClassList("owlcat-property-content");
 			ControlsContainer.AddToClassList("owlcat-property-controls");
 			
-			TitleLabel = new OwlcatTitleLabel();
+			TitleLabel = new OwlcatTitleLabel(this);
 			TitleLabel.style.flexGrow = 1;
 			TitleLabel.style.flexShrink = 1;
+			TitleLabel.AddToClassList("focusable-title-label");
+			TitleLabel.RemoveFromClassList("owlcat-title-label");
 			HeaderContainer.Add(TitleLabel);
 			HeaderContainer.Add(new OwlcatTitleLabelSizeControl());
-
-			if (expandable)
-			{
-				AddToClassList("owlcat-expandable");
-				HeaderContainer.AddToClassList("owlcat-expandable");
-				ContentContainer.AddToClassList("owlcat-expandable");
-				ControlsContainer.AddToClassList("owlcat-expandable");
-				
-				Image CreateExpandImage(Texture2D texture)
-					=> new Image
-					{
-						image = texture, 
-						tintColor = Color.black,
-						scaleMode = ScaleMode.ScaleToFit,
-						focusable = true,
-					};
-
-				m_Collapsed = CreateExpandImage(UIElementsResources.FoldoutCollapsed);
-				HeaderContainer.hierarchy.Insert(0, m_Collapsed);
-			
-				m_Expanded = CreateExpandImage(UIElementsResources.FoldoutExpanded);
-				HeaderContainer.hierarchy.Insert(0, m_Expanded);
-			
-				HeaderContainer.RegisterCallback<MouseDownEvent>(SwitchExpanded);
-			}
 
 			switch (layout)
 			{
@@ -93,29 +116,76 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 					MakeHorizontalLayout();
 					break;
 				case Layout.Vertical:
+				case Layout.VerticalNotExpandable:
 					MakeVerticalLayout();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 			
-			RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
-			RegisterCallback<DetachFromPanelEvent>(OnDetachFromPanel);
+			RegisterCallbackOnce<AttachToPanelEvent>(OnAttachToPanel);
+			RegisterCallbackOnce<DetachFromPanelEvent>(OnDetachFromPanel);
+		}
+		
+		private void CreateExpander()
+		{
+			Image CreateExpandImage(Texture2D texture)
+				=> new Image
+				{
+					image = texture, 
+					//tintColor = Color.black,
+					scaleMode = ScaleMode.StretchToFill,
+					focusable = true,
+					style = { maxHeight = 14, maxWidth = 14}
+				};
+
+			m_Collapsed = CreateExpandImage(UIElementsResources.FoldoutCollapsed);
+			HeaderContainer.hierarchy.Insert(0, m_Collapsed);
+			
+			m_Expanded = CreateExpandImage(UIElementsResources.FoldoutExpanded);
+			HeaderContainer.hierarchy.Insert(0, m_Expanded);
+
+			m_Collapsed.RegisterCallback<MouseDownEvent>(evt => SwitchExpanded(evt, false),
+				VisualElementEx.InvokePolicy.IncludeDisabled);
+                
+			m_Expanded.RegisterCallback<MouseDownEvent>(evt => SwitchExpanded(evt, false),
+				VisualElementEx.InvokePolicy.IncludeDisabled);
+            
+			if (!EditorPreferences.Instance.Scriptwriter)
+			{
+				HeaderContainer.RegisterCallback<MouseDownEvent>(evt => SwitchExpanded(evt, true),
+					VisualElementEx.InvokePolicy.IncludeDisabled);
+			}
 		}
 
-		protected virtual void SwitchExpanded(MouseDownEvent evt)
+		private void SetExpandableStyle()
 		{
-			if (evt.button == 0)
+			AddToClassList("owlcat-expandable");
+			HeaderContainer.AddToClassList("owlcat-expandable");
+			ContentContainer.AddToClassList("owlcat-left-border-highlight");
+			ContentContainer.AddToClassList("owlcat-expandable");
+			ControlsContainer.AddToClassList("owlcat-expandable");
+		}
+
+		private void SwitchExpanded(MouseDownEvent evt, bool doubleClick)
+		{
+			bool clickCountCheck = doubleClick ? evt.clickCount == 2 : evt.clickCount == 1;
+			if (evt.button == 0 && clickCountCheck)
 			{
 				IsExpanded = !IsExpanded;
+				if (m_ArrowHidden) 
+					IsExpanded = false;
+                
 				if (evt.altKey)
 				{
 					SetExpandedToChildren(this, IsExpanded);
 				}
+				
+				evt.StopPropagation();
 			}
 		}
 
-		public static void SetExpandedToChildren(VisualElement visualElement, bool isExpanded)
+		private void SetExpandedToChildren(VisualElement visualElement, bool isExpanded)
 		{
 			foreach (var ve in visualElement.Children())
 			{
@@ -130,31 +200,42 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 
 		private void MakeHorizontalLayout()
 		{
+			TitleLabel.style.flexGrow = 0;
+			HeaderContainer.AddToClassList("owlcat-title-label");
+			ContentContainer.style.alignItems = Align.Center;
+			ContentContainer.style.width = Length.Percent(60);
 			Add(HeaderContainer);
 			Add(ContentContainer);
 			Add(ControlsContainer);
-			Add(OverridableControlContainer = new VisualElement {name = "OverridableControlContainer"});
+			Add(OverridableControlContainer = new VisualElement { name = "OverridableControlContainer" });
 		}
 
 		private void MakeVerticalLayout()
 		{
+			if (m_Layout == Layout.Vertical)
+			{
+				Expandable = true;
+				SetExpandableStyle();
+				CreateExpander();
+			}
+			
 			style.flexDirection = FlexDirection.Column;
 			ContentContainer.style.flexDirection = FlexDirection.Column;
-			var headerAndControls = new VisualElement
+			m_HeaderAndControls = new VisualElement
 			{
 				name = "HeaderAndControls",
-				style = {flexDirection = FlexDirection.Row}
+				style = { flexDirection = FlexDirection.Row }
 			};
-			Add(headerAndControls);
-			headerAndControls.Add(HeaderContainer);
-			headerAndControls.Add(ControlsContainer);
-			headerAndControls.Add(OverridableControlContainer = new VisualElement {name = "OverridableControlContainer"});
+			Add(m_HeaderAndControls);
+			
+			m_HeaderAndControls.Add(HeaderContainer);
+			m_HeaderAndControls.Add(HeaderContentContainer);
+			m_HeaderAndControls.Add(ControlsContainer);
+			m_HeaderAndControls.Add(OverridableControlContainer = new VisualElement { name = "OverridableControlContainer" });
 			
 			Add(ContentContainer);
 
 			ControlsContainer.style.flexGrow = 1;
-			ControlsContainer.Add(new Label(" ") {name = "expander"});
-			
 			TitleLabel.style.width = new StyleLength(StyleKeyword.Auto);
 		}
 
@@ -162,15 +243,18 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 		{
 			OnIsExpandedChangedInternal();
 			OnAttachToPanelInternal(evt);
+			OnAfterAttachToPanelInternal();
 		}
 
 		protected virtual void OnAttachToPanelInternal(AttachToPanelEvent evt) { }
+		
+		protected virtual void OnAfterAttachToPanelInternal() { }
 
 		protected virtual void OnDetachFromPanel(DetachFromPanelEvent evt) { }
 
 		protected virtual void OnIsExpandedChanged() { }
 
-		private void OnIsExpandedChangedInternal()
+		protected void OnIsExpandedChangedInternal()
 		{
 			if (!Expandable)
 			{
@@ -181,21 +265,31 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
 			OnIsExpandedChanged();
 		}
 
-		private void UpdateExpandableVisibility()
+		protected void UpdateExpandableVisibility()
 		{
 			ContentContainer.style.display = IsExpanded ? DisplayStyle.Flex : DisplayStyle.None;
 			m_Expanded.style.display = IsExpanded ? DisplayStyle.Flex : DisplayStyle.None;
 			m_Collapsed.style.display = IsExpanded ? DisplayStyle.None : DisplayStyle.Flex;
 		}
 
-		protected bool GetSavedExpandedState()
+		protected void HideArrow(bool hide)
 		{
-			return UIElementsUtility.GetExpandedState(GetExpandedPath());
-		}
-		
-		protected virtual string GetExpandedPath()
-		{
-			return string.Empty;
+			if (m_Expanded == null || m_Collapsed == null)
+				return;
+
+			m_ArrowHidden = hide;
+            
+			if (hide)
+			{
+				IsExpanded = false;
+				m_Expanded.style.display = DisplayStyle.None;
+				m_Collapsed.style.display = DisplayStyle.None;
+			}
+			else
+			{
+				m_Expanded.style.display = IsExpanded ? DisplayStyle.Flex : DisplayStyle.None;
+				m_Collapsed.style.display = IsExpanded ? DisplayStyle.Flex : DisplayStyle.None;
+			}
 		}
 	}
 }

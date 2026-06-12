@@ -25,31 +25,62 @@ namespace Kingmaker.Editor.AreaStatesWindow
 
         protected VisualElement? _content;
 
-        protected static void Present(string title, Action<T> init, int expectedWidth = 512)
+        // ReSharper disable once StaticMemberInGenericType
+        private static Vector2? _lastMousePosition;
+        public static Vector2? LastMousePosition
         {
-            // Try place window at current mouse position
+            set => _lastMousePosition = value;
+        }
 
-            // Before that - try get parent window position as mouse position seems to be relative to it
-            var parentWindow = focusedWindow;
-            var parentWindowRect = focusedWindow == null
-                ? EditorGUIUtility.GetMainWindowPosition() // Take main window instead
-                : parentWindow.position;
+        protected static void Present(string title, Action<T> init, Vector2? expectedSize = null, bool isAuxWindow = true)
+        {
+            if (HasOpenInstances<T>())
+            {
+                GetWindow<T>().Focus();
+                return;
+            }
+
+            expectedSize ??= new Vector2(768, 768);
 
             // Create window
-            var window = GetWindow<T>(title);
+            var window = CreateInstance<T>(); // Used instead of GetWindow() because we need to perform init before CreateGUI() is hit
+            window.titleContent = new GUIContent(title);
             init(window);
-            window.FillContent();
 
-            // Set expected window width and reserve some height to fit content later (as it fits only down somehow :\ )
-            window.position = new Rect(window.position.position, new Vector2(expectedWidth, 1024));
+            // Try place window at current mouse position
 
             // Remember mouse position to place at it later
-            window._expectedPosition = parentWindowRect.min + Event.current.mousePosition;
-            window._expectedPosition += new Vector2(0, 30); // Offset by window title bar
+            if (Event.current == null)
+            {
+                // When form is created from some editor menu
+                if (_lastMousePosition.HasValue)
+                {
+                    window._expectedPosition = GUIUtility.GUIToScreenPoint(_lastMousePosition.Value);
+                    _lastMousePosition = null;
+                }
+                else
+                {
+                    window._expectedPosition = EditorGUIUtility.GetMainWindowPosition().center - expectedSize.Value / 2;
+                }
+            }
+            else
+            {
+                window._expectedPosition = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
+            }
 
             window._readyToFit = true;
 
-            window.ShowAuxWindow();
+            if (isAuxWindow)
+            {
+                window.ShowAuxWindow();
+            }
+            else
+            {
+                window.ShowUtility();
+            }
+
+            // Set expected window width and reserve some height to fit content later (as it fits only down somehow :\ )
+            window.position = new Rect(Vector2.zero, expectedSize.Value);
         }
 
         /// <summary>
@@ -61,6 +92,12 @@ namespace Kingmaker.Editor.AreaStatesWindow
         {
             rootVisualElement.Clear();
 
+            // To allow content fitting horizontally
+            var rowContainer = new OwlcatContentContainer
+            {
+                style = {flexDirection = FlexDirection.Row, flexGrow = 0}
+            };
+
             _content = new OwlcatContentContainer
             {
                 style =
@@ -71,14 +108,18 @@ namespace Kingmaker.Editor.AreaStatesWindow
             };
             StyleUtility.SetPadding(_content.style, 8);
 
-            _content.RegisterCallback<GeometryChangedEvent>(Fit);
+            FillContent();
 
-            rootVisualElement.Add(_content);
+            rowContainer.Add(_content);
+            rootVisualElement.Add(rowContainer);
+
+            rootVisualElement.RegisterCallback<GeometryChangedEvent>(Fit);
         }
 
         /// <summary>
         /// Fit window to content
         /// Runs only once, when all content is ready
+        /// Once - to allow window to stay resizable
         /// </summary>
         private void Fit(GeometryChangedEvent evt)
         {

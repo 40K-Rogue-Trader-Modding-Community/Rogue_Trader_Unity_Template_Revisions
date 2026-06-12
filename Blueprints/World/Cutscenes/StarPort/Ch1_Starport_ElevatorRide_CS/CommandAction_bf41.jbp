@@ -1,0 +1,88 @@
+{
+  "AssetId": "bf41b70c345b4c92b15b621e85c17850",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$2c096cfdf7af51c6a496c2b1d1b97cfe",
+          "Comment": "Elevator is moving up",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                "name": "$FlagUnlocked$20d0c188-160b-4819-81ea-3dde00b930e1",
+                "Not": true,
+                "m_ConditionFlag": "!bp_f72194580e8340de8c440370f6eaecef",
+                "ExceptSpecifiedValues": false,
+                "SpecifiedValues": []
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$a3e32f3f-ad57-42e3-aa73-cd70df93aa2d",
+                "Comment": "",
+                "State": 1,
+                "IdOfObject": {
+                  "EntityNameInEditor": "Elevator",
+                  "_entity_id": "528ac65b-b80b-4bee-878e-1b3477446db3",
+                  "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "12f52f92a7d3efe47b69ba8b41d4e47d, Play2DSound",
+                "name": "$Play2DSound$bddf7f6d4cd34c399d644f1e250db8ba",
+                "SoundName": "Cargo_Open",
+                "SetSex": false,
+                "SetRace": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$9b1eea9e-fb23-4d32-bdaf-b318dc229282",
+                "Comment": "",
+                "State": 0,
+                "IdOfObject": {
+                  "EntityNameInEditor": "Elevator",
+                  "_entity_id": "528ac65b-b80b-4bee-878e-1b3477446db3",
+                  "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "12f52f92a7d3efe47b69ba8b41d4e47d, Play2DSound",
+                "name": "$Play2DSound$da91e292-d67e-43d4-a46d-4cf37afab459",
+                "SoundName": "Cargo_Open",
+                "SetSex": false,
+                "SetRace": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

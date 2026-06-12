@@ -51,7 +51,7 @@ namespace Owlcat.Editor.Utility
         public Color SelectionColor = new Color(217f / 255, 187f / 255, 231f / 255);
 
         public GUIStyle BigCheckbox;
-        public float BigCheckboxHeight = 32;
+        public float BigCheckboxHeight = 28;
 
         public GUIStyle ColoredCheckbox;
 

@@ -14,11 +14,13 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "TriggerIfNotInCombat": false,
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -68,13 +70,17 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
             }
           ]
         },
@@ -98,11 +104,13 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Type": "Blue",
         "Restriction": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -123,15 +131,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 1,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 1,
@@ -167,12 +166,17 @@
               "NumberOfTargets": 9,
               "TilesRadius": 1,
               "LowestWounds": false,
+              "HighestWounds": false,
               "AffectDead": false,
+              "AffectUnconscious": false,
               "m_FilterNoFact": null,
               "m_FilterHasFact": null
             }
           ]
         },
+        "m_SavePointsSpentAsContextValue": false,
+        "m_PointsSpentContextValue": "Value1",
+        "m_UseTriggeredValue": true,
         "m_TriggerValue": {
           "ValueType": "Simple",
           "Value": 0,
@@ -192,6 +196,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Actions": {
           "Actions": [
             {
@@ -208,6 +213,7 @@
                     "Property": {
                       "Operation": "L",
                       "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
                       "FailSilentlyIfNoTarget": false,
                       "Getters": [
                         {
@@ -269,15 +275,6 @@
                           "BuffEndCondition": "CombatEnd",
                           "Permanent": true,
                           "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 1,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
                             "RoundsValue": {
                               "ValueType": "Simple",
                               "Value": 1,
@@ -313,7 +310,9 @@
                     "NumberOfTargets": 9,
                     "TilesRadius": 1,
                     "LowestWounds": false,
+                    "HighestWounds": false,
                     "AffectDead": false,
+                    "AffectUnconscious": false,
                     "m_FilterNoFact": null,
                     "m_FilterHasFact": null
                   }
@@ -327,6 +326,7 @@
         }
       }
     ],
+    "Author": "IlyaPolitko",
     "Comment": "Whenever wielder spend all of his MP, all adjacent enemies lose wielder's AB% Dodge until the start of wielder's next turn.",
     "m_DisplayName": {
       "m_Key": "",
@@ -368,8 +368,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "IlyaPolitko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

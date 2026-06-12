@@ -9,16 +9,25 @@ namespace Kingmaker.Editor.UIElements.Custom.PropertyComponents
         {
             m_TitleFunc = titleFunc;
         }
+        
+        public FuncTitleProviderComponent(Func<string> titleFunc, int order)
+        {
+            m_TitleFunc = titleFunc;
+            m_Order = order;
+        }
 
         private Func<string> m_TitleFunc;
+        private int m_Order;
         
         void IOwlcatPropertyComponent.AttachToProperty(OwlcatProperty property)
         {
         }
+        
+        public void DetachFromProperty() { }
 
         string IOwlcatPropertyTitleProvider.GetTitle()
             => m_TitleFunc.Invoke();
 
-        int IOwlcatPropertyTitleProvider.Order => 0;
+        int IOwlcatPropertyTitleProvider.Order => m_Order;
     }
 }

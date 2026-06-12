@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Area;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Enums;
 using Owlcat.Editor.Core.Utility;
 using Owlcat.Editor.Utility;

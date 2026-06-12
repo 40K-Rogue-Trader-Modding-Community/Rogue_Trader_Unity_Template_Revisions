@@ -1,0 +1,128 @@
+{
+  "AssetId": "faed910d68014c8388934a28f2cc3690",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ed49320cb0594e438611e89da36a34d1",
+          "Comment": "Экзальт не на других точках и не предупрежден - он будет ранен",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$04395e6a-39ee-4477-9885-e873408ca4cd",
+                "Not": true,
+                "m_Etude": "!bp_9bee2684b9244148bf3cef1f69e6e8c5",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$47412c17-56dc-460a-a9cb-9c548503224f",
+                "Not": true,
+                "m_Etude": "!bp_160092f63b654aeabc08c61ea16d63b3",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "abb0dcfdb51f3594ab0d2b1d28ecc782, Kill",
+                "name": "$Kill$6d90d63c-b87f-4044-8ed2-bd59ebf7129e",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$640d6f67-135d-4cbd-9bef-b7af21fb8558",
+                  "Spawner": {
+                    "EntityNameInEditor": "Exalt117",
+                    "_entity_id": "7e8365a4-190c-4d6f-860f-b7e71ddd834a",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                },
+                "Killer": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$8cfa7645-2f4d-419d-80c0-7f2d4f087a9f",
+                  "Spawner": {
+                    "EntityNameInEditor": "Exalt117",
+                    "_entity_id": "7e8365a4-190c-4d6f-860f-b7e71ddd834a",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+                  }
+                },
+                "ImpulseMultiplier": 1,
+                "Dismember": "Normal",
+                "m_DismemberingAnimation": "LeftHand",
+                "DisableBattleLog": true,
+                "RemoveExp": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "5246945772ff3b5448f2a7c52827d196, ControllableActionNecronDissolveTween",
+          "name": "$ControllableActionNecronDissolveTween$b10a4103-7c2c-4eb7-8607-9ff2d10292c7",
+          "Comment": "",
+          "IdOfObject": {
+            "EntityNameInEditor": "CommandPointDamaged",
+            "_entity_id": "44012707-7e0c-4e45-a655-3ce186e5dc55",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+          },
+          "Action": "Show",
+          "Duration": 0.0
+        },
+        {
+          "$type": "5246945772ff3b5448f2a7c52827d196, ControllableActionNecronDissolveTween",
+          "name": "$ControllableActionNecronDissolveTween$b911fdf0-7da7-461f-a52c-47f3e65b270b",
+          "Comment": "",
+          "IdOfObject": {
+            "EntityNameInEditor": "CommandPointFull",
+            "_entity_id": "8da6bfce-e785-4fd1-878e-a1e58fdfcf8f",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+          },
+          "Action": "Hide",
+          "Duration": 0.0
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$e3721e8f-3377-46cc-8507-fd90d0275ad0",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$3571c308-b5b9-4c0d-8dc3-896fbbc368e0",
+            "MapObject": {
+              "EntityNameInEditor": "TableHolo",
+              "_entity_id": "0b4166b1-efcb-4748-bcb3-39f85e89a21b",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+            }
+          },
+          "Unhide": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

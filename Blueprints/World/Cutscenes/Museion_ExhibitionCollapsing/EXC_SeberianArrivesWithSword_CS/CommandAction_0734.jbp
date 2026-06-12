@@ -1,0 +1,99 @@
+{
+  "AssetId": "07340beef070442591afce4d87700fab",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+          "name": "$PartyUnits$67f1fc2f4ea9423896913a64dc27ad8e",
+          "m_UnitsList": "PartyCharacters",
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$43d671770e1840b78511ccf977f6ea45",
+                "Comment": "Except RT",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                      "name": "$UnitEqual$006a6644d5c84e3f9a0127bcc7aefbaf",
+                      "Not": true,
+                      "FirstUnit": {
+                        "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                        "name": "$PartyUnit$447752a3534245968a060a170e79bde8"
+                      },
+                      "SecondUnit": {
+                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                        "name": "$PlayerCharacter$ecfa5dae495c41e0980218010066d3dc"
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                      "name": "$PlayCutscene$ade6791736594c098646b7fffe9b20c5",
+                      "m_Cutscene": "!bp_db05d57e0cf34ff7a4acf97634ec3211",
+                      "PutInQueue": false,
+                      "CheckExistence": true,
+                      "Parameters": {
+                        "Parameters": [
+                          {
+                            "Name": "Unit",
+                            "Type": "Unit",
+                            "Evaluator": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$a25e4422e66d4349874193f28d6f0fcf"
+                            }
+                          },
+                          {
+                            "Name": "Position",
+                            "Type": "Position",
+                            "Evaluator": {
+                              "$type": "ac7da90e77cb5af44b778bfce17bb4aa, UnitPosition",
+                              "name": "$UnitPosition$73b61af4510e4ccd82a6eb2e4f722b12",
+                              "Unit": {
+                                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                                "name": "$UnitFromSpawner$dcec8080b7084fdd90eef4d7672ae80c",
+                                "Spawner": {
+                                  "EntityNameInEditor": "LariaVoigtvir",
+                                  "_entity_id": "3e4ad6c9-53b6-4a19-8fe8-19a0947335b6",
+                                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

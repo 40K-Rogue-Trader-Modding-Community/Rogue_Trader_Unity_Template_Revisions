@@ -15,6 +15,15 @@
         },
         "m_Overrides": [],
         "Trigger": "BeforeAttack",
+        "Restriction": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
         "GuardAllies": false,
         "GuardAlliesCanMove": true,
         "GuardAlliesRange": {
@@ -45,7 +54,8 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
-        "CanUseInRange": true
+        "CanUseInRange": true,
+        "Ability": null
       },
       {
         "$type": "961a1f33fbdad5c4ca08247f49b98c47, WarhammerAfterAttackRollTrigger",
@@ -102,13 +112,42 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_UseAbilityGroups": false,
-        "m_UseOnlyListedAbilities": true,
-        "m_Abilities": [
-          "!bp_22fb38fc07f948d383774862347e5cfe"
-        ],
-        "m_AbilityGroups": [],
-        "m_UltimateAbilities": false
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "m_AbilityRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+                "name": "$CheckAbilityBlueprintGetter$a0c027f9-df52-420b-8071-8b036f69fb50",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Abilities": [
+                  "!bp_22fb38fc07f948d383774862347e5cfe"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
@@ -119,7 +158,16 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "DisableAttacksOfOpportunityForShield"
+        "m_Feature": "DisableAttacksOfOpportunityForShield",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       },
       {
         "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
@@ -289,7 +337,9 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "Value1"
-        }
+        },
+        "m_AlwaysParry": false,
+        "m_NeverParry": false
       },
       {
         "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
@@ -300,7 +350,16 @@
           "name": ""
         },
         "m_Overrides": [],
-        "m_Feature": "CantMove"
+        "m_Feature": "CantMove",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       }
     ],
     "Author": "Unknown",
@@ -353,8 +412,10 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true
   },
   "Meta": {
     "ShadowDeleted": false

@@ -35,7 +35,7 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 		public override string GetText()
 		{
 #if UNITY_EDITOR && EDITOR_FIELDS
-			return Asset.Text.GetText(LocalizationManager.Instance.CurrentLocale);
+			return Asset.LocalizedStringText.GetText(LocalizationManager.Instance.CurrentLocale);
 #else
 			return "";
 #endif
@@ -84,7 +84,7 @@ namespace Kingmaker.Editor.NodeEditor.Nodes
 				var property = SerializedObject.FindProperty("Blueprint.Text");
 				Profiler.EndSample();
 
-				LocalizationEditorGUI.LocalizedStringField(property, Asset.Text, LocalizationManager.Instance.CurrentLocale, Graph.ShowTagButtons);
+				LocalizationEditorGUI.LocalizedStringField(property, Asset.LocalizedStringText, LocalizationManager.Instance.CurrentLocale, Graph.ShowTagButtons);
 #endif
 			}
 		}

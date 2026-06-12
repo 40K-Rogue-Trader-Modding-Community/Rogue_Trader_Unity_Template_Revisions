@@ -66,7 +66,15 @@
                     },
                     "UseEndCondition": false,
                     "EndCondition": "RemainAfterCombat",
-                    "AddFactSource": false
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
                   },
                   {
                     "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
@@ -166,7 +174,15 @@
                     },
                     "UseEndCondition": false,
                     "EndCondition": "RemainAfterCombat",
-                    "AddFactSource": false
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
                   },
                   {
                     "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
@@ -249,7 +265,15 @@
                     "Duration": null,
                     "UseEndCondition": false,
                     "EndCondition": "RemainAfterCombat",
-                    "AddFactSource": false
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
                   },
                   {
                     "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
@@ -262,7 +286,15 @@
                     "Duration": null,
                     "UseEndCondition": false,
                     "EndCondition": "RemainAfterCombat",
-                    "AddFactSource": false
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
                   }
                 ]
               }
@@ -339,6 +371,141 @@
                     "AmbushPlayer": false
                   }
                 ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c654e02f-130b-40dd-b742-319cd3e60aaf",
+              "Comment": "DLC3 - если договор с Тразином - появляется он",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$99215946-1f00-477d-9d43-f99cad80c4e3",
+                    "Not": false,
+                    "m_Etude": "!bp_888baf5e80e54d919b5bc893702ccb8b",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b08d4095-dcc5-4e5e-aa1a-46e467a23a7b",
+                    "Not": false,
+                    "m_Etude": "!bp_729170c54ae943769d8053beefb87ceb",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$878fbef263a85c469e607f3e4472c949",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$9ca6480f379b5031955d9c1935a61750",
+                          "Not": false,
+                          "m_Etude": "!bp_e549023afc1a4e548d288202ad32becb",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                          "name": "$PlayCutscene$51787c565aff50b2a76bd142c3f26c10",
+                          "m_Cutscene": "!bp_594b273cc11143579b37f612b4c191e2",
+                          "PutInQueue": false,
+                          "CheckExistence": true,
+                          "Parameters": {
+                            "Parameters": []
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                          "name": "$Spawn$39df9b26-acf0-43b8-b897-ec28a368ae3b",
+                          "Spawners": [
+                            {
+                              "EntityNameInEditor": "DLC3_TrazynForCtan",
+                              "_entity_id": "8f2c8635-b628-4685-951b-0cc6d9b83eba",
+                              "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                            }
+                          ],
+                          "ActionsOnSpawn": {
+                            "Actions": [
+                              {
+                                "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                                "name": "$SpawnFx$4e11ed92-578a-4c4b-8413-ec12c928edea",
+                                "Target": {
+                                  "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                                  "name": "$UnitTransform$663d32bd-aab9-4e29-93a1-f1acdbd08444",
+                                  "Unit": {
+                                    "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                    "name": "$SpawnedUnit$b7a4e2ac-c1b7-4884-9374-67da89e9c1ab"
+                                  }
+                                },
+                                "FxPrefab": {
+                                  "guid": "07d4e9091770ea6489a37b89ae0e514e",
+                                  "fileid": 4257651609562335046
+                                }
+                              },
+                              {
+                                "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+                                "name": "$SummonPoolUnits$7f23418e-c65b-471d-b4db-4d37297d948b",
+                                "m_SummonPool": "!bp_424ad5b927734f059b4a4f0ef6ef54ea",
+                                "Conditions": {
+                                  "Operation": "And",
+                                  "Conditions": []
+                                },
+                                "Actions": {
+                                  "Actions": [
+                                    {
+                                      "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                                      "name": "$StartCombat$fc386345-53b8-4cf0-9b7e-e9cfac3a7188",
+                                      "Unit1": {
+                                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                        "name": "$SpawnedUnit$1776b985-8272-484d-a158-ca8f476a7708"
+                                      },
+                                      "Unit2": {
+                                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                                        "name": "$SummonPoolUnit$ffb9d508-5e6f-4bb0-b08a-640123423077"
+                                      },
+                                      "AmbushPlayer": false
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
               }
             }
           ]
@@ -470,7 +637,7 @@
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": "!bp_b1cbfe064eeb463fbd4ef61548ed7c44",
-    "m_LinkedCampaigns": null,
+    "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
     "m_StartsWith": [],

@@ -12,11 +12,14 @@ using System.Reflection;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using Kingmaker.Editor.Localization;
+using Kingmaker.Editor.UIElements.Custom.Properties;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Kingmaker.Localization.Shared;
 using UnityEditor;
 using UnityEngine;
 using Owlcat.Runtime.Core.Logging;
+using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace Kingmaker.Editor
@@ -27,6 +30,9 @@ namespace Kingmaker.Editor
         private static readonly LogChannel Logger =
             LogChannelFactory.GetOrCreate(nameof(SharedStringAssetPropertyDrawer));
         private SerializedObject m_SerializedObject;
+        
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+            => new SharedStringAssetProperty(property);
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -134,14 +140,7 @@ namespace Kingmaker.Editor
                 };
             }
 
-            NewAssetWindow.ShowWindow(creator);
-            NewAssetWindow.AssetName = attr is {GetNameFromAsset: false}
-                ? string.Empty
-                : property.serializedObject.targetObject is BlueprintComponentEditorWrapper editorWrapper
-                    ? editorWrapper.Component.OwnerBlueprint.name
-                    : property.serializedObject.targetObject.name;
-
-            NewAssetWindow.SetCreationCallback(
+            NewAssetWindow.ShowWindow(creator, creator.GetNameFromProperty(property),
                 asset =>
                 {
                     MakeShared(property, asset);

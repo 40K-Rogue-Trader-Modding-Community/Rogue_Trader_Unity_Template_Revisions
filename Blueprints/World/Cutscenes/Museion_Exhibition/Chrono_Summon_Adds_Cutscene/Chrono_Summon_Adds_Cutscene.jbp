@@ -1,0 +1,116 @@
+{
+  "AssetId": "767fe228927d4dc3a95ee1f3f7bb882c",
+  "Data": {
+    "$type": "96610525fc0cf8c41bfef88a84117024, Cutscene",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "m_Tracks": [
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_f8f11a80781645c4ac91c3c9285b33a1",
+          "!bp_9971d647bf8d49328849ed0444efce97",
+          "!bp_bf3586c9ca1b47189c5e3252bf884033"
+        ],
+        "m_EndGate": "!bp_383642eee0cb439e921793d1c8cd152a",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      }
+    ],
+    "m_Op": "And",
+    "m_ActivationMode": "AllTracks",
+    "WhenTrackIsSkipped": "DoNotSignalGate",
+    "PauseForOneFrame": false,
+    "Priority": "Patrol",
+    "NonSkippable": false,
+    "ForbidDialogs": false,
+    "ForbidRandomIdles": true,
+    "IsBackground": false,
+    "Freezeless": false,
+    "Sleepless": true,
+    "AllowCopies": false,
+    "LockControl": true,
+    "ShowPets": false,
+    "ShowOverlay": false,
+    "AllowRoaming": false,
+    "AllowLadderTraversal": false,
+    "Anchors": [],
+    "MarkedUnitHandling": "Pause",
+    "DefaultParameters": {
+      "Parameters": []
+    },
+    "OnStopped": {
+      "Actions": []
+    },
+    "OnFinished": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$cff1ad60-ba64-41ed-bc32-fc94c93dd6a7",
+          "Comment": "Blood raven was rescued and hasn't arrived yet",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f2d0b99e-b6ce-45aa-9c4b-7a0a30b4ee44",
+                "Not": true,
+                "m_Etude": "!bp_b085792aa8a745e6bcf3995605c63024",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$da18e9af-7d4d-44e5-850a-395f7f32e872",
+                "Not": false,
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$1110989b-fd22-4362-9bed-72e8904e5f72",
+                  "Spawner": {
+                    "EntityNameInEditor": "BloodRaven",
+                    "_entity_id": "d00de11f-0ee3-4eab-bb41-8111833bd9f4",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  }
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$698240d0-0904-46ad-afdc-85b5cdc0d974",
+                "m_Cutscene": "!bp_aec2f99e0ed1404487545f914f3ba2b7",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

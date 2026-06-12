@@ -14,10 +14,12 @@ namespace Kingmaker.Editor.Blueprints.Creation.Naming
 			public string MechanicsSceneTemplate;
 			public string StaticSceneTemplate;
 			public string LightSceneTemplate;
+			public string AudioSceneTemplate;
 			public SceneAsset MechanicsTemplateScene;
 			public SceneAsset AddedMechanicsTemplateScene;
 			public SceneAsset StaticTemplateScene;
 			public SceneAsset LightTemplateScene;
+			public SceneAsset AudioTemplateScene;
 		}
 
 		[Serializable]

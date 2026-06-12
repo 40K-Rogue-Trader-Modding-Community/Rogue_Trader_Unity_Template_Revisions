@@ -1,0 +1,899 @@
+{
+  "AssetId": "f65552dc413641c3936bcde5193fff55",
+  "Data": {
+    "$type": "fa4fa7e4548127a47a2846c91b051065, BlueprintUnit",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "2baf33c6a5aa432d85d1a311ef3fe8da, DoNotAddFeatureFromArmy",
+        "name": "$DoNotAddFeatureFromArmy$8f9eafdd-718b-413d-b875-5df0bb827213",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Features": [
+          "!bp_3e2fd6245dad4570990d248387a5d446"
+        ]
+      },
+      {
+        "$type": "340d225347d5002409757c2be255cd50, DeathActions",
+        "name": "$DeathActions$0713c0b9-b45f-43e5-b9db-5e5e965b8fb9",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$459ddec5-b75f-4abb-85c1-9936c7c6f432",
+              "MapObject": {
+                "$type": "a4aa1729f3bc4ff8bfffb1cc9d02c662, MechanicEntityFromScene",
+                "name": "$MechanicEntityFromScene$e68fb481-7f54-47b3-b2c6-fa1910b61c01",
+                "EntityRef": {
+                  "EntityNameInEditor": "WaterPuddle_1",
+                  "_entity_id": "d5056e06-b794-44a5-aeb2-48ce682808be",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/ManipulusLaboratory/ManipulusLaboratory_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$7bf56a05-4716-4b7b-b30e-03f8b7477007",
+              "Target": {
+                "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                "name": "$CasterUnit$e1081916-2133-470e-8f3f-e32a6e880d77"
+              },
+              "Unhide": false,
+              "Fade": true
+            },
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$5689edd32c02400292d680cc246f14f6",
+              "Etude": "!bp_6672587070b84a62981bd226e6828784",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": true
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$7ac5d50a-a63b-4973-9eb9-17c0b4331a06",
+              "Comment": "5 группа спавнер",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "6d4c821bf43731342a33176b6d074a6c, UnitBlueprint",
+                    "name": "$UnitBlueprint$4fa5bcad-bc13-4648-8fa3-96f8b1ec24b7",
+                    "Not": false,
+                    "Unit": {
+                      "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                      "name": "$CasterUnit$e167d9da-356d-4811-9394-1832ff286596"
+                    },
+                    "m_Blueprint": "!bp_f65552dc413641c3936bcde5193fff55"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$ad988aaa-f393-4820-b828-70c7daf77da7",
+                    "Comment": "Глыба мертва?",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$fd826eef-3777-4abc-b01f-d8778d751eb7",
+                          "Not": false,
+                          "m_Buff": "!bp_340ea2ccecde48cb947fc7e8b6fc62ec"
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$a8db71d5-c603-496c-8b7b-7f641bcc3683",
+                          "Comment": "бафф от генератора есть?",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                                "name": "$ContextConditionHasBuff$d2331b68-2eb2-4228-847a-74a59dd5bd52",
+                                "Not": false,
+                                "m_Buff": "!bp_b84b0b7c98ac49deb7f67f8f9125d87b"
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                                "name": "$SpawnByUnitGroup$f8b9202f-8a17-4cc6-990a-2e4b28cb92e9",
+                                "m_Group": {
+                                  "EntityNameInEditor": "LargeIceDestroyable_Unit_5_Mobs",
+                                  "_entity_id": "293b8536-2f76-4d37-91d7-25aef28944ee",
+                                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                                },
+                                "ActionsOnSpawn": {
+                                  "Actions": [
+                                    {
+                                      "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                                      "name": "$StartCombat$19b8efc5-2bd1-4c6b-a5fc-1c6c31084fcd",
+                                      "Unit1": {
+                                        "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                                        "name": "$UnitGroupUnit$f0b8f39a-841c-4307-9144-676cdf03b0f5"
+                                      },
+                                      "Unit2": {
+                                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                                        "name": "$PlayerCharacter$66820283-3a4c-46cb-94f9-84e8111715c3"
+                                      },
+                                      "AmbushPlayer": false
+                                    },
+                                    {
+                                      "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                                      "name": "$AttachBuff$e3a7fc8d-917c-4a11-b715-5bc2aa0520ed",
+                                      "m_Buff": "!bp_7945f3afe99a4258b2034ed3ab6ef5d0",
+                                      "Target": {
+                                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                        "name": "$SpawnedUnit$d0a28cb7-2f07-43fe-886f-9f959cfd7953"
+                                      },
+                                      "Duration": {
+                                        "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                        "name": "$IntConstant$49371d68-ce67-4eb4-99b9-4c9144f5f9eb",
+                                        "Value": 0
+                                      },
+                                      "UseEndCondition": false,
+                                      "EndCondition": "RemainAfterCombat",
+                                      "AddFactSource": false,
+                                      "SourceNameOverride": {
+                                        "m_Key": "",
+                                        "m_OwnerString": "",
+                                        "m_OwnerPropertyPath": "",
+                                        "m_JsonPath": "",
+                                        "Shared": null
+                                      },
+                                      "UIGroupOverride": "Auto"
+                                    },
+                                    {
+                                      "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                                      "name": "$RandomAction$dc4eeea2-df1d-47cd-a5bf-51da4ea46878",
+                                      "Actions": [
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$c0c918b4-1c91-49bb-a380-87dadb1aaedb",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$6cbfb285-3635-4453-8de4-6f2587e588d5"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$2887bd37-6b9f-4fe7-ab9a-3c2d95859905",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$dedf21ad-e130-4890-9007-17265d1418ae"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$a04b0fc1-3cf8-476a-8e8a-13c45802539a",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$4b57b269-fa22-4bb7-bacd-7e79c5294805"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$4b16b1ec-b5d0-465d-93e9-840e7ffb40e9",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$36c87838-3f7a-4839-964f-2a1d4f29292b"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "$type": "930b32b3226bd714283798d0cc050b71, ContextActionKill",
+                                "name": "$ContextActionKill$37df76cd-3a26-43c9-89e5-a8022c560fc4",
+                                "Dismember": "None"
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                                "name": "$SpawnByUnitGroup$b82d2608-1453-4c0f-98fd-c9e19f1d6b05",
+                                "m_Group": {
+                                  "EntityNameInEditor": "LargeIceDestroyable_Unit_5_Mobs",
+                                  "_entity_id": "293b8536-2f76-4d37-91d7-25aef28944ee",
+                                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                                },
+                                "ActionsOnSpawn": {
+                                  "Actions": [
+                                    {
+                                      "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                                      "name": "$StartCombat$63295c7b-af5c-42fd-8b42-0326205dc1b4",
+                                      "Unit1": {
+                                        "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                                        "name": "$UnitGroupUnit$001ffdbc-b395-495c-899b-cb7c9900de98"
+                                      },
+                                      "Unit2": {
+                                        "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                                        "name": "$PlayerCharacter$1ffb4405-bda4-476f-b91f-13c4aa786413"
+                                      },
+                                      "AmbushPlayer": false
+                                    },
+                                    {
+                                      "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                                      "name": "$AttachBuff$ba264762-ffed-40d0-8e9f-904a1d39113b",
+                                      "m_Buff": "!bp_295f798dec744eee816d7b220710c9ce",
+                                      "Target": {
+                                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                        "name": "$SpawnedUnit$b7deab68-1782-4814-b4ff-603a7f0d3fd2"
+                                      },
+                                      "Duration": {
+                                        "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                        "name": "$IntConstant$e757ab0b-1137-4fec-a7da-bc5fa4c63aff",
+                                        "Value": 0
+                                      },
+                                      "UseEndCondition": false,
+                                      "EndCondition": "RemainAfterCombat",
+                                      "AddFactSource": false,
+                                      "SourceNameOverride": {
+                                        "m_Key": "",
+                                        "m_OwnerString": "",
+                                        "m_OwnerPropertyPath": "",
+                                        "m_JsonPath": "",
+                                        "Shared": null
+                                      },
+                                      "UIGroupOverride": "Auto"
+                                    },
+                                    {
+                                      "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                                      "name": "$RandomAction$29983cdc-b419-4420-b10c-6e650b6a0af9",
+                                      "Actions": [
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$19277ace-8e1f-4aef-b3dc-67f9f3d7584c",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$8ed2712d-1fa3-45b8-b9e6-357e928a1060"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$37265b73-9c9a-424c-bd9f-e758f366d9f4",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$381fadf8-8579-474d-8c53-024b2f3d78af"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$58d7e024-95b0-440f-86e0-1db6a6826811",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$d0c1ec69-1b15-4d20-8620-d7608ffdc066"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Weight": 0,
+                                          "Conditions": {
+                                            "Operation": "And",
+                                            "Conditions": []
+                                          },
+                                          "Action": {
+                                            "Actions": [
+                                              {
+                                                "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                                "name": "$PlayAnimationOneShot$09e580ce-02cd-4840-a115-26e3731b243c",
+                                                "m_ClipWrapper": null,
+                                                "m_ClipWrapperLink": {
+                                                  "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                                },
+                                                "Unit": {
+                                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                                  "name": "$SpawnedUnit$60f0eeea-4256-419e-af32-1405f15ffb3c"
+                                                },
+                                                "TransitionIn": 0.25,
+                                                "TransitionOut": 0.25
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "$type": "930b32b3226bd714283798d0cc050b71, ContextActionKill",
+                                "name": "$ContextActionKill$160dd7f9-6e66-4d72-aa55-88608b0e6627",
+                                "Dismember": "None"
+                              },
+                              {
+                                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                                "name": "$PlayCutscene$16c1f470c8e244b2adf522ccead169c0",
+                                "m_Cutscene": "!bp_20de4f2e162c444296b5c0a0ebe14a86",
+                                "PutInQueue": false,
+                                "CheckExistence": true,
+                                "Parameters": {
+                                  "Parameters": []
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+                          "name": "$SpawnByUnitGroup$7858a6d6-0723-4bca-9342-267e6f8ea954",
+                          "m_Group": {
+                            "EntityNameInEditor": "LargeIceDestroyable_Unit_5_Mobs",
+                            "_entity_id": "293b8536-2f76-4d37-91d7-25aef28944ee",
+                            "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                          },
+                          "ActionsOnSpawn": {
+                            "Actions": [
+                              {
+                                "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                                "name": "$StartCombat$cf548b6a-7d4d-4cdc-b448-046e5d2326a7",
+                                "Unit1": {
+                                  "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                                  "name": "$UnitGroupUnit$051cfd54-8598-45e5-8cef-86db91c2b6d9"
+                                },
+                                "Unit2": {
+                                  "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                                  "name": "$PlayerCharacter$5584a581-1134-4f6f-bed9-cd35ec8b8c89"
+                                },
+                                "AmbushPlayer": false
+                              },
+                              {
+                                "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                                "name": "$AttachBuff$ae32d08a-568b-4789-9124-38a382865c71",
+                                "m_Buff": "!bp_8825a9ee207149e895f422f61a38a0b1",
+                                "Target": {
+                                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                  "name": "$SpawnedUnit$401316a4-4300-47db-b43f-9269ba08be53"
+                                },
+                                "Duration": {
+                                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                                  "name": "$IntConstant$4623f3ea-1508-474c-8f7a-3d2f427c9ea8",
+                                  "Value": 0
+                                },
+                                "UseEndCondition": false,
+                                "EndCondition": "RemainAfterCombat",
+                                "AddFactSource": false,
+                                "SourceNameOverride": {
+                                  "m_Key": "",
+                                  "m_OwnerString": "",
+                                  "m_OwnerPropertyPath": "",
+                                  "m_JsonPath": "",
+                                  "Shared": null
+                                },
+                                "UIGroupOverride": "Auto"
+                              },
+                              {
+                                "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                                "name": "$RandomAction$43e2774a-240d-4ab6-89a8-4ef2a2eae6d8",
+                                "Actions": [
+                                  {
+                                    "Weight": 0,
+                                    "Conditions": {
+                                      "Operation": "And",
+                                      "Conditions": []
+                                    },
+                                    "Action": {
+                                      "Actions": [
+                                        {
+                                          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                          "name": "$PlayAnimationOneShot$a4bf55db-41db-48a1-ae0e-2fe17ddad361",
+                                          "m_ClipWrapper": null,
+                                          "m_ClipWrapperLink": {
+                                            "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                          },
+                                          "Unit": {
+                                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                            "name": "$SpawnedUnit$086d94ed-68b5-42f9-93d3-c66bada7bc48"
+                                          },
+                                          "TransitionIn": 0.25,
+                                          "TransitionOut": 0.25
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "Weight": 0,
+                                    "Conditions": {
+                                      "Operation": "And",
+                                      "Conditions": []
+                                    },
+                                    "Action": {
+                                      "Actions": [
+                                        {
+                                          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                          "name": "$PlayAnimationOneShot$74f84f35-878a-4d05-93b0-84fe62b06f9b",
+                                          "m_ClipWrapper": null,
+                                          "m_ClipWrapperLink": {
+                                            "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                                          },
+                                          "Unit": {
+                                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                            "name": "$SpawnedUnit$c83bf019-9529-4c2d-b1dc-7d164378c183"
+                                          },
+                                          "TransitionIn": 0.25,
+                                          "TransitionOut": 0.25
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "Weight": 0,
+                                    "Conditions": {
+                                      "Operation": "And",
+                                      "Conditions": []
+                                    },
+                                    "Action": {
+                                      "Actions": [
+                                        {
+                                          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                          "name": "$PlayAnimationOneShot$1977082c-9f60-4ad2-8aef-a0adb4ff23ee",
+                                          "m_ClipWrapper": null,
+                                          "m_ClipWrapperLink": {
+                                            "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                          },
+                                          "Unit": {
+                                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                            "name": "$SpawnedUnit$ccb6c119-1b2f-4692-9f75-04598f3431ca"
+                                          },
+                                          "TransitionIn": 0.25,
+                                          "TransitionOut": 0.25
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "Weight": 0,
+                                    "Conditions": {
+                                      "Operation": "And",
+                                      "Conditions": []
+                                    },
+                                    "Action": {
+                                      "Actions": [
+                                        {
+                                          "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                                          "name": "$PlayAnimationOneShot$6d3808b2-9ae2-4e7c-b26a-ea4e2dabceca",
+                                          "m_ClipWrapper": null,
+                                          "m_ClipWrapperLink": {
+                                            "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                                          },
+                                          "Unit": {
+                                            "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                            "name": "$SpawnedUnit$5a0eb7ce-0f27-4cef-a448-0c625bc947e9"
+                                          },
+                                          "TransitionIn": 0.25,
+                                          "TransitionOut": 0.25
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "$type": "930b32b3226bd714283798d0cc050b71, ContextActionKill",
+                          "name": "$ContextActionKill$7296b122-d212-4580-9c50-04f4f1a54777",
+                          "Dismember": "None"
+                        },
+                        {
+                          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                          "name": "$PlayCutscene$11ddb395-d396-4a8d-aa6c-d13699792f47",
+                          "m_Cutscene": "!bp_20de4f2e162c444296b5c0a0ebe14a86",
+                          "PutInQueue": false,
+                          "CheckExistence": true,
+                          "Parameters": {
+                            "Parameters": []
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+              "name": "$SpawnFx$55c8aa53-e8cd-42e1-b64d-0db59516cb23",
+              "Target": {
+                "$type": "df903088c314c0349ab3b5dda20abb9c, LocatorTransform",
+                "name": "$LocatorTransform$ba85506251c741b8a3fb02e5a6b714c8",
+                "Locator": {
+                  "EntityNameInEditor": "Locator_SnowFXSpawn (5)",
+                  "_entity_id": "c468677f-69dc-4a37-8baa-d3a1bcce7532",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "FxPrefab": {
+                "guid": "533dbaf9c6f250343a3bea471b51b4f2",
+                "fileid": 4419291246181987009
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$d5777cddf5464ac080ab20d3367267a9",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$06f037e358c644cdbce302f745974f1b",
+                "MapObject": {
+                  "EntityNameInEditor": "Ice_VFX_Large5",
+                  "_entity_id": "71083252-0a0c-4e35-9665-cf0fab0219e7",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        },
+        "CheckResource": false,
+        "OnlyOnParty": false,
+        "m_Resource": null
+      },
+      {
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$d3a4fdda-0d35-43be-b7dc-6fdc83e58097",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Feature": "CanPassThroughUnits",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
+      },
+      {
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$74188f95-20dd-4bac-9f39-80e74fc431c5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Feature": "IgnoreAnyForceMove",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "m_Army": null,
+    "LocalizedName": {
+      "assetguid": "a95eb8abebe68e84fa15f414e963b3b0",
+      "stringkey": "67d92ce6-f734-4f77-9726-2d6d4eace71e"
+    },
+    "Gender": "Male",
+    "Size": "Large",
+    "Color": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 1.0
+    },
+    "m_Race": null,
+    "m_Portrait": null,
+    "Prefab": {
+      "AssetId": "39a6dafeadf29934a94c0f2bf55fadac"
+    },
+    "m_CustomizationPreset": null,
+    "m_VisualSettings": "!bp_2072098ffb0045d7b5d9ecea50f9ed03",
+    "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+    "FactionOverrides": {
+      "m_AttackFactionsToAdd": [],
+      "m_AttackFactionsToRemove": []
+    },
+    "m_StartingInventory": [],
+    "m_Brain": null,
+    "AlternativeBrains": [],
+    "IsCarefulShooter": false,
+    "IsStayOnSameSpotAfterCombat": false,
+    "Body": {
+      "ItemEquipmentHandSettings": {
+        "m_PrimaryHand": null,
+        "m_SecondaryHand": null,
+        "m_PrimaryHandAlternative1": null,
+        "m_SecondaryHandAlternative1": null,
+        "ActiveHandSet": 0
+      },
+      "m_AdditionalLimbs": [],
+      "m_AdditionalSecondaryLimbs": [],
+      "m_Armor": null,
+      "m_Shirt": null,
+      "m_Belt": null,
+      "m_Head": null,
+      "m_Glasses": null,
+      "m_Feet": null,
+      "m_Gloves": null,
+      "m_Neck": null,
+      "m_Ring1": null,
+      "m_Ring2": null,
+      "m_Wrist": null,
+      "m_Shoulders": null,
+      "m_PetProtocol": null,
+      "m_QuickSlots": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "m_Mechadendrites": [],
+      "m_Augments": [],
+      "m_AugmentToOverdrive": null
+    },
+    "OldWarhammerBallisticSkill": 0,
+    "WarhammerBallisticSkillSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerWeaponSkill": 0,
+    "WarhammerWeaponSkillSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerStrength": 0,
+    "WarhammerStrengthSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerToughness": 0,
+    "WarhammerToughnessSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerAgility": 0,
+    "WarhammerAgilitySetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerIntelligence": 0,
+    "WarhammerIntelligenceSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerWillpower": 0,
+    "WarhammerWillpowerSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerPerception": 0,
+    "WarhammerPerceptionSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerFellowship": 0,
+    "WarhammerFellowshipSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "WarhammerMovementApPerCell": 1.0,
+    "WarhammerMovementApPerCellThreateningArea": 3.0,
+    "WarhammerInitialAPBlue": 0,
+    "WarhammerInitialAPYellow": 0,
+    "Speed": {
+      "m_Value": 30.0
+    },
+    "Skills": {
+      "Athletics": 0,
+      "Awareness": 0,
+      "Carouse": 0,
+      "Persuasion": 0,
+      "Demolition": 0,
+      "Coercion": 0,
+      "Medicae": 0,
+      "LoreXenos": 0,
+      "LoreWarp": 0,
+      "LoreImperium": 0,
+      "TechUse": 0,
+      "Commerce": 0,
+      "Logic": 0
+    },
+    "MaxHP": 250,
+    "m_AddFacts": [
+      "!bp_4a7a09eb5c574dfea930f956fb2426ea",
+      "!bp_16a551fc04534ec8b0ee4feed83ca9c6",
+      "!bp_898124204eef49caa47ade401efca39b",
+      "!bp_302d21b20c5a48ec8a25f3a1adc3991b",
+      "!bp_430f7721e8be4ef9b23bd82b76df6671"
+    ],
+    "IsCheater": false,
+    "IsFake": false,
+    "VisualsDone": false,
+    "DifficultyType": "Hard",
+    "Subtype": "Default"
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

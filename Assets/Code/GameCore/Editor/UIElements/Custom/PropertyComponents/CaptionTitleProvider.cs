@@ -1,9 +1,10 @@
 ﻿using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
 using Kingmaker.Code.Editor.Utility;
+using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.ElementsSystem.Interfaces;
 using UnityEditor;
 
-namespace Kingmaker.Editor.UIElements.Custom.Base
+namespace Kingmaker.Editor.UIElements.Custom.PropertyComponents
 {
 	public class CaptionTitleProvider : OwlcatPropertyComponent, IOwlcatPropertyTitleProvider
 	{

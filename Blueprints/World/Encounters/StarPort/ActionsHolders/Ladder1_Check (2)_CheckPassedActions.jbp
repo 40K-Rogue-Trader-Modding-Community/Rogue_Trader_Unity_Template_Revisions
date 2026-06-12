@@ -10,42 +10,74 @@
     "Actions": {
       "Actions": [
         {
-          "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
-          "name": "$TeleportParty$43b5c16b-b9e8-4c14-8e1c-9f97a5fbd24f",
-          "m_exitPositon": "!bp_64f80ae2caf84d51bb52abe1f8005395",
-          "AutoSaveMode": "None",
-          "ForcePauseAfterTeleport": false,
-          "AfterTeleport": {
-            "Actions": []
-          }
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$335de80880b04ad98ac28f6ac3cb13a7",
+          "m_flag": "!bp_f72194580e8340de8c440370f6eaecef",
+          "flagValue": 0
         },
         {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$c29080b5979042bc941ad5173599f360",
-          "MapObject": {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$c6f7c9ae-5677-4196-99e6-64539bbe8916",
+          "Target": {
             "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$4f4acaed783c4f08b2904a12016ee2f5",
+            "name": "$MapObjectFromScene$9340bac84f474150b121cc79b846e9c5",
             "MapObject": {
-              "EntityNameInEditor": "footfall_lift_01",
-              "_entity_id": "24b7df64-576c-4377-8752-5a603b319516",
+              "EntityNameInEditor": "LowerTheElevator",
+              "_entity_id": "48855ed5-0dc1-4dcd-a536-efd796b25116",
               "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
             }
           },
           "Unhide": false
         },
         {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$bbe709dcd0d74c68becf806eaa18e781",
-          "MapObject": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$4979da8f43b9415e82bce1043a471e71",
-            "MapObject": {
-              "EntityNameInEditor": "footfall_lift_01 (1)",
-              "_entity_id": "2b6e4f57-1c53-4a27-8dfd-66228bca415a",
-              "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
-            }
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$a42e6e81-0008-46b9-a658-c124558fd8e4",
+          "m_Cutscene": "!bp_1e0b3892892649d9a8c3995a4abe11e9",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$4fb64b31-76b3-48e3-b9b1-c4a27419fca7",
+          "Comment": "Player has familiar",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$65dfe069-21c6-43e6-9ecc-5e210d5e298f",
+                "Not": true,
+                "Target": {
+                  "$type": "69a4e9c15933491a9c28ef40e0800630, FamiliarEvaluator",
+                  "name": "$FamiliarEvaluator$cbe33697-5f2a-4f43-a93a-4e74f30c6c59",
+                  "LeaderEvaluator": {
+                    "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                    "name": "$PlayerCharacter$458333ac-2cda-43bb-b6a0-09ddc164fc2e"
+                  }
+                }
+              }
+            ]
           },
-          "Unhide": true
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$47079470cdb4458495f9218caf4a28aa",
+                "Target": {
+                  "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                  "name": "$PlayerFamiliarEvaluator$c852505f002d4af484089f8a91d7af55"
+                },
+                "Unhide": false,
+                "Fade": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

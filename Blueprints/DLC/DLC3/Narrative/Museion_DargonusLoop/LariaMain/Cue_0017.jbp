@@ -1,0 +1,188 @@
+{
+  "AssetId": "a5e124145c4a439a8630bc85d51d2afa",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если не играет DL_OncePerLoop_LariaFirstTalk, стартуем DL_OncePerLoop_LariaFirstTalk и запускаем катсцену ухода Ларии от места встречи к Когитатору",
+    "ParentAsset": "db02c4750eb048fd936f69e34d30d473",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "2666380e-3317-449b-aa4b-9f7ffadcf067",
+      "m_OwnerString": "a5e124145c4a439a8630bc85d51d2afa",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\LariaMain\\Cue_0017_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": []
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$83483e30abf74c7289874b3a54cfbfec",
+          "Comment": "Если был шорткат на задержание Ювены то +2 в таймер, иначе +1",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$a16d5341b1d14a5fa77043e30d3f8557",
+                "Not": false,
+                "m_Cue": "!bp_e6e44b62fc1f4dd39200264ce39e121a",
+                "CurrentDialog": true
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$bc2d5963-aca6-4a05-8e6d-bc46a5ded78e",
+                "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$0246c4e1-4dbb-4f64-82f2-f313e26cff2a",
+                  "Value": 2
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$2925bd05-87a5-49b1-8661-f7f8f40faa1b",
+                "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$5ad3b906-9f65-48ed-a315-d374bd4996d2",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$990c7e553e794e458c3404432f320345",
+          "Comment": "Если это первый разговор - катсценой уводим Ларию на место + флаг поднимаем",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$33017be8-31eb-4bc5-abbb-d9a87d135d87",
+                "Not": true,
+                "m_Etude": "!bp_22d111e6c4aa439aad7f587e591d2c33",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$07c9e724e4d14880985bb37272a0cf79",
+                "m_Cutscene": "!bp_dce47232b91a4b7cb73b773ddfee9a84",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$020db521-0879-4e3b-98c9-bc90b19f1c3c",
+                "Etude": "!bp_22d111e6c4aa439aad7f587e591d2c33",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                "name": "$UnlockFlag$9dec1e00-7f1b-436f-8abb-5f67bbea8012",
+                "m_flag": "!bp_867173bfce604053a97cb000350a0d51",
+                "flagValue": 0
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

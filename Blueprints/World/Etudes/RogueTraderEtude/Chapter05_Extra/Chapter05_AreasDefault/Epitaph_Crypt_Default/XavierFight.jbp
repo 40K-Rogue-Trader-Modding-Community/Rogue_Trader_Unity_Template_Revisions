@@ -63,29 +63,86 @@
               "StartObjectiveIfNone": true
             },
             {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$bc9892a7362342deaefdbb0daf64fd34",
-              "m_Cutscene": "!bp_26072115915a4b73bcdcc8621c21d5af",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
-              }
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$635c209419b341eeb9954315bd378118",
+              "Etude": "!bp_1f45fcbbcf6e41b99a4191e26ddd21eb",
+              "EtudeEvaluator": null,
+              "Evaluate": false
             },
             {
-              "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
-              "name": "$StopCutscene$6c922af0af934ce1ae38b01c1c9c50db",
-              "m_Cutscene": "!bp_1626209631074226976edb419993b953",
-              "WithUnit": {
-                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-                "name": "$UnitFromSpawner$4d57591b186a4310aa6298468015fcdb",
-                "Spawner": {
-                  "EntityNameInEditor": "Xavier",
-                  "_entity_id": "9305b24d-aefa-4b43-aff7-a477b9f871b6",
-                  "SceneAssetGuid": "64933c97ab42d944399f7bf35b10d1ee"
-                }
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$1f739ea7799c4b58a2a1fc94185af43b",
+              "Comment": "После боя убрать Тразина",
+              "ConditionsChecker": {
+                "Operation": "Or",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$d826566b-4aa9-47a7-8430-b4d1a7fe1039",
+                    "Not": false,
+                    "m_Etude": "!bp_888baf5e80e54d919b5bc893702ccb8b",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$9b81752a-b839-4369-a717-606459f8098e",
+                    "Not": false,
+                    "m_Etude": "!bp_729170c54ae943769d8053beefb87ceb",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
               },
-              "m_CheckType": "Params"
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                    "name": "$SpawnFx$b422863e-6199-458b-84af-c29ee38f92ea",
+                    "Target": {
+                      "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                      "name": "$UnitTransform$5b505794-e765-43aa-aa82-67a05dcc8b8f",
+                      "Unit": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$aafc004b-107d-4f3e-aab4-5ff21c3f08e6",
+                        "Spawner": {
+                          "EntityNameInEditor": "DLC3_TrazynForXavier",
+                          "_entity_id": "4b2aa567-4e34-4a64-b4df-26bf60ddb87f",
+                          "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                        }
+                      }
+                    },
+                    "FxPrefab": {
+                      "guid": "884b835131a7f1043aa33a18fc908fdd",
+                      "fileid": 4961804444468952738
+                    }
+                  },
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$f0322e77-30cc-40d1-ab3c-2a781b8630f8",
+                    "Target": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$e538e81c-7109-434c-b4c9-66fd0290f03d",
+                      "Spawner": {
+                        "EntityNameInEditor": "DLC3_TrazynForXavier",
+                        "_entity_id": "4b2aa567-4e34-4a64-b4df-26bf60ddb87f",
+                        "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": false,
+                    "Fade": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         }
@@ -185,6 +242,46 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$f83809e1-bb8f-4b5f-8cd4-89e8c9834724",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$86c934fe-8bc3-42fb-b0c6-a08672478ba0",
+              "m_Cutscene": "!bp_26072115915a4b73bcdcc8621c21d5af",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+              "name": "$StopCutscene$020b3683-a758-4ea8-a1ee-93d3324e97f5",
+              "m_Cutscene": "!bp_1626209631074226976edb419993b953",
+              "WithUnit": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$bfa818fd-e7d8-43d5-848c-acf458ef5eb8",
+                "Spawner": {
+                  "EntityNameInEditor": "Xavier",
+                  "_entity_id": "9305b24d-aefa-4b43-aff7-a477b9f871b6",
+                  "SceneAssetGuid": "64933c97ab42d944399f7bf35b10d1ee"
+                }
+              },
+              "m_CheckType": "Params"
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",
@@ -196,11 +293,19 @@
     },
     "CompletionCondition": {
       "Operation": "And",
-      "Conditions": []
+      "Conditions": [
+        {
+          "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+          "name": "$IsInCombat$08923197868f4b1bac9cbc3318709e20",
+          "Not": true,
+          "Unit": null,
+          "Player": true
+        }
+      ]
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": null,
-    "m_LinkedCampaigns": null,
+    "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
     "m_StartsWith": [],

@@ -4,18 +4,20 @@ using Kingmaker.Editor.NodeEditor.Window;
 using System;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.ElementsSystem;
 using UnityEditor;
+using UnityEngine.UIElements;
 
-namespace Kingmaker.Editor.UIElements.Custom
+namespace Kingmaker.Editor.UIElements.Custom.PropertyComponents
 {
 	public class FactoryDragAndDropComponent : DragAndDropComponent
 	{
 		private readonly Type m_ElementType;
-
 		private readonly Action m_CreateContentPart;
-
 		private readonly Action m_RemoveContentPart;
+		
+		private SerializedProperty m_TargetProperty;
 
 		public FactoryDragAndDropComponent(Type elementType, Action createContentPart, Action removeContentPart) 
 			: base(null, null)
@@ -26,14 +28,31 @@ namespace Kingmaker.Editor.UIElements.Custom
 			m_RemoveContentPart = removeContentPart;
 			m_CreateContentPart = createContentPart;
 		}
+		
+		public FactoryDragAndDropComponent(VisualElement target, SerializedProperty property, Type elementType,
+			Action createContentPart, Action removeContentPart) : base(target, null, null)
+		{
+			m_ElementType = elementType;
+			IsValidateFunc = IsDropValid;
+			DropFunc = DropProcess;
+			m_RemoveContentPart = removeContentPart;
+			m_CreateContentPart = createContentPart;
+			m_TargetProperty = property;
+		}
+
+		protected override void OnAttached()
+		{
+			m_TargetProperty ??= Property.Property;
+			base.OnAttached();
+		}
 
 		private bool IsDropValid()
 		{
+            if (m_ElementType == null)
+                return false;
+            
 			ElementDragAndDropController.InitFactories(m_ElementType);
-			if (!ElementDragAndDropController.HasFactories(m_ElementType))
-				return false;
-
-			return true;
+			return ElementDragAndDropController.HasFactories(m_ElementType);
 		}
 
 		private void DropProcess()
@@ -49,10 +68,10 @@ namespace Kingmaker.Editor.UIElements.Custom
 			else
 			{
 				ElementFactoryWithSourcePicker.Show(
-					Property,
+					m_DndTarget,
 					"Pick result",
 					() => factories,
-					selectedFactory => OverrideProperty(selectedFactory)
+					OverrideProperty
 				);
 			}
 
@@ -63,21 +82,37 @@ namespace Kingmaker.Editor.UIElements.Custom
 		private void OverrideProperty(ElementFactoryWithSource factory)
 		{
 			SimpleBlueprint wrappedInstance = null;
-			if (Property.Property.serializedObject.targetObject is BlueprintEditorWrapper bew)
+			if (m_TargetProperty.serializedObject.targetObject is BlueprintEditorWrapper bew)
 				wrappedInstance = bew.WrappedInstance;
 			
-            var oldElement = ((Element)Property.Property.boxedValue);
-            if (oldElement != null)
+			if (wrappedInstance == null)
+				return;
+			
+			if (!m_TargetProperty.isArray)
             {
-	            oldElement.Delete();
-	            m_RemoveContentPart();
+	            var oldElement = (Element) m_TargetProperty.boxedValue;
+	            if (oldElement != null)
+	            {
+		            oldElement.Delete();
+		            m_RemoveContentPart?.Invoke();
+	            }
             }
 
             var element = factory.Factory.Create(wrappedInstance, factory.Source);
 
-            Property.Property.boxedValue = element;
-            Property.Property.serializedObject.ApplyModifiedProperties();
-            m_CreateContentPart();
+            if (m_TargetProperty.isArray)
+            {
+	            m_TargetProperty.arraySize++;
+	            m_TargetProperty.GetArrayElementAtIndex(m_TargetProperty.arraySize - 1).boxedValue = element;
+            }
+            else
+            {
+	            m_TargetProperty.boxedValue = element;
+            }
+
+            m_TargetProperty.serializedObject.ApplyModifiedProperties();
+            m_TargetProperty.serializedObject.Update();
+            m_CreateContentPart?.Invoke();
 		}
 	}
 }

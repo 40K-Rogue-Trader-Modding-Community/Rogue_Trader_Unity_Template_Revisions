@@ -26,7 +26,10 @@
         }
       ]
     },
-    "m_EditorComment": null,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
     "Text": {
       "m_Key": "b14b3610-4985-45ca-8526-8daedfe626c7",
       "m_OwnerString": "0aed6666bf3348e1a83979f2b0ff3538",
@@ -63,7 +66,87 @@
       "Actions": []
     },
     "OnStop": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1ab5f624-88c8-432f-924b-8da51436f7d7",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$8668487f-d726-427a-a1a4-e0a552d9e203",
+                "Not": false,
+                "m_Etude": "!bp_043ab64255484090bba284ab4d01e0ff",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$ce8f28d1-4dd7-4b78-ad95-6b1598e855d6",
+                "Not": true,
+                "m_Etude": "!bp_888baf5e80e54d919b5bc893702ccb8b",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                "name": "$Spawn$8f3d86da-fcae-493f-898b-de43e573d1a0",
+                "Spawners": [
+                  {
+                    "EntityNameInEditor": "DLC3_Trazyn",
+                    "_entity_id": "59923134-66ce-4817-a3fe-b82da166ed80",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                  }
+                ],
+                "ActionsOnSpawn": {
+                  "Actions": [
+                    {
+                      "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                      "name": "$SpawnFx$78e90a39-eb7f-4eba-9767-394a8aff1a5e",
+                      "Target": {
+                        "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                        "name": "$UnitTransform$cb8e9c47-2fcf-4327-87ff-f88a31a25b97",
+                        "Unit": {
+                          "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                          "name": "$SpawnedUnit$b5e608fd-1073-40a5-b603-8abf8321df2a"
+                        }
+                      },
+                      "FxPrefab": {
+                        "guid": "07d4e9091770ea6489a37b89ae0e514e",
+                        "fileid": 4257651609562335046
+                      }
+                    },
+                    {
+                      "$type": "8a4f41327b18c0f47b0a1d132429f14e, AddUnitToSummonPool",
+                      "name": "$AddUnitToSummonPool$c4d4a68e-fab2-4c90-ab30-8f4946360173",
+                      "m_SummonPool": "!bp_0c4d449a2f084d22a096e41fafa428d2",
+                      "Unit": {
+                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                        "name": "$SpawnedUnit$2a7c4030-b7e6-4b27-a2e6-d06db2090916"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
     },
     "Description": {
       "m_Key": "",

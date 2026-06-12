@@ -1,0 +1,192 @@
+{
+  "AssetId": "97a184e7f25942f0bac5a0533070dffa",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$f6ad7401-d768-4e63-9a04-590431cf6e2b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$b17a018e588c4913b1a443b4cf532251",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "R_Patient_PriceOfLife_1",
+                  "_entity_id": "2bbc0323-b373-4031-ba4d-5f72f8fc6216",
+                  "SceneAssetGuid": "93ccd42518cb57a42bde79a23aa39719"
+                },
+                {
+                  "EntityNameInEditor": "R_Patient_PriceOfLife_2",
+                  "_entity_id": "52413172-ad3b-4243-87b4-8d961efb0a10",
+                  "SceneAssetGuid": "93ccd42518cb57a42bde79a23aa39719"
+                },
+                {
+                  "EntityNameInEditor": "R_Patient_PriceOfLife_3",
+                  "_entity_id": "52899e67-a9ef-4012-a42e-3e4426dc46e4",
+                  "SceneAssetGuid": "93ccd42518cb57a42bde79a23aa39719"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$9db62308aadc46aaa08a4f47552a859d",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$902cb30185d442d2a023160b6e9c453a",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_6f12d471734649b0ae00585688aadbbd",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$173b4006-73fe-40f1-8084-4efdcb48a97d",
+                    "m_Cutscene": "!bp_80dd0b9b4d9145a797b938862f4d3d2e",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$b8f9097e6e7d49a5938f6f8334f70a7c",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$68de8a42f5f84bc38d47fe285801b03e",
+                      "MapObject": {
+                        "EntityNameInEditor": "SZ_PriceOfLife_dialogue",
+                        "_entity_id": "f48fa296-4f4c-49df-9a18-76302fc6a60e",
+                        "SceneAssetGuid": "93ccd42518cb57a42bde79a23aa39719"
+                      }
+                    },
+                    "Unhide": true
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+              "name": "$PlayCutscene$02bd0fbc-68b1-4b3b-b3ce-b09cbe9d31fd",
+              "m_Cutscene": "!bp_596e1c9ec03c4a99b54950db0addd594",
+              "PutInQueue": false,
+              "CheckExistence": true,
+              "Parameters": {
+                "Parameters": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$a5e82e69272d4185940097e968960eb5",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$b00391c3bf104134b475dff973e8ee54",
+                    "Not": false,
+                    "m_companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": false,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "7d6c4f7ff596e5e4086531c0f96ac650, Unrecruit",
+                    "name": "$Unrecruit$fce114baa7364a17ab65d0e971cf20c7",
+                    "m_CompanionBlueprint": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                    "OnUnrecruit": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$13ce37b4-33f9-47cf-a424-cef8d0670289",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "LD_Unit_Eogan_Manipulus_Intro (Q1)",
+                  "_entity_id": "33223bf6-95ed-4cba-95f1-329d966daed9",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Medicare/Medicare_PriceOfLifeQ1_Mechanics.unity"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "DmitryEmelyanov",
+    "Comment": "",
+    "m_Parent": "!bp_1e62d79858324fd387f879200a38cf7a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [
+      "!bp_e3d81a88de794ee69fc610c1946ff236"
+    ],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
@@ -21,21 +22,6 @@
             "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
-              {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$e340a2e0-0745-4317-abaa-22e0b6030e7b",
-                "Settings": {
-                  "Progression": "AsIs",
-                  "m_CustomProgression": [],
-                  "m_StartLevel": 0,
-                  "m_StepLevel": 0,
-                  "Negate": false,
-                  "Limit": "None",
-                  "Min": 0,
-                  "Max": 0
-                },
-                "Type": "Melee"
-              },
               {
                 "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
                 "name": "$CheckAbilityBlueprintGetter$38e6ac4ae4a95866824bfcc8106f8188",
@@ -52,6 +38,21 @@
                 "m_Abilities": [
                   "!bp_e955823f54d24088ae1fdefe88d3684d"
                 ]
+              },
+              {
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$6f89766cc9884dd9aebd70e4670ce1cc",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_RangeType": "Melee"
               }
             ]
           }
@@ -149,6 +150,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
@@ -269,6 +271,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolOr",
@@ -277,8 +280,8 @@
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "76fa6ff8c9162f9489df4de07a55750c, CheckAbilityAttackTypeGetter",
-                "name": "$CheckAbilityAttackTypeGetter$d6c2c2519f245e03831ff17cf7d70785",
+                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                "name": "$CheckAbilityWeaponRangeTypeGetter$92c957ee-b12c-4448-b08c-625c0ed74c41",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -289,12 +292,13 @@
                   "Min": 0,
                   "Max": 0
                 },
-                "Type": "Melee"
+                "m_RangeType": "Melee"
               }
             ]
           }
         },
         "TriggersForDamageOverTime": false,
+        "TriggerBeforeDamageHappens": false,
         "Actions": {
           "Actions": [
             {
@@ -362,7 +366,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

@@ -2,16 +2,19 @@
   "AssetId": "c32d97ba1e054ecdba80c229d5b9e783",
   "Data": {
     "$type": "618a7e0d54149064ab3ffa5d9057362c, BlueprintBuff",
-    "PrototypeLink": "",
-    "m_Overrides": [],
+    "PrototypeLink": "4f13e446713f440bbc30e8d216bc9f1e",
+    "m_Overrides": [
+      "$AddStringToFactName$76a02e2c-37a4-4405-9096-6cd516656b82",
+      "$AddFactContextActions$c1335bb9-b858-47b7-89a2-c24759400222"
+    ],
     "Components": [
       {
         "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
         "name": "$AddMechanicsFeature$33c78b0a-7572-4799-b389-f64c1599c454",
         "m_Flags": 0,
         "PrototypeLink": {
-          "guid": "",
-          "name": ""
+          "guid": "4f13e446713f440bbc30e8d216bc9f1e",
+          "name": "$AddMechanicsFeature$33c78b0a-7572-4799-b389-f64c1599c454"
         },
         "m_Overrides": [],
         "m_Feature": "CantMove",
@@ -30,18 +33,64 @@
         "name": "$HardCrowdControlBuff$283d0a0f-cc46-4e71-ac36-cc75fdcbce87",
         "m_Flags": 0,
         "PrototypeLink": {
-          "guid": "",
-          "name": ""
+          "guid": "4f13e446713f440bbc30e8d216bc9f1e",
+          "name": "$HardCrowdControlBuff$283d0a0f-cc46-4e71-ac36-cc75fdcbce87"
         },
         "m_Overrides": []
       },
       {
-        "$type": "f08844ce14d498a45a9fc64582489a2a, AddContextStatBonus",
-        "name": "$AddContextStatBonus$6e7571b7-13b4-4d87-b2f2-84d5658a7ca0",
+        "$type": "4154c6f5c7b64b23a2102278fc83645b, WarhammerAbilityRestriction",
+        "name": "$WarhammerAbilityRestriction$b7e0fd4b-732e-46d1-b5c3-83c05a417aa4",
         "m_Flags": 0,
         "PrototypeLink": {
-          "guid": "",
-          "name": ""
+          "guid": "4f13e446713f440bbc30e8d216bc9f1e",
+          "name": "$WarhammerAbilityRestriction$b7e0fd4b-732e-46d1-b5c3-83c05a417aa4"
+        },
+        "m_Overrides": [],
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "m_AbilityRestrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                "name": "$CheckAbilityGroupGetter$d313f480e3964dbab6f158cca5d718d5",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Groups": [
+                  "!bp_9bf3add8150f48d0a08125cf82857c75"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "$type": "f08844ce14d498a45a9fc64582489a2a, AddContextStatBonus",
+        "name": "$AddContextStatBonus$2df78c39-d41d-420f-9839-7bbf83bc0485",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "4f13e446713f440bbc30e8d216bc9f1e",
+          "name": "$AddContextStatBonus$2df78c39-d41d-420f-9839-7bbf83bc0485"
         },
         "m_Overrides": [],
         "Restrictions": {
@@ -65,13 +114,35 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
       },
       {
+        "$type": "c8cf2b4638d44ca29565527b0d0b90c2, AddStringToFactName",
+        "name": "$AddStringToFactName$76a02e2c-37a4-4405-9096-6cd516656b82",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_AdditionalString": {
+          "m_Key": "",
+          "m_OwnerString": "",
+          "m_OwnerPropertyPath": "",
+          "m_JsonPath": "",
+          "Shared": {
+            "assetguid": "0381e1367befa284ab179a85b57a4c32",
+            "stringkey": "9e2e4368-4d45-47ea-ad79-189faaf064eb"
+          }
+        },
+        "JunctionType": "AfterSecondRoundBrackets"
+      },
+      {
         "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
-        "name": "$AddFactContextActions$c5051d8a-684c-48f9-915d-8cf79a01c238",
+        "name": "$AddFactContextActions$c1335bb9-b858-47b7-89a2-c24759400222",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
@@ -84,14 +155,14 @@
           "Actions": [
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$17feb6cd4ff448a9b01a79198b77ecc1",
+              "name": "$Conditional$b33ff380-3d3a-44fe-8112-cb0dc7ef72a0",
               "Comment": "EasilyFlammable_Feature",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
                   {
                     "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$5ff019b4f53c426584db8787189f35d6",
+                    "name": "$ContextConditionCasterHasFact$5b667652-0cba-4c7d-9099-dfecf6f45903",
                     "Not": false,
                     "m_Fact": "!bp_7092df990ca64c20af492c2680b1f9ff"
                   }
@@ -101,7 +172,7 @@
                 "Actions": [
                   {
                     "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$265fb2f1342b44a092ae0a6910be5793",
+                    "name": "$ContextActionApplyBuff$2929aa5b-a254-4dc4-85e3-306464c321e5",
                     "m_Buff": "!bp_44ac47bf01364e7e8ecd915d1ed9a4a8",
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
@@ -153,21 +224,16 @@
             },
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$d367700e-d590-4fed-a1e6-2eeb2168c317",
+              "name": "$Conditional$8983e432-0c16-446f-95a8-3ae210114a6d",
               "Comment": "HeavyWebs_Feature",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
                   {
                     "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$d57169e4-502b-4f99-b54b-446b3120a22b",
+                    "name": "$ContextConditionCasterHasFact$62c445f2-c779-42f7-9b95-01d86d1b720f",
                     "Not": false,
                     "m_Fact": "!bp_ea3131acef5645c3a8eaba942fe404a9"
-                  },
-                  {
-                    "$type": "c5b3b6002404ca249add2943e99f366a, ContextConditionIsAlly",
-                    "name": "$ContextConditionIsAlly$e44c68b3e0b845368b6b4fcaf9125b9c",
-                    "Not": true
                   }
                 ]
               },
@@ -175,7 +241,7 @@
                 "Actions": [
                   {
                     "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$12d8c0f8-b293-4d5d-87a6-c466172deb69",
+                    "name": "$ContextActionApplyBuff$7d648620-a1db-40ce-b336-fff4f3812f3b",
                     "m_Buff": "!bp_1c2474b680184b9f908d90cf5dfa3dbf",
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
@@ -236,30 +302,9 @@
         "RoundEnd": {
           "Actions": []
         }
-      },
-      {
-        "$type": "c8cf2b4638d44ca29565527b0d0b90c2, AddStringToFactName",
-        "name": "$AddStringToFactName$8a406d58-492b-4fd7-9a58-dc7a26e1cea4",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "m_AdditionalString": {
-          "m_Key": "",
-          "m_OwnerString": "",
-          "m_OwnerPropertyPath": "",
-          "m_JsonPath": "",
-          "Shared": {
-            "assetguid": "174b5f2fb0d9fec4687fb7f69d7eaca8",
-            "stringkey": "3073187b-d2ce-4144-a5e7-8141d6549f94"
-          }
-        },
-        "JunctionType": "AfterFirstRoundBrackets"
       }
     ],
-    "Author": "ElenaMironova",
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -306,12 +351,13 @@
     "FxOnRemove": {
       "AssetId": ""
     },
-    "m_FXSettings": "!bp_729006f466214184941c7444487542be",
+    "m_FXSettings": "!bp_2c2a6c633f0a4c79a1dfa3f72cddd65a",
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true
   },
   "Meta": {
     "ShadowDeleted": false

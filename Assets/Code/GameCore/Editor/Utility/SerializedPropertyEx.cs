@@ -6,8 +6,10 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.UIElements.Custom.Base;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace Kingmaker.Code.Editor.Utility
@@ -112,6 +114,29 @@ namespace Kingmaker.Code.Editor.Utility
 			var tooltipAttr = (TooltipAttribute)prop.GetAttributes().Where(attr => attr.GetType() == typeof(TooltipAttribute)).FirstOrDefault();
 			return tooltipAttr != null ? tooltipAttr.tooltip : string.Empty;
 		}
+        
+        public static void ExpandCollapseAll(this SerializedProperty parentProperty, VisualElement parentElement, bool expand)
+ 	    {
+ 	        SerializedProperty iterator = parentProperty.Copy();
+ 	        SerializedProperty end = iterator.GetEndProperty();
+ 	
+ 	        do
+ 	        {
+ 	            iterator.isExpanded = expand;
+	        }
+ 	        while (iterator.NextVisible(true) && !SerializedProperty.EqualContents(iterator, end));
+ 	            
+ 	        ExpandCollapseRecursive(parentElement, expand);
+  	    }
+ 	
+ 	    private static void ExpandCollapseRecursive(VisualElement element, bool expand)
+ 	    {
+ 	        if (element is OwlcatPropertyLayout property)
+ 	            property.IsExpanded = expand;
+ 	
+ 	        foreach (var child in element.hierarchy.Children())
+ 	            ExpandCollapseRecursive(child, expand);
+ 	    }
 
         /// <summary>
         /// Gets the object the property represents.
@@ -181,6 +206,22 @@ namespace Kingmaker.Code.Editor.Utility
 	            }
             }
             return enm.Current;
+        }
+        
+        public static SerializedProperty GetFirstAncestorWhere(this SerializedProperty property, 
+            Func<SerializedProperty, bool> predicate)
+        {
+            var current = property.GetParent();
+
+            while (current != null)
+            {
+                if (predicate(current))
+                    return current;
+
+                current = current.GetParent();
+            }
+
+            return null;
         }
 	}
 }

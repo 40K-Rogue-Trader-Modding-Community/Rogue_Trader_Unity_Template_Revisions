@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.UIElements
 {
-    public class OwlcatInspectorStyle : OwlcatContentContainer
+    public static class OwlcatInspectorStyle
     {
         //Paths may change in nearest future. This is left to make search easier
 #if OWLCAT_MODS
@@ -17,18 +17,19 @@ namespace Kingmaker.Editor.UIElements
         public const string PersonalPath = "Assets/GameCore/Code/Editor/UIElements/Styles/PersonalStyle.uss";
 #endif
 
-        public OwlcatInspectorStyle()
-        {
-            LoadStyles();
-        }
-
-        private void LoadStyles()
+        public static void LoadFor(VisualElement element)
         {
             var styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(EditorGUIUtility.isProSkin ? ProPath : PersonalPath);
-            styleSheets.Add(styles);
+            if (styles != null)
+            {
+	            element.styleSheets.Add(styles);
+            }
 
             styles = AssetDatabase.LoadAssetAtPath<StyleSheet>(CommonPath);
-            styleSheets.Add(styles);
+            if (styles != null)
+            {
+	            element.styleSheets.Add(styles);
+            }
         }
     }
 }

@@ -5,12 +5,14 @@ using Kingmaker.Utility.Attributes;
 using Owlcat.Runtime.Core.Utility.EditorAttributes;
 using UnityEngine;
 using UnityEngine.UIElements;
-using HelpBox = Kingmaker.Assets.Editor.UIElements.Custom.Elements.HelpBox;
+using HelpBox = Kingmaker.Editor.UIElements.Custom.Elements.HelpBox;
 
 namespace Kingmaker.Editor.UIElements.Custom.Base
 {
 	public class OwlcatContentContainer : OwlcatVisualElement
 	{
+		private ConditionalVisibilityElement m_ConditionalVisibilityElement;
+		
 		public new void Add(VisualElement element)
 		{
 			var property = element as OwlcatProperty;
@@ -18,22 +20,25 @@ namespace Kingmaker.Editor.UIElements.Custom.Base
             if (imguiDrawersNotUsed)
 			{
 				var header = GetAttribute<HeaderAttribute>(property);
+				var visibility = GetAttribute<ConditionalAttribute>(property);
+				var infoBox = GetAttribute<InfoBoxAttribute>(property);
+				var space = GetAttribute<SpaceAttribute>(property);
+
+				HeaderElement headerElement = null;
 				if (header != null)
 				{
-					base.Add(new HeaderElement(header));
+					headerElement = new HeaderElement(header);
+					base.Add(headerElement);
 				}
-
-				var visibility = GetAttribute<ConditionalAttribute>(property);
+				
 				if (visibility != null)
-				{
-					element = new ConditionalVisibilityElement(property, visibility);
-				}
-
-				var infoBox = GetAttribute<InfoBoxAttribute>(property);
+					m_ConditionalVisibilityElement = new ConditionalVisibilityElement(property, visibility, headerElement);
+				
 				if (infoBox != null)
-				{
 					base.Add(new HelpBox(infoBox.Text));
-				}
+				
+				if (space != null)
+					base.Add(new VisualElement { name = "Space", style = { height = space.height } });
 			}
 
 			base.Add(element);

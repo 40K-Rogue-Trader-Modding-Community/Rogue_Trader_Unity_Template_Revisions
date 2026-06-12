@@ -1,0 +1,326 @@
+{
+  "AssetId": "d4424c06109c4fdfb2d4f00d5fb3cdb4",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "62914d9ab9fe4dada246891867955ddd, WarhammerOverrideDefaultAbilityRange",
+        "name": "$WarhammerOverrideDefaultAbilityRange$a51f2ea0-42db-457c-8c14-33d5d6205952",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "m_Range": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$54a8f1a41fd743ec94bd43fa1c8d25dc",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 1,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            },
+            {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$25aa3302-e341-4a30-851a-766489935018",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "IntelligenceBonus"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$c9b04cf6-6883-4051-847a-4d0828986407",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$db7beddda5944c9db6a885ba64c5429d",
+              "m_Buff": "!bp_d751b596af79422796fb0da9a27dec47",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": false,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 1,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "4579faa6d7964ee9a26cbd576826cb0a, AbilityRedirect",
+        "name": "$AbilityRedirect$15f0fbfb-c7ce-4aaa-96da-bd602ce30e51",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "RedirectTargetType": "Ally",
+        "IncludeClickedTarget": false,
+        "CastOnSelfIfNoTargetsAvailable": false,
+        "CasterRestrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "ClickedTargetRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "875f809ba794447a8040d573e71a72e9, IsPetOfCasterGetter",
+                "name": "$IsPetOfCasterGetter$80da9103-da0f-4965-8295-9f8fa1fab48d",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Target": "CurrentEntity"
+              },
+              {
+                "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                "name": "$HasFactGetter$26a95a34-184a-46cd-8f24-be69d6c3582c",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_215d9f42b7e6435e9ed77337156e0fc3",
+                "Target": "CurrentEntity"
+              }
+            ]
+          }
+        },
+        "RedirectTargetRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentTarget",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "e53aa7e81b714c5c9b883c8c3a03f1a4, HasBuffFromMyPetGetter",
+                "name": "$HasBuffFromMyPetGetter$cecaf125-4fe9-452a-bcbb-5c0cf6978f35",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_ed56a26333e348e2b3bd2b9be39a79f6",
+                "Target": "CurrentEntity"
+              }
+            ]
+          }
+        },
+        "m_Projectile": null,
+        "UseCustomPattern": true,
+        "m_CustomPattern": {
+          "m_Type": "Circle",
+          "m_Blueprint": null,
+          "m_Radius": 4,
+          "m_Angle": 0
+        },
+        "StatsToOverrideForCaster": [
+          "WarhammerIntelligence"
+        ]
+      },
+      {
+        "$type": "ce26e27212da4e27bc9c90fc239153e0, AbilityResourceBuff",
+        "name": "$AbilityResourceBuff$c39a6aea-3db5-44ee-b481-64e2e535db38",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Cost": {
+          "ValueType": "Simple",
+          "Value": 2,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "Buff": "!bp_ad5bda1047bf4e4dafa278f87d07c5ad"
+      }
+    ],
+    "Author": "IlyaPolitko",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "bb89a4e039fa2ef4796f392b0a8d777d",
+        "stringkey": "edad0dd0-c254-4a16-86d0-091b309dd716"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "93155880dd5161f4e9796b54a9915613",
+        "stringkey": "aa6acf00-7bfe-4bbd-b322-0bf21d069243"
+      }
+    },
+    "m_Icon": {
+      "guid": "3fa2e1120e51faa4d8b3d84d924ad992",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "Type": "Spell",
+    "Range": "Custom",
+    "CustomRange": 0,
+    "MinRange": 0,
+    "ActionPointCost": 0,
+    "AbilityParamsSource": "None",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 1,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 1,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": false,
+    "CanTargetFriends": true,
+    "CanTargetSelf": true,
+    "Hidden": false,
+    "HiddenInUI": false,
+    "DefaultSlotIndex": -1,
+    "DisableLog": false,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "Helpful",
+    "EffectOnEnemy": "None",
+    "m_Parent": null,
+    "Animation": "Special",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "WillCauseAOO",
+    "UsingInOverwatchArea": "WillCauseAttack",
+    "CombatStateRestriction": "InCombatOnly",
+    "m_AbilityGroups": [],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "ResourceAssetIds": [],
+    "m_FXSettings": null,
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

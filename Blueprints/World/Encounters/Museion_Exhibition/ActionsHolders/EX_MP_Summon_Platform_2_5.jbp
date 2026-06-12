@@ -1,0 +1,97 @@
+{
+  "AssetId": "3195968e82ca42e88f6c6b961c0c3b72",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$a26b0065-0fa5-4712-907a-5c758ca9f8c8",
+          "m_Cutscene": "!bp_db2f425e4a214db098b56960e535c479",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": [
+              {
+                "Name": "MapObject",
+                "Type": "MapObject",
+                "Evaluator": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$4765f4cc-d0fa-4bae-8c5d-e2e456b5af8d",
+                  "MapObject": {
+                    "EntityNameInEditor": "LD_NavmeshCut_Horizontal_Lower_Platform_Pos_2_5",
+                    "_entity_id": "5743219a-23b3-4917-8b8c-967f4ce1d5fc",
+                    "SceneAssetGuid": "6eb0352391c4c7d43ab6c78c816280b4"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$bfaf77f9ebff4a2a93813bfe0851f541",
+          "Comment": "выдвигаем лифт",
+          "State": 2,
+          "IdOfObject": {
+            "EntityNameInEditor": "Horizontal_Lower_Platform_Pos_2_5",
+            "_entity_id": "3d146266-43ae-487e-8088-abc965929980",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$f032301d3af34cb1bb3c8df410208bab",
+          "Comment": "маячок оставляем зеленым",
+          "State": 2,
+          "IdOfObject": {
+            "EntityNameInEditor": "necron_tomb_epitaph_platform_02 (8)",
+            "_entity_id": "4d987067-1f74-480c-898f-a3e37a280e1e",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_Static_for_art.unity"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$fdd21bcf-2501-4046-be37-cfe4dee7f42a",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$1efa8e72-a6e4-4c3e-ba99-260b0775685b",
+                "Not": false,
+                "m_QuestObjective": "!bp_90b7141319384c439eb3aad82cca195f",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$d10608e4-b0e9-4057-a146-2263a7543e02",
+                "Status": "Complete",
+                "m_Objective": "!bp_90b7141319384c439eb3aad82cca195f",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

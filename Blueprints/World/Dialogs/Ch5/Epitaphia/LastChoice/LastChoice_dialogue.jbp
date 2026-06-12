@@ -115,13 +115,52 @@
           }
         },
         {
-          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-          "name": "$PlayCutscene$d4689fe9b7f243069f424773053442ae",
-          "m_Cutscene": "!bp_2e39c58c2d774c2cb56abff7dfa9c88d",
-          "PutInQueue": false,
-          "CheckExistence": true,
-          "Parameters": {
-            "Parameters": []
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b636850103ad46f68dd2ba03f1280cd3",
+          "Comment": "Если ДЛС3 и договор с Тразином - сначала его катсцена, потом финал",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$62d2f0373c6f470aaadfc1c44f65fc30",
+                "Not": false,
+                "m_Etude": "!bp_fbe90f18add34cda9ae9fadd822edd16",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f48cef41-6190-4dc6-b087-928d8557b025",
+                "m_Cutscene": "!bp_0c9ddaafb2a44113b4e10a02139e75ef",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$1cff5d3a-3aca-48c2-9379-14f0327475ba",
+                "m_Cutscene": "!bp_2e39c58c2d774c2cb56abff7dfa9c88d",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
           }
         }
       ]
@@ -142,7 +181,12 @@
       "m_JsonPath": "",
       "Shared": null
     },
-    "m_EditorComment": null
+    "OverrideCRForSkillChecks": false,
+    "OverridenCR": 0,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
   },
   "Meta": {
     "ShadowDeleted": false

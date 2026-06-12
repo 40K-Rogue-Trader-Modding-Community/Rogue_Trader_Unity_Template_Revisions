@@ -1,0 +1,94 @@
+{
+  "AssetId": "0596ccb2630a4b2f954f00baedf0fc28",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "VladimirZuev",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$a16ba472ba8246d1831fe54adb35e9b2",
+          "m_flag": "!bp_980d72a594244adbb2aabe85d7fd5c3e",
+          "flagValue": 0
+        },
+        {
+          "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+          "name": "$StopCutscene$48261398bd974beeb8b1748de39c9d1e",
+          "m_Cutscene": "!bp_7b96616b29da48cd9e8e4cd4d1b43e94",
+          "WithUnit": null,
+          "m_CheckType": "Params"
+        },
+        {
+          "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+          "name": "$SummonPoolUnits$0bcd1312-8464-466d-9f21-d1fdac7962d0",
+          "m_SummonPool": "!bp_056f01b589864ca5bfad08b4ac25aee4",
+          "Conditions": {
+            "Operation": "And",
+            "Conditions": []
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$5c3145de-ed07-4b67-91d9-c1138b577987",
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "dda6e40519d211546ad63a00860b2f6f, UnitFromSummonPool",
+                      "name": "$UnitFromSummonPool$e88bbe2b-3e03-4d4c-980e-78dc96fd5292",
+                      "Not": true,
+                      "Unit": {
+                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                        "name": "$SummonPoolUnit$d5a623a2-3ac7-40e5-9265-7c8d47e29406"
+                      },
+                      "m_SummonPool": "!bp_c7c15535bd704949a0e6604bd49c51fc"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "5842a0dd9c0748f43b45ba496edf8c03, UnitLookAt",
+                      "name": "$UnitLookAt$dcda7b9d-840d-435f-ba2a-79349dd9d0b2",
+                      "Unit": {
+                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                        "name": "$SummonPoolUnit$c0a4ca64-aa04-4ea2-ab34-5bacfdd87263"
+                      },
+                      "Position": {
+                        "$type": "ac7da90e77cb5af44b778bfce17bb4aa, UnitPosition",
+                        "name": "$UnitPosition$aa74b8f6-49e5-41c6-b801-441a195ffe5e",
+                        "Unit": {
+                          "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                          "name": "$PlayerCharacter$ee57fe9d-ed7c-4359-a6c6-3131e213e427"
+                        }
+                      },
+                      "RotationOffset": null
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

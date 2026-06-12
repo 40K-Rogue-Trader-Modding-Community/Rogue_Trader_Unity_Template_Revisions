@@ -1,0 +1,444 @@
+{
+  "AssetId": "c5a6342cb2c0463387a9355d5715a3cf",
+  "Data": {
+    "$type": "618a7e0d54149064ab3ffa5d9057362c, BlueprintBuff",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$b287ec8b-3867-44ba-ac71-48bf954e9e31",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": [
+            {
+              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+              "name": "$UnlockFlag$0803787b05154c26a207d365c3118848",
+              "m_flag": "!bp_056fb0bfb38d4a9188f62253ce933dde",
+              "flagValue": 1
+            }
+          ]
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": [
+            {
+              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+              "name": "$UnlockFlag$259d62b2-e825-41cb-ab45-dffb99b00814",
+              "m_flag": "!bp_056fb0bfb38d4a9188f62253ce933dde",
+              "flagValue": 1
+            }
+          ]
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$99f4f3f4-9c47-4455-a3b5-2ce082ce48c7",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$4cac1400-728d-4da5-9176-7d65974f26e3",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge",
+                  "_entity_id": "b16bc822-2785-4ef2-9df9-7dd89eb0e06b",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$394c58141be649818c77cefa0ecefc2c",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$77cc10d21b104b409b8fc841ead90558",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge_Manipulus ",
+                  "_entity_id": "fb05f192-bd60-4bc9-8526-4b7ac51dcd7a",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$a7dc1c445eb145c49dcb54742135fd73",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                    "name": "$ContextConditionHasBuff$dc2bd81299de462b9c2befd39058a924",
+                    "Not": true,
+                    "m_Buff": "!bp_d18366067da54f09b9e0b5c1a6d73f39"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$8b09ecf91e3544e2b60bdd26f1ec7433",
+                    "m_Buff": "!bp_d18366067da54f09b9e0b5c1a6d73f39",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  },
+                  {
+                    "$type": "d8e2c5bb9ff388542b90552f59c8d14a, ContextActionShowBark",
+                    "name": "$ContextActionShowBark$10b48e3041d84cd4a057e8bf3d6d3e8c",
+                    "WhatToBark": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": {
+                        "assetguid": "c8544b32eae28eb47a5ce717fa1086ee",
+                        "stringkey": "cb5690ea-24f4-42ee-acef-06cdcfc460c7"
+                      }
+                    },
+                    "WhatToBarkShared": null,
+                    "ShowWhileUnconscious": false,
+                    "BarkDurationByText": true
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "UnitTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$4ab2de8f-c91c-4dd4-b594-2c253087b9bd",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$2d552fe4-3a41-4c41-b049-e0b0b25220e4",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge_Manipulus ",
+                  "_entity_id": "fb05f192-bd60-4bc9-8526-4b7ac51dcd7a",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$c0aba95b-947b-4875-a3da-450ef2113635",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$15e341dd-dffe-43a0-a1c5-e4a4df40c979",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge",
+                  "_entity_id": "b16bc822-2785-4ef2-9df9-7dd89eb0e06b",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$b71a8ded-c05e-4961-b5b0-8055885bbc54",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$b874c00c-eecb-4788-a7e0-93f8358c3245",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge",
+                  "_entity_id": "b16bc822-2785-4ef2-9df9-7dd89eb0e06b",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$e42bb89f-5f21-48a6-bacb-2396afc84c7f",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$c7fbb02a-9dca-473c-87cf-4f3b72a21e3b",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge_Manipulus ",
+                  "_entity_id": "fb05f192-bd60-4bc9-8526-4b7ac51dcd7a",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$d4e837f0-fcae-4a9f-bca2-125087ae633f",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$c959289c-be1a-4d6b-a602-1ff75bac065c",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge_Manipulus ",
+                  "_entity_id": "fb05f192-bd60-4bc9-8526-4b7ac51dcd7a",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$0874c380-9d5f-472e-9ded-dd7b2d3987f9",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$b08c6b10-fd20-44b2-8b53-78525d55c84e",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge",
+                  "_entity_id": "b16bc822-2785-4ef2-9df9-7dd89eb0e06b",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        },
+        "DoNotApplyOnInterrupts": false
+      },
+      {
+        "$type": "d74c5a91c6b41cc4292e249970fa7c49, HealthLevelTrigger",
+        "name": "$HealthLevelTrigger$58be2168-91e0-4f4b-9bec-751f3f843c08",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "Percentage": 0,
+        "Value": 0,
+        "UseValueInstead": true,
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$6c7f9297-277e-44d8-b7b9-1041670069e4",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$1f751832-340f-4c31-b401-479f8c434cd7",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge_Manipulus ",
+                  "_entity_id": "fb05f192-bd60-4bc9-8526-4b7ac51dcd7a",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$412a6430-5697-4731-af08-90bab0f0d407",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$5a659fb4-a26f-44c4-926a-24037f1555bb",
+                "MapObject": {
+                  "EntityNameInEditor": "Generator_Start_Combat_Overcharge",
+                  "_entity_id": "b16bc822-2785-4ef2-9df9-7dd89eb0e06b",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
+              "name": "$ContextActionOnAllUnitsInCombat$366985e7-4ceb-4d7b-b08e-080336dd457e",
+              "OnlyEnemies": false,
+              "OnlyAllies": true,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$cf081b2b-b4db-40ba-9313-2ea64f4464a7",
+                    "m_Buff": "!bp_0bc30f9bf41d44cdbf787ace4c37881d",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "BonusValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      },
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "OnlyParty": false,
+              "WithoutPets": false,
+              "m_FilterNoFacts": [],
+              "m_FilterHaveAnyFact": [],
+              "ActionsOnRandomTarget": false,
+              "NotCaster": false,
+              "OnlyVisible": false,
+              "OnlyNotVisible": false,
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "m_Flags": "HiddenInUi, StayOnDeath, NeedsNoVisual",
+    "m_SoundTypeSwitch": {
+      "Value": "",
+      "Group": ""
+    },
+    "m_MuffledTypeSwitch": {
+      "Value": "",
+      "Group": ""
+    },
+    "Stacking": "Replace",
+    "ProlongWhenRankAdded": false,
+    "PriorityProperty": "Value1",
+    "Initiative": "ByCaster",
+    "Ranks": 0,
+    "FxOnStart": {
+      "AssetId": ""
+    },
+    "FxOnRemove": {
+      "AssetId": ""
+    },
+    "m_FXSettings": null,
+    "ResourceAssetIds": [],
+    "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
+    "m_AbilityGroups": [],
+    "m_Cyclical": false,
+    "NeedCollapseStack": true
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

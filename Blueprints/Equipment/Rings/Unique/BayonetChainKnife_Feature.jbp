@@ -14,15 +14,17 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
-            "Operation": "And",
+            "Operation": "BoolOr",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
-                "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
-                "name": "$CheckAbilityWeaponRangeTypeGetter$09c1875d-0e73-486a-b917-f3ad8a357c71",
+                "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+                "name": "$PropertyCalculatorGetter$40fac4cd514941f5bdedcd37582aa9cf",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -33,11 +35,56 @@
                   "Min": 0,
                   "Max": 0
                 },
-                "m_RangeType": "Ranged"
+                "Value": {
+                  "Operation": "BoolAnd",
+                  "TargetType": "CurrentEntity",
+                  "TargetEvaluator": null,
+                  "FailSilentlyIfNoTarget": false,
+                  "Getters": [
+                    {
+                      "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                      "name": "$CheckAbilityWeaponRangeTypeGetter$2a54a9f7-74fc-40f6-aacf-39a26021466b",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": false,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_RangeType": "Ranged"
+                    },
+                    {
+                      "$type": "e5ea156d7248471887237e2c871de79a, UnitsInRangeGetter",
+                      "name": "$UnitsInRangeGetter$f2310efc-3a0d-44c3-b0b1-b0addfac51b1",
+                      "Settings": {
+                        "Progression": "AsIs",
+                        "m_CustomProgression": [],
+                        "m_StartLevel": 0,
+                        "m_StepLevel": 0,
+                        "Negate": false,
+                        "Limit": "None",
+                        "Min": 0,
+                        "Max": 0
+                      },
+                      "m_Value": {
+                        "Operation": "Sum",
+                        "TargetType": "CurrentEntity",
+                        "TargetEvaluator": null,
+                        "FailSilentlyIfNoTarget": false,
+                        "Getters": []
+                      },
+                      "m_CombatGroup": "Enemy",
+                      "m_RangeInCells": 1
+                    }
+                  ]
+                }
               },
               {
-                "$type": "e5ea156d7248471887237e2c871de79a, UnitsInRangeGetter",
-                "name": "$UnitsInRangeGetter$afad9e8d-08fc-48d1-985c-34ee98588dfe",
+                "$type": "622b2e3118c34edebe1597cf4c03339e, CheckAbilityBlueprintGetter",
+                "name": "$CheckAbilityBlueprintGetter$a2b2fe641ea64e808f3d6f937961d8a5",
                 "Settings": {
                   "Progression": "AsIs",
                   "m_CustomProgression": [],
@@ -48,14 +95,9 @@
                   "Min": 0,
                   "Max": 0
                 },
-                "m_Value": {
-                  "Operation": "Sum",
-                  "TargetType": "CurrentEntity",
-                  "FailSilentlyIfNoTarget": false,
-                  "Getters": []
-                },
-                "m_CombatGroup": "Enemy",
-                "m_RangeInCells": 1
+                "m_Abilities": [
+                  "!bp_7ae09bd99a7f4fa8842d64fb001af19b"
+                ]
               }
             ]
           }
@@ -133,15 +175,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -207,65 +240,6 @@
         }
       },
       {
-        "$type": "efafb8ff343e4071a216fe8fcb17e023, WarhammerCriticalDamageModifierInitiator",
-        "name": "$WarhammerCriticalDamageModifierInitiator$a29feb96-2323-49cb-866f-f7cdc28d1f7a",
-        "m_Flags": "Disabled",
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "PercentCriticalDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 25,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": true
-        },
-        "BonusCriticalDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "BonusCriticalDamageMultipliers": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "purePercentCriticalDamageModifier": {
-          "ValueType": "Simple",
-          "Value": 0,
-          "ValueRank": "Default",
-          "ValueShared": "Damage",
-          "Property": "None",
-          "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
-        },
-        "ModifierDescriptor": "None"
-      },
-      {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
         "name": "$PropertyCalculatorComponent$336f71e6-b9a5-4a49-82a4-638a11cf3a23",
         "m_Flags": 0,
@@ -279,6 +253,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -324,6 +299,7 @@
         }
       }
     ],
+    "Author": "IlyaPolitko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -365,8 +341,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "IlyaPolitko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

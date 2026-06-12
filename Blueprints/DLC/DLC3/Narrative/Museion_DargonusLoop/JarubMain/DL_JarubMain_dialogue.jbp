@@ -1,0 +1,184 @@
+{
+  "AssetId": "707665fbe2394e5488f42892bba73c5d",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Мейнспикер Яруб",
+    "FirstCue": {
+      "Cues": [
+        "!bp_c355bdf4b8fa4c38967574a669014fbd",
+        "!bp_512fff3ad0f24cc19cff3e1a310a0d9a",
+        "!bp_77c93d5749e647998e6b3d98e6b105eb"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": [
+        {
+          "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+          "name": "$StopCutscene$73016547fc794b54a88612ad5b710666",
+          "m_Cutscene": "!bp_a592ed2d12d84e09bd5cedeb80d5167e",
+          "WithUnit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$4226438903f745748ddfae8f124f3441",
+            "Spawner": {
+              "EntityNameInEditor": "JarubVukchik",
+              "_entity_id": "5d169ba4-1318-4590-ac85-873962fe3ee4",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+            }
+          },
+          "m_CheckType": "Params"
+        }
+      ]
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$0ff9de8c305a402d8987b1b0fbb4f497",
+          "Comment": "Если дали наводку Ярубу на бомбежку - он к Штабу",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$bac7444c45ee45c0b0f0ddbec1dadd0f",
+                "Not": false,
+                "m_Etude": "!bp_094df9df9f2242fcb6aa65b2bed079a8",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$7df220ff8a5843b5943658793d110b50",
+                "m_Cutscene": "!bp_d9e8b667348a426a925432baa4e27647",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7fabdc74173b466f923a79c404b584e4",
+          "Comment": "Вернуться к подметанию если никуда не послали",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$d2d84635-f44e-4df6-a05d-c89907a3124e",
+                "Not": true,
+                "m_Etude": "!bp_094df9df9f2242fcb6aa65b2bed079a8",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$3ddca971-15d4-4552-b8a7-b4dc8ab9a605",
+                "Not": true,
+                "m_Etude": "!bp_10edb6d921f345009b0fc9fb75a54ffb",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$4473580d53d4414eafe049249a4cf569",
+                "m_Cutscene": "!bp_a592ed2d12d84e09bd5cedeb80d5167e",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$6ec5b7c4826a4dd982830b7a4aeefe40",
+                        "Spawner": {
+                          "EntityNameInEditor": "JarubVukchik",
+                          "_entity_id": "5d169ba4-1318-4590-ac85-873962fe3ee4",
+                          "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$8589eada-51d2-44a8-b4dd-b388811d0efe",
+                "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$8e900129-a38a-42a1-83f6-d6a7b007898e",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": []
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "OverrideCRForSkillChecks": false,
+    "OverridenCR": 0,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

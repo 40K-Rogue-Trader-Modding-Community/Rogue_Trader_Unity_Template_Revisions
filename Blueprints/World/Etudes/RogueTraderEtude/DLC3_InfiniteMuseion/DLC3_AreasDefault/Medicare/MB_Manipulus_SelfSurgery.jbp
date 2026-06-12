@@ -1,0 +1,154 @@
+{
+  "AssetId": "e589538072b040a8882e79c851d03e27",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$f6ad7401-d768-4e63-9a04-590431cf6e2b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Стартуем катсцену",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7d6c4f7ff596e5e4086531c0f96ac650, Unrecruit",
+              "name": "$Unrecruit$a208fb11613d424aa7ac08d004fe35b1",
+              "m_CompanionBlueprint": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+              "OnUnrecruit": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$b17a018e588c4913b1a443b4cf532251",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "LD_Unit_Eogan_SelfSurgery",
+                  "_entity_id": "6dc065e6-77b5-4458-9455-bccafe4d0903",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Medicare/Medicare_MB_Manipulus_Q1_Mechanics.unity"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$9db62308aadc46aaa08a4f47552a859d",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                    "name": "$FlagUnlocked$902cb30185d442d2a023160b6e9c453a",
+                    "Not": false,
+                    "m_ConditionFlag": "!bp_5738d624c4f4422c81fc02a4391c7875",
+                    "ExceptSpecifiedValues": false,
+                    "SpecifiedValues": []
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$173b4006-73fe-40f1-8084-4efdcb48a97d",
+                    "m_Cutscene": "!bp_87f617d4a6134b6d968088074d94314a",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                    "name": "$HideMapObject$b8f9097e6e7d49a5938f6f8334f70a7c",
+                    "MapObject": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$68de8a42f5f84bc38d47fe285801b03e",
+                      "MapObject": {
+                        "EntityNameInEditor": "SZ_PriceOfLife_dialogue",
+                        "_entity_id": "56129804-1e80-4f0b-96b6-ccdc467d0522",
+                        "SceneAssetGuid": "Assets/Scenes/DLC3/Medicare/Medicare_MB_Manipulus_Q1_Mechanics.unity"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                    "name": "$HideEntity$9d3eab1839324bc0b354408b98fa8bcd",
+                    "Target": {
+                      "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                      "name": "$MapObjectFromScene$33ebc6af4aeb4861ae69feac17af832a",
+                      "MapObject": {
+                        "EntityNameInEditor": "SZ_PriceOfLife_dialogue",
+                        "_entity_id": "56129804-1e80-4f0b-96b6-ccdc467d0522",
+                        "SceneAssetGuid": "b2d6ea03edfedf242b74a7566702f752"
+                      }
+                    },
+                    "Unhide": true
+                  },
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$1c0b7e42-8ab2-4cbb-bd3f-e2e260e26bc3",
+                    "m_Cutscene": "!bp_e2a874230faf4ff3a51a641ef205e1f0",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": []
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_1e62d79858324fd387f879200a38cf7a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [
+      "!bp_35ba730aa3c24fb9ac6ac1aefdae6d90"
+    ],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "AssetId": "0ddae7a99fe04b569724160302d2eb1c",
+  "Data": {
+    "$type": "da11db195c86e0d4dae17a2c03a4ba9a, BlueprintAbility",
+    "PrototypeLink": "751715fa6184484e985bd1cba56ed62d",
+    "m_Overrides": [
+      "Author",
+      "CustomRange",
+      "$WarhammerAbilityAttackDelivery$01caadfa-e94c-4ad7-8ba8-dcfb610227fb",
+      "$AbilityEffectRunAction$4d03c816-4343-4763-b528-e71df1ce6c51",
+      "m_DisplayName",
+      "CanTargetFriends",
+      "DisableLog",
+      "UsingInThreateningArea",
+      "$AbilityCustomAnimationByBuff$283bb6a3-b724-463e-9839-c9704eb6e631",
+      "$AbilityEffectRunAction$95213bb1-5169-4837-b2c8-4bb2a440dc0f",
+      "CombatStateRestriction"
+    ],
+    "Components": [
+      {
+        "$type": "66e032e5cf38801428940a1a0d14b946, AbilityEffectRunAction",
+        "name": "$AbilityEffectRunAction$4d03c816-4343-4763-b528-e71df1ce6c51",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "SavingThrowType": "Unknown",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "41f618cc2e0246ad87356f71ffb72625, ContextActionDealWounds",
+              "name": "$ContextActionDealWounds$8f6212bc2b1254aa98fb2d126ceb9a8c",
+              "Count": {
+                "ValueType": "Simple",
+                "Value": 1,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "224c1eb24ed98e942ae15b9e10e62724, WarhammerEndTurn",
+        "name": "$WarhammerEndTurn$8187d2a2-af1e-41b9-820d-cc75902c097e",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "751715fa6184484e985bd1cba56ed62d",
+          "name": "$WarhammerEndTurn$8187d2a2-af1e-41b9-820d-cc75902c097e"
+        },
+        "m_Overrides": [],
+        "clearMPInsteadOfEndingTurn": true,
+        "Condition": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "m_BuffToCaster": null
+      },
+      {
+        "$type": "ac023e5fb28349e2b8f0c2f50eea3d6a, AbilityTargetsInPatternTrail",
+        "name": "$AbilityTargetsInPatternTrail$25bffcd6-9208-45a8-b888-79c4bd33e032",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "751715fa6184484e985bd1cba56ed62d",
+          "name": "$AbilityTargetsInPatternTrail$25bffcd6-9208-45a8-b888-79c4bd33e032"
+        },
+        "m_Overrides": [],
+        "m_PatternSettings": {
+          "Pattern": {
+            "m_Type": "Circle",
+            "m_Blueprint": null,
+            "m_Radius": 2,
+            "m_Angle": 0
+          },
+          "Targets": "Any",
+          "CastOnSameLevel": false,
+          "m_IgnoreLos": true,
+          "m_UseMeleeLos": false,
+          "m_IgnoreLevelDifference": true,
+          "m_Directional": false,
+          "CalculateAttackFromPatternCentre": false
+        },
+        "m_IncludeDead": false,
+        "m_IncludeCaster": false,
+        "m_IncludeNonUnitTargets": false,
+        "m_Projectile": "!bp_04bb849ed0c24ee38ac7226e2915ebd0",
+        "m_Condition": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "18b4005ab45ded44dbacab84cab0b247, ContextConditionIsMainTarget",
+              "name": "$ContextConditionIsMainTarget$00a01b99-72c0-4584-b916-e615b1f5ae03",
+              "Not": true
+            }
+          ]
+        },
+        "m_CheckNumberOfTargets": false,
+        "m_NumberOfTargets": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": []
+        }
+      },
+      {
+        "$type": "e6da52cf4bc945a1b3276a25991d7a68, WarhammerAbilityAttackDelivery",
+        "name": "$WarhammerAbilityAttackDelivery$5f3cd632-161f-4b4d-983e-852f5db594d1",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "751715fa6184484e985bd1cba56ed62d",
+          "name": "$WarhammerAbilityAttackDelivery$5f3cd632-161f-4b4d-983e-852f5db594d1"
+        },
+        "m_Overrides": [],
+        "WeaponAttack": "Ranged",
+        "Special": "None",
+        "m_IsProjectile": false,
+        "UseBestShootingPosition": true,
+        "ControlledScatter": false,
+        "m_PatternSpreadWithProjectile": false,
+        "AdditionalDamageInstancesCount": 0,
+        "m_PatternSettings": {
+          "Pattern": {
+            "m_Type": "Circle",
+            "m_Blueprint": null,
+            "m_Radius": 0,
+            "m_Angle": 0
+          },
+          "Targets": "Enemy",
+          "CastOnSameLevel": false,
+          "m_IgnoreLos": false,
+          "m_UseMeleeLos": false,
+          "m_IgnoreLevelDifference": false,
+          "m_Directional": false,
+          "CalculateAttackFromPatternCentre": false
+        },
+        "m_DisableWeaponAttackDamage": false,
+        "m_DisableDodgeForAlly": false,
+        "m_DisableOverpenetration": false,
+        "m_AutoHit": false,
+        "m_IsLosDefinedByPattern": false
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "843ba2fac849ed245b2de81a9774230c",
+        "stringkey": "6b6db94d-a9e8-4b82-9856-2290c8abb61c"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "8633362c52a088442a6b05121b1ec90a",
+        "stringkey": "57103454-456d-48c8-8f6e-7772bd69dcc0"
+      }
+    },
+    "m_Icon": {
+      "guid": "0a0470398ef842444addaa37be239452",
+      "fileid": 21300000
+    },
+    "m_AllowNonContextActions": false,
+    "Type": "Weapon",
+    "Range": "Weapon",
+    "CustomRange": 15,
+    "MinRange": 0,
+    "ActionPointCost": 2,
+    "AbilityParamsSource": "Weapon",
+    "PsychicPower": "Minor",
+    "VeilThicknessPointsToAdd": 1,
+    "ParamsSkill": "SkillAthletics",
+    "CooldownRounds": 1,
+    "CanTargetPoint": false,
+    "CanTargetEnemies": true,
+    "CanTargetFriends": true,
+    "CanTargetSelf": false,
+    "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": true,
+    "DisableBestShootingPosition": false,
+    "NeedEquipWeapons": false,
+    "NotOffensive": false,
+    "ShowInDialogue": false,
+    "IsStarshipAbility": false,
+    "EffectOnAlly": "Harmful",
+    "EffectOnEnemy": "Harmful",
+    "m_Parent": null,
+    "Animation": "Directional",
+    "CastInOffHand": false,
+    "UseOnMechadendrite": false,
+    "UsedMechadendrite": "Utility",
+    "m_TargetMapObjects": false,
+    "IsFreeAction": false,
+    "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
+    "m_IsStratagem": false,
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillCauseAttack",
+    "CombatStateRestriction": "NoRestriction",
+    "m_AbilityGroups": [
+      "!bp_1cf206b13141425491c379bc75ef0699"
+    ],
+    "MaterialComponent": {
+      "m_Item": null,
+      "Count": 1
+    },
+    "ResourceAssetIds": [],
+    "m_FXSettings": "!bp_8aec5b50de55475995dc9d9193e29005",
+    "m_AbilityTag": "None",
+    "m_CombatHudCommandsOverride": null
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

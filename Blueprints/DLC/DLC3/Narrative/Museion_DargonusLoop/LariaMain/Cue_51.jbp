@@ -1,0 +1,166 @@
+{
+  "AssetId": "9e2c867571b94c94a34e97c05267284f",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Телепортируем нас на сцену и начинается  DL_JuvennaVox_dialogue\nстартуем DL_OncePerLoop_LariaFirstTalk",
+    "ParentAsset": "166ac455071c441db3a5271f5c4266cc",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "27771f5c-da4f-4996-a24a-a8e39afebda9",
+      "m_OwnerString": "9e2c867571b94c94a34e97c05267284f",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\LariaMain\\Cue_51_Text.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "936004d258436d2459d0339955a70892, ScriptZoneDeactivate",
+          "name": "$ScriptZoneDeactivate$7f500a64764b5b779f916e09cb571315",
+          "ScriptZone": {
+            "EntityNameInEditor": "VoxOnWall",
+            "_entity_id": "091c05cf-af1a-4053-bf7a-29f826c15cbb",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+          }
+        },
+        {
+          "$type": "0e571e9f07a314048afedff605fa53ce, LockFlag",
+          "name": "$LockFlag$87c293841a1a43e9a0026cec561debeb",
+          "m_Flag": "!bp_212186a8b98a45f3bdbde68960673cd4"
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$53d7f07d-6356-424a-a01e-99df3bd30704",
+          "Comment": "Если это первый разговор - катсценой уводим Ларию на место + флаг поднимаем",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$39a9f593-de4b-4e5c-9be9-eef12068aff4",
+                "Not": true,
+                "m_Etude": "!bp_22d111e6c4aa439aad7f587e591d2c33",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$b36423ea-ec83-48e4-b2cd-951b49ecbc41",
+                "m_Cutscene": "!bp_dce47232b91a4b7cb73b773ddfee9a84",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$46adde02-9c94-4452-8e3f-bd80c68b622d",
+                "Etude": "!bp_22d111e6c4aa439aad7f587e591d2c33",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              },
+              {
+                "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+                "name": "$UnlockFlag$41b931d7-4a1f-4856-a21f-be0e78efafb6",
+                "m_flag": "!bp_867173bfce604053a97cb000350a0d51",
+                "flagValue": 0
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$e8c923cadca04561be07abf040c9fb6b",
+          "m_Cutscene": "!bp_133eb4ce9f61494c91fc9f7c42062d0f",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        }
+      ]
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

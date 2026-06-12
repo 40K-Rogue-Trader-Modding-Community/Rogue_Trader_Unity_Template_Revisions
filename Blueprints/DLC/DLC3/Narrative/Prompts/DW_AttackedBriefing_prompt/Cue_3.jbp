@@ -7,7 +7,7 @@
     "Components": [],
     "Author": "Unknown",
     "Comment": "Начинаем космобой с эльдарами",
-    "ParentAsset": "067524fe01934d9b827785119475d905",
+    "ParentAsset": "95d7261f08744fc88fb3fdd861408c1c",
     "ShowOnce": false,
     "ShowOnceCurrentDialog": false,
     "Conditions": {
@@ -44,17 +44,82 @@
       "NotRevealInFoW": false,
       "NoSpeaker": false,
       "DoNotReplaceSpeakerWithErrorSpeaker": false,
-      "m_SpeakerPortrait": null
+      "m_SpeakerPortrait": "!bp_566598ba5d904d0fb8031908d2f538fb"
     },
     "TurnSpeaker": true,
     "IsNarratorText": false,
     "Animation": "None",
     "m_Listener": null,
     "OnShow": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$106668c0-b449-4af8-8c52-211a6b20399a",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$c2d01cb4-0e50-46dc-9dbc-eeaab8965d44",
+            "MapObject": {
+              "EntityNameInEditor": "DW_AttackedBriefing",
+              "_entity_id": "7b594f65-696e-43ae-aa9e-3de96b04a7e2",
+              "SceneAssetGuid": "5d12bc5720c31424f9927f3bd5f30c3b"
+            }
+          },
+          "Unhide": false
+        }
+      ]
     },
     "OnStop": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$79e9b20ef39b4868b0411d29f284b1bc",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$29421760c07641cea97605b1f04bb96c",
+                "Not": false,
+                "m_Etude": "!bp_5bde1907d64245859c8ea1f302fea450",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+                "name": "$TeleportParty$3c807122-6431-4b11-8099-1a698b4dd3cd",
+                "m_exitPositon": "!bp_234b802b343e4dd7886f4e99d5e99b30",
+                "AutoSaveMode": "AfterEntry",
+                "ForcePauseAfterTeleport": false,
+                "AfterTeleport": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+                "name": "$TeleportParty$66378b2d-04e8-47cc-8ee7-eb350b74a6e4",
+                "m_exitPositon": "!bp_2248f5922d1c4a1f8ba9707f9687e7a2",
+                "AutoSaveMode": "AfterEntry",
+                "ForcePauseAfterTeleport": false,
+                "AfterTeleport": {
+                  "Actions": []
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     "Description": {
       "m_Key": "",

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Annotations;
 using Kingmaker.Editor.UIElements.Custom.Base;
+using Kingmaker.Editor.UIElements.Custom.PropertyComponents;
 using Kingmaker.Utility.CodeTimer;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -103,7 +104,6 @@ namespace Kingmaker.Editor.UIElements
 				}
 
 				var propField = propertyDrawer.CreatePropertyGUI(prop) ?? OwlcatProperty.CreateDefault(prop);
-				propField?.Bind(prop.serializedObject);
 
 				var suffixAttribute = drawerType.GetCustomAttribute<PropertyLabelSuffixAttribute>();
 				if (suffixAttribute != null && propField is OwlcatProperty owlcatProperty)
@@ -138,6 +138,8 @@ namespace Kingmaker.Editor.UIElements
 			// now check for base generic versions of the drawers...
 			if (type.IsGenericType)
 				DrawerTypeForType.TryGetValue(type.GetGenericTypeDefinition(), out drawerType);
+            else if (type.IsEnum)
+                DrawerTypeForType.TryGetValue(typeof(Enum), out drawerType);
 
 			return drawerType.Drawer;
 		}

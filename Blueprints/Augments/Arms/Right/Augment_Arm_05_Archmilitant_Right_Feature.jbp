@@ -1,0 +1,256 @@
+{
+  "AssetId": "35f31adc778c438793f7d0e0a74a0748",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "86576af20dee418a9d21e1058a9ed87f",
+    "m_Overrides": [
+      "$WarhammerDamageModifierInitiator$ac91a748-0c43-405b-9d82-c5faa63c21b0",
+      "$WarhammerDamageModifierInitiator$64016b48-5882-4e05-9b89-0530aa305488",
+      "$WarhammerWeaponHitTriggerInitiator$ce5b1b47-ec97-4008-a11f-c5c9492165f1",
+      "$WarhammerWeaponHitTriggerInitiator$d3b2904c-d70c-4c3e-9de0-90b2b2ac6b71",
+      "m_Description",
+      "$RecalculateOnEquipmentChange$48ec0a0b-528d-4fea-9d5e-34212647a03f",
+      "$WarhammerOverrideAbilityApCost$986e144b-cfbf-4e54-ac27-2c7828c4b287",
+      "$TurnBasedModeEventsTrigger$5c036bfc-77d5-43ff-b9bd-980a839e21b2",
+      "$UIPropertiesComponent$c941264a-91b7-4ef5-a091-2574759f47d8",
+      "$PropertyCalculatorComponent$ea3b4b11-9e24-443b-8c57-27776496f957"
+    ],
+    "Components": [
+      {
+        "$type": "b1bd63be736e4001b4fd57a2c26cda42, TwoHandedWeaponsInOneHand",
+        "name": "$TwoHandedWeaponsInOneHand$3e623bca-20d1-40f6-95a3-004c1eb3887f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "86576af20dee418a9d21e1058a9ed87f",
+          "name": "$TwoHandedWeaponsInOneHand$3e623bca-20d1-40f6-95a3-004c1eb3887f"
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_SlotRestriction": "Primary",
+        "m_SourceAnimationStyles": [
+          "BrutalTwoHanded",
+          "TwoHandedHammer"
+        ],
+        "m_TargetAnimationStyle": "BrutalTwoHandedInOneHand"
+      },
+      {
+        "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
+        "name": "$AddFactContextActions$13bd565f-83d6-4812-8703-6e1156cbf6b6",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "86576af20dee418a9d21e1058a9ed87f",
+          "name": "$AddFactContextActions$13bd565f-83d6-4812-8703-6e1156cbf6b6"
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "DisableForLevelUpPreviewUnit": false,
+        "DisableWhenReapplying": false,
+        "Activated": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$c08f30ae-8c17-49e2-95b3-c2e10a13a072",
+              "m_Buff": "!bp_780497b04a0944e59cb57e68bb9775c4",
+              "BuffEndCondition": "RemainAfterCombat",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 1,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "Deactivated": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$bafdbffc-2623-4fa7-bd42-99ccbba32dfc",
+              "m_Buff": "!bp_780497b04a0944e59cb57e68bb9775c4",
+              "RemoveRank": true,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            }
+          ]
+        },
+        "NewRound": {
+          "Actions": []
+        },
+        "RoundEnd": {
+          "Actions": []
+        }
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$5c036bfc-77d5-43ff-b9bd-980a839e21b2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$f704b5a73c834b28a658141e353b33b8",
+              "m_Buff": "!bp_d5b6d489af0d497692958c27365ea6be",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": true,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "2780242c007236140997e7fcaf21ad50",
+        "stringkey": "51293294-2d98-404d-b4a4-8d692d201e1a"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "419c2c17526c29047a8543a01284fa0d",
+        "stringkey": "2dd26266-3c11-488e-880b-f63349cf8320"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": true,
+    "HideInCharacterSheetAndLevelUp": true,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

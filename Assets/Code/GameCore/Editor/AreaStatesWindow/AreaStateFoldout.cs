@@ -51,8 +51,10 @@ namespace Kingmaker.Editor.AreaStatesWindow
 
             _foldout = new OwlcatInspectorFoldout($"{baseKey}.{_state.Name}")
             {
-                TitleLabel = {text = state.Name},
-                style = { backgroundColor = UIElementsResources.GetZebra(stateIndex)}
+                TitleLabel = { text = state.Name },
+                HeaderContainer = { style = { width = new Length(80, LengthUnit.Percent) } },
+                HeaderContentContainer = { style = { width = new Length(20, LengthUnit.Percent) } },
+                style = { backgroundColor = UIElementsResources.GetZebra(stateIndex) }
             };
 
             if (state.Etude == null)
@@ -125,7 +127,7 @@ namespace Kingmaker.Editor.AreaStatesWindow
 
         private static VisualElement CreateBlueprintButton(string label, string tooltip, SimpleBlueprint etude)
         {
-            var etudeLayout = new OwlcatPropertyLayout(OwlcatPropertyLayout.Layout.Horizontal, false)
+            var etudeLayout = new OwlcatPropertyLayout(OwlcatPropertyLayout.Layout.Horizontal)
             {
                 TitleLabel = {text = label},
             };
@@ -136,18 +138,21 @@ namespace Kingmaker.Editor.AreaStatesWindow
                 style = {flexGrow = 1},
                 tooltip = tooltip,
             };
-            etudeButton.RegisterCallback<ClickEvent>(evt =>
+            
+            etudeButton.RegisterCallback<ClickEvent, SimpleBlueprint>((evt, etudeParam) =>
             {
                 if (evt.ctrlKey)
                 {
-                    Selection.activeObject = BlueprintEditorWrapper.Wrap(etude);
+                    Selection.activeObject = BlueprintEditorWrapper.Wrap(etudeParam);
                 }
                 else
                 {
-                    BlueprintProjectView.Ping(etude);
+                    BlueprintProjectView.Ping(etudeParam);
                 }
-            });
+            }, etude);
+            
             etudeLayout.ContentContainer.Add(etudeButton);
+            
             return etudeLayout;
         }
 
@@ -165,9 +170,8 @@ namespace Kingmaker.Editor.AreaStatesWindow
             _foldout.Bind(etudeSo);
 
             // Add comment property of the etude
-            var commentElement = new OwlcatTextField
+            var commentElement = new OwlcatTextField(multiline: true)
             {
-                multiline = true,
                 tooltip = "Comment from state etude.",
                 style = {minHeight = 20},
                 bindingPath = EtudeCommentPropertyPath

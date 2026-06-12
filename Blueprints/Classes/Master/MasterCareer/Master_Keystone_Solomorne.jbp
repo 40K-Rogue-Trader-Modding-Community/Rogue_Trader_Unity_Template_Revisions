@@ -23,6 +23,7 @@
         "m_Overrides": [
           "m_Facts"
         ],
+        "Comment": "",
         "m_Facts": [
           "!bp_91469656b6fb406f9d9abd036b502b05",
           "!bp_469ab777f2284aa18e1d242db2f9cc64",
@@ -46,6 +47,7 @@
           "name": "$AddFactsToPet$43cf47b9-27c3-456b-8f88-e424b1f48b75"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_22daa3b8de304cf28719f21f817575f3",
           "!bp_36faf0af70634955a243902b796d0eae",
@@ -70,6 +72,7 @@
           "name": "$ChangeUnitLevelTrigger$16b56cbe-ba81-4d59-824d-33a6f871d87e"
         },
         "m_Overrides": [],
+        "Comment": "",
         "ActionOnChangeUnitLevel": {
           "Actions": [
             {
@@ -143,6 +146,7 @@
           "name": "$AddFeatureIfHasFact$4dbf33dc-33ab-4a35-8355-37def9c9d42a"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_dd6948ee596346a69733d0bb107c2f42",
         "m_Feature": "!bp_38ed47c3d8df4ee7a128b713a51cb40b",
         "Not": false
@@ -156,6 +160,7 @@
           "name": "$AddFeatureIfHasFact$c6233bfa-6518-46cc-bfb6-0d8aed026a2e"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_06f4f78a9c1a472b85cd79a9a142153d",
         "m_Feature": "!bp_e202927235194d9ba695ea250e904cf0",
         "Not": false
@@ -169,6 +174,7 @@
           "name": "$AddFeatureIfHasFact$b3fdbece-ab5e-4bcb-8a1a-298fa06bd0bd"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_1529e5a0e7844bf3bb8d0cc0501264d4",
         "m_Feature": "!bp_ce95a986c4044c0ca07fd0db9915388c",
         "Not": false
@@ -182,6 +188,7 @@
           "name": "$AddFeatureIfHasFact$081909be-d209-4d30-8326-d6965b051aac"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_33725d84e95e4323ac46d8fbf899b250",
         "m_Feature": "!bp_e272401f843a4fa29278e74dbb9c5731",
         "Not": false
@@ -195,9 +202,91 @@
           "name": "$AddFeatureIfHasFact$70ed3f03-3c18-4fbd-9c3a-57d5d736e10e"
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_CheckedFact": "!bp_974496d72fbe4329b438ee15cf004bd2",
         "m_Feature": "!bp_582bb17c04754121b4b31647865dfd32",
         "Not": false
+      },
+      {
+        "$type": "4154c6f5c7b64b23a2102278fc83645b, WarhammerAbilityRestriction",
+        "name": "$WarhammerAbilityRestriction$4e4850b9-0528-4522-a81a-3c8f191a295b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "79d7b9273feb4554b09c82f69c0b62d6",
+          "name": "$WarhammerAbilityRestriction$4e4850b9-0528-4522-a81a-3c8f191a295b"
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "b742461a99f449458cd0df048e50c1fe, ContextConditionGetter",
+                "name": "$ContextConditionGetter$ffadf943-0a00-466f-9b35-1016fddc0ec0",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "Conditions": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+                      "name": "$IsInCombat$80d4346f-55d4-47a3-afe9-8b6734903e9c",
+                      "Not": true,
+                      "Unit": {
+                        "$type": "9e61684a16394f879f8b2de216fcb960, PetByOwner",
+                        "name": "$PetByOwner$5ddc2404-11b5-4509-9af1-4ac9fb7a6489",
+                        "OwnerEvaluator": {
+                          "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                          "name": "$CasterUnit$bfc4a0a9-e7ae-4153-8de6-483ce8a93e43"
+                        }
+                      },
+                      "Player": false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "m_AbilityRestrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                "name": "$CheckAbilityGroupGetter$d2c5a33c-6475-443a-87f2-47ed0484377b",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": false,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Groups": [
+                  "!bp_ebd03dd1480a4abaa561ce4ed9ef9ba5"
+                ]
+              }
+            ]
+          }
+        }
       }
     ],
     "Author": "IlyaPolitko",

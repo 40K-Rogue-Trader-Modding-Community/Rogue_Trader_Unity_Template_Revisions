@@ -1,0 +1,156 @@
+{
+  "AssetId": "0794f4a6c9ec4e408c4eaf40e1ca711e",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Стартует DL_IzimondBlackmailed\nКомплитим Obj2_Add_SpeakIzimond",
+    "ParentAsset": "6d48e82333aa457d824f303ee89a3f9c",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "d2fbb95749d8f9d4f9aeacce1518a410",
+        "stringkey": "e0f99860-05e6-4931-9b08-0660acfea47c"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$4a712495956f40a3bb44c18b8f336f94",
+          "Status": "Complete",
+          "m_Objective": "!bp_09baf557e4f94a12b6a6d3c22864a246",
+          "StartObjectiveIfNone": false
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$3988258ff8024c748d88bf450c32754f",
+          "m_flag": "!bp_0fa5fb069fc64511acbdec3856f29fc8",
+          "flagValue": 0
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$d4f8ecd18ee34ff59a0b6d068ddd62e7",
+          "Etude": "!bp_da38058272e44bd6959c12ac3337522d",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$3a577588-a35a-4a9b-a5bf-6373b93fe77b",
+          "Comment": "Если не знаем причин и про Камиллу - комплитим не полностью квест",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$07be49ab-de77-4b91-a3c6-69627d8ab5ca",
+                "Not": true,
+                "m_Etude": "!bp_13e8171461fb44a5903848a7dbe57e69",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$67e01d3e-a1c9-4ca4-afad-bac09a26c7b5",
+                "Status": "Fail",
+                "m_Objective": "!bp_3b46eb1ffc1b4fc1a61f02568389d2d4",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                "name": "$GiveObjective$c60cc7a1-3c3c-4f9e-845e-a6f7ec289769",
+                "m_Objective": "!bp_6342f0dbd98e46d69dcaad1936cca05a"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [
+      "!bp_218ac058abb54d45a7b078d6ef2106d8"
+    ],
+    "Continue": {
+      "Cues": [],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

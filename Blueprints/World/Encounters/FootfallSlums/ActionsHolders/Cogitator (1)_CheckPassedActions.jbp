@@ -11,41 +11,13 @@
       "Actions": [
         {
           "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-          "name": "$PlayCutscene$8ba3e10c-6524-4ce8-acbf-dac34e9d9729",
-          "m_Cutscene": "!bp_cab70a6ec0794b1da46ae33b10c5a3d0",
+          "name": "$PlayCutscene$6f2f9548a287432793c9e2593d4ef5d4",
+          "m_Cutscene": "!bp_beb644e5e2cc4878aba7e46e0b94268f",
           "PutInQueue": false,
           "CheckExistence": true,
           "Parameters": {
             "Parameters": []
           }
-        },
-        {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$8a9d9706-46c9-42d8-924d-f227df460c75",
-          "MapObject": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$d05c32ba-9cdf-4ca4-942e-d1c675ae4ecf",
-            "MapObject": {
-              "EntityNameInEditor": "LiftFake",
-              "_entity_id": "80dea9ee-2ec8-4b3b-817e-a855f6099730",
-              "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
-            }
-          },
-          "Unhide": false
-        },
-        {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$df4748d8-a724-4f73-931b-cba4e36d7f13",
-          "MapObject": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$ba3cc022-89a9-4e35-b0e6-a660c2317c17",
-            "MapObject": {
-              "EntityNameInEditor": "Lift2",
-              "_entity_id": "8046901c-6782-48b3-b6ea-43182c56978c",
-              "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
-            }
-          },
-          "Unhide": true
         },
         {
           "$type": "675865eb3bfd09a46beb0a7283774f0f, SwitchInteraction",
@@ -54,13 +26,76 @@
             "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
             "name": "$MapObjectFromScene$88050d7f-3382-4ea1-a789-9f5b8813a9a0",
             "MapObject": {
-              "EntityNameInEditor": "Cogitator (1)",
+              "EntityNameInEditor": "ActivateTheElevator",
               "_entity_id": "1c807385-a247-4d73-970f-c29765441e90",
               "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
             }
           },
           "EnableIfAlreadyDisabled": false,
           "DisableIfAlreadyEnabled": true
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$567bbc0e81f54550bd5d8eca4f8867f4",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$36004b92720d44b489c2e118dc01732a",
+            "MapObject": {
+              "EntityNameInEditor": "ServoskullElevatorHack",
+              "_entity_id": "46110fe1-3b4a-405f-a01b-8386011c8625",
+              "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$01f7b07ae79d442c9a27257ebf5e3f7c",
+          "Target": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$0344a71d2254412cb73f7658f868a8f8",
+            "MapObject": {
+              "EntityNameInEditor": "ServoskullElevatorPOI",
+              "_entity_id": "710e1fe9-ef05-4dca-bbc3-7314bdf76038",
+              "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$69f11a6bcdc74d39bb2a9b71eb56b3a8",
+          "Comment": "Player has Servoskull pet",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$9cfed717fc1845f7a6d6d5b344201ccd",
+                "Not": true,
+                "Target": {
+                  "$type": "fb04b5db8f2a4d399495aa6c2cbd6325, PartyPetByType",
+                  "name": "$PartyPetByType$e6ed50f0ead04239a695a371bf2e07bc",
+                  "m_PetType": "ServoskullSwarm",
+                  "m_PriorityConfig": "!bp_c33d7cb0dea246b5ab5ad13741b79a0e"
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                "name": "$StopCutscene$f6b251ff8fce40a5b8b4e9eb0abd3919",
+                "m_Cutscene": "!bp_98122790d2154760bc5d4c9810db8806",
+                "WithUnit": null,
+                "m_CheckType": "Params"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

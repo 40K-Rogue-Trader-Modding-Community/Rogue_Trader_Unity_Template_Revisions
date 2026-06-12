@@ -1,0 +1,200 @@
+{
+  "AssetId": "88d150c733bb43889c6d0445b78bfd0c",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$ca8b38f948d54bce808d163bcb5d7b49",
+          "Comment": "Check the elevator state",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+                "name": "$EqualTo$6e6275e7-6704-4f74-a089-8c70ba27aa59",
+                "Not": false,
+                "FloatValues": false,
+                "Value": {
+                  "$type": "19adcd35ecaa43cdbc3b028092388994, ControllableState",
+                  "name": "$ControllableState$874ca6f6-e8c3-4932-9e67-395c6743b547",
+                  "IdOfObject": {
+                    "EntityNameInEditor": "FootfallSlumsElevator",
+                    "_entity_id": "74d55767-19d8-4ebc-8fb8-6dc382ffdabe",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "MinValue": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$52803589-cc32-4a9f-b2d7-dbe7f94e9925",
+                  "Value": 0
+                },
+                "FloatValue": null,
+                "FloatMinValue": null
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$e4220db8-15b7-4b1f-8257-0e22cde3d3ca",
+                "Comment": "Elevator moves down",
+                "State": 1,
+                "IdOfObject": {
+                  "EntityNameInEditor": "FootfallSlumsElevator",
+                  "_entity_id": "74d55767-19d8-4ebc-8fb8-6dc382ffdabe",
+                  "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$19a15055704740a99ef21bdee7619236",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$a286be7e51e240d1a964a9f93ff28990",
+                  "MapObject": {
+                    "EntityNameInEditor": "UpperElevatorObstacles",
+                    "_entity_id": "3bad0b49-653e-4b09-b2aa-b2612559aa36",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$69ea5ff8-e8ad-45cf-be6a-040951799eba",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$b11c2bc1-0741-4208-a77a-f578eeec3db1",
+                  "MapObject": {
+                    "EntityNameInEditor": "LowerElevatorObstacles",
+                    "_entity_id": "c512764d-4c13-4a9b-aa8b-7b7056bfad60",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": true
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$c5fbcc58-fe4a-4936-84f7-4a9a3b3cec60",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$ddd88b9df13244e68dc56cef427b4d35",
+                  "MapObject": {
+                    "EntityNameInEditor": "Lift",
+                    "_entity_id": "6d805093-b4dc-4ffd-9a07-70defb873efb",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$7328d707-fe6e-4a14-ac94-9cd6cf358f7a",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$288781ae-dac6-4b44-8dfb-98374da4f7fc",
+                  "MapObject": {
+                    "EntityNameInEditor": "Lift2",
+                    "_entity_id": "8046901c-6782-48b3-b6ea-43182c56978c",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$cb2e7947-92aa-4c0d-8f23-49d4bf96863b",
+                "Comment": "Elevator moves up",
+                "State": 0,
+                "IdOfObject": {
+                  "EntityNameInEditor": "FootfallSlumsElevator",
+                  "_entity_id": "74d55767-19d8-4ebc-8fb8-6dc382ffdabe",
+                  "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$800b54d2-4511-4ceb-95ab-b7f1b7313295",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$66a71690-0cfc-4826-84a0-43d0098975a5",
+                  "MapObject": {
+                    "EntityNameInEditor": "UpperElevatorObstacles",
+                    "_entity_id": "3bad0b49-653e-4b09-b2aa-b2612559aa36",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": true
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$14d8432c-6991-4b8a-8c1c-d2227e31db8a",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$c77678f9-b8ee-49e1-8171-9fac341b380b",
+                  "MapObject": {
+                    "EntityNameInEditor": "LowerElevatorObstacles",
+                    "_entity_id": "c512764d-4c13-4a9b-aa8b-7b7056bfad60",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": false
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$e9453e85-3f5d-4500-8ea2-491c51c5ff68",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$b4f157e6b9b740a6b64a76a7932e7cf0",
+                  "MapObject": {
+                    "EntityNameInEditor": "Lift",
+                    "_entity_id": "6d805093-b4dc-4ffd-9a07-70defb873efb",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": true
+              },
+              {
+                "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+                "name": "$HideEntity$4c3fa7b6-b441-44bf-9a3e-89f4166c84a8",
+                "Target": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$3b92f68f-a28c-482e-a7c4-b707cd925f41",
+                  "MapObject": {
+                    "EntityNameInEditor": "Lift2",
+                    "_entity_id": "8046901c-6782-48b3-b6ea-43182c56978c",
+                    "SceneAssetGuid": "338c8e65f59d31b4797d431d58ba0d8f"
+                  }
+                },
+                "Unhide": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

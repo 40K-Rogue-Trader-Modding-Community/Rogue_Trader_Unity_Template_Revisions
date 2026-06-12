@@ -1,0 +1,435 @@
+{
+  "AssetId": "2569d35d1ce24b0f8df6217c3faaa48a",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$ae8fa1e4-3734-4426-8d34-54c14338e323",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+              "name": "$SummonPoolUnits$e0503256-30cd-42cd-8bc9-d06ef27602b6",
+              "m_SummonPool": "!bp_9eef72446ebd4776b7172fbc19382d5a",
+              "Conditions": {
+                "Operation": "And",
+                "Conditions": []
+              },
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$b8a3716e-7963-42c1-bef8-7b2d161f1ff8",
+                    "Target": {
+                      "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                      "name": "$SummonPoolUnit$420472ef-a053-428e-a709-c272d31d5872"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$ab8118b2-381d-4f31-b23b-cb8af40ef51a",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$746be1de-9bd2-4249-b761-ae2aeac64e33",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Augmetator_2nd_Scene",
+                  "_entity_id": "1b1e499b-1b9d-444e-b5d1-a2abc7da0e2d",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              },
+              "Unhide": true,
+              "Fade": false
+            },
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$c0b14ab0-f567-4319-887e-cd17242da2de",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$03fbf3f2-223a-49f9-b329-73273122629d",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Vivisector_2nd_Scene",
+                  "_entity_id": "f0f362f6-b14b-415c-8f70-31daae47401f",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              },
+              "Unhide": true,
+              "Fade": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$1a41aec08a774e2387e0b0a02d6125d7",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$99a7da4ecba74418aac914c131a5ac8d",
+                    "Not": false,
+                    "m_Etude": "!bp_52158b8ecf78478ea5d55266726413bb",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$54784893b3f24b87b44031abc34def5a",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$c4bb622b5aa1466c93448f96f70d4838",
+                      "Spawner": {
+                        "EntityNameInEditor": "LD_Unit_Vivisector_2nd_Scene",
+                        "_entity_id": "f0f362f6-b14b-415c-8f70-31daae47401f",
+                        "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                      }
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "LD_Locator_Vivisector_Idle_Position",
+                      "_entity_id": "f227fd46-4bdc-4751-8b51-17ae3669a8a7",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Medicare/Medicare_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": {
+                      "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                      "name": "$LocatorPosition$3840c3009251442cbbd035db1701c28c",
+                      "Locator": {
+                        "EntityNameInEditor": "LD_Locator_Vivisector_Idle_Position",
+                        "_entity_id": "f227fd46-4bdc-4751-8b51-17ae3669a8a7",
+                        "SceneAssetGuid": "d7ba03af8bdc36a4b86493799fd880ed"
+                      },
+                      "Offset": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                      }
+                    },
+                    "m_PrecisePosition": false,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$2ca442ff9f9c4a33a4e982bbefbfc947",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "LD_Locator_Vivisector_Idle_Position",
+                        "_entity_id": "f227fd46-4bdc-4751-8b51-17ae3669a8a7",
+                        "SceneAssetGuid": "d7ba03af8bdc36a4b86493799fd880ed"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$5e3323e5807a4d60a1774fc975786db0",
+                    "m_Cutscene": "!bp_c3201d01a1ce4f568d91fadd97ffc097",
+                    "WithUnit": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$2405cab4f42346799fc47f38d54b15d7",
+                      "Spawner": {
+                        "EntityNameInEditor": "LD_Unit_Vivisector_2nd_Scene",
+                        "_entity_id": "f0f362f6-b14b-415c-8f70-31daae47401f",
+                        "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                      }
+                    },
+                    "m_CheckType": "Params"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$57a43e9d-0b80-4a5d-b23f-0f3f82bcb446",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$296b5303c9304ccc8395540606c576ca",
+                      "Spawner": {
+                        "EntityNameInEditor": "LD_Unit_Augmetator_2nd_Scene",
+                        "_entity_id": "1b1e499b-1b9d-444e-b5d1-a2abc7da0e2d",
+                        "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                      }
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "LD_Locator_Augmentator_Idle_Position",
+                      "_entity_id": "4849ad7a-382b-4737-bbaf-50df90f775c0",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Medicare/Medicare_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": {
+                      "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                      "name": "$LocatorPosition$b17dc3779bcb45729a56db59fc2d0979",
+                      "Locator": {
+                        "EntityNameInEditor": "LD_Locator_Augmentator_Idle_Position",
+                        "_entity_id": "4849ad7a-382b-4737-bbaf-50df90f775c0",
+                        "SceneAssetGuid": "d7ba03af8bdc36a4b86493799fd880ed"
+                      },
+                      "Offset": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                      }
+                    },
+                    "m_PrecisePosition": false,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$ecb3582f043e49f2ae7947707061d865",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "LD_Locator_Augmentator_Idle_Position",
+                        "_entity_id": "4849ad7a-382b-4737-bbaf-50df90f775c0",
+                        "SceneAssetGuid": "d7ba03af8bdc36a4b86493799fd880ed"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$98e1f0ff-c82b-4836-8fb4-78863e5bfc13",
+                    "m_Cutscene": "!bp_c3201d01a1ce4f568d91fadd97ffc097",
+                    "WithUnit": {
+                      "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                      "name": "$UnitFromSpawner$c78656a672214380a8d55a275ce16dc4",
+                      "Spawner": {
+                        "EntityNameInEditor": "LD_Unit_Augmetator_2nd_Scene",
+                        "_entity_id": "1b1e499b-1b9d-444e-b5d1-a2abc7da0e2d",
+                        "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                      }
+                    },
+                    "m_CheckType": "Params"
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+              "name": "$UnlockFlag$bb3aaf66ab785b7b80b2bbd3d4294968",
+              "m_flag": "!bp_275a17ceadfe4209972f15e4ce9ad1e7",
+              "flagValue": 1
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$ce275b9c-c5a9-4e75-b2b5-7f6e6546a918",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$a4ec294d4e0a42bb80d2b307339e85b7",
+              "Not": false,
+              "m_Etude": "!bp_400b13e8ecb74554a0d64340391e04aa",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "f2def0549b9944738fe73d6c85d551b1, RemoveMechadendriteFromUnit",
+              "name": "$RemoveMechadendriteFromUnit$77a60916e07e4905b42ab4b493eb3ad0",
+              "m_ItemToGive": "!bp_82526c450b3446e186c82aa82ebd51d4",
+              "UnequipFrom": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$7e70fa147f354a1ea51ae09b85df3b8d",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Augmetator_2nd_Scene",
+                  "_entity_id": "1b1e499b-1b9d-444e-b5d1-a2abc7da0e2d",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              }
+            },
+            {
+              "$type": "f2def0549b9944738fe73d6c85d551b1, RemoveMechadendriteFromUnit",
+              "name": "$RemoveMechadendriteFromUnit$c7e4c704-c773-4681-9b76-b1c0706af13c",
+              "m_ItemToGive": "!bp_effbcfc5ea0749ffa992448ca119af76",
+              "UnequipFrom": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$60c57e7f-4c94-45a2-81e6-d2ab4b14dc40",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Augmetator_2nd_Scene",
+                  "_entity_id": "1b1e499b-1b9d-444e-b5d1-a2abc7da0e2d",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$9b1a7ed8-1407-42e9-bff1-f00622d6f635",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$13d9fa69156244d6936c53a269fd90f5",
+              "Not": false,
+              "m_Etude": "!bp_19247e97e2b847f2b3800ea68d5657ad",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$c1b4adb55d10481eaf5d0687febbc795",
+              "Unit": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$13b073683d40415d9cdf70b2128de11c",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Vivisector_2nd_Scene",
+                  "_entity_id": "f0f362f6-b14b-415c-8f70-31daae47401f",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              },
+              "m_Fact": "!bp_b399aa7aa6a445dca7636798bd822eee"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$fb0bea9e-e844-4c75-a7a5-9627d82e47b7",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$0c53598f6153423da8733a92fd4936e9",
+              "Not": false,
+              "m_Etude": "!bp_aca04c5a6e944f77b35fefbfffe195c7",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": true
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+              "name": "$AddFact$cd3a9bfaed2c4770bbf04bf5518bb587",
+              "Unit": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$be61a1df4f654e1a851f43d531fd9ab1",
+                "Spawner": {
+                  "EntityNameInEditor": "LD_Unit_Vivisector_2nd_Scene",
+                  "_entity_id": "f0f362f6-b14b-415c-8f70-31daae47401f",
+                  "SceneAssetGuid": "4ee574ea46209fc4198d3583b971499a"
+                }
+              },
+              "m_Fact": "!bp_fcb4b15864cd4c25917e0e4dc542f4c2"
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_1e62d79858324fd387f879200a38cf7a",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

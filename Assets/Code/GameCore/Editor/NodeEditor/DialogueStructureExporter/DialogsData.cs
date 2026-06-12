@@ -98,10 +98,10 @@ namespace LocalizationTracker.Data.Shared
                         Id = GetNicePath(bpAnswer);
                         Text = new TextString()
                         {
-                            Key = LocalizedString.Dereference(bpAnswer.Text)?.Key
+                            Key = LocalizedString.Dereference(bpAnswer.LocalizedStringText)?.Key
                         };
                         
-                        if (bpAnswer.Text?.Shared != null)
+                        if (bpAnswer.LocalizedStringText?.Shared != null)
                         {
                             Shared = true;
                         }

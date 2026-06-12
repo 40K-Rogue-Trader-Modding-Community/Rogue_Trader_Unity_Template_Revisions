@@ -1,0 +1,499 @@
+{
+  "AssetId": "0c3c29bd68f84f179c199d20c607f0eb",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$529510a0-2a06-4c86-b3bb-01d51cc7dd3d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "первый спавн предка",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$e9ed9281-31f7-4ce9-945e-78ca5c5d1074",
+              "Not": false,
+              "m_Etude": "!bp_4192f553ce4742fc9b15f631e38d42e8",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$e0406f21-8b2d-483f-a8be-506b8b255f98",
+              "Not": false,
+              "m_Etude": "!bp_e3e242cdffcb445f83aa7494dab919f6",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+              "name": "$Spawn$224a2b70-f240-4dd3-a910-c0c9967220a5",
+              "Spawners": [
+                {
+                  "EntityNameInEditor": "Ancestor_Spawner",
+                  "_entity_id": "7c26df73-6804-4e5b-8769-fe9d775d096c",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_DLC3_Mechanics.unity"
+                }
+              ],
+              "ActionsOnSpawn": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+              "name": "$StartEtude$cc137aaf95b64dd9b8be14fedf44acc5",
+              "Etude": "!bp_1ead4cb9eca64b1e94bc0e36ee6bfa12",
+              "EtudeEvaluator": null,
+              "Evaluate": false,
+              "StartImmediately": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$ab601172-1294-4fbf-8922-e8076588df25",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "первый спавн архмилитанта если выбрали такого на заркове",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$dc692a6be7114e90aa8785ff768d0633",
+              "Not": true,
+              "m_Etude": "!bp_2fb88f5e73224882bcdae0c727990734",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$3d5d61979cfd4ad9a595578fb7b10a5f",
+              "Not": false,
+              "m_Etude": "!bp_a0bf52ab74144d179a04d2ff74fece22",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$4d6e3524-69b2-45fb-a144-a2c7443a82fb",
+              "Comment": "спавним батошски если жив",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$7cfe888c-6535-4a1e-a8c1-866ef2e91c89",
+                    "Not": false,
+                    "m_Etude": "!bp_a6c7d001822a423da335c7a1e7ae5bf9",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$ea5b8342cc864ca1930c8784aaccfb3b",
+                    "Not": true,
+                    "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$6670cc2b-1dba-43eb-b442-bbc557fac638",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "Batoshski_Spawer",
+                        "_entity_id": "c6030f3c-9ff6-4fa5-b22a-e511082d695e",
+                        "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_DLC3_Mechanics.unity"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$bc4ea6a9245a4fd198c5ec4537f61ce2",
+                    "Etude": "!bp_53a1095a71884efabded2855b7a91cdc",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$b95e033c375f41d1ac45ab511d73d484",
+              "Comment": "спавним дунавски если жива",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$9bde3e81-2c6a-46bf-b25b-4c9680faf4c9",
+                    "Not": false,
+                    "m_Etude": "!bp_867946d22e4a4627aa69f3c5fb8912bd",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  },
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$b3db4d7f-1fa2-42d0-8afb-a2958b4c938b",
+                    "Not": true,
+                    "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+                    "name": "$Spawn$b7cadedf-55b1-4648-94a0-f0a98f3dd2cf",
+                    "Spawners": [
+                      {
+                        "EntityNameInEditor": "Dunavski_Spawer",
+                        "_entity_id": "b250581f-3b06-4632-8cb5-55f927265874",
+                        "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_DLC3_Mechanics.unity"
+                      }
+                    ],
+                    "ActionsOnSpawn": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$7fd6f26f-c23e-4b1b-8b6f-6060ddcdeb43",
+                    "Etude": "!bp_53a1095a71884efabded2855b7a91cdc",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$1460a7f9-c0ab-4f26-b5b8-bca2c24814c2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Знаем про тайник - анхайдим кнопку",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$0b28de9093ad453aa5b9f6eee236543c",
+              "Not": false,
+              "m_Etude": "!bp_a4a06798e96d44c79c6b15c6323aff2c",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$8c366f76-7fe1-4ffb-bd05-f83d59e87fbb",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$baa41bd4-1e83-4e63-a87f-7517ea137754",
+                "MapObject": {
+                  "EntityNameInEditor": "SecretsOfTheHead",
+                  "_entity_id": "4c84c584-9cd3-439a-bbd3-d7b11e9534fd",
+                  "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$9cc2ab5f-742e-4b60-a056-cb78aafa535f",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Себериана отдали Тразину - скрыть его с мостика и закомплитить его дефолт-этюд",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$cd71d7ba246547ae8a65eb46fa27e9ed",
+              "Not": false,
+              "m_Etude": "!bp_1ead4cb9eca64b1e94bc0e36ee6bfa12",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            },
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$9f22af51ecdd4d9d83e4571859ce1915",
+              "Not": false,
+              "m_Etude": "!bp_37b49c96aeab4457addcc16b9532a3a2",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$cc7c186f59574586907e5848470b57d3",
+              "Target": {
+                "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                "name": "$UnitFromSpawner$a2c9f88e72864764a53b285d63ac6e10",
+                "Spawner": {
+                  "EntityNameInEditor": "Ancestor_Spawner",
+                  "_entity_id": "7c26df73-6804-4e5b-8769-fe9d775d096c",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_DLC3_Mechanics.unity"
+                }
+              },
+              "Unhide": false,
+              "Fade": false
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$460db91b8c8443deb377756e0eca5e48",
+              "Etude": "!bp_1ead4cb9eca64b1e94bc0e36ee6bfa12",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$da11dfc7-6ccb-4531-bb1f-bdb7c7418723",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Тразин украл осколок",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$5cb33302b69546c986bf92a36ffa1f62",
+              "Not": false,
+              "m_Etude": "!bp_c3d7df29f47547cf9c918d8e162c9a62",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+              "name": "$ControllableActionSetActive$defd17e3-730c-4e34-8a91-910eb968aa77",
+              "Active": false,
+              "IdOfObject": {
+                "EntityNameInEditor": "dead_world_medium_stone_05",
+                "_entity_id": "419d4e02-8754-4b96-98f5-1341d717bda2",
+                "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_RTCabin_StaticForArt.unity"
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$4c06918e-e113-4151-a7d2-572ec0f514b2",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$04926a23-a017-49c0-9eac-86066e7f695a",
+                "MapObject": {
+                  "EntityNameInEditor": "Bark_TheodoraRoom01",
+                  "_entity_id": "ebc5fc87-13c9-4d92-b5e9-06f1c8c7d66f",
+                  "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$9b2832a5-17bc-40df-a123-c379c2e751cc",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Игрок вернул осколок на корабль",
+        "m_Once": true,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$040bb42b4b1a471598325864d892ea17",
+              "Not": false,
+              "m_Etude": "!bp_c3d7df29f47547cf9c918d8e162c9a62",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": false,
+              "CompletionInProgress": false,
+              "Completed": true
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+              "name": "$ControllableActionSetActive$5eadd89f-57ca-4823-9c95-6b5f4f7e0cee",
+              "Active": true,
+              "IdOfObject": {
+                "EntityNameInEditor": "dead_world_medium_stone_05",
+                "_entity_id": "419d4e02-8754-4b96-98f5-1341d717bda2",
+                "SceneAssetGuid": "Assets/Scenes/Chapter_1/VoidshipBridge/VoidshipBridge_RTCabin_StaticForArt.unity"
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$33990496-55a8-4eb5-bc0e-f1668d187a4b",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$d0fa6bc1-965a-4fae-a995-9beedc6a43bf",
+                "MapObject": {
+                  "EntityNameInEditor": "Bark_TheodoraRoom01",
+                  "_entity_id": "ebc5fc87-13c9-4d92-b5e9-06f1c8c7d66f",
+                  "SceneAssetGuid": "f879d2949dedb96429fb742e1149125c"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_342d03be1566469eb7340e117300364f",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": "!bp_255859109cec4a042ade1613d80b25a4",
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [
+      "!bp_0d778b5d8e624195958f6e15e48464e0"
+    ],
+    "m_StartsWith": [
+      "!bp_d0dd1bde7b584d8d94ff767404367bcd",
+      "!bp_b447d18c44834eeea5765387f11753ca"
+    ],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

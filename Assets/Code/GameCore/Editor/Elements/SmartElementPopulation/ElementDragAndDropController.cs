@@ -13,7 +13,9 @@ namespace Kingmaker.Editor.Elements.SmartElementPopulation
 {
 	public static class ElementDragAndDropController
 	{
-		public static readonly GUIStyle PreDropStyle = EditorStyles.foldoutPreDrop;
+		private static GUIStyle _foldoutPreDrop;
+		
+		public static GUIStyle PreDropStyle => _foldoutPreDrop ??= new GUIStyle(EditorStyles.foldoutPreDrop);
 
 		private static EventType? s_CurrentEventType;
 
@@ -42,14 +44,16 @@ namespace Kingmaker.Editor.Elements.SmartElementPopulation
 			}
 
 			elementFactories.Clear();
-			var draggedObjects = DragManager.Instance.DragInProgress
-				? DragManager.Instance.UnityObjects
-				: DragAndDrop.objectReferences;
+			var draggedObjects = DragManager.Instance.DragInProgress ? 
+				DragManager.Instance.UnityObjects : DragAndDrop.objectReferences;
 
-			if (draggedObjects.Length != 1)
+			if (draggedObjects == null || draggedObjects.Length != 1)
+				return;
+			
+			if (draggedObjects[0] == null)
 				return;
 
-			foreach (var source in GetPotentialSources(draggedObjects[0]))
+			foreach (object source in GetPotentialSources(draggedObjects[0]))
 			{
 				var sourceType = source.GetType();
 				var factories = ElementFactoriesProvider.Instance.FindFactories(elementType, sourceType);
@@ -57,9 +61,7 @@ namespace Kingmaker.Editor.Elements.SmartElementPopulation
 					continue;
 
 				foreach (var factory in factories)
-				{
 					elementFactories.Add(new ElementFactoryWithSource(factory, source));
-				}
 			}
 		}
 

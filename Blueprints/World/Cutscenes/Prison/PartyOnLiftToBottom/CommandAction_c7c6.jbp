@@ -11,16 +11,30 @@
       "Operation": "And",
       "Conditions": [
         {
-          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
-          "name": "$FlagUnlocked$7e63af6e8aa94718ab4ff51398bb56fe",
+          "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+          "name": "$EqualTo$9266593a2beb4a2bbef8eadec964f166",
           "Not": false,
-          "m_ConditionFlag": "!bp_e0abcef18441432ead5fd9f44144082b",
-          "ExceptSpecifiedValues": false,
-          "SpecifiedValues": []
+          "FloatValues": false,
+          "Value": {
+            "$type": "19adcd35ecaa43cdbc3b028092388994, ControllableState",
+            "name": "$ControllableState$916cea108c4b4cd1807486f37902ce97",
+            "IdOfObject": {
+              "EntityNameInEditor": "UpperPrisonElevator",
+              "_entity_id": "fb6e03e9-55f8-4959-ad5e-1349963959e9",
+              "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+            }
+          },
+          "MinValue": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$4a01d9dc24284e31b4583b3b86072643",
+            "Value": 0
+          },
+          "FloatValue": null,
+          "FloatMinValue": null
         }
       ]
     },
-    "OnFail": "RemoveTrack",
+    "OnFail": "FinishTrack",
     "m_EvaluationErrorHandlingPolicy": "Default",
     "Action": {
       "Actions": [
@@ -33,6 +47,25 @@
           "Parameters": {
             "Parameters": []
           }
+        },
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$0290dd82a63a4539958bd2cf70c6084b",
+          "Comment": "",
+          "State": 1,
+          "IdOfObject": {
+            "EntityNameInEditor": "UpperPrisonElevator",
+            "_entity_id": "fb6e03e9-55f8-4959-ad5e-1349963959e9",
+            "SceneAssetGuid": "2b59c92279767e140865263411b5beb6"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "12f52f92a7d3efe47b69ba8b41d4e47d, Play2DSound",
+          "name": "$Play2DSound$d6c5f3c2-de77-4a59-a1e4-bc93dc14ee0b",
+          "SoundName": "RollingDoor_Close",
+          "SetSex": false,
+          "SetRace": false
         }
       ]
     }

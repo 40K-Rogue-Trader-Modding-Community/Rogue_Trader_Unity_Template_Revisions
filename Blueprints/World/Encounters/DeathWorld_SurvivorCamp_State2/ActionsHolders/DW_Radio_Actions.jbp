@@ -1,0 +1,154 @@
+{
+  "AssetId": "165f254d38444ed1b417b94a1fc11eb7",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$b2d5d5c3137b4718951e7884febe7ca6",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$c8d1aee8057944ab8e3aba114d574a81",
+            "MapObject": {
+              "EntityNameInEditor": "Spline_Radio",
+              "_entity_id": "dc3653e1-869b-446c-a7d3-6ab03eaef145",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_State2_Mechanics.unity"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$1ae22b45ad8e4c189f29f3338759c7b2",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$3c114a8ac87947a39de56cdc0628e3db",
+            "MapObject": {
+              "EntityNameInEditor": "Spline_RadioDisable",
+              "_entity_id": "c3e07eb4-cd21-4218-abbf-72e429fec676",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_State2_Mechanics.unity"
+            }
+          },
+          "Unhide": true
+        },
+        {
+          "$type": "e164ef6758f918a4abcc3889472a2a3c, ShowBark",
+          "name": "$ShowBark$032cd634ad8643e58346f3bc0dd65005",
+          "WhatToBark": {
+            "m_Key": "",
+            "m_OwnerString": "",
+            "m_OwnerPropertyPath": "",
+            "m_JsonPath": "",
+            "Shared": {
+              "assetguid": "c7c739facdf8ecb4baf6f947e66ccd25",
+              "stringkey": "9e750a53-e446-4cac-8baf-ae726f802c02"
+            }
+          },
+          "WhatToBarkShared": null,
+          "BarkDurationByText": false,
+          "TargetUnit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$770215cd337744f3bcad9ad562a9c718",
+            "Spawner": {
+              "EntityNameInEditor": "NPC_Radio",
+              "_entity_id": "ab48624f-0bb8-42e8-8631-b9a7d4227508",
+              "SceneAssetGuid": "d6558691038ed6542ab1051a5da475ef"
+            }
+          },
+          "TargetMapObject": null,
+          "OverrideBarkDuration": false,
+          "BarkDuration": 0.0
+        },
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$14bc7f4e-6498-435e-8f46-1510cf41714c",
+          "m_Flag": "!bp_41bd0345b9af4a2ea7531449ddf88d18",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$711131a6-4ec6-4b6b-9a98-d14f93d4a1a5",
+            "Value": 1
+          },
+          "UnlockIfNot": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6292795cc9294144bb95a5c2415b4666",
+          "Comment": "Комплит адендума",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$9341fb85681b4fd6839b2620303d76bd",
+                "Not": false,
+                "m_Flag": "!bp_41bd0345b9af4a2ea7531449ddf88d18",
+                "MinValue": 5,
+                "MaxValue": 5
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$fb55b9c7671b40928b3ab4921f02ac0e",
+                "Status": "Complete",
+                "m_Objective": "!bp_719761fe70ff4cf3bf3f557ef12f6d0d",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "c99aa15b0ad07ce4db8044f7adfccaa5, ScriptZoneActivate",
+                "name": "$ScriptZoneActivate$9d9c1a7c-d832-4cf8-adc4-fc6f89c1ec5c",
+                "ScriptZone": {
+                  "EntityNameInEditor": "ElevatorEnd_ScriptZone",
+                  "_entity_id": "12bf98a4-9231-455c-bb05-690c874551d8",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_State2_Mechanics.unity"
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$2c453d6d541c5b569ef02605c632119b",
+          "Target": {
+            "$type": "a46af28f03764ce581de0af75e60ae67, MechanicLightRootEvaluator",
+            "name": "$MechanicLightRootEvaluator$83221cc69b5e52f396f08ff19d2a354e",
+            "MechanicLightRoot": {
+              "EntityNameInEditor": "ON_01",
+              "_entity_id": "b9631242-2703-4105-a3d4-06c67236cea6",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_State2_Mechanics.unity"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$3316bcd3-4671-4fa5-ba82-cb81a0e862fb",
+          "Target": {
+            "$type": "a46af28f03764ce581de0af75e60ae67, MechanicLightRootEvaluator",
+            "name": "$MechanicLightRootEvaluator$52b0e42a-26d4-4b84-81f0-5837df7a7a67",
+            "MechanicLightRoot": {
+              "EntityNameInEditor": "OFF_01",
+              "_entity_id": "7ccce529-9f57-4964-b5f3-78149963fdfd",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/DeathWorld/DeathWorld_SurvivorCamp_State2_Mechanics.unity"
+            }
+          },
+          "Unhide": true
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

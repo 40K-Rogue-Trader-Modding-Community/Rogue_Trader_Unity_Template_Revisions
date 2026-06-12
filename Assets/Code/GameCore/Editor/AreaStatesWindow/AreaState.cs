@@ -66,6 +66,13 @@ namespace Kingmaker.Editor.AreaStatesWindow
             {
                 sceneAssets.Add(areaPart.LightScene.Asset);
             }
+
+            if (areaPart.AudioScenes.Any())
+            {
+                sceneAssets.AddRange(areaPart.AudioScenes
+                    .Where(sr => sr.IsDefined)
+                    .Select(sr => sr.Asset));
+            }
         }
     }
 }

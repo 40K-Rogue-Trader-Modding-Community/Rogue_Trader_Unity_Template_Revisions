@@ -1,0 +1,123 @@
+{
+  "AssetId": "d7e5492789c742839401dad83837c547",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Сокрытие мутантов, если игрок их не освобождал, а они заспаунены.",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$0b83db78-2a9a-4aa3-9003-4772623ca5b0",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$e4cd60d0-0e0f-4c35-8168-c64f8762c3bd",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$79766ddf-b837-49e0-b6e1-08e28bb5712d",
+                      "Not": false,
+                      "m_Etude": "!bp_b35b3bc8eb184107bd625924f244aad3",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    },
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$498565c3e9e54b4985aa32b6d606a68f",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_0098b1d2b4b846d0863d3dcdea5f89fa",
+                      "State": "Started"
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$6c05e01e-fcd0-4d5f-b0ac-1f98e3e69299",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "56dbbbbbe442d504eb6761bdca7c8066, CurrentChapter",
+                      "name": "$CurrentChapter$24cdd886-16ec-46f8-a617-fdfa019b1bf6",
+                      "Not": false,
+                      "Chapter": 4
+                    },
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$88a07137-1366-4dca-b2c0-3ac9d1acb77d",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_0098b1d2b4b846d0863d3dcdea5f89fa",
+                      "State": "Started"
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$f35191a2-6d1b-44c8-8517-047b699cec1d",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "56dbbbbbe442d504eb6761bdca7c8066, CurrentChapter",
+                      "name": "$CurrentChapter$91a476ce-83c3-4f9a-a597-e67e55a305ea",
+                      "Not": false,
+                      "Chapter": 5
+                    },
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$db07d93a-1e43-4c75-8d52-5270500258b3",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_0098b1d2b4b846d0863d3dcdea5f89fa",
+                      "State": "Started"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$bdf02740-996b-43ea-84a3-f12ceb653d96",
+                "Status": "Fail",
+                "m_Objective": "!bp_76481d857c0e41e692b1f949e519a45c",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

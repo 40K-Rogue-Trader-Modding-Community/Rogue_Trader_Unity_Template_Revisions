@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.Utility.Attributes;
+using Owlcat.Editor.Core.Utility;
 using RectEx;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Kingmaker.Editor.Utility
 {
@@ -10,7 +16,12 @@ namespace Kingmaker.Editor.Utility
     public class EnumFlagsAsButtonsDrawer : PropertyDrawer
     {
         private const int Spacing = 3;
+        
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+	        => new EnumFlagsAsButtonsProperty(property, fieldInfo.FieldType, (EnumFlagsAsButtonsAttribute)attribute);
 
+    #region IMGUI
+        
 		private int GetRowsCount(SerializedProperty property)
 		{
 			var flagAttribute = (EnumFlagsAsButtonsAttribute)attribute;
@@ -94,5 +105,89 @@ namespace Kingmaker.Editor.Utility
 				property.intValue = 0;
 			}
 		}
+        
+    #endregion
+	    
+	    private sealed class EnumFlagsAsButtonsProperty : OwlcatProperty
+	    {
+		    private readonly Type _enumType;
+		    private readonly VisualElement _grid;
+		    private readonly Dictionary<int, ToolbarToggle> _buttons = new();
+		    
+		    public EnumFlagsAsButtonsProperty(SerializedProperty property, Type enumType,
+			    EnumFlagsAsButtonsAttribute attribute) : base(property)
+		    {
+			    _enumType = enumType;
+			    _grid = new VisualElement();
+			    _grid.AddToClassList("owlcat-enum-flag-grid");
+			    ContentContainer.Add(_grid);
+			    
+			    string[] enumNames = Enum.GetNames(_enumType);
+			    int[] enumValues = Enum.GetValues(_enumType).Cast<int>().ToArray();
+
+			    // float width = 100f / attribute.ColumnCount;
+			    for (int i = 0; i < enumNames.Length; i++)
+			    {
+				    string enumName = enumNames[i];
+				    int enumValue = enumValues[i];
+
+				    var button = CreateButton(enumName);//, width);
+				    button.RegisterValueChangedCallback(_ => Toggle(enumValue));
+				    _grid.Add(_buttons[enumValue] = button);
+			    }
+
+			    if (!_buttons.ContainsKey(0))
+			    {
+				    var button = CreateButton("-None-");//, width);
+				    button.RegisterValueChangedCallback(_ => Toggle(0));
+				    _grid.Insert(0, _buttons[0] = button);
+			    }
+
+			    if (!_buttons.ContainsKey(-1))
+			    {
+				    var button = CreateButton("-Everything-");//, width);
+				    button.RegisterValueChangedCallback(_ => Toggle(-1));
+				    _grid.Add(_buttons[-1] = button);
+			    }
+
+			    UpdateButtons();
+
+			    return;
+
+			    static ToolbarToggle CreateButton(string buttonName) //, float buttonWidth)
+			    {
+				    var button = new ToolbarToggle {text = buttonName};
+				    button.AddToClassList("owlcat-enum-flag-toggle");
+				    return button;
+			    }
+		    }
+
+		    private void Toggle(int mask)
+		    {
+			    using var _ = GuiScopes.UpdateObject(Property.serializedObject);
+			    Property.intValue  = mask switch
+			    {
+				    0 => 0,
+				    -1 => -1,
+				    _ => Property.intValue ^ mask
+			    };
+			    UpdateButtons();
+		    }
+
+		    private void UpdateButtons()
+		    {
+			    foreach (var (i, button) in _buttons)
+			    {
+				    bool on = i switch
+				    {
+					    0 or -1 => Property.intValue == i,
+					    _ => (Property.intValue & i) == i
+				    };
+				    
+				    button.SetValueWithoutNotify(on);
+			    }
+		    }
+	    }
+
     }
 }

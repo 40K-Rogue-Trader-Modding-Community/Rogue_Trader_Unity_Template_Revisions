@@ -1,10 +1,7 @@
-using ExitGames.Client.Photon.StructWrapping;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UIElements.Button;
 
@@ -35,7 +32,7 @@ namespace Kingmaker.Editor.UIElements.Workspace
 		private void HandleOpenBlueprint(ClickEvent evt)
 		{
 			BlueprintPicker.ShowAssetPicker(
-				typeof(SimpleBlueprint),
+				typeof(BlueprintScriptableObject),
 				null,
 				obj => m_GraphView.Open(obj));
 		}

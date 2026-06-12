@@ -1,0 +1,96 @@
+{
+  "AssetId": "e7f41b4485854d56baac751ea85a02bf",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7997dae43f7a5255b6208fe1c9209529",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$60ae92e8f72d5ec1b0921a859ccaa1d8",
+                "Not": false,
+                "m_Cue": "!bp_84f54ed902a24838a113e6b33d4af892",
+                "CurrentDialog": false
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$123f73d3bd2a5215b1d68a61eca62fe6",
+                "Not": true,
+                "m_QuestObjective": "!bp_b2296679f5da449fbdadb2b92bba2c6a",
+                "State": "Started"
+              },
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$2bd2ae7727b958fbbefa127fbc35d74d",
+                "Not": false,
+                "m_Cue": "!bp_3aeb0d2fb43947fca98161e3d88ddfbf",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$6fdd80d5-3b23-464b-bdde-80a914e2277e",
+                "Status": "Complete",
+                "m_Objective": "!bp_81020d9b97994462b3eebf09637a288c",
+                "StartObjectiveIfNone": true
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$ec1f5e23-bf00-4290-83c7-f53c59c517e0",
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                      "name": "$ObjectiveStatus$023a7392-b982-4b1a-a10b-0648e1ee0b68",
+                      "Not": false,
+                      "m_QuestObjective": "!bp_5cfec1170f7649b388d6910eda65b49a",
+                      "State": "Completed"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                      "name": "$GiveObjective$915372aa-606a-4d7a-904e-9310dcdc3eef",
+                      "m_Objective": "!bp_f7252602a008468587e89ad51f4bad68"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

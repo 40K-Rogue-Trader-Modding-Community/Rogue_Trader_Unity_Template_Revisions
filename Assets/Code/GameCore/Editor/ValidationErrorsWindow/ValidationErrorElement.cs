@@ -12,7 +12,7 @@ namespace Kingmaker.Editor.ValidationErrorsWindow
     /// <summary>
     /// This element displays given validation error
     /// </summary>
-    public class ValidationErrorElement : OwlcatInspectorStyle
+    public class ValidationErrorElement : OwlcatContentContainer
     {
         private const string BaseKey = nameof(ValidationErrorElement);
 
@@ -21,6 +21,8 @@ namespace Kingmaker.Editor.ValidationErrorsWindow
         private readonly Action<string> OnSkip;
         public ValidationErrorElement(string title, Action<string> onSkip)
         {
+            OwlcatInspectorStyle.LoadFor(this);
+
             OnSkip = onSkip;
             root = new OwlcatInspectorFoldout($"{BaseKey}.{title}")
             {

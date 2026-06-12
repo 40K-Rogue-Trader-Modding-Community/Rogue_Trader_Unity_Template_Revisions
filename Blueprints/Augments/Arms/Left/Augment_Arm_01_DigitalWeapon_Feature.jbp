@@ -1,0 +1,292 @@
+{
+  "AssetId": "6efa0627a15846cea800d356f67d2c9e",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "25d172d2be8f52f468b2050d14d59806, AddFactContextActions",
+        "name": "$AddFactContextActions$29810d0b-8398-4940-b859-87944f055f74",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "DisableForLevelUpPreviewUnit": false,
+        "DisableWhenReapplying": false,
+        "Activated": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$4a5ba194-6fda-4dac-b7b1-78c7fe6e91de",
+              "m_Buff": "!bp_780497b04a0944e59cb57e68bb9775c4",
+              "BuffEndCondition": "RemainAfterCombat",
+              "Permanent": true,
+              "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 1,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "Deactivated": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$ac2d45f9-2044-4eaf-b02a-dd266d46261d",
+              "m_Buff": "!bp_780497b04a0944e59cb57e68bb9775c4",
+              "RemoveRank": true,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            }
+          ]
+        },
+        "NewRound": {
+          "Actions": []
+        },
+        "RoundEnd": {
+          "Actions": []
+        }
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$c6750681-104a-44f2-838f-190b916306b2",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "BoolAnd",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": [
+              {
+                "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                "name": "$HasFactGetter$51bc3004b9f35496b93044304570161b",
+                "Settings": {
+                  "Progression": "AsIs",
+                  "m_CustomProgression": [],
+                  "m_StartLevel": 0,
+                  "m_StepLevel": 0,
+                  "Negate": true,
+                  "Limit": "None",
+                  "Min": 0,
+                  "Max": 0
+                },
+                "m_Fact": "!bp_e026d82067804bca899de79f0650c6b6",
+                "Target": "CurrentEntity"
+              }
+            ]
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "a5d7b924bf7743f483c173754bdc072a, WarhammerContextActionRemoveGroupCooldown",
+              "name": "$WarhammerContextActionRemoveGroupCooldown$f67a36b6bf4152de877157a7810aee7a",
+              "m_AbilityGroup": "!bp_b24a233a4cfc41f68a050c7322a7923c"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$d08d7fea-86c7-4d26-92ab-13f5bd69b3ec",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_55f78d15bf4348688620d74d9623e5ac",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$10614512690a57309029d1d94f65a8ac",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_b94120dd530e4dffa12622dcb1d57f9c",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$aeec9b82-4bdf-4280-9320-bb863de1e581",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_16b906b8913740158610d359206679bf",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$5f822307-faef-453c-bd7e-540f472a5326",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_b36b9715513349b483805e96535bf908",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$be94614c-3480-4bb5-a599-397a3f7398e3",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_98d2e8efffd14a03a07bbf3340217b6a",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$3a0a924f-987d-48e1-8854-96c49174dcf5",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_f910f34007e445569e7572b13c7fb112",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$b29f1f8b-51f6-4d7b-9544-0443254a4e06",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_9637aec54bc644949441f7e390c5abd6",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$7d315707-35ec-491c-8689-70085d103946",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_9a2e4c454b8f4241a3de1f6887f64f2b",
+              "starshipWeaponType": "Macrobatteries"
+            },
+            {
+              "$type": "6a102fe0ab870d34b8b5153dd90e8bea, WarhammerContextActionChangeItemCharges",
+              "name": "$WarhammerContextActionChangeItemCharges$7d5c218f-1823-4087-b343-0ce3f1f97b28",
+              "m_Type": "Set",
+              "m_Value": 1,
+              "m_Item": "!bp_ae82d0be5c5949f7a352f2186aa90dfe",
+              "starshipWeaponType": "Macrobatteries"
+            }
+          ]
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      }
+    ],
+    "Author": "Loogris",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "1ed77e73bbbc62b45ae827274e3cba07",
+        "stringkey": "26c67e6c-1a1a-4ef2-85d3-600cb0e18683"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "2027cd8fbc0ea794f82a6cf8e40c63c5",
+        "stringkey": "89dd30bf-271c-4906-b54f-130c92f8b64c"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": true,
+    "HideInCharacterSheetAndLevelUp": true,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": []
+    },
+    "FeatureTypes": [],
+    "TalentIconInfo": {
+      "AllGroups": 0,
+      "MainGroup": 0
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

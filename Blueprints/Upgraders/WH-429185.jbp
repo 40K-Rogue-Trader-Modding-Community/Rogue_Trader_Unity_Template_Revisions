@@ -1,0 +1,96 @@
+{
+  "AssetId": "18d8176fd14545ebbd7a470128d7ddd8",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Чиним романс с Соломоном",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$624f7dff2e6158c2a94a3daf8ea20cff",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$034067c6a4de51a7bc3c720ae563ab39",
+                "Not": false,
+                "m_Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                "name": "$CueSeen$ee48e4f11aef59909567e12ff0a3aebc",
+                "Not": false,
+                "m_Cue": "!bp_91651deb09e3440c8f328adad3dfd623",
+                "CurrentDialog": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$dfb392a8fbbf5e53a9fc03205505f05c",
+                "Comment": "Off ---> VC_SolomonTraitorMercy",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "4d2b3bd16c3f2bf4ebb8a19907e2be7e, CueSeen",
+                      "name": "$CueSeen$f0db449717be50f0b3f2069bac014816",
+                      "Not": false,
+                      "m_Cue": "!bp_48b82855c6f84f1baa1b366b1b97120e",
+                      "CurrentDialog": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                      "name": "$CompleteEtude$e2e4ed65d0c8567ca3e4906907edcb90",
+                      "Etude": "!bp_16bbbe1a8cf5462db5ea0c9b4e485dd6",
+                      "EtudeEvaluator": null,
+                      "Evaluate": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                      "name": "$CompleteEtude$fc4cf7aa-7b5a-4102-905e-30ac26436638",
+                      "Etude": "!bp_eccdb3f0d3ae400e97712235c695b76d",
+                      "EtudeEvaluator": null,
+                      "Evaluate": false
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

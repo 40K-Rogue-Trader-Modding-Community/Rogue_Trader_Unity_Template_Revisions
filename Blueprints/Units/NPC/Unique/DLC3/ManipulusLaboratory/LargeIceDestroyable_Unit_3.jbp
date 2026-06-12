@@ -1,0 +1,614 @@
+{
+  "AssetId": "2fe8188179604241a1afce64e843b336",
+  "Data": {
+    "$type": "fa4fa7e4548127a47a2846c91b051065, BlueprintUnit",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "2baf33c6a5aa432d85d1a311ef3fe8da, DoNotAddFeatureFromArmy",
+        "name": "$DoNotAddFeatureFromArmy$8f9eafdd-718b-413d-b875-5df0bb827213",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Features": [
+          "!bp_3e2fd6245dad4570990d248387a5d446"
+        ]
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$5e5618c8-23a7-47ea-b408-81c5de29bc4d",
+        "m_Flags": "Disabled",
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$7883b1c5-3067-4e21-9b71-de6052c13acd",
+              "MapObject": {
+                "$type": "a4aa1729f3bc4ff8bfffb1cc9d02c662, MechanicEntityFromScene",
+                "name": "$MechanicEntityFromScene$fcea4443-4f30-4204-b1e5-d7f6c8acfb02",
+                "EntityRef": {
+                  "EntityNameInEditor": "WaterPuddle_0b",
+                  "_entity_id": "bf70e0fa-f204-4e26-b997-8d2673b15d87",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/ManipulusLaboratory/ManipulusLaboratory_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "9f0cd598c83b33949802eb2ed789207c, DestroyUnit",
+              "name": "$DestroyUnit$6993dcf8-7d92-4e79-a590-42fc3ccbb64c",
+              "Target": {
+                "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                "name": "$CasterUnit$c86685ca-8a8c-48e5-a4b8-1b08850ea538"
+              },
+              "FadeOut": true
+            },
+            {
+              "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+              "name": "$SpawnByUnitGroup$b88288f593264966b1dcd9fe612b0dc0",
+              "m_Group": {
+                "EntityNameInEditor": "LargeIceDestroyable_Unit_3_Mobs",
+                "_entity_id": "d4627020-2ea2-42c6-9600-b999bcb83a93",
+                "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+              },
+              "ActionsOnSpawn": {
+                "Actions": [
+                  {
+                    "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                    "name": "$StartCombat$9abf16f131a845adb5e17f246f32d59f",
+                    "Unit1": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$0b1e9bd56b1a4c5bb9503ce6b24ae373"
+                    },
+                    "Unit2": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$ae60c383b83b46f0aa9d37cfb7a136c3"
+                    },
+                    "AmbushPlayer": false
+                  },
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$0cbb657a-e2a2-4b70-9d81-c00bd1177ae3",
+                    "m_Buff": "!bp_8825a9ee207149e895f422f61a38a0b1",
+                    "Target": {
+                      "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                      "name": "$SpawnedUnit$29231d71-17b4-4f49-ab07-492ff7a0920c"
+                    },
+                    "Duration": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$5ba572e0-b692-43d8-aae1-39a67750e102",
+                      "Value": 0
+                    },
+                    "UseEndCondition": false,
+                    "EndCondition": "RemainAfterCombat",
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      },
+      {
+        "$type": "340d225347d5002409757c2be255cd50, DeathActions",
+        "name": "$DeathActions$aa5db02e-3c56-4ac5-8822-c5ca1297a92e",
+        "m_Flags": "Disabled",
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$cfa406fab869579e9ffae51e6de5046f",
+              "MapObject": null,
+              "Unhide": true
+            },
+            {
+              "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+              "name": "$HideEntity$e198da654acc509fb9c547708be03294",
+              "Target": {
+                "$type": "05a1b93328d24abbbedae76d461dae54, EntityFromScene",
+                "name": "$EntityFromScene$ae4c1ae31ad155ef965df0dd972a9498",
+                "EntityReference": {
+                  "EntityNameInEditor": "WaterPuddle_0a",
+                  "_entity_id": "53fa1cfa-fe96-4d3e-bdeb-13ba8a42eac4",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "Unhide": true
+            }
+          ]
+        },
+        "CheckResource": false,
+        "OnlyOnParty": false,
+        "m_Resource": null
+      },
+      {
+        "$type": "340d225347d5002409757c2be255cd50, DeathActions",
+        "name": "$DeathActions$86ffc3f6-bd99-4f71-98ab-127e1cbc1f29",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$a7911501-9172-44cb-b72e-a9812ea65cd2",
+              "MapObject": {
+                "$type": "a4aa1729f3bc4ff8bfffb1cc9d02c662, MechanicEntityFromScene",
+                "name": "$MechanicEntityFromScene$69417030-7e9a-401c-be9f-c0e01d31f13d",
+                "EntityRef": {
+                  "EntityNameInEditor": "WaterPuddle_0b",
+                  "_entity_id": "bf70e0fa-f204-4e26-b997-8d2673b15d87",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/ManipulusLaboratory/ManipulusLaboratory_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+              "name": "$HideUnit$e31d1d47-b506-40f4-ac09-f812c4ccee37",
+              "Target": {
+                "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                "name": "$CasterUnit$54a3fec4-2884-4569-baaf-ba5727e24680"
+              },
+              "Unhide": false,
+              "Fade": true
+            },
+            {
+              "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+              "name": "$SpawnFx$2fc7ee0d-8328-4f0a-b172-6d1ad57f5c2d",
+              "Target": {
+                "$type": "df903088c314c0349ab3b5dda20abb9c, LocatorTransform",
+                "name": "$LocatorTransform$04592ffb8ee946a3804756935b778ffa",
+                "Locator": {
+                  "EntityNameInEditor": "Locator_SnowFXSpawn (3)",
+                  "_entity_id": "4e7cb55b-972f-4dd0-bd26-e1fb1667bea4",
+                  "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+                }
+              },
+              "FxPrefab": {
+                "guid": "533dbaf9c6f250343a3bea471b51b4f2",
+                "fileid": 4419291246181987009
+              }
+            },
+            {
+              "$type": "2a580ffc7fd649d7a9cdad06b33c8ef9, SpawnByUnitGroup",
+              "name": "$SpawnByUnitGroup$c460f032-1ad6-4e8c-b230-9cac66949573",
+              "m_Group": {
+                "EntityNameInEditor": "LargeIceDestroyable_Unit_3_Mobs",
+                "_entity_id": "d4627020-2ea2-42c6-9600-b999bcb83a93",
+                "SceneAssetGuid": "ab36918fe6d43d749b243a9d90a95338"
+              },
+              "ActionsOnSpawn": {
+                "Actions": [
+                  {
+                    "$type": "cbc450c881049cb43a3d474b0a176122, StartCombat",
+                    "name": "$StartCombat$9dea24a4-c62b-4078-8541-868c8795206b",
+                    "Unit1": {
+                      "$type": "108c71e06af64dc8a69cb1290889fb18, UnitGroupUnit",
+                      "name": "$UnitGroupUnit$24180209-7390-4e07-8130-94ecd05aead4"
+                    },
+                    "Unit2": {
+                      "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                      "name": "$PlayerCharacter$c11727ca-34b4-4536-bb46-13d37055e6d0"
+                    },
+                    "AmbushPlayer": false
+                  },
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$a7cf0930-2abf-4565-b0bc-8e856b5d5492",
+                    "m_Buff": "!bp_8825a9ee207149e895f422f61a38a0b1",
+                    "Target": {
+                      "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                      "name": "$SpawnedUnit$a3150aa7-5e17-4735-8db5-b6002ca0187d"
+                    },
+                    "Duration": {
+                      "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                      "name": "$IntConstant$af325601-89c1-4178-90aa-ebd9c06b64a4",
+                      "Value": 0
+                    },
+                    "UseEndCondition": false,
+                    "EndCondition": "RemainAfterCombat",
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
+                  },
+                  {
+                    "$type": "fe04f935f78d4ba4c805faf9a4be38a3, RandomAction",
+                    "name": "$RandomAction$a5316de3-a867-4a24-8b3c-7f998219eb0a",
+                    "Actions": [
+                      {
+                        "Weight": 0,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                              "name": "$PlayAnimationOneShot$1fe0500d-23cd-48f8-a709-4c9dcb656c96",
+                              "m_ClipWrapper": null,
+                              "m_ClipWrapperLink": {
+                                "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                              },
+                              "Unit": {
+                                "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                "name": "$SpawnedUnit$8ca36078-2bfd-4ec4-9b75-26cfdd94f0c3"
+                              },
+                              "TransitionIn": 0.25,
+                              "TransitionOut": 0.25
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Weight": 0,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                              "name": "$PlayAnimationOneShot$d5bf1dfd-3192-4be7-9941-a1e0200856b9",
+                              "m_ClipWrapper": null,
+                              "m_ClipWrapperLink": {
+                                "AssetId": "fb6827118735a664696f4cb0649d1d36"
+                              },
+                              "Unit": {
+                                "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                "name": "$SpawnedUnit$4fd5ef40-ba95-4c1e-91bf-861b71ece2e2"
+                              },
+                              "TransitionIn": 0.25,
+                              "TransitionOut": 0.25
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Weight": 0,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                              "name": "$PlayAnimationOneShot$b2e8625e-7d34-4000-9758-c9ef3eba5cd2",
+                              "m_ClipWrapper": null,
+                              "m_ClipWrapperLink": {
+                                "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                              },
+                              "Unit": {
+                                "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                "name": "$SpawnedUnit$49b087b2-7f81-43d6-86e7-2c23eedae123"
+                              },
+                              "TransitionIn": 0.25,
+                              "TransitionOut": 0.25
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Weight": 0,
+                        "Conditions": {
+                          "Operation": "And",
+                          "Conditions": []
+                        },
+                        "Action": {
+                          "Actions": [
+                            {
+                              "$type": "d56ec97f49674c92b5d87e101eda2c9e, PlayAnimationOneShot",
+                              "name": "$PlayAnimationOneShot$f1cc9493-04fb-459b-8a35-2cf1b0730794",
+                              "m_ClipWrapper": null,
+                              "m_ClipWrapperLink": {
+                                "AssetId": "5228ba2dbb0d4564d9ea544924c85be3"
+                              },
+                              "Unit": {
+                                "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                                "name": "$SpawnedUnit$148d7948-f024-4980-94be-0432e85eb587"
+                              },
+                              "TransitionIn": 0.25,
+                              "TransitionOut": 0.25
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "CheckResource": false,
+        "OnlyOnParty": false,
+        "m_Resource": null
+      },
+      {
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$a09571be-8132-44bf-9ec4-7c6a47cc3243",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Feature": "CanPassThroughUnits",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
+      },
+      {
+        "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
+        "name": "$AddMechanicsFeature$9ac7bdf1-dc6a-4496-9673-3ab89e2c865d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "m_Feature": "IgnoreAnyForceMove",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "m_Army": null,
+    "LocalizedName": {
+      "assetguid": "a95eb8abebe68e84fa15f414e963b3b0",
+      "stringkey": "67d92ce6-f734-4f77-9726-2d6d4eace71e"
+    },
+    "Gender": "Male",
+    "Size": "Large",
+    "Color": {
+      "r": 0.15,
+      "g": 0.15,
+      "b": 0.15,
+      "a": 1.0
+    },
+    "m_Race": null,
+    "m_Portrait": null,
+    "Prefab": {
+      "AssetId": "39a6dafeadf29934a94c0f2bf55fadac"
+    },
+    "m_CustomizationPreset": null,
+    "m_VisualSettings": "!bp_2072098ffb0045d7b5d9ecea50f9ed03",
+    "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+    "FactionOverrides": {
+      "m_AttackFactionsToAdd": [],
+      "m_AttackFactionsToRemove": []
+    },
+    "m_StartingInventory": [],
+    "m_Brain": null,
+    "AlternativeBrains": [],
+    "IsCarefulShooter": false,
+    "IsStayOnSameSpotAfterCombat": false,
+    "Body": {
+      "ItemEquipmentHandSettings": {
+        "m_PrimaryHand": null,
+        "m_SecondaryHand": null,
+        "m_PrimaryHandAlternative1": null,
+        "m_SecondaryHandAlternative1": null,
+        "ActiveHandSet": 0
+      },
+      "m_AdditionalLimbs": [],
+      "m_AdditionalSecondaryLimbs": [],
+      "m_Armor": null,
+      "m_Shirt": null,
+      "m_Belt": null,
+      "m_Head": null,
+      "m_Glasses": null,
+      "m_Feet": null,
+      "m_Gloves": null,
+      "m_Neck": null,
+      "m_Ring1": null,
+      "m_Ring2": null,
+      "m_Wrist": null,
+      "m_Shoulders": null,
+      "m_PetProtocol": null,
+      "m_QuickSlots": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "m_Mechadendrites": [],
+      "m_Augments": [],
+      "m_AugmentToOverdrive": null
+    },
+    "OldWarhammerBallisticSkill": 0,
+    "WarhammerBallisticSkillSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerWeaponSkill": 0,
+    "WarhammerWeaponSkillSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerStrength": 0,
+    "WarhammerStrengthSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerToughness": 0,
+    "WarhammerToughnessSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerAgility": 0,
+    "WarhammerAgilitySetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerIntelligence": 0,
+    "WarhammerIntelligenceSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerWillpower": 0,
+    "WarhammerWillpowerSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerPerception": 0,
+    "WarhammerPerceptionSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "OldWarhammerFellowship": 0,
+    "WarhammerFellowshipSetting": {
+      "NotModified": true,
+      "Modifier": 0,
+      "isProfesional": false
+    },
+    "WarhammerMovementApPerCell": 1.0,
+    "WarhammerMovementApPerCellThreateningArea": 3.0,
+    "WarhammerInitialAPBlue": 0,
+    "WarhammerInitialAPYellow": 0,
+    "Speed": {
+      "m_Value": 30.0
+    },
+    "Skills": {
+      "Athletics": 0,
+      "Awareness": 0,
+      "Carouse": 0,
+      "Persuasion": 0,
+      "Demolition": 0,
+      "Coercion": 0,
+      "Medicae": 0,
+      "LoreXenos": 0,
+      "LoreWarp": 0,
+      "LoreImperium": 0,
+      "TechUse": 0,
+      "Commerce": 0,
+      "Logic": 0
+    },
+    "MaxHP": 250,
+    "m_AddFacts": [
+      "!bp_4a7a09eb5c574dfea930f956fb2426ea",
+      "!bp_16a551fc04534ec8b0ee4feed83ca9c6",
+      "!bp_898124204eef49caa47ade401efca39b",
+      "!bp_430f7721e8be4ef9b23bd82b76df6671"
+    ],
+    "IsCheater": false,
+    "IsFake": false,
+    "VisualsDone": false,
+    "DifficultyType": "Hard",
+    "Subtype": "Default"
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "AssetId": "7608c9e0c70242a3b2578c2a99115414",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$bfaf77f9ebff4a2a93813bfe0851f541",
+          "Comment": "выдвигаем лифт",
+          "State": 1,
+          "IdOfObject": {
+            "EntityNameInEditor": "Horizontal_Lift_Upper_Layer_Pos_1_1",
+            "_entity_id": "4ef5ca43-6c51-4d31-a50a-28bb58b511ad",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+          "name": "$ControllableActionAnimatorSetState$f032301d3af34cb1bb3c8df410208bab",
+          "Comment": "маячок оставляем зеленым",
+          "State": 2,
+          "IdOfObject": {
+            "EntityNameInEditor": "necron_tomb_epitaph_platform_02",
+            "_entity_id": "b2ce203f-d1c1-4832-8246-a984da059a6d",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+          },
+          "TargetUnit": null
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$9a656d3a6dc24ca1a600aa0dd01559c6",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$c873c3762d394c029cf0e071eb376831",
+                "Not": false,
+                "m_QuestObjective": "!bp_90b7141319384c439eb3aad82cca195f",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$8322cb4d54b64a48889578fd1c0930a9",
+                "Status": "Complete",
+                "m_Objective": "!bp_90b7141319384c439eb3aad82cca195f",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$ad9af4fc-c5f6-4d3c-9e70-3637cf8e3355",
+          "m_Cutscene": "!bp_db2f425e4a214db098b56960e535c479",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": [
+              {
+                "Name": "MapObject",
+                "Type": "MapObject",
+                "Evaluator": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$24a68716-f274-4978-98fc-28ee66837fd8",
+                  "MapObject": {
+                    "EntityNameInEditor": "LD_NavmeshCut_Horizontal_Lift_Upper_Layer_Pos_1_1",
+                    "_entity_id": "5810639c-63cc-4b2c-b9aa-f53af2c00f90",
+                    "SceneAssetGuid": "6eb0352391c4c7d43ab6c78c816280b4"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

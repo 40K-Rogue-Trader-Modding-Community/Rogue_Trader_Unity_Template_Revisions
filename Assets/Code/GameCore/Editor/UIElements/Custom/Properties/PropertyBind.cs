@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.UIElements;
 
-namespace Kingmaker.Editor.UIElements
+namespace Kingmaker.Editor.UIElements.Custom.Properties
 {
 	class PropertyBind<T> : IBinding
 	{

@@ -6,99 +6,83 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
-        "name": "$TurnBasedModeEventsTrigger$02c083d6-701c-489a-b701-bbbf38c42dc6",
+        "$type": "6a1959011ccce504cb1b80db926ed4cc, ExtraTurnWithReasonTrigger",
+        "name": "$ExtraTurnWithReasonTrigger$a6227f2a-b4ad-4169-aa2a-febf7b5b27c2",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "TriggerIfNotInCombat": false,
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
-            "TargetType": "CurrentEntity",
+            "TargetType": "CurrentTarget",
             "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
         },
-        "CombatStartActions": {
-          "Actions": []
-        },
-        "CombatEndActions": {
-          "Actions": []
-        },
-        "RoundStartActions": {
-          "Actions": []
-        },
-        "RoundEndActions": {
-          "Actions": []
-        },
-        "AnyUnitTurns": false,
+        "AnyUnitTurns": true,
         "OnlyEnemyTurns": false,
-        "ActionsOnTheTurnOwner": false,
-        "UnitTurnStartActions": {
-          "Actions": []
-        },
-        "UnitTurnEndActions": {
-          "Actions": []
-        },
+        "ActionsOnTheTurnOwner": true,
         "UnitInterruptTurnStartActions": {
           "Actions": [
             {
               "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$1da49bd62ef2453ba96fb6f7b9f8e6ef",
+              "name": "$Conditional$07b4c7bb-0c8c-43c2-b6a9-1624db7373f1",
               "Comment": "",
               "ConditionsChecker": {
                 "Operation": "And",
                 "Conditions": [
                   {
                     "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
-                    "name": "$ContextConditionCasterHasFact$91a1741993344a35a30570b097a71793",
-                    "Not": false,
+                    "name": "$ContextConditionCasterHasFact$7935adbb-78c5-4f18-8825-2c4b752253e4",
+                    "Not": true,
                     "m_Fact": "!bp_a81fce36709f49f78675fdec233f6a13"
+                  },
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$ba463614-259d-4259-859c-d24309dbd9d9",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "BoolAnd",
+                      "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "5199ec18b22b8b1459f37128aebfda3d, CheckInterruptGetter",
+                          "name": "$CheckInterruptGetter$28a2b6bb-ed49-4031-9780-13d77785078a",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          },
+                          "CheckSourceOfInterrupt": true,
+                          "Target": "ContextCaster"
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
                   }
                 ]
               },
               "IfTrue": {
                 "Actions": [
                   {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$58df045d3208429da37bcc29eebe303c",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": []
-                    },
-                    "IfTrue": {
-                      "Actions": []
-                    },
-                    "IfFalse": {
-                      "Actions": []
-                    }
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
                     "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$92027ccb3fd941ae8dd4cd3410bacc1f",
+                    "name": "$ContextActionApplyBuff$4781d5aa-3e44-40eb-a43a-4212e882c9e7",
                     "m_Buff": "!bp_c2c4755ce7ae48488efea9f58f683a18",
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": false,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 1,
@@ -130,14 +114,13 @@
                     "AddFactSource": false
                   }
                 ]
+              },
+              "IfFalse": {
+                "Actions": []
               }
             }
           ]
-        },
-        "UnitInterruptTurnEndActions": {
-          "Actions": []
-        },
-        "DoNotApplyOnInterrupts": false
+        }
       }
     ],
     "Author": "IlyaPolitko",
@@ -192,7 +175,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

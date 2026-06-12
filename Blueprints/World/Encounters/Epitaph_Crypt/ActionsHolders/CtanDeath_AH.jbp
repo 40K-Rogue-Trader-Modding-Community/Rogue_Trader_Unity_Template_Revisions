@@ -5,7 +5,7 @@
     "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
-    "Author": "AlexeySilaev",
+    "Author": "AlexeyPolezhaev",
     "Comment": "",
     "Actions": {
       "Actions": [
@@ -101,6 +101,81 @@
           "CheckExistence": true,
           "Parameters": {
             "Parameters": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$355776f8-63c0-4ae2-b7a2-ecf9e415fbc4",
+          "Comment": "После боя убрать Тразина",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$628725bd-acf6-4ace-81e4-9315b554afd5",
+                "Not": false,
+                "m_Etude": "!bp_888baf5e80e54d919b5bc893702ccb8b",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$2485941c-f5cf-4cdc-85b0-13c5e7494215",
+                "Not": false,
+                "m_Etude": "!bp_729170c54ae943769d8053beefb87ceb",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                "name": "$SpawnFx$819fdb2c-843e-4242-b0a9-ece966747b59",
+                "Target": {
+                  "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                  "name": "$UnitTransform$9b804131-9076-4707-9bc1-a411e48f0172",
+                  "Unit": {
+                    "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                    "name": "$UnitFromSpawner$9ed67a7a-964a-401e-8e55-51df59f90f0a",
+                    "Spawner": {
+                      "EntityNameInEditor": "DLC3_TrazynForCtan",
+                      "_entity_id": "8f2c8635-b628-4685-951b-0cc6d9b83eba",
+                      "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                    }
+                  }
+                },
+                "FxPrefab": {
+                  "guid": "884b835131a7f1043aa33a18fc908fdd",
+                  "fileid": 4961804444468952738
+                }
+              },
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$c34c4a34-c42e-433a-ae94-df85b2593dfb",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$ff7aedc5-9432-4597-8628-cda7b4c22c5f",
+                  "Spawner": {
+                    "EntityNameInEditor": "DLC3_TrazynForCtan",
+                    "_entity_id": "8f2c8635-b628-4685-951b-0cc6d9b83eba",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_5/EpitaphCrypt_Arena/EpitaphCrypt_Arena_Mechanics.unity"
+                  }
+                },
+                "Unhide": false,
+                "Fade": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
           }
         }
       ]

@@ -1,0 +1,149 @@
+{
+  "AssetId": "3e32e2e53a454fbb9c3f62a69c915a4f",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Если не играет DL_SawSeberianRandomDynast, то выдаем DL_MindsBlocked_counter +1 \nстартует DL_RandomDynastyServantMask и DL_SawSeberianRandomDynasty",
+    "ParentAsset": "7b6be30eee594adb99b16d7dd471bc13",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "9b73386e6d0a79a4fa84ef8e2a1a78b9",
+        "stringkey": "6ace0971-2749-4b7c-9d9b-4b42710178a4"
+      }
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$4d4b9ea0-291e-4edc-b3f8-49132ea42dfb",
+          "Comment": "выдаем DL_MindBlocked_counter +1",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$f758e0c9-66e0-44ee-8bde-1285eab8b7b3",
+                "Not": true,
+                "m_Etude": "!bp_38bd73b279df47ae9e8a450e6b08059a",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$280b80c5-5e7b-4a07-a631-e312659b8200",
+                "m_Flag": "!bp_c70e0a637bba421a8e117bc62ca5a2e0",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$7554a843-b030-40ee-bfec-2aa8f06501cc",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$b588c8ba-511f-4862-b916-397bb7b10939",
+                "Etude": "!bp_38bd73b279df47ae9e8a450e6b08059a",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": true
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$0adc61b8-9df3-434c-a635-47454e975f36",
+                "Etude": "!bp_fb6f2dd987e0422e8d292af80be1ea81",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_e7de93dd15b2470b870032b91bd9e100"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

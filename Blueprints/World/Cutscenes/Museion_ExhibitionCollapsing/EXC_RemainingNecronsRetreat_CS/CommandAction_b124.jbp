@@ -1,0 +1,75 @@
+{
+  "AssetId": "b12494cca6fe40da8b46f4c20784cadd",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "5e4603a125002e449ba3cfc391334f5c, SummonPoolUnits",
+          "name": "$SummonPoolUnits$d5b74094be334070b92cf74304c5e78f",
+          "m_SummonPool": "!bp_735e3b2e42e2428c8e89f140f4e2705f",
+          "Conditions": {
+            "Operation": "And",
+            "Conditions": []
+          },
+          "Actions": {
+            "Actions": [
+              {
+                "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                "name": "$SwitchFaction$2db046515a4549cfa51aaa84f3ffe5bc",
+                "Target": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$769b537c2ba544f5b99057e74f4613f3"
+                },
+                "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+                "IncludeGroup": false
+              },
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f8fe16d2-9a54-486b-bfbe-e73fd5e76268",
+                "m_Cutscene": "!bp_50c3aef1782949e39dbd31763decf647",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                        "name": "$SummonPoolUnit$e3a013a1-842d-4755-8d69-d78f343f9001"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "34705b1b862f3334aa6499153fbefaf4, DeleteUnitFromSummonPool",
+                "name": "$DeleteUnitFromSummonPool$705e6cd08fab45bb807d21a9bb944309",
+                "m_SummonPool": "!bp_735e3b2e42e2428c8e89f140f4e2705f",
+                "Unit": {
+                  "$type": "d67e5007013a92946a7f740132296ab4, SummonPoolUnit",
+                  "name": "$SummonPoolUnit$548f069983264c098fe1cb16165cac18"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

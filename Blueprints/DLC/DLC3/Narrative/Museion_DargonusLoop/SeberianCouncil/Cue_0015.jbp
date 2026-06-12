@@ -1,0 +1,170 @@
+{
+  "AssetId": "3baed88d8bca41d39b73cfc9e6918198",
+  "Data": {
+    "$type": "8eee9d45ddcfa614d99610c1892993e3, BlueprintCue",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Не играет DL_JuvennaArrestedOrDead\nЕсли играют DL_MerovianKilled или DL_Exalt117ArrestedOrDead, то DL_Treason_counter + 1 за каждого",
+    "ParentAsset": "9cbb66774efd4afd9e3400307aeb1dee",
+    "ShowOnce": false,
+    "ShowOnceCurrentDialog": false,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    },
+    "Text": {
+      "m_Key": "651f937f-9972-4b67-8943-07327b8f2bbc",
+      "m_OwnerString": "3baed88d8bca41d39b73cfc9e6918198",
+      "m_OwnerPropertyPath": "Text",
+      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Museion_DargonusLoop\\SeberianCouncil\\Cue_0015_Text_1.json",
+      "Shared": null
+    },
+    "SoulMarkRequirement": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Speaker": {
+      "m_Blueprint": null,
+      "MoveCamera": true,
+      "NotRevealInFoW": false,
+      "NoSpeaker": false,
+      "DoNotReplaceSpeakerWithErrorSpeaker": false,
+      "m_SpeakerPortrait": null
+    },
+    "TurnSpeaker": true,
+    "IsNarratorText": false,
+    "Animation": "None",
+    "m_Listener": null,
+    "OnShow": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$1acebe76-35a2-4176-8e2b-e9fa5a25745a",
+          "Comment": "Меровцы убиты",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$8e30d303-a72f-4266-b7a9-c739a0a3a6ca",
+                "Not": false,
+                "m_Etude": "!bp_1d51d5811c9745cc95d02a52e21a0877",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$6cf0f247-b9c8-49a4-ab8a-b800fe473cbe",
+                "m_Flag": "!bp_7273af9b091e47b2a50c605173240e3b",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$9fb2f4f9-2f0e-42a9-8af7-36ca513869cd",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$6c505ee9-df60-4035-a951-76a397363b4d",
+          "Comment": "Экзальт убит",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$591f664d-4bde-489d-b348-39eb9544dfc9",
+                "Not": false,
+                "m_Etude": "!bp_c80a8ba401ec49edaac550c51a92fe11",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$c9b1cc83-c1ad-4b1f-964f-98275ac5c4a3",
+                "m_Flag": "!bp_7273af9b091e47b2a50c605173240e3b",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$d9ba5e02-6cdb-47ae-ab51-8d22eeba8861",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    },
+    "OnStop": {
+      "Actions": []
+    },
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "SoulMarkShift": {
+      "Direction": "None",
+      "Value": 0,
+      "CheckByRank": false,
+      "Rank": 0,
+      "Description": {
+        "m_Key": "",
+        "m_OwnerString": "",
+        "m_OwnerPropertyPath": "",
+        "m_JsonPath": "",
+        "Shared": null
+      }
+    },
+    "Answers": [],
+    "Continue": {
+      "Cues": [
+        "!bp_5271c243321244048f12275bc9eca09f",
+        "!bp_5a82f59ce2444390888b27927dfae551"
+      ],
+      "Strategy": "First"
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

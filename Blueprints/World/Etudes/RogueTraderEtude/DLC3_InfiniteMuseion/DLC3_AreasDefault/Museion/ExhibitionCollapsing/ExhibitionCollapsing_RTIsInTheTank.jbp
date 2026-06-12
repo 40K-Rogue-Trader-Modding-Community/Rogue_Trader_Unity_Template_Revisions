@@ -1,0 +1,833 @@
+{
+  "AssetId": "9a635a7717d54e079b7cbd9e94af3989",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$efa36707-acd0-401c-bee9-72498a43a1c7",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "RT is in the tank",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "b90eea06ce91f564e8793832eea02cef, Recruit",
+              "name": "$Recruit$bfe7529f-1615-4b0a-9161-e40708419090",
+              "Recruited": [
+                {
+                  "m_CompanionBlueprint": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+                  "m_Portrait": null,
+                  "NPCUnit": null,
+                  "MustBeInParty": false
+                }
+              ],
+              "AddToParty": true,
+              "MatchPlayerXpExactly": false,
+              "OnRecruit": {
+                "Actions": [
+                  {
+                    "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                    "name": "$AttachBuff$f3e1b617-6ccf-4dc6-8cc3-e8a2fd167412",
+                    "m_Buff": "!bp_e333333dfe6040b7bf9acfab8b450264",
+                    "Target": {
+                      "$type": "6c997aeb1537f2d44a5d7abd8ea1ef0a, RecruitedUnit",
+                      "name": "$RecruitedUnit$a7680dfc-4006-4401-8d84-8276e92e455c"
+                    },
+                    "Duration": null,
+                    "UseEndCondition": false,
+                    "EndCondition": "RemainAfterCombat",
+                    "AddFactSource": false,
+                    "SourceNameOverride": {
+                      "m_Key": "",
+                      "m_OwnerString": "",
+                      "m_OwnerPropertyPath": "",
+                      "m_JsonPath": "",
+                      "Shared": null
+                    },
+                    "UIGroupOverride": "Auto"
+                  },
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$b45f2800-1dc4-45b6-b46f-7bee6703eb2e",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$1254a6a6-f19b-47c1-8e98-c677cce1762c",
+                      "m_Companion": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+                      "IncludeActive": true,
+                      "IncludeDetached": false,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$2216d38a-c7df-4f64-b9ed-ce2f856e129d",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$bab55646-ec79-4c02-b26a-e113ee8c85d1",
+                      "m_Companion": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": true,
+                      "IncludeExCompanions": true,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "Tank_pos",
+                      "_entity_id": "5e0556d8-0cdf-43e0-82df-0dba6bdc6bbd",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$6660e3c7-f7f2-4f11-a6b2-49a9e9269ae1",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "Tank_pos",
+                        "_entity_id": "5e0556d8-0cdf-43e0-82df-0dba6bdc6bbd",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "bfefd4b0c2e912a4a8d9e0bcde22a95c, SetPortrait",
+                    "name": "$SetPortrait$3b1c513a-6bb8-4c10-bdc1-2def75f682ea",
+                    "Unit": {
+                      "$type": "6c997aeb1537f2d44a5d7abd8ea1ef0a, RecruitedUnit",
+                      "name": "$RecruitedUnit$1d0d6152a4994c7090d585a8bd44e068"
+                    },
+                    "m_Portrait": "!bp_4769a5c041b14d528d9b3e6955825dfb"
+                  }
+                ]
+              },
+              "OnRecruitImmediate": {
+                "Actions": []
+              },
+              "DoNotOpenPartySelection": true
+            },
+            {
+              "$type": "1a0449d4049c34149a17869dd62dc64a, CameraToPosition",
+              "name": "$CameraToPosition$4536f4c8-57dd-404a-8f35-612caad1ea5f",
+              "Position": {
+                "$type": "ee272e7d88aff6648b4c1b052228fdc7, LocatorPosition",
+                "name": "$LocatorPosition$6c047593-9b90-4dcb-8231-39e8cc16ea7b",
+                "Locator": {
+                  "EntityNameInEditor": "Tank_pos",
+                  "_entity_id": "5e0556d8-0cdf-43e0-82df-0dba6bdc6bbd",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                },
+                "Offset": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                }
+              },
+              "Rotation": null
+            },
+            {
+              "$type": "0bafe290985641b9a831acfc037c631f, PartyMembersDetachEvaluated",
+              "name": "$PartyMembersDetachEvaluated$1f968db8-6cff-434a-aaf2-6fc2ef42e81a",
+              "DetachAllButThese": true,
+              "DetachThese": [
+                {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$c495c37c64124b38897a30416dadd236",
+                  "m_Companion": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+                  "IncludeActive": true,
+                  "IncludeDetached": false,
+                  "IncludeRemote": false,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                }
+              ],
+              "AfterDetach": {
+                "Actions": []
+              },
+              "m_RestrictPartySize": false,
+              "m_PartySize": -1
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$8f382f05-caee-4bc4-806b-e1151afa9e81",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$b08b0062-9803-42bb-83bf-5d71184ef6f5",
+                "MapObject": {
+                  "EntityNameInEditor": "TankEmpty",
+                  "_entity_id": "7b0e8bcd-e8c1-462e-bd09-bfa9acf360dd",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$f9d7b52f-f0d1-4e60-ad09-c093d1e9fa93",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$862c0d21-fadf-457d-b927-8ac29d7255f4",
+                "MapObject": {
+                  "EntityNameInEditor": "AthleticsCheckUp",
+                  "_entity_id": "551ff67a-283d-463c-a158-8382f6adc7a4",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$3f2c42de-6323-4883-bd3a-bef8ae64f3e9",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$f2b38c7c9b0e43be914e13f55f375016",
+                "MapObject": {
+                  "EntityNameInEditor": "GetInTheTank",
+                  "_entity_id": "11f80b7a-7494-47d9-a42e-c6f8ded6234f",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+              "name": "$PartyUnits$10c83e18-d8ac-4804-b8e4-267610c2bf5b",
+              "m_UnitsList": "AllDetachedUnits",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$58abd05b-bbb2-4059-90ae-32f36f8464e6",
+                    "Target": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$70bb3552-432c-403e-bef4-0373a7e03f83"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$e16b0c5b-c37b-4f9f-a904-812735d96de3",
+              "Comment": "Ulfar is in party",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$382a13b4-f3bf-47a0-beb4-1c946d5f750e",
+                    "Not": false,
+                    "m_companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$1ccf596f33a6457a9899dea78b17611e",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$f3a48135b96a4a81a97f1d244fe1520a",
+                      "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$96162553-6146-4993-96d3-efe6e8f5fb74",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$fa7a8fb0-1308-41cd-9aff-6c7ec701c1b0",
+                      "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "UlfarInCover_pos",
+                      "_entity_id": "e6ec166a-fc41-461f-810c-ef702010f507",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$33299def-4d66-46fd-bd6d-1c0d6e669895",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "UlfarInCover_pos",
+                        "_entity_id": "e6ec166a-fc41-461f-810c-ef702010f507",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  },
+                  {
+                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                    "name": "$PlayCutscene$fd09acf3-21af-4133-b7ac-bbbcb74df376",
+                    "m_Cutscene": "!bp_dc4e0de6978e410dbeae1710ddf755e2",
+                    "PutInQueue": false,
+                    "CheckExistence": true,
+                    "Parameters": {
+                      "Parameters": [
+                        {
+                          "Name": "Unit",
+                          "Type": "Unit",
+                          "Evaluator": {
+                            "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                            "name": "$CompanionInParty$3f322555-ba37-4872-9e8f-1f945cd43290",
+                            "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                            "IncludeActive": true,
+                            "IncludeDetached": true,
+                            "IncludeRemote": false,
+                            "IncludeExCompanions": false,
+                            "IncludeDead": false,
+                            "Index": 0
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$0a4fa815-dd87-4d13-8d6a-12a565a07dca",
+              "Comment": "Eogann is in party",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$70d33b9a-d718-4daa-91b7-3ff41ff9596f",
+                    "Not": false,
+                    "m_companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$b7bbdc4e-44af-4ae2-807b-f45a9b38f432",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$4323a892-eb48-4d2a-9a2d-977edf4e9e1e",
+                      "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$e04edda6-d060-4f9d-ae2b-70eca6b793d6",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$80855f70-988d-4fb2-9b68-202f530421bb",
+                      "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "EoganInCover_pos",
+                      "_entity_id": "d1b5a568-d924-448a-9d98-21714b3da78a",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$431a0705-5303-460d-8825-aabef1543afc",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "EoganInCover_pos",
+                        "_entity_id": "d1b5a568-d924-448a-9d98-21714b3da78a",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "b2970e0dadd194546bbf27a691e55d4c, DeactivateTrigger",
+        "name": "$DeactivateTrigger$46ce8b1c-ae85-4f25-bb1e-f3b0f93f333d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "RT leaves the tank",
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$684458efa2a15c3f8ba03b73454779cc",
+              "Not": false,
+              "m_Etude": "!bp_eff66320e8094ff298f01a35f4835386",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "cdaf4f23bba50a044a00da97d652575b, PartyMembersAttach",
+              "name": "$PartyMembersAttach$f6193a3c-77ad-4e51-9f9e-2a42f4cb623e"
+            },
+            {
+              "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+              "name": "$PartyUnits$595900ad258c46c6880efda5f22d6f60",
+              "m_UnitsList": "ActiveUnits",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$4a39d722f54b4a708fb0ddd8cf6e964c",
+                    "Target": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$9c3999cbfe844621b3d56b4c13d408e4"
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
+                    "name": "$StopCutscene$cef2d9189f7b432f9a611a7343b0d4f7",
+                    "m_Cutscene": "!bp_dc4e0de6978e410dbeae1710ddf755e2",
+                    "WithUnit": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$c2f23677184b4d2c904a64122cbd82b4"
+                    },
+                    "m_CheckType": "Params"
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$95edc83e-cfbc-4ec6-9ac8-290306e04805",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$bcdb5476-b215-48cb-8add-dbf06f3c095b",
+                "MapObject": {
+                  "EntityNameInEditor": "GetInTheTank",
+                  "_entity_id": "11f80b7a-7494-47d9-a42e-c6f8ded6234f",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$2d87b508-1958-4cd9-9261-3cfac7a939a0",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$c5109a5d-ac61-4856-be49-3cc96a3f5669",
+                "MapObject": {
+                  "EntityNameInEditor": "AthleticsCheckUp",
+                  "_entity_id": "551ff67a-283d-463c-a158-8382f6adc7a4",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$8a503ba7-8b04-4400-9420-7c3a1b571a1e",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$21cf31ee-f6ef-430b-b995-a0f54ee312e7",
+                "MapObject": {
+                  "EntityNameInEditor": "TankEmpty",
+                  "_entity_id": "7b0e8bcd-e8c1-462e-bd09-bfa9acf360dd",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "7d6c4f7ff596e5e4086531c0f96ac650, Unrecruit",
+              "name": "$Unrecruit$054e3039-ed71-405b-a5a2-5b6adf1a7b37",
+              "m_CompanionBlueprint": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+              "OnUnrecruit": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$fade4139-e458-42bb-a1ba-21959405c59d",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$a76f9ee0-52b7-4918-92c4-578cdf81c3e8",
+                      "m_Companion": "!bp_a9a23f980ca64fb496f8387d4566fb40",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": true,
+                      "IncludeExCompanions": true,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+              "name": "$TeleportParty$ddf9a10583b9406e96645a5360d722cc",
+              "m_exitPositon": "!bp_85bc3a549d394e178ccaaf839f501093",
+              "AutoSaveMode": "None",
+              "ForcePauseAfterTeleport": false,
+              "AfterTeleport": {
+                "Actions": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "d3e4fc9142494f99a469c1dd43abe255, AreaDidLoadTrigger",
+        "name": "$AreaDidLoadTrigger$8554c1b8-8f94-4e0c-adaf-1819f901bbe0",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Keep party hidden",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+              "name": "$PartyUnits$dba22e83-34f4-479e-be2a-1bb3770a5b9c",
+              "m_UnitsList": "AllDetachedUnits",
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$416f6a9e-78ea-4c93-9e35-93db82a64b6c",
+                    "Target": {
+                      "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                      "name": "$PartyUnit$757f4000-3cbd-4c3b-bdfb-7ade70ae45c1"
+                    },
+                    "Unhide": false,
+                    "Fade": false
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$a1c58453-3afa-40c1-9386-943d9c12468b",
+              "Comment": "Ulfar is in party",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$5eee34d3-8982-46c4-913e-0d5fcc06e8d1",
+                    "Not": false,
+                    "m_companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$083b4b41-f00b-45b7-9bc8-a8e4a2873651",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$eecdf30b-7f8f-432e-bc35-153a59d56569",
+                      "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$7e54d61d-fcfb-45d4-8cda-6869a9233b17",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$2ee24303-e369-4712-a044-756cdc9d4f25",
+                      "m_Companion": "!bp_daaf3d6bae644af8a9128ea09044bb99",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "UlfarInCover_pos",
+                      "_entity_id": "e6ec166a-fc41-461f-810c-ef702010f507",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$70ad1072-cf07-4fde-b7cd-d8c6032370fa",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "UlfarInCover_pos",
+                        "_entity_id": "e6ec166a-fc41-461f-810c-ef702010f507",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$fb4f8f58-9de6-4319-9870-71d8d91eacf4",
+              "Comment": "Eogann is in party",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                    "name": "$CompanionInParty$4bb9ed84-5f83-4b2b-b412-0c8ef40c92da",
+                    "Not": false,
+                    "m_companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                    "MatchWhenActive": true,
+                    "MatchWhenDetached": true,
+                    "MatchWhenRemote": false,
+                    "MatchWhenEx": false,
+                    "IncludeDead": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                    "name": "$HideUnit$924c8e7b-1593-4729-8af4-7d96a943fc93",
+                    "Target": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$17cbe11c-445f-4f36-b3f2-e1e26e7cb744",
+                      "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "Unhide": true,
+                    "Fade": false
+                  },
+                  {
+                    "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                    "name": "$TranslocateUnit$1f663fab-e3cf-486e-b2c6-5b025b1adeec",
+                    "m_ForceBlockTargetPosition": false,
+                    "Unit": {
+                      "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                      "name": "$CompanionInParty$8b834457-8072-4b24-ac12-36f42215d880",
+                      "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                      "IncludeActive": true,
+                      "IncludeDetached": true,
+                      "IncludeRemote": false,
+                      "IncludeExCompanions": false,
+                      "IncludeDead": false,
+                      "Index": 0
+                    },
+                    "translocatePosition": {
+                      "EntityNameInEditor": "EoganInCover_pos",
+                      "_entity_id": "d1b5a568-d924-448a-9d98-21714b3da78a",
+                      "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                    },
+                    "translocatePositionEvaluator": null,
+                    "m_PrecisePosition": true,
+                    "m_RestrictByHeightDifference": false,
+                    "m_CopyRotation": true,
+                    "translocateOrientationEvaluator": {
+                      "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                      "name": "$LocatorOrientation$26092d9a-93ea-4c3d-8045-d1c7853d8c75",
+                      "LocatorEval": null,
+                      "Locator": {
+                        "EntityNameInEditor": "EoganInCover_pos",
+                        "_entity_id": "d1b5a568-d924-448a-9d98-21714b3da78a",
+                        "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                      },
+                      "Offset": 0.0
+                    },
+                    "m_ActionsOnSuccess": {
+                      "Actions": []
+                    },
+                    "m_ActionsOnFail": {
+                      "Actions": []
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_eff66320e8094ff298f01a35f4835386",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+          "name": "$FlagUnlocked$3dc265af083a400aa4787e2e8d870222",
+          "Not": false,
+          "m_ConditionFlag": "!bp_20d557bf28ae44ef927b4d099ca4c0bf",
+          "ExceptSpecifiedValues": false,
+          "SpecifiedValues": []
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

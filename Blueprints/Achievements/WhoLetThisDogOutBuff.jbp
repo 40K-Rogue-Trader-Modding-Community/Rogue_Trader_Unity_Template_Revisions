@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "DisableForLevelUpPreviewUnit": true,
         "DisableWhenReapplying": false,
         "Activated": {
@@ -32,7 +33,7 @@
                     "Buff": "!bp_b25f76671d1d4bbbab1156cea7f5f15e",
                     "RankValue": {
                       "ValueType": "Simple",
-                      "Value": 6,
+                      "Value": 7,
                       "ValueRank": "Default",
                       "ValueShared": "Damage",
                       "Property": "None",
@@ -70,6 +71,94 @@
         "RoundEnd": {
           "Actions": []
         }
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$57a7d402-d6ff-47a9-8c01-d54af8b490ac",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": true,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": true,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$56b1cd14a412520886ebf3f6fc95f970",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                    "name": "$UnitEqual$c6d8bebb5fb75905bb3ee5c772945b43",
+                    "Not": false,
+                    "FirstUnit": {
+                      "$type": "63f3fa5b72a34ef79f4222eac2ed976b, OwnerByPet",
+                      "name": "$OwnerByPet$0943b8751de55ef5a6ef70eb25708d8e",
+                      "PetEvaluator": {
+                        "$type": "56703b87cc0c36347937d201cc076a6d, CasterUnit",
+                        "name": "$CasterUnit$2d9744fabf7055279ea51e4ef935b5a8"
+                      }
+                    },
+                    "SecondUnit": {
+                      "$type": "cf2430390b1b475490921b4ba97a682f, ContextTargetUnit",
+                      "name": "$ContextTargetUnit$2b967de82c1e5df789c33d39ba21abfd"
+                    }
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "1e0ebe55f7204066b7cdb0eb124b863a, ContextActionRemoveSelf",
+                    "name": "$ContextActionRemoveSelf$588d6404-f747-4b50-a999-3fedf4ee83f3"
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
       }
     ],
     "Author": "Unknown",
@@ -103,7 +192,7 @@
     "ProlongWhenRankAdded": false,
     "PriorityProperty": "Value1",
     "Initiative": "ByCaster",
-    "Ranks": 6,
+    "Ranks": 7,
     "FxOnStart": {
       "AssetId": ""
     },
@@ -115,7 +204,9 @@
     "PlayOnlyFirstHitSound": false,
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

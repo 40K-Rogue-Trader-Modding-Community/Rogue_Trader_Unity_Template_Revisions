@@ -1,0 +1,446 @@
+{
+  "AssetId": "9a496575148a4ae99d828815cc0bebda",
+  "Data": {
+    "$type": "c8ff73feae580b142a9f43e0c61d7f32, BlueprintDialog",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "Мейнспикер Тразин\nКомплитит по завершению Obj2_AWayOut",
+    "FirstCue": {
+      "Cues": [
+        "!bp_19065d840b294550b0bddcda8c108038"
+      ],
+      "Strategy": "First"
+    },
+    "StartPosition": null,
+    "Conditions": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "StartActions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f94eca5e7e234b6b9e3e58117f280e8c",
+          "Comment": "Если пошли по ветке ларии - комплитим ее квест и фейлим Ювены",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$c58b65c5fbf4419eb0ab532de5e7141f",
+                "Not": false,
+                "m_Etude": "!bp_5f833f4859804095935bdf2b29d1c988",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$c60008fa59c949d088e0ce8c6d9d423e",
+                "Status": "Complete",
+                "m_Objective": "!bp_fde4178508f141ef9a3ba621dedd5fc2",
+                "StartObjectiveIfNone": true
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$cd75fa50-c453-4df6-a1f5-6c0a53209c70",
+                "Status": "Fail",
+                "m_Objective": "!bp_b7270de11878429fbd2673b33a0e6093",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$6b552719-6641-498e-bfe5-4642f66cf9bb",
+                "Status": "Fail",
+                "m_Objective": "!bp_a13ff325624d431f9df935d9f9fcd072",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$1aeadc59-d6a9-4203-b8ce-b015e1786d41",
+                "Etude": "!bp_e852e8a963ad47f4b2795a61c3d90684",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7d2d8b31-9faf-4e40-9394-660d6ea2de6c",
+          "Comment": "Если пошли по ветке Ювены - комплитим ее квест и фейлим Ларии",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$d82a83b0-8f26-4f22-8d03-19f3cad1ac37",
+                "Not": false,
+                "m_Etude": "!bp_84aac1478b2a4169b1566bbaa8b35954",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$3b108013-bc69-4363-be0c-9d7dc94845a2",
+                "Status": "Complete",
+                "m_Objective": "!bp_b7270de11878429fbd2673b33a0e6093",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$7ca21d0d-0cdc-43b2-af10-3ae164b8e3a4",
+                "Status": "Complete",
+                "m_Objective": "!bp_a13ff325624d431f9df935d9f9fcd072",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$262ced9b-3990-48c3-aa5d-5ca0afb1e208",
+                "Status": "Fail",
+                "m_Objective": "!bp_fde4178508f141ef9a3ba621dedd5fc2",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$077bc0b88ec445b8a73ce0b49ef95dda",
+                "Etude": "!bp_38391f78a7904664a74bd969ad854d49",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$9628eeaf-ceac-45cf-805a-ab092e64f804",
+          "Comment": "Если пошли через слом панорамы - все фейлим",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$5112d7bd-4f34-4e8c-bc95-fb110ccd90ad",
+                "Not": true,
+                "m_Etude": "!bp_84aac1478b2a4169b1566bbaa8b35954",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$893b73f5-e48d-42f7-887a-2de511967116",
+                "Not": true,
+                "m_Etude": "!bp_5f833f4859804095935bdf2b29d1c988",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$6d83b695-38f3-4987-b1d5-d83858dcbd00",
+                "Status": "Fail",
+                "m_Objective": "!bp_b7270de11878429fbd2673b33a0e6093",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$dcd69535-ff80-4ed7-8ace-b7abccdcbb99",
+                "Status": "Fail",
+                "m_Objective": "!bp_a13ff325624d431f9df935d9f9fcd072",
+                "StartObjectiveIfNone": false
+              },
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$518e460a-8bfa-4131-adae-24aedbb39699",
+                "Status": "Fail",
+                "m_Objective": "!bp_fde4178508f141ef9a3ba621dedd5fc2",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "db6095c1906d85748b0a8506de7c9dd7, GainExp",
+          "name": "$GainExp$68b3110f4ce94de482f06cb4c3d3ba6a",
+          "Encounter": "QuestMain",
+          "CR": 38,
+          "Modifier": 1.0,
+          "Count": null,
+          "Dummy": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b11d9b42233d4fb0acf59f53d341a70e",
+          "Comment": "Фейл квеста про убийство Гапрака",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$dfd18c619bdd4744bada818dbb90aa5d",
+                "Not": false,
+                "m_Quest": "!bp_c20b477cecf24d74a9276f9a984c99a2",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$1b7cf87066d84141a3d4fb8a4692785e",
+                "Status": "Fail",
+                "m_Objective": "!bp_41159318ad3046cc86a96908eedc8f7c",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$289fedab-4c06-4f3d-b8da-6f2ef49e6d74",
+          "Comment": "Фейл квеста про кражу меча",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$e13e06f9-0d09-41a7-9679-96dbf04c08b0",
+                "Not": false,
+                "m_Quest": "!bp_ef8a1c7875124bec8474d340e231f946",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$1018337d-fddc-46dd-9456-48cea4a431c4",
+                "Status": "Fail",
+                "m_Objective": "!bp_b2ce1540fb1c4f099665f94fde3520b2",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$32ca88d8-2952-440a-a1f0-42ead0be3d5e",
+          "Comment": "Фейл квеста про поиск шпиона",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$02f457aa-9389-44b0-922f-16c2288b5a9c",
+                "Not": false,
+                "m_Quest": "!bp_09a7f72aeb474272a647469fca65937d",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$e3020fbf-a596-4021-9d4d-c2f8dd0dcbae",
+                "Status": "Fail",
+                "m_Objective": "!bp_b8f5c32d5cb74379b8d226a10ba53da8",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$44d0c5ff-9a6a-43e9-b290-504a5de6a6ea",
+          "Comment": "Фейл квеста про взрыв некрон-девайса",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                "name": "$QuestStatus$7961038e-4ce2-43a6-a95c-65663153261a",
+                "Not": false,
+                "m_Quest": "!bp_5fad79eaf39b400799df49a9469d0f6b",
+                "State": "Started"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$3b9494c9-2aef-4d0e-a519-4715fb87387f",
+                "Status": "Fail",
+                "m_Objective": "!bp_17a0914474544069bd7c2a9fae43e144",
+                "StartObjectiveIfNone": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$f5e1184775ba4585a04f41ecbe3fe378",
+          "m_State": {
+            "Value": "Story",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$e190352e381e4a989c60128a4b04a1ef",
+          "m_State": {
+            "Value": "Trazyn",
+            "Group": "MusicStoryType"
+          },
+          "m_ProlongTillNextCombat": true,
+          "m_IgnoreCombatExit": false
+        }
+      ]
+    },
+    "FinishActions": {
+      "Actions": [
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$256d2d200f5c4cb18a1ac6e550203b62",
+          "m_flag": "!bp_e48b7c702e924ecf9e4462c01eaf6c50",
+          "flagValue": 0
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$02e3512e34824d15aa30eef4fb3ccc7a",
+          "Etude": "!bp_b311413e8140467abf750b549e08bfd3",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$54ee4f3f13f34766bbbc279ca5e3615f",
+          "Etude": "!bp_4192f553ce4742fc9b15f631e38d42e8",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$5c2f984c-de58-4b68-9df0-17d9d91600b2",
+          "Etude": "!bp_0dc6c90f0d664341831885742affeb4c",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$fd441fb311d14b96b14cc333e63dd370",
+          "Status": "Complete",
+          "m_Objective": "!bp_1df4732ef67b4b619909715c38189ac0",
+          "StartObjectiveIfNone": true
+        },
+        {
+          "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+          "name": "$TeleportParty$6fb94825b8c841c29e772682530cb1a0",
+          "m_exitPositon": "!bp_e257745928c5e294db4e697921803fc3",
+          "AutoSaveMode": "None",
+          "ForcePauseAfterTeleport": false,
+          "AfterTeleport": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+          "name": "$CompleteEtude$7c60aa9a55d14d1fb70ee9b34e900f5c",
+          "Etude": "!bp_cbc821d0476247dba34837f4528758a2",
+          "EtudeEvaluator": null,
+          "Evaluate": false
+        },
+        {
+          "$type": "00ca6afae3a5475aad9aebf040370af8, SetMusicSoundState",
+          "name": "$SetForcedSoundState$5f05466b-39dd-42e2-843d-4134611e63b6",
+          "m_State": {
+            "Value": "Setting",
+            "Group": "MusicState"
+          },
+          "m_ProlongTillNextCombat": false,
+          "m_IgnoreCombatExit": false
+        }
+      ]
+    },
+    "ReplaceActions": {
+      "Actions": []
+    },
+    "FeatureFreezed": false,
+    "TurnPlayer": true,
+    "TurnFirstSpeaker": true,
+    "IsLockCameraRotationButtons": false,
+    "IsNarratorText": false,
+    "Type": "Common",
+    "Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "OverrideCRForSkillChecks": false,
+    "OverridenCR": 0,
+    "m_EditorComment": {
+      "m_EditorComment": "",
+      "m_Foldout": false
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

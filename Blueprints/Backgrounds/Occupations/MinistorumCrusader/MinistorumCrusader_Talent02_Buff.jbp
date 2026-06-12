@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
@@ -49,7 +50,7 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "DamageBonus1",
-          "Enabled": true
+          "Enabled": false
         },
         "MaximumDamage": {
           "ValueType": "CasterNamedProperty",
@@ -59,7 +60,7 @@
           "Property": "None",
           "m_CustomProperty": null,
           "PropertyName": "DamageBonus1",
-          "Enabled": true
+          "Enabled": false
         },
         "PenetrationMod": {
           "ValueType": "Simple",
@@ -72,14 +73,14 @@
           "Enabled": false
         },
         "PercentDamageModifier": {
-          "ValueType": "Simple",
+          "ValueType": "CasterNamedProperty",
           "Value": 0,
           "ValueRank": "Default",
           "ValueShared": "Damage",
           "Property": "None",
           "m_CustomProperty": null,
-          "PropertyName": "Value1",
-          "Enabled": false
+          "PropertyName": "DamageBonus1",
+          "Enabled": true
         },
         "AbsorptionPenetration": {
           "ValueType": "Simple",
@@ -205,7 +206,7 @@
                 ]
               },
               "True": {
-                "Operation": "Sum",
+                "Operation": "Mul",
                 "TargetType": "ContextCaster",
                 "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
@@ -224,14 +225,38 @@
                       "Max": 0
                     },
                     "m_Fact": "!bp_eeecc5cab7b846e8b1478ecfa15ce9bc",
+                    "CheckTarget": "CurrentEntity",
                     "Aggregation": "Max",
                     "BuffWithCasterFromTargetType": false,
-                    "Target": "CurrentEntity"
+                    "BuffCaster": "CurrentEntity"
+                  },
+                  {
+                    "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                    "name": "$ContextValueGetter$361fca94ac344436a65b513e3f1180c0",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 10,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
                   }
                 ]
               },
               "False": {
-                "Operation": "Div",
+                "Operation": "Mul",
                 "TargetType": "ContextCaster",
                 "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
@@ -250,9 +275,10 @@
                       "Max": 0
                     },
                     "m_Fact": "!bp_eeecc5cab7b846e8b1478ecfa15ce9bc",
+                    "CheckTarget": "CurrentEntity",
                     "Aggregation": "Max",
                     "BuffWithCasterFromTargetType": false,
-                    "Target": "CurrentEntity"
+                    "BuffCaster": "CurrentEntity"
                   },
                   {
                     "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
@@ -269,7 +295,7 @@
                     },
                     "Value": {
                       "ValueType": "Simple",
-                      "Value": 2,
+                      "Value": 5,
                       "ValueRank": "Default",
                       "ValueShared": "Damage",
                       "Property": "None",
@@ -337,7 +363,8 @@
     "m_priorityInUI": 0,
     "m_AbilityGroups": [],
     "m_Cyclical": false,
-    "NeedCollapseStack": true
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

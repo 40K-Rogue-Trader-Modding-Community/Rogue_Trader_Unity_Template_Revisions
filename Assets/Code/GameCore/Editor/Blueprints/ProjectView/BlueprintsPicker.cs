@@ -28,12 +28,13 @@ namespace Kingmaker.Editor.Blueprints
 			public string AssetGuid;
 			public bool IsShadowDeleted;
 			public bool ContainsShadowDeletedBlueprints;
+			public bool ContainsObsoleteComponents;
 			public List<HierarchyEntry> Children;
 			public bool Expanded = true;
 			public bool Hidden;
 
-            public SimpleBlueprint Asset
-                => BlueprintsDatabase.LoadById<SimpleBlueprint>(AssetGuid);
+            public BlueprintScriptableObject Blueprint
+                => BlueprintsDatabase.LoadById<BlueprintScriptableObject>(AssetGuid);
 
 			public int CompareTo(HierarchyEntry other)
 			{
@@ -85,7 +86,7 @@ namespace Kingmaker.Editor.Blueprints
 			[NotNull] Action<T> callback,
 			[CanBeNull] T selectedAsset = null,
 			[CanBeNull] Func<HierarchyEntry, bool> filter = null,
-			bool enableSelectionOnClick = false) where T : SimpleBlueprint
+			bool enableSelectionOnClick = false) where T : BlueprintScriptableObject
 		{
 			ShowAssetPicker(typeof(T), null, e => callback?.Invoke((T)e), selectedAsset, filter, enableSelectionOnClick);
 		}
@@ -93,8 +94,8 @@ namespace Kingmaker.Editor.Blueprints
 		public static void ShowAssetPicker(
 			[NotNull] Type assetType,
 			[CanBeNull] FieldInfo fieldInfo,
-			[NotNull] Action<SimpleBlueprint> callback,
-			[CanBeNull] SimpleBlueprint selectedAsset = null,
+			[NotNull] Action<BlueprintScriptableObject > callback,
+			[CanBeNull] BlueprintScriptableObject  selectedAsset = null,
 			[CanBeNull] Func<HierarchyEntry, bool> filter = null,
 			bool enableSelectionOnClick = false)
 		{
@@ -184,21 +185,29 @@ namespace Kingmaker.Editor.Blueprints
 		}
 
         public static void ShowObjectField(
-            SimpleBlueprint currentValue, Action<SimpleBlueprint> pickCallback,
-			GUIContent label, Type assetType, Type fieldType = null,
+	        BlueprintScriptableObject currentValue, [CanBeNull] string sourceGuid, Action<BlueprintScriptableObject> pickCallback,
+			GUIContent label, Type assetType, [CanBeNull] FieldInfo fieldInfo, Type fieldType = null,
 			Func<HierarchyEntry, bool> filter = null, bool enableSelectionOnClick = false,
 			string setControlName = null)
 		{
 			var rect = EditorGUILayout.GetControlRect(true);
-			ShowObjectField(rect, currentValue, pickCallback, label, assetType, fieldType, filter, enableSelectionOnClick, setControlName);
+			ShowObjectField(rect, currentValue, sourceGuid, pickCallback, label, assetType, fieldInfo, fieldType, filter, enableSelectionOnClick, setControlName);
 		}
 
 		public static void ShowObjectField(
-			Rect position, SimpleBlueprint currentValue, Action<SimpleBlueprint> pickCallback,
-			GUIContent label, Type assetType, Type fieldType = null,
+			Rect position, BlueprintScriptableObject currentValue, string sourceGuid, Action<BlueprintScriptableObject> pickCallback,
+			GUIContent label, Type assetType, FieldInfo fieldInfo, Type fieldType = null,
 			Func<HierarchyEntry, bool> filter = null, bool enableSelectionOnClick = false,
 			string setControlName = null)
 		{
+			object[] fieldAttrs = null;
+			if (fieldInfo != null)
+			{
+				if (fieldType == null)
+					fieldType = fieldInfo.FieldType;
+				fieldAttrs = fieldInfo.GetCustomAttributes(true);
+			}
+			
 			EditorGUI.BeginChangeCheck();
 			var buttonPos = position;
 			buttonPos.xMin = buttonPos.xMax - EditorGUIUtility.singleLineHeight;
@@ -299,7 +308,7 @@ namespace Kingmaker.Editor.Blueprints
 
 		private static bool s_PreviewSelection;
 
-		private Action<SimpleBlueprint> m_SelectionCallback;
+		private Action<BlueprintScriptableObject> m_SelectionCallback;
 
 		private List<Func<HierarchyEntry, bool>> m_Filters = new List<Func<HierarchyEntry, bool>>();
 
@@ -525,7 +534,7 @@ namespace Kingmaker.Editor.Blueprints
 					if (SelectedAssetEntry != null)
 					{
 						s_PreviewSelection = false;
-						m_SelectionCallback(SelectedAssetEntry.Asset);
+						m_SelectionCallback(SelectedAssetEntry.Blueprint);
 						Close();
 					}
 					break;
@@ -543,7 +552,7 @@ namespace Kingmaker.Editor.Blueprints
 						if (SelectedAssetEntry != null && m_EnableSelectionOnClick)
 						{
 							s_PreviewSelection = true;
-							m_SelectionCallback(SelectedAssetEntry.Asset);
+							m_SelectionCallback(SelectedAssetEntry.Blueprint);
 						}
 						Repaint();
 					}
@@ -560,7 +569,7 @@ namespace Kingmaker.Editor.Blueprints
 						if (SelectedAssetEntry != null && m_EnableSelectionOnClick)
 						{
 							s_PreviewSelection = true;
-							m_SelectionCallback(SelectedAssetEntry.Asset);
+							m_SelectionCallback(SelectedAssetEntry.Blueprint);
 						}
 						Repaint();
 					}
@@ -654,7 +663,7 @@ namespace Kingmaker.Editor.Blueprints
                             (m_EnableSelectionOnClick || Event.current.clickCount > 1))
                         {
                             s_PreviewSelection = Event.current.clickCount <= 1;
-                            m_SelectionCallback(entry.Asset);
+                            m_SelectionCallback(entry.Blueprint);
                             if (m_EnableSelectionOnClick)
                             {
                                 SelectedAssetEntry = entry;
@@ -675,7 +684,7 @@ namespace Kingmaker.Editor.Blueprints
                         DragAndDrop.PrepareStartDrag();
                         if (!selected)
                         {
-                            DragAndDrop.objectReferences = new[] {BlueprintEditorWrapper.Wrap(entry.Asset)};
+                            DragAndDrop.objectReferences = new[] {BlueprintEditorWrapper.Wrap(entry.Blueprint)};
                         }
                         else
                         {
@@ -690,7 +699,7 @@ namespace Kingmaker.Editor.Blueprints
                     if (Event.current.type == EventType.ContextClick)
                     {
                         Vector2 mousePos = Event.current.mousePosition;
-                        var typeName = entry.Asset.GetType().Name;
+                        var typeName = entry.Blueprint.GetType().Name;
                         DisplayAssetContextMenu(typeName, mousePos);
                         Event.current.Use();
                     }
@@ -720,7 +729,7 @@ namespace Kingmaker.Editor.Blueprints
                         //else if (!Event.current.shift)
                         //{
                         //	// simple click - select asset
-                        Selection.activeObject = BlueprintEditorWrapper.Wrap(entry.Asset);
+                        Selection.activeObject = BlueprintEditorWrapper.Wrap(entry.Blueprint);
                         //}
                     }
                     else
@@ -819,7 +828,8 @@ namespace Kingmaker.Editor.Blueprints
 
             foreach (var pair in ids)
 			{
-				AddAssetInfo(pair.Item1, pair.Item2, pair.IsShadowDeleted, pair.ContainsShadowDeletedBlueprints);
+				AddAssetInfo(pair.Guid, pair.Path, pair.IsShadowDeleted, pair.ContainsShadowDeletedBlueprints, 
+					pair.ContainsObsoleteComponents);
 			}
 
 			FilterAssets(ref m_LoadedAssets);
@@ -835,14 +845,15 @@ namespace Kingmaker.Editor.Blueprints
 			}
 		}
 
-		private void AddAssetInfo(string guid, string path, bool isShadowDeleted, bool ContainsShadowDeletedBlueprints)
+		private void AddAssetInfo(string guid, string path, bool isShadowDeleted, bool containsShadowDeletedBlueprints, 
+			bool containsObsoleteComponents)
 		{
-			var folders = path.Split('/','\\');
+			string[] folders = path.Split('/','\\');
 			var list = m_LoadedAssets;
 			HierarchyEntry parent = null;
 			for (int ii = 1; ii < folders.Length - 1; ii++) // 1 to skip Blueprints folder, -1 to skip asset name
 			{
-				var folder = folders[ii];
+				string folder = folders[ii];
 				var p = parent;
 				parent = list.SingleOrDefault(e => e.Name == folder && e.Children != null);
 				if (parent == null)
@@ -858,6 +869,7 @@ namespace Kingmaker.Editor.Blueprints
 				}
 				list = parent.Children = parent.Children ?? new List<HierarchyEntry>();
 			}
+			
 			var hierarchyEntry = new HierarchyEntry
 			{
 				Parent = parent,
@@ -865,14 +877,19 @@ namespace Kingmaker.Editor.Blueprints
 				Path = path,
 				AssetGuid = guid,
 				IsShadowDeleted = isShadowDeleted,
-				ContainsShadowDeletedBlueprints = ContainsShadowDeletedBlueprints,
+				ContainsShadowDeletedBlueprints = containsShadowDeletedBlueprints,
+				ContainsObsoleteComponents = containsObsoleteComponents,
 				Children = null
 			};
+			
 			hierarchyEntry.DisplayName = hierarchyEntry.IsShadowDeleted
 				? $"<color=#ff0000ff>{hierarchyEntry.Name}</color>"
 				: hierarchyEntry.ContainsShadowDeletedBlueprints 
 					? $"<color=#ffa500ff>{hierarchyEntry.Name}</color>" 
-					: hierarchyEntry.Name;
+					: hierarchyEntry.ContainsObsoleteComponents
+						? $"<color=#ffd500ff>{hierarchyEntry.Name}</color>" 
+						: hierarchyEntry.Name;
+
 			list.Add(hierarchyEntry);
 		}
 

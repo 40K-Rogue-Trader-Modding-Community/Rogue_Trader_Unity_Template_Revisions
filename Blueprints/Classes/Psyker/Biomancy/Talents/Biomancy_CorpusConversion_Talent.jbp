@@ -14,9 +14,11 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Condition": {
-          "Operation": "Sum",
+          "Operation": "BoolAnd",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -48,6 +50,22 @@
                 "!bp_a2cca43669184eaa9f0da981f204e1c9",
                 "!bp_8e54302d79784976a0fb95308d7f2fef"
               ]
+            },
+            {
+              "$type": "e976e615d0274913a061b4841aa98d3e, HasBuffFromContextCasterGetter",
+              "name": "$HasBuffFromContextCasterGetter$d8c708e988d45634933338b92ac2837e",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "m_Fact": "!bp_5f10f57aad3b4757886d31f1721ff335",
+              "Target": "CurrentTarget"
             }
           ]
         },
@@ -60,15 +78,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": false,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 1,
@@ -116,6 +125,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "ActionsOnEnter": {
           "Actions": [
             {
@@ -141,15 +151,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -201,10 +202,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -268,11 +271,47 @@
         "Abilities": [],
         "ForAbilityGroup": false,
         "m_AbilityGroup": null,
+        "m_OtherAbilityGroupList": [],
         "ForUltimateAbilities": false,
         "AssignOwnerAsTarget": false,
         "m_AssignContextFromAbility": false
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$1cf2af47-28a1-444d-b1b5-e36c9342c061",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "f42258a78a4b4c8490804ac5e91d095c, VeilStressGetter",
+              "name": "$VeilStressGetter$9ef525e32c4253d4ae888875731651fa",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              }
+            }
+          ]
+        }
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -305,7 +344,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Universal",
       "Warp"
     ],
     "TalentIconInfo": {
@@ -320,8 +358,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "LeonidTolochenko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

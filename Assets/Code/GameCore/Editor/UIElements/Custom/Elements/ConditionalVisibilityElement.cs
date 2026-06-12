@@ -2,49 +2,49 @@
 using Kingmaker.Utility.Attributes;
 using UnityEngine.UIElements;
 
-namespace Kingmaker.Editor.UIElements
+namespace Kingmaker.Editor.UIElements.Custom.Elements
 {
-	public class ConditionalVisibilityElement : OwlcatVisualElement, IBindable
-	{
-		public IBinding binding { get; set; }
-
-		public string bindingPath { get; set; }
-
-		public ConditionalVisibilityElement(OwlcatProperty propertyElement, ConditionalAttribute conditionalVisibility)
-		{
-			binding = new ConditionalVisibilityBinding(propertyElement, conditionalVisibility);
-			Add(propertyElement);
-		}
-	}
-
-	public class ConditionalVisibilityBinding : IBinding
+	public class ConditionalVisibilityElement
 	{
 		private readonly OwlcatProperty m_Property;
-
 		private readonly ConditionalAttribute m_VisibilityAttribute;
-
+		private readonly HeaderElement m_HeaderElement;
+        
 		private bool m_Visible;
-		
-		public ConditionalVisibilityBinding(OwlcatProperty property, ConditionalAttribute conditionalVisibility)
+
+		public ConditionalVisibilityElement(OwlcatProperty propertyElement, ConditionalAttribute conditionalVisibility, 
+			HeaderElement headerElement)
 		{
-			m_Property = property;
+			m_Property = propertyElement;
+			m_HeaderElement = headerElement;
 			m_VisibilityAttribute = conditionalVisibility;
-			m_Visible = conditionalVisibility.IsFieldVisible(m_Property.Property);
-			m_Property.style.display = m_Visible ? DisplayStyle.Flex : DisplayStyle.None;
+            
+			propertyElement.schedule.Execute(CheckVisibility).Every(500).Until(() => 
+				propertyElement.Property == null || conditionalVisibility == null);
+			
+			m_Visible = conditionalVisibility.IsFieldVisible(propertyElement.Property);
+			UpdateVisibility();
 		}
-
-		void IBinding.PreUpdate() { }
-
-		void IBinding.Release() { }
-
-		void IBinding.Update()
+		
+		private void CheckVisibility()
 		{
+			if (m_Property?.Property == null || m_VisibilityAttribute == null)
+				return;
+            
 			bool value = m_VisibilityAttribute.IsFieldVisible(m_Property.Property);
 			if (value != m_Visible)
 			{
 				m_Visible = value;
-				m_Property.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
+				UpdateVisibility();
 			}
+		}
+        
+		private void UpdateVisibility()
+		{
+			m_Property.style.display = m_Visible ? DisplayStyle.Flex : DisplayStyle.None;
+                
+			if (m_HeaderElement != null)
+				m_HeaderElement.style.display = m_Property.style.display;
 		}
 	}
 }

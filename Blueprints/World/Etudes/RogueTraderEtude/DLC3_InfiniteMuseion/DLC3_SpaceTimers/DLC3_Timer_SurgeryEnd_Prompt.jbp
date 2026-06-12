@@ -1,0 +1,159 @@
+{
+  "AssetId": "5e9f42970d164bb3a5e3c78f84e7b5c8",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "d7c3d80beb354d44ab46ace48fc5bf75, EtudeTriggerActionInWarpDelayed",
+        "name": "$EtudeTriggerActionInWarpDelayed$a727caef-37a7-4b20-8d6d-0ecf2d72c5c5",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "WarpTravelTriggerCount": 2,
+        "ActionList": {
+          "Actions": [
+            {
+              "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+              "name": "$StartDialog$054b253cb7f440d786e3056e19212c20",
+              "DialogueOwner": null,
+              "m_Dialogue": "!bp_1a22ed963763439d9c7cd338e34f5395",
+              "DialogEvaluator": null,
+              "SpeakerName": {
+                "m_Key": "",
+                "m_OwnerString": "",
+                "m_OwnerPropertyPath": "",
+                "m_JsonPath": "",
+                "Shared": null
+              }
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$97c87f5f-b506-4bde-a9fd-e277171b8ce8",
+              "Etude": "!bp_5e9f42970d164bb3a5e3c78f84e7b5c8",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        },
+        "TriggerType": "SimpleEvent",
+        "TimeToStart": "AfterTravelFinished",
+        "Priority": 1
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$276e5482-4dc6-45db-ba36-73454ea77f49",
+        "m_Flags": "Disabled",
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": true,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+              "name": "$QuestStatus$002fe5c8-b561-44c2-8364-55a9388b90bf",
+              "Not": false,
+              "m_Quest": "!bp_4608a6af766d4e1ea7e3762e66f7b7cd",
+              "State": "Completed"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$c56a1862-f38b-47bf-813a-7e4b09adcf3d",
+              "Etude": "!bp_5e9f42970d164bb3a5e3c78f84e7b5c8",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "Q4 взрыв в медотсеке",
+    "m_Parent": "!bp_03072fec169f46bfa8c79a2f36c3170c",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+          "name": "$QuestStatus$0189f54bdf144698bc791bdc178f9890",
+          "Not": false,
+          "m_Quest": "!bp_e65f51ccec8c4ded9bda597c60b2f3bf",
+          "State": "Completed"
+        },
+        {
+          "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+          "name": "$ObjectiveStatus$dffebb2a472a413c8f30e39307627942",
+          "Not": false,
+          "m_QuestObjective": "!bp_3f33865c84fd4072a5ea622c974a42cc",
+          "State": "Completed"
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$6da2d09dce4647a69290f6836fea6c14",
+          "Not": false,
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$1e6da85ced1c4c8cb675c41e4ae95702",
+                "Not": false,
+                "m_Etude": "!bp_53fce62c064d4a7da671259500f426e7",
+                "NotStarted": false,
+                "Started": true,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$0b276f8f1cb24ee6a2fe357e53185266",
+                "Not": true,
+                "m_companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": true,
+                "MatchWhenRemote": true,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

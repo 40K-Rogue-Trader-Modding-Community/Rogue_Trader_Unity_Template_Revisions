@@ -25,7 +25,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
         private const float IconH = 16.0f;
         private const float IconW = 16.0f;
 
-        private const int DefaultIndent = 2;
+        private const int DefaultIndent = 1;
         private const float IndentFactor = IconW;
 
         private string parent;
@@ -143,7 +143,7 @@ namespace Kingmaker.Assets.Code.Editor.EtudesViewer
 
             base.OnGUI();
             
-            if (parent == null)
+            if (string.IsNullOrEmpty(parent))
             {
                 parent = rootEtudeId;
                 selected = parent;

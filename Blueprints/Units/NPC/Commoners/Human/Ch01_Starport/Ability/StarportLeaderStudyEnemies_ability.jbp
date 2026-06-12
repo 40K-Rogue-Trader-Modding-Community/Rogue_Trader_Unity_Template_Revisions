@@ -172,15 +172,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": false,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 1,
@@ -287,15 +278,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -354,15 +336,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -484,9 +457,10 @@
                       "Max": 0
                     },
                     "m_Fact": "!bp_014b6572e19946ae8bc74fc8cbe0f92b",
+                    "CheckTarget": "CurrentEntity",
                     "Aggregation": "Max",
                     "BuffWithCasterFromTargetType": false,
-                    "Target": "CurrentEntity"
+                    "BuffCaster": "CurrentEntity"
                   },
                   {
                     "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
@@ -521,9 +495,10 @@
                             "Max": 0
                           },
                           "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+                          "CheckTarget": "CurrentEntity",
                           "Aggregation": "Max",
                           "BuffWithCasterFromTargetType": false,
-                          "Target": "CurrentEntity"
+                          "BuffCaster": "CurrentEntity"
                         },
                         {
                           "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
@@ -550,6 +525,21 @@
                         }
                       ]
                     }
+                  },
+                  {
+                    "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+                    "name": "$SimplePropertyGetter$fc98eaf2f88c52babbf3b8c8ccf1e12c",
+                    "Settings": {
+                      "Progression": "Div2",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "Property": "IntelligenceBonus"
                   }
                 ]
               }
@@ -727,6 +717,7 @@
     "CanTargetSelf": false,
     "Hidden": false,
     "HiddenInUI": false,
+    "DefaultSlotIndex": -1,
     "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,

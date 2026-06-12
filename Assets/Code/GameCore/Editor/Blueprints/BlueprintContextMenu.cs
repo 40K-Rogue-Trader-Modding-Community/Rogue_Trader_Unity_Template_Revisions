@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Assets.Editor;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
@@ -123,6 +124,7 @@ namespace Kingmaker.Editor.Blueprints
             gm.AddItem(new GUIContent("Copy/Path"), false, () => GUIUtility.systemCopyBuffer = string.Join("\n", paths));
             gm.AddItem(new GUIContent("Copy/Guid"), false, () => GUIUtility.systemCopyBuffer = string.Join("\n", bpGuids));
             gm.AddItem(new GUIContent("Copy/Name (Guid)"), false, () => GUIUtility.systemCopyBuffer = string.Join("\n", nameGuids));
+            gm.AddItem(new GUIContent("Copy/Localization [GD]"), false, () => GUIUtility.systemCopyBuffer = GDUtils.FormExcelStringsForLocalization(bpGuids));
         }
     }
 }

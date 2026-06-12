@@ -29,7 +29,7 @@
               "name": "$ContextActionInterruptTurn$65bb3991-aa0d-413e-bc86-b0d5f4da83bb",
               "m_AllowOnCurrentTurnUnit": false,
               "GrantedMP": {
-                "ValueType": "Simple",
+                "ValueType": "CasterNamedProperty",
                 "Value": 5,
                 "ValueRank": "Default",
                 "ValueShared": "Damage",
@@ -59,6 +59,66 @@
               "InterruptionWithoutUIUpdates": false,
               "LetCurrentUnitFinishAction": false,
               "ForbidChainInterruption": false
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "43f75bd73450e1f4aa1f6163f51956e3, ContextConditionCasterHasFact",
+                    "name": "",
+                    "Not": false,
+                    "m_Fact": "!bp_d0b182e2dc6d4695a0a611b25064a920"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "",
+                    "m_Buff": "!bp_a0f0c97bc00a431bbf68872321778671",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": false,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 2,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
             }
           ]
         },
@@ -70,6 +130,126 @@
               "m_UpgradedCooldown": false,
               "m_CostReduction1": "!bp_df044b89fd294be98737c5e282bc2b3d",
               "m_CostReduction2": "!bp_b56fe3f58e9b49aa8ceb23820cd75cbc"
+            }
+          ]
+        }
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$075d4e5b-75d0-4e3b-9083-8c9bbc92a83d",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "a020de8978b1475fb024748c37ca1beb",
+          "name": "$PropertyCalculatorComponent$075d4e5b-75d0-4e3b-9083-8c9bbc92a83d"
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "2b7102ebfff042409c7f1493b16125a9, ConditionalGetter",
+              "name": "$ConditionalGetter$cfbc72c43f77464b80ff7354523485ca",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Condition": {
+                "Operation": "Sum",
+                "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
+                "FailSilentlyIfNoTarget": false,
+                "Getters": [
+                  {
+                    "$type": "d04a8b4d1fec4545b9e4d90b81ce2498, HasFactGetter",
+                    "name": "$HasFactGetter$8c9a1be53cf543d0a0ed0d39d1d6de3c",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "m_Fact": "!bp_8a1de3afcdf846db986e7f9d3e799d9f",
+                    "Target": "ContextCaster"
+                  }
+                ]
+              },
+              "True": {
+                "Operation": "Sum",
+                "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
+                "FailSilentlyIfNoTarget": false,
+                "Getters": [
+                  {
+                    "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                    "name": "$ContextValueGetter$66590bbe11704a418697526249d8cf3d",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 8,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              },
+              "False": {
+                "Operation": "Sum",
+                "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
+                "FailSilentlyIfNoTarget": false,
+                "Getters": [
+                  {
+                    "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                    "name": "$ContextValueGetter$0e74b0d4dd164150b5622856a0509801",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "Value": {
+                      "ValueType": "Simple",
+                      "Value": 5,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    }
+                  }
+                ]
+              }
             }
           ]
         }
@@ -115,6 +295,8 @@
     "CanTargetSelf": true,
     "Hidden": false,
     "HiddenInUI": false,
+    "DefaultSlotIndex": -1,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -133,8 +315,8 @@
     "SyncRotationAndAttack": false,
     "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
-    "UsingInThreateningArea": "WillCauseAOO",
-    "UsingInOverwatchArea": "WillCauseAttack",
+    "UsingInThreateningArea": "CanUseWithoutAOO",
+    "UsingInOverwatchArea": "WillNotCauseAttack",
     "CombatStateRestriction": "NoRestriction",
     "m_AbilityGroups": [
       "!bp_a193fca381c7439b92d8bedd68fc32e8"
@@ -143,7 +325,6 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",

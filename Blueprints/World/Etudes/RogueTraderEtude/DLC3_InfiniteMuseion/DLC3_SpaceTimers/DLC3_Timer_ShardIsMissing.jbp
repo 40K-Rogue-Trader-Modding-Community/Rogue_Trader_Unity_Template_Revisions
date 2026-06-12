@@ -1,0 +1,144 @@
+{
+  "AssetId": "65507e8fa1084f43a13423f626a66350",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "d7c3d80beb354d44ab46ace48fc5bf75, EtudeTriggerActionInWarpDelayed",
+        "name": "$EtudeTriggerActionInWarpDelayed$950c080f-4772-4f59-be2d-be07590940e0",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "WarpTravelTriggerCount": 1,
+        "ActionList": {
+          "Actions": [
+            {
+              "$type": "0e0c1fe99d7862d4492bcd1535939a9a, StartDialog",
+              "name": "$StartDialog$08293e74-ff4c-4c87-9cb1-67a4170d0a0d",
+              "DialogueOwner": null,
+              "m_Dialogue": "!bp_c811cd9e87914f2b9ddd897ad3ee7dcb",
+              "DialogEvaluator": null,
+              "SpeakerName": {
+                "m_Key": "",
+                "m_OwnerString": "",
+                "m_OwnerPropertyPath": "",
+                "m_JsonPath": "",
+                "Shared": null
+              }
+            },
+            {
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$5a9b4f4f-91af-48ae-91e0-afec7d069970",
+              "Etude": "!bp_65507e8fa1084f43a13423f626a66350",
+              "EtudeEvaluator": null,
+              "Evaluate": false
+            }
+          ]
+        },
+        "TriggerType": "SimpleEvent",
+        "TimeToStart": "AfterTravelFinished",
+        "Priority": 50
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": " Если Ирлет с нами, она видела осколок (ShardOfMe_dialogue) и первый раз побывали в Музеоне",
+    "m_Parent": "!bp_28224cfa8bc140698e6a15e7355dc024",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+          "name": "$EtudeStatus$afbf58dad70c56f4b81b8922036ebbf8",
+          "Not": false,
+          "m_Etude": "!bp_0dc6c90f0d664341831885742affeb4c",
+          "NotStarted": false,
+          "Started": false,
+          "Playing": true,
+          "CompletionInProgress": false,
+          "Completed": false
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$d8fc696256104d8c91013df084301a62",
+          "Not": false,
+          "Comment": "Видели эвент ШардОфМи (Романс Ирлиет) или Ирлиет вынгнана из пати или Романс не активен или Ирлиет никогда в пати не было",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$e75e7ef2-a59f-4407-ba62-7111af6b05b2",
+                "Not": false,
+                "m_Dialog": "!bp_55a929c2aef14f9195a5182e9281e84b"
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$01020aed85e74ec6ac9a203046f7df9f",
+                "Not": false,
+                "m_Etude": "!bp_12abc6230326486e8907320a88307e01",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$d87cbdc9f3ce4192bd0889ef64576700",
+                "Not": true,
+                "m_Etude": "!bp_2b870ce787b44c34a690546c8a4da1ba",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$8ba14e3f491642328ab7dc93a22edacb",
+                "Not": true,
+                "m_companion": "!bp_20c5ce9f1e2bcf9448a7a0fd0850f5d2",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": true,
+                "MatchWhenRemote": true,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          }
+        },
+        {
+          "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+          "name": "$QuestStatus$4654c4f3e39a4842914bb65033522439",
+          "Not": true,
+          "m_Quest": "!bp_f1d7bc74a97a4577a8b2d8ff9bbdc08f",
+          "State": "Completed"
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

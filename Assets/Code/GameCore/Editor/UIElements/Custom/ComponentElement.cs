@@ -3,7 +3,11 @@ using Kingmaker.Blueprints;
 using Kingmaker.Editor.UIElements.Custom.Base;
 using Kingmaker.Editor.UIElements.Custom.Elements;
 using System;
+using System.Linq;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
+using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.Blueprints.Elements;
+using Kingmaker.Editor.Utility;
 using Kingmaker.EntitySystem;
 using UnityEditor;
 using UnityEngine;
@@ -11,43 +15,64 @@ using UnityEngine.UIElements;
 using Owlcat.Runtime.Core.Utility.EditorAttributes;
 using Owlcat.Runtime.Core.Utility;
 using UnityEngine.PlayerLoop;
-using HelpBox = Kingmaker.Assets.Editor.UIElements.Custom.Elements.HelpBox;
+using UnityHelpBox = UnityEngine.UIElements.HelpBox;
+using HelpBox = Kingmaker.Editor.UIElements.Custom.Elements.HelpBox;
 
 namespace Kingmaker.Editor.UIElements.Custom
 {
 	public class ComponentElement : OwlcatPropertyLayout
     {
-        public BlueprintComponent Component
-        {
-            get
+	    public override bool IsExpanded
+	    {
+		    get => m_Property.Property.isExpanded;
+		    set
             {
-                var comp = ((BlueprintComponentEditorWrapper)SerializedObject.targetObject).GetCanonicalInstance(); // we want the actual component instance on the blueprint
-
-                // todo: compare index too? Do we need to?
-				return comp?.name == m_ComponentName ? comp : null; // the editor only works when it's the same component at the same property index
+	            m_Property.Property.isExpanded = value;
+	            OnIsExpandedChangedInternal();
             }
         }
 
-        public readonly SerializedObject SerializedObject;
-        public readonly int ComponentIndex;
+	    private readonly RobustSerializedProperty m_Property;
+	    private readonly RobustSerializedProperty m_FlagsProperty;
+	    private readonly string m_Name;
+	    private readonly bool m_IsObsolete;
+	    private readonly VisualElement m_HasDuplicatesWarning;
 		
 		private VisualElement m_Content;
-
-		private Label m_Comment;
-        private string m_ComponentName;
+		private OwlcatRoClearTextField m_Comment;
+		
+        private bool m_Initialized;
+        
+        private bool m_HasDuplicates;
+        
+        private bool m_Disabled => m_FlagsProperty.Property.enumValueFlag == 1 << 0;
+        
+        public int Index { get; }
+        public bool IsValid { get; set; } = true;
+        
+        public bool HasDuplicates
+        {
+	        get => m_HasDuplicates;
+	        set
+	        {
+		        m_HasDuplicates = value; 
+		        UpdateWarning();
+	        }
+        }
+        
         public event Action<ComponentElement> OnMoveUpEvent = delegate { };
 		public event Action<ComponentElement> OnMoveDownEvent = delegate { };
 		public event Action<ComponentElement> OnRemoveEvent = delegate { };
 		public event Action<ComponentElement> OnCopyEvent = delegate { };
 
-		public ComponentElement(BlueprintComponent component, SerializedObject serializedObject, int index) : base(Layout.Vertical, true)
+		public ComponentElement(SerializedProperty property, int index) : base(Layout.Vertical)
 		{
-            m_ComponentName = component.name;
-            ComponentIndex = index;
-            var wrapper = BlueprintComponentEditorWrapper.Wrap(component);
-            SerializedObject = new SerializedObject(wrapper);
-            
-            name = Component.name;
+			Index = index;
+			m_Property = new RobustSerializedProperty(property);
+			m_FlagsProperty = m_Property.Property.FindPropertyRelative("m_Flags");
+			
+			var type = ((BlueprintComponent) FieldFromProperty.GetFieldValue(m_Property.Property)).GetType();
+			m_Name = type.Name;
 
 			AddToClassList("owlcat-component");
 			AddToClassList("owlcat-box");
@@ -55,123 +80,197 @@ namespace Kingmaker.Editor.UIElements.Custom
 			HeaderContainer.AddToClassList("owlcat-component");
 			ContentContainer.AddToClassList("owlcat-component");
 			ControlsContainer.AddToClassList("owlcat-component");
-			
+			style.marginBottom = 10;
+
 			TitleLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
 			
-			UpdateTitle();
-			SetupHeader();
-			SetupControls();
+			var obsoleteAttribute = type.GetAttribute<ObsoleteAttribute>();
+			m_IsObsolete = obsoleteAttribute != null;
+            if (obsoleteAttribute is {Message: {} obsoleteMessage})
+            {
+                TitleLabel.AddManipulator(new TooltipManipulator(() => obsoleteMessage));
+                ContentContainer.Add(new UnityHelpBox(obsoleteMessage, HelpBoxMessageType.Warning));
+            }
 
-            var type = new IMGUIContainer(() => BlueprintEditorUtility.ShowType("Script", Component.GetType()));
-            ContentContainer.Add(type);
+            m_HasDuplicatesWarning = new Label("Multiple components of this type are not supported")
+				{ style = { display = DisplayStyle.None, unityFontStyleAndWeight = FontStyle.Bold } };
+			ContentContainer.Add(m_HasDuplicatesWarning);
+
+			UpdateTitle();
+			SetupHeaderContent();
+			SetupControls();
+			UpdateWarning();
+		}
+		
+		private void SetupHeaderContent()
+		{
+			HeaderAsPropertyLayout = true;
+
+			var content = new VisualElement
+			{
+				style =
+				{
+					flexGrow = 1,
+					flexDirection = FlexDirection.Column
+				}
+			};
+
+			m_Comment = new OwlcatRoClearTextField
+			{
+				name = "Comment",
+				style = { alignSelf = Align.FlexStart }
+			};
+
+			var idLabel = new OwlcatRoClearTextField
+			{
+				name = "IdLabel",
+			};
+			idLabel.Q<TextElement>().style.opacity = 0.5f;
+			string componentName = (FieldFromProperty.GetFieldValue(m_Property) as BlueprintComponent)?.name;
+			idLabel.value = componentName?.Split('$').LastOrDefault()?.Replace("(Clone)", "");
+
+			content.Add(m_Comment);
+			content.Add(idLabel);
+			HeaderContentContainer.Add(content);
+		}
+
+		private void SetupContent()
+		{
+			if (m_Initialized) 
+				return;
             
-            var infoAttributes = Component.GetType().GetAttributes<ClassInfoBox>();
+			m_Initialized = true;
+            
+			var type = (FieldFromProperty.GetFieldValue(m_Property) as BlueprintComponent)?.GetType();
+			var typeField = new BlueprintScriptProperty(type);
+			ContentContainer.Add(typeField);
+			
+			var infoAttributes = type.GetAttributes<ClassInfoBox>();
             foreach (var info in infoAttributes)
             {
                 ContentContainer.Add(new HelpBox(info.Text));
             }
 
-			var componentPath = "Component";
-            var rootProperty = SerializedObject.FindProperty(componentPath);
-            rootProperty.Next(true);
-            OwlcatInspectorRoot.SetupContent(ContentContainer, rootProperty, true);
-            IsExpanded = GetSavedExpandedState();
-            UpdateExpanded();
-		}
+            var prop = m_Property.Property.Copy();
+            prop.Next(true);
+            OwlcatInspectorRoot.SetupContent(ContentContainer, prop, true);
 
-		protected override void OnAttachToPanelInternal(AttachToPanelEvent evt)
-		{
-			base.OnAttachToPanelInternal(evt);
-			this.OwlcatBind(SerializedObject);
-		}
-
-		private void SetupHeader()
-		{
-			m_Comment = new Label {name = "Comment"};
-			HeaderContainer.Add(m_Comment);
+            foreach (var owlcatProperty in ContentContainer.Query<OwlcatProperty>().Build())
+            {
+	            if (owlcatProperty.PropertyPath.StartsWith(m_Property.Path))
+		            owlcatProperty.OverridableControl?.SetComponent(m_Property);
+            }
 		}
 
 		private void SetupControls()
 		{
-			var enabledToggle = new Toggle();
-			enabledToggle.SetValueWithoutNotify(!Component.Disabled);
+			var enabledToggle = new Toggle { style = { marginRight = 3 } };
+			enabledToggle.SetValueWithoutNotify(!m_Disabled);
 			
 			var moveUp = new OwlcatSmallButton(() => OnMoveUpEvent(this)) { text = "↑" };
 			var moveDown = new OwlcatSmallButton(() => OnMoveDownEvent(this)) { text = "↓" };
-			var remove = new OwlcatSmallButton(() => OnRemoveEvent(this)) { text = "X" };
-			remove.AddToClassList("red-button");
-			
-			var copy = new OwlcatSmallButton(() => OnCopyEvent(this)) { text = "Сopy" };
-			copy.style.width = 50;
+			var settings = new Button(ShowComponentContextMenu);
+			settings.AddToClassList("owlcat-settings-button");
+
+			var descriptionButton = new OwlcatDescriptionButton(m_Property, null, this);
 			
 			ControlsContainer.Add(enabledToggle);
-			ControlsContainer.Add(copy);
 			ControlsContainer.Add(moveUp);
 			ControlsContainer.Add(moveDown);
-			ControlsContainer.Add(remove);
+			ControlsContainer.Add(descriptionButton);
+			ControlsContainer.Add(settings);
 			
 			enabledToggle.RegisterValueChangedCallback(
 				evt => 
 				{
-					if (Component.Disabled != !evt.newValue)
+					if (evt.newValue)
 					{
-						Component.Disabled = !evt.newValue;
-						BlueprintsDatabase.SetDirty(Component.OwnerBlueprint.AssetGuid);
-						
-						UpdateTitle();
-						UpdateExpanded();
+						m_FlagsProperty.Property.enumValueFlag &= ~(int)BlueprintComponent.Flags.Disabled;
 					}
+					else
+					{
+						m_FlagsProperty.Property.enumValueFlag |= (int)BlueprintComponent.Flags.Disabled;
+					}
+
+					m_FlagsProperty.serializedObject.ApplyModifiedProperties();
+					m_FlagsProperty.serializedObject.Update();
+                    
+					UpdateTitle();
+					UpdateExpanded();
 				});
+		}
+		
+		private void ShowComponentContextMenu()
+		{
+			var menu = new GenericMenu();
+			
+			menu.AddItem(new GUIContent("Remove"), false, () => { OnRemoveEvent(this); });
+			menu.AddItem(new GUIContent("Copy"), false, () => { OnCopyEvent(this); });
+			menu.AddItem(new GUIContent("Solo"), false,
+				() =>
+				{
+					var component = FieldFromProperty.GetFieldValue(m_Property) as BlueprintComponent;
+					var wrapper = BlueprintComponentEditorWrapper.Wrap(component);
+					Selection.activeObject = wrapper;
+				});
+			
+			menu.ShowAsContext();
 		}
 
 		private void UpdateTitle()
 		{
-			TitleLabel.text = Component.GetType().Name;
-			
-			bool disabled = Component.Disabled;
-			if (disabled)
-			{
-				TitleLabel.text = $"DISABLED {TitleLabel.text}";
-			}
-			
-			bool safeForDelete = (Component as IOverrideOnActivateMethod)?.IsOverrideOnActivateMethod ?? false;
-			if (!safeForDelete)
-			{
-				TitleLabel.text = $"[!] {TitleLabel.text}";
-			}
+			if (m_IsObsolete & m_Disabled)
+				TitleLabel.text = $"DISABLED OBSOLETE {m_Name}";
+			else if (m_IsObsolete)
+				TitleLabel.text = $"OBSOLETE {m_Name}";
+			else if (m_Disabled)
+				TitleLabel.text = $"DISABLED {m_Name}";
+			else
+				TitleLabel.text = m_Name;
 		}
 
 		private void UpdateExpanded()
 		{
-			IsExpanded &= !Component.Disabled;
+			IsExpanded &= !m_Disabled;
 		}
 
 		protected override void OnIsExpandedChanged()
 		{
-			if (IsExpanded && Component.Disabled)
+			if (IsExpanded && m_Disabled)
 			{
 				IsExpanded = false;
 				return;
 			}
 
 			base.OnIsExpandedChanged();
+			
 			if (m_Comment != null)
 			{
-				var prop = SerializedObject.FindProperty("Component.Comment"); // todo: look in THIS COMPONENT instead
-				m_Comment.text = prop?.stringValue ?? string.Empty;
-				m_Comment.style.display = IsExpanded ? DisplayStyle.None : DisplayStyle.Flex;
+				if (IsExpanded)
+				{
+					m_Comment.style.display = DisplayStyle.None;
+				}
+				else
+				{
+					string comment = m_Property.Property.FindPropertyRelative("Comment")?.stringValue;
+					m_Comment.value = comment;
+					m_Comment.style.display = string.IsNullOrEmpty(comment) ? DisplayStyle.None : DisplayStyle.Flex;
+				}
 			}
+			
+			if (IsExpanded)
+				SetupContent();
 		}
 		
-		protected override void SwitchExpanded(MouseDownEvent evt)
+		private void UpdateWarning()
 		{
-			base.SwitchExpanded(evt);
-			UIElementsUtility.SetExpandedState(GetExpandedPath(), IsExpanded);
-		}
+			if (m_HasDuplicates)
+				m_HasDuplicatesWarning.style.display = DisplayStyle.Flex;
 
-		protected override string GetExpandedPath()
-		{
-			return "ComponentsContainer/" + name.Split("$")[1] + $"[{ComponentIndex}]";
+			var borderColor = m_HasDuplicates || m_IsObsolete ?
+				new StyleColor(new Color(0.75f, 0.4f, 0.4f, 1.0f)) : StyleKeyword.Null;
+			style.backgroundColor = borderColor;
+			m_HasDuplicatesWarning.style.display = m_HasDuplicates ? DisplayStyle.Flex : DisplayStyle.None;
 		}
     }
 }

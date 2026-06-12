@@ -1,0 +1,86 @@
+{
+  "AssetId": "9451925678df44f1a83bdc270bdef094",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$f6bfac56a92f4163b42ef7b5ab097f9e",
+          "m_Flag": "!bp_937710821e894a21a3fcca6f950f137a",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$91e8cc8c85ad472f88de193bb82f2ab1",
+            "Value": 1
+          },
+          "UnlockIfNot": true
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$82c876d9028743f786aeb31f55aacaf4",
+          "Comment": "If all clues were found",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "342eb5cf69e9d0e48917ff4215600e0b, FlagInRange",
+                "name": "$FlagInRange$4f9a795a071d4c2d9164f00a6fed6709",
+                "Not": false,
+                "m_Flag": "!bp_937710821e894a21a3fcca6f950f137a",
+                "MinValue": 3,
+                "MaxValue": 3
+              },
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$c213a756e06a4a598945acb785de44b2",
+                "Not": false,
+                "m_companion": "!bp_70e4973d9cef400da93e0b5672dcd014",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              },
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$1f23a32c-d58c-417a-ae17-33adeeaa206e",
+                "Not": false,
+                "m_companion": "!bp_e1cfcddc1dc447278762a0725753c394",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$0befb10a9a9340f4b3601022e2f9aa2e",
+                "m_Cutscene": "!bp_53d370b41c6d4e91947311ec4fe7dc08",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

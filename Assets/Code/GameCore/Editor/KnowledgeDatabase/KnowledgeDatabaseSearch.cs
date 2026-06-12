@@ -9,6 +9,7 @@ using Kingmaker.ElementsSystem;
 using Kingmaker.Utility.DotNetExtensions;
 using Kingmaker.Utility.UnityExtensions;
 using UnityEditor;
+using UnityEngine;
 
 namespace Code.Editor.KnowledgeDatabase
 {
@@ -16,6 +17,7 @@ namespace Code.Editor.KnowledgeDatabase
 	{
 		private static readonly Regex BlueprintComponentsPathRegex = new(@"Blueprint\.Components\.Array\.data\[[0-9]+\]");
 		
+		public static Action<Type, string> OnDescriptionUpdated;
 		
 		[CanBeNull]
 		private static KnowledgeDatabaseType GetTypeRecord([NotNull] Type type)
@@ -78,18 +80,18 @@ namespace Code.Editor.KnowledgeDatabase
 		[CanBeNull]
 		public static string GetCodeDescription([NotNull] Type type, [CanBeNull] string fieldName = null)
             => fieldName != null ? GetFieldRecord(type, fieldName)?.CodeDescription : GetTypeRecord(type)?.CodeDescription;
-
+        
         [CanBeNull]
-        public static string GetCodeDescription([NotNull] SerializedProperty property)
+        public static string GetCodeDescription([NotNull] SerializedProperty property, bool tryTakeElementInside = true)
         {
-            (var type, string fieldName) = property.GetTypeAndName();
+            (var type, string fieldName) = property.GetTypeAndName(tryTakeElementInside);
             return GetCodeDescription(type, fieldName);
         }
 
         [CanBeNull]
-		public static string GetDescription([NotNull] SerializedProperty property)
+		public static string GetDescription([NotNull] SerializedProperty property, bool tryTakeElementInside = true)
 		{
-			(var type, string fieldName) = property.GetTypeAndName();
+			(var type, string fieldName) = property.GetTypeAndName(tryTakeElementInside);
 			return GetDescription(type, fieldName);
 		}
 
@@ -123,6 +125,7 @@ namespace Code.Editor.KnowledgeDatabase
 			
 			record.Description = description;
 		}
+		
 		public static void SetFieldDescription(
 			KnowledgeDatabaseType type, [CanBeNull] string fieldName, [NotNull] string description)
 		{
@@ -153,32 +156,55 @@ namespace Code.Editor.KnowledgeDatabase
 			record.Keywords = keywords;
 		}
 
-		public static (Type Type, string FieldName) GetTypeAndName([NotNull] this SerializedProperty property)
+		public static (Type Type, string FieldName) GetTypeAndName([NotNull] this SerializedProperty property, 
+            bool tryTakeElement = true)
 		{
-			object target =
-				TryGetClosestManagedReferenceValue(property) ?? property.serializedObject.targetObject;
+            string propertyPath = GetPropertyPath(property);
+            int lastDotIndex = propertyPath.LastIndexOf('.');
+            string fieldName = property.name is "data" or "m_Script" ? null : propertyPath[(lastDotIndex + 1)..];
 
-			var objectType = target is BlueprintEditorWrapper wrapper 
-				? wrapper.Blueprint.GetType() 
-				: target is BlueprintComponentEditorWrapper componentWrapper 
-					? componentWrapper.Component.GetType()
-					: target.GetType();
-
-			string propertyPath = GetPropertyPath(property);
-			int lastDotIndex = propertyPath.LastIndexOf('.');
-			string fieldName = property.name == "data" || property.name == "m_Script" ? null : propertyPath[(lastDotIndex + 1)..];
-
-			return (objectType, string.IsNullOrEmpty(fieldName) ? null : fieldName);
+            object target;
+            if ((fieldName == null || tryTakeElement) && IsPropertyManagedReferenceNotNull(property))
+            {
+                target = property.managedReferenceValue;
+                fieldName = null;
+            }
+            else
+            {
+                target = TryGetClosestManagedReferenceValue(property.GetParent()) ??
+                         property.serializedObject.targetObject;
+            }
+            
+            var objectType = GetObjectType(target);
+            return (objectType, fieldName);
 		}
+        
+        private static bool IsPropertyManagedReferenceNotNull([NotNull] SerializedProperty property)
+        {
+            return property is 
+            { 
+                propertyType: SerializedPropertyType.ManagedReference, 
+                managedReferenceValue: SimpleBlueprint or BlueprintComponent or Element 
+            };
+        }
+        
+        private static Type GetObjectType(object target)
+        {
+            return target switch
+            {
+                BlueprintEditorWrapper wrapper => wrapper.Blueprint.GetType(),
+                BlueprintComponentEditorWrapper componentWrapper => componentWrapper.Component.GetType(),
+                _ => target.GetType()
+            };
+        }
 
 		private static object TryGetClosestManagedReferenceValue(SerializedProperty property)
-		{
+        {
 			SerializedProperty currentProperty = property;
 			while (currentProperty != null)
 			{
-				if (currentProperty.propertyType == SerializedPropertyType.ManagedReference &&
-				    currentProperty.managedReferenceValue is SimpleBlueprint or BlueprintComponent or Element)
-					return currentProperty.managedReferenceValue;
+                if (IsPropertyManagedReferenceNotNull(currentProperty))
+                    return currentProperty.managedReferenceValue;
 
 				currentProperty = currentProperty.GetParent();
 			}
@@ -189,8 +215,9 @@ namespace Code.Editor.KnowledgeDatabase
 		[NotNull]
 		private static string GetPropertyPath(SerializedProperty property)
 		{
-			if (BlueprintComponentsPathRegex.Match(property.propertyPath).Success)
-				return string.Empty;
+			// Commented out for UI Elements components
+			// if (BlueprintComponentsPathRegex.Match(property.propertyPath).Success)
+			// 	return string.Empty;
 
 			if (property.propertyPath == "Blueprint")
 				return string.Empty;

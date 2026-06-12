@@ -141,6 +141,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Condition": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
@@ -197,31 +198,108 @@
                     "Actions": {
                       "Actions": [
                         {
-                          "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
-                          "name": "$ContextActionCastSpell$43248f3f-3bb3-49ae-b2d7-585a039c19a1",
-                          "m_Spell": "!bp_a82be46a250047dcbaf7fe534441ae6c",
-                          "OverrideDC": false,
-                          "DC": {
-                            "ValueType": "Simple",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$b9f9be7e-5352-4516-916c-e9ead9434c3f",
+                          "Comment": "Проверка на врагов вокруг Мастифа",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                                "name": "$ContextConditionProperty$87cf0d68-c5e6-431d-bd7e-0c982ef76cd4",
+                                "Not": false,
+                                "Property": {
+                                  "Operation": "G",
+                                  "TargetType": "CurrentEntity",
+                                  "TargetEvaluator": null,
+                                  "FailSilentlyIfNoTarget": false,
+                                  "Getters": [
+                                    {
+                                      "$type": "e5ea156d7248471887237e2c871de79a, UnitsInRangeGetter",
+                                      "name": "$UnitsInRangeGetter$8b47af6e-d57a-4001-b6c5-6ce139c3820d",
+                                      "Settings": {
+                                        "Progression": "AsIs",
+                                        "m_CustomProgression": [],
+                                        "m_StartLevel": 0,
+                                        "m_StepLevel": 0,
+                                        "Negate": false,
+                                        "Limit": "None",
+                                        "Min": 0,
+                                        "Max": 0
+                                      },
+                                      "m_Value": {
+                                        "Operation": "Sum",
+                                        "TargetType": "CurrentEntity",
+                                        "TargetEvaluator": null,
+                                        "FailSilentlyIfNoTarget": false,
+                                        "Getters": []
+                                      },
+                                      "m_CombatGroup": -1,
+                                      "m_RangeInCells": 1
+                                    },
+                                    {
+                                      "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+                                      "name": "$ContextValueGetter$4f1311df-b751-4046-bcac-8ab691e65c3b",
+                                      "Settings": {
+                                        "Progression": "AsIs",
+                                        "m_CustomProgression": [],
+                                        "m_StartLevel": 0,
+                                        "m_StepLevel": 0,
+                                        "Negate": false,
+                                        "Limit": "None",
+                                        "Min": 0,
+                                        "Max": 0
+                                      },
+                                      "Value": {
+                                        "ValueType": "Simple",
+                                        "Value": 0,
+                                        "ValueRank": "Default",
+                                        "ValueShared": "Damage",
+                                        "Property": "None",
+                                        "m_CustomProperty": null,
+                                        "PropertyName": "Value1"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "NegativeDoesNotCount": false
+                              }
+                            ]
                           },
-                          "OverrideSpellLevel": false,
-                          "SpellLevel": {
-                            "ValueType": "Simple",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "2f9cfff2340b8c344ab4fd92c2eb61f2, ContextActionCastSpell",
+                                "name": "$ContextActionCastSpell$3c6c6599-40bd-433c-8909-938015a03ed3",
+                                "m_Spell": "!bp_a82be46a250047dcbaf7fe534441ae6c",
+                                "OverrideDC": false,
+                                "DC": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "OverrideSpellLevel": false,
+                                "SpellLevel": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "CastByTarget": true,
+                                "UseFullAbilityCastCycle": true
+                              }
+                            ]
                           },
-                          "CastByTarget": true,
-                          "UseFullAbilityCastCycle": true
+                          "IfFalse": {
+                            "Actions": []
+                          }
                         }
                       ]
                     }
@@ -245,6 +323,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_45a525fae4cb48619991cfec3f8a6994"
         ],
@@ -299,7 +378,6 @@
       ]
     },
     "FeatureTypes": [
-      "Offense",
       "Archetype"
     ],
     "TalentIconInfo": {

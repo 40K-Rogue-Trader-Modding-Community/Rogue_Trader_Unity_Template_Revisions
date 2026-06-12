@@ -6,17 +6,6 @@
     "m_Overrides": [],
     "Components": [
       {
-        "$type": "25b073dd90738ed46939db4777aafe17, AddAreaEffect",
-        "name": "$AddAreaEffect$8777d908-c23a-4908-ac47-5cc66f402c5f",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "m_AreaEffect": "!bp_64fbab2e5c604994bad027eaf4c7484c"
-      },
-      {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
         "name": "$PropertyCalculatorComponent$5f720024-874e-446a-b3ce-36b987a91e26",
         "m_Flags": 0,
@@ -30,6 +19,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -87,6 +77,7 @@
         "Value": {
           "Operation": "Sum",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -160,7 +151,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_c67b58acea374a82a9b6b1d971f15581",
-            "m_LinkKey": "DamageBonus"
+            "m_LinkKey": "DamageBonus",
+            "Main": false
           },
           {
             "NameType": "Damage",
@@ -182,11 +174,100 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value2",
             "m_PropertySource": "!bp_c67b58acea374a82a9b6b1d971f15581",
-            "m_LinkKey": "DamageReduction"
+            "m_LinkKey": "DamageReduction",
+            "Main": false
           }
         ]
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$01f11edd-be22-4e5e-a736-5f7b17cccffd",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$f568ef5e9b434fd4b1f4377c0502da9a",
+              "m_Buff": "!bp_d142274ba0104a5a8c8bb7c82dab56d5",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": true,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -219,10 +300,7 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
-      "Support",
-      "Defense",
-      "Archetype"
+      "Support"
     ],
     "TalentIconInfo": {
       "AllGroups": "TakingDamage, Damage",
@@ -236,8 +314,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

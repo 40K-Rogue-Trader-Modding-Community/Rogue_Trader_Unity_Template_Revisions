@@ -8,6 +8,7 @@ using Code.GameCore.Mics;
 using Kingmaker.AreaLogic.SceneControllables;
 using Kingmaker.Editor.UIElements;
 using Kingmaker.Editor.UIElements.Custom;
+using Kingmaker.Editor.UIElements.Custom.PropertyComponents;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -18,7 +19,8 @@ using UnityEngine.SceneManagement;
 public class ControllableReferenceProperty : OwlcatProperty
 {
 	private VisualElement m_NotFoundLabel;
-	public ControllableReferenceProperty(SerializedProperty property, Type targetType) : base(property, Layout.Vertical)
+	public ControllableReferenceProperty(SerializedProperty property, Type targetType) : 
+		base(property, Layout.VerticalNotExpandable)
 	{
 		m_TargetType = targetType;
 		HeaderContainer.style.display = DisplayStyle.None;
@@ -27,12 +29,19 @@ public class ControllableReferenceProperty : OwlcatProperty
 		m_UidProp = Property.FindPropertyRelative("UniqueId");
 		m_NameProp = property.FindPropertyRelative("EntityNameInEditor");
 		m_SceneProp = property.FindPropertyRelative("SceneAssetGuid");
+		CreateContent();
+		ValidateProps();
+	}
+
+	protected override void CreateContentInternal()
+	{
+		base.CreateContentInternal();
+        
+		var objItem = CreateNameField(Property, m_NameProp);
+		var sceneItem = CreateSceneField(m_SceneProp);
+        
 		m_NotFoundLabel = new Label("NOT FOUND");
 		m_NotFoundLabel.style.backgroundColor = System.Drawing.Color.Brown.ToUnityColor();
-		ValidateProps();
-
-		var objItem = CreateNameField(property, m_NameProp);
-		var sceneItem = CreateSceneField(m_SceneProp);
 
 		ContentContainer.Add(m_NotFoundLabel);
 		ContentContainer.Add(objItem);
@@ -42,7 +51,20 @@ public class ControllableReferenceProperty : OwlcatProperty
 		CheckMissingReference();
 		ContentContainer.RegisterCallback<MouseDownEvent>(e =>
 		{
-			UIElementsUtility.HandleSceneContextMenu(e, m_SceneField.value, OnClickDel, OnClickFind);
+			if (m_SceneField.value != null)
+			{
+				e.StopPropagation();
+				var menu = new GenericMenu();
+				menu.AddItem(new GUIContent("Open Scene"), false, () => AssetDatabase.OpenAsset(m_SceneField.value));
+				menu.AddItem(new GUIContent("Open and Find"), false, () =>
+				{
+					AssetDatabase.OpenAsset(m_SceneField.value);
+					OnClickFind();
+				});
+				menu.AddItem(new GUIContent("Del"), false, OnClickDel);
+					
+				menu.ShowAsContext();
+			}
 		});
 
 		AddComponent(new DragAndDropComponent(() => GetValidComponent() != null, ApplyDrop));

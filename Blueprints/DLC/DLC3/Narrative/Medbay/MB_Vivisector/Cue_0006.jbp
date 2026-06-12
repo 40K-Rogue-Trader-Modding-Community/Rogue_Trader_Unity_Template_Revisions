@@ -7,7 +7,7 @@
     "Components": [],
     "Author": "Unknown",
     "Comment": "",
-    "ParentAsset": "a46cb2f3e79443c781a765a8e7c682d8",
+    "ParentAsset": "",
     "ShowOnce": false,
     "ShowOnceCurrentDialog": false,
     "Conditions": {
@@ -19,10 +19,10 @@
       "m_Foldout": false
     },
     "Text": {
-      "m_Key": "ef017cdd-561a-4bf7-8c6b-7b2ce2115823",
-      "m_OwnerString": "3877fe60bc974df2bb333b7e10538c8f",
-      "m_OwnerPropertyPath": "Text",
-      "m_JsonPath": "Strings/Mechanics/Blueprints\\DLC\\DLC3\\Narrative\\Medbay\\MB_Vivisector\\Cue_0006_Text.json",
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
       "Shared": null
     },
     "SoulMarkRequirement": {
@@ -54,7 +54,56 @@
       "Actions": []
     },
     "OnStop": {
-      "Actions": []
+      "Actions": [
+        {
+          "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+          "name": "$SetObjectiveStatus$2f312765271c4fbab74cf984eb344e7a",
+          "Status": "Complete",
+          "m_Objective": "!bp_837d31f588004da889b4055798bb3db0",
+          "StartObjectiveIfNone": false
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$fa73d0e3d3a840ef89d4f950278242f5",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$c267bfce053d4ea8bab1032846ea783c",
+                "Not": false,
+                "m_QuestObjective": "!bp_1913c7778bbb4c1aa9c08c830e702db6",
+                "State": "Completed"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                "name": "$SetObjectiveStatus$dbbf963a6f35417bb3f29de0087438e3",
+                "Status": "Complete",
+                "m_Objective": "!bp_6c036d2d84884c69a820005d4a8810ba",
+                "StartObjectiveIfNone": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$5fa2277ffd5842ab9c74917d94e35479",
+          "m_Cutscene": "!bp_fa80627f8a694fc68916f4d13d5b5604",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
+          }
+        }
+      ]
     },
     "Description": {
       "m_Key": "",
@@ -78,13 +127,11 @@
     },
     "Answers": [],
     "Continue": {
-      "Cues": [
-        "!bp_9efc4f9aa8294ae3850651d5e3d882a7"
-      ],
+      "Cues": [],
       "Strategy": "First"
     }
   },
   "Meta": {
-    "ShadowDeleted": false
+    "ShadowDeleted": true
   }
 }

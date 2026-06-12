@@ -1,0 +1,207 @@
+{
+  "AssetId": "d2744ed45d3e43abb909a9f741a6818a",
+  "Data": {
+    "$type": "cb208b98ceacca84baee15dba53b1979, BlueprintFeature",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$1f2420ca-2e2c-4b73-964d-570d10016ee4",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$c107802a2a1056028fdcb5178d36342f",
+              "Comment": "has bionic eyes",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "9706de75454abeb48bd4cfa7f526a1c2, ContextConditionHasFact",
+                    "name": "$ContextConditionHasFact$5a36dc50196e5af49ea9f5f7eca16638",
+                    "Not": false,
+                    "m_Fact": "!bp_5509ffe8193d4d85abba0cb14bfe3788"
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$3d739a98-89bc-445b-9bff-250e4eae12b4",
+                    "m_Buff": "!bp_6e10ea2192b84161a41e698eae1fd256",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 0,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnStartActions": {
+          "Actions": []
+        },
+        "UnitInterruptTurnEndActions": {
+          "Actions": []
+        },
+        "DoNotApplyOnInterrupts": false
+      }
+    ],
+    "Author": "SemyonStenyugin",
+    "Comment": "До конца боя. При наличии аугмента глаз, каждая первая одиночная атака в раунд критическая и наносит на 50% урона больше критического урона",
+    "m_DisplayName": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "bb4985f7122bd0f4daef35974095db21",
+        "stringkey": "b3a611c1-fa6b-45c5-937f-2d5ac2ec5f3f"
+      }
+    },
+    "m_Description": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": {
+        "assetguid": "c082554b74120ba41b286523a1d4186b",
+        "stringkey": "88b3a688-a503-4774-896d-295be46d3219"
+      }
+    },
+    "m_Icon": null,
+    "m_AllowNonContextActions": false,
+    "HideInUI": false,
+    "HideInCharacterSheetAndLevelUp": false,
+    "HideNotAvailibleInUI": false,
+    "Ranks": 1,
+    "Prerequisites": {
+      "Composition": "And",
+      "List": [
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$9140a75e-3547-4d97-b100-96bab55a2406",
+          "Not": false,
+          "m_Fact": "!bp_bcefe9c41c7841c9a99b1dbac1793025",
+          "MinRank": 1
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$4e5cb3db-7b61-42a3-8897-bef92cf4c745",
+          "Not": true,
+          "m_Fact": "!bp_950565a69d144391897cdc0024747755",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$2ac7505c-50f8-4aff-8d4a-2c5ba6db3b54",
+          "Not": true,
+          "m_Fact": "!bp_590cb5c394ee4b5eb213121c96063dec",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$12632095-5712-4a23-860b-2aa650b1bce1",
+          "Not": true,
+          "m_Fact": "!bp_c7a53b43ac5f4f11a1aef612dd3f4f71",
+          "MinRank": 0
+        },
+        {
+          "$type": "40a1bdb738834fb69a296a2677235b35, PrerequisiteFact",
+          "name": "$PrerequisiteFact$cf0d8782-fdd5-4995-9a02-5c7d0c825b93",
+          "Not": true,
+          "m_Fact": "!bp_8e0cfa654ec24dbbba9e80c27433cc8e",
+          "MinRank": 0
+        }
+      ]
+    },
+    "FeatureTypes": [
+      "Offense"
+    ],
+    "TalentIconInfo": {
+      "AllGroups": "Damage, Augmentation",
+      "MainGroup": "Augmentation"
+    },
+    "m_Acronym": {
+      "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
+    },
+    "ShowInDialogue": false,
+    "IsStarshipFeature": false
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

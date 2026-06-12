@@ -1,0 +1,251 @@
+{
+  "AssetId": "2e5a6f361a7d409696eafbaa615657ae",
+  "Data": {
+    "$type": "96610525fc0cf8c41bfef88a84117024, Cutscene",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Color": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "m_Tracks": [
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_d6c906c2fac24e3280f7957bb8bc48c4"
+        ],
+        "m_EndGate": "!bp_4a0370bf29e24be097f31b2163697019",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_24dda79f7a0e4f0583792371bf6f3c6f"
+        ],
+        "m_EndGate": "!bp_476e7a2e76bf43cd9f84ddae4e26d2a0",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_c33860062d5945d88e0126223354f125",
+          "!bp_fd5d209898c7489ea7a869af3c63bcdf",
+          "!bp_7609b5163f54492eb824dda55552ddec"
+        ],
+        "m_EndGate": "!bp_476e7a2e76bf43cd9f84ddae4e26d2a0",
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_cb979f373df149339fb7b4e0306c19cf",
+          "!bp_450ee3394f9e45a2a05f448f6041a985"
+        ],
+        "m_EndGate": null,
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      },
+      {
+        "m_EvaluationErrorHandlingPolicy": "Default",
+        "m_Commands": [
+          "!bp_4dbe903560034a54b007d071acec6ba1"
+        ],
+        "m_EndGate": null,
+        "m_Repeat": false,
+        "Comment": "",
+        "IsCollapsed": false
+      }
+    ],
+    "m_Op": "And",
+    "m_ActivationMode": "AllTracks",
+    "WhenTrackIsSkipped": "DoNotSignalGate",
+    "PauseForOneFrame": false,
+    "Priority": "Patrol",
+    "NonSkippable": false,
+    "ForbidDialogs": false,
+    "ForbidRandomIdles": true,
+    "IsBackground": false,
+    "Freezeless": false,
+    "Sleepless": false,
+    "AllowCopies": false,
+    "LockControl": true,
+    "ShowPets": false,
+    "ShowOverlay": false,
+    "AllowRoaming": false,
+    "AllowLadderTraversal": false,
+    "Anchors": [],
+    "MarkedUnitHandling": "Pause",
+    "DefaultParameters": {
+      "Parameters": []
+    },
+    "OnStopped": {
+      "Actions": []
+    },
+    "OnFinished": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$77aa485b-ccfe-404e-9a0e-f39b9ff8d27a",
+          "Comment": "Если не знаем о саботаже туррелей - появляется интеракт",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$ed4b3cf9-3e0f-4ad0-86a5-01fdc524e2e1",
+                "Not": true,
+                "m_Etude": "!bp_e08364f2a4654a80b8d5f4ee8c3a5c89",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$e62ce409-6a23-4f60-b2d2-b621fdda7a5c",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$0288d610-51fb-4782-af4b-0e9f6a0f70ba",
+                  "MapObject": {
+                    "EntityNameInEditor": "TurretsController",
+                    "_entity_id": "824d2014-20e2-42e3-9b3e-5ae38064ef56",
+                    "SceneAssetGuid": "ae48bb32b3fc6b94aaa011be0682b756"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+          "name": "$IncrementFlagValue$761f3a03-2bb0-4ea8-8fa1-09d5c3278604",
+          "m_Flag": "!bp_a8517bd1212348b0b2af93df03f774b6",
+          "Value": {
+            "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+            "name": "$IntConstant$d1f291dd-f436-48c9-b9ae-e05ea7f60785",
+            "Value": 4
+          },
+          "UnlockIfNot": false
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$c7744c76214446b48594962fb0f13189",
+          "Etude": "!bp_1d51d5811c9745cc95d02a52e21a0877",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$032dc51b0ed6449b8611f9375cbb2f69",
+          "m_flag": "!bp_e9cab1111b0940f7a7ff0bd0f358f488",
+          "flagValue": 0
+        },
+        {
+          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+          "name": "$StartEtude$f54c89418b544407837696c04300fe06",
+          "Etude": "!bp_47225c82d42c45baaa24eab8a966fa2c",
+          "EtudeEvaluator": null,
+          "Evaluate": false,
+          "StartImmediately": false
+        },
+        {
+          "$type": "4a2be3982ea87e44f8d704b9a6330f57, UnlockFlag",
+          "name": "$UnlockFlag$a769a1c1c9e14dd9a71e1d737e834d0c",
+          "m_flag": "!bp_a96c7965c89a406a99262428de38a88a",
+          "flagValue": 0
+        },
+        {
+          "$type": "1a0449d4049c34149a17869dd62dc64a, CameraToPosition",
+          "name": "$CameraToPosition$e37de545ccbc4cf98ebdc74833f28945",
+          "Position": {
+            "$type": "ac7da90e77cb5af44b778bfce17bb4aa, UnitPosition",
+            "name": "$UnitPosition$4e47e1b9435349e7ade3d49323ad9013",
+            "Unit": {
+              "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+              "name": "$PlayerCharacter$b5759b74abae4e1db098110207c4dfd6"
+            }
+          },
+          "Rotation": null
+        },
+        {
+          "$type": "b416216a964543c4e89e50cd51b22cf7, SetSoundState",
+          "name": "$SetSoundState$911c2cd228994b1783b1b3f038b03972",
+          "m_State": {
+            "Value": "None",
+            "Group": "NARR_DargonusLoop_Bombing"
+          }
+        },
+        {
+          "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+          "name": "$ControllableActionSetActive$689c8c12-f073-4e5c-81e8-168adc41de4e",
+          "Active": false,
+          "IdOfObject": {
+            "EntityNameInEditor": "CoversPost",
+            "_entity_id": "1004206f-9913-4c9b-b3fb-d755b3acbf60",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Mechanics.unity"
+          }
+        },
+        {
+          "$type": "5246945772ff3b5448f2a7c52827d196, ControllableActionNecronDissolveTween",
+          "name": "$ControllableActionNecronDissolveTween$3d5c76dd-0539-4e26-a20a-1c3c0f9f2289",
+          "Comment": "",
+          "IdOfObject": {
+            "EntityNameInEditor": "PostFull",
+            "_entity_id": "cbea8e3c-7d61-46b6-a91e-14414678b1ee",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+          },
+          "Action": "Hide",
+          "Duration": 1.0
+        },
+        {
+          "$type": "5246945772ff3b5448f2a7c52827d196, ControllableActionNecronDissolveTween",
+          "name": "$ControllableActionNecronDissolveTween$11ca56a5-3a31-4d3b-bfae-b58b63355257",
+          "Comment": "",
+          "IdOfObject": {
+            "EntityNameInEditor": "PostDestroyed",
+            "_entity_id": "309e3fb3-b0f1-40fa-8e17-b235a83b9d48",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+          },
+          "Action": "Show",
+          "Duration": 1.0
+        },
+        {
+          "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+          "name": "$ControllableActionSetActive$b6a8854a-5a8f-4ff5-b0be-982d15a4052e",
+          "Active": true,
+          "IdOfObject": {
+            "EntityNameInEditor": "PostDestroyedAdditional",
+            "_entity_id": "55bb43cf-dade-49ee-bd86-96d182fd1747",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_DargonusLoop_Static_for_art.unity"
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

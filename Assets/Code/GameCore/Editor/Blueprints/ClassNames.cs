@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Attributes;
+using Kingmaker.ElementsSystem;
 using Owlcat.Runtime.Core.Utility;
 using UnityEditor;
 using Object = UnityEngine.Object;
@@ -17,19 +20,37 @@ namespace Kingmaker.Editor.Blueprints
 		{
 			var types = 
 					TypeCache.GetTypesDerivedFrom(typeof(BlueprintScriptableObject)).Where(t => !t.IsAbstract)
-					.Concat(TypeCache.GetTypesDerivedFrom(typeof(BlueprintComponent)).Where( t=> !t.IsAbstract))
-					.Where(t => t.HasAttribute<ComponentNameAttribute>());
+					.Concat(TypeCache.GetTypesDerivedFrom(typeof(BlueprintComponent)).Where(t=> !t.IsAbstract))
+					.Concat(TypeCache.GetTypesDerivedFrom(typeof(Element)).Where(t=> !t.IsAbstract))
+					.Where(t => t.HasAttribute<ComponentNameAttribute>() || t.HasAttribute<GroupAttribute>());
 
 			foreach (var type in types)
 			{
-				var attr = type.GetCustomAttributes(typeof(ComponentNameAttribute), false).FirstOrDefault() as ComponentNameAttribute;
-				if (attr != null)
+				var componentNameAttribute = type.GetCustomAttribute(typeof(ComponentNameAttribute), false) 
+					as ComponentNameAttribute;
+				var groupAttribute = type.GetCustomAttribute(typeof(GroupAttribute), true) as GroupAttribute;
+				
+				var stringBuilder = new StringBuilder();
+				if (componentNameAttribute != null)
 				{
-					var slash = attr.Name.LastIndexOf("/", StringComparison.Ordinal);
+					stringBuilder.Append(componentNameAttribute.Name);
+				} 
+				else if (groupAttribute != null)
+				{
+					stringBuilder.Append(groupAttribute.Name);
+					stringBuilder.Append('/');
+					stringBuilder.Append(type.Name);
+				}
+				
+				if (stringBuilder.Length > 0)
+				{
+					string componentPath = stringBuilder.ToString();
+					int slash = componentPath.LastIndexOf("/", StringComparison.Ordinal);
 					s_Names[type] = new NamesData
 					{
-						NameWithPrefix = attr.Name,
-						NameWithoutPrefix = slash < 0 ? attr.Name : attr.Name.Substring(slash + 1)
+						NameWithPrefix = slash > 0 || groupAttribute == null ? componentPath : 
+							groupAttribute.Name + '/' + componentPath,
+						NameWithoutPrefix = slash < 0 ? componentPath : componentPath.Substring(slash + 1)
 					};
 				}
 			}

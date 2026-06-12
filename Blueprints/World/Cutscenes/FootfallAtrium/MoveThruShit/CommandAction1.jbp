@@ -2,11 +2,11 @@
   "AssetId": "f7713de56eca4cdb8da4f473b0052910",
   "Data": {
     "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
-    "PrototypeLink": null,
+    "PrototypeLink": "",
     "m_Overrides": [],
     "Components": [],
     "Author": "AndreySaenko",
-    "Comment": null,
+    "Comment": "",
     "EntryCondition": {
       "Operation": "And",
       "Conditions": []
@@ -18,6 +18,7 @@
         {
           "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
           "name": "$TranslocateUnit$d0a2a044-fd1b-4d55-8586-f9b224be4b2f",
+          "m_ForceBlockTargetPosition": false,
           "Unit": {
             "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
             "name": "$NamedParameterUnit$beca5a04-e84c-4a33-869a-95bb360c32a9",
@@ -30,6 +31,7 @@
           },
           "translocatePositionEvaluator": null,
           "m_PrecisePosition": false,
+          "m_RestrictByHeightDifference": false,
           "m_CopyRotation": true,
           "translocateOrientationEvaluator": {
             "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
@@ -39,22 +41,67 @@
               "EntityNameInEditor": "ShitLoc1",
               "_entity_id": "492984ea-3104-40be-8f9d-62996cab1e32",
               "SceneAssetGuid": "b129803634adba948832e219ec1c0572"
-            }
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
           }
         },
         {
-          "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
-          "name": "$AttachBuff$a3908589-5851-4fce-8cc9-b826dced735d",
-          "m_Buff": "!bp_f1274a3f7e3d4c89ba319de86f2f3e99",
-          "Target": {
-            "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
-            "name": "$NamedParameterUnit$c2c1336b-1569-4edb-934d-afb9285dc428",
-            "Parameter": "Unit"
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$f89fe09c671649949cae0376d7535a7e",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "8ddc3b555bdf08448b9083dba5153210, UnitEqual",
+                "name": "$UnitEqual$a7af41dd8c574b8d89f2d21aa6041097",
+                "Not": false,
+                "FirstUnit": {
+                  "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
+                  "name": "$NamedParameterUnit$067e8014e5b941769b384f0ed0d40d1f",
+                  "Parameter": "Unit"
+                },
+                "SecondUnit": {
+                  "$type": "7aafe88b061e08e44aa3e725e8d8ff00, CompanionInParty",
+                  "name": "$CompanionInParty$5854004fcd3a4f05b4ebcaf700b13ed1",
+                  "m_Companion": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                  "IncludeActive": true,
+                  "IncludeDetached": true,
+                  "IncludeRemote": true,
+                  "IncludeExCompanions": false,
+                  "IncludeDead": false,
+                  "Index": 0
+                }
+              }
+            ]
           },
-          "Duration": null,
-          "UseEndCondition": false,
-          "EndCondition": "RemainAfterCombat",
-          "AddFactSource": false
+          "IfTrue": {
+            "Actions": []
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "0c996f778c13abb408bdd05f7f6fe317, AttachBuff",
+                "name": "$AttachBuff$b9ae3bad-7a35-4626-9c99-75e92a17f9e1",
+                "m_Buff": "!bp_f1274a3f7e3d4c89ba319de86f2f3e99",
+                "Target": {
+                  "$type": "95469ff256aabcf409b9c5860a4c4ba9, NamedParameterUnit",
+                  "name": "$NamedParameterUnit$45997e5a-8cfc-444f-874c-a6dba09d006b",
+                  "Parameter": "Unit"
+                },
+                "Duration": null,
+                "UseEndCondition": false,
+                "EndCondition": "RemainAfterCombat",
+                "AddFactSource": false
+              }
+            ]
+          }
         }
       ]
     }

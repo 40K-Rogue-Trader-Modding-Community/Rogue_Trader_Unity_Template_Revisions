@@ -10,42 +10,68 @@
     "Actions": {
       "Actions": [
         {
-          "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
-          "name": "$TeleportParty$44cee6b9-23e6-4caa-b06b-f23bdcbb3b40",
-          "m_exitPositon": "!bp_b6a98bdf6e1c40d486a591f60a4fe7a2",
-          "AutoSaveMode": "None",
-          "ForcePauseAfterTeleport": false,
-          "AfterTeleport": {
-            "Actions": []
+          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+          "name": "$PlayCutscene$75efca86f3bd43099db7c6b33a21fa19",
+          "m_Cutscene": "!bp_1e0b3892892649d9a8c3995a4abe11e9",
+          "PutInQueue": false,
+          "CheckExistence": true,
+          "Parameters": {
+            "Parameters": []
           }
         },
         {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$0a31482d15b64b46a07f53a35bc78e30",
-          "MapObject": {
+          "$type": "4847fd6c11264ff4af657a8e278be3b8, HideEntity",
+          "name": "$HideEntity$ec3931fa-4fd5-4a21-8cde-f8116fe66ec2",
+          "Target": {
             "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$c9efbe5a53fd49a19e51d5771197d51c",
+            "name": "$MapObjectFromScene$d98f9029-925b-4249-9933-645dfd1915a0",
             "MapObject": {
-              "EntityNameInEditor": "footfall_lift_01 (1)",
-              "_entity_id": "2b6e4f57-1c53-4a27-8dfd-66228bca415a",
+              "EntityNameInEditor": "RaiseTheElevator",
+              "_entity_id": "104dc200-b113-495c-a1e8-667d6b14b6c0",
               "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
             }
           },
           "Unhide": false
         },
         {
-          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
-          "name": "$HideMapObject$774e8d5177da4ba493da742e8591874d",
-          "MapObject": {
-            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-            "name": "$MapObjectFromScene$efa676aa9afa4174b6fa2097ec6f4447",
-            "MapObject": {
-              "EntityNameInEditor": "footfall_lift_01",
-              "_entity_id": "24b7df64-576c-4377-8752-5a603b319516",
-              "SceneAssetGuid": "e23cc3796d439804a88bef86166b89ee"
-            }
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$caa15d77-0847-47e9-b2b3-433aaf848127",
+          "Comment": "Player has familiar",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                "name": "$UnitIsNull$e29cadca-0f87-4765-a6c7-b4d57398b21b",
+                "Not": true,
+                "Target": {
+                  "$type": "69a4e9c15933491a9c28ef40e0800630, FamiliarEvaluator",
+                  "name": "$FamiliarEvaluator$6b5aaf4b-b78c-4038-87cf-265f0d9902c9",
+                  "LeaderEvaluator": {
+                    "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+                    "name": "$PlayerCharacter$71cf3274-dd5a-4c25-9a5d-51a221e8f654"
+                  }
+                }
+              }
+            ]
           },
-          "Unhide": true
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$c6667df9-5f70-401e-9d8b-771ae2948b85",
+                "Target": {
+                  "$type": "2551dc9349904fc9a39f901144cc64a2, PlayerFamiliarEvaluator",
+                  "name": "$PlayerFamiliarEvaluator$ad4b2e2c-e43d-4009-a1c9-ee7add5fb810"
+                },
+                "Unhide": false,
+                "Fade": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
         }
       ]
     }

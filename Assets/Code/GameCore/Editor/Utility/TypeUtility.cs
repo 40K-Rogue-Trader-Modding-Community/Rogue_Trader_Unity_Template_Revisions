@@ -10,17 +10,63 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Attributes;
 using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Blueprints.JsonSystem.PropertyUtility;
+using Kingmaker.Editor.Blueprints;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using UnityEngine;
 using Owlcat.Runtime.Core.Utility;
 using Owlcat.Editor.Core.Utility;
 using Kingmaker.Utility.DotNetExtensions;
+using Owlcat.Editor.Elements;
 using UnityEditor;
 
-namespace Kingmaker.Editor.Elements
+namespace Kingmaker.Editor.Utility
 {
 	public static class TypeUtility 
 	{
-		public static IEnumerable<Type> GetValidTypes(RobustSerializedProperty rsp, Type elementType)
+		public static IEnumerable<Type> CollectValues(RobustSerializedProperty rsp, Type elementType)
+		{
+			FieldInfo fieldInfo = FieldFromProperty.GetFieldInfo(rsp);
+			object[] fieldAttrs = fieldInfo.GetCustomAttributes(true);
+			
+			if (fieldAttrs != null)
+			{
+				HashSet<Type> hashSet = fieldAttrs
+					.OfType<ValidFieldTypeAttribute>()
+					.Select(x => x.Type)
+					.ToHashSet();
+				
+				if (hashSet is { Count: > 0 })
+				{
+					HashSet<Type> validTypesHash = new();
+					foreach (Type bt in hashSet)
+					{
+						IEnumerable<Type> validTypes = GetValidTypes(rsp, bt);
+						validTypesHash.AddRange(validTypes);
+					}
+					
+					return validTypesHash.Where(t => !t.HasAttribute<HideInPickerAttribute>()).ToArray();
+				}
+			}
+
+			return GetValidTypes(rsp, elementType, orderByShortName: true)
+				.Where(t => !t.HasAttribute<HideInPickerAttribute>());
+		}
+
+		public static ValuesContainer<Type> CollectValuesWithFilter(RobustSerializedProperty rsp, Type elementType)
+		{
+			List<Type> rawTypes = CollectValues(rsp, elementType).ToList();
+			if (elementType.IsOrSubclassOf<Evaluator>())
+			{
+				List<Type> filteredTypes = new ContextEvaluatorFilter().Process(rsp, rawTypes);
+				return new ValuesContainer<Type>(rawTypes, filteredTypes);
+			}
+			else
+			{
+				return new ValuesContainer<Type>(rawTypes);
+			}
+		}
+		
+		public static IEnumerable<Type> GetValidTypes(RobustSerializedProperty rsp, Type elementType, bool orderByShortName = false)
 		{
             var mainAsset = rsp.targetObject as ScriptableObject;
             var blueprintComponent = (mainAsset as BlueprintComponentEditorWrapper)?.Component;
@@ -33,6 +79,7 @@ namespace Kingmaker.Editor.Elements
             {
 	            return GetDerivedTypesRecursively(elementType)
 		            .Where(et => et.HasAttribute<PlayerUpgraderAllowedAttribute>() || et.IsOrSubclassOf<PlayerUpgraderOnlyAction>())
+		            .Where(i => !i.HasAttribute<ObsoleteAttribute>())
 		            .OrderBy(t => t.Name);
             }
             
@@ -40,31 +87,34 @@ namespace Kingmaker.Editor.Elements
             {
 	            return GetDerivedTypesRecursively(elementType)
 		            .Where(et => et.IsOrSubclassOf<UnitUpgraderOnlyAction>())
+		            .Where(i => !i.HasAttribute<ObsoleteAttribute>())
 		            .OrderBy(t => t.Name);
             }
 
             var result = TypeCache.GetTypesDerivedFrom(elementType).Where(t => !t.IsAbstract);
 
             if (!elementType.IsAbstract)
-	            result = LinqExtensions.Concat(result, elementType);
+	            result = result.Concat(elementType);
 
             if (blueprintType != null)
             {
 	            result = result.Where(et =>
 	            {
-		            var attrs = et.GetCustomAttributes(typeof(AllowedOnAttribute), true);
-		            return !(attrs.Length > 0) && attrs.Cast<AllowedOnAttribute>().All(attr => !(blueprintType.IsSubclassOf(attr.Type) || (blueprintType == attr.Type)));
+		            object[] attrs = et.GetCustomAttributes(typeof(AllowedOnAttribute), true);
+		            return !(attrs.Length > 0) && attrs.Cast<AllowedOnAttribute>()
+			            .All(attr => !(blueprintType.IsSubclassOf(attr.Type) || (blueprintType == attr.Type)));
 	            });
             }
             
             if (elementType.IsOrSubclassOf<GameAction>())
             {
 	            result = result.Where(t => !t.IsOrSubclassOf<PlayerUpgraderOnlyAction>() && 
-	                                       !t.IsOrSubclassOf<UnitUpgraderOnlyAction>());
+												!t.IsOrSubclassOf<UnitUpgraderOnlyAction>());
             }
 
+            result = result.Where(t => !t.HasAttribute<ObsoleteAttribute>());
 
-            return result.OrderBy(t => t.Name);
+            return result.OrderBy(t => orderByShortName ? ClassNames.GetClassNameNoPrefix(t) : t.Name);
 		}
 
 		public static void AddElementFromMenu(RobustSerializedProperty property, Type type, int atIndex = -1)

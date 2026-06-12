@@ -1,8 +1,29 @@
 
-/* disable all titles in BaseField<T> */
-.unity-base-field__label
+/* disable all titles in BaseField<T> created in OwlcatProperty */
+.owlcat-inner-field > * > .unity-base-field__label
 {
     display: none;
+}
+
+.unity-list-view
+{
+    margin-right: 3px;
+}
+
+.unity-list-view__reorderable-item__container
+{
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.unity-list-view__reorderable-handle
+{
+    display: none; /*Скрываем тройную черту перемещения элемента списка*/
+}
+
+.unity-list-view > .unity-scroll-view
+{
+    padding: 2px;
 }
 
 .red-button{
@@ -17,13 +38,13 @@
 
 .owlcat-title-label
 {
-    width: 200px;
+    width: 40%;
     overflow: hidden;
 }
 
-.owlcat-title-label:focus
+.focusable-title-label:focus
 {
-    color: #6666FF;
+    color: var(--unity-colors-label-text-focus)
 }
 
 .owlcat-title-label-size-control
@@ -49,9 +70,15 @@
 {
     min-height: 20px;
     flex-grow: 0;
-    flex-shrink: 0;
+    flex-shrink: 1;
     align-items: center;
+    align-self: flex-start;
     flex-direction: row;
+}
+
+.owlcat-background-dot
+{
+    background-image: resource("dot.png");
 }
 
 .owlcat-property-content
@@ -69,50 +96,104 @@
     justify-content: flex-end;
 }
 
+.owlcat-default-base-field
+{
+    margin: 0 0 0 0;
+}
+
 .owlcat-property.owlcat-expandable
 {
     flex-direction: column;
 }
 
+.owlcat-left-border-highlight{
+    border-left-color: #999999;
+    border-left-width: 1px;
+}
+
 .owlcat-property-header.owlcat-expandable
 {
-    margin-left: -13px;
+    margin-left: 0;
+    margin-right: 13px;
+}
+
+.owlcat-component.owlcat-property-content.owlcat-expandable
+{
+    flex-direction: column;
+    padding-left: 5px;
+    margin-left: 4px;
 }
 
 .owlcat-property-content.owlcat-expandable
 {
     flex-direction: column;
-    padding-left : 15px;
+    padding-left: 5px;
+    margin-left: 6.5px;
 }
 
 .owlcat-property-controls.owlcat-expandable
 {
     flex-grow: 1;
+    align-items: center;
 }
 
 .owlcat-property-header.owlcat-component
 {
     margin-left: -3px;
+    font-size: 13px;
 }
 
 .owlcat-property-content.owlcat-component
 {
-    padding-left : 18px;
+    margin-left: 14px;
+    padding-left : 8px;
+}
+
+.owlcat-property-controls.owlcat-component
+{
+    flex-shrink: 1;
 }
 
 .owlcat-text-area
 {
     flex-grow: 1;
+    margin-right: 5;
 }
 
 .owlcat-text-area.owlcat-multiline
 {
-    min-height: 40px;
+    font-size: 14;
+    flex-wrap: wrap;
 }
 
 .owlcat-text-area .unity-text-field__input
 {
     -unity-text-align: upper-left;
+}
+
+.unity-text-field__input
+{
+    -unity-text-align: upper-left;
+}
+
+.owlcat-readonly > .unity-text-field__input
+{
+    cursor: arrow;
+}
+
+.owlcat-text-area.owlcat-readonly
+{
+    opacity: 0.6;
+}
+
+.owlcat-readonly > .unity-text-field__input > .unity-text-element
+{
+    cursor: arrow;
+}
+
+.unity-list-view__footer
+{
+    margin-bottom: 2px;
 }
 
 .owlcat-box {
@@ -133,8 +214,168 @@
     -unity-text-align : middle-center;
 }
 
+.owlcat-listview-control-button
+{
+    font-size: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+    padding-bottom: 2px;
+}
+
 .drag-target
 {
     border-width: 2px;
     border-color: white;
+}
+
+.factory-target
+{
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.owlcat-toggle
+{
+    width: 28px;
+    height: 28px;
+    background-size: 28px 28px;
+    background-image: resource("BigCheckbox.png");
+}
+
+.unity-toggle > .unity-toggle__input:checked > .owlcat-toggle
+{
+    background-image: resource("BigCheckbox_On.png");
+}
+
+.unity-toggle > .unity-toggle__input:hover:checked > .owlcat-toggle
+{
+    /*background-image: resource("BigCheckbox_On_Focused.png"); - нет возможности достать картинки*/
+}
+
+.unity-toggle > .unity-toggle__input:hover > .owlcat-toggle
+{
+    /*background-image: resource("BigCheckbox_Focused.png"); - нет возможности достать картинки*/
+}
+
+.owlcat-header-null
+{
+    color: red;
+}
+
+.owlcat-content-null
+{
+    background-color: #760000;
+}
+
+.unity-decorator-drawers-container
+{
+    display: none;
+}
+
+.trait-enabled
+{
+    background-color: #455f7b;
+}
+
+.text-field-error
+{
+    background-color: #760000;
+}
+
+.owlcat-listview-foldout
+{
+    background-color: rgba(0,0,0,0);
+}
+
+.owlcat-input-clear
+{
+    border-bottom-width: 0;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    background-color: rgba(0,0,0,0);
+    align-items: center;
+}
+
+.owlcat-settings-button
+{
+    background-image: resource("settings.png");
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    background-color: #C2C2C2;
+}
+
+.unity-base-field:disabled
+{
+    min-height: 18px;
+}
+
+.unity-text-field
+{
+    min-height: 18px;
+}
+
+.unity-text-field__input
+{
+    min-height: 18px;
+}
+
+.owlcat-description-button
+{
+    height: 20px;
+    width: 20px;
+    background-image: resource("gear.png");
+}
+
+#OverridableControlContainer
+{
+    align-self: flex-end;
+}
+
+.owlcat-inline-editor
+{
+    border-top-color: rgb(128, 128, 128);
+    border-bottom-color: rgb(128, 128, 128);
+    border-left-color: rgb(128, 128, 128);
+    border-right-color: rgb(128, 128, 128);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-radius: 5px;
+    padding-right: 5px;
+    margin-bottom: 3px;
+    margin-left: -10px;
+}
+
+.owlcat-inline-property .owlcat-property-header {
+    display: none;
+}
+
+.owlcat-inline-property .owlcat-property-controls {
+    display: none;
+}
+
+.outline {
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: rgba(43, 255, 255, 1);
+}
+
+.owlcat-enum-flag-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    border-bottom-width: 1px;
+    border-color: black;
+}
+
+.owlcat-enum-flag-toggle {
+    -unity-text-align: middle-center;
+    border-width: 1px;
+    border-bottom-width: 0;
+    border-color: black;
+    flex-grow: 1;
+    padding: 2px;
 }

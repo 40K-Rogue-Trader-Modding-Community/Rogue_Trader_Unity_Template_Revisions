@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_Facts": [
           "!bp_c69d2b34dcb64d91bf12308930079e0c"
         ],
@@ -32,14 +33,16 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Condition": {
           "Operation": "And",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
-              "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
-              "name": "$CheckAbilityWeaponRangeTypeGetter$2fa13dbf-1738-4eb6-8c28-ac2f15ba1025",
+              "$type": "88a988badcc84ea8847e21626bee82e5, PropertyCalculatorGetter",
+              "name": "$PropertyCalculatorGetter$7d23efd912e95b3782047154a525ca2c",
               "Settings": {
                 "Progression": "AsIs",
                 "m_CustomProgression": [],
@@ -50,7 +53,46 @@
                 "Min": 0,
                 "Max": 0
               },
-              "m_RangeType": "Ranged"
+              "Value": {
+                "Operation": "BoolOr",
+                "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
+                "FailSilentlyIfNoTarget": false,
+                "Getters": [
+                  {
+                    "$type": "53ddc60b996d4bd2aa81e66b49d5f97d, CheckAbilityWeaponRangeTypeGetter",
+                    "name": "$CheckAbilityWeaponRangeTypeGetter$51b8108783ec55a1b96482e7ab542859",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "m_RangeType": "Ranged"
+                  },
+                  {
+                    "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
+                    "name": "$CheckAbilityGroupGetter$1c7dbac2-bd2b-4331-bf34-4cd18bb23343",
+                    "Settings": {
+                      "Progression": "AsIs",
+                      "m_CustomProgression": [],
+                      "m_StartLevel": 0,
+                      "m_StepLevel": 0,
+                      "Negate": false,
+                      "Limit": "None",
+                      "Min": 0,
+                      "Max": 0
+                    },
+                    "m_Groups": [
+                      "!bp_1ee8edc6003840bb810840dc95e0de5f"
+                    ]
+                  }
+                ]
+              }
             },
             {
               "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
@@ -66,9 +108,10 @@
                 "Max": 0
               },
               "m_Fact": "!bp_79f890e9acdc4ddea7920850cc51843b",
+              "CheckTarget": "CurrentEntity",
               "Aggregation": "Max",
               "BuffWithCasterFromTargetType": false,
-              "Target": "CurrentEntity"
+              "BuffCaster": "CurrentEntity"
             },
             {
               "$type": "6a45c42d96204b7d930bd97fa922b35d, CheckAbilityGroupGetter",
@@ -105,15 +148,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -147,13 +181,17 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
             }
           ]
         },
@@ -187,13 +225,17 @@
                 ]
               },
               "OnlyParty": false,
+              "WithoutPets": false,
               "m_FilterNoFacts": [],
               "m_FilterHaveAnyFact": [],
               "ActionsOnRandomTarget": false,
               "NotCaster": false,
               "OnlyVisible": false,
               "OnlyNotVisible": false,
-              "IncludeDead": false
+              "IncludeDead": false,
+              "IncludeUntargetable": false,
+              "StatFilter": "None",
+              "Stat": "Unknown"
             },
             {
               "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
@@ -219,6 +261,7 @@
         "m_FactsToCheckOnOwner": []
       }
     ],
+    "Author": "LeonidTolochenko",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -254,8 +297,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
-      "Support",
       "Archetype"
     ],
     "TalentIconInfo": {
@@ -270,8 +311,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "LeonidTolochenko"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

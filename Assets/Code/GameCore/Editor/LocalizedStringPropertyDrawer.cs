@@ -4,6 +4,7 @@ using System.Linq;
 using Kingmaker.Editor.Localization;
 using Kingmaker.Editor.UIElements;
 using Kingmaker.Editor.UIElements.Custom.Properties;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;

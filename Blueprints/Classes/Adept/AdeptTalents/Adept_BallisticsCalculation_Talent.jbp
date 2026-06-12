@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "And",
@@ -54,9 +55,10 @@
                         "Max": 0
                       },
                       "m_Fact": "!bp_66e7b370e32b43118315ab0fd24a7f0d",
+                      "CheckTarget": "CurrentEntity",
                       "Aggregation": "Max",
                       "BuffWithCasterFromTargetType": false,
-                      "Target": "CurrentEntity"
+                      "BuffCaster": "CurrentEntity"
                     }
                   ]
                 }
@@ -76,7 +78,7 @@
                 },
                 "Value": {
                   "Operation": "GE",
-                  "TargetType": "RuleTarget",
+                  "TargetType": "ContextCaster",
                   "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": [
@@ -93,7 +95,7 @@
                         "Min": 0,
                         "Max": 0
                       },
-                      "Target": "ContextCaster"
+                      "Target": "RuleTarget"
                     },
                     {
                       "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
@@ -155,7 +157,7 @@
           "Enabled": false
         },
         "PercentDamageModifier": {
-          "ValueType": "Simple",
+          "ValueType": "CasterNamedProperty",
           "Value": 15,
           "ValueRank": "Default",
           "ValueShared": "Damage",
@@ -286,19 +288,107 @@
               "Shared": null
             },
             "Description": {
-              "m_Key": "35d084a4-20b1-4363-85fa-4341d26fd30b",
-              "m_OwnerString": "070ab229e0cb4e88b564e7428e350d03#$UIPropertiesComponent$880243fa-3194-4e9d-a42b-e6acbafbc126",
-              "m_OwnerPropertyPath": "Properties.Array.data[0].Description",
-              "m_JsonPath": "Strings/Mechanics/Blueprints\\Classes\\Adept\\AdeptTalents\\Adept_BallisticsCalculation_Talent_Properties.Array.data[0].Description.json",
-              "Shared": null
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "38f85ee2ab94e494daad874d02127f4a",
+                "stringkey": "9d401d24-f635-4165-a29a-d3ba68d14f6d"
+              }
             },
             "m_DescriptionFact": "!bp_070ab229e0cb4e88b564e7428e350d03",
             "m_LinkProperty": true,
             "m_PropertyName": "Duration1",
             "m_PropertySource": "!bp_070ab229e0cb4e88b564e7428e350d03",
-            "m_LinkKey": "Range"
+            "m_LinkKey": "Range",
+            "Main": false
+          },
+          {
+            "NameType": "Damage",
+            "m_Name": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": null
+            },
+            "Description": {
+              "m_Key": "",
+              "m_OwnerString": "",
+              "m_OwnerPropertyPath": "",
+              "m_JsonPath": "",
+              "Shared": {
+                "assetguid": "bbf4d1d413b46a549833691050502748",
+                "stringkey": "f12a2f77-d3f9-42f3-afa2-886e11f7d9a1"
+              }
+            },
+            "m_DescriptionFact": "!bp_070ab229e0cb4e88b564e7428e350d03",
+            "m_LinkProperty": true,
+            "m_PropertyName": "Value1",
+            "m_PropertySource": "!bp_070ab229e0cb4e88b564e7428e350d03",
+            "m_LinkKey": "Damage",
+            "Main": false
           }
         ]
+      },
+      {
+        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
+        "name": "$PropertyCalculatorComponent$e5fc8ec6-3ade-4f29-8b7f-949139904457",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Name": "Value1",
+        "SaveToContext": "No",
+        "Value": {
+          "Operation": "Sum",
+          "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
+          "FailSilentlyIfNoTarget": false,
+          "Getters": [
+            {
+              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
+              "name": "$SimplePropertyGetter$25e652b4118e41748c68d2ac31ce425e",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Property": "PerceptionBonus"
+            },
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$c9ee970a1fe443a5a0ca1f9989da6b8f",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 10,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "LeonidTolochenko",
@@ -334,7 +424,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
       "Archetype"
     ],
     "TalentIconInfo": {

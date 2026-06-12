@@ -1,0 +1,120 @@
+{
+  "AssetId": "9da77d3a8c8945a3a53eb8f7b22f8899",
+  "Data": {
+    "$type": "63bb90208198450095c55997ebc6ae0a, ActionsHolder",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$349da970-693e-4b25-8d80-4739524b474e",
+          "Comment": "Был военный совет - выдать основные квесты",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$a45f9ce5-3c42-49a7-9eff-79445267aa97",
+                "Not": false,
+                "m_Dialog": "!bp_0b75c257215e4c279ff6ec8eee04e158"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+                "name": "$RunActionHolder$8c25be98-c407-46b8-83a5-7902fec5b72b",
+                "Comment": "",
+                "Holder": "!bp_8bc6e7a0ed854b04b087b9d4c120413f"
+              },
+              {
+                "$type": "576a514e5164d254f936cd4ce788ae6a, RunActionHolder",
+                "name": "$RunActionHolder$77f75ce5-83f9-49c6-abd2-e4500c010365",
+                "Comment": "",
+                "Holder": "!bp_f4c409cbc0b140a9aab5f36f8c1fa2a9"
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$cca36448-1623-4985-9c97-8a519edd2812",
+          "Comment": "Если был квест на кражу меча - выдать квест снова",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$ee49b777-2afc-4ab6-9b33-5c274d97caaa",
+                "Not": false,
+                "m_Etude": "!bp_c56147ee18274e408950a290819fb230",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$610aefcb-88a7-4338-b4ca-e3aca50892d4",
+                "Comment": "Если знаем про Яруба - стартуем сразу со второго обжектива, иначе с первого",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$709ab21f-b7f4-4d60-9faa-9d34346ada55",
+                      "Not": false,
+                      "m_Etude": "!bp_949373a13eaf42e2bacfbe1c44fb3714",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                      "name": "$GiveObjective$ea57e461-38d8-4083-92e9-1c6dca07f566",
+                      "m_Objective": "!bp_dfe72dd868ab4c958a9eb44aca702874"
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "3af21dd61b640c941b5704f3df91e16d, GiveObjective",
+                      "name": "$GiveObjective$7878119a-3c6a-4faa-af36-9e181b21916a",
+                      "m_Objective": "!bp_deb8d6cb8fa045b591f7753ba7e190b5"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

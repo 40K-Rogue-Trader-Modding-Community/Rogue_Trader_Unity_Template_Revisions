@@ -14,10 +14,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "BoolAnd",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -36,6 +38,7 @@
                 "Value": {
                   "Operation": "L",
                   "TargetType": "RuleTarget",
+                  "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": [
                     {
@@ -52,9 +55,10 @@
                         "Max": 0
                       },
                       "m_Fact": "!bp_bf4e05c53a4d4868b6a13a4bff28962b",
+                      "CheckTarget": "CurrentEntity",
                       "Aggregation": "Max",
                       "BuffWithCasterFromTargetType": true,
-                      "Target": "RuleInitiator"
+                      "BuffCaster": "CurrentEntity"
                     },
                     {
                       "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
@@ -98,6 +102,7 @@
                 "Value": {
                   "Operation": "BoolAnd",
                   "TargetType": "RuleInitiator",
+                  "TargetEvaluator": null,
                   "FailSilentlyIfNoTarget": false,
                   "Getters": [
                     {
@@ -122,6 +127,7 @@
           }
         },
         "TriggersForDamageOverTime": true,
+        "TriggerBeforeDamageHappens": false,
         "Actions": {
           "Actions": [
             {
@@ -131,15 +137,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -177,15 +174,6 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": true,
               "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 0,
@@ -249,15 +237,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 3,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 3,
@@ -316,13 +295,17 @@
                       ]
                     },
                     "OnlyParty": false,
+                    "WithoutPets": false,
                     "m_FilterNoFacts": [],
                     "m_FilterHaveAnyFact": [],
                     "ActionsOnRandomTarget": false,
                     "NotCaster": false,
                     "OnlyVisible": false,
                     "OnlyNotVisible": false,
-                    "IncludeDead": false
+                    "IncludeDead": false,
+                    "IncludeUntargetable": false,
+                    "StatFilter": "None",
+                    "Stat": "Unknown"
                   },
                   {
                     "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
@@ -386,11 +369,13 @@
             "m_LinkProperty": true,
             "m_PropertyName": "DamageDice1",
             "m_PropertySource": "!bp_0622f1c3840e4325912a5e8967a8a821",
-            "m_LinkKey": "DamageBonus"
+            "m_LinkKey": "DamageBonus",
+            "Main": false
           }
         ]
       }
     ],
+    "Author": "AlexanderGusev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -423,7 +408,6 @@
       "List": []
     },
     "FeatureTypes": [
-      "Offense",
       "Archetype"
     ],
     "TalentIconInfo": {
@@ -438,8 +422,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "AlexanderGusev"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

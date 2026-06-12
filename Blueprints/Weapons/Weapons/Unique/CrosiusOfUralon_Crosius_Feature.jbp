@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
@@ -48,50 +49,86 @@
         "ActionsOnTargetHit": {
           "Actions": [
             {
-              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-              "name": "$ContextActionApplyBuff$c2f8b1fb46f04e739d81e8494f9a1965",
-              "m_Buff": "!bp_afe54a9e19d3485ea73641e0da226de2",
-              "BuffEndCondition": "CombatEnd",
-              "Permanent": false,
-              "DurationValue": {
-                "BonusValue": {
-                  "ValueType": "Simple",
-                  "Value": 0,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                },
-                "RoundsValue": {
-                  "ValueType": "Simple",
-                  "Value": 1,
-                  "ValueRank": "Default",
-                  "ValueShared": "Damage",
-                  "Property": "None",
-                  "m_CustomProperty": null,
-                  "PropertyName": "Value1"
-                }
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$429a567cdb0d530396761ece1be8d3a8",
+              "Comment": "",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "d271cb15605a459ca6188e939a2d5d72, ContextConditionProperty",
+                    "name": "$ContextConditionProperty$681ffb6fede659b180f37f68aec513e2",
+                    "Not": false,
+                    "Property": {
+                      "Operation": "Sum",
+                      "TargetType": "CurrentEntity",
+                      "TargetEvaluator": null,
+                      "FailSilentlyIfNoTarget": false,
+                      "Getters": [
+                        {
+                          "$type": "5ffd55f3680349e0b0dda12f892c7a12, CheckIfAttackOfOpportunityGetter",
+                          "name": "$CheckIfAttackOfOpportunityGetter$84accfb338345cf38c0e9e2f50d607ea",
+                          "Settings": {
+                            "Progression": "AsIs",
+                            "m_CustomProgression": [],
+                            "m_StartLevel": 0,
+                            "m_StepLevel": 0,
+                            "Negate": false,
+                            "Limit": "None",
+                            "Min": 0,
+                            "Max": 0
+                          }
+                        }
+                      ]
+                    },
+                    "NegativeDoesNotCount": false
+                  }
+                ]
               },
-              "ToCaster": false,
-              "AsChild": false,
-              "SameDuration": false,
-              "Ranks": {
-                "ValueType": "Simple",
-                "Value": 0,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              },
-              "ActionsOnApply": {
+              "IfTrue": {
                 "Actions": []
               },
-              "ActionsOnImmune": {
-                "Actions": []
-              },
-              "AddFactSource": false
+              "IfFalse": {
+                "Actions": [
+                  {
+                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                    "name": "$ContextActionApplyBuff$bfe84d2b-734b-4207-bea8-f7944456475c",
+                    "m_Buff": "!bp_afe54a9e19d3485ea73641e0da226de2",
+                    "BuffEndCondition": "CombatEnd",
+                    "Permanent": true,
+                    "DurationValue": {
+                      "RoundsValue": {
+                        "ValueType": "Simple",
+                        "Value": 1,
+                        "ValueRank": "Default",
+                        "ValueShared": "Damage",
+                        "Property": "None",
+                        "m_CustomProperty": null,
+                        "PropertyName": "Value1"
+                      }
+                    },
+                    "ToCaster": false,
+                    "AsChild": false,
+                    "SameDuration": false,
+                    "Ranks": {
+                      "ValueType": "Simple",
+                      "Value": 0,
+                      "ValueRank": "Default",
+                      "ValueShared": "Damage",
+                      "Property": "None",
+                      "m_CustomProperty": null,
+                      "PropertyName": "Value1"
+                    },
+                    "ActionsOnApply": {
+                      "Actions": []
+                    },
+                    "ActionsOnImmune": {
+                      "Actions": []
+                    },
+                    "AddFactSource": false
+                  }
+                ]
+              }
             }
           ]
         },
@@ -102,7 +139,7 @@
         "OnlyMelee": false
       }
     ],
-    "Author": "Unknown",
+    "Author": "AndreiSverkunov",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",

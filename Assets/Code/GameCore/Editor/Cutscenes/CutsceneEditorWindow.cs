@@ -12,6 +12,7 @@ using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.Cutscenes.CommandTest;
 using Kingmaker.Editor.DragDrop;
 using Kingmaker.Editor.Elements.SmartElementPopulation;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Editor.Utility;
 using Kingmaker.ElementsSystem;
 using Kingmaker.PubSubSystem;
@@ -1523,7 +1524,9 @@ namespace Kingmaker.Editor.Cutscenes
             {
                 var gate = m_Layout.FindGateForTrack(selectedObject);
                 var path = BlueprintsDatabase.GetAssetPath(Cutscene);
-                var newGate = BlueprintsDatabase.CreateAsset<Gate>(Path.GetDirectoryName(path), "gate.jbp");
+                var newGate = new Gate();
+                string newGateFilename = GetUniqueBlueprintFilename(newGate, "gate");
+                BlueprintsDatabase.CreateAsset(newGate, Path.GetDirectoryName(path), newGateFilename);
                 var old = selectedObject.EndGate.EditorEndGate();
                 selectedObject.EndGate = newGate;
                 gate.SetDirty();
@@ -1734,6 +1737,17 @@ namespace Kingmaker.Editor.Cutscenes
 
         #endregion
 
+        /// <summary>
+        /// Generate kind of globally unique filename to avoid false-positive asset id guard triggering
+        /// when deleting old and adding new command with the same name
+        /// </summary>
+        private static string GetUniqueBlueprintFilename(SimpleBlueprint bp, string baseName)
+        {
+            string guid = Guid.NewGuid().ToString("N");
+            bp.AssetGuid = guid;
+            return $"{baseName}_{guid[..4]}";
+        }
+
         private void AddCommandToTrack(Track track, Type type, CommandBase after = null)
         {
             var gate = m_Layout.FindGateForTrack(track);
@@ -1746,14 +1760,10 @@ namespace Kingmaker.Editor.Cutscenes
                 return;
             }
 
-            // Generate kind of globally unique filename to avoid false-positive asset id guard triggering
-            // when deleting old and adding new command with the same name
             string filename = type.Name;
             if (newCom != null)
             {
-                string guid = Guid.NewGuid().ToString("N");
-                newCom.AssetGuid = guid;
-                filename = $"{type.Name}_{guid[..4]}";
+                filename = GetUniqueBlueprintFilename(newCom, filename);
             }
 
             var path = BlueprintsDatabase.GetAssetPath(Cutscene);

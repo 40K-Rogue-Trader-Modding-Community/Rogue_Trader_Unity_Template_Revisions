@@ -1,0 +1,548 @@
+{
+  "AssetId": "6c46ae5565a049f3bbe0d54578ba3be1",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$885cc838e00d482f9f7d6e13e65447e2",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "SeberianWithNewSword",
+              "_entity_id": "a2d1a4a7-331b-49ba-ade2-9a8428f9c625",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$a7547c0bec0a4317a09dfb2a64cab4cc",
+                "m_Cutscene": "!bp_72d84233cf1942af9674f390f4b658ee",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "Unit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                        "name": "$SpawnedUnit$bdcacc4ea93642c39290014af8c97663"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "7e9b6e3ec852e264e8fcd8c4b5956eee, AddFact",
+                "name": "$AddFact$c552edb6c5db4e73bf1df6ba16145b10",
+                "Unit": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$34a1f0e20d234ea28bbaa51da756c53a"
+                },
+                "m_Fact": "!bp_d84150bfd0d64a7e855038b277757bd6"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "0652c1b85291c994f8411a22deb2b6ec, Spawn",
+          "name": "$Spawn$bd8806db-7e61-4c67-9ade-08bf4049ca9d",
+          "Spawners": [
+            {
+              "EntityNameInEditor": "CutsceneNecronWarrior (1)",
+              "_entity_id": "4b59e910-775a-4808-9dcc-1b104561e66e",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            },
+            {
+              "EntityNameInEditor": "CutsceneNecronWarrior (2)",
+              "_entity_id": "13a7c61c-191c-4f66-8c2e-c76ece6cd492",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            },
+            {
+              "EntityNameInEditor": "CutsceneNecronDestroyer",
+              "_entity_id": "297a8347-0254-4c55-90ab-a7054cce0562",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            }
+          ],
+          "ActionsOnSpawn": {
+            "Actions": [
+              {
+                "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                "name": "$SwitchFaction$9b447a243adc4cfab196dfbd1a650347",
+                "Target": {
+                  "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                  "name": "$SpawnedUnit$b189443290ee4437ada836551fb33bf3"
+                },
+                "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+                "IncludeGroup": true
+              },
+              {
+                "$type": "c116651d4278e1143af7f7e9b229de90, SpawnFx",
+                "name": "$SpawnFx$02af12b1b614445581934db0d246bc57",
+                "Target": {
+                  "$type": "93a8e117c084af945a2d44ce45cfa786, UnitTransform",
+                  "name": "$UnitTransform$7726da0bf9804937b269509525775aea",
+                  "Unit": {
+                    "$type": "5abcc51ecc3df064ebb6c4ec13a8a8e9, SpawnedUnit",
+                    "name": "$SpawnedUnit$2d69b3e819c1464ba067150c4332b961"
+                  }
+                },
+                "FxPrefab": {
+                  "guid": "07d4e9091770ea6489a37b89ae0e514e",
+                  "fileid": 4257651609562335046
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$57be259251c84d79affe23e1da3d7c9b",
+          "Comment": "Batoshski is Archmilitant",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$da068b630d7541058a7381661974a33b",
+                "Not": false,
+                "m_Etude": "!bp_a6c7d001822a423da335c7a1e7ae5bf9",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$a772aa1f-3c0e-4bcd-a47c-0efb601320d0",
+                "Not": true,
+                "m_Etude": "!bp_2fb88f5e73224882bcdae0c727990734",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$988e0b15-8503-4371-9df0-239aab2a75aa",
+                "Not": true,
+                "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$23eae039-1733-46f9-bc33-63990168aef8",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$125fb5db-32b4-4f1b-81f1-c9bb2f18041a",
+                  "Spawner": {
+                    "EntityNameInEditor": "BatoshskiArchmilitant",
+                    "_entity_id": "f7af0b27-58f1-44b1-92b0-01ea8da04ffa",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  }
+                },
+                "Unhide": true,
+                "Fade": false
+              },
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$8a9cad2f-fd56-486b-8edf-f255536c37de",
+                "m_ForceBlockTargetPosition": false,
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$94d4542a8bd3478a809541540af150a0",
+                  "Spawner": {
+                    "EntityNameInEditor": "BatoshskiArchmilitant",
+                    "_entity_id": "f7af0b27-58f1-44b1-92b0-01ea8da04ffa",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  }
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "ArchmilitantBeforeCharge_pos",
+                  "_entity_id": "83507c96-a944-49cc-85b7-4dfba5114639",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$90986b5bb0f54fe28b0c2f468656e9a6",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "ArchmilitantBeforeCharge_pos",
+                    "_entity_id": "83507c96-a944-49cc-85b7-4dfba5114639",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$980b3f59-80b5-4422-bf28-e8d7acbf6619",
+          "Comment": "Dunavski is Archmilitant",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$adb88992-5a98-4d80-a29f-31ae7d1954c6",
+                "Not": false,
+                "m_Etude": "!bp_867946d22e4a4627aa69f3c5fb8912bd",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$902f2791-6271-44ad-b638-9decedda5f80",
+                "Not": true,
+                "m_Etude": "!bp_2fb88f5e73224882bcdae0c727990734",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$cb5ab1c3-1ea7-4fee-a08b-8ba9feb0bd28",
+                "Not": true,
+                "m_Etude": "!bp_f49abfc841234e1eb89402b5aaf40224",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                "name": "$HideUnit$3495ea6d-faba-4833-8feb-3483e92132c4",
+                "Target": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$610c03d8-65c4-432d-95c5-e484b8d585dd",
+                  "Spawner": {
+                    "EntityNameInEditor": "DunavskiArchmilitant",
+                    "_entity_id": "a5848bf8-446e-4a8f-9088-9ccb07ec7fb8",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  }
+                },
+                "Unhide": true,
+                "Fade": false
+              },
+              {
+                "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+                "name": "$TranslocateUnit$1b642e48-b0aa-458c-8f90-f5a7eacb5bbb",
+                "m_ForceBlockTargetPosition": false,
+                "Unit": {
+                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                  "name": "$UnitFromSpawner$366439ffd56e4c9e973154ac3dedf4fd",
+                  "Spawner": {
+                    "EntityNameInEditor": "DunavskiArchmilitant",
+                    "_entity_id": "a5848bf8-446e-4a8f-9088-9ccb07ec7fb8",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  }
+                },
+                "translocatePosition": {
+                  "EntityNameInEditor": "ArchmilitantBeforeCharge_pos",
+                  "_entity_id": "83507c96-a944-49cc-85b7-4dfba5114639",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+                },
+                "translocatePositionEvaluator": null,
+                "m_PrecisePosition": true,
+                "m_RestrictByHeightDifference": false,
+                "m_CopyRotation": true,
+                "translocateOrientationEvaluator": {
+                  "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+                  "name": "$LocatorOrientation$9f842989eb4e413bbcbb31d89c9996ba",
+                  "LocatorEval": null,
+                  "Locator": {
+                    "EntityNameInEditor": "ArchmilitantBeforeCharge_pos",
+                    "_entity_id": "83507c96-a944-49cc-85b7-4dfba5114639",
+                    "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                  },
+                  "Offset": 0.0
+                },
+                "m_ActionsOnSuccess": {
+                  "Actions": []
+                },
+                "m_ActionsOnFail": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+          "name": "$TranslocateUnit$e1eafb222eea4deb84ac96ab6be76a6b",
+          "m_ForceBlockTargetPosition": false,
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$b85f56fb67a74a628a22446982cbdd55",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (1)",
+              "_entity_id": "5105c139-5e62-4e78-a8dc-9cbda17e2831",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            }
+          },
+          "translocatePosition": {
+            "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (1)",
+            "_entity_id": "f3c4acd4-4c8f-49dd-888f-e568b84d5ed4",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+          },
+          "translocatePositionEvaluator": null,
+          "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
+          "m_CopyRotation": true,
+          "translocateOrientationEvaluator": {
+            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+            "name": "$LocatorOrientation$d3db1a27ab6a456eb7ac00dc1b09fabf",
+            "LocatorEval": null,
+            "Locator": {
+              "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (1)",
+              "_entity_id": "f3c4acd4-4c8f-49dd-888f-e568b84d5ed4",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+          "name": "$TranslocateUnit$49124b95-86db-4d0e-8dfa-aa0d0462f319",
+          "m_ForceBlockTargetPosition": false,
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$27ab9616-7e16-4401-8553-df3236096413",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (2)",
+              "_entity_id": "57f3ead5-39a8-462b-bf45-75f38f5e59c1",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            }
+          },
+          "translocatePosition": {
+            "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (2)",
+            "_entity_id": "106d8673-1b7d-4726-968f-782cf5912cc7",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+          },
+          "translocatePositionEvaluator": null,
+          "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
+          "m_CopyRotation": true,
+          "translocateOrientationEvaluator": {
+            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+            "name": "$LocatorOrientation$329db52c213041ceaf96626e46989b51",
+            "LocatorEval": null,
+            "Locator": {
+              "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (2)",
+              "_entity_id": "106d8673-1b7d-4726-968f-782cf5912cc7",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+          "name": "$TranslocateUnit$d6280750-9552-4d27-a55e-6afba13dc85a",
+          "m_ForceBlockTargetPosition": false,
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$736e7f11-d2df-486a-8269-3919d85603b5",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (3)",
+              "_entity_id": "396b8586-2b88-4b4d-89d4-238d98346cb3",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            }
+          },
+          "translocatePosition": {
+            "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (3)",
+            "_entity_id": "c30c1070-b903-49f4-b90a-a581aa0b260a",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+          },
+          "translocatePositionEvaluator": null,
+          "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
+          "m_CopyRotation": true,
+          "translocateOrientationEvaluator": {
+            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+            "name": "$LocatorOrientation$439f676f7ad44c9187897594d841b2d3",
+            "LocatorEval": null,
+            "Locator": {
+              "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (3)",
+              "_entity_id": "c30c1070-b903-49f4-b90a-a581aa0b260a",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "38b104786c153ae409ee91b85544a4a5, TranslocateUnit",
+          "name": "$TranslocateUnit$f431162f-e154-458b-8cba-af1ed81ad809",
+          "m_ForceBlockTargetPosition": false,
+          "Unit": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$93dd820a-192a-4ea6-85a7-1e26b5660570",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (4)",
+              "_entity_id": "3a243ebb-74e1-4fb7-a1cb-8842e56f8a66",
+              "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+            }
+          },
+          "translocatePosition": {
+            "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (4)",
+            "_entity_id": "cb1485af-278c-4865-8441-20d443e7d42c",
+            "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_ExhibitionCollapsing_Mechanics.unity"
+          },
+          "translocatePositionEvaluator": null,
+          "m_PrecisePosition": true,
+          "m_RestrictByHeightDifference": false,
+          "m_CopyRotation": true,
+          "translocateOrientationEvaluator": {
+            "$type": "e11ac2cb26534343ba689a3fdd4de609, LocatorOrientation",
+            "name": "$LocatorOrientation$d7c7835a8c2744f39e05499b40394f69",
+            "LocatorEval": null,
+            "Locator": {
+              "EntityNameInEditor": "ZarkovSoldierOnSecondElevator_pos (4)",
+              "_entity_id": "cb1485af-278c-4865-8441-20d443e7d42c",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            },
+            "Offset": 0.0
+          },
+          "m_ActionsOnSuccess": {
+            "Actions": []
+          },
+          "m_ActionsOnFail": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$9f7461083b88425194a861b81abb89c9",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$b4266a6cc2f640c3a838a8b5e224a763",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (1)",
+              "_entity_id": "5105c139-5e62-4e78-a8dc-9cbda17e2831",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            }
+          },
+          "Unhide": true,
+          "Fade": false
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$be7a0972-86ae-4db5-bc73-4372e933f520",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$a37da21ad1b94e8a97e3403e3d739c11",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (2)",
+              "_entity_id": "57f3ead5-39a8-462b-bf45-75f38f5e59c1",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            }
+          },
+          "Unhide": true,
+          "Fade": false
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$8842ea82-cf64-4d19-adeb-924832e190ab",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$b0e652044766407d907549a283783397",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (3)",
+              "_entity_id": "396b8586-2b88-4b4d-89d4-238d98346cb3",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            }
+          },
+          "Unhide": true,
+          "Fade": false
+        },
+        {
+          "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+          "name": "$HideUnit$a4a4630b-6d5e-493a-a4df-afc90872393d",
+          "Target": {
+            "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+            "name": "$UnitFromSpawner$bbf285c17765411c82b3e9caba763ce8",
+            "Spawner": {
+              "EntityNameInEditor": "ZarkovSoldier (4)",
+              "_entity_id": "3a243ebb-74e1-4fb7-a1cb-8842e56f8a66",
+              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+            }
+          },
+          "Unhide": true,
+          "Fade": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

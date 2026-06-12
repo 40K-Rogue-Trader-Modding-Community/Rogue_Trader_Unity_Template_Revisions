@@ -40,17 +40,8 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": false,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "CasterProperty",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "IntelligenceBonus",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
-                        "ValueType": "CasterNamedProperty",
+                        "ValueType": "Simple",
                         "Value": 1,
                         "ValueRank": "Default",
                         "ValueShared": "Damage",
@@ -90,17 +81,8 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": false,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "CasterProperty",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "IntelligenceBonus",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
-                        "ValueType": "TargetNamedProperty",
+                        "ValueType": "Simple",
                         "Value": 1,
                         "ValueRank": "Default",
                         "ValueShared": "Damage",
@@ -153,15 +135,6 @@
                           "BuffEndCondition": "CombatEnd",
                           "Permanent": true,
                           "DurationValue": {
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
                             "RoundsValue": {
                               "ValueType": "Simple",
                               "Value": 0,
@@ -225,15 +198,6 @@
                     "BuffEndCondition": "CombatEnd",
                     "Permanent": true,
                     "DurationValue": {
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
                       "RoundsValue": {
                         "ValueType": "Simple",
                         "Value": 0,
@@ -287,7 +251,7 @@
             "m_Type": "Circle",
             "m_Blueprint": null,
             "m_Radius": 4,
-            "m_Angle": 0
+            "m_Angle": 30
           },
           "Targets": "Any",
           "CastOnSameLevel": false,
@@ -303,40 +267,6 @@
         "m_Condition": {
           "Operation": "And",
           "Conditions": []
-        }
-      },
-      {
-        "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
-        "name": "$PropertyCalculatorComponent$ea6a9e0d-4127-4567-bdb2-bed2f0385db6",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Name": "Value1",
-        "SaveToContext": "No",
-        "Value": {
-          "Operation": "Sum",
-          "TargetType": "ContextCaster",
-          "FailSilentlyIfNoTarget": false,
-          "Getters": [
-            {
-              "$type": "fd03f97ef3d1416d9a95f874454886d9, SimplePropertyGetter",
-              "name": "$SimplePropertyGetter$6a740b77bdc35e389852e211021ee9b2",
-              "Settings": {
-                "Progression": "BonusValue",
-                "m_CustomProgression": [],
-                "m_StartLevel": 0,
-                "m_StepLevel": 1,
-                "Negate": false,
-                "Limit": "None",
-                "Min": 0,
-                "Max": 0
-              },
-              "Property": "IntelligenceBonus"
-            }
-          ]
         }
       }
     ],
@@ -376,12 +306,14 @@
     "PsychicPower": "Minor",
     "VeilThicknessPointsToAdd": 1,
     "ParamsSkill": "SkillAthletics",
-    "CooldownRounds": 3,
+    "CooldownRounds": 1,
     "CanTargetPoint": true,
     "CanTargetEnemies": true,
     "CanTargetFriends": true,
     "CanTargetSelf": true,
     "Hidden": false,
+    "HiddenInUI": false,
+    "DisableLog": false,
     "DisableBestShootingPosition": false,
     "NeedEquipWeapons": false,
     "NotOffensive": false,
@@ -397,6 +329,8 @@
     "m_TargetMapObjects": false,
     "IsFreeAction": false,
     "ShouldTurnToTarget": true,
+    "SyncRotationAndAttack": false,
+    "SyncRotationDelay": 0.0,
     "m_IsStratagem": false,
     "UsingInThreateningArea": "CanUseWithoutAOO",
     "UsingInOverwatchArea": "WillCauseAttack",
@@ -406,7 +340,6 @@
       "m_Item": null,
       "Count": 1
     },
-    "DisableLog": false,
     "ResourceAssetIds": [],
     "m_FXSettings": null,
     "m_AbilityTag": "None",

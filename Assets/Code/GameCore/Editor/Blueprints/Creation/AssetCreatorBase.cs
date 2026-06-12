@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Kingmaker.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
@@ -30,6 +31,8 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		public virtual bool CreatesBlueprints => true;
 
 		public virtual string DefaultName => string.Empty;
+		
+		private static readonly Regex ArrayElementRx = new(@"(\w+)\.Array\.data\[(\d+)\]");
 
         public abstract object CreateAsset();
 
@@ -68,6 +71,24 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		public virtual bool ShouldSkipProperty(string propName)
 		{
 			return false;
+		}
+		
+		public virtual string GetNameFromProperty(SerializedProperty prop)
+		{
+			string objectName = prop.serializedObject.targetObject.name;
+			string propName = prop.name;
+
+			if (prop.IsArrayElement())
+			{
+				// Simplify array element path from "SomeField.Array.data[0]" to "SomeField.0"
+				var m = ArrayElementRx.Match(prop.propertyPath);
+				if (m.Success)
+					propName = $"{m.Groups[1].Value}.{m.Groups[2].Value}";
+			}
+			// Remove private prefix
+			propName = propName.StartsWith("m_") ? propName[2..] : propName;
+			
+			return $"{objectName}_{propName}";
 		}
 
 		protected string GetMatchingFolder(string assetPath)

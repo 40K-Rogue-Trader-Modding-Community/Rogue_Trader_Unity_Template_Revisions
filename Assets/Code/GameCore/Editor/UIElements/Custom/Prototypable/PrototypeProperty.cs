@@ -7,7 +7,8 @@ namespace Kingmaker.Editor.UIElements.Custom.Prototypable
 {
     public class PrototypeProperty : BlueprintReferenceProperty
     {
-        public PrototypeProperty(SerializedProperty property, System.Type refType) : base(property, property.GetFieldInfo(), property, refType)
+        public PrototypeProperty(SerializedProperty property, System.Type refType) : 
+            base(property, property.GetFieldInfo(), property, false, refType)
         {
             AddComponent(new FuncTitleProviderComponent(() => "Prototype"));
         }

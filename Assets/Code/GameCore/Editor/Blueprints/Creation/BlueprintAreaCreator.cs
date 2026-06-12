@@ -25,6 +25,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			public const string AddedMechanicsPostfix = "_Mechanics_Add.unity";
 			public const string StaticPostfix = "_Static.unity";
 			public const string LightPostfix = "_Light.unity";
+			public const string AudioPostfix = "_Audio.unity";
 
 			private const string Prefix = ScenesRoot + "!Templates/Template";
 
@@ -32,6 +33,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 			private const string DefaultAddedMechanicsPath = Prefix + AddedMechanicsPostfix;
 			private const string DefaultStaticPath = Prefix + StaticPostfix;
 			private const string DefaultLightPath = Prefix + LightPostfix;
+			private const string DefaultAudioPath = Prefix + AudioPostfix;
 
 			public static string MechanicsPath
 				=> Templates.instance == null
@@ -52,6 +54,11 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				=> Templates.instance == null
 					? DefaultLightPath
 					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.LightTemplateScene);
+
+			public static string AudioPath
+				=> Templates.instance == null
+					? DefaultAudioPath
+					: AssetDatabase.GetAssetPath(Templates.instance.BlueprintArea.AudioTemplateScene);
 		}
 
 		public const string ScenesRoot = "Assets/Scenes/";
@@ -68,6 +75,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		protected virtual string DefaultMechanicsSceneTemplate => DefaultSceneTemplate + SceneTemplates.MechanicsPostfix;
 		private const string DefaultStaticSceneTemplate = DefaultSceneTemplate + SceneTemplates.StaticPostfix;
 		private const string DefaultLightSceneTemplate = DefaultSceneTemplate + SceneTemplates.LightPostfix;
+		private const string DefaultAudioSceneTemplate = DefaultSceneTemplate + SceneTemplates.AudioPostfix;
 
 		protected virtual string MechanicsSceneTemplate
 			=> Templates.instance == null
@@ -84,14 +92,19 @@ namespace Kingmaker.Editor.Blueprints.Creation
 				? DefaultLightSceneTemplate
 				: Templates.instance.BlueprintArea.LightSceneTemplate;
 
+		private static string AudioSceneTemplate
+			=> Templates.instance == null
+				? DefaultAudioSceneTemplate
+				: Templates.instance.BlueprintArea.AudioSceneTemplate;
+
 		protected virtual string DefaultEntranceSuffix
 			=> EntranceSuffix;
 
 		protected override string DefaultFolder
-			=> "Blueprints/World/Areas/";
+			=> "Blueprints/World/Areas/Test_Areas/";
 
 		protected override string DefaultTemplate
-			=> "Blueprints/World/Areas/{Chapter}/{Location}/{Location}{name}.jbp";
+			=> "Blueprints/World/Areas/Test_Areas/{name}/{name}.jbp";
 
 		protected override string Template
 			=> Templates.instance == null
@@ -115,6 +128,11 @@ namespace Kingmaker.Editor.Blueprints.Creation
             return new BlueprintArea();
         }
 
+        protected override string GetTemplateForFolder(string folder)
+        {
+	        return $"{folder}/{{name}}/{{name}}.asset";
+        }
+
         public override void OnGUI()
         {
 	        AreaPartCreatorEditor.OnGui();
@@ -127,9 +145,8 @@ namespace Kingmaker.Editor.Blueprints.Creation
 	        if (IsFolderOverridden)
 	        {
 		        string? path = Path.GetDirectoryName(result)?.Replace("\\", "/");
-		        string? folderName = Path.GetFileName(path);
 		        string filename = Path.GetFileName(result);
-		        result = $"{path}/{folderName}{filename}";
+		        result = $"{path}/{filename}";
 	        }
 	        return result;
         }
@@ -160,12 +177,22 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		        area, StaticSceneTemplate, DefaultStaticSceneTemplate, SceneTemplates.StaticPostfix);
 	        string lightPath = GetScenePathFromTemplate(
 		        area, LightSceneTemplate, DefaultLightSceneTemplate, SceneTemplates.LightPostfix);
+	        string audioPath = GetScenePathFromTemplate(
+		        area, AudioSceneTemplate, DefaultAudioSceneTemplate, SceneTemplates.AudioPostfix);
+
+	        if (AreaPartCreatorEditor.AssetsExist(new[] {mechanicsPath, staticPath, lightPath, audioPath}))
+	        {
+		        return;
+	        }
 
 	        var enterPoint = AreaPartCreatorEditor.CreateEnterPoint(area, DefaultEntranceSuffix);
 
 	        AreaPartCreatorEditor.CreateAssets(area, enterPoint,
-		        mechanicsPath, staticPath, lightPath,
-		        MechanicsTemplateScenePath, SceneTemplates.StaticPath, SceneTemplates.LightPath);
+		        mechanicsPath, staticPath, lightPath, audioPath,
+		        MechanicsTemplateScenePath,
+		        SceneTemplates.StaticPath,
+		        SceneTemplates.LightPath,
+		        SceneTemplates.AudioPath);
 
 	        CreateEtudeStructure(area);
 
@@ -190,6 +217,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 	        // Update build scenes list
 	        var scenes = new List<SceneReference> { area.DynamicScene, area.StaticScene };
 	        scenes.AddRange(area.LightScenes.Where(s => s.IsDefined));
+	        scenes.AddRange(area.AudioScenes.Where(s => s.IsDefined));
 	        scenes = scenes.Distinct().ToList();
 
 	        var buildScenes = scenes
@@ -205,9 +233,21 @@ namespace Kingmaker.Editor.Blueprints.Creation
 	        BlueprintsDatabase.SaveAllDirty();
 	        Selection.activeObject = BlueprintEditorWrapper.Wrap(area);
 		}
+        
+        public static string? CantCreateReasonForAreaName(string areaName)
+        {
+	        // No dots in scene name (derived from area name) are allowed as unity strips
+	        // anything right from the first dot of scene name when building bundles
+	        return areaName.Contains('.') ? "No dots allowed in area name" : null;
+        }
 
         public override string CantCreateReason()
         {
+	        string areaName = Path.GetFileNameWithoutExtension(ProcessTemplate());
+	        string? areaNameReason = CantCreateReasonForAreaName(areaName);
+	        if (areaNameReason != null)
+		        return areaNameReason;
+	        
 	        if (!IsFolderOverridden && AreaParentEtude?.Get() == null)
 	        {
 		        // Any in-game area requires parent etude to be provided
@@ -215,6 +255,7 @@ namespace Kingmaker.Editor.Blueprints.Creation
 		        // convention - i.e. the folder is not overridden by any custom value
 		        return "Parent etude is not set!";
 	        }
+	        
 	        return base.CantCreateReason();
         }
 

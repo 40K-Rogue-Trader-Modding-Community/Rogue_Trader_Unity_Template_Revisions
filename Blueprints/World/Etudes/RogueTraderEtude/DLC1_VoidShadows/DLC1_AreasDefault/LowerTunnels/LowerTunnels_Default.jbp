@@ -24,6 +24,16 @@
         "Actions": {
           "Actions": [
             {
+              "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+              "name": "$TeleportParty$658c17c4-8f86-4650-9511-c74938f73edc",
+              "m_exitPositon": "!bp_5a688fa54c424ea0b93c7e11774eb7a6",
+              "AutoSaveMode": "None",
+              "ForcePauseAfterTeleport": false,
+              "AfterTeleport": {
+                "Actions": []
+              }
+            },
+            {
               "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
               "name": "$PlayCutscene$75531d87f169457699a907482edefb87",
               "m_Cutscene": "!bp_82f7ff07ac954877ae945a1c1021d231",
@@ -218,6 +228,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Items": [
           {
             "m_Item": "!bp_696082a73bd7479facc1ad4158e75223",
@@ -239,7 +250,7 @@
       {
         "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
         "name": "$EtudePlayTrigger$c7f84c02-d25f-45be-80bc-4a44ea8e3c01",
-        "m_Flags": "Disabled",
+        "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
@@ -252,15 +263,15 @@
           "Operation": "And",
           "Conditions": [
             {
-              "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
-              "name": "$CompanionInParty$654543e5-06d7-4a9a-8d62-e41c571b042d",
-              "Not": true,
-              "m_companion": "!bp_88d4190122cd4b6c9c91d7fef4066651",
-              "MatchWhenActive": true,
-              "MatchWhenDetached": false,
-              "MatchWhenRemote": true,
-              "MatchWhenEx": true,
-              "IncludeDead": true
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$bfb5cdcf-a294-4e42-a2ab-e2170e344f7e",
+              "Not": false,
+              "m_Etude": "!bp_280ecf2863834c1e9d33df01aabad472",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": true,
+              "CompletionInProgress": false,
+              "Completed": false
             }
           ]
         },
@@ -349,7 +360,8 @@
                 "EntityNameInEditor": "LT_Hook_Controller_UD",
                 "_entity_id": "4063b5e4-babf-49f0-abcc-9cc87088ee5d",
                 "SceneAssetGuid": "Assets/Scenes/DLC1/LowerTunnels/LowerTunnels_Mechanics.unity"
-              }
+              },
+              "TargetUnit": null
             }
           ]
         }
@@ -364,21 +376,21 @@
         },
         "m_Overrides": [],
         "Comment": "Хайд кибеллы",
-        "m_Once": false,
+        "m_Once": true,
         "m_IgnoreAlreadyProcessedActivation": false,
         "Conditions": {
           "Operation": "And",
           "Conditions": [
             {
-              "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
-              "name": "$CompanionInParty$90ad1f709a0e4330b9901c1cc8a6d94a",
+              "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+              "name": "$EtudeStatus$860fb36f6693415d98800eff7ef20984",
               "Not": false,
-              "m_companion": "!bp_88d4190122cd4b6c9c91d7fef4066651",
-              "MatchWhenActive": true,
-              "MatchWhenDetached": false,
-              "MatchWhenRemote": true,
-              "MatchWhenEx": true,
-              "IncludeDead": true
+              "m_Etude": "!bp_280ecf2863834c1e9d33df01aabad472",
+              "NotStarted": false,
+              "Started": false,
+              "Playing": false,
+              "CompletionInProgress": false,
+              "Completed": true
             }
           ]
         },
@@ -398,6 +410,44 @@
               },
               "Unhide": false,
               "Fade": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$c140d380-40ad-4592-ac9a-e36b78589993",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Костыль для фикса проваливания под лифт при повторных заходах",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": [
+            {
+              "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+              "name": "$DialogSeen$b4c290c84d544455a0c2d467289999c6",
+              "Not": false,
+              "m_Dialog": "!bp_caea83ca8d4143c3a3cbe0ad1fc64cc8"
+            }
+          ]
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "8072988edd00cce40bc433869828e6b3, TeleportParty",
+              "name": "$TeleportParty$8fa4f432d55b456ea996c8dde75485c8",
+              "m_exitPositon": "!bp_5a688fa54c424ea0b93c7e11774eb7a6",
+              "AutoSaveMode": "None",
+              "ForcePauseAfterTeleport": false,
+              "AfterTeleport": {
+                "Actions": []
+              }
             }
           ]
         }

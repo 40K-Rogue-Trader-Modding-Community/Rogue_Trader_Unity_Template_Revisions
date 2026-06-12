@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Kingmaker.Blueprints.Root.Strings;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using Kingmaker.Utility.Attributes;
 using Kingmaker.Visual.CharacterSystem;
 using UnityEditor;

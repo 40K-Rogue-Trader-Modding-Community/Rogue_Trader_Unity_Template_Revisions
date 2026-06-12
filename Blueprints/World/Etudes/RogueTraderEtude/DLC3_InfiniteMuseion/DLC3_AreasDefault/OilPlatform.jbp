@@ -7,14 +7,14 @@
     "Components": [
       {
         "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
-        "name": "$EtudePlayTrigger$e8530fe4-efa4-4f28-aaa1-d6f58a919bba",
+        "name": "$EtudePlayTrigger$7c914a93-e302-4980-b7cf-4be2d0e17f8c",
         "m_Flags": 0,
         "PrototypeLink": {
           "guid": "",
           "name": ""
         },
         "m_Overrides": [],
-        "Comment": "",
+        "Comment": "Broken saves fix",
         "m_Once": true,
         "m_IgnoreAlreadyProcessedActivation": false,
         "Conditions": {
@@ -24,13 +24,147 @@
         "Actions": {
           "Actions": [
             {
-              "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-              "name": "$PlayCutscene$ac53bb17-465b-44a2-aab6-2709ff7bd4c6",
-              "m_Cutscene": "!bp_b8345599b689422ba4acd188b10c0437",
-              "PutInQueue": false,
-              "CheckExistence": true,
-              "Parameters": {
-                "Parameters": []
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$3f47955acce2432597048a3b5d7d8df5",
+              "Comment": "Etude isn't started",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$e8a65041cc8c484cb2138a4aa50c4c9d",
+                    "Not": false,
+                    "m_Etude": "!bp_4a129060051a49898e44c86ffc45e042",
+                    "NotStarted": true,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$628c7866fc4b49f0b7886b2bfd2f11d1",
+                    "Etude": "!bp_4a129060051a49898e44c86ffc45e042",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$5743e962-8a65-417f-a425-3ab02b65e846",
+              "Comment": "Etude isn't started",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$14fef813-0243-472d-a53b-1aeae45e6ab7",
+                    "Not": false,
+                    "m_Etude": "!bp_ef5ba6ed2e284aa2b3d8d864e0b91255",
+                    "NotStarted": true,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$15f35635-098b-4d03-be45-771faf4d98c0",
+                    "Etude": "!bp_ef5ba6ed2e284aa2b3d8d864e0b91255",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$b44b6458-e4ab-4b0c-a4c4-2e720b37b664",
+              "Comment": "Etude isn't started",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$bd161e3e-9a91-4819-aaea-9548c1495a21",
+                    "Not": false,
+                    "m_Etude": "!bp_b44e3e84b1ed49be980f100d14e39a4d",
+                    "NotStarted": true,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$532f888b-0a82-4312-b8fe-20a0e9e6d34f",
+                    "Etude": "!bp_b44e3e84b1ed49be980f100d14e39a4d",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$eef0ea33-3f3c-4019-81cf-17286a4871c1",
+              "Comment": "Etude isn't started",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$af2f0942-5e83-4b16-8921-e08ac5830334",
+                    "Not": false,
+                    "m_Etude": "!bp_aba542820a84409198cb3ff7302b4eb6",
+                    "NotStarted": true,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                    "name": "$StartEtude$0ca60675-99f9-48a0-9cd9-8a042b52477c",
+                    "Etude": "!bp_aba542820a84409198cb3ff7302b4eb6",
+                    "EtudeEvaluator": null,
+                    "Evaluate": false,
+                    "StartImmediately": false
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
               }
             }
           ]
@@ -53,7 +187,12 @@
     "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
-    "m_StartsWith": [],
+    "m_StartsWith": [
+      "!bp_b44e3e84b1ed49be980f100d14e39a4d",
+      "!bp_aba542820a84409198cb3ff7302b4eb6",
+      "!bp_4a129060051a49898e44c86ffc45e042",
+      "!bp_ef5ba6ed2e284aa2b3d8d864e0b91255"
+    ],
     "m_StartsOnComplete": [],
     "m_StartsParent": false,
     "m_CompletesParent": false,

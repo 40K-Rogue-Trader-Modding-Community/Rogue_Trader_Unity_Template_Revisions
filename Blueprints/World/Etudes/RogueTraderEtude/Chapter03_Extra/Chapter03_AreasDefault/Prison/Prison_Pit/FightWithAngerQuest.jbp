@@ -14,6 +14,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "m_TickPolicy": "TurnBasedOnly",
         "Delay": 2,
         "Loop": 0,
@@ -93,6 +94,20 @@
               "IncludeGroup": true
             },
             {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$49e12d67d49f46ae9cbe5d2fb92c17d7",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$bafed2d2549e437b8cdf150f1162d798",
+                "MapObject": {
+                  "EntityNameInEditor": "LeaderLootAngerBase",
+                  "_entity_id": "4109d89f-d2cb-4b02-a479-7ca9b9278a3f",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_3/Prison/Prison_PitMain_Mechanics.unity"
+                }
+              },
+              "Unhide": true
+            },
+            {
               "$type": "086f25bb4bbcf634289124979aefb433, StopCutscene",
               "name": "$StopCutscene$4f10914fde9141d9a990de29363f7ffc",
               "m_Cutscene": "!bp_59e4294d907f47e68a4fd69f79a2d8b8",
@@ -100,53 +115,11 @@
               "m_CheckType": "Params"
             },
             {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$44932ed6a68a40228e99ddd67d80d547",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
-                    "name": "$EtudeStatus$2a299323606148b9af71dbf9aff0ddc1",
-                    "Not": true,
-                    "m_Etude": "!bp_3f6b42b1a37c40a8b11d302caa6cc595",
-                    "NotStarted": false,
-                    "Started": false,
-                    "Playing": true,
-                    "CompletionInProgress": false,
-                    "Completed": false
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-                    "name": "$PlayCutscene$71086365-a439-4c21-b212-60271f6fcb58",
-                    "m_Cutscene": "!bp_20705adef0c94b2abaef5248a9a25133",
-                    "PutInQueue": false,
-                    "CheckExistence": true,
-                    "Parameters": {
-                      "Parameters": []
-                    }
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": [
-                  {
-                    "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-                    "name": "$PlayCutscene$2e2a7eb4-af36-48e4-9491-2bf4e8cc8e0f",
-                    "m_Cutscene": "!bp_1d9e31221756474d9a9926806949b3c7",
-                    "PutInQueue": false,
-                    "CheckExistence": true,
-                    "Parameters": {
-                      "Parameters": []
-                    }
-                  }
-                ]
-              }
+              "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+              "name": "$CompleteEtude$e9d17f8fc68b46bcb0751f64e8d1eb61",
+              "Etude": "!bp_adec93b180824b1babbb42dfcbdd3089",
+              "EtudeEvaluator": null,
+              "Evaluate": false
             }
           ]
         }
@@ -211,6 +184,98 @@
             }
           ]
         }
+      },
+      {
+        "$type": "b20b3c539fa60ed44abbfc7e367245ea, EtudeCompleteTrigger",
+        "name": "$EtudeCompleteTrigger$014f226d-dc6b-4c2f-98df-ba2bdd155893",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$e4d1941baec24c3697f4b7213adaea13",
+              "Comment": "Если стадия до 1ой арены (от повторного срабатывания)",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$aa55f867e03f453d8378e90a794b6765",
+                    "Not": false,
+                    "m_Etude": "!bp_9d12ad0bb34d43939f18dbbb98d954aa",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": true,
+                    "CompletionInProgress": false,
+                    "Completed": false
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$af5d69c1-b2a9-445a-990d-9ef3ce5a1592",
+                    "Comment": "",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                          "name": "$EtudeStatus$a38d989d-fd9d-4005-ae4e-902e2183410e",
+                          "Not": true,
+                          "m_Etude": "!bp_3f6b42b1a37c40a8b11d302caa6cc595",
+                          "NotStarted": false,
+                          "Started": false,
+                          "Playing": true,
+                          "CompletionInProgress": false,
+                          "Completed": false
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                          "name": "$PlayCutscene$6177c98b-88ae-463a-a062-1a1b10042d59",
+                          "m_Cutscene": "!bp_20705adef0c94b2abaef5248a9a25133",
+                          "PutInQueue": false,
+                          "CheckExistence": true,
+                          "Parameters": {
+                            "Parameters": []
+                          }
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                          "name": "$PlayCutscene$8772c9f2-2841-4d9f-b991-7c095bd58049",
+                          "m_Cutscene": "!bp_1d9e31221756474d9a9926806949b3c7",
+                          "PutInQueue": false,
+                          "CheckExistence": true,
+                          "Parameters": {
+                            "Parameters": []
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            }
+          ]
+        }
       }
     ],
     "Author": "AlexeyPolezhaev",
@@ -222,11 +287,22 @@
     },
     "CompletionCondition": {
       "Operation": "And",
-      "Conditions": []
+      "Conditions": [
+        {
+          "$type": "95ab8455743b4254580bb0adfaf3be54, IsInCombat",
+          "name": "$IsInCombat$849b6819a85f40179a34e8f0e224a37f",
+          "Not": true,
+          "Unit": {
+            "$type": "25c132cb07bfaef4683b062a74f6e012, PlayerCharacter",
+            "name": "$PlayerCharacter$ecc82a5c098e4dd3b17edb0b661f738b"
+          },
+          "Player": true
+        }
+      ]
     },
     "m_Synchronized": [],
     "m_LinkedAreaPart": "!bp_827007d6406b4a2e9119e9f59526ced1",
-    "m_LinkedCampaigns": null,
+    "m_LinkedCampaigns": [],
     "m_IncludeAreaParts": true,
     "m_AddedAreaMechanics": [],
     "m_StartsWith": [],

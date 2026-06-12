@@ -7,12 +7,12 @@ using Kingmaker.Blueprints.JsonSystem.EditorDatabase;
 using Kingmaker.Editor.Blueprints;
 using Kingmaker.Editor.Elements;
 using Kingmaker.Editor.UIElements.Custom.Base;
-using Owlcat.QA.Validation;
+using Kingmaker.Editor.UIElements.ValuePicker;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Kingmaker.Utility.DotNetExtensions;
 using Owlcat.Runtime.Core.Utility;
+using UnityEditor.UIElements;
 
 
 namespace Kingmaker.Editor.UIElements.Custom
@@ -21,22 +21,16 @@ namespace Kingmaker.Editor.UIElements.Custom
 	{
 		private readonly SerializedObject m_SerializedObject;
 
+		private readonly SerializedProperty m_Property;
+		
 		private readonly VisualElement m_ComponentsContainer;
+		private readonly VisualElement m_RestoreButtonsContainer;
+		private readonly VisualElement m_Buttons;
 
         public BlueprintScriptableObject Blueprint
-            => BlueprintEditorWrapper.Unwrap<BlueprintScriptableObject>(m_SerializedObject.targetObject);
-
-		public IEnumerable<SerializedProperty> ComponentsSerializedProperties
-		{
-			get
-			{
-				var componentsArrayProperty = m_SerializedObject.FindProperty("Components");
-				for (int i = 0; i < componentsArrayProperty.arraySize; ++i)
-				{
-					yield return componentsArrayProperty.GetArrayElementAtIndex(i);
-				}
-			}
-		}
+	        => BlueprintEditorWrapper.Unwrap<BlueprintScriptableObject>(m_SerializedObject?.targetObject);
+        
+        private static HashSet<ComponentsGroup> m_ActiveGroups = new();
 
 		#region Constructor
 
@@ -50,6 +44,9 @@ namespace Kingmaker.Editor.UIElements.Custom
                 throw new Exception(
                     $"{nameof(ComponentsGroup)}(): blueprint is missing");
             }
+            
+            m_Property = m_SerializedObject.FindProperty("Blueprint.Components");
+            this.TrackPropertyValue(m_Property, _ => UpdateComponents());
 
 			m_ComponentsContainer = new VisualElement 
 			{
@@ -58,80 +55,131 @@ namespace Kingmaker.Editor.UIElements.Custom
 			};
 			Add(m_ComponentsContainer);
 
-            UpdateComponents();
-            AddRestoreButtons();
-            AddButtons();
-        }
-
-		public void UpdateComponents()
-		{
-			var duplicateIndices = GetDuplicateIndices(Blueprint);
-			
-			foreach (var component in m_ComponentsContainer.Children().OfType<ComponentElement>().ToArray())
+			m_RestoreButtonsContainer = new VisualElement 
 			{
-				if (component.Component!=null && Blueprint.ComponentsArray.HasItem(component.Component))
+				name = "RestoreButtonsContainer", 
+				style = {flexDirection = FlexDirection.Column}
+			};
+			Add(m_RestoreButtonsContainer);
+            
+			m_Buttons = new VisualElement()
+			{
+				name = "Buttons",
+				style =
 				{
-					//continue;
+					flexDirection = FlexDirection.Row,
+					alignContent = Align.Center,
+					justifyContent = Justify.Center
+				}
+			};
+			Add(m_Buttons);
+			
+			CreateComponents();
+            AddButtons();
+            
+            RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
+            RegisterCallback<DetachFromPanelEvent>(OnDetachFromPanel);
+        }
+		
+		private void OnAttachToPanel(AttachToPanelEvent evt)
+		{
+			m_ActiveGroups.Add(this);
+		}
+		
+		private void OnDetachFromPanel(DetachFromPanelEvent evt)
+		{
+			m_ActiveGroups.Remove(this);
+		}
+
+		public void CreateComponents()
+		{
+			if (Blueprint == null)
+				return;
+
+			if (Blueprint.PrototypeLink != null)
+				m_SerializedObject.UpdateIfRequiredOrScript();
+            
+			m_ComponentsContainer.Clear();
+
+			for (int i = 0; i < m_Property.arraySize; i++)
+			{
+				var element = CreateComponentElement(i);
+				m_ComponentsContainer.Add(element);
+			}
+            
+			UpdateDuplicatesAndObsoleteMarks();
+			AddRestoreButtons();
+		}
+
+		private void UpdateComponents()
+		{
+			for (int i = 0; i < m_Property.arraySize; i++)
+			{
+				if (i > m_ComponentsContainer.childCount - 1)
+				{
+					var newElement = CreateComponentElement(i);
+					m_ComponentsContainer.Add(newElement);
 				}
 				
-				m_ComponentsContainer.Remove(component);
-			}
-
-            for (var ii = 0; ii < Blueprint.ComponentsArray.Length; ii++)
-            {
-                var component = Blueprint.ComponentsArray[ii];
-                if (m_ComponentsContainer.Children().OfType<ComponentElement>().Any(i => i.Component == component))
-                {
-                    //continue;
-                }
-
-                var element = new ComponentElement(component, m_SerializedObject, ii);
-                if(duplicateIndices.Contains(ii))
-					element.style.backgroundColor = new StyleColor(new Color(0.75f, 0.0f, 0.0f, 1.0f));
-                m_ComponentsContainer.Add(element);
-
-                element.OnMoveDownEvent += ItemMoveDown;
-                element.OnMoveUpEvent += ItemMoveUp;
-                element.OnRemoveEvent += ItemRemove;
-                element.OnCopyEvent += ItemCopy;
-            }
-
-            int index = 0;
-			foreach (var component in Blueprint.ComponentsArray)
-			{
-				var element = m_ComponentsContainer.Children()
-					.OfType<ComponentElement>()
-					.FirstOrDefault(e => e.Component == component);
-				m_ComponentsContainer.Remove(element);
-
-				if (index < m_ComponentsContainer.childCount)
+				if (m_ComponentsContainer[i] is ComponentElement { IsValid: false })
 				{
-					m_ComponentsContainer.Insert(index, element);
+					m_ComponentsContainer[i].RemoveFromHierarchy();
+					var newElement = CreateComponentElement(i);
+					m_ComponentsContainer.Insert(i, newElement);
 				}
-				else
-				{
-					m_ComponentsContainer.Add(element);
-				}
-
-				index++;
 			}
 			
-			// m_ComponentsContainer.Sort(
-			// 	(e1, e2) =>
-			// 	{
-			// 		var c1 = e1 as ComponentElement;
-			// 		var c2 = e2 as ComponentElement;
-			// 		if (c1 == null && c2 == null)
-			// 			return 0;
-			// 		if (c1 != null && c2 == null)
-			// 			return 1;
-			// 		if (c1 == null)
-			// 			return -1;
-			//
-			// 		int i1 = Blueprint.ComponentsArray.FindIndex(i => i == c1.Component);
-			// 		int i2 = Blueprint.ComponentsArray.FindIndex(i => i == c2.Component);
-			// 		return i1.CompareTo(i2);
-			// 	});
+			for (int i = m_ComponentsContainer.childCount - 1; i >= m_Property.arraySize; i--)
+				m_ComponentsContainer[i].RemoveFromHierarchy();
+            
+			UpdateDuplicatesAndObsoleteMarks();
+			AddRestoreButtons();
+		}
+
+		private ComponentElement CreateComponentElement(int index)
+		{
+			var element = new ComponentElement(m_Property.GetArrayElementAtIndex(index), index);
+			element.OnMoveDownEvent += ItemMoveDown;
+			element.OnMoveUpEvent += ItemMoveUp;
+			element.OnRemoveEvent += ItemRemove;
+			element.OnCopyEvent += ItemCopy;
+            
+			return element;
+		}
+		
+		private void UpdateDuplicatesAndObsoleteMarks()
+		{
+			var duplicateIndices = GetDuplicateIndices(Blueprint).ToHashSet();
+
+			for (int i = 0; i < m_ComponentsContainer.childCount; i++)
+			{
+				if (m_ComponentsContainer[i] is ComponentElement element)
+					element.HasDuplicates = duplicateIndices.Contains(i);
+			}
+		}
+		
+		private void InvalidateForGroups(int startIndex, int endIndex)
+		{
+			foreach (var group in m_ActiveGroups)
+				group.Invalidate(startIndex, endIndex, Blueprint);
+		}
+
+		private void Invalidate(int startIndex, int endIndex, BlueprintScriptableObject target)
+		{
+			if (startIndex < 0 || endIndex < 0) 
+				return;
+            
+			if (Blueprint != target)
+				return;
+            
+			for (int i = startIndex; i <= endIndex; i++)
+			{
+				if (i >= m_ComponentsContainer.childCount)
+					break;
+	            
+				if (m_ComponentsContainer[i] is ComponentElement element)
+					element.IsValid = false;
+			}
 		}
 
 		private static IReadOnlyCollection<int> GetDuplicateIndices(BlueprintScriptableObject objectToValidate)
@@ -153,14 +201,16 @@ namespace Kingmaker.Editor.UIElements.Custom
 				.ToHashSet();
 			return duplicateIndices;
 		}
+		
 		private void AddRestoreButtons()
 		{
-			var proto = Blueprint.PrototypeLink as BlueprintScriptableObject;
-			if (proto != null)
+			m_RestoreButtonsContainer.Clear();
+			if (Blueprint.PrototypeLink is BlueprintScriptableObject proto)
 			{
 				foreach (var component in proto.ComponentsArray)
 				{
-                    if (Blueprint.IsOverridden(component.name) && Blueprint.ComponentsArray.All(c => c.PrototypeLink != component))
+                    if (Blueprint.IsOverridden(component.name) && 
+                        Blueprint.ComponentsArray.All(c => c.PrototypeLink != component))
                     {
                         AddRestoreButton(component);
                     } 
@@ -170,24 +220,28 @@ namespace Kingmaker.Editor.UIElements.Custom
 
 		private void AddRestoreButton(BlueprintComponent component)
 		{
-			var compName = component.name;
+			string compName = component.name;
 			var root = new VisualElement();
 			root.AddToClassList("owlcat-box");
 			root.AddToClassList("labelPart");
+			
 			var label = new Label($"Removed {ClassNames.GetObjectNameNoPrefix(component)}") 
-			{ style = { unityTextAlign = TextAnchor.MiddleLeft } };
-			var button = new Button() { text = "Restore" };
+			{ 
+				style = { unityTextAlign = TextAnchor.MiddleLeft } 
+			};
+			
+			var button = new Button { text = "Restore" };
 			button.clicked += () =>
 			{
                 Blueprint.SetOverridden(compName, false);
                 ((BlueprintEditorWrapper)m_SerializedObject.targetObject).SyncPropertiesWithProto();
-                Remove(root);
-				UpdateComponents();
+                m_SerializedObject.ApplyModifiedProperties();
+                m_SerializedObject.Update();
 			};
 
 			root.Add(label);
 			root.Add(button);
-			Add(root);
+			m_RestoreButtonsContainer.Add(root);
 		}
 
 		private void AddButtons()
@@ -195,25 +249,24 @@ namespace Kingmaker.Editor.UIElements.Custom
 			if (!Blueprint.CanAddComponents())
 				return;
 
-			var btnRoot = new VisualElement()
-			{
-				style =
-				{
-					flexDirection = FlexDirection.Row,
-					alignContent = Align.Center,
-					justifyContent = Justify.Center
-				}
-			};
-
-			var addBtn = TypePicker.CreatePickerButton("Add Component", Blueprint.GetValidComponentTypes,
+			var addBtn = TypePicker.CreatePickerButton("Add Component", 
+				() => Blueprint.GetValidComponentTypes().Where(t => !t.HasAttribute<HideInPickerAttribute>()),
 				type =>
 				{
 					Blueprint.AddComponentFromMenu(type);
+					m_SerializedObject.ApplyModifiedProperties();
 					m_SerializedObject.Update();
-					UpdateComponents();
 				});
 
-			var pasteBtn = new Button() { text = "Paste", style = { marginTop = new StyleLength(4), marginBottom = new StyleLength(4)} };
+			var pasteBtn = new Button 
+				{ 
+					text = "Paste", 
+					style = 
+					{ 
+						marginTop = new StyleLength(4), 
+						marginBottom = new StyleLength(4)
+					} 
+				};
 			pasteBtn.SetEnabled(CopyPasteController.HasBlueprintComponent);
 			CopyPasteController.ClipboardElementsChangedEvent += () =>
 			{
@@ -224,26 +277,15 @@ namespace Kingmaker.Editor.UIElements.Custom
 			{
 				if (CopyPasteController.HasBlueprintComponent)
 				{
-					var componentsArray = m_SerializedObject.FindProperty("Blueprint.Components");
-					var cc = componentsArray.arraySize;
-					CopyPasteController.PasteProperty(typeof(BlueprintComponent), componentsArray);
-
-					componentsArray.serializedObject.ApplyModifiedProperties();
-					// ugly hack: add override markers to any components that were pasted. Must do this after
-					// ApplyModifiedProperties because the override manager cannot work in serialized world
-					for (int ii = cc; ii < componentsArray.arraySize; ii++)
-					{
-                        Blueprint.SetOverridden(Blueprint.ComponentsArray[ii].name, true); 
-                    }
+					CopyPasteController.PasteProperty(typeof(BlueprintComponent), m_Property);
+					m_Property.serializedObject.ApplyModifiedProperties();
 					m_SerializedObject.Update();
 					Blueprint.SetDirty();
-					UpdateComponents();
 				}
 			};
 
-			btnRoot.Add(addBtn);
-			btnRoot.Add(pasteBtn);
-			Add(btnRoot);
+			m_Buttons.Add(addBtn);
+			m_Buttons.Add(pasteBtn);
 		}
 
 		#endregion Constructor
@@ -252,40 +294,34 @@ namespace Kingmaker.Editor.UIElements.Custom
 
 		private void ItemMoveUp(ComponentElement element)
 		{
-			int index = Blueprint.ComponentsArray.IndexOf(element.Component);
+			int index = element.Index;
 			if (index <= 0)
 			{
 				return;
 			}
 
-			var old = Blueprint.ComponentsArray[index - 1];
-			Blueprint.ComponentsArray[index - 1] = element.Component;
-			Blueprint.ComponentsArray[index] = old;
+			m_Property.MoveArrayElement(index, index - 1);
+			InvalidateForGroups(index - 1, index);
+            
+			Blueprint.SetDirty();
+			m_SerializedObject.ApplyModifiedProperties();
 			m_SerializedObject.Update();
-			UpdateComponents();
-			
-			// var oldIndex = hierarchy.IndexOf(element);
-			// hierarchy.RemoveAt(oldIndex);
-			// hierarchy.Insert(index - 1, element);
 		}
 
 		private void ItemMoveDown(ComponentElement element)
 		{
-			int index = Blueprint.ComponentsArray.IndexOf(element.Component);
-			if (index < 0 || index > Blueprint.ComponentsArray.Length - 2)
+			int index = element.Index;
+			if (index < 0 || index > m_Property.arraySize - 2)
 			{
 				return;
 			}
 
-			var old = Blueprint.ComponentsArray[index + 1];
-			Blueprint.ComponentsArray[index + 1] = element.Component;
-			Blueprint.ComponentsArray[index] = old;
+			m_Property.MoveArrayElement(index, index + 1);
+			InvalidateForGroups(index, index + 1);
+            
+			Blueprint.SetDirty();
+			m_SerializedObject.ApplyModifiedProperties();
 			m_SerializedObject.Update();
-			UpdateComponents();
-			
-			// var oldIndex = hierarchy.IndexOf(element);
-			// hierarchy.RemoveAt(oldIndex);
-			// hierarchy.Insert(index + 1, element);
 		}
 
 		private void ItemRemove(ComponentElement element)
@@ -295,33 +331,42 @@ namespace Kingmaker.Editor.UIElements.Custom
 			element.OnRemoveEvent -= ItemRemove;
 			element.OnCopyEvent -= ItemCopy;
 
-			var index = Blueprint.ComponentsArray.IndexOf(element.Component);
+			int index = element.Index;
 			if (index != -1)
 			{
 				var component = Blueprint.ComponentsArray[index];
-                if (component.PrototypeLink!=null)
+                
+				m_Property.DeleteArrayElementAtIndex(index);
+				Blueprint.SetDirty();
+				Blueprint.Cleanup();
+				InvalidateForGroups(index, m_ComponentsContainer.childCount - 1);
+                
+				m_SerializedObject.ApplyModifiedProperties();
+                
+				if (component?.PrototypeLink != null)
                 {
-                    // sometimes components can be null, maybe the object creation glitched or something
                     Blueprint.SetOverridden(component.PrototypeLink.name, true);
-                    AddRestoreButton(component.PrototypeLink as BlueprintComponent);
+                    m_SerializedObject.ApplyModifiedProperties();
                 }
 
-                Blueprint.ComponentsArray = Blueprint.ComponentsArray.Where(c => c != component).ToArray();
-                Blueprint.SetDirty();
-                Blueprint.Cleanup();
-				
-				m_ComponentsContainer.Remove(element);
 				m_SerializedObject.Update();
 			}
 		}
 
 		private void ItemCopy(ComponentElement element)
 		{
-			var arrayProp = m_SerializedObject.FindProperty("Blueprint.Components");
-			int index = Blueprint.ComponentsArray.IndexOf(element.Component);
-			CopyPasteController.CopyProperty(arrayProp.GetArrayElementAtIndex(index), null);
+			int index = element.Index;
+			if (index >= 0)
+				CopyPasteController.CopyProperty(m_Property.GetArrayElementAtIndex(index), null);
 		}
 
-		#endregion Methods
+        public void DisableOnInline()
+        {
+            m_Buttons.style.display = DisplayStyle.None;
+            if (m_Property.arraySize == 0)
+                style.marginTop = 0;
+        }
+
+    #endregion Methods
 	}
 }

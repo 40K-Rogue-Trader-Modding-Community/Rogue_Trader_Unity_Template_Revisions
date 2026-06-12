@@ -26,9 +26,9 @@ namespace Code.Editor.KnowledgeDatabase.Inspector
 			window.Focus();
 		}
 
-		public static void Show(SerializedProperty property)
+		public static void Show(SerializedProperty property, bool tryTakeElement = true)
 		{
-			(var type, string fieldName) = property.GetTypeAndName();
+			(var type, string fieldName) = property.GetTypeAndName(tryTakeElement);
 			Show(type, fieldName);
 		}
 

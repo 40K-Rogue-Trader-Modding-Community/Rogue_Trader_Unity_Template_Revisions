@@ -1,0 +1,231 @@
+{
+  "AssetId": "62c69b12f7ae4c0791ff4be080a153fd",
+  "Data": {
+    "$type": "de1b6b4bab9b223478a7bc8835ca81d7, BlueprintEtude",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [
+      {
+        "$type": "fec4340333b7d1f4189d73aa8ff10eee, EtudePlayTrigger",
+        "name": "$EtudePlayTrigger$45d7e1f5-eeb8-48e8-a836-1c0c59b87282",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "Hide lower floor elements",
+        "m_Once": false,
+        "m_IgnoreAlreadyProcessedActivation": false,
+        "Conditions": {
+          "Operation": "And",
+          "Conditions": []
+        },
+        "Actions": {
+          "Actions": [
+            {
+              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+              "name": "$Conditional$835ae906-3a4d-4a85-b9b5-61b45a8c1403",
+              "Comment": "RT hasn't taken the fragment yet",
+              "ConditionsChecker": {
+                "Operation": "And",
+                "Conditions": [
+                  {
+                    "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                    "name": "$EtudeStatus$6788c04c-aabc-4c75-80c3-6b6af314fb68",
+                    "Not": true,
+                    "m_Etude": "!bp_c3d7df29f47547cf9c918d8e162c9a62",
+                    "NotStarted": false,
+                    "Started": false,
+                    "Playing": false,
+                    "CompletionInProgress": false,
+                    "Completed": true
+                  }
+                ]
+              },
+              "IfTrue": {
+                "Actions": [
+                  {
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$e542f5a8-87e4-42bf-8a06-1adf89754481",
+                    "Comment": "RT has found the fragment",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+                          "name": "$FlagUnlocked$2877dbd3-c936-4a70-8913-5ec8bc2c7014",
+                          "Not": false,
+                          "m_ConditionFlag": "!bp_ae6220718262483192788923f4101a87",
+                          "ExceptSpecifiedValues": false,
+                          "SpecifiedValues": []
+                        }
+                      ]
+                    },
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$e5a8140e-1651-40c6-ad35-18fe5666ea25",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$98086ea1-eea1-49b7-b9ab-3fc8e4adac4c",
+                            "MapObject": {
+                              "EntityNameInEditor": "TakeTheFragment",
+                              "_entity_id": "1663253b-0c85-4bb6-b410-c9d9a5c69773",
+                              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                            }
+                          },
+                          "Unhide": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                          "name": "$HideMapObject$31b460fc-0fd6-4b13-a842-b77006ce87a4",
+                          "MapObject": {
+                            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                            "name": "$MapObjectFromScene$ccd15d2e-759c-4e3d-bd48-6754c0fad391",
+                            "MapObject": {
+                              "EntityNameInEditor": "EldarWorldFragmentInfo",
+                              "_entity_id": "b9a9d9a5-d76f-4823-b2ab-0e9bd2c65f59",
+                              "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                            }
+                          },
+                          "Unhide": false
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "IfFalse": {
+                "Actions": []
+              }
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$dbb195dd-e0a2-4863-8eb4-06699ff50541",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$5518cf6d-88d4-4594-9e57-c28a9c144547",
+                "MapObject": {
+                  "EntityNameInEditor": "UpperCameraPlane",
+                  "_entity_id": "024ea7fa-86e8-4ce1-a0bb-797ef0e430a4",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$a8ce974d-1eda-4cf7-b59a-a8b903629ffb",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$10a179bd-f48e-4500-b636-19fd1ea99b27",
+                "MapObject": {
+                  "EntityNameInEditor": "AthleticsCheckDown",
+                  "_entity_id": "24504622-9af5-4a19-a47e-e0396edaf92a",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": true
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$340ade74-1754-4f76-9b3b-c806f6f00910",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$e98dd394-42bf-4fa2-a862-b8e52870c029",
+                "MapObject": {
+                  "EntityNameInEditor": "LowerCameraPlane",
+                  "_entity_id": "d45c426e-a2dc-4f2f-b00d-56ad692844e1",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$c082e8fe-15ff-42fd-8ce6-3f8202cfa18e",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$a3bff42f-1dab-4871-93fc-c92f34f2ae0c",
+                "MapObject": {
+                  "EntityNameInEditor": "AthleticsCheckUp",
+                  "_entity_id": "551ff67a-283d-463c-a158-8382f6adc7a4",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$2876e1c3-5d38-4b11-9820-786dd25cc56d",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$549c9fe1-9072-476c-b597-4878df2c22cb",
+                "MapObject": {
+                  "EntityNameInEditor": "GetInTheTank",
+                  "_entity_id": "11f80b7a-7494-47d9-a42e-c6f8ded6234f",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            },
+            {
+              "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+              "name": "$HideMapObject$3cb72bbe-986c-4ef9-ab23-34df6e4bd1d6",
+              "MapObject": {
+                "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                "name": "$MapObjectFromScene$c5afc8d6-0c3d-423e-9eb3-4b4dd910498a",
+                "MapObject": {
+                  "EntityNameInEditor": "DeadXenosLoot",
+                  "_entity_id": "67e042cb-6d2c-4490-a999-1b6b3d9a4d7a",
+                  "SceneAssetGuid": "227605266884c9544946ea53aaf758da"
+                }
+              },
+              "Unhide": false
+            }
+          ]
+        }
+      }
+    ],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Parent": "!bp_eff66320e8094ff298f01a35f4835386",
+    "ActivationCondition": {
+      "Operation": "And",
+      "Conditions": [
+        {
+          "$type": "fcc336266b98019488d20a50d120e05c, FlagUnlocked",
+          "name": "$FlagUnlocked$8c547e1c846240d1a4bcf5f0394721de",
+          "Not": true,
+          "m_ConditionFlag": "!bp_5c4c96bb0ddb48f2b19102da94ddc36f",
+          "ExceptSpecifiedValues": false,
+          "SpecifiedValues": []
+        }
+      ]
+    },
+    "CompletionCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "m_Synchronized": [],
+    "m_LinkedAreaPart": null,
+    "m_LinkedCampaigns": [],
+    "m_IncludeAreaParts": true,
+    "m_AddedAreaMechanics": [],
+    "m_StartsWith": [],
+    "m_StartsOnComplete": [],
+    "m_StartsParent": false,
+    "m_CompletesParent": false,
+    "m_ConflictingGroups": [],
+    "Priority": 0
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

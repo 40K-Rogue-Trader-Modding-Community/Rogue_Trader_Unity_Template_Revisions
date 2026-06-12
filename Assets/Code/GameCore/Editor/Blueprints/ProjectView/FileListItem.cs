@@ -21,6 +21,7 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
         private FileListView m_Owner;
         private bool m_IsShadowDeleted;
         private bool m_ContainsShadowDeletedBlueprints;
+        private bool m_ContainsObsoleteComponents;
         private string m_DisplayName;
         private bool m_IsBlueprint;
         private static Texture2D s_ErrorIcon;
@@ -40,28 +41,28 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 m_Id = BlueprintsDatabase.PathToId(relativePath);
                 m_IsShadowDeleted = BlueprintsDatabase.GetMetaById(m_Id).ShadowDeleted;
                 m_ContainsShadowDeletedBlueprints = BlueprintsDatabase.IdToContainsShadowDeletedBlueprints(m_Id);
+                m_ContainsObsoleteComponents = BlueprintsDatabase.IdContainsObsoleteComponents(m_Id);
             }
 
-            m_DisplayName = m_IsShadowDeleted 
-                ? $"<color=#ff0000ff>{m_Name}</color>" 
-                : m_ContainsShadowDeletedBlueprints 
-                    ? $"<color=#ffa500ff>{m_Name}</color>" 
-                    : m_Name;
+            m_DisplayName = CreateNameString();
         }
-        public FileListItem((string id, string path, bool isShadowDeleted, bool containsShadowDeletedBlueprints) searchResult, FileListView owner)
+        public FileListItem(BlueprintSearchResultItem searchResult, FileListView owner)
         {
-            m_FullPath = BlueprintsDatabase.RelativeToFullPath(searchResult.path);
+            m_FullPath = BlueprintsDatabase.RelativeToFullPath(searchResult.Path);
             m_Owner = owner;
             m_Name = Path.GetFileNameWithoutExtension(m_FullPath);
-            m_Id = searchResult.id;
-            m_IsShadowDeleted = searchResult.isShadowDeleted;
-            m_ContainsShadowDeletedBlueprints = searchResult.containsShadowDeletedBlueprints;
-            m_DisplayName = m_IsShadowDeleted 
-                ? $"<color=#ff0000ff>{m_Name}</color>" 
-                : m_ContainsShadowDeletedBlueprints 
-                    ? $"<color=#ffa500ff>{m_Name}</color>" 
-                    : m_Name;
+            m_Id = searchResult.Guid;
+            m_IsShadowDeleted = searchResult.IsShadowDeleted;
+            m_ContainsShadowDeletedBlueprints = searchResult.ContainsShadowDeletedBlueprints;
+            m_ContainsObsoleteComponents = searchResult.ContainsObsoleteComponents;
+            m_DisplayName = CreateNameString();
         }
+        
+        private string CreateNameString()
+            => m_IsShadowDeleted ? $"<color=#ff0000ff>{m_Name}</color>" : 
+                m_ContainsShadowDeletedBlueprints ? $"<color=#ffa500ff>{m_Name}</color>" : 
+                    m_ContainsObsoleteComponents ? $"<color=#ffd500ff>{Name}</color>" : Name;
+
         
         private void InitContent()
         {
@@ -103,6 +104,9 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
 
         public bool ContainsShadowDeletedBlueprints
             => m_ContainsShadowDeletedBlueprints;
+        
+        public bool ContainsObsoleteComponents
+            => m_ContainsObsoleteComponents;
         
         public void OnGUI(Rect rect)
         {
@@ -166,6 +170,11 @@ namespace Kingmaker.Editor.Blueprints.ProjectView
                 if (ContainsShadowDeletedBlueprints)
                 {
                     c.tooltip += (string.IsNullOrEmpty(c.tooltip) ? "" : "\n") + "<b><color=#ffa500ff>Contains shadow deleted blueprints</color></b>";
+                }
+                
+                if (ContainsObsoleteComponents)
+                {
+                    c.tooltip += (string.IsNullOrEmpty(c.tooltip) ? "" : "\n") + "<b><color=#ffd500ff>Contains obsolete blueprints</color></b>";
                 }
 
                 GUI.Label(rect, c, GUIStyle.none);

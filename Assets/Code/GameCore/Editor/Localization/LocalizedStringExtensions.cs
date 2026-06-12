@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Enums;
+using Kingmaker.Localization.Shared;
 
 namespace Kingmaker.Editor.Localization
 {
@@ -41,8 +42,25 @@ namespace Kingmaker.Editor.Localization
 			{
 				var data = str.GetData();
 				var ld = data?.GetOrCreateLocaleData(LocalizationManager.Instance.CurrentLocale);
+				if (ld == null)
+					return string.Empty;
+				var (stringPart, _) = LocalizedStringCommentSections.Parse(ld.TranslationComment);
+				return stringPart;
+			}
+			catch
+			{
+				return string.Empty;
+			}
+		}
+		
+		public static string GetVOCommentOnCurrentLocale(this LocalizedString str)
+		{
+			try
+			{
+				var data = str.GetData();
+				var ld = data?.GetOrCreateLocaleData(LocalizationManager.Instance.CurrentLocale);
 				return ld != null ? 
-					ld.TranslationComment : 
+					ld.VOComment : 
 					string.Empty;
 			}
 			catch
