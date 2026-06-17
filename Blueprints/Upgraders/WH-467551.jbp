@@ -1,0 +1,60 @@
+{
+  "AssetId": "bac07a118dd9403294351b0ff69ab9f5",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "",
+    "m_Comment": "Конверт для бага WH-467551 [LowerTunnels] Impossible to jump into vent\nЗапускаем этюд который анхайднет интеракт при приходе в Тоннели для повторного клика",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$d9611f65d33f451ba785d8740569f4c2",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                "name": "$AnswerSelected$9e3e7031-5b0f-4aad-8b49-673e64bb18c1",
+                "Not": false,
+                "m_Answer": "!bp_eca4da2ef40244f59d1f84aeb72788f9",
+                "CurrentDialog": false
+              },
+              {
+                "$type": "21eaf44b8e5b8004f8ec912dc94b92bf, AreaVisited",
+                "name": "$AreaVisited$737d606529ed43f5b8ef4018bac19d70",
+                "Not": true,
+                "m_Area": "!bp_7da920df82ca4440a7ce9bea5ba1f4dc"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$44c967afab854d20b939d9b45d67e58e",
+                "Etude": "!bp_91c70eef617043c292df4987b101d55e",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
