@@ -1,0 +1,111 @@
+{
+  "AssetId": "24b613ce5609402a91bd748280d5511f",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "AlexeyPolezhaev",
+    "Comment": "",
+    "m_Comment": "Фикс обрыва диалога с Манипулусом во время \"самокопания\" - ставим нужные этюды и увеличиваем мэднес флаг, даем этюд чтобы при входе в медотсек убрать Манипулуса с аугментационного кресла",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$e999e98b509e4071b2dd1da5c7353cbe",
+          "Comment": "Был выбран 3ий ансвер и диалог не закончился корректно",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "a091db175cce8f94f815f98e9e353a84, AnswerSelected",
+                "name": "$AnswerSelected$f4ec4d84a98c423880194e181fbd57f8",
+                "Not": false,
+                "m_Answer": "!bp_2e80590005aa4cb0a1dc5cf6ab37d9ef",
+                "CurrentDialog": false
+              },
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$02dbc734652a49d488cf5be66e4da5f0",
+                "Not": true,
+                "m_Etude": "!bp_e589538072b040a8882e79c851d03e27",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": true
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "f4ef63ec9a4741d4bae871a91255f89a, IncrementFlagValue",
+                "name": "$IncrementFlagValue$4120d9ed-c945-4dd4-aa80-bf061a69339d",
+                "m_Flag": "!bp_e8bc085e0fe249548a8ceb761d16d312",
+                "Value": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$51c9ae79-4289-46bf-9729-2d11aac39379",
+                  "Value": 1
+                },
+                "UnlockIfNot": true
+              },
+              {
+                "$type": "b90eea06ce91f564e8793832eea02cef, Recruit",
+                "name": "$Recruit$267b99af-3d16-4839-bd2f-b55a479b822e",
+                "Recruited": [
+                  {
+                    "m_CompanionBlueprint": "!bp_2e5e746cc6d043ab8d395c67d07ac56b",
+                    "m_Portrait": null,
+                    "NPCUnit": null,
+                    "MustBeInParty": false
+                  }
+                ],
+                "AddToParty": false,
+                "MatchPlayerXpExactly": false,
+                "OnRecruit": {
+                  "Actions": []
+                },
+                "OnRecruitImmediate": {
+                  "Actions": []
+                },
+                "DoNotOpenPartySelection": false
+              },
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$36f0bacd-6c6f-4a0c-83b6-1ee437d2dfb8",
+                "Etude": "!bp_700b17f45ca740bf99bb42b62ef8d16d",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              },
+              {
+                "$type": "09697d9710264407a9c32060cfe8a2c7, CompleteEtude",
+                "name": "$CompleteEtude$bd2a3034-8d1a-4791-b76a-8dc985357057",
+                "Etude": "!bp_e589538072b040a8882e79c851d03e27",
+                "EtudeEvaluator": null,
+                "Evaluate": false
+              },
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$6b848d80-22e2-4d8a-972c-96e62fd04300",
+                "Etude": "!bp_53fce62c064d4a7da671259500f426e7",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}
