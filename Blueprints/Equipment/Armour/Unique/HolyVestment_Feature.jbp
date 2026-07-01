@@ -14,6 +14,16 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
         "BonusDeflectionValue": {
           "ValueType": "Simple",
           "Value": 0,
@@ -42,6 +52,46 @@
         "ForceAbsorptionMinimum": false,
         "PctAbsorptionMinimum": 0,
         "AbsorptionMinimumValue": 0,
+        "ForcePctAbsorptionMaximum": false,
+        "PctAbsorptionMaximum": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForceAbsorptionMaximum": false,
+        "AbsorptionMaximumValue": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForcePctDeflectionMaximum": false,
+        "PctDeflectionMaximum": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForceDeflectionMaximum": false,
+        "DeflectionMaximumValue": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
         "ModifierDescriptor": "None"
       },
       {
@@ -58,6 +108,7 @@
         "Value": {
           "Operation": "Div",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -110,10 +161,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -130,6 +183,7 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "IsPercentModifier": false,
         "m_ActionsOnAdd": {
           "Actions": []
         }
@@ -148,45 +202,27 @@
         "Value": {
           "Operation": "Mul",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
-              "$type": "5bb6087af8bc42deb4b2ead62d3f5bf5, StatGetter",
-              "name": "$StatGetter$fdbbe7755fcb4b3bbf74c0f23db10f68",
+              "$type": "af573f5008f24a98b3444959084f87f5, FactRankGetter",
+              "name": "$FactRankGetter$8f16aff524554e879561c22000abadc9",
               "Settings": {
-                "Progression": "AsIs",
+                "Progression": "MultiplyByModifier",
                 "m_CustomProgression": [],
                 "m_StartLevel": 0,
-                "m_StepLevel": 0,
+                "m_StepLevel": 2,
                 "Negate": false,
                 "Limit": "None",
                 "Min": 0,
                 "Max": 0
               },
-              "m_Type": "MachineTrait"
-            },
-            {
-              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
-              "name": "$ContextValueGetter$0dd2499a042c581f85d9bcd6bc382fb7",
-              "Settings": {
-                "Progression": "AsIs",
-                "m_CustomProgression": [],
-                "m_StartLevel": 0,
-                "m_StepLevel": 0,
-                "Negate": false,
-                "Limit": "None",
-                "Min": 0,
-                "Max": 0
-              },
-              "Value": {
-                "ValueType": "Simple",
-                "Value": 2,
-                "ValueRank": "Default",
-                "ValueShared": "Damage",
-                "Property": "None",
-                "m_CustomProperty": null,
-                "PropertyName": "Value1"
-              }
+              "m_Fact": "!bp_780497b04a0944e59cb57e68bb9775c4",
+              "CheckTarget": "CurrentEntity",
+              "Aggregation": "Max",
+              "BuffWithCasterFromTargetType": false,
+              "BuffCaster": "CurrentEntity"
             }
           ]
         }
@@ -224,7 +260,8 @@
             "m_LinkProperty": true,
             "m_PropertyName": "StatBonus1",
             "m_PropertySource": "!bp_45d920f667354737be5efb18e0ddc6df",
-            "m_LinkKey": "Armour"
+            "m_LinkKey": "Armour",
+            "Main": false
           },
           {
             "NameType": "Damage",
@@ -249,11 +286,13 @@
             "m_LinkProperty": true,
             "m_PropertyName": "Value1",
             "m_PropertySource": "!bp_45d920f667354737be5efb18e0ddc6df",
-            "m_LinkKey": "TechUse"
+            "m_LinkKey": "TechUse",
+            "Main": false
           }
         ]
       }
     ],
+    "Author": "ElenaMironova",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -298,8 +337,7 @@
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": false,
-    "Author": "ElenaMironova"
+    "IsStarshipFeature": false
   },
   "Meta": {
     "ShadowDeleted": false

@@ -1,0 +1,116 @@
+{
+  "AssetId": "15b2abe1e5464ada9fac460a46001b68",
+  "Data": {
+    "$type": "a07b97ed760cca9409b22e2e3ebc622f, CommandAction",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "EntryCondition": {
+      "Operation": "And",
+      "Conditions": []
+    },
+    "OnFail": "RemoveTrack",
+    "m_EvaluationErrorHandlingPolicy": "Default",
+    "Action": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$7f8e2cc9334a496f8feaeddffd644f17",
+          "Comment": "Go up or down",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "8c447b3f209747e5bf7d625988074009, EqualTo",
+                "name": "$EqualTo$0cf4e1b3-b694-4ec4-9145-fb18cb60d8fb",
+                "Not": false,
+                "FloatValues": false,
+                "Value": {
+                  "$type": "19adcd35ecaa43cdbc3b028092388994, ControllableState",
+                  "name": "$ControllableState$0f8fe772-e84f-4028-a888-b8fca042dde8",
+                  "IdOfObject": {
+                    "EntityNameInEditor": "Elevator",
+                    "_entity_id": "762f1346-67ff-4981-86c3-d765519295da",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_1/JailPlanetoid/JailPlanetoid_Mechanics.unity"
+                  }
+                },
+                "MinValue": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$fcd60d01-ff4d-4d8c-b2ac-7414e3675273",
+                  "Value": 0
+                },
+                "FloatValue": null,
+                "FloatMinValue": null
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$e738ec7b-69ca-46bb-9f29-f3784b68cf32",
+                "Comment": "Elevator goes down",
+                "State": 1,
+                "IdOfObject": {
+                  "EntityNameInEditor": "Elevator",
+                  "_entity_id": "762f1346-67ff-4981-86c3-d765519295da",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/JailPlanetoid/JailPlanetoid_Mechanics.unity"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$26a53192-584a-4965-a53f-1d464fc9b5f4",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$e6d8f0f2-3cb5-42e6-8d73-7501abe54690",
+                  "MapObject": {
+                    "EntityNameInEditor": "LiftBaseUp_Collider",
+                    "_entity_id": "69fc61ff-d4e6-4bff-a1b5-d21c09f91192",
+                    "SceneAssetGuid": "a7f67c0adc71764419b80e5cf9915c3a"
+                  }
+                },
+                "Unhide": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$44153528-4fe7-4ad8-8bab-cc4b85c73114",
+                "Comment": "Elevator goes up",
+                "State": 0,
+                "IdOfObject": {
+                  "EntityNameInEditor": "Elevator",
+                  "_entity_id": "762f1346-67ff-4981-86c3-d765519295da",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/JailPlanetoid/JailPlanetoid_Mechanics.unity"
+                },
+                "TargetUnit": null
+              },
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$b376e1ee-374a-470b-95d5-f8f935654ece",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$e8d8c873-7392-4074-a4ae-7ef777932a7f",
+                  "MapObject": {
+                    "EntityNameInEditor": "LiftBaseDown_Collider",
+                    "_entity_id": "d7518cd8-aaa7-4b2e-b7cc-983059a8e3b2",
+                    "SceneAssetGuid": "Assets/Scenes/Chapter_1/JailPlanetoid/JailPlanetoid_Mechanics.unity"
+                  }
+                },
+                "Unhide": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -194,6 +194,64 @@
                   "name": "$PlayerCharacter$0a9a90e7ffc0451582f27d6c14042e9d"
                 },
                 "AmbushPlayer": false
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$ee02153a-ef94-47c2-b9f7-52675cf0f276",
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$b2144b1e-5882-4467-96ca-d09de4171d13",
+                      "Not": false,
+                      "m_Etude": "!bp_9c508dcb931c4c37af4bb1e6da6e029a",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "5242e40ba3d06fb469bcf2cc11ed020d, DealDamage",
+                      "name": "$DealDamage$b807860b-e2c3-4e22-83c6-4743a55d4df0",
+                      "NoSource": true,
+                      "Source": null,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$0b77131c-6437-4d23-944c-b257ca459da8",
+                        "Spawner": {
+                          "EntityNameInEditor": "Spawner [NecronObelisk_Chronomancer_FlayerTemple] (2)",
+                          "_entity_id": "bef959dd-6b50-4999-bd63-604c1d94d92d",
+                          "SceneAssetGuid": "1f68ea581befcc142acf5fea9c76af6c"
+                        }
+                      },
+                      "Damage": {
+                        "Dice": {
+                          "m_Rolls": 4,
+                          "m_Dice": "D20"
+                        },
+                        "Bonus": 1,
+                        "TypeDescription": {
+                          "Type": "Impact"
+                        },
+                        "EvaluatedBonus": null,
+                        "CausedByCheckFail": false
+                      },
+                      "DisableBattleLog": true,
+                      "DisableFxAndSound": true,
+                      "IgnorePeacefulZone": true
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
               }
             ]
           }

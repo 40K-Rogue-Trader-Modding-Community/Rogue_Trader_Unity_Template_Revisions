@@ -350,41 +350,64 @@
               "IfFalse": {
                 "Actions": [
                   {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "$ContextActionApplyBuff$9ec1b49e-1837-43fe-a19f-b4c4f35f8ab6",
-                    "m_Buff": "!bp_7e42fcb1d83040e38e8d68d7edd96375",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": true,
-                    "DurationValue": {
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$432d812d-4ad5-4f30-979d-f626b1cfdc27",
+                    "Comment": "Проверка на Galvanic Field",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$68fd4f18-39d7-42b9-9a5f-3a7357528711",
+                          "Not": false,
+                          "m_Buff": "!bp_e6926d919c6d4246b1feb2ff8d7611fc"
+                        }
+                      ]
                     },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "CasterNamedProperty",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Bonus1"
-                    },
-                    "ActionsOnApply": {
+                    "IfTrue": {
                       "Actions": []
                     },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+                          "name": "$ContextActionApplyBuff$76860be8-732f-4f4a-9f97-7a2437ecaccd",
+                          "m_Buff": "!bp_7e42fcb1d83040e38e8d68d7edd96375",
+                          "BuffEndCondition": "CombatEnd",
+                          "Permanent": true,
+                          "DurationValue": {
+                            "RoundsValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "ToCaster": false,
+                          "AsChild": false,
+                          "SameDuration": false,
+                          "Ranks": {
+                            "ValueType": "CasterNamedProperty",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Bonus1"
+                          },
+                          "ActionsOnApply": {
+                            "Actions": []
+                          },
+                          "ActionsOnImmune": {
+                            "Actions": []
+                          },
+                          "AddFactSource": false
+                        }
+                      ]
+                    }
                   }
                 ]
               }

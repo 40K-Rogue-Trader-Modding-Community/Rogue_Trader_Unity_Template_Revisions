@@ -1,0 +1,112 @@
+{
+  "AssetId": "c146fdd5fec84164b574952f072a9a62",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "",
+    "m_SpecificArea": null,
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$850c7b70ebda50788cdf11f2c741bba8",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$8e9b4a0a7d035f638a97095f341ad1c0",
+                "Not": false,
+                "m_Etude": "!bp_6571856eb6c0459cba30e13adc5c6314",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$8686b5e6-7082-42e2-9882-fb07145109c6",
+                "Comment": "Фейл кв \"Зловещий вой\"",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                      "name": "$QuestStatus$b2185deb-4a55-406c-bc1c-e86dd6834ab0",
+                      "Not": false,
+                      "m_Quest": "!bp_3a5cf269bca643c088b6822a9083c801",
+                      "State": "Started"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                      "name": "$SetObjectiveStatus$2df096c6-aa19-41c8-ad5e-e1c42821b56c",
+                      "Status": "Fail",
+                      "m_Objective": "!bp_930be5af62584e65a16ebb9a5e66cbcc",
+                      "StartObjectiveIfNone": true
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$2b2da751-f267-40af-865d-2f0b8b146d14",
+                "Comment": "Спасение Соломорна из веабоса",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "49ab5e967cc13354493c3f9395e55611, QuestStatus",
+                      "name": "$QuestStatus$4ad6a84f-2da7-4c78-a40d-566f87148426",
+                      "Not": false,
+                      "m_Quest": "!bp_683b38b4f706464299cb67359e797a27",
+                      "State": "Started"
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "31abd123cda0b4147b509219dbb097a0, SetObjectiveStatus",
+                      "name": "$SetObjectiveStatus$e72adc77-1b18-4c71-adb1-f3f79f0e5d8e",
+                      "Status": "Fail",
+                      "m_Objective": "!bp_9967e438caec41ee978a3350244db38a",
+                      "StartObjectiveIfNone": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

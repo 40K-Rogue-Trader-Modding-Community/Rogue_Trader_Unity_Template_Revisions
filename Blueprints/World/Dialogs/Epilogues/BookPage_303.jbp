@@ -6,7 +6,7 @@
     "m_Overrides": [],
     "Components": [],
     "Author": "ValentinaVetrova",
-    "Comment": "Тразин\nИгрок не поклонился Ктану",
+    "Comment": "Тразин\nИгрок не поклонился Ктану\n(Игрок отдал номоса) ИЛИ (Игрок не отдал номоса И игрок не отдал Ктана)",
     "ParentAsset": "b4abc86252b64774b6407e680d0ba7e2",
     "ShowOnce": false,
     "ShowOnceCurrentDialog": false,
@@ -41,6 +41,61 @@
           "Not": false,
           "m_Quest": "!bp_f1d7bc74a97a4577a8b2d8ff9bbdc08f",
           "State": "Completed"
+        },
+        {
+          "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+          "name": "$OrAndLogic$b74ac976fc6c414383374a85a2d8ee92",
+          "Not": false,
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "Or",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$9516601f-c7b9-43ca-abe1-dc7e947d074b",
+                "Not": false,
+                "m_Etude": "!bp_0469e4ec1c4143c6acf6122c3f7e164c",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$19b562acf0d74569b0d04e61d422c4ee",
+                "Not": false,
+                "Comment": "",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$b9f738ea-2dd4-4058-bae4-10b742c39d7f",
+                      "Not": true,
+                      "m_Etude": "!bp_0469e4ec1c4143c6acf6122c3f7e164c",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    },
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$ed0f9caf-644c-4659-b86a-ef69c8799d20",
+                      "Not": true,
+                      "m_Etude": "!bp_fbe90f18add34cda9ae9fadd822edd16",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": true,
+                      "CompletionInProgress": false,
+                      "Completed": false
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -50,7 +105,6 @@
     },
     "Cues": [
       "!bp_447bbbb8e65f48c49ea1cea4fa605fb7",
-      "!bp_2394f68ef2a4449eade2b2eb46a648bf",
       "!bp_be2a8f31672e436081016516a97ed2be"
     ],
     "Answers": [

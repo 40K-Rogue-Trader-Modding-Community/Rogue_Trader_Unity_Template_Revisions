@@ -1,0 +1,59 @@
+{
+  "AssetId": "dd007d2a8bb24a0b827f7bdc34c966b4",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "Show OilPlatform area exit if dialogue wasn't finished",
+    "m_SpecificArea": "!bp_5e551c1851d84a8395166ba2661ab54f",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$b4f18fffd1b946688477956a94ed8dbc",
+          "Comment": "Dialogue not seen",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "34f02a2ceadc2e442bdf2bfe54478571, DialogSeen",
+                "name": "$DialogSeen$55d442deb1144c1bb7a66c0db229a28c",
+                "Not": true,
+                "m_Dialog": "!bp_398118ca33d048bb81d1c7dcf224d1ac"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$9398e403192a45848d91cbd2ff4efa50",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$d78e0223afdf4ae683e9e11aceb71ec7",
+                  "MapObject": {
+                    "EntityNameInEditor": "AreaExit",
+                    "_entity_id": "f64ce6f3-6bbf-4a62-b132-54604f45df72",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

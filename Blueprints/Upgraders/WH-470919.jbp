@@ -1,0 +1,218 @@
+{
+  "AssetId": "fe7d32ebcf314bc9908971ba4257a35d",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "Two Yrliets in Spire",
+    "m_SpecificArea": "!bp_29f366849a9142b183709667ae0af196",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$dab469adc19d5be992b5fcabc3a92b0c",
+          "Comment": "There are two Yrliets",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$591cef60d51a5957a138da294142ec19",
+                "Not": false,
+                "m_companion": "!bp_20c5ce9f1e2bcf9448a7a0fd0850f5d2",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              },
+              {
+                "$type": "1d392c8d9feed78408fbcb18f9468fb9, OrAndLogic",
+                "name": "$OrAndLogic$7eeb8e460c905ee9ab5a82eb003efdb4",
+                "Not": false,
+                "Comment": "One of Yrliet NPCs spawned",
+                "ConditionsChecker": {
+                  "Operation": "Or",
+                  "Conditions": [
+                    {
+                      "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                      "name": "$UnitIsNull$0ceb8d161ed159549b6ec87555aebfaa",
+                      "Not": true,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$486f4df5ad6252be893279e6ba1c8950",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Left",
+                          "_entity_id": "9a67b9e7-6126-475d-95e0-85573c885c80",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      }
+                    },
+                    {
+                      "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                      "name": "$UnitIsNull$a06d98bf-07fb-44ba-9917-7be81762754a",
+                      "Not": true,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$be2b7967f4be5176966b244d663d521b",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Right",
+                          "_entity_id": "67cdf85a-5c30-4b8a-bcd8-78bdbd68e133",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "e77a58dedc8350a4faa55f5e66b9f575, ObjectiveStatus",
+                "name": "$ObjectiveStatus$5505b830016e46cb9ee6cbac55b1b460",
+                "Not": false,
+                "m_QuestObjective": "!bp_e16b22fe9ce84cf9bbee9f6cd4aa9bf5",
+                "State": "None"
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$f381d5f3d8e95550934880adeb14ece1",
+                "Comment": "Left Yrliet spawned",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                      "name": "$UnitIsNull$427d23b6-76f1-4966-b309-d3ae7952c30a",
+                      "Not": true,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$3f5f80f8-6819-4825-be01-6bf09b2214b6",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Left",
+                          "_entity_id": "9a67b9e7-6126-475d-95e0-85573c885c80",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                      "name": "$SwitchFaction$726a46da351c5579acb7b5215dd76a16",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$b6c2d4a6bc4a554f9c1a8f1841e92cf2",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Left",
+                          "_entity_id": "9a67b9e7-6126-475d-95e0-85573c885c80",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      },
+                      "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+                      "IncludeGroup": false
+                    },
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$6efbfa539bbf51748391722e7cc74a89",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$ba0fa29d277750ec895cefe7ad854a29",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Left",
+                          "_entity_id": "9a67b9e7-6126-475d-95e0-85573c885c80",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              },
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$11bf19c1-5629-4d3c-bb13-f4a4aeba71cc",
+                "Comment": "Right Yrliet spawned",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                      "name": "$UnitIsNull$e9540269-4515-4f11-85eb-96248f187b2c",
+                      "Not": true,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$053f53b0-c9c9-456c-aa8c-0b462a05a8c1",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Right",
+                          "_entity_id": "67cdf85a-5c30-4b8a-bcd8-78bdbd68e133",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "4ba3c72bb22d4da7857a6fbcdfd82f46, SwitchFaction",
+                      "name": "$SwitchFaction$0328dbad-7b2a-4ad4-a7e2-6e4611ca42e2",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$dc8d3e222fac58f9a30f2f20eac153a1",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Right",
+                          "_entity_id": "67cdf85a-5c30-4b8a-bcd8-78bdbd68e133",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      },
+                      "m_Faction": "!bp_d64258e86eeb1d8479f35a9b16f6590a",
+                      "IncludeGroup": false
+                    },
+                    {
+                      "$type": "0edf8920d3df9b54c9db189bdad67cac, HideUnit",
+                      "name": "$HideUnit$12ea7caa-8a54-43bc-95b2-ca4833ba93b0",
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$6524abe7563253758337ecd804daf1df",
+                        "Spawner": {
+                          "EntityNameInEditor": "Yrliet_WaitingUs_Right",
+                          "_entity_id": "67cdf85a-5c30-4b8a-bcd8-78bdbd68e133",
+                          "SceneAssetGuid": "7b3e68021d547fb438025a94ba8596c2"
+                        }
+                      },
+                      "Unhide": false,
+                      "Fade": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

@@ -19,6 +19,7 @@
         "Value": {
           "Operation": "Max",
           "TargetType": "CurrentEntity",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -71,6 +72,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "DisableForLevelUpPreviewUnit": false,
         "DisableWhenReapplying": false,
         "Activated": {
@@ -82,6 +84,7 @@
               "m_Count": {
                 "Operation": "Sum",
                 "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -112,6 +115,7 @@
               "m_CostBonus": {
                 "Operation": "Sum",
                 "TargetType": "CurrentEntity",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -146,6 +150,88 @@
         },
         "Deactivated": {
           "Actions": []
+        },
+        "NewRound": {
+          "Actions": []
+        },
+        "RoundEnd": {
+          "Actions": []
+        }
+      },
+      {
+        "$type": "6e5523c38f556614fb970220b86809a8, AddBuffActions",
+        "name": "$AddBuffActions$4fcf98b2-4aa4-4cea-882e-39d517336d40",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "DisableForLevelUpPreviewUnit": false,
+        "DisableWhenReapplying": false,
+        "Activated": {
+          "Actions": [
+            {
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$e16cff444fab43ec8748161f18f847c2",
+              "m_Buff": "!bp_8dd7de430e394e4da21c3b75a7e3d5b7",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": false,
+              "DurationValue": {
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 1,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
+              },
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "CasterNamedProperty",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "ActionsOnApply": {
+                "Actions": []
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
+            }
+          ]
+        },
+        "Deactivated": {
+          "Actions": [
+            {
+              "$type": "23ddfb172c2d3c144ab007dec380d712, ContextActionRemoveBuff",
+              "name": "$ContextActionRemoveBuff$20ae8fa94cec466cbb8348c4580cfaf7",
+              "m_Buff": "!bp_8dd7de430e394e4da21c3b75a7e3d5b7",
+              "RemoveRank": false,
+              "RemoveSeveralRanks": false,
+              "RankNumber": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              },
+              "m_CasterRanksRemovalPolicy": "Default",
+              "ToCaster": false
+            }
+          ]
         },
         "NewRound": {
           "Actions": []
@@ -199,8 +285,11 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": [],
-    "m_Cyclical": false
+    "m_Cyclical": false,
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

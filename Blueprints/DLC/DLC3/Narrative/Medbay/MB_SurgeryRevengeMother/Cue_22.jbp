@@ -56,24 +56,63 @@
     "OnStop": {
       "Actions": [
         {
-          "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-          "name": "$PlayCutscene$c6290355e4a043bbb6260acd59be082a",
-          "m_Cutscene": "!bp_db6f2e90da03477b98b39cb40e3f4c0d",
-          "PutInQueue": false,
-          "CheckExistence": true,
-          "Parameters": {
-            "Parameters": [
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$0fa7e517c3a845729709123832a21cb9",
+          "Comment": "",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
               {
-                "Name": "AtackerUnit",
-                "Type": "Unit",
-                "Evaluator": {
-                  "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
-                  "name": "$UnitFromSpawner$3d51f74eaff4492e9c4437a9060953d9",
-                  "Spawner": {
-                    "EntityNameInEditor": "LD_Unit_MotherOfOfficer_Revenge",
-                    "_entity_id": "03886f68-bc00-47e2-9af5-7c24cbcf06b5",
-                    "SceneAssetGuid": "dacf02cc6f9dc5e42a022d6ba2abec39"
-                  }
+                "$type": "d2f424beb5ace314887e9cc946b68dfa, CompanionInParty",
+                "name": "$CompanionInParty$f68b7294-1793-447d-a317-b585f4887d41",
+                "Not": false,
+                "m_companion": "!bp_a699795d21f74159abb00f9a217fa97d",
+                "MatchWhenActive": true,
+                "MatchWhenDetached": false,
+                "MatchWhenRemote": false,
+                "MatchWhenEx": false,
+                "IncludeDead": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$f5593d73366c40df81722fa8338e5839",
+                "m_Cutscene": "!bp_c80687d8fa914f5aa29c8c0743889a17",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": []
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                "name": "$PlayCutscene$5283ab80-29f0-46a3-bdb2-717ef7e09011",
+                "m_Cutscene": "!bp_db6f2e90da03477b98b39cb40e3f4c0d",
+                "PutInQueue": false,
+                "CheckExistence": true,
+                "Parameters": {
+                  "Parameters": [
+                    {
+                      "Name": "AtackerUnit",
+                      "Type": "Unit",
+                      "Evaluator": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$c360beb9-5299-4ea8-81e4-6a9bc2a0518b",
+                        "Spawner": {
+                          "EntityNameInEditor": "LD_Unit_MotherOfOfficer_Revenge",
+                          "_entity_id": "03886f68-bc00-47e2-9af5-7c24cbcf06b5",
+                          "SceneAssetGuid": "dacf02cc6f9dc5e42a022d6ba2abec39"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             ]

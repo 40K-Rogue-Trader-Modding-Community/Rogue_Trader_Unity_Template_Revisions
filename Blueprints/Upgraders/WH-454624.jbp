@@ -1,0 +1,90 @@
+{
+  "AssetId": "1c81f8c8561e4205882b50ff7677da8e",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "Hide obsolete elevators",
+    "m_SpecificArea": "!bp_8250d8a565c84dcdba6bf3064211cdf9",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$718cb700e19c432aae92e83d94f15668",
+          "Comment": "Player is already on lower level",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$5e83b891742a43e19f8b27f2f8c3e1e3",
+                "Not": false,
+                "m_Etude": "!bp_17439eed2f8146cd9435cd3eff219917",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "069b9553e9bf4011ad8e4a10e67e805c, ControllableActionAnimatorSetState",
+                "name": "$ControllableActionAnimatorSetState$5e1728c7e2374b2b8b846e7260b86caa",
+                "Comment": "Move elevator to lower level",
+                "State": 1,
+                "IdOfObject": {
+                  "EntityNameInEditor": "Elevator",
+                  "_entity_id": "762f1346-67ff-4981-86c3-d765519295da",
+                  "SceneAssetGuid": "Assets/Scenes/Chapter_1/JailPlanetoid/JailPlanetoid_Mechanics.unity"
+                },
+                "TargetUnit": null
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$e48929f2736045a2b857537880025e43",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$423cf9d78ff8491087590153452927fe",
+            "MapObject": {
+              "EntityNameInEditor": "Lift_UpPosition (Obsolete)",
+              "_entity_id": "095d3d78-d2df-4994-9999-3746d98d07f2",
+              "SceneAssetGuid": "a7f67c0adc71764419b80e5cf9915c3a"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$290a708f-5ea7-443a-86c2-30913766257d",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$1bbefb3fd62c469289bff05ac7b18dff",
+            "MapObject": {
+              "EntityNameInEditor": "Lift_DownPosition (Obsolete)",
+              "_entity_id": "57d07e10-09bf-4d67-9ff6-de44c8b2985b",
+              "SceneAssetGuid": "a7f67c0adc71764419b80e5cf9915c3a"
+            }
+          },
+          "Unhide": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

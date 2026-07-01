@@ -10,12 +10,100 @@
     "Actions": {
       "Actions": [
         {
-          "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
-          "name": "$StartEtude$9d0c23f863f04f9e9d9d92146a907e2f",
-          "Etude": "!bp_57edc924d2e140f885853a0e15dc4671",
-          "EtudeEvaluator": null,
-          "Evaluate": false,
-          "StartImmediately": false
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$09ebd4cc5e314471b94195f6a76bae19",
+          "Comment": "Etude is not started",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$43696804270f4e3eaf669d86edf0b02e",
+                "Not": false,
+                "m_Etude": "!bp_57edc924d2e140f885853a0e15dc4671",
+                "NotStarted": true,
+                "Started": false,
+                "Playing": false,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "6ab8dd2cc3ba43e8b76882f981bf2b99, StartEtude",
+                "name": "$StartEtude$d06605bb-e0f6-48cc-8aed-3821f15defdd",
+                "Etude": "!bp_57edc924d2e140f885853a0e15dc4671",
+                "EtudeEvaluator": null,
+                "Evaluate": false,
+                "StartImmediately": false
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$62fe45ccba204745bb196f88dfa1221a",
+          "Comment": "Loot is not empty yet",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "be179216bf174b808288ad7b60b70959, IsLootEmpty",
+                "name": "$IsLootEmpty$ea18d634b4564548927566530b21b954",
+                "Not": false,
+                "LootObject": {
+                  "EntityNameInEditor": "LD_Loot_TheNightGuy",
+                  "_entity_id": "b8738649-70c9-479c-9379-ac7c317e37b4",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+                },
+                "MapObject": null,
+                "EvaluateMapObject": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                "name": "$ControllableActionSetActive$7a92ae5ebe51487d84a9ec7416bf3001",
+                "Active": false,
+                "IdOfObject": {
+                  "EntityNameInEditor": "MSW_AstartesChainSword1",
+                  "_entity_id": "dd9a3b68-02cc-423a-b752-39dd2e80799b",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+                }
+              },
+              {
+                "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                "name": "$ControllableActionSetActive$924faabf-6be0-4f87-a130-6ff2817a558a",
+                "Active": false,
+                "IdOfObject": {
+                  "EntityNameInEditor": "MSW_AstartesChainSword2",
+                  "_entity_id": "ca442d20-f3c5-4a44-b856-1f3107bc5c2c",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "72dccdfcda9347f19b578730b030b8b5, ControllableActionSetActive",
+                "name": "$ControllableActionSetActive$776fa41c-c23d-4cba-a933-d289c501ff20",
+                "Active": false,
+                "IdOfObject": {
+                  "EntityNameInEditor": "MSW_AstartesChainSword1",
+                  "_entity_id": "dd9a3b68-02cc-423a-b752-39dd2e80799b",
+                  "SceneAssetGuid": "Assets/Scenes/DLC3/Museion/Museion_Exhibition_In_Order_Mechanics.unity"
+                }
+              }
+            ]
+          }
         }
       ]
     }

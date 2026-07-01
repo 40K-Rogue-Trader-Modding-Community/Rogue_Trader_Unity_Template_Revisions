@@ -11,6 +11,109 @@
       "Actions": [
         {
           "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$42ad6692-91c0-45d8-93e5-7e66162f3cac",
+          "Comment": "Someone is in script zone",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
+                "name": "$GreaterThan$021f1ac4-2741-4a11-bef8-e36198027074",
+                "Not": false,
+                "OrEqualTo": false,
+                "FloatValues": false,
+                "Value": {
+                  "$type": "31dd684969ea477393d08b136c0d5d3f, UnitsCountInScriptZone",
+                  "name": "$UnitsCountInScriptZone$fba2509b-ac7b-4668-895c-d3cfc5d02547",
+                  "ScriptZone": {
+                    "EntityNameInEditor": "SecondContainerPartyCheck_SZ",
+                    "_entity_id": "053b14eb-a68f-4423-8b1e-eb73ab92f9f6",
+                    "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
+                  }
+                },
+                "MinValue": {
+                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
+                  "name": "$IntConstant$36bf2e12-f004-4ab1-8626-ff3e7550f290",
+                  "Value": 0
+                },
+                "FloatValue": null,
+                "FloatMinValue": null
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
+                "name": "$PartyUnits$0d0b33a5-10de-4bd1-8f50-347e3807d2c2",
+                "m_UnitsList": "ActiveUnits",
+                "Actions": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$7519381b-586d-4348-a726-1e79de755dae",
+                      "Comment": "Only those in script zone",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "f12047e0588c11f4ba28423a0b8c3e8e, UnitInScriptZone",
+                            "name": "$UnitInScriptZone$177b4f14-5cda-4612-b64b-d262d15e11e8",
+                            "Not": false,
+                            "Unit": {
+                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                              "name": "$PartyUnit$70eaf508-e37c-4911-9aa0-ed85e7793d80"
+                            },
+                            "ScriptZone": {
+                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                              "name": "$MapObjectFromScene$835d7644-edfd-40ae-af5d-40c8ee2fbfde",
+                              "MapObject": {
+                                "EntityNameInEditor": "SecondContainerPartyCheck_SZ",
+                                "_entity_id": "053b14eb-a68f-4423-8b1e-eb73ab92f9f6",
+                                "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
+                            "name": "$PlayCutscene$43a630ab-aeae-4d96-ba5e-6f08bbf7eac4",
+                            "m_Cutscene": "!bp_42ebac166ac540bc9bbd417d7d4f2003",
+                            "PutInQueue": false,
+                            "CheckExistence": true,
+                            "Parameters": {
+                              "Parameters": [
+                                {
+                                  "Name": "Unit",
+                                  "Type": "Unit",
+                                  "Evaluator": {
+                                    "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
+                                    "name": "$PartyUnit$e7004b2a-a41a-4962-8ceb-caab885e500b"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": []
+          }
+        },
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
           "name": "$Conditional$bbd268a9cd624a32936a1513ea2238cd",
           "Comment": "Container is in low position",
           "ConditionsChecker": {
@@ -257,109 +360,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-          "name": "$Conditional$42ad6692-91c0-45d8-93e5-7e66162f3cac",
-          "Comment": "Someone is in script zone",
-          "ConditionsChecker": {
-            "Operation": "And",
-            "Conditions": [
-              {
-                "$type": "3b8a817c2d1aed24ca0779940550d2bc, GreaterThan",
-                "name": "$GreaterThan$021f1ac4-2741-4a11-bef8-e36198027074",
-                "Not": false,
-                "OrEqualTo": false,
-                "FloatValues": false,
-                "Value": {
-                  "$type": "31dd684969ea477393d08b136c0d5d3f, UnitsCountInScriptZone",
-                  "name": "$UnitsCountInScriptZone$fba2509b-ac7b-4668-895c-d3cfc5d02547",
-                  "ScriptZone": {
-                    "EntityNameInEditor": "SecondContainerPartyCheck_SZ",
-                    "_entity_id": "053b14eb-a68f-4423-8b1e-eb73ab92f9f6",
-                    "SceneAssetGuid": "Assets/Scenes/DLC3/DLC3_OilPlatform/DLC3_OilPlatform_Mechanics.unity"
-                  }
-                },
-                "MinValue": {
-                  "$type": "9054151c7eb2e854ca7109522b1c3dde, IntConstant",
-                  "name": "$IntConstant$36bf2e12-f004-4ab1-8626-ff3e7550f290",
-                  "Value": 0
-                },
-                "FloatValue": null,
-                "FloatMinValue": null
-              }
-            ]
-          },
-          "IfTrue": {
-            "Actions": [
-              {
-                "$type": "633639d7e81b7d1499298b189b6f18b3, PartyUnits",
-                "name": "$PartyUnits$0d0b33a5-10de-4bd1-8f50-347e3807d2c2",
-                "m_UnitsList": "ActiveUnits",
-                "Actions": {
-                  "Actions": [
-                    {
-                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                      "name": "$Conditional$7519381b-586d-4348-a726-1e79de755dae",
-                      "Comment": "Only those in script zone",
-                      "ConditionsChecker": {
-                        "Operation": "And",
-                        "Conditions": [
-                          {
-                            "$type": "f12047e0588c11f4ba28423a0b8c3e8e, UnitInScriptZone",
-                            "name": "$UnitInScriptZone$177b4f14-5cda-4612-b64b-d262d15e11e8",
-                            "Not": false,
-                            "Unit": {
-                              "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
-                              "name": "$PartyUnit$70eaf508-e37c-4911-9aa0-ed85e7793d80"
-                            },
-                            "ScriptZone": {
-                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
-                              "name": "$MapObjectFromScene$835d7644-edfd-40ae-af5d-40c8ee2fbfde",
-                              "MapObject": {
-                                "EntityNameInEditor": "SecondContainerPartyCheck_SZ",
-                                "_entity_id": "053b14eb-a68f-4423-8b1e-eb73ab92f9f6",
-                                "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      "IfTrue": {
-                        "Actions": [
-                          {
-                            "$type": "507aef8c6c6218c49aaf0987b355f400, PlayCutscene",
-                            "name": "$PlayCutscene$43a630ab-aeae-4d96-ba5e-6f08bbf7eac4",
-                            "m_Cutscene": "!bp_42ebac166ac540bc9bbd417d7d4f2003",
-                            "PutInQueue": false,
-                            "CheckExistence": true,
-                            "Parameters": {
-                              "Parameters": [
-                                {
-                                  "Name": "Unit",
-                                  "Type": "Unit",
-                                  "Evaluator": {
-                                    "$type": "2b9ad38748400fb4a9db077957c3a839, PartyUnit",
-                                    "name": "$PartyUnit$e7004b2a-a41a-4962-8ceb-caab885e500b"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      },
-                      "IfFalse": {
-                        "Actions": []
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "IfFalse": {
-            "Actions": []
           }
         }
       ]

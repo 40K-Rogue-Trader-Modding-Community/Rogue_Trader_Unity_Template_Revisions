@@ -1,0 +1,192 @@
+{
+  "AssetId": "86da30d65bb7489f82337a52f85a34b2",
+  "Data": {
+    "$type": "3f84b30d95ddfcf4eb8ddd26cbf70e82, BlueprintPlayerUpgrader",
+    "PrototypeLink": "",
+    "m_Overrides": [],
+    "Components": [],
+    "Author": "Unknown",
+    "Comment": "",
+    "m_Comment": "Replace Battery on OilPlatform",
+    "m_SpecificArea": "!bp_5e551c1851d84a8395166ba2661ab54f",
+    "m_SpecificMechanic": null,
+    "m_CriticalConvert": false,
+    "m_Actions": {
+      "Actions": [
+        {
+          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+          "name": "$Conditional$eceae259e8f74a79b028ae1b8f038744",
+          "Comment": "Before reaching central platform",
+          "ConditionsChecker": {
+            "Operation": "And",
+            "Conditions": [
+              {
+                "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                "name": "$EtudeStatus$74af4dcfe30a4f0fbe9d7329a47bea96",
+                "Not": true,
+                "m_Etude": "!bp_ef5ba6ed2e284aa2b3d8d864e0b91255",
+                "NotStarted": false,
+                "Started": false,
+                "Playing": true,
+                "CompletionInProgress": false,
+                "Completed": false
+              }
+            ]
+          },
+          "IfTrue": {
+            "Actions": [
+              {
+                "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                "name": "$HideMapObject$1c36840b-d5c8-4f02-8c93-d3b5792b8d4e",
+                "MapObject": {
+                  "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                  "name": "$MapObjectFromScene$993f7de9c6f14037ae4673f3a5249c4c",
+                  "MapObject": {
+                    "EntityNameInEditor": "BatteryWithHatch",
+                    "_entity_id": "77abd556-30d8-4978-bee5-816b98a88239",
+                    "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                  }
+                },
+                "Unhide": true
+              }
+            ]
+          },
+          "IfFalse": {
+            "Actions": [
+              {
+                "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                "name": "$Conditional$831ed68c-ba16-46bd-968a-de07df64353e",
+                "Comment": "Durnig the combat",
+                "ConditionsChecker": {
+                  "Operation": "And",
+                  "Conditions": [
+                    {
+                      "$type": "fe3ffdeec75949159783a8607d95a321, UnitIsNull",
+                      "name": "$UnitIsNull$aa409c0c35fc4d1dbad13f84ad574cae",
+                      "Not": true,
+                      "Target": {
+                        "$type": "da45a98792587f244901f1020d4b35b1, UnitFromSpawner",
+                        "name": "$UnitFromSpawner$b6f3f994894d4859b7571c500b14c394",
+                        "Spawner": {
+                          "EntityNameInEditor": "Xenotech",
+                          "_entity_id": "3d9e065e-bd6c-4e07-8886-b5c14691e3c9",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      }
+                    },
+                    {
+                      "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                      "name": "$EtudeStatus$67a2063a70e2472aaf1c0472e3d2fdc6",
+                      "Not": true,
+                      "m_Etude": "!bp_4a129060051a49898e44c86ffc45e042",
+                      "NotStarted": false,
+                      "Started": false,
+                      "Playing": false,
+                      "CompletionInProgress": false,
+                      "Completed": true
+                    }
+                  ]
+                },
+                "IfTrue": {
+                  "Actions": [
+                    {
+                      "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                      "name": "$HideMapObject$3b34e813-2c25-49d5-a1c9-5f374f3ee2d9",
+                      "MapObject": {
+                        "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                        "name": "$MapObjectFromScene$d9bd95f8-e91c-4f8d-af89-1259768a1f2a",
+                        "MapObject": {
+                          "EntityNameInEditor": "BatteryWithHatch",
+                          "_entity_id": "77abd556-30d8-4978-bee5-816b98a88239",
+                          "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                        }
+                      },
+                      "Unhide": false
+                    }
+                  ]
+                },
+                "IfFalse": {
+                  "Actions": [
+                    {
+                      "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                      "name": "$Conditional$2d5277a185b641a589dcbe559b14e7ce",
+                      "Comment": "After combat",
+                      "ConditionsChecker": {
+                        "Operation": "And",
+                        "Conditions": [
+                          {
+                            "$type": "ea981728db8a5f84888ecba390671a05, EtudeStatus",
+                            "name": "$EtudeStatus$1c93954b-8791-4197-8e13-1d40c3d6021d",
+                            "Not": false,
+                            "m_Etude": "!bp_4a129060051a49898e44c86ffc45e042",
+                            "NotStarted": false,
+                            "Started": false,
+                            "Playing": false,
+                            "CompletionInProgress": false,
+                            "Completed": true
+                          }
+                        ]
+                      },
+                      "IfTrue": {
+                        "Actions": [
+                          {
+                            "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+                            "name": "$HideMapObject$c7d78c38-d452-41cc-9cf3-cb6848363daa",
+                            "MapObject": {
+                              "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+                              "name": "$MapObjectFromScene$342eddab-459e-45ef-aa6e-7d60987993e3",
+                              "MapObject": {
+                                "EntityNameInEditor": "BatteryWithHatch",
+                                "_entity_id": "77abd556-30d8-4978-bee5-816b98a88239",
+                                "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+                              }
+                            },
+                            "Unhide": true
+                          }
+                        ]
+                      },
+                      "IfFalse": {
+                        "Actions": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$29a28bea-eedd-4549-a5bc-743e323a3940",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$21100714-2fe8-495c-a068-948eb4995895",
+            "MapObject": {
+              "EntityNameInEditor": "CentralBatteryOutsideOfCombat (Obsolete)",
+              "_entity_id": "e899b3a7-c1da-49d8-a38f-68486ab91521",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            }
+          },
+          "Unhide": false
+        },
+        {
+          "$type": "3abef1c138b2b3344bebcf6fbbe5cf47, HideMapObject",
+          "name": "$HideMapObject$2c109034-7d05-4e2f-bdad-ecbee9b9b0d5",
+          "MapObject": {
+            "$type": "2f7f1ee24f13dca42977f3b2b5a847f8, MapObjectFromScene",
+            "name": "$MapObjectFromScene$27979717-6f91-404f-9924-5e3b4b716418",
+            "MapObject": {
+              "EntityNameInEditor": "CentralBatteryDeactivated (Obsolete)",
+              "_entity_id": "68e55824-cdb0-4a0a-882d-df8c72c19c2a",
+              "SceneAssetGuid": "20850826811587b4db5e5337ceff5a26"
+            }
+          },
+          "Unhide": false
+        }
+      ]
+    }
+  },
+  "Meta": {
+    "ShadowDeleted": false
+  }
+}

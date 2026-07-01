@@ -28,6 +28,15 @@
               "BuffEndCondition": "CombatEnd",
               "Permanent": false,
               "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 5,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
                 "RoundsValue": {
                   "ValueType": "Simple",
                   "Value": 5,
@@ -123,7 +132,6 @@
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
-            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": []
           }
@@ -146,64 +154,50 @@
         "UnitTurnStartActions": {
           "Actions": [
             {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
-                    "name": "",
-                    "Not": false,
-                    "m_Buff": "!bp_55302e9173e3499b9ce8dc4a71708d57"
-                  }
-                ]
+              "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
+              "name": "$ContextActionApplyBuff$df27c2a92cb5432fa7b526cceed77710",
+              "m_Buff": "!bp_f9b2e0f3583a491c91ad19d72e2d2024",
+              "BuffEndCondition": "CombatEnd",
+              "Permanent": true,
+              "DurationValue": {
+                "BonusValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                },
+                "RoundsValue": {
+                  "ValueType": "Simple",
+                  "Value": 0,
+                  "ValueRank": "Default",
+                  "ValueShared": "Damage",
+                  "Property": "None",
+                  "m_CustomProperty": null,
+                  "PropertyName": "Value1"
+                }
               },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                    "name": "",
-                    "m_Buff": "!bp_f9b2e0f3583a491c91ad19d72e2d2024",
-                    "BuffEndCondition": "CombatEnd",
-                    "Permanent": true,
-                    "DurationValue": {
-                      "RoundsValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "ToCaster": false,
-                    "AsChild": false,
-                    "SameDuration": false,
-                    "Ranks": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "ActionsOnApply": {
-                      "Actions": []
-                    },
-                    "ActionsOnImmune": {
-                      "Actions": []
-                    },
-                    "AddFactSource": false
-                  }
-                ]
+              "ToCaster": false,
+              "AsChild": false,
+              "SameDuration": false,
+              "Ranks": {
+                "ValueType": "Simple",
+                "Value": 0,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
               },
-              "IfFalse": {
+              "ActionsOnApply": {
                 "Actions": []
-              }
+              },
+              "ActionsOnImmune": {
+                "Actions": []
+              },
+              "AddFactSource": false
             }
           ]
         },
@@ -217,179 +211,24 @@
           "Actions": []
         },
         "DoNotApplyOnInterrupts": false
-      },
-      {
-        "$type": "f332e1a348e0aab40924f7a450d7c484, StarshipPerformAttackTrigger",
-        "name": "$StarshipPerformAttackTrigger$43b1b6ae-9877-413a-ad41-a73e96e613a7",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "24d73ebb787943d0867d1b746a9491ed",
-          "name": "$StarshipPerformAttackTrigger$43b1b6ae-9877-413a-ad41-a73e96e613a7"
-        },
-        "m_Overrides": [],
-        "PerformActionsOnHullDamagePortion": true,
-        "PerformActionsOnShieldsDamagePortion": false,
-        "PerformActionsOnKill": false,
-        "PerformActionsOnSurvive": false,
-        "PercentOfMaxDamageNeededForActions": 0,
-        "triggerType": "AsTarget",
-        "aeType": "Ignore",
-        "AggregateBurst": true,
-        "CheckInitiatorFaction": false,
-        "m_Faction": null,
-        "CheckWeaponBlueprint": false,
-        "m_WeaponBlueprints": [],
-        "Actions": {
-          "Actions": [
-            {
-              "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-              "name": "$Conditional$e96956e1a5464b62b604e0df27bedd9f",
-              "Comment": "",
-              "ConditionsChecker": {
-                "Operation": "And",
-                "Conditions": [
-                  {
-                    "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
-                    "name": "$ContextConditionHasBuff$2bd7c8b8da514b1789677326d2d4433d",
-                    "Not": true,
-                    "m_Buff": "!bp_f9b2e0f3583a491c91ad19d72e2d2024"
-                  }
-                ]
-              },
-              "IfTrue": {
-                "Actions": [
-                  {
-                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
-                    "name": "$Conditional$c74019e07838492987d1e95aae9de769",
-                    "Comment": "",
-                    "ConditionsChecker": {
-                      "Operation": "And",
-                      "Conditions": [
-                        {
-                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
-                          "name": "$ContextConditionHasBuff$b3dae384552748ebabc6bb45b0c695a1",
-                          "Not": false,
-                          "m_Buff": "!bp_dcd95e8624c845b680e6ea7fc7814677"
-                        }
-                      ]
-                    },
-                    "IfTrue": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$244c8c778fa24bf3a807aa7a827226e3",
-                          "m_Buff": "!bp_f9b2e0f3583a491c91ad19d72e2d2024",
-                          "BuffEndCondition": "SpaceCombatExit",
-                          "Permanent": true,
-                          "DurationValue": {
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": false,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "Simple",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    },
-                    "IfFalse": {
-                      "Actions": [
-                        {
-                          "$type": "5d13a597de91e4746b804f8233518523, ContextActionApplyBuff",
-                          "name": "$ContextActionApplyBuff$ba854f2c08fc46e491392c6b1c18f0be",
-                          "m_Buff": "!bp_dcd95e8624c845b680e6ea7fc7814677",
-                          "BuffEndCondition": "SpaceCombatExit",
-                          "Permanent": false,
-                          "DurationValue": {
-                            "RoundsValue": {
-                              "ValueType": "Simple",
-                              "Value": 1,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "ToCaster": false,
-                          "AsChild": false,
-                          "SameDuration": false,
-                          "Ranks": {
-                            "ValueType": "Simple",
-                            "Value": 0,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
-                          },
-                          "ActionsOnApply": {
-                            "Actions": []
-                          },
-                          "ActionsOnImmune": {
-                            "Actions": []
-                          },
-                          "AddFactSource": false
-                        }
-                      ]
-                    }
-                  }
-                ]
-              },
-              "IfFalse": {
-                "Actions": []
-              }
-            }
-          ]
-        },
-        "TargetUnitActions": {
-          "Actions": []
-        },
-        "TriggerForThisAbilityOnly": true
       }
     ],
-    "Author": "EvgeniyIvanovGD",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
-      "Shared": {
-        "assetguid": "c7142326e65970a4cac6c54450e38f6f",
-        "stringkey": "837e0fb1-2f92-428e-acb3-58c2315603ab"
-      }
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
     },
     "m_Description": {
       "m_Key": "",
-      "Shared": {
-        "assetguid": "e24b76fdf48571d4dbdd3165956cd620",
-        "stringkey": "a9e30013-91d6-4aeb-910c-739a72863790"
-      }
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
+      "Shared": null
     },
-    "m_Icon": {
-      "guid": "da5a9b88f8e89eb42b5dc7ef06afccf7",
-      "fileid": 21300000
-    },
+    "m_Icon": null,
     "m_AllowNonContextActions": false,
     "HideInUI": false,
     "HideInCharacterSheetAndLevelUp": false,
@@ -406,10 +245,14 @@
     },
     "m_Acronym": {
       "m_Key": "",
+      "m_OwnerString": "",
+      "m_OwnerPropertyPath": "",
+      "m_JsonPath": "",
       "Shared": null
     },
     "ShowInDialogue": false,
-    "IsStarshipFeature": true
+    "IsStarshipFeature": false,
+    "Author": "EvgeniyIvanovGD"
   },
   "Meta": {
     "ShadowDeleted": false

@@ -14,10 +14,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -48,6 +50,15 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "MaxHitChance": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
         "RighteousFuryChance": {
           "ValueType": "Simple",
           "Value": 0,
@@ -75,7 +86,19 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
-        "AutoCrit": false
+        "HitToCritPercentMultiplier": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "AutoHit": false,
+        "AutoCrit": false,
+        "NeverCrit": false,
+        "CoverHitAutoResult": "None"
       },
       {
         "$type": "428580af48b84509b97be533f03c7759, WarhammerHitChanceModifierInitiator",
@@ -86,10 +109,12 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "Restrictions": {
           "Property": {
             "Operation": "Sum",
             "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
             "FailSilentlyIfNoTarget": false,
             "Getters": [
               {
@@ -120,6 +145,15 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
+        "MaxHitChance": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
         "RighteousFuryChance": {
           "ValueType": "Simple",
           "Value": 0,
@@ -147,7 +181,19 @@
           "m_CustomProperty": null,
           "PropertyName": "Value1"
         },
-        "AutoCrit": false
+        "HitToCritPercentMultiplier": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "AutoHit": false,
+        "AutoCrit": false,
+        "NeverCrit": false,
+        "CoverHitAutoResult": "None"
       },
       {
         "$type": "f9bf4ae9ccd847689d5cdf2e86bc51ca, PropertyCalculatorComponent",
@@ -163,6 +209,7 @@
         "Value": {
           "Operation": "Mul",
           "TargetType": "ContextCaster",
+          "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
           "Getters": [
             {
@@ -204,6 +251,7 @@
               "Value": {
                 "Operation": "Div",
                 "TargetType": "ContextCaster",
+                "TargetEvaluator": null,
                 "FailSilentlyIfNoTarget": false,
                 "Getters": [
                   {
@@ -259,6 +307,7 @@
           "name": ""
         },
         "m_Overrides": [],
+        "Comment": "",
         "DisableForLevelUpPreviewUnit": true,
         "DisableWhenReapplying": false,
         "Activated": {
@@ -305,36 +354,10 @@
                     "Failure": {
                       "Actions": [
                         {
-                          "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
-                          "name": "$ContextActionDealDamage$032257ca-1778-49a6-a1df-61bdef411089",
-                          "DamageType": {
-                            "Type": "Toxic"
-                          },
-                          "UseDiceForDamage": false,
-                          "ReadPreRolledFromSharedValue": false,
-                          "PreRolledSharedValue": "Damage",
-                          "Value": {
-                            "DiceType": "Zero",
-                            "DiceCountValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "MinDamage": {
+                          "$type": "984ce206d35c47f8adce3d3e47fc10ec, ContextActionApplyDOT",
+                          "name": "$ContextActionApplyDOT$4a04a418e5814216861eacfc8d5b7b50",
+                          "Type": "Toxic",
+                          "DamageValue": {
                             "ValueType": "Simple",
                             "Value": 20,
                             "ValueRank": "Default",
@@ -343,16 +366,15 @@
                             "m_CustomProperty": null,
                             "PropertyName": "Value1"
                           },
-                          "MaxDamage": {
-                            "ValueType": "Simple",
-                            "Value": 20,
-                            "ValueRank": "Default",
-                            "ValueShared": "Damage",
-                            "Property": "None",
-                            "m_CustomProperty": null,
-                            "PropertyName": "Value1"
+                          "EndCondition": "CombatEnd",
+                          "UseRoundsDuration": false,
+                          "RoundsDuration": {
+                            "m_Value": 0
                           },
-                          "BonusDamage": {
+                          "UseSavingThrowOverride": false,
+                          "SavingThrowOverride": "Unknown",
+                          "UseDifficultyOverride": false,
+                          "DifficultyOverride": {
                             "ValueType": "Simple",
                             "Value": 0,
                             "ValueRank": "Default",
@@ -361,32 +383,16 @@
                             "m_CustomProperty": null,
                             "PropertyName": "Value1"
                           },
-                          "Penetration": {
-                            "DiceType": "Zero",
-                            "DiceCountValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            },
-                            "BonusValue": {
-                              "ValueType": "Simple",
-                              "Value": 0,
-                              "ValueRank": "Default",
-                              "ValueShared": "Damage",
-                              "Property": "None",
-                              "m_CustomProperty": null,
-                              "PropertyName": "Value1"
-                            }
-                          },
-                          "Half": false,
-                          "IsAoE": false,
-                          "m_Weapon": null,
-                          "WriteResultToSharedValue": false,
-                          "ResultSharedValue": "Damage"
+                          "UsePenetrationOverride": false,
+                          "PenetrationOverride": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          }
                         }
                       ]
                     },
@@ -506,11 +512,14 @@
                         "PropertyName": "Value1"
                       }
                     },
+                    "HasRighteousFury": false,
                     "Half": false,
                     "IsAoE": false,
                     "m_Weapon": null,
                     "WriteResultToSharedValue": false,
-                    "ResultSharedValue": "Damage"
+                    "ResultSharedValue": "Damage",
+                    "DoNotUseCrModifier": false,
+                    "DoNotUseCasterModifiers": false
                   }
                 ]
               },
@@ -528,6 +537,7 @@
         }
       }
     ],
+    "Author": "ElenaMironova",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
@@ -550,7 +560,7 @@
       }
     },
     "m_Icon": {
-      "guid": "7f6b6b2fa01f13e4a887e7a87444f48a",
+      "guid": "2d5e01e7bfad17e408f23505797206a9",
       "fileid": 21300000
     },
     "m_AllowNonContextActions": false,
@@ -577,9 +587,11 @@
     "m_FXSettings": null,
     "ResourceAssetIds": [],
     "PlayOnlyFirstHitSound": false,
+    "m_priorityInUI": 0,
     "m_AbilityGroups": [],
     "m_Cyclical": false,
-    "Author": "ElenaMironova"
+    "NeedCollapseStack": true,
+    "IsImportantBuff": false
   },
   "Meta": {
     "ShadowDeleted": false

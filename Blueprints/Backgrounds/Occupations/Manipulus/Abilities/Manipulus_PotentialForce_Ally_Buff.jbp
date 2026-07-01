@@ -17,7 +17,7 @@
         "Name": "Value2",
         "SaveToContext": "No",
         "Value": {
-          "Operation": "Sum",
+          "Operation": "Mul",
           "TargetType": "ContextCaster",
           "TargetEvaluator": null,
           "FailSilentlyIfNoTarget": false,
@@ -35,7 +35,30 @@
                 "Min": 0,
                 "Max": 0
               },
-              "Property": "Intelligence"
+              "Property": "IntelligenceBonus"
+            },
+            {
+              "$type": "71959818449d4891939b89c19a6d9a91, ContextValueGetter",
+              "name": "$ContextValueGetter$9798abd3fabc44ba9d7dec3578af485b",
+              "Settings": {
+                "Progression": "AsIs",
+                "m_CustomProgression": [],
+                "m_StartLevel": 0,
+                "m_StepLevel": 0,
+                "Negate": false,
+                "Limit": "None",
+                "Min": 0,
+                "Max": 0
+              },
+              "Value": {
+                "ValueType": "Simple",
+                "Value": 3,
+                "ValueRank": "Default",
+                "ValueShared": "Damage",
+                "Property": "None",
+                "m_CustomProperty": null,
+                "PropertyName": "Value1"
+              }
             }
           ]
         }
@@ -187,175 +210,116 @@
               "Actions": {
                 "Actions": [
                   {
-                    "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
-                    "name": "$ContextActionDealDamage$a84784db-ac0b-44d4-8ff0-8f7cf0066680",
-                    "DamageType": {
-                      "Type": "Shock"
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$d5fe0448daed4a90b9d4805672b716ad",
+                    "Comment": "Проверка на Galvanic Field",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$43b6c97ce7164378b9f80792cbdeb150",
+                          "Not": false,
+                          "m_Buff": "!bp_e6926d919c6d4246b1feb2ff8d7611fc"
+                        }
+                      ]
                     },
-                    "UseDiceForDamage": false,
-                    "ReadPreRolledFromSharedValue": false,
-                    "PreRolledSharedValue": "Damage",
-                    "Value": {
-                      "DiceType": "Zero",
-                      "DiceCountValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
-                    },
-                    "MinDamage": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "MaxDamage": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "BonusDamage": {
-                      "ValueType": "CasterNamedProperty",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value2"
-                    },
-                    "Penetration": {
-                      "DiceType": "Zero",
-                      "DiceCountValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "BonusValue": {
-                        "ValueType": "CasterNamedProperty",
-                        "Value": 50,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value2"
-                      }
-                    },
-                    "HasRighteousFury": false,
-                    "Half": false,
-                    "IsAoE": false,
-                    "m_Weapon": null,
-                    "WriteResultToSharedValue": false,
-                    "ResultSharedValue": "Damage",
-                    "DoNotUseCrModifier": false,
-                    "DoNotUseCasterModifiers": false
-                  }
-                ]
-              },
-              "NumberOfTargets": 8,
-              "TilesRadius": 1,
-              "LowestWounds": false,
-              "HighestWounds": false,
-              "AffectDead": false,
-              "AffectUnconscious": false,
-              "m_FilterNoFact": "!bp_4644d27aca624059883392696c49456d",
-              "m_FilterHasFact": null
-            }
-          ]
-        },
-        "triggerAfterAttack": true,
-        "onlyMeleeAttack": false,
-        "ActionsOnTarget": true,
-        "OnlyHit": true,
-        "TriggerOncePerAbilityCast": true
-      },
-      {
-        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
-        "name": "$TurnBasedModeEventsTrigger$0771062a-cf0e-4928-a030-5e928a6a273b",
-        "m_Flags": 0,
-        "PrototypeLink": {
-          "guid": "",
-          "name": ""
-        },
-        "m_Overrides": [],
-        "Comment": "",
-        "TriggerIfNotInCombat": false,
-        "Restrictions": {
-          "Property": {
-            "Operation": "Sum",
-            "TargetType": "CurrentEntity",
-            "TargetEvaluator": null,
-            "FailSilentlyIfNoTarget": false,
-            "Getters": []
-          }
-        },
-        "CombatStartActions": {
-          "Actions": []
-        },
-        "CombatEndActions": {
-          "Actions": []
-        },
-        "RoundStartActions": {
-          "Actions": []
-        },
-        "RoundEndActions": {
-          "Actions": []
-        },
-        "AnyUnitTurns": false,
-        "OnlyEnemyTurns": false,
-        "ActionsOnTheTurnOwner": false,
-        "UnitTurnStartActions": {
-          "Actions": []
-        },
-        "UnitTurnEndActions": {
-          "Actions": [
-            {
-              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
-              "name": "$ContextActionOnAllUnitsInCombat$0e8dc09ba6ab404da314fa5865564a42",
-              "OnlyEnemies": true,
-              "OnlyAllies": false,
-              "Actions": {
-                "Actions": [
-                  {
-                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
-                    "name": "$ContextActionSpawnFx$26e5c77a-abe0-46ad-a730-94433fc0e849",
-                    "PrefabLink": {
-                      "AssetId": "85db7920853293d47b19213f3d478c43"
-                    }
-                  },
-                  {
-                    "$type": "2dcc60a5b076f0047b982e9d4c04b226, ContextActionOnRandomTargetsAround",
-                    "name": "$ContextActionOnRandomTargetsAround$2ff46661-c953-487b-913d-199c14710e82",
-                    "OnEnemies": true,
-                    "OnlyAllies": false,
-                    "Actions": {
+                    "IfTrue": {
                       "Actions": [
                         {
                           "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
-                          "name": "$ContextActionDealDamage$652db123-7430-4d1f-af7e-d53aa71611a0",
+                          "name": "$ContextActionDealDamage$d0fcf3e6-f374-4e20-8c96-b4521f0644ab",
+                          "DamageType": {
+                            "Type": "Shock"
+                          },
+                          "UseDiceForDamage": false,
+                          "ReadPreRolledFromSharedValue": false,
+                          "PreRolledSharedValue": "Damage",
+                          "Value": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "MinDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "MaxDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value2"
+                          },
+                          "Penetration": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "CasterNamedProperty",
+                              "Value": 50,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value2"
+                            }
+                          },
+                          "HasRighteousFury": false,
+                          "Half": false,
+                          "IsAoE": false,
+                          "m_Weapon": null,
+                          "WriteResultToSharedValue": false,
+                          "ResultSharedValue": "Damage",
+                          "DoNotUseCrModifier": false,
+                          "DoNotUseCasterModifiers": false
+                        }
+                      ]
+                    },
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                          "name": "$ContextActionDealDamage$98e45cc6-cc7a-4f87-b85e-98e9b446e2ab",
                           "DamageType": {
                             "Type": "Shock"
                           },
@@ -441,6 +405,287 @@
                           "DoNotUseCasterModifiers": false
                         }
                       ]
+                    }
+                  }
+                ]
+              },
+              "NumberOfTargets": 8,
+              "TilesRadius": 1,
+              "LowestWounds": false,
+              "HighestWounds": false,
+              "AffectDead": false,
+              "AffectUnconscious": false,
+              "m_FilterNoFact": "!bp_4644d27aca624059883392696c49456d",
+              "m_FilterHasFact": null
+            }
+          ]
+        },
+        "triggerAfterAttack": true,
+        "onlyMeleeAttack": false,
+        "ActionsOnTarget": true,
+        "OnlyHit": true,
+        "TriggerOncePerAbilityCast": true
+      },
+      {
+        "$type": "0cdbc172cfe945e3818c0d49fbd7d65f, TurnBasedModeEventsTrigger",
+        "name": "$TurnBasedModeEventsTrigger$0771062a-cf0e-4928-a030-5e928a6a273b",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "",
+          "name": ""
+        },
+        "m_Overrides": [],
+        "Comment": "",
+        "TriggerIfNotInCombat": false,
+        "Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        },
+        "CombatStartActions": {
+          "Actions": []
+        },
+        "CombatEndActions": {
+          "Actions": []
+        },
+        "RoundStartActions": {
+          "Actions": []
+        },
+        "RoundEndActions": {
+          "Actions": []
+        },
+        "AnyUnitTurns": false,
+        "OnlyEnemyTurns": false,
+        "ActionsOnTheTurnOwner": false,
+        "UnitTurnStartActions": {
+          "Actions": []
+        },
+        "UnitTurnEndActions": {
+          "Actions": [
+            {
+              "$type": "7b1d3a11c0f4426a8584738997ebc207, ContextActionOnAllUnitsInCombat",
+              "name": "$ContextActionOnAllUnitsInCombat$0e8dc09ba6ab404da314fa5865564a42",
+              "OnlyEnemies": true,
+              "OnlyAllies": false,
+              "Actions": {
+                "Actions": [
+                  {
+                    "$type": "120df4726e71c854e95f84b87a99a3c5, ContextActionSpawnFx",
+                    "name": "$ContextActionSpawnFx$26e5c77a-abe0-46ad-a730-94433fc0e849",
+                    "PrefabLink": {
+                      "AssetId": "85db7920853293d47b19213f3d478c43"
+                    }
+                  },
+                  {
+                    "$type": "2dcc60a5b076f0047b982e9d4c04b226, ContextActionOnRandomTargetsAround",
+                    "name": "$ContextActionOnRandomTargetsAround$2ff46661-c953-487b-913d-199c14710e82",
+                    "OnEnemies": true,
+                    "OnlyAllies": false,
+                    "Actions": {
+                      "Actions": [
+                        {
+                          "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                          "name": "$Conditional$62aff3f9-f5d5-4507-9f22-99f285e6d70c",
+                          "Comment": "Проверка на Galvanic Field",
+                          "ConditionsChecker": {
+                            "Operation": "And",
+                            "Conditions": [
+                              {
+                                "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                                "name": "$ContextConditionHasBuff$cb5f82ec-c188-45fc-88aa-9cf45f06410e",
+                                "Not": false,
+                                "m_Buff": "!bp_e6926d919c6d4246b1feb2ff8d7611fc"
+                              }
+                            ]
+                          },
+                          "IfTrue": {
+                            "Actions": [
+                              {
+                                "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                                "name": "$ContextActionDealDamage$6d6c149d-4b4d-438f-9cfb-99aca4469629",
+                                "DamageType": {
+                                  "Type": "Shock"
+                                },
+                                "UseDiceForDamage": false,
+                                "ReadPreRolledFromSharedValue": false,
+                                "PreRolledSharedValue": "Damage",
+                                "Value": {
+                                  "DiceType": "Zero",
+                                  "DiceCountValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  },
+                                  "BonusValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  }
+                                },
+                                "MinDamage": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "MaxDamage": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "BonusDamage": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value2"
+                                },
+                                "Penetration": {
+                                  "DiceType": "Zero",
+                                  "DiceCountValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  },
+                                  "BonusValue": {
+                                    "ValueType": "CasterNamedProperty",
+                                    "Value": 50,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value2"
+                                  }
+                                },
+                                "HasRighteousFury": false,
+                                "Half": false,
+                                "IsAoE": false,
+                                "m_Weapon": null,
+                                "WriteResultToSharedValue": false,
+                                "ResultSharedValue": "Damage",
+                                "DoNotUseCrModifier": false,
+                                "DoNotUseCasterModifiers": false
+                              }
+                            ]
+                          },
+                          "IfFalse": {
+                            "Actions": [
+                              {
+                                "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                                "name": "$ContextActionDealDamage$3f14f2cd-366a-4044-9dca-f9de20e34629",
+                                "DamageType": {
+                                  "Type": "Shock"
+                                },
+                                "UseDiceForDamage": false,
+                                "ReadPreRolledFromSharedValue": false,
+                                "PreRolledSharedValue": "Damage",
+                                "Value": {
+                                  "DiceType": "Zero",
+                                  "DiceCountValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  },
+                                  "BonusValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  }
+                                },
+                                "MinDamage": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "MaxDamage": {
+                                  "ValueType": "Simple",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value1"
+                                },
+                                "BonusDamage": {
+                                  "ValueType": "CasterNamedProperty",
+                                  "Value": 0,
+                                  "ValueRank": "Default",
+                                  "ValueShared": "Damage",
+                                  "Property": "None",
+                                  "m_CustomProperty": null,
+                                  "PropertyName": "Value2"
+                                },
+                                "Penetration": {
+                                  "DiceType": "Zero",
+                                  "DiceCountValue": {
+                                    "ValueType": "Simple",
+                                    "Value": 0,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value1"
+                                  },
+                                  "BonusValue": {
+                                    "ValueType": "CasterNamedProperty",
+                                    "Value": 50,
+                                    "ValueRank": "Default",
+                                    "ValueShared": "Damage",
+                                    "Property": "None",
+                                    "m_CustomProperty": null,
+                                    "PropertyName": "Value2"
+                                  }
+                                },
+                                "HasRighteousFury": false,
+                                "Half": false,
+                                "IsAoE": false,
+                                "m_Weapon": null,
+                                "WriteResultToSharedValue": false,
+                                "ResultSharedValue": "Damage",
+                                "DoNotUseCrModifier": false,
+                                "DoNotUseCasterModifiers": false
+                              }
+                            ]
+                          }
+                        }
+                      ]
                     },
                     "NumberOfTargets": 8,
                     "TilesRadius": 1,
@@ -508,91 +753,202 @@
               "Actions": {
                 "Actions": [
                   {
-                    "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
-                    "name": "$ContextActionDealDamage$e4f6a03b-4967-4390-b5b8-f30d74980a4b",
-                    "DamageType": {
-                      "Type": "Shock"
+                    "$type": "52d8973f2e470e14c97b74209680491a, Conditional",
+                    "name": "$Conditional$62f44b3d-95f1-46b1-84c8-21096c7fdb17",
+                    "Comment": "Проверка на Galvanic Field",
+                    "ConditionsChecker": {
+                      "Operation": "And",
+                      "Conditions": [
+                        {
+                          "$type": "72a5648a7abcbd748b5d2a601acb616d, ContextConditionHasBuff",
+                          "name": "$ContextConditionHasBuff$9d94bc16-b226-41ce-9d1e-a6be45e1454c",
+                          "Not": false,
+                          "m_Buff": "!bp_e6926d919c6d4246b1feb2ff8d7611fc"
+                        }
+                      ]
                     },
-                    "UseDiceForDamage": false,
-                    "ReadPreRolledFromSharedValue": false,
-                    "PreRolledSharedValue": "Damage",
-                    "Value": {
-                      "DiceType": "Zero",
-                      "DiceCountValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "BonusValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      }
+                    "IfTrue": {
+                      "Actions": [
+                        {
+                          "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                          "name": "$ContextActionDealDamage$8d07b0d3-799d-48f0-8e13-7c126f13c514",
+                          "DamageType": {
+                            "Type": "Shock"
+                          },
+                          "UseDiceForDamage": false,
+                          "ReadPreRolledFromSharedValue": false,
+                          "PreRolledSharedValue": "Damage",
+                          "Value": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "MinDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "MaxDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value2"
+                          },
+                          "Penetration": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "CasterNamedProperty",
+                              "Value": 50,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value2"
+                            }
+                          },
+                          "HasRighteousFury": false,
+                          "Half": false,
+                          "IsAoE": false,
+                          "m_Weapon": null,
+                          "WriteResultToSharedValue": false,
+                          "ResultSharedValue": "Damage",
+                          "DoNotUseCrModifier": false,
+                          "DoNotUseCasterModifiers": false
+                        }
+                      ]
                     },
-                    "MinDamage": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "MaxDamage": {
-                      "ValueType": "Simple",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value1"
-                    },
-                    "BonusDamage": {
-                      "ValueType": "CasterNamedProperty",
-                      "Value": 0,
-                      "ValueRank": "Default",
-                      "ValueShared": "Damage",
-                      "Property": "None",
-                      "m_CustomProperty": null,
-                      "PropertyName": "Value2"
-                    },
-                    "Penetration": {
-                      "DiceType": "Zero",
-                      "DiceCountValue": {
-                        "ValueType": "Simple",
-                        "Value": 0,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value1"
-                      },
-                      "BonusValue": {
-                        "ValueType": "CasterNamedProperty",
-                        "Value": 50,
-                        "ValueRank": "Default",
-                        "ValueShared": "Damage",
-                        "Property": "None",
-                        "m_CustomProperty": null,
-                        "PropertyName": "Value2"
-                      }
-                    },
-                    "HasRighteousFury": false,
-                    "Half": false,
-                    "IsAoE": false,
-                    "m_Weapon": null,
-                    "WriteResultToSharedValue": false,
-                    "ResultSharedValue": "Damage",
-                    "DoNotUseCrModifier": false,
-                    "DoNotUseCasterModifiers": false
+                    "IfFalse": {
+                      "Actions": [
+                        {
+                          "$type": "bdc93cbacbdc05843a933659f15c1302, ContextActionDealDamage",
+                          "name": "$ContextActionDealDamage$5a04644f-ad91-472d-a6f3-fc0cb91c48f8",
+                          "DamageType": {
+                            "Type": "Shock"
+                          },
+                          "UseDiceForDamage": false,
+                          "ReadPreRolledFromSharedValue": false,
+                          "PreRolledSharedValue": "Damage",
+                          "Value": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            }
+                          },
+                          "MinDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "MaxDamage": {
+                            "ValueType": "Simple",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value1"
+                          },
+                          "BonusDamage": {
+                            "ValueType": "CasterNamedProperty",
+                            "Value": 0,
+                            "ValueRank": "Default",
+                            "ValueShared": "Damage",
+                            "Property": "None",
+                            "m_CustomProperty": null,
+                            "PropertyName": "Value2"
+                          },
+                          "Penetration": {
+                            "DiceType": "Zero",
+                            "DiceCountValue": {
+                              "ValueType": "Simple",
+                              "Value": 0,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value1"
+                            },
+                            "BonusValue": {
+                              "ValueType": "CasterNamedProperty",
+                              "Value": 50,
+                              "ValueRank": "Default",
+                              "ValueShared": "Damage",
+                              "Property": "None",
+                              "m_CustomProperty": null,
+                              "PropertyName": "Value2"
+                            }
+                          },
+                          "HasRighteousFury": false,
+                          "Half": false,
+                          "IsAoE": false,
+                          "m_Weapon": null,
+                          "WriteResultToSharedValue": false,
+                          "ResultSharedValue": "Damage",
+                          "DoNotUseCrModifier": false,
+                          "DoNotUseCasterModifiers": false
+                        }
+                      ]
+                    }
                   }
                 ]
               },
