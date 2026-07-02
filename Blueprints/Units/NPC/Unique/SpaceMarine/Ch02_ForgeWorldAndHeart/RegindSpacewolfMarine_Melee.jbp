@@ -24,7 +24,9 @@
         },
         "m_Overrides": [],
         "m_Buff": "!bp_8de915da52f24d9bb925d13fb2c8cf98",
-        "m_ActionsOnImmunity": null,
+        "m_ActionsOnImmunity": {
+          "Actions": []
+        },
         "m_DisableGameLog": true
       },
       {
@@ -37,7 +39,9 @@
         },
         "m_Overrides": [],
         "m_Buff": "!bp_f1c0c6bee3c54cc694c1d1746eafcb15",
-        "m_ActionsOnImmunity": null,
+        "m_ActionsOnImmunity": {
+          "Actions": []
+        },
         "m_DisableGameLog": true
       },
       {
@@ -50,7 +54,13 @@
         },
         "m_Overrides": [],
         "Restrictions": {
-          "Property": null
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
         },
         "BonusDeflectionValue": {
           "ValueType": "Simple",
@@ -80,6 +90,46 @@
         "ForceAbsorptionMinimum": false,
         "PctAbsorptionMinimum": 0,
         "AbsorptionMinimumValue": 0,
+        "ForcePctAbsorptionMaximum": false,
+        "PctAbsorptionMaximum": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForceAbsorptionMaximum": false,
+        "AbsorptionMaximumValue": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForcePctDeflectionMaximum": false,
+        "PctDeflectionMaximum": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
+        "ForceDeflectionMaximum": false,
+        "DeflectionMaximumValue": {
+          "ValueType": "Simple",
+          "Value": 0,
+          "ValueRank": "Default",
+          "ValueShared": "Damage",
+          "Property": "None",
+          "m_CustomProperty": null,
+          "PropertyName": "Value1"
+        },
         "ModifierDescriptor": "None"
       },
       {
@@ -182,7 +232,8 @@
         },
         "ModifierDescriptor": "None",
         "ModifyEvenDirectDamage": false,
-        "ModifyEvenDamageOverTime": false
+        "ModifyEvenDamageOverTime": false,
+        "IgnoreDifficultyMinimumDamage": false
       },
       {
         "$type": "05fab0d4998390a4cbf88da0ab1e4123, AddMechanicsFeature",
@@ -193,7 +244,16 @@
           "name": "$AddMechanicsFeature$eedfcb49-f3e5-44ca-a778-3a0eefebdd35"
         },
         "m_Overrides": [],
-        "m_Feature": "IsFirstInFight"
+        "m_Feature": "IsFirstInFight",
+        "m_Restrictions": {
+          "Property": {
+            "Operation": "Sum",
+            "TargetType": "CurrentEntity",
+            "TargetEvaluator": null,
+            "FailSilentlyIfNoTarget": false,
+            "Getters": []
+          }
+        }
       },
       {
         "$type": "d79ad4ed064aa4f43ace0e9c238fb9b9, AddFacts",
@@ -212,22 +272,34 @@
         "HasDifficultyRequirements": false,
         "InvertDifficultyRequirements": false,
         "MinDifficulty": "Story"
+      },
+      {
+        "$type": "d79ad4ed064aa4f43ace0e9c238fb9b9, AddFacts",
+        "name": "$AddFacts$ffa59972-382b-469e-a77a-72f610876ffe",
+        "m_Flags": 0,
+        "PrototypeLink": {
+          "guid": "4b81380dc07245849efcf0bc6572025e",
+          "name": "$AddFacts$ffa59972-382b-469e-a77a-72f610876ffe"
+        },
+        "m_Overrides": [],
+        "m_Facts": [
+          "!bp_a536a73c7e7543c9bcd66ac8442b6e9a"
+        ],
+        "Dummy": null,
+        "DoNotRestoreMissingFacts": false,
+        "HasDifficultyRequirements": false,
+        "InvertDifficultyRequirements": false,
+        "MinDifficulty": "Story"
       }
     ],
     "Author": "AlexeyPolezhaev",
     "Comment": "",
     "m_DisplayName": {
       "m_Key": "",
-      "m_OwnerString": "",
-      "m_OwnerPropertyPath": "",
-      "m_JsonPath": "",
       "Shared": null
     },
     "m_Description": {
       "m_Key": "",
-      "m_OwnerString": "",
-      "m_OwnerPropertyPath": "",
-      "m_JsonPath": "",
       "Shared": null
     },
     "m_Icon": null,
@@ -286,7 +358,9 @@
       "m_Shoulders": null,
       "m_PetProtocol": null,
       "m_QuickSlots": [],
-      "m_Mechadendrites": []
+      "m_Mechadendrites": [],
+      "m_Augments": [],
+      "m_AugmentToOverdrive": null
     },
     "OldWarhammerBallisticSkill": 40,
     "WarhammerBallisticSkillSetting": {
